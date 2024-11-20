@@ -1,0 +1,34 @@
+
+;pos=07F800
+r 37 U
+r 26 A
+r 23 U
+r 110 A
+r 94 U
+r 31 A
+r 13 U
+r 9 A
+r 10 U
+r 245 A
+r 26 U
+r 75 A
+r 31 U
+r 67 A
+r 106 U
+r 15 A
+r 13 U
+r 13 A
+r 10 U
+r 437 A
+r 50 U
+r 107 A
+r 31 U
+r 160 A
+r 130 U
+r 19 A
+r 25 U
+r 9 A
+r 15 U
+r 82 A
+r 28 U
+A

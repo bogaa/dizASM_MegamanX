@@ -1,0 +1,47 @@
+
+;pos=069000
+r 499 U
+A
+A
+A
+U
+U
+U
+r 42 A
+U
+U
+U
+r 27 A
+r 57 U
+r 63 A
+r 21 U
+A
+A
+A
+A
+A
+A
+U
+U
+U
+r 84 A
+r 150 U
+r 96 A
+r 222 U
+r 42 A
+r 333 U
+r 42 A
+r 24 U
+r 63 A
+r 165 U
+r 90 A
+U
+U
+U
+U
+U
+U
+A
+A
+A
+A

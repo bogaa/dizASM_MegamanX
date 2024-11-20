@@ -1,0 +1,29 @@
+
+;pos=02A800
+A
+A
+A
+r 70 U
+r 30 A
+r 10 U
+r 10 A
+r 631 U
+r 14 A
+r 28 U
+r 31 A
+r 94 U
+r 10 A
+r 14 U
+r 30 A
+r 20 U
+r 193 A
+r 16 U
+r 12 A
+r 84 U
+r 60 A
+r 278 U
+r 136 A
+r 20 U
+r 21 A
+r 111 U
+r 122 A

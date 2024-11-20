@@ -1,0 +1,107 @@
+
+;pos=17C000
+r 102 U
+r 28 A
+U
+U
+r 21 A
+U
+U
+r 32 A
+U
+U
+r 21 A
+r 147 U
+A
+A
+U
+U
+r 20 A
+U
+U
+U
+U
+U
+r 15 A
+U
+U
+r 9 A
+U
+U
+r 33 A
+U
+U
+r 17 A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+r 61 U
+r 10 A
+U
+U
+U
+U
+U
+r 9 A
+U
+U
+r 69 A
+U
+U
+r 24 A
+U
+U
+r 57 A
+r 429 U
+r 31 A
+U
+U
+r 32 A
+U
+U
+A
+A
+A
+A
+A
+A
+U
+U
+r 26 A
+U
+U
+r 18 A
+r 49 U
+r 13 A
+U
+U
+r 24 A
+U
+U
+r 29 A
+U
+U
+A
+A
+A
+r 64 U
+A
+A
+A
+A
+A
+A
+U
+U
+r 23 A
+U
+U
+r 26 A
+r 534 U

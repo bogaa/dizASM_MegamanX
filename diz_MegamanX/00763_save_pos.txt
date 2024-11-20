@@ -1,0 +1,28 @@
+
+;pos=17B000
+r 892 U
+A
+A
+U
+U
+A
+A
+A
+A
+U
+U
+U
+U
+A
+A
+U
+U
+r 11 A
+r 14 U
+r 30 A
+U
+U
+r 29 A
+r 40 U
+r 32 A
+r 982 U

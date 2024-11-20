@@ -1,0 +1,310 @@
+
+;pos=030000
+r 102 A
+Ag
+A
+A
+A
+Ag
+r 9 A
+Ag
+A
+A
+A
+A
+A
+Ag
+Ag
+U
+A
+A
+A
+A
+A
+A
+A
+U
+U
+U
+U
+U
+A
+U
+A
+U
+U
+U
+U
+U
+U
+A
+r 8 U
+A
+A
+A
+A
+A
+A
+A
+U
+U
+U
+U
+U
+r 35 A
+r 24 U
+A
+A
+A
+A
+A
+A
+U
+U
+U
+U
+A
+A
+A
+A
+A
+A
+r 23 U
+A
+A
+A
+A
+A
+r 32 U
+Ag
+A
+U
+U
+Ag
+Ag
+r 16 U
+A
+A
+r 8 U
+A
+A
+A
+A
+r 14 U
+A
+A
+r 14 U
+r 20 A
+r 12 U
+A
+A
+U
+U
+U
+U
+U
+U
+A
+A
+r 20 U
+A
+A
+r 26 U
+A
+A
+U
+U
+U
+U
+U
+U
+A
+A
+r 34 U
+A
+A
+U
+U
+U
+U
+U
+U
+A
+A
+r 20 U
+A
+A
+A
+A
+U
+U
+A
+A
+A
+A
+A
+A
+U
+U
+A
+A
+U
+U
+U
+U
+U
+U
+A
+A
+U
+U
+A
+A
+U
+U
+r 18 A
+U
+U
+U
+U
+U
+U
+A
+A
+r 24 U
+A
+A
+U
+U
+A
+A
+A
+A
+r 56 U
+r 12 A
+U
+U
+U
+U
+U
+U
+r 10 A
+r 18 U
+r 16 A
+r 46 U
+A
+A
+r 32 U
+r 15 A
+r 40 U
+A
+A
+A
+A
+A
+r 16 U
+A
+A
+A
+A
+A
+r 35 U
+r 9 A
+r 35 U
+r 50 A
+r 21 U
+r 9 A
+r 15 U
+A
+A
+A
+A
+A
+r 45 U
+A
+A
+A
+A
+A
+r 60 U
+A
+A
+A
+A
+A
+r 135 U
+A
+A
+A
+A
+A
+r 50 U
+r 10 A
+U
+U
+U
+U
+U
+r 15 A
+U
+U
+U
+U
+U
+A
+A
+A
+A
+A
+r 19 U
+r 9 A
+U
+U
+U
+U
+U
+A
+A
+A
+A
+A
+U
+U
+U
+U
+U
+r 45 A
+r 19 U
+A
+A
+A
+A
+A
+r 64 U
+A
+A
+A
+A
+A
+U
+U
+U
+U
+U
+r 10 A
+r 42 U
+Ug
+Ug
+U
+U
+U
+U
+Ug
+Ug
+r 97 U
+r 30 A
+r 15 U
+r 25 A
+r 45 U
+r 40 A
+r 127 U

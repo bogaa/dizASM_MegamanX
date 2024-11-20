@@ -1,0 +1,90 @@
+
+;pos=031000
+r 38 U
+A
+A
+A
+A
+A
+A
+Ag
+U
+Ug
+U
+U
+U
+U
+U
+U
+A
+A
+A
+A
+r 92 U
+A
+A
+A
+A
+A
+A
+Ag
+U
+Ug
+U
+U
+U
+U
+U
+U
+A
+A
+A
+r 93 U
+A
+A
+A
+A
+A
+A
+Ug
+Ug
+A
+A
+U
+U
+U
+U
+A
+A
+A
+A
+A
+A
+r 18 U
+A
+A
+A
+A
+A
+A
+r 18 U
+r 38 A
+r 12 U
+A
+A
+r 20 U
+A
+A
+A
+A
+r 102 U
+r 37 A
+r 31 U
+r 148 A
+r 124 U
+r 132 A
+r 411 U
+r 206 A
+r 158 U
+r 8 A
+r 293 U

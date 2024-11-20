@@ -1,0 +1,30 @@
+
+;pos=17D800
+r 296 U
+r 28 A
+r 300 U
+r 103 A
+U
+U
+r 14 A
+r 427 U
+r 64 A
+U
+U
+A
+A
+A
+A
+A
+A
+r 233 U
+r 54 A
+U
+U
+A
+A
+A
+U
+U
+r 18 A
+r 494 U

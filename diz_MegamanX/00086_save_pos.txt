@@ -1,0 +1,158 @@
+
+;pos=028800
+r 522 U
+A
+A
+A
+A
+U
+U
+U
+r 351 A
+U
+U
+U
+r 118 A
+U
+U
+U
+r 73 A
+U
+U
+U
+A
+A
+A
+A
+U
+U
+U
+r 13 A
+U
+U
+U
+r 12 A
+U
+U
+U
+A
+A
+A
+A
+A
+U
+U
+U
+A
+A
+A
+A
+A
+U
+U
+U
+r 12 A
+U
+U
+U
+r 20 A
+U
+U
+U
+A
+A
+A
+A
+U
+U
+U
+A
+A
+A
+A
+U
+U
+U
+r 12 A
+U
+U
+U
+A
+A
+A
+A
+U
+U
+U
+r 20 A
+U
+U
+U
+A
+A
+A
+A
+U
+U
+U
+r 44 A
+U
+U
+U
+r 37 A
+U
+U
+U
+A
+A
+A
+A
+A
+U
+U
+U
+r 19 A
+U
+U
+U
+A
+A
+A
+A
+U
+U
+U
+A
+A
+A
+A
+A
+U
+U
+U
+A
+A
+A
+A
+A
+U
+U
+U
+r 21 A
+U
+U
+U
+A
+A
+A
+A
+A
+U
+U
+U
+r 21 A
+U
+U
+U
+r 292 A
+r 322 U

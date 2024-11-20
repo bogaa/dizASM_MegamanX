@@ -1,0 +1,187 @@
+
+;pos=030800
+r 20 U
+A
+A
+A
+A
+A
+r 91 U
+Ug
+A
+A
+Ag
+A
+Ag
+A
+Ag
+A
+Ag
+r 17 A
+Ag
+r 9 A
+Ag
+r 21 A
+Ug
+r 12 U
+Ug
+U
+U
+Ug
+r 12 U
+Ug
+r 8 U
+Ug
+r 8 U
+Ug
+r 168 U
+Ug
+r 907 U
+Ug
+U
+U
+U
+U
+U
+U
+U
+Ag
+Ag
+A
+A
+Ag
+A
+A
+A
+Ug
+U
+Ug
+U
+U
+U
+U
+U
+U
+A
+A
+A
+A
+r 92 U
+A
+A
+A
+A
+A
+A
+Ag
+U
+Ug
+U
+U
+U
+U
+U
+U
+A
+A
+A
+A
+r 92 U
+A
+A
+A
+A
+A
+A
+Ag
+U
+Ug
+U
+U
+U
+U
+U
+U
+A
+A
+A
+A
+r 92 U
+A
+A
+A
+A
+A
+A
+Ag
+U
+Ug
+U
+U
+U
+U
+U
+U
+A
+A
+A
+r 93 U
+A
+A
+A
+A
+A
+A
+Ug
+U
+Ug
+U
+U
+U
+U
+U
+U
+A
+A
+A
+r 93 U
+A
+A
+A
+A
+A
+A
+Ug
+U
+Ug
+U
+U
+U
+U
+U
+U
+A
+A
+A
+A
+r 92 U
+A
+A
+A
+A
+A
+A
+Ag
+U
+Ug
+U
+U
+U
+U
+U
+U
+A
+A
+A
+A
+r 54 U

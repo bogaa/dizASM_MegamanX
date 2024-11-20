@@ -1,0 +1,37 @@
+
+;pos=032800
+r 275 U
+r 29 A
+r 321 U
+A
+A
+r 581 U
+Ug
+r 52 U
+Ug
+Ug
+Ug
+Ug
+Ug
+Ug
+A
+A
+r 62 U
+A
+A
+r 64 U
+r 14 A
+r 180 U
+A
+A
+U
+U
+U
+A
+A
+A
+A
+A
+A
+A
+r 445 U

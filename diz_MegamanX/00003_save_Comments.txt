@@ -1,0 +1,46 @@
+<Comments>
+        <sys:Item Key="8553481" Value="cutterInitSpeed" />
+        <sys:Item Key="8553486" Value="cutterInitSpeed" />
+        <sys:Item Key="8843063" Value="offset where to find the damage value" />
+        <sys:Item Key="8843133" Value="Buster Uncharged" />
+        <sys:Item Key="8843134" Value="Buster Charge L.1" />
+        <sys:Item Key="8843135" Value="Buster Charge L.3" />
+        <sys:Item Key="8843136" Value="Buster Charge L.2" />
+        <sys:Item Key="8843137" Value="Hadouken" />
+        <sys:Item Key="8843140" Value="Homing Torpedo - Uncharged" />
+        <sys:Item Key="8843141" Value="Chameleon Sting - Uncharged" />
+        <sys:Item Key="8843142" Value="Rolling Shield - Uncharged" />
+        <sys:Item Key="8843143" Value="Fire Wave - Uncharged" />
+        <sys:Item Key="8843144" Value="Storm Tornado - Uncharged" />
+        <sys:Item Key="8843145" Value="Electric Spark - Uncharged" />
+        <sys:Item Key="8843146" Value="Bommerang Cutter - Uncharged" />
+        <sys:Item Key="8843147" Value="Shotgun Ice - Uncharged" />
+        <sys:Item Key="8843149" Value="Homing Torpedo - Charged" />
+        <sys:Item Key="8843150" Value="Chameleon Sting - Charged - Dummied out due to no contact" />
+        <sys:Item Key="8843151" Value="Rolling Shield - Charged" />
+        <sys:Item Key="8843152" Value="Fire Wave - Charged" />
+        <sys:Item Key="8843153" Value="Storm Tornado - Charged" />
+        <sys:Item Key="8843154" Value="Electric Spark - Charged" />
+        <sys:Item Key="8843155" Value="Bommerang Cutter - Charged" />
+        <sys:Item Key="8843156" Value="Shotgun Ice - Charged" />
+        <sys:Item Key="8843160" Value="Mine Cart" />
+        <sys:Item Key="8843163" Value="I-Frames same weaponOffset" />
+        <sys:Item Key="8843193" Value="Unknown Enemy same weaponOffset" />
+        <sys:Item Key="8843223" Value="Vile, Bee Blader, Thunder Slimer, Anglerge" />
+        <sys:Item Key="8843253" Value="Unused?" />
+        <sys:Item Key="8843283" Value="Sting Chameleon, D-Rex, RT-55J, Utuboros" />
+        <sys:Item Key="8843313" Value="Storm Eagle, Rangda Bangda" />
+        <sys:Item Key="8843343" Value="Flame Mammoth, Cruiziler" />
+        <sys:Item Key="8843373" Value="Chill Penguin, Mole Borer" />
+        <sys:Item Key="8843403" Value="Spark Mandrill, Bospider, Velguarder" />
+        <sys:Item Key="8843433" Value="Armored Armadillo" />
+        <sys:Item Key="8843463" Value="Launch Octopus" />
+        <sys:Item Key="8843493" Value="Boomer Kuwanger" />
+        <sys:Item Key="8843523" Value="Unused?" />
+        <sys:Item Key="8843553" Value="Unused?" />
+        <sys:Item Key="8843583" Value="Unused?" />
+        <sys:Item Key="8843613" Value="Unused?" />
+        <sys:Item Key="8843643" Value="Sigma" />
+        <sys:Item Key="8843673" Value="Wolf Sigma" />
+      </Comments>
+      

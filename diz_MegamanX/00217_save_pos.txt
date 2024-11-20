@@ -1,0 +1,17 @@
+
+;pos=06A000
+r 522 U
+r 12 A
+r 237 U
+r 96 A
+r 261 U
+r 57 A
+r 48 U
+r 33 A
+r 192 U
+r 18 A
+r 33 U
+r 27 A
+r 444 U
+r 15 A
+r 53 U

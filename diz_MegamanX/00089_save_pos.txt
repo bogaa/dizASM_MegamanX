@@ -1,0 +1,43 @@
+
+;pos=02A000
+r 1430 U
+r 60 A
+U
+U
+U
+U
+r 24 A
+r 10 U
+A
+A
+A
+A
+U
+U
+U
+U
+U
+U
+r 26 A
+r 20 U
+A
+A
+A
+A
+A
+A
+U
+U
+A
+A
+U
+U
+U
+U
+U
+U
+r 331 A
+r 20 U
+r 20 A
+r 30 U
+r 47 A

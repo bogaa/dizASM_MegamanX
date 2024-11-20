@@ -1,0 +1,59 @@
+
+;pos=17E000
+r 71 U
+r 12 A
+r 44 U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+r 75 U
+A
+A
+A
+A
+A
+A
+r 8 U
+r 18 A
+U
+U
+r 17 A
+r 973 U
+A
+A
+A
+A
+U
+U
+U
+U
+r 9 A
+U
+U
+r 14 A
+r 761 U

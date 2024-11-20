@@ -1,0 +1,127 @@
+
+;pos=034000
+U
+U
+U
+r 8 A
+r 20 U
+A
+A
+A
+A
+U
+A
+A
+A
+A
+A
+r 12 U
+A
+A
+A
+A
+r 56 U
+Ug
+r 119 U
+Ug
+r 31 U
+Ug
+r 20 U
+Ug
+U
+U
+U
+U
+U
+Ug
+r 23 U
+Ug
+r 117 U
+Ug
+r 251 U
+A
+A
+A
+A
+U
+U
+U
+U
+U
+U
+U
+Ug
+r 14 U
+A
+A
+A
+A
+r 68 U
+Ug
+r 56 U
+Ug
+Ug
+r 271 U
+Ug
+r 79 U
+Ug
+r 75 U
+Ug
+r 63 U
+Ug
+U
+Ug
+r 13 U
+Ug
+r 9 U
+r 13 A
+r 27 U
+A
+A
+A
+A
+Ag
+A
+A
+A
+U
+U
+A
+A
+Ag
+A
+A
+A
+U
+U
+A
+A
+r 10 U
+Ug
+r 11 U
+Ug
+r 15 U
+Ug
+r 31 U
+Ug
+r 27 U
+Ug
+U
+Ug
+r 9 U
+Ug
+U
+Ug
+r 29 U
+Ug
+r 9 U
+Ug
+r 191 U
+Ug
+U
+Ug
+r 13 U
+Ug
+r 41 U
+Ug
+r 225 U

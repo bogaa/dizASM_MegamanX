@@ -1,0 +1,96 @@
+<Labels>
+        <sys:Item Key="8454116">
+          <Value exs:type="ns1:Label" Name="Native_COP" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8454118">
+          <Value exs:type="ns1:Label" Name="Native_BRK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8454122">
+          <Value exs:type="ns1:Label" Name="Native_NMI" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8454132">
+          <Value exs:type="ns1:Label" Name="Native_IRQ" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8454142">
+          <Value exs:type="ns1:Label" Name="Emulation_RESET" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8553407">
+          <Value exs:type="ns1:Label" Name="we_cutterState00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8553505">
+          <Value exs:type="ns1:Label" Name="we_cutterState03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8553513">
+          <Value exs:type="ns1:Label" Name="we_cutterState01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8553696">
+          <Value exs:type="ns1:Label" Name="we_cutterState02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843063">
+          <Value exs:type="ns1:Label" Name="weaponDamage_index" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843103">
+          <Value exs:type="ns1:Label" Name="weaponDamage_ff" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843133">
+          <Value exs:type="ns1:Label" Name="weaponDamage_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843163">
+          <Value exs:type="ns1:Label" Name="weaponDamage_01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843193">
+          <Value exs:type="ns1:Label" Name="weaponDamage_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843223">
+          <Value exs:type="ns1:Label" Name="weaponDamage_03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843253">
+          <Value exs:type="ns1:Label" Name="weaponDamage_04" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843283">
+          <Value exs:type="ns1:Label" Name="weaponDamage_05" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843284">
+          <Value exs:type="ns1:Label" Name="" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843313">
+          <Value exs:type="ns1:Label" Name="weaponDamage_06" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843343">
+          <Value exs:type="ns1:Label" Name="weaponDamage_07" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843373">
+          <Value exs:type="ns1:Label" Name="weaponDamage_08" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843403">
+          <Value exs:type="ns1:Label" Name="weaponDamage_09" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843433">
+          <Value exs:type="ns1:Label" Name="weaponDamage_0a" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843463">
+          <Value exs:type="ns1:Label" Name="weaponDamage_0b" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843493">
+          <Value exs:type="ns1:Label" Name="weaponDamage_0c" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843523">
+          <Value exs:type="ns1:Label" Name="weaponDamage_0d" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843553">
+          <Value exs:type="ns1:Label" Name="weaponDamage_0e" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843583">
+          <Value exs:type="ns1:Label" Name="weaponDamage_0f" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843613">
+          <Value exs:type="ns1:Label" Name="weaponDamage_10" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843643">
+          <Value exs:type="ns1:Label" Name="weaponDamage_11" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8843673">
+          <Value exs:type="ns1:Label" Name="weaponDamage_12" Comment="" />
+        </sys:Item>
+      </Labels>
+      

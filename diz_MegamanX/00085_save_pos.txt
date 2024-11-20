@@ -1,0 +1,18 @@
+
+;pos=028000
+r 33 A
+Ug
+r 467 U
+Ug
+r 135 U
+Ug
+r 67 U
+Ug
+U
+U
+U
+U
+U
+A
+A
+r 1335 U

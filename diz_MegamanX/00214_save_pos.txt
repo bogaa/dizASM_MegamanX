@@ -1,0 +1,37 @@
+
+;pos=068800
+r 72 A
+U
+U
+U
+U
+U
+U
+r 36 A
+r 15 U
+A
+A
+A
+A
+A
+A
+r 9 U
+r 39 A
+r 30 U
+r 9 A
+U
+U
+U
+A
+A
+A
+r 483 U
+r 9 A
+U
+U
+U
+U
+U
+U
+r 39 A
+r 1283 U

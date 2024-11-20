@@ -1,0 +1,59 @@
+
+;pos=031800
+r 144 U
+r 26 A
+r 26 U
+Ag
+Ag
+r 8 U
+A
+A
+U
+U
+U
+U
+U
+U
+A
+A
+A
+A
+U
+U
+A
+A
+r 38 U
+r 16 A
+r 80 U
+r 9 A
+r 25 U
+r 9 A
+r 15 U
+r 17 A
+r 14 U
+r 9 A
+r 11 U
+r 177 A
+r 49 U
+Ug
+r 196 U
+Ug
+r 8 U
+Ug
+r 8 U
+Ug
+U
+U
+U
+U
+U
+U
+U
+Ug
+r 67 U
+Ug
+r 47 U
+Ug
+r 15 U
+Ug
+r 1001 U

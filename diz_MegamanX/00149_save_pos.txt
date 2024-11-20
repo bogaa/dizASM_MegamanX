@@ -1,0 +1,41 @@
+
+;pos=048000
+A
+Ag
+A
+A
+A
+A
+A
+A
+r 39 U
+A
+A
+A
+A
+A
+A
+U
+U
+U
+r 21 A
+r 15 U
+A
+A
+A
+U
+U
+U
+A
+A
+A
+r 18 U
+A
+A
+A
+r 69 U
+r 24 A
+U
+U
+U
+r 1830 A

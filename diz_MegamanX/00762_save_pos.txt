@@ -1,0 +1,181 @@
+
+;pos=17A800
+r 15 U
+A
+A
+A
+A
+U
+U
+U
+U
+U
+r 28 A
+r 8 U
+A
+A
+A
+A
+r 20 U
+r 38 A
+U
+U
+U
+U
+A
+A
+A
+A
+r 16 U
+r 77 A
+r 589 U
+A
+A
+A
+A
+A
+A
+r 14 U
+r 15 A
+U
+U
+r 26 A
+r 70 U
+r 47 A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+r 35 A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+U
+U
+A
+A
+A
+r 42 U
+r 8 A
+r 8 U
+A
+A
+A
+U
+U
+r 17 A
+U
+U
+r 14 A
+r 368 U
+A
+A
+A
+A
+U
+U
+U
+U
+U
+U
+A
+A
+A
+A
+U
+U
+r 21 A
+U
+U
+r 9 A
+r 92 U
+r 15 A
+U
+U
+A
+A
+A
+A
+A
+A
+r 302 U
