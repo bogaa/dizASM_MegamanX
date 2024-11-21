@@ -1,6 +1,34 @@
 <Comments>
+        <sys:Item Key="8432674" Value="Armpart value" />
+        <sys:Item Key="8440018" Value="set this to 00 to remove the leg upgrade" />
+        <sys:Item Key="8440036" Value="set this to 00 to remove the armor upgrade" />
+        <sys:Item Key="8440049" Value=" set this to 00 to remove the arm upgrade" />
+        <sys:Item Key="8440070" Value="set this to 00 to remove the head upgrade" />
+        <sys:Item Key="8450971" Value="curios what this is " />
+        <sys:Item Key="8452534" Value="iron ball guy " />
+        <sys:Item Key="8452589" Value="flame" />
+        <sys:Item Key="8452639" Value="01 with canon" />
+        <sys:Item Key="8452699" Value="01 second Bridge" />
+        <sys:Item Key="8452744" Value="platform" />
+        <sys:Item Key="8452839" Value="(Acts as a Tombot generator. When destroyed, smoke comes from" />
+        <sys:Item Key="8453034" Value="and death.." />
+        <sys:Item Key="8453039" Value="stage 1" />
+        <sys:Item Key="8453069" Value="free space for more events jeppiii" />
+        <sys:Item Key="8488593" Value="set this to 00 to remove the reduced damage animation" />
+        <sys:Item Key="8493021" Value="set this to 00 to remove the ability to charge special weapons" />
+        <sys:Item Key="8493257" Value="set this to 00 to remove the ability to fire level 3/special weapon shots" />
+        <sys:Item Key="8493311" Value="set this to 00 to remove the ability to break blocks with leg upgrade" />
+        <sys:Item Key="8493335" Value="setting this to 00 will prevent blocks from breaking" />
+        <sys:Item Key="8495598" Value="set this to 00 to remove the level 3 charge shot palette" />
+        <sys:Item Key="8553265" Value="check last slot" />
         <sys:Item Key="8553481" Value="cutterInitSpeed" />
         <sys:Item Key="8553486" Value="cutterInitSpeed" />
+        <sys:Item Key="8687338" Value="15 = object/enemy tiles, 16=background tiles, 17=palette" />
+        <sys:Item Key="8687339" Value="the subid is two 4 bit values. the lower (right) 4 bits is what to change to when you cross the trigger in the forward direction. the second 4 bits is what to change (back) to when you go in the backwards direction" />
+        <sys:Item Key="8687340" Value="18,19, and 1A do the same thing but they check Y for the trigger. 15-17 check X." />
+        <sys:Item Key="8687342" Value="There's a bit in the subid that reverse the flow of the change, too." />
+        <sys:Item Key="8687344" Value="(2,4,3) activates the platforms in Eagle. I was trying to figure out why magic carpet works and it's because of that event and how the boomerang carries items." />
+        <sys:Item Key="8691012" Value="set this to 00 to remove the reduced damage ability" />
         <sys:Item Key="8843063" Value="offset where to find the damage value" />
         <sys:Item Key="8843133" Value="Buster Uncharged" />
         <sys:Item Key="8843134" Value="Buster Charge L.1" />

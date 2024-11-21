@@ -59,7 +59,9 @@ r 9 U
 Ug
 r 13 U
 Ug
-r 49 U
+r 19 U
+Ug
+r 29 U
 Ug
 U
 U
@@ -177,7 +179,13 @@ U
 Ug
 r 28 U
 Ug
-r 40 U
+U
+U
+U
+U
+U
+r 16 B
+r 19 U
 Ug
 r 78 U
 Ug

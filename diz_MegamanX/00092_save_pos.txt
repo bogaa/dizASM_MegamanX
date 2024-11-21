@@ -1,17 +1,3 @@
 
 ;pos=02B800
-r 31 A
-r 64 U
-r 32 A
-r 96 U
-r 64 A
-r 288 U
-r 32 A
-r 512 U
-r 32 A
-r 416 U
-r 32 A
-r 64 U
-r 320 A
-r 32 U
-r 33 A
+r 2048 B
