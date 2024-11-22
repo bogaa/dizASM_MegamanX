@@ -2578,7 +2578,7 @@
                        BNE CODE_809129                      ;809124|D003    |809129;
                                                             ;      |        |      ;
           CODE_809126:
-                       JSR.W CODE_80D56F                    ;809126|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;809126|206FD5  |80D56F;
                                                             ;      |        |      ;
           CODE_809129:
                        LDA.L $7F8400                        ;809129|AF00847F|7F8400;
@@ -2624,7 +2624,7 @@
                        JSR.W CODE_809F0F                    ;809169|200F9F  |809F0F;
                                                             ;      |        |      ;
           CODE_80916C:
-                       JSR.W CODE_80D56F                    ;80916C|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;80916C|206FD5  |80D56F;
                        STZ.W r_1f24                         ;80916F|9C241F  |861F24;
                        LDX.B #$01                           ;809172|A201    |      ;
                        LDY.B #$02                           ;809174|A002    |      ;
@@ -2639,7 +2639,7 @@
                        INC.W $0B9C                          ;80917C|EE9C0B  |860B9C;
                        JSR.W CODE_80D1ED                    ;80917F|20EDD1  |80D1ED;
                        JSR.W CODE_80DC36                    ;809182|2036DC  |80DC36;
-                       JSR.W CODE_80D56F                    ;809185|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;809185|206FD5  |80D56F;
                        LDA.L $7F8400                        ;809188|AF00847F|7F8400;
                        CMP.B #$04                           ;80918C|C904    |      ;
                        BEQ CODE_809195                      ;80918E|F005    |809195;
@@ -2725,7 +2725,7 @@
                        STA.W r_1f11                         ;809251|8D111F  |861F11;
                        LDA.B #$04                           ;809254|A904    |      ;
                        STA.W r_1f12                         ;809256|8D121F  |861F12;
-                       JSR.W CODE_80D56F                    ;809259|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;809259|206FD5  |80D56F;
                        LDA.B #$04                           ;80925C|A904    |      ;
                        JSR.W CODE_8089E1                    ;80925E|20E189  |8089E1;
                        LDA.B #$10                           ;809261|A910    |      ;
@@ -2781,7 +2781,7 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8092B6:
-                       JSR.W CODE_80D56F                    ;8092B6|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;8092B6|206FD5  |80D56F;
                        JSL.L CODE_849086                    ;8092B9|22869084|849086;
                        DEC.B $3B                            ;8092BD|C63B    |00003B;
                        BEQ CODE_8092C2                      ;8092BF|F001    |8092C2;
@@ -2807,7 +2807,7 @@
                        JSR.W CODE_80D43A                    ;8092E2|203AD4  |80D43A;
                        PLD                                  ;8092E5|2B      |      ;
                        PLP                                  ;8092E6|28      |      ;
-                       JSR.W CODE_80D56F                    ;8092E7|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;8092E7|206FD5  |80D56F;
                        LDA.B $3B                            ;8092EA|A53B    |00003B;
                        BEQ CODE_8092FA                      ;8092EC|F00C    |8092FA;
                        DEC.B $3B                            ;8092EE|C63B    |00003B;
@@ -3426,7 +3426,7 @@
                        STA.W r_colorV_ca                    ;809747|8DCA00  |8600CA;
                                                             ;      |        |      ;
           CODE_80974A:
-                       JMP.W CODE_80D56F                    ;80974A|4C6FD5  |80D56F;
+                       JMP.W mainOAM                        ;80974A|4C6FD5  |80D56F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_80974D:
@@ -3445,7 +3445,7 @@
                        STA.W r_colorV_cc                    ;809761|8DCC00  |8600CC;
                        STA.W r_colorV_cd                    ;809764|8DCD00  |8600CD;
                        JSR.W CODE_809F68                    ;809767|20689F  |809F68;
-                       JMP.W CODE_80D56F                    ;80976A|4C6FD5  |80D56F;
+                       JMP.W mainOAM                        ;80976A|4C6FD5  |80D56F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_80976D:
@@ -3470,7 +3470,7 @@
                        INC.W $00A1                          ;80979A|EEA100  |8600A1;
                        JSR.W CODE_809F68                    ;80979D|20689F  |809F68;
                        JSR.W CODE_809F68                    ;8097A0|20689F  |809F68;
-                       JMP.W CODE_80D56F                    ;8097A3|4C6FD5  |80D56F;
+                       JMP.W mainOAM                        ;8097A3|4C6FD5  |80D56F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8097A6:
@@ -3639,7 +3639,7 @@
                                                             ;      |        |      ;
           CODE_8098EC:
                        JSR.W CODE_809F68                    ;8098EC|20689F  |809F68;
-                       JMP.W CODE_80D56F                    ;8098EF|4C6FD5  |80D56F;
+                       JMP.W mainOAM                        ;8098EF|4C6FD5  |80D56F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8098F2:
@@ -3654,7 +3654,7 @@
                                                             ;      |        |      ;
           CODE_8098FF:
                        JSR.W CODE_809F68                    ;8098FF|20689F  |809F68;
-                       JMP.W CODE_80D56F                    ;809902|4C6FD5  |80D56F;
+                       JMP.W mainOAM                        ;809902|4C6FD5  |80D56F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_809905:
@@ -3819,7 +3819,7 @@
                        INC.B $D4                            ;809A34|E6D4    |0000D4;
                        LDA.B #$04                           ;809A36|A904    |      ;
                        STA.W r_1f12                         ;809A38|8D121F  |861F12;
-                       JSR.W CODE_80D56F                    ;809A3B|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;809A3B|206FD5  |80D56F;
                        INC.W r_1ce8                         ;809A3E|EEE81C  |861CE8;
                        LDA.B #$0A                           ;809A41|A90A    |      ;
                        STA.W r_1cf2                         ;809A43|8DF21C  |861CF2;
@@ -3837,7 +3837,7 @@
                        JSR.W CODE_80D345                    ;809A53|2045D3  |80D345;
                        PLD                                  ;809A56|2B      |      ;
                        PLP                                  ;809A57|28      |      ;
-                       JSR.W CODE_80D56F                    ;809A58|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;809A58|206FD5  |80D56F;
                        LDA.W r_1ce8                         ;809A5B|ADE81C  |861CE8;
                        BNE CODE_809A69                      ;809A5E|D009    |809A69;
                        LDA.B #$04                           ;809A60|A904    |      ;
@@ -3874,7 +3874,7 @@
                        JSR.W CODE_80D1ED                    ;809A9A|20EDD1  |80D1ED;
                        JSR.W CODE_80DC36                    ;809A9D|2036DC  |80DC36;
                        JSR.W CODE_809E68                    ;809AA0|20689E  |809E68;
-                       JSR.W CODE_80D56F                    ;809AA3|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;809AA3|206FD5  |80D56F;
                        LDA.W r_1f30                         ;809AA6|AD301F  |861F30;
                        CMP.B #$80                           ;809AA9|C980    |      ;
                        BNE CODE_809AB4                      ;809AAB|D007    |809AB4;
@@ -3942,7 +3942,7 @@
                        JSR.W CODE_809F0F                    ;809B0B|200F9F  |809F0F;
                                                             ;      |        |      ;
           CODE_809B0E:
-                       JSR.W CODE_80D56F                    ;809B0E|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;809B0E|206FD5  |80D56F;
                        STZ.W r_1f24                         ;809B11|9C241F  |861F24;
                        LDA.B $D7                            ;809B14|A5D7    |0000D7;
                        STA.W r_0ba1                         ;809B16|8DA10B  |860BA1;
@@ -3959,7 +3959,7 @@
                        INC.W $0B9C                          ;809B23|EE9C0B  |860B9C;
                        JSR.W CODE_80D1ED                    ;809B26|20EDD1  |80D1ED;
                        JSR.W CODE_80DC36                    ;809B29|2036DC  |80DC36;
-                       JSR.W CODE_80D56F                    ;809B2C|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;809B2C|206FD5  |80D56F;
                        LDA.W r_1f0b                         ;809B2F|AD0B1F  |861F0B;
                        BEQ CODE_809B6F                      ;809B32|F03B    |809B6F;
                        LDY.B #$04                           ;809B34|A004    |      ;
@@ -3996,7 +3996,7 @@
                                                             ;      |        |      ;
           CODE_809B70:
                        JSR.W CODE_80D1ED                    ;809B70|20EDD1  |80D1ED;
-                       JSR.W CODE_80D56F                    ;809B73|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;809B73|206FD5  |80D56F;
                        LDA.W r_1f23                         ;809B76|AD231F  |861F23;
                        BPL CODE_809B8C                      ;809B79|1011    |809B8C;
                        LDA.W $213F                          ;809B7B|AD3F21  |86213F;
@@ -4218,7 +4218,7 @@
                        STA.W r_1e69                         ;809D0A|8D691E  |861E69;
                        JSR.W CODE_80E543                    ;809D0D|2043E5  |80E543;
                        JSR.W CODE_80D1ED                    ;809D10|20EDD1  |80D1ED;
-                       JSR.W CODE_80D56F                    ;809D13|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;809D13|206FD5  |80D56F;
                        LDA.W r_1f23                         ;809D16|AD231F  |861F23;
                        BPL CODE_809D35                      ;809D19|101A    |809D35;
                        LDY.B #$02                           ;809D1B|A002    |      ;
@@ -4390,7 +4390,7 @@
                        LDA.B #$01                           ;809E80|A901    |      ;
                        STA.W r_1f24                         ;809E82|8D241F  |861F24;
                        JSR.W CODE_809EAD                    ;809E85|20AD9E  |809EAD;
-                       JSR.W CODE_80D56F                    ;809E88|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;809E88|206FD5  |80D56F;
                        LDA.B #$F1                           ;809E8B|A9F1    |      ;
                        JSR.W CODE_80888B                    ;809E8D|208B88  |80888B;
                        LDX.B #$01                           ;809E90|A201    |      ;
@@ -4674,7 +4674,7 @@
                        JSR.W CODE_80A42B                    ;80A044|202BA4  |80A42B;
                        PEA.W r_0000                         ;80A047|F40000  |860000;
                        PLD                                  ;80A04A|2B      |      ;
-                       JSR.W CODE_80D56F                    ;80A04B|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;80A04B|206FD5  |80D56F;
                        LDA.W r_1e48                         ;80A04E|AD481E  |861E48;
                        BEQ CODE_80A058                      ;80A051|F005    |80A058;
                        JSR.W CODE_808100                    ;80A053|200081  |808100;
@@ -5931,7 +5931,7 @@
                        JSR.W CODE_80DEDB                    ;80A923|20DBDE  |80DEDB;
                        PEA.W r_0000                         ;80A926|F40000  |860000;
                        PLD                                  ;80A929|2B      |      ;
-                       JSR.W CODE_80D56F                    ;80A92A|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;80A92A|206FD5  |80D56F;
                        PLD                                  ;80A92D|2B      |      ;
                        PLP                                  ;80A92E|28      |      ;
                        RTS                                  ;80A92F|60      |      ;
@@ -6811,7 +6811,7 @@
                        JSR.W CODE_80D43A                    ;80AF5A|203AD4  |80D43A;
                        PEA.W r_0000                         ;80AF5D|F40000  |860000;
                        PLD                                  ;80AF60|2B      |      ;
-                       JSR.W CODE_80D56F                    ;80AF61|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;80AF61|206FD5  |80D56F;
                        PLD                                  ;80AF64|2B      |      ;
                        PLP                                  ;80AF65|28      |      ;
                        STZ.W r_1f0d                         ;80AF66|9C0D1F  |861F0D;
@@ -8825,7 +8825,7 @@
                        JSR.W CODE_80C24C                    ;80BCCD|204CC2  |80C24C;
                        PLD                                  ;80BCD0|2B      |      ;
                        JSL.L CODE_81808F                    ;80BCD1|228F8081|81808F;
-                       JSR.W CODE_80D56F                    ;80BCD5|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;80BCD5|206FD5  |80D56F;
                        RTS                                  ;80BCD8|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9965,7 +9965,7 @@
                        JSR.W (DATA8_80C436,X)               ;80C42E|FC36C4  |80C436;
                        PLD                                  ;80C431|2B      |      ;
                        PLP                                  ;80C432|28      |      ;
-                       JMP.W CODE_80D56F                    ;80C433|4C6FD5  |80D56F;
+                       JMP.W mainOAM                        ;80C433|4C6FD5  |80D56F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          DATA8_80C436:
@@ -10089,7 +10089,7 @@
                        PHD                                  ;80C539|0B      |      ;
                        PEA.W r_0000                         ;80C53A|F40000  |860000;
                        PLD                                  ;80C53D|2B      |      ;
-                       JSR.W CODE_80D56F                    ;80C53E|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;80C53E|206FD5  |80D56F;
                        PLD                                  ;80C541|2B      |      ;
                        STZ.W r_1f11                         ;80C542|9C111F  |861F11;
                        STZ.W r_1f12                         ;80C545|9C121F  |861F12;
@@ -11911,7 +11911,7 @@
                        PHD                                  ;80D1DB|0B      |      ;
                        PEA.W $0000                          ;80D1DC|F40000  |000000;
                        PLD                                  ;80D1DF|2B      |      ;
-                       JSR.W CODE_80D56F                    ;80D1E0|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;80D1E0|206FD5  |80D56F;
                        PLD                                  ;80D1E3|2B      |      ;
                        RTL                                  ;80D1E4|6B      |      ;
                                                             ;      |        |      ;
@@ -12551,21 +12551,21 @@
                        RTS                                  ;80D56E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80D56F:
+              mainOAM:
                        PHP                                  ;80D56F|08      |      ;
                        PHB                                  ;80D570|8B      |      ;
                        SEP #$20                             ;80D571|E220    |      ;
                        REP #$10                             ;80D573|C210    |      ;
-                       JSR.W CODE_80D7CE                    ;80D575|20CED7  |80D7CE;
+                       JSR.W drawHealthMeter                ;80D575|20CED7  |80D7CE;
                        JSR.W CODE_80D8F5                    ;80D578|20F5D8  |80D8F5;
                        JSR.W CODE_80DA0E                    ;80D57B|200EDA  |80DA0E;
                        LDA.B #$8D                           ;80D57E|A98D    |      ;
                        PHA                                  ;80D580|48      |      ;
                        PLB                                  ;80D581|AB      |      ;
-                       JSR.W CODE_80D5DF                    ;80D582|20DFD5  |80D5DF;
+                       JSR.W drawProjectileOAM              ;80D582|20DFD5  |80D5DF;
                        JSR.W CODE_80D66B                    ;80D585|206BD6  |80D66B;
-                       JSR.W CODE_80D69C                    ;80D588|209CD6  |80D69C;
-                       JSR.W CODE_80D625                    ;80D58B|2025D6  |80D625;
+                       JSR.W drawPlayerOAM                  ;80D588|209CD6  |80D69C;
+                       JSR.W drawEventOAM                   ;80D58B|2025D6  |80D625;
                        SEP #$30                             ;80D58E|E230    |      ;
                        LDA.B $E4                            ;80D590|A5E4    |0000E4;
                        AND.B #$03                           ;80D592|2903    |      ;
@@ -12611,7 +12611,7 @@
                        DEC.B $00                            ;80D5C8|C600    |000000;
                        BNE CODE_80D5C1                      ;80D5CA|D0F5    |80D5C1;
                                                             ;      |        |      ;
-          CODE_80D5CC:
+         endOAMupdate:
                        LDA.B $E4                            ;80D5CC|A5E4    |0000E4;
                        STA.B $E3                            ;80D5CE|85E3    |0000E3;
                        REP #$20                             ;80D5D0|C220    |      ;
@@ -12625,7 +12625,7 @@
                        RTS                                  ;80D5DE|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80D5DF:
+    drawProjectileOAM:
                        STZ.B $0E                            ;80D5DF|640E    |00000E;
                                                             ;      |        |      ;
           CODE_80D5E1:
@@ -12637,7 +12637,7 @@
                        ASL A                                ;80D5EA|0A      |      ;
                        TAY                                  ;80D5EB|A8      |      ;
                        LDX.W $0920,Y                        ;80D5EC|BE2009  |8D0920;
-                       JSR.W CODE_80D6A7                    ;80D5EF|20A7D6  |80D6A7;
+                       JSR.W drawEventSlots2_OAM            ;80D5EF|20A7D6  |80D6A7;
                        INC.B $0E                            ;80D5F2|E60E    |00000E;
                        BRA CODE_80D5E1                      ;80D5F4|80EB    |80D5E1;
                                                             ;      |        |      ;
@@ -12654,7 +12654,7 @@
                        ASL A                                ;80D601|0A      |      ;
                        TAY                                  ;80D602|A8      |      ;
                        LDX.W $0960,Y                        ;80D603|BE6009  |8D0960;
-                       JSR.W CODE_80D6A7                    ;80D606|20A7D6  |80D6A7;
+                       JSR.W drawEventSlots2_OAM            ;80D606|20A7D6  |80D6A7;
                        INC.B $0E                            ;80D609|E60E    |00000E;
                        BRA CODE_80D5F8                      ;80D60B|80EB    |80D5F8;
                                                             ;      |        |      ;
@@ -12671,7 +12671,7 @@
                        ASL A                                ;80D618|0A      |      ;
                        TAY                                  ;80D619|A8      |      ;
                        LDX.W $09A0,Y                        ;80D61A|BEA009  |8D09A0;
-                       JSR.W CODE_80D6A7                    ;80D61D|20A7D6  |80D6A7;
+                       JSR.W drawEventSlots2_OAM            ;80D61D|20A7D6  |80D6A7;
                        INC.B $0E                            ;80D620|E60E    |00000E;
                        BRA CODE_80D60F                      ;80D622|80EB    |80D60F;
                                                             ;      |        |      ;
@@ -12680,7 +12680,7 @@
                        RTS                                  ;80D624|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80D625:
+         drawEventOAM:
                        STZ.B $0E                            ;80D625|640E    |00000E;
                                                             ;      |        |      ;
           CODE_80D627:
@@ -12692,7 +12692,7 @@
                        ASL A                                ;80D630|0A      |      ;
                        TAY                                  ;80D631|A8      |      ;
                        LDX.W $09E0,Y                        ;80D632|BEE009  |8D09E0;
-                       JSR.W CODE_80D6A7                    ;80D635|20A7D6  |80D6A7;
+                       JSR.W drawEventSlots2_OAM            ;80D635|20A7D6  |80D6A7;
                        INC.B $0E                            ;80D638|E60E    |00000E;
                        BRA CODE_80D627                      ;80D63A|80EB    |80D627;
                                                             ;      |        |      ;
@@ -12709,7 +12709,7 @@
                        ASL A                                ;80D647|0A      |      ;
                        TAY                                  ;80D648|A8      |      ;
                        LDX.W $0A20,Y                        ;80D649|BE200A  |8D0A20;
-                       JSR.W CODE_80D6A7                    ;80D64C|20A7D6  |80D6A7;
+                       JSR.W drawEventSlots2_OAM            ;80D64C|20A7D6  |80D6A7;
                        INC.B $0E                            ;80D64F|E60E    |00000E;
                        BRA CODE_80D63E                      ;80D651|80EB    |80D63E;
                                                             ;      |        |      ;
@@ -12726,7 +12726,7 @@
                        ASL A                                ;80D65E|0A      |      ;
                        TAY                                  ;80D65F|A8      |      ;
                        LDX.W $0A60,Y                        ;80D660|BE600A  |8D0A60;
-                       JSR.W CODE_80D6A7                    ;80D663|20A7D6  |80D6A7;
+                       JSR.W drawEventSlots2_OAM            ;80D663|20A7D6  |80D6A7;
                        INC.B $0E                            ;80D666|E60E    |00000E;
                        BRA CODE_80D655                      ;80D668|80EB    |80D655;
                                                             ;      |        |      ;
@@ -12741,7 +12741,7 @@
                        LDA.W $0C46                          ;80D670|AD460C  |8D0C46;
                        BEQ CODE_80D67B                      ;80D673|F006    |80D67B;
                        LDX.W #$0C38                         ;80D675|A2380C  |      ;
-                       JSR.W CODE_80D6A7                    ;80D678|20A7D6  |80D6A7;
+                       JSR.W drawEventSlots2_OAM            ;80D678|20A7D6  |80D6A7;
                                                             ;      |        |      ;
           CODE_80D67B:
                        LDA.W $0C58                          ;80D67B|AD580C  |8D0C58;
@@ -12749,7 +12749,7 @@
                        LDA.W $0C66                          ;80D680|AD660C  |8D0C66;
                        BEQ CODE_80D68B                      ;80D683|F006    |80D68B;
                        LDX.W #$0C58                         ;80D685|A2580C  |      ;
-                       JSR.W CODE_80D6A7                    ;80D688|20A7D6  |80D6A7;
+                       JSR.W drawEventSlots2_OAM            ;80D688|20A7D6  |80D6A7;
                                                             ;      |        |      ;
           CODE_80D68B:
                        LDA.W $0C78                          ;80D68B|AD780C  |8D0C78;
@@ -12757,23 +12757,23 @@
                        LDA.W $0C86                          ;80D690|AD860C  |8D0C86;
                        BEQ CODE_80D69B                      ;80D693|F006    |80D69B;
                        LDX.W #$0C78                         ;80D695|A2780C  |      ;
-                       JSR.W CODE_80D6A7                    ;80D698|20A7D6  |80D6A7;
+                       JSR.W drawEventSlots2_OAM            ;80D698|20A7D6  |80D6A7;
                                                             ;      |        |      ;
           CODE_80D69B:
                        RTS                                  ;80D69B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80D69C:
+        drawPlayerOAM:
                        LDX.W #$0BA8                         ;80D69C|A2A80B  |      ;
                        LDA.B $0E,X                          ;80D69F|B50E    |00000E;
                        BEQ CODE_80D6A6                      ;80D6A1|F003    |80D6A6;
-                       JSR.W CODE_80D6A7                    ;80D6A3|20A7D6  |80D6A7;
+                       JSR.W drawEventSlots2_OAM            ;80D6A3|20A7D6  |80D6A7;
                                                             ;      |        |      ;
           CODE_80D6A6:
                        RTS                                  ;80D6A6|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80D6A7:
+  drawEventSlots2_OAM:
                        LDA.B $11,X                          ;80D6A7|B511    |000011;
                        AND.B #$40                           ;80D6A9|2940    |      ;
                        STA.B $0B                            ;80D6AB|850B    |00000B;
@@ -12834,10 +12834,10 @@
                        LDA.B [$18],Y                        ;80D711|B718    |000018;
                        STA.B $0C                            ;80D713|850C    |00000C;
                                                             ;      |        |      ;
-          CODE_80D715:
-                       JSR.W CODE_80D76A                    ;80D715|206AD7  |80D76A;
+        updateOAMslot:
+                       JSR.W drawOAMstuff                   ;80D715|206AD7  |80D76A;
                        SEP #$20                             ;80D718|E220    |      ;
-                       BCS CODE_80D758                      ;80D71A|B03C    |80D758;
+                       BCS nextOAMslot                      ;80D71A|B03C    |80D758;
                        LDY.W #$0003                         ;80D71C|A00300  |      ;
                        LDA.B [$18],Y                        ;80D71F|B718    |000018;
                        ADC.B $10                            ;80D721|6510    |000010;
@@ -12860,7 +12860,7 @@
                        INC.B $E4                            ;80D73F|E6E4    |0000E4;
                        LDA.B $E4                            ;80D741|A5E4    |0000E4;
                        AND.B #$03                           ;80D743|2903    |      ;
-                       BNE CODE_80D758                      ;80D745|D011    |80D758;
+                       BNE nextOAMslot                      ;80D745|D011    |80D758;
                        PHX                                  ;80D747|DA      |      ;
                        LDA.B $E5                            ;80D748|A5E5    |0000E5;
                        TAX                                  ;80D74A|AA      |      ;
@@ -12871,7 +12871,7 @@
                        PLX                                  ;80D755|FA      |      ;
                        BCS CODE_80D765                      ;80D756|B00D    |80D765;
                                                             ;      |        |      ;
-          CODE_80D758:
+          nextOAMslot:
                        LDY.B $18                            ;80D758|A418    |000018;
                        INY                                  ;80D75A|C8      |      ;
                        INY                                  ;80D75B|C8      |      ;
@@ -12879,17 +12879,17 @@
                        INY                                  ;80D75D|C8      |      ;
                        STY.B $18                            ;80D75E|8418    |000018;
                        DEC.B $0C                            ;80D760|C60C    |00000C;
-                       BNE CODE_80D715                      ;80D762|D0B1    |80D715;
+                       BNE updateOAMslot                    ;80D762|D0B1    |80D715;
                        RTS                                  ;80D764|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_80D765:
                        PLX                                  ;80D765|FA      |      ;
                        PLX                                  ;80D766|FA      |      ;
-                       JMP.W CODE_80D5CC                    ;80D767|4CCCD5  |80D5CC;
+                       JMP.W endOAMupdate                   ;80D767|4CCCD5  |80D5CC;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80D76A:
+         drawOAMstuff:
                        LDY.W #$0004                         ;80D76A|A00400  |      ;
                        LDA.B [$18],Y                        ;80D76D|B718    |000018;
                        AND.B #$20                           ;80D76F|2920    |      ;
@@ -12957,16 +12957,21 @@
                        RTS                                  ;80D7CD|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80D7CE:
+      drawHealthMeter:
                        LDA.B #$00                           ;80D7CE|A900    |      ;
                        XBA                                  ;80D7D0|EB      |      ;
                        LDA.W r_1f11                         ;80D7D1|AD111F  |861F11;
                        TAX                                  ;80D7D4|AA      |      ;
-                       JMP.W (DATA8_80D7D8,X)               ;80D7D5|7CD8D7  |80D7D8;
+                       JMP.W (drawHUD,X)                    ;80D7D5|7CD8D7  |80D7D8;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         DATA8_80D7D8:
-                       db $E0,$D7,$2C,$D8,$D9,$D8,$EC,$D8   ;80D7D8|        |      ;
+              drawHUD:
+                       dw drawHUD_00                        ;80D7D8|        |80D7E0;
+                       dw drawHUD_01                        ;80D7DA|        |80D82C;
+                       dw CODE_80D8D9                       ;80D7DC|        |80D8D9;
+                       dw CODE_80D8EC                       ;80D7DE|        |80D8EC;
+                                                            ;      |        |      ;
+           drawHUD_00:
                        LDA.B #$02                           ;80D7E0|A902    |      ;
                        STA.W r_1f11                         ;80D7E2|8D111F  |861F11;
                        LDA.B #$10                           ;80D7E5|A910    |      ;
@@ -13002,6 +13007,8 @@
                        STA.W $0701                          ;80D824|8D0107  |860701;
                        LDA.B #$86                           ;80D827|A986    |      ;
                        STA.W $0702                          ;80D829|8D0207  |860702;
+                                                            ;      |        |      ;
+           drawHUD_01:
                        LDA.B #$10                           ;80D82C|A910    |      ;
                        STA.B $E4                            ;80D82E|85E4    |0000E4;
                        LDA.B #$04                           ;80D830|A904    |      ;
@@ -13110,6 +13117,8 @@
                        STA.W $0702,X                        ;80D8D5|9D0207  |860702;
                        RTS                                  ;80D8D8|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_80D8D9:
                        LDX.W #$0018                         ;80D8D9|A21800  |      ;
                                                             ;      |        |      ;
           CODE_80D8DC:
@@ -15266,7 +15275,7 @@
                        ASL A                                ;80E6C2|0A      |      ;
                        TAX                                  ;80E6C3|AA      |      ;
                        REP #$20                             ;80E6C4|C220    |      ;
-                       LDA.L UNREACH_84C890,X               ;80E6C6|BF90C884|84C890;
+                       LDA.L PTR16_84C890,X                 ;80E6C6|BF90C884|84C890;
                        STA.B $68                            ;80E6CA|8568    |000068;
                        STZ.B $6C                            ;80E6CC|646C    |00006C;
                        STZ.B $6E                            ;80E6CE|646E    |00006E;
@@ -16356,7 +16365,7 @@
                        JSL.L CODE_878000                    ;80EEA1|22008087|878000;
                        PEA.W r_0000                         ;80EEA5|F40000  |860000;
                        PLD                                  ;80EEA8|2B      |      ;
-                       JSR.W CODE_80D56F                    ;80EEA9|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;80EEA9|206FD5  |80D56F;
                        JSR.W CODE_808100                    ;80EEAC|200081  |808100;
                        BRA CODE_80EE89                      ;80EEAF|80D8    |80EE89;
                                                             ;      |        |      ;
@@ -16364,7 +16373,7 @@
           CODE_80EEB1:
                        PEA.W r_0000                         ;80EEB1|F40000  |860000;
                        PLD                                  ;80EEB4|2B      |      ;
-                       JSR.W CODE_80D56F                    ;80EEB5|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;80EEB5|206FD5  |80D56F;
                        JSR.W CODE_808100                    ;80EEB8|200081  |808100;
                        PLD                                  ;80EEBB|2B      |      ;
                        PLP                                  ;80EEBC|28      |      ;
@@ -16528,7 +16537,7 @@
                        PLD                                  ;80EFD2|2B      |      ;
                        JSL.L CODE_87813B                    ;80EFD3|223B8187|87813B;
                        JSL.L CODE_878000                    ;80EFD7|22008087|878000;
-                       JSR.W CODE_80D56F                    ;80EFDB|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;80EFDB|206FD5  |80D56F;
                        JSR.W CODE_808100                    ;80EFDE|200081  |808100;
                        BRA CODE_80EFC0                      ;80EFE1|80DD    |80EFC0;
                                                             ;      |        |      ;
@@ -16536,7 +16545,7 @@
           CODE_80EFE3:
                        PEA.W r_0000                         ;80EFE3|F40000  |860000;
                        PLD                                  ;80EFE6|2B      |      ;
-                       JSR.W CODE_80D56F                    ;80EFE7|206FD5  |80D56F;
+                       JSR.W mainOAM                        ;80EFE7|206FD5  |80D56F;
                        JSR.W CODE_808100                    ;80EFEA|200081  |808100;
                        PLD                                  ;80EFED|2B      |      ;
                        PLP                                  ;80EFEE|28      |      ;

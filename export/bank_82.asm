@@ -500,7 +500,7 @@ enemy_initiate_jumpPhysic:
                        LDX.W #$1928                         ;8282D5|A22819  |      ;
                                                             ;      |        |      ;
           CODE_8282D8:
-                       LDA.W $0000,X                        ;8282D8|BD0000  |000000;
+                       LDA.W r_0000,X                       ;8282D8|BD0000  |860000;
                        BEQ notActiveEntity                  ;8282DB|F05E    |82833B;
                        TXA                                  ;8282DD|8A      |      ;
                        CLC                                  ;8282DE|18      |      ;
@@ -10866,14 +10866,33 @@ utuborosBody_24_state_00:
                        SEP #$30                             ;82C64C|E230    |      ;
                        RTS                                  ;82C64E|60      |      ;
                                                             ;      |        |      ;
-                       db $A5,$05,$38,$ED,$AD,$0B,$18,$69   ;82C64F|        |000EED;
-                       db $17,$00,$C9,$2E,$00,$B0,$EE,$AD   ;82C657|        |000EE8;
-                       db $B0,$0B,$18,$69,$10,$00,$18,$6D   ;82C65F|        |82C66C;
-                       db $0E,$00,$8D,$00,$00,$A5,$08,$18   ;82C667|        |008D00;
-                       db $69,$10,$00,$CD,$00,$00,$90,$D5   ;82C66F|        |      ;
-                       db $A5,$08,$CD,$00,$00,$B0,$CE,$69   ;82C677|        |000008;
-                       db $F1,$FF,$8D,$B0,$0B,$A9,$04,$00   ;82C67F|        |0000FF;
-                       db $0C,$D4,$0B,$80,$C0               ;82C687|        |000BD4;
+                       LDA.B $05                            ;82C64F|A505    |000EED;
+                       SEC                                  ;82C651|38      |      ;
+                       SBC.W r_0bad                         ;82C652|EDAD0B  |860BAD;
+                       CLC                                  ;82C655|18      |      ;
+                       ADC.W #$0017                         ;82C656|691700  |      ;
+                       CMP.W #$002E                         ;82C659|C92E00  |      ;
+                       BCS CODE_82C64C                      ;82C65C|B0EE    |82C64C;
+                       LDA.W r_0bb0                         ;82C65E|ADB00B  |860BB0;
+                       CLC                                  ;82C661|18      |      ;
+                       ADC.W #$0010                         ;82C662|691000  |      ;
+                       CLC                                  ;82C665|18      |      ;
+                       ADC.W r_000e                         ;82C666|6D0E00  |86000E;
+                       STA.W r_0000                         ;82C669|8D0000  |860000;
+                       LDA.B $08                            ;82C66C|A508    |000EF0;
+                       CLC                                  ;82C66E|18      |      ;
+                       ADC.W #$0010                         ;82C66F|691000  |      ;
+                       CMP.W r_0000                         ;82C672|CD0000  |860000;
+                       BCC CODE_82C64C                      ;82C675|90D5    |82C64C;
+                       LDA.B $08                            ;82C677|A508    |000EF0;
+                       CMP.W r_0000                         ;82C679|CD0000  |860000;
+                       BCS CODE_82C64C                      ;82C67C|B0CE    |82C64C;
+                       ADC.W #$FFF1                         ;82C67E|69F1FF  |      ;
+                       STA.W r_0bb0                         ;82C681|8DB00B  |860BB0;
+                       LDA.W #$0004                         ;82C684|A90400  |      ;
+                       TSB.W r_0bd4                         ;82C687|0CD40B  |860BD4;
+                       BRA CODE_82C64C                      ;82C68A|80C0    |82C64C;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C68C:
                        LDA.W #$000A                         ;82C68C|A90A00  |      ;
@@ -13219,7 +13238,7 @@ eventID_cruizler_28_main:
                        dw cruizler_28_state_00              ;82D525|        |82D52D;
                        dw CODE_82D57D                       ;82D527|        |82D57D;
                        dw CODE_82D5FF                       ;82D529|        |82D5FF;
-                       dw UNREACH_82D788                    ;82D52B|        |82D788;
+                       dw CODE_82D788                       ;82D52B|        |82D788;
                                                             ;      |        |      ;
  cruizler_28_state_00:
                        LDA.B #$02                           ;82D52D|A902    |      ;
@@ -13525,10 +13544,15 @@ eventID_cruizler_28_main:
                        INC A                                ;82D77D|1A      |      ;
                        INC A                                ;82D77E|1A      |      ;
                        JSL.L CODE_848011                    ;82D77F|22118084|848011;
-                       db $A9,$06,$85,$01,$60               ;82D783|        |      ;
+                       LDA.B #$06                           ;82D783|A906    |      ;
+                       STA.B $01                            ;82D785|8501    |000001;
+                       RTS                                  ;82D787|60      |      ;
                                                             ;      |        |      ;
-       UNREACH_82D788:
-                       db $20,$BE,$D7,$6B                   ;82D788|        |82D7BE;
+                                                            ;      |        |      ;
+          CODE_82D788:
+                       JSR.W CODE_82D7BE                    ;82D788|20BED7  |82D7BE;
+                       RTL                                  ;82D78B|6B      |      ;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D78C:
                        LDX.B r_ev_16-$E68                   ;82D78C|A616    |000E7E;
@@ -13651,8 +13675,12 @@ eventID_cruizler_28_main:
                        SEP #$20                             ;82D84C|E220    |      ;
                        LDA.B r_ev_2_2c-$EA8                 ;82D84E|A52C    |000ED4;
                        BMI CODE_82D862                      ;82D850|3010    |82D862;
-                       db $AD,$D3,$0B,$89,$04,$F0,$09,$A9   ;82D852|        |000BD3;
-                       db $7F,$8D,$CE,$0B,$22,$2F,$9F,$84   ;82D85A|        |0BCE8D;
+                       LDA.W r_0bd3                         ;82D852|ADD30B  |860BD3;
+                       BIT.B #$04                           ;82D855|8904    |      ;
+                       BEQ CODE_82D862                      ;82D857|F009    |82D862;
+                       LDA.B #$7F                           ;82D859|A97F    |      ;
+                       STA.W r_0bce                         ;82D85B|8DCE0B  |860BCE;
+                       JSL.L CODE_849F2F                    ;82D85E|222F9F84|849F2F;
                                                             ;      |        |      ;
           CODE_82D862:
                        REP #$20                             ;82D862|C220    |      ;
@@ -13683,9 +13711,14 @@ eventID_cruizler_28_main:
                        LDX.W #$0BA8                         ;82D887|A2A80B  |      ;
                        JSL.L CODE_849C0E                    ;82D88A|220E9C84|849C0E;
                        BCC CODE_82D8A4                      ;82D88E|9014    |82D8A4;
-                       db $A9,$80,$0C,$D4,$0B,$A9,$40,$0C   ;82D890|        |      ;
-                       db $D4,$0B,$AC,$00,$00,$10,$05,$A9   ;82D898|        |00000B;
-                       db $40,$1C,$D4,$0B                   ;82D8A0|        |      ;
+                       LDA.B #$80                           ;82D890|A980    |      ;
+                       TSB.W r_0bd4                         ;82D892|0CD40B  |860BD4;
+                       LDA.B #$40                           ;82D895|A940    |      ;
+                       TSB.W r_0bd4                         ;82D897|0CD40B  |860BD4;
+                       LDY.W r_0000                         ;82D89A|AC0000  |860000;
+                       BPL CODE_82D8A4                      ;82D89D|1005    |82D8A4;
+                       LDA.B #$40                           ;82D89F|A940    |      ;
+                       TRB.W r_0bd4                         ;82D8A1|1CD40B  |860BD4;
                                                             ;      |        |      ;
           CODE_82D8A4:
                        PLX                                  ;82D8A4|FA      |      ;
@@ -14172,12 +14205,14 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82DBEF:
                        LDX.B r_ev_02_action-$E68            ;82DBEF|A602    |000E6A;
-                       JSR.W (UNREACH_82DBF5,X)             ;82DBF1|FCF5DB  |82DBF5;
+                       JSR.W (PTR16_82DBF5,X)               ;82DBF1|FCF5DB  |82DBF5;
                        RTL                                  ;82DBF4|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_82DBF5:
-                       db $FB,$DB,$0A,$DC,$48,$DC           ;82DBF5|        |      ;
+         PTR16_82DBF5:
+                       dw LOOSE_OP_87DBFB                   ;82DBF5|        |87DBFB;
+                       dw LOOSE_OP_87DC0A                   ;82DBF7|        |87DC0A;
+                       dw LOOSE_OP_87DC48                   ;82DBF9|        |87DC48;
                        REP #$20                             ;82DBFB|C220    |      ;
                        TDC                                  ;82DBFD|7B      |      ;
                        STA.W r_1f0e                         ;82DBFE|8D0E1F  |861F0E;
@@ -14242,7 +14277,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82DC6A:
                        LDX.B r_ev_02_action-$E68            ;82DC6A|A602    |000E6A;
-                       JSR.W (UNREACH_82DCDF,X)             ;82DC6C|FCDFDC  |82DCDF;
+                       JSR.W (CODE_82DCDF,X)                ;82DC6C|FCDFDC  |82DCDF;
                        LDA.B r_ev_27-$E68                   ;82DC6F|A527    |000E8F;
                        BEQ CODE_82DCDB                      ;82DC71|F068    |82DCDB;
                        LDA.B r_ev_3f-$E68                   ;82DC73|A53F    |000EA7;
@@ -14310,10 +14345,15 @@ prisonCapsule_63_state_00:
                        JML.L eventID_vile_68_afterInit      ;82DCDB|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_82DCDF:
-                       db $F1,$DC,$38,$DD,$BF,$DD,$05,$DE   ;82DCDF|        |0000DC;
-                       db $24,$DE,$94,$DE,$39,$DF,$B1,$DD   ;82DCE7|        |0000DE;
-                       db $56,$DF                           ;82DCEF|        |0000DF;
+          CODE_82DCDF:
+                       SBC.B ($DC),Y                        ;82DCDF|F1DC    |000F44;
+                       SEC                                  ;82DCE1|38      |      ;
+                       CMP.W UNREACH_86DDBF,X               ;82DCE2|DDBFDD  |86DDBF;
+                       ORA.B $DE                            ;82DCE5|05DE    |000F46;
+                       BIT.B $DE                            ;82DCE7|24DE    |000F46;
+                       STY.B $DE,X                          ;82DCE9|94DE    |000F46;
+                       AND.W UNREACH_86B1DF,Y               ;82DCEB|39DFB1  |86B1DF;
+                       CMP.W UNREACH_86DF56,X               ;82DCEE|DD56DF  |86DF56;
                        LDA.B r_ev_27-$E68                   ;82DCF1|A527    |000E8F;
                        AND.B #$7F                           ;82DCF3|297F    |      ;
                        CMP.B #$10                           ;82DCF5|C910    |      ;
@@ -14321,7 +14361,7 @@ prisonCapsule_63_state_00:
                        CMP.B #$08                           ;82DCF9|C908    |      ;
                        BPL CODE_82DD09                      ;82DCFB|100C    |82DD09;
                        LDA.B #$04                           ;82DCFD|A904    |      ;
-                       STA.B r_ev_3e-$E68                   ;82DCFF|853E    |000EA6;
+                       STA.B $3E                            ;82DCFF|853E    |00003E;
                        JMP.W CODE_82DD0D                    ;82DD01|4C0DDD  |82DD0D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;

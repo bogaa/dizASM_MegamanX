@@ -2,6 +2,8 @@
 ;pos=033000
 r 172 U
 Ug
-r 1028 U
+r 305 U
+Ug
+r 722 U
 r 175 A
 r 672 U

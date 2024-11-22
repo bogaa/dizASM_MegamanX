@@ -102,7 +102,9 @@ r 11 U
 Ug
 r 15 U
 Ug
-r 31 U
+r 15 U
+Ug
+r 15 U
 Ug
 r 27 U
 Ug

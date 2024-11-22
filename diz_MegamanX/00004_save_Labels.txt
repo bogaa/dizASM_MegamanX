@@ -548,6 +548,45 @@
         <sys:Item Key="8443184">
           <Value exs:type="ns1:Label" Name="mainEventID" Comment="" />
         </sys:Item>
+        <sys:Item Key="8443247">
+          <Value exs:type="ns1:Label" Name="mainOAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443340">
+          <Value exs:type="ns1:Label" Name="endOAMupdate" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443359">
+          <Value exs:type="ns1:Label" Name="drawProjectileOAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443429">
+          <Value exs:type="ns1:Label" Name="drawEventOAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443548">
+          <Value exs:type="ns1:Label" Name="drawPlayerOAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443559">
+          <Value exs:type="ns1:Label" Name="drawEventSlots2_OAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443669">
+          <Value exs:type="ns1:Label" Name="updateOAMslot" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443736">
+          <Value exs:type="ns1:Label" Name="nextOAMslot" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443754">
+          <Value exs:type="ns1:Label" Name="drawOAMstuff" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443854">
+          <Value exs:type="ns1:Label" Name="drawHealthMeter" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443864">
+          <Value exs:type="ns1:Label" Name="drawHUD" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443872">
+          <Value exs:type="ns1:Label" Name="drawHUD_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8443948">
+          <Value exs:type="ns1:Label" Name="drawHUD_01" Comment="" />
+        </sys:Item>
         <sys:Item Key="8450920">
           <Value exs:type="ns1:Label" Name="someEptyRoutine" Comment="" />
         </sys:Item>
@@ -1384,6 +1423,117 @@
         </sys:Item>
         <sys:Item Key="8696587">
           <Value exs:type="ns1:Label" Name="slimVolt_state1_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702166">
+          <Value exs:type="ns1:Label" Name="text__00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702174">
+          <Value exs:type="ns1:Label" Name="" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702722">
+          <Value exs:type="ns1:Label" Name="text__01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702811">
+          <Value exs:type="ns1:Label" Name="text__02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702825">
+          <Value exs:type="ns1:Label" Name="text__03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702851">
+          <Value exs:type="ns1:Label" Name="text__04" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702877">
+          <Value exs:type="ns1:Label" Name="text__05" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702902">
+          <Value exs:type="ns1:Label" Name="text__06" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702920">
+          <Value exs:type="ns1:Label" Name="text__07" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702944">
+          <Value exs:type="ns1:Label" Name="text__09" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702969">
+          <Value exs:type="ns1:Label" Name="text__0a" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8702996">
+          <Value exs:type="ns1:Label" Name="text__0b" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8703018">
+          <Value exs:type="ns1:Label" Name="text__0c" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8703638">
+          <Value exs:type="ns1:Label" Name="text__0d" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8703782">
+          <Value exs:type="ns1:Label" Name="text__x0" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8703916">
+          <Value exs:type="ns1:Label" Name="text__0e" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8704084">
+          <Value exs:type="ns1:Label" Name="text__0f" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8705436">
+          <Value exs:type="ns1:Label" Name="text__10" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8706451">
+          <Value exs:type="ns1:Label" Name="text__11" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8706701">
+          <Value exs:type="ns1:Label" Name="text__12" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8706991">
+          <Value exs:type="ns1:Label" Name="text__14" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8707200">
+          <Value exs:type="ns1:Label" Name="text__x1" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8707252">
+          <Value exs:type="ns1:Label" Name="text__15" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8707300">
+          <Value exs:type="ns1:Label" Name="text__16" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8707336">
+          <Value exs:type="ns1:Label" Name="text__17" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8707463">
+          <Value exs:type="ns1:Label" Name="text__18" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8707586">
+          <Value exs:type="ns1:Label" Name="text__19" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8707667">
+          <Value exs:type="ns1:Label" Name="text__1a" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8707784">
+          <Value exs:type="ns1:Label" Name="text__1c" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8707981">
+          <Value exs:type="ns1:Label" Name="text__x2" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8708206">
+          <Value exs:type="ns1:Label" Name="text__1d" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8708456">
+          <Value exs:type="ns1:Label" Name="text__1e" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8708461">
+          <Value exs:type="ns1:Label" Name="" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8708684">
+          <Value exs:type="ns1:Label" Name="text__1f" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8710353">
+          <Value exs:type="ns1:Label" Name="text__20" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8710955">
+          <Value exs:type="ns1:Label" Name="text__21" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8711355">
+          <Value exs:type="ns1:Label" Name="text__22" Comment="" />
         </sys:Item>
         <sys:Item Key="8763136">
           <Value exs:type="ns1:Label" Name="paletteData_start" Comment="" />
@@ -12791,6 +12941,15 @@
         <sys:Item Key="8832903">
           <Value exs:type="ns1:Label" Name="menu_pressLeftRight" Comment="" />
         </sys:Item>
+        <sys:Item Key="8833898">
+          <Value exs:type="ns1:Label" Name="amenHopper_20_data_20" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8833908">
+          <Value exs:type="ns1:Label" Name="data_21" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8833918">
+          <Value exs:type="ns1:Label" Name="" Comment="" />
+        </sys:Item>
         <sys:Item Key="8835446">
           <Value exs:type="ns1:Label" Name="BoxFace_3c_subID" Comment="" />
         </sys:Item>
@@ -12805,6 +12964,9 @@
         </sys:Item>
         <sys:Item Key="8836098">
           <Value exs:type="ns1:Label" Name="hitBoxBunny_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8838367">
+          <Value exs:type="ns1:Label" Name="someEventDate" Comment="" />
         </sys:Item>
         <sys:Item Key="8842807">
           <Value exs:type="ns1:Label" Name="stormEagle_56_subID" Comment="" />
@@ -13405,6 +13567,15 @@
         </sys:Item>
         <sys:Item Key="9228288">
           <Value exs:type="ns1:Label" Name="gfx_megaman" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9302338">
+          <Value exs:type="ns1:Label" Name="sprAss_megaman_idle_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9302371">
+          <Value exs:type="ns1:Label" Name="sprAss_megaman_idle_01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9302408">
+          <Value exs:type="ns1:Label" Name="sprAss_megaman_idle_02" Comment="" />
         </sys:Item>
       </Labels>
       

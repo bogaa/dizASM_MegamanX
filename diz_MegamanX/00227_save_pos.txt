@@ -1,7 +1,27 @@
 
 ;pos=06F000
 r 292 U
-r 951 A
+r 63 A
+r 36 D
+A
+r 57 D
+A
+r 20 D
+A
+r 24 D
+A
+r 36 D
+A
+r 28 D
+A
+r 20 D
+A
+r 36 D
+A
+r 40 D
+A
+r 40 D
+r 542 A
 r 74 U
 r 420 A
 r 173 U

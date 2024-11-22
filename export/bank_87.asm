@@ -1681,7 +1681,7 @@ eventID_flammingle_04_main:
                        LDA.B r_ev_33-$E68                   ;878C1A|A533    |000E9B;
                        TSB.B r_ev_11_sprAtri-$E68           ;878C1C|0411    |000E79;
                        LDX.B r_ev_02_action-$E68            ;878C1E|A602    |000E6A;
-                       JSR.W (UNREACH_878CF2,X)             ;878C20|FCF28C  |878CF2;
+                       JSR.W (PTR16_878CF2,X)               ;878C20|FCF28C  |878CF2;
                        LDA.B r_ev_37-$E68                   ;878C23|A537    |000E9F;
                        BEQ CODE_878C39                      ;878C25|F012    |878C39;
                        STZ.B r_ev_37-$E68                   ;878C27|6437    |000E9F;
@@ -1798,15 +1798,25 @@ eventID_flammingle_04_main:
                        JML.L eventID_vile_68_afterInit      ;878CEE|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_878CF2:
-                       db $FC,$8C,$E6,$8D,$5A,$8E,$46,$8F   ;878CF2|        |87E68C;
-                       db $F4,$8F                           ;878CFA|        |00A68F;
+         PTR16_878CF2:
+                       dw CODE_878CFC                       ;878CF2|        |878CFC;
+                       dw CODE_878DE6                       ;878CF4|        |878DE6;
+                       dw CODE_878E5A                       ;878CF6|        |878E5A;
+                       dw CODE_878F46                       ;878CF8|        |878F46;
+                       dw CODE_878FF4                       ;878CFA|        |878FF4;
+                                                            ;      |        |      ;
+          CODE_878CFC:
                        LDX.B r_ev_03_do-$E68                ;878CFC|A603    |000E6B;
-                       JMP.W (UNREACH_878D01,X)             ;878CFE|7C018D  |878D01;
+                       JMP.W (PTR16_878D01,X)               ;878CFE|7C018D  |878D01;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_878D01:
-                       db $09,$8D,$6D,$8D,$94,$8D,$BA,$8D   ;878D01|        |      ;
+         PTR16_878D01:
+                       dw CODE_878D09                       ;878D01|        |878D09;
+                       dw CODE_878D6D                       ;878D03|        |878D6D;
+                       dw CODE_878D94                       ;878D05|        |878D94;
+                       dw CODE_878DBA                       ;878D07|        |878DBA;
+                                                            ;      |        |      ;
+          CODE_878D09:
                        JSL.L CODE_84ACA5                    ;878D09|22A5AC84|84ACA5;
                        LDA.B #$02                           ;878D0D|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;878D0F|8503    |000E6B;
@@ -1869,6 +1879,8 @@ eventID_flammingle_04_main:
           CODE_878D6C:
                        RTS                                  ;878D6C|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878D6D:
                        JSL.L updateEv_13_14_17_0f           ;878D6D|22EA8E84|848EEA;
                        LDA.B r_ev_0f-$E68                   ;878D71|A50F    |000E77;
                        BPL CODE_878D91                      ;878D73|101C    |878D91;
@@ -1890,6 +1902,8 @@ eventID_flammingle_04_main:
           CODE_878D91:
                        JMP.W CODE_879113                    ;878D91|4C1391  |879113;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878D94:
                        INC.B r_ev_31-$E68                   ;878D94|E631    |000E99;
                        JSL.L CODE_82823E                    ;878D96|223E8282|82823E;
                        JSL.L CODE_8491BE                    ;878D9A|22BE9184|8491BE;
@@ -1911,6 +1925,8 @@ eventID_flammingle_04_main:
           CODE_878DB7:
                        JMP.W CODE_879113                    ;878DB7|4C1391  |879113;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878DBA:
                        JSL.L CODE_84ACA5                    ;878DBA|22A5AC84|84ACA5;
                        JSL.L updateEv_13_14_17_0f           ;878DBE|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;878DC2|C634    |000E9C;
@@ -1939,12 +1955,18 @@ eventID_flammingle_04_main:
           CODE_878DE3:
                        JMP.W CODE_879113                    ;878DE3|4C1391  |879113;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878DE6:
                        LDX.B r_ev_03_do-$E68                ;878DE6|A603    |000E6B;
-                       JMP.W (UNREACH_878DEB,X)             ;878DE8|7CEB8D  |878DEB;
+                       JMP.W (PTR16_878DEB,X)               ;878DE8|7CEB8D  |878DEB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_878DEB:
-                       db $F1,$8D,$FF,$8D,$4D,$8E           ;878DEB|        |00008D;
+         PTR16_878DEB:
+                       dw CODE_878DF1                       ;878DEB|        |878DF1;
+                       dw CODE_878DFF                       ;878DED|        |878DFF;
+                       dw CODE_878E4D                       ;878DEF|        |878E4D;
+                                                            ;      |        |      ;
+          CODE_878DF1:
                        JSL.L CODE_84ACA5                    ;878DF1|22A5AC84|84ACA5;
                        LDA.B #$05                           ;878DF5|A905    |      ;
                        JSR.W CODE_8790B1                    ;878DF7|20B190  |8790B1;
@@ -1952,6 +1974,8 @@ eventID_flammingle_04_main:
                        STA.B r_ev_03_do-$E68                ;878DFC|8503    |000E6B;
                        RTS                                  ;878DFE|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878DFF:
                        JSL.L CODE_84ACA5                    ;878DFF|22A5AC84|84ACA5;
                        JSL.L updateEv_13_14_17_0f           ;878E03|22EA8E84|848EEA;
                        LDA.B r_ev_17-$E68                   ;878E07|A517    |000E7F;
@@ -1993,6 +2017,8 @@ eventID_flammingle_04_main:
           CODE_878E4C:
                        RTS                                  ;878E4C|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878E4D:
                        JSL.L updateEv_13_14_17_0f           ;878E4D|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;878E51|C634    |000E9C;
                        BNE CODE_878E59                      ;878E53|D004    |878E59;
@@ -2002,13 +2028,20 @@ eventID_flammingle_04_main:
           CODE_878E59:
                        RTS                                  ;878E59|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878E5A:
                        LDX.B r_ev_03_do-$E68                ;878E5A|A603    |000E6B;
-                       JMP.W (UNREACH_878E5F,X)             ;878E5C|7C5F8E  |878E5F;
+                       JMP.W (PTR16_878E5F,X)               ;878E5C|7C5F8E  |878E5F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_878E5F:
-                       db $69,$8E,$8F,$8E,$B1,$8E,$EC,$8E   ;878E5F|        |      ;
-                       db $05,$8F                           ;878E67|        |00008F;
+         PTR16_878E5F:
+                       dw CODE_878E69                       ;878E5F|        |878E69;
+                       dw CODE_878E8F                       ;878E61|        |878E8F;
+                       dw CODE_878EB1                       ;878E63|        |878EB1;
+                       dw CODE_878EEC                       ;878E65|        |878EEC;
+                       dw CODE_878F05                       ;878E67|        |878F05;
+                                                            ;      |        |      ;
+          CODE_878E69:
                        LDA.B #$02                           ;878E69|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;878E6B|8503    |000E6B;
                        JSR.W CODE_8790C1                    ;878E6D|20C190  |8790C1;
@@ -2029,6 +2062,8 @@ eventID_flammingle_04_main:
                        JSL.L CODE_8088A2                    ;878E8A|22A28880|8088A2;
                        RTS                                  ;878E8E|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878E8F:
                        LDA.B r_ev_0f-$E68                   ;878E8F|A50F    |000E77;
                        BPL CODE_878EA0                      ;878E91|100D    |878EA0;
                        LDA.B r_ev_39-$E68                   ;878E93|A539    |000EA1;
@@ -2054,6 +2089,8 @@ eventID_flammingle_04_main:
           CODE_878EB0:
                        RTS                                  ;878EB0|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878EB1:
                        LDA.B #$02                           ;878EB1|A902    |      ;
                        STA.B r_ev_39-$E68                   ;878EB3|8539    |000EA1;
                        JSL.L CODE_82823E                    ;878EB5|223E8282|82823E;
@@ -2088,6 +2125,8 @@ eventID_flammingle_04_main:
                        SEP #$20                             ;878EE9|E220    |      ;
                        RTS                                  ;878EEB|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878EEC:
                        JSL.L CODE_84ACA5                    ;878EEC|22A5AC84|84ACA5;
                        LDA.B r_ev_39-$E68                   ;878EF0|A539    |000EA1;
                        BNE CODE_878F04                      ;878EF2|D010    |878F04;
@@ -2102,6 +2141,8 @@ eventID_flammingle_04_main:
           CODE_878F04:
                        RTS                                  ;878F04|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878F05:
                        JSL.L CODE_84ACA5                    ;878F05|22A5AC84|84ACA5;
                        JSL.L updateEv_13_14_17_0f           ;878F09|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;878F0D|C634    |000E9C;
@@ -2122,16 +2163,21 @@ eventID_flammingle_04_main:
                        SEC                                  ;878F26|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;878F27|E505    |000E6D;
                        BCS CODE_878F2F                      ;878F29|B004    |878F2F;
-                       db $49,$FF,$FF,$1A                   ;878F2B|        |      ;
+                       EOR.W #$FFFF                         ;878F2B|49FFFF  |      ;
+                       INC A                                ;878F2E|1A      |      ;
                                                             ;      |        |      ;
           CODE_878F2F:
                        CMP.W #$0080                         ;878F2F|C98000  |      ;
                        SEP #$20                             ;878F32|E220    |      ;
                        BCC CODE_878F3B                      ;878F34|9005    |878F3B;
-                       db $BD,$C3,$C5,$80,$03               ;878F36|        |00C5C3;
+                       LDA.W UNREACH_86C5C3,X               ;878F36|BDC3C5  |86C5C3;
+                       BRA CODE_878F3E                      ;878F39|8003    |878F3E;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_878F3B:
                        LDA.W UNREACH_86C5D3,X               ;878F3B|BDD3C5  |86C5D3;
+                                                            ;      |        |      ;
+          CODE_878F3E:
                        STA.B r_ev_02_action-$E68            ;878F3E|8502    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;878F40|6403    |000E6B;
                                                             ;      |        |      ;
@@ -2139,13 +2185,20 @@ eventID_flammingle_04_main:
                        JSR.W CODE_879113                    ;878F42|201391  |879113;
                        RTS                                  ;878F45|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878F46:
                        LDX.B r_ev_03_do-$E68                ;878F46|A603    |000E6B;
-                       JMP.W (UNREACH_878F4B,X)             ;878F48|7C4B8F  |878F4B;
+                       JMP.W (PTR16_878F4B,X)               ;878F48|7C4B8F  |878F4B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_878F4B:
-                       db $55,$8F,$63,$8F,$A2,$8F,$D0,$8F   ;878F4B|        |00008F;
-                       db $E7,$8F                           ;878F53|        |00008F;
+         PTR16_878F4B:
+                       dw CODE_878F55                       ;878F4B|        |878F55;
+                       dw CODE_878F63                       ;878F4D|        |878F63;
+                       dw CODE_878FA2                       ;878F4F|        |878FA2;
+                       dw CODE_878FD0                       ;878F51|        |878FD0;
+                       dw CODE_878FE7                       ;878F53|        |878FE7;
+                                                            ;      |        |      ;
+          CODE_878F55:
                        LDA.B #$06                           ;878F55|A906    |      ;
                        JSR.W CODE_8790B1                    ;878F57|20B190  |8790B1;
                        LDA.B #$02                           ;878F5A|A902    |      ;
@@ -2153,6 +2206,8 @@ eventID_flammingle_04_main:
                        JSL.L CODE_84ACA5                    ;878F5E|22A5AC84|84ACA5;
                        RTS                                  ;878F62|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878F63:
                        JSL.L updateEv_13_14_17_0f           ;878F63|22EA8E84|848EEA;
                        LDA.B r_ev_0f-$E68                   ;878F67|A50F    |000E77;
                        BEQ CODE_878FA1                      ;878F69|F036    |878FA1;
@@ -2190,6 +2245,8 @@ eventID_flammingle_04_main:
           CODE_878FA1:
                        RTS                                  ;878FA1|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878FA2:
                        LDA.B r_ev_11_sprAtri-$E68           ;878FA2|A511    |000E79;
                        ASL A                                ;878FA4|0A      |      ;
                        ASL A                                ;878FA5|0A      |      ;
@@ -2208,7 +2265,10 @@ eventID_flammingle_04_main:
                        JSL.L updateEv_13_14_17_0f           ;878FBC|22EA8E84|848EEA;
                        LDA.B r_ev_0f-$E68                   ;878FC0|A50F    |000E77;
                        BEQ CODE_878FCC                      ;878FC2|F008    |878FCC;
-                       db $A9,$06,$85,$03,$A9,$80,$85,$3C   ;878FC4|        |      ;
+                       LDA.B #$06                           ;878FC4|A906    |      ;
+                       STA.B r_ev_03_do-$E68                ;878FC6|8503    |000E6B;
+                       LDA.B #$80                           ;878FC8|A980    |      ;
+                       STA.B r_ev_3c-$E68                   ;878FCA|853C    |000EA4;
                                                             ;      |        |      ;
           CODE_878FCC:
                        RTS                                  ;878FCC|60      |      ;
@@ -2218,11 +2278,34 @@ eventID_flammingle_04_main:
                        DEC.B r_ev_34-$E68                   ;878FCD|C634    |000E9C;
                        RTS                                  ;878FCF|60      |      ;
                                                             ;      |        |      ;
-                       db $22,$EA,$8E,$84,$A5,$0F,$10,$0E   ;878FD0|        |848EEA;
-                       db $A9,$08,$85,$03,$A9,$00,$22,$07   ;878FD8|        |      ;
-                       db $8F,$84,$A9,$1E,$85,$34,$60,$22   ;878FE0|        |1EA984;
-                       db $EA,$8E,$84,$C6,$34,$D0,$04,$64   ;878FE8|        |      ;
-                       db $02,$64,$03,$60                   ;878FF0|        |      ;
+                                                            ;      |        |      ;
+          CODE_878FD0:
+                       JSL.L updateEv_13_14_17_0f           ;878FD0|22EA8E84|848EEA;
+                       LDA.B r_ev_0f-$E68                   ;878FD4|A50F    |000E77;
+                       BPL CODE_878FE6                      ;878FD6|100E    |878FE6;
+                       LDA.B #$08                           ;878FD8|A908    |      ;
+                       STA.B r_ev_03_do-$E68                ;878FDA|8503    |000E6B;
+                       LDA.B #$00                           ;878FDC|A900    |      ;
+                       JSL.L CODE_848F07                    ;878FDE|22078F84|848F07;
+                       LDA.B #$1E                           ;878FE2|A91E    |      ;
+                       STA.B r_ev_34-$E68                   ;878FE4|8534    |000E9C;
+                                                            ;      |        |      ;
+          CODE_878FE6:
+                       RTS                                  ;878FE6|60      |      ;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878FE7:
+                       JSL.L updateEv_13_14_17_0f           ;878FE7|22EA8E84|848EEA;
+                       DEC.B r_ev_34-$E68                   ;878FEB|C634    |000E9C;
+                       BNE CODE_878FF3                      ;878FED|D004    |878FF3;
+                       STZ.B r_ev_02_action-$E68            ;878FEF|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;878FF1|6403    |000E6B;
+                                                            ;      |        |      ;
+          CODE_878FF3:
+                       RTS                                  ;878FF3|60      |      ;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_878FF4:
                        JSL.L updateEv_13_14_17_0f           ;878FF4|22EA8E84|848EEA;
                        LDA.B r_ev_11_sprAtri-$E68           ;878FF8|A511    |000E79;
                        ASL A                                ;878FFA|0A      |      ;
@@ -2276,12 +2359,15 @@ eventID_flammingle_04_main:
                                                             ;      |        |      ;
           CODE_879041:
                        LDX.B r_ev_3e-$E68                   ;879041|A63E    |000EA6;
-                       JMP.W (UNREACH_879046,X)             ;879043|7C4690  |879046;
+                       JMP.W (PTR16_879046,X)               ;879043|7C4690  |879046;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_879046:
-                       db $50,$90,$59,$90,$6A,$90,$77,$90   ;879046|        |878FD8;
-                       db $50,$90                           ;87904E|        |878FE0;
+         PTR16_879046:
+                       dw CODE_879050                       ;879046|        |879050;
+                       dw CODE_879059                       ;879048|        |879059;
+                       dw CODE_87906A                       ;87904A|        |87906A;
+                       dw CODE_879077                       ;87904C|        |879077;
+                       dw CODE_879050                       ;87904E|        |879050;
                                                             ;      |        |      ;
           CODE_879050:
                        STZ.B r_ev_02_action-$E68            ;879050|6402    |000E6A;
@@ -2289,6 +2375,8 @@ eventID_flammingle_04_main:
                        LDA.B #$00                           ;879054|A900    |      ;
                        JMP.W CODE_8790B1                    ;879056|4CB190  |8790B1;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_879059:
                        LDA.B r_ev_35-$E68                   ;879059|A535    |000E9D;
                        BNE CODE_879050                      ;87905B|D0F3    |879050;
                        LDA.B r_ev_03_do-$E68                ;87905D|A503    |000E6B;
@@ -2299,6 +2387,8 @@ eventID_flammingle_04_main:
                        STZ.B r_ev_03_do-$E68                ;879067|6403    |000E6B;
                        RTS                                  ;879069|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87906A:
                        LDA.B r_ev_03_do-$E68                ;87906A|A503    |000E6B;
                        CMP.B #$04                           ;87906C|C904    |      ;
                        BCS CODE_879050                      ;87906E|B0E0    |879050;
@@ -2307,6 +2397,8 @@ eventID_flammingle_04_main:
                        STZ.B r_ev_03_do-$E68                ;879074|6403    |000E6B;
                        RTS                                  ;879076|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_879077:
                        STZ.B r_ev_02_action-$E68            ;879077|6402    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;879079|6403    |000E6B;
                        JMP.W CODE_879113                    ;87907B|4C1391  |879113;
@@ -2363,17 +2455,26 @@ eventID_flammingle_04_main:
                        ASL A                                ;8790C7|0A      |      ;
                        TAX                                  ;8790C8|AA      |      ;
                        REP #$20                             ;8790C9|C220    |      ;
-                       JMP.W (UNREACH_8790CE,X)             ;8790CB|7CCE90  |8790CE;
+                       JMP.W (PTR16_8790CE,X)               ;8790CB|7CCE90  |8790CE;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_8790CE:
-                       db $D6,$90,$DB,$90,$E0,$90,$FE,$90   ;8790CE|        |000090;
+         PTR16_8790CE:
+                       dw CODE_8790D6                       ;8790CE|        |8790D6;
+                       dw CODE_8790DB                       ;8790D0|        |8790DB;
+                       dw CODE_8790E0                       ;8790D2|        |8790E0;
+                       dw CODE_8790FE                       ;8790D4|        |8790FE;
+                                                            ;      |        |      ;
+          CODE_8790D6:
                        LDA.W #$001C                         ;8790D6|A91C00  |      ;
                        BRA CODE_8790E3                      ;8790D9|8008    |8790E3;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8790DB:
                        LDA.W #$0030                         ;8790DB|A93000  |      ;
                        BRA CODE_8790E3                      ;8790DE|8003    |8790E3;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8790E0:
                        LDA.W #$0050                         ;8790E0|A95000  |      ;
                                                             ;      |        |      ;
           CODE_8790E3:
@@ -2396,6 +2497,8 @@ eventID_flammingle_04_main:
                        STA.B r_ev_3a-$E68                   ;8790FB|853A    |000EA2;
                        RTS                                  ;8790FD|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8790FE:
                        LDA.B r_ev_05_xPos-$E68              ;8790FE|A505    |000E6D;
                        SEC                                  ;879100|38      |      ;
                        SBC.W r_0bad                         ;879101|EDAD0B  |860BAD;
@@ -2541,7 +2644,8 @@ eventID_mammoth_0c_main:
                        STZ.B r_ev_39-$E68                   ;8791D8|6439    |000EA1;
                        JSL.L loadEnitySlotBase              ;8791DA|22218382|828321;
                        BEQ CODE_8791E1                      ;8791DE|F001    |8791E1;
-                       db $6B                               ;8791E0|        |      ;
+                       RTL                                  ;8791E0|6B      |      ;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8791E1:
                        INC.W r_0000,X                       ;8791E1|FE0000  |860000;
@@ -2585,13 +2689,18 @@ eventID_mammoth_0c_main:
                                                             ;      |        |      ;
           CODE_879229:
                        LDX.B r_ev_02_action-$E68            ;879229|A602    |000E6A;
-                       JSR.W (UNREACH_879232,X)             ;87922B|FC3292  |879232;
+                       JSR.W (PTR16_879232,X)               ;87922B|FC3292  |879232;
                        JML.L eventID_vile_68_afterInit      ;87922E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_879232:
-                       db $3C,$92,$70,$92,$9B,$92,$A8,$92   ;879232|        |007092;
-                       db $DC,$92                           ;87923A|        |00A992;
+         PTR16_879232:
+                       dw CODE_87923C                       ;879232|        |87923C;
+                       dw CODE_879270                       ;879234|        |879270;
+                       dw CODE_87929B                       ;879236|        |87929B;
+                       dw CODE_8792A8                       ;879238|        |8792A8;
+                       dw CODE_8792DC                       ;87923A|        |8792DC;
+                                                            ;      |        |      ;
+          CODE_87923C:
                        LDA.B #$02                           ;87923C|A902    |      ;
                        STA.B r_ev_02_action-$E68            ;87923E|8502    |000E6A;
                        LDA.B #$00                           ;879240|A900    |      ;
@@ -2616,6 +2725,8 @@ eventID_mammoth_0c_main:
                        SEP #$20                             ;87926D|E220    |      ;
                        RTS                                  ;87926F|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_879270:
                        JSL.L CODE_8491BE                    ;879270|22BE9184|8491BE;
                        REP #$20                             ;879274|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;879276|A505    |000E6D;
@@ -2638,6 +2749,8 @@ eventID_mammoth_0c_main:
                        SEP #$20                             ;879298|E220    |      ;
                        RTS                                  ;87929A|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87929B:
                        JSL.L updateEv_13_14_17_0f           ;87929B|22EA8E84|848EEA;
                        LDA.B r_ev_0f-$E68                   ;87929F|A50F    |000E77;
                        BEQ CODE_8792A7                      ;8792A1|F004    |8792A7;
@@ -2647,6 +2760,8 @@ eventID_mammoth_0c_main:
           CODE_8792A7:
                        RTS                                  ;8792A7|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8792A8:
                        INC.B r_ev_34-$E68                   ;8792A8|E634    |000E9C;
                        LDA.B r_ev_34-$E68                   ;8792AA|A534    |000E9C;
                        LSR A                                ;8792AC|4A      |      ;
@@ -2674,6 +2789,8 @@ eventID_mammoth_0c_main:
                        TSB.B r_ev_27-$E68                   ;8792D9|0427    |000E8F;
                        RTS                                  ;8792DB|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8792DC:
                        DEC.B r_ev_34-$E68                   ;8792DC|C634    |000E9C;
                        BNE CODE_879302                      ;8792DE|D022    |879302;
                        LDA.B #$04                           ;8792E0|A904    |      ;
@@ -2698,7 +2815,7 @@ eventID_mammoth_0c_main:
                        LDA.B r_ev_33-$E68                   ;879303|A533    |000E9B;
                        TSB.B r_ev_11_sprAtri-$E68           ;879305|0411    |000E79;
                        LDX.B r_ev_02_action-$E68            ;879307|A602    |000E6A;
-                       JSR.W (UNREACH_879394,X)             ;879309|FC9493  |879394;
+                       JSR.W (DATA8_879394,X)               ;879309|FC9493  |879394;
                        LDA.B #$08                           ;87930C|A908    |      ;
                        LDX.B r_ev_39-$E68                   ;87930E|A639    |000EA1;
                        BEQ CODE_879314                      ;879310|F002    |879314;
@@ -2774,15 +2891,21 @@ eventID_mammoth_0c_main:
                        JML.L eventID_vile_68_afterInit      ;879390|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_879394:
-                       db $9C,$93,$75,$94,$03,$95,$B4,$95   ;879394|        |007593;
+         DATA8_879394:
+                       db $9C,$93,$75,$94,$03,$95,$B4,$95   ;879394|        |      ;
                        LDX.B r_ev_03_do-$E68                ;87939C|A603    |000E6B;
-                       JMP.W (UNREACH_8793A1,X)             ;87939E|7CA193  |8793A1;
+                       JMP.W (PTR16_8793A1,X)               ;87939E|7CA193  |8793A1;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_8793A1:
-                       db $AD,$93,$D7,$93,$F0,$93,$0F,$94   ;8793A1|        |00D793;
-                       db $42,$94,$61,$94                   ;8793A9|        |      ;
+         PTR16_8793A1:
+                       dw CODE_8793AD                       ;8793A1|        |8793AD;
+                       dw CODE_8793D7                       ;8793A3|        |8793D7;
+                       dw CODE_8793F0                       ;8793A5|        |8793F0;
+                       dw CODE_87940F                       ;8793A7|        |87940F;
+                       dw CODE_879442                       ;8793A9|        |879442;
+                       dw CODE_879461                       ;8793AB|        |879461;
+                                                            ;      |        |      ;
+          CODE_8793AD:
                        LDA.B #$02                           ;8793AD|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;8793AF|8503    |000E6B;
                        JSL.L CODE_84ACA5                    ;8793B1|22A5AC84|84ACA5;
@@ -2804,6 +2927,8 @@ eventID_mammoth_0c_main:
                        STA.B r_ev_1e_weight-$E68            ;8793D4|851E    |000E86;
                        RTS                                  ;8793D6|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8793D7:
                        JSL.L updateEv_13_14_17_0f           ;8793D7|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;8793DB|22BE9184|8491BE;
                        LDA.B r_ev_0f-$E68                   ;8793DF|A50F    |000E77;
@@ -2817,6 +2942,8 @@ eventID_mammoth_0c_main:
           CODE_8793EF:
                        RTS                                  ;8793EF|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8793F0:
                        JSL.L CODE_8281E8                    ;8793F0|22E88182|8281E8;
                        JSL.L updateEv_13_14_17_0f           ;8793F4|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;8793F8|22BE9184|8491BE;
@@ -2832,6 +2959,8 @@ eventID_mammoth_0c_main:
           CODE_87940E:
                        RTS                                  ;87940E|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87940F:
                        JSL.L CODE_8281E8                    ;87940F|22E88182|8281E8;
                        JSL.L updateEv_13_14_17_0f           ;879413|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;879417|22BE9184|8491BE;
@@ -2855,6 +2984,8 @@ eventID_mammoth_0c_main:
           CODE_879441:
                        RTS                                  ;879441|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_879442:
                        JSL.L updateEv_13_14_17_0f           ;879442|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;879446|22BE9184|8491BE;
                        LDA.B r_ev_0f-$E68                   ;87944A|A50F    |000E77;
@@ -2871,6 +3002,8 @@ eventID_mammoth_0c_main:
           CODE_879460:
                        RTS                                  ;879460|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_879461:
                        JSL.L CODE_84ACA5                    ;879461|22A5AC84|84ACA5;
                        JSL.L updateEv_13_14_17_0f           ;879465|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;879469|22BE9184|8491BE;
@@ -2883,11 +3016,15 @@ eventID_mammoth_0c_main:
                        RTS                                  ;879474|60      |      ;
                                                             ;      |        |      ;
                        LDX.B r_ev_03_do-$E68                ;879475|A603    |000E6B;
-                       JMP.W (UNREACH_87947A,X)             ;879477|7C7A94  |87947A;
+                       JMP.W (PTR16_87947A,X)               ;879477|7C7A94  |87947A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_87947A:
-                       db $80,$94,$97,$94,$EF,$94           ;87947A|        |879410;
+         PTR16_87947A:
+                       dw CODE_879480                       ;87947A|        |879480;
+                       dw CODE_879497                       ;87947C|        |879497;
+                       dw CODE_8794EF                       ;87947E|        |8794EF;
+                                                            ;      |        |      ;
+          CODE_879480:
                        LDA.B #$02                           ;879480|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;879482|8503    |000E6B;
                        JSL.L CODE_84ACA5                    ;879484|22A5AC84|84ACA5;
@@ -2898,6 +3035,8 @@ eventID_mammoth_0c_main:
                        JSL.L CODE_8491BE                    ;879492|22BE9184|8491BE;
                        RTS                                  ;879496|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_879497:
                        JSL.L updateEv_13_14_17_0f           ;879497|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;87949B|22BE9184|8491BE;
                        LDA.B r_ev_0f-$E68                   ;87949F|A50F    |000E77;
@@ -2947,6 +3086,8 @@ eventID_mammoth_0c_main:
           CODE_8794EE:
                        RTS                                  ;8794EE|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8794EF:
                        JSL.L CODE_84ACA5                    ;8794EF|22A5AC84|84ACA5;
                        JSL.L CODE_8491BE                    ;8794F3|22BE9184|8491BE;
                        JSL.L updateEv_13_14_17_0f           ;8794F7|22EA8E84|848EEA;
@@ -2959,11 +3100,15 @@ eventID_mammoth_0c_main:
                        RTS                                  ;879502|60      |      ;
                                                             ;      |        |      ;
                        LDX.B r_ev_03_do-$E68                ;879503|A603    |000E6B;
-                       JMP.W (UNREACH_879508,X)             ;879505|7C0895  |879508;
+                       JMP.W (PTR16_879508,X)               ;879505|7C0895  |879508;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_879508:
-                       db $0E,$95,$3C,$95,$A0,$95           ;879508|        |003C95;
+         PTR16_879508:
+                       dw CODE_87950E                       ;879508|        |87950E;
+                       dw CODE_87953C                       ;87950A|        |87953C;
+                       dw CODE_8795A0                       ;87950C|        |8795A0;
+                                                            ;      |        |      ;
+          CODE_87950E:
                        LDA.B #$02                           ;87950E|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;879510|8503    |000E6B;
                        LDA.B #$05                           ;879512|A905    |      ;
@@ -2991,6 +3136,8 @@ eventID_mammoth_0c_main:
                        JSL.L CODE_8491BE                    ;879537|22BE9184|8491BE;
                        RTS                                  ;87953B|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87953C:
                        JSL.L CODE_84ACA5                    ;87953C|22A5AC84|84ACA5;
                        JSL.L updateEv_13_14_17_0f           ;879540|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;879544|22BE9184|8491BE;
@@ -3044,6 +3191,8 @@ eventID_mammoth_0c_main:
           CODE_87959D:
                        JMP.W CODE_87973C                    ;87959D|4C3C97  |87973C;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8795A0:
                        JSL.L CODE_84ACA5                    ;8795A0|22A5AC84|84ACA5;
                        JSL.L updateEv_13_14_17_0f           ;8795A4|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;8795A8|22BE9184|8491BE;
@@ -3056,11 +3205,16 @@ eventID_mammoth_0c_main:
                        RTS                                  ;8795B3|60      |      ;
                                                             ;      |        |      ;
                        LDX.B r_ev_03_do-$E68                ;8795B4|A603    |000E6B;
-                       JMP.W (UNREACH_8795B9,X)             ;8795B6|7CB995  |8795B9;
+                       JMP.W (PTR16_8795B9,X)               ;8795B6|7CB995  |8795B9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_8795B9:
-                       db $C1,$95,$D8,$95,$F3,$95,$18,$96   ;8795B9|        |000095;
+         PTR16_8795B9:
+                       dw CODE_8795C1                       ;8795B9|        |8795C1;
+                       dw CODE_8795D8                       ;8795BB|        |8795D8;
+                       dw CODE_8795F3                       ;8795BD|        |8795F3;
+                       dw CODE_879618                       ;8795BF|        |879618;
+                                                            ;      |        |      ;
+          CODE_8795C1:
                        LDA.B #$02                           ;8795C1|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;8795C3|8503    |000E6B;
                        LDA.B #$0C                           ;8795C5|A90C    |      ;
@@ -3071,6 +3225,8 @@ eventID_mammoth_0c_main:
                        JSL.L CODE_84ACA5                    ;8795D3|22A5AC84|84ACA5;
                        RTS                                  ;8795D7|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8795D8:
                        JSL.L updateEv_13_14_17_0f           ;8795D8|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;8795DC|22BE9184|8491BE;
                        LDA.B r_ev_0f-$E68                   ;8795E0|A50F    |000E77;
@@ -3085,6 +3241,8 @@ eventID_mammoth_0c_main:
           CODE_8795F2:
                        RTS                                  ;8795F2|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8795F3:
                        JSL.L CODE_8491BE                    ;8795F3|22BE9184|8491BE;
                        DEC.B r_ev_34-$E68                   ;8795F7|C634    |000E9C;
                        BNE CODE_879617                      ;8795F9|D01C    |879617;
@@ -3104,6 +3262,8 @@ eventID_mammoth_0c_main:
           CODE_879617:
                        RTS                                  ;879617|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_879618:
                        JSL.L CODE_8491BE                    ;879618|22BE9184|8491BE;
                        JSL.L CODE_84ACA5                    ;87961C|22A5AC84|84ACA5;
                        DEC.B r_ev_34-$E68                   ;879620|C634    |000E9C;
@@ -3208,7 +3368,8 @@ eventID_mammoth_0c_main:
           CODE_8796AA:
                        LDX.B r_ev_36-$E68                   ;8796AA|A636    |000E9E;
                        BNE CODE_8796B1                      ;8796AC|D003    |8796B1;
-                       db $18,$69,$30                       ;8796AE|        |      ;
+                       CLC                                  ;8796AE|18      |      ;
+                       ADC.B #$30                           ;8796AF|6930    |      ;
                                                             ;      |        |      ;
           CODE_8796B1:
                        STA.W r_0000                         ;8796B1|8D0000  |860000;
@@ -3263,7 +3424,10 @@ eventID_mammoth_0c_main:
                        LDA.B r_ev_3c-$E68                   ;879707|A53C    |000EA4;
                        CMP.B #$03                           ;879709|C903    |      ;
                        BCC CODE_879714                      ;87970B|9007    |879714;
-                       db $A6,$36,$F0,$03,$4C,$87,$96       ;87970D|        |000036;
+                       LDX.B r_ev_36-$E68                   ;87970D|A636    |000E9E;
+                       BEQ CODE_879714                      ;87970F|F003    |879714;
+                       JMP.W CODE_879687                    ;879711|4C8796  |879687;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_879714:
                        INC A                                ;879714|1A      |      ;
@@ -4123,7 +4287,7 @@ utuborosBrokHead_2a_state_00:
                        LDA.W r_0bd3                         ;879CA9|ADD30B  |860BD3;
                        AND.B #$04                           ;879CAC|2904    |      ;
                        BEQ CODE_879CB4                      ;879CAE|F004    |879CB4;
-                       db $22,$03,$9B,$84                   ;879CB0|        |849B03;
+                       JSL.L CODE_849B03                    ;879CB0|22039B84|849B03;
                                                             ;      |        |      ;
           CODE_879CB4:
                        SEP #$20                             ;879CB4|E220    |      ;
@@ -4133,7 +4297,7 @@ utuborosBrokHead_2a_state_00:
                        LDA.B r_ev_2_2c-$EA8                 ;879CBA|A52C    |000ED4;
                        AND.B #$7F                           ;879CBC|297F    |      ;
                        BEQ CODE_879CC4                      ;879CBE|F004    |879CC4;
-                       db $22,$15,$C7,$82                   ;879CC0|        |82C715;
+                       JSL.L CODE_82C715                    ;879CC0|2215C782|82C715;
                                                             ;      |        |      ;
           CODE_879CC4:
                        JSL.L CODE_8491BE                    ;879CC4|22BE9184|8491BE;
@@ -4275,7 +4439,8 @@ utuborosBrokHead_2a_state_00:
                        JSR.W CODE_879FCB                    ;879D98|20CB9F  |879FCB;
                        LDA.B r_ev_39-$E68                   ;879D9B|A539    |000EA1;
                        BEQ CODE_879DA2                      ;879D9D|F003    |879DA2;
-                       db $4C,$43,$9E                       ;879D9F|        |879E43;
+                       JMP.W CODE_879E43                    ;879D9F|4C439E  |879E43;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_879DA2:
                        LDA.B r_ev_0b_subID-$E68             ;879DA2|A50B    |000E73;
@@ -5757,8 +5922,11 @@ eventID_hotarion_37_main:
           CODE_87A786:
                        JMP.W CODE_87A792                    ;87A786|4C92A7  |87A792;
                                                             ;      |        |      ;
-                       db $E2,$20,$A9,$06,$85,$02,$4C,$F2   ;87A789|        |      ;
-                       db $A7                               ;87A791|        |0000E2;
+                       SEP #$20                             ;87A789|E220    |      ;
+                       LDA.B #$06                           ;87A78B|A906    |      ;
+                       STA.B r_ev_02_action-$E68            ;87A78D|8502    |000E6A;
+                       JMP.W CODE_87A7F2                    ;87A78F|4CF2A7  |87A7F2;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_87A792:
                        SEP #$20                             ;87A792|E220    |      ;
@@ -5817,6 +5985,8 @@ eventID_hotarion_37_main:
           CODE_87A7ED:
                        SEP #$20                             ;87A7ED|E220    |      ;
                        JSR.W CODE_87A7F6                    ;87A7EF|20F6A7  |87A7F6;
+                                                            ;      |        |      ;
+          CODE_87A7F2:
                        RTS                                  ;87A7F2|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6184,9 +6354,9 @@ ladderJadder_3b_state_00:
                                                             ;      |        |      ;
          PTR16_87AA4E:
                        dw CODE_87AA56                       ;87AA4E|        |87AA56;
-                       dw UNREACH_87AAA8                    ;87AA50|        |87AAA8;
-                       dw UNREACH_87AADB                    ;87AA52|        |87AADB;
-                       dw UNREACH_87AB35                    ;87AA54|        |87AB35;
+                       dw CODE_87AAA8                       ;87AA50|        |87AAA8;
+                       dw CODE_87AADB                       ;87AA52|        |87AADB;
+                       dw CODE_87AB35                       ;87AA54|        |87AB35;
                                                             ;      |        |      ;
           CODE_87AA56:
                        LDX.B r_ev_2_03_do-$EA8              ;87AA56|A603    |000EAB;
@@ -6243,42 +6413,144 @@ ladderJadder_3b_state_00:
                        RTS                                  ;87AAA7|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_87AAA8:
-                       db $A6,$03,$D0,$08,$E6,$03,$A9,$01   ;87AAA8|        |000003;
-                       db $22,$07,$8F,$84,$22,$EA,$8E,$84   ;87AAB0|        |848F07;
-                       db $A5,$0F,$10,$05,$A9,$04,$4C,$6E   ;87AAB8|        |00000F;
-                       db $AB,$29,$0F,$AA,$C9,$02,$D0,$04   ;87AAC0|        |      ;
-                       db $A9,$00,$85,$34,$C2,$21,$BD,$73   ;87AAC8|        |      ;
-                       db $D1,$29,$FF,$00,$65,$35,$85,$05   ;87AAD0|        |000029;
-                       db $E2,$20,$60                       ;87AAD8|        |      ;
+          CODE_87AAA8:
+                       LDX.B r_ev_2_03_do-$EA8              ;87AAA8|A603    |000EAB;
+                       BNE CODE_87AAB4                      ;87AAAA|D008    |87AAB4;
+                       INC.B r_ev_2_03_do-$EA8              ;87AAAC|E603    |000EAB;
+                       LDA.B #$01                           ;87AAAE|A901    |      ;
+                       JSL.L CODE_848F07                    ;87AAB0|22078F84|848F07;
                                                             ;      |        |      ;
-       UNREACH_87AADB:
-                       db $A6,$03,$7C,$E0,$AA,$E6,$AA,$04   ;87AADB|        |000003;
-                       db $AB,$0D,$AB,$A9,$02,$85,$03,$A5   ;87AAE3|        |      ;
-                       db $35,$85,$05,$A5,$36,$85,$06,$A9   ;87AAEB|        |000085;
-                       db $3C,$85,$38,$A9,$40,$85,$34,$A9   ;87AAF3|        |003885;
-                       db $20,$85,$37,$A9,$02,$22,$07,$8F   ;87AAFB|        |873785;
-                       db $84,$C6,$37,$D0,$04,$A9,$04,$85   ;87AB03|        |0000C6;
-                       db $03,$60,$C6,$38,$D0,$05,$A9,$06   ;87AB0B|        |000060;
-                       db $4C,$6E,$AB,$C6,$33,$D0,$0F,$A9   ;87AB13|        |87AB6E;
-                       db $20,$85,$33,$A9,$02,$85,$03,$A9   ;87AB1B|        |873385;
-                       db $20,$85,$37,$4C,$73,$AB,$20,$80   ;87AB23|        |873785;
-                       db $AB,$22,$5D,$82,$82,$22,$EA,$8E   ;87AB2B|        |      ;
-                       db $84,$60                           ;87AB33|        |000060;
+          CODE_87AAB4:
+                       JSL.L updateEv_13_14_17_0f           ;87AAB4|22EA8E84|848EEA;
+                       LDA.B r_ev_2_0f-$EA8                 ;87AAB8|A50F    |000EB7;
+                       BPL CODE_87AAC1                      ;87AABA|1005    |87AAC1;
+                       LDA.B #$04                           ;87AABC|A904    |      ;
+                       JMP.W CODE_87AB6E                    ;87AABE|4C6EAB  |87AB6E;
                                                             ;      |        |      ;
-       UNREACH_87AB35:
-                       db $A6,$03,$D0,$08,$E6,$03,$A9,$03   ;87AB35|        |000003;
-                       db $22,$07,$8F,$84,$22,$EA,$8E,$84   ;87AB3D|        |848F07;
-                       db $A5,$0F,$10,$05,$A9,$00,$4C,$6E   ;87AB45|        |00000F;
-                       db $AB,$29,$0F,$AA,$D0,$04,$A9,$70   ;87AB4D|        |      ;
-                       db $85,$34,$C2,$20,$BD,$73,$D1,$29   ;87AB55|        |000034;
-                       db $FF,$00,$49,$FF,$FF,$1A,$65,$35   ;87AB5D|        |FF4900;
-                       db $85,$05,$E2,$20,$60               ;87AB65|        |000005;
+                                                            ;      |        |      ;
+          CODE_87AAC1:
+                       AND.B #$0F                           ;87AAC1|290F    |      ;
+                       TAX                                  ;87AAC3|AA      |      ;
+                       CMP.B #$02                           ;87AAC4|C902    |      ;
+                       BNE CODE_87AACC                      ;87AAC6|D004    |87AACC;
+                       LDA.B #$00                           ;87AAC8|A900    |      ;
+                       STA.B r_ev_2_34-$EA8                 ;87AACA|8534    |000EDC;
+                                                            ;      |        |      ;
+          CODE_87AACC:
+                       REP #$21                             ;87AACC|C221    |      ;
+                       LDA.W UNREACH_86D173,X               ;87AACE|BD73D1  |86D173;
+                       AND.W #$00FF                         ;87AAD1|29FF00  |      ;
+                       ADC.B r_ev_2_35-$EA8                 ;87AAD4|6535    |000EDD;
+                       STA.B r_ev_2_05_xPos-$EA8            ;87AAD6|8505    |000EAD;
+                       SEP #$20                             ;87AAD8|E220    |      ;
+                       RTS                                  ;87AADA|60      |      ;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AADB:
+                       LDX.B r_ev_2_03_do-$EA8              ;87AADB|A603    |000EAB;
+                       JMP.W (PTR16_87AAE0,X)               ;87AADD|7CE0AA  |87AAE0;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+         PTR16_87AAE0:
+                       dw CODE_87AAE6                       ;87AAE0|        |87AAE6;
+                       dw CODE_87AB04                       ;87AAE2|        |87AB04;
+                       dw CODE_87AB0D                       ;87AAE4|        |87AB0D;
+                                                            ;      |        |      ;
+          CODE_87AAE6:
+                       LDA.B #$02                           ;87AAE6|A902    |      ;
+                       STA.B r_ev_2_03_do-$EA8              ;87AAE8|8503    |000EAB;
+                       LDA.B r_ev_2_35-$EA8                 ;87AAEA|A535    |000EDD;
+                       STA.B r_ev_2_05_xPos-$EA8            ;87AAEC|8505    |000EAD;
+                       LDA.B r_ev_2_36-$EA8                 ;87AAEE|A536    |000EDE;
+                       STA.B $06                            ;87AAF0|8506    |000EAE;
+                       LDA.B #$3C                           ;87AAF2|A93C    |      ;
+                       STA.B r_ev_2_38-$EA8                 ;87AAF4|8538    |000EE0;
+                       LDA.B #$40                           ;87AAF6|A940    |      ;
+                       STA.B r_ev_2_34-$EA8                 ;87AAF8|8534    |000EDC;
+                       LDA.B #$20                           ;87AAFA|A920    |      ;
+                       STA.B r_ev_2_37-$EA8                 ;87AAFC|8537    |000EDF;
+                       LDA.B #$02                           ;87AAFE|A902    |      ;
+                       JSL.L CODE_848F07                    ;87AB00|22078F84|848F07;
+                                                            ;      |        |      ;
+          CODE_87AB04:
+                       DEC.B r_ev_2_37-$EA8                 ;87AB04|C637    |000EDF;
+                       BNE CODE_87AB0C                      ;87AB06|D004    |87AB0C;
+                       LDA.B #$04                           ;87AB08|A904    |      ;
+                       STA.B r_ev_2_03_do-$EA8              ;87AB0A|8503    |000EAB;
+                                                            ;      |        |      ;
+          CODE_87AB0C:
+                       RTS                                  ;87AB0C|60      |      ;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AB0D:
+                       DEC.B r_ev_2_38-$EA8                 ;87AB0D|C638    |000EE0;
+                       BNE CODE_87AB16                      ;87AB0F|D005    |87AB16;
+                       LDA.B #$06                           ;87AB11|A906    |      ;
+                       JMP.W CODE_87AB6E                    ;87AB13|4C6EAB  |87AB6E;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AB16:
+                       DEC.B r_ev_2_33-$EA8                 ;87AB16|C633    |000EDB;
+                       BNE CODE_87AB29                      ;87AB18|D00F    |87AB29;
+                       LDA.B #$20                           ;87AB1A|A920    |      ;
+                       STA.B r_ev_2_33-$EA8                 ;87AB1C|8533    |000EDB;
+                       LDA.B #$02                           ;87AB1E|A902    |      ;
+                       STA.B r_ev_2_03_do-$EA8              ;87AB20|8503    |000EAB;
+                       LDA.B #$20                           ;87AB22|A920    |      ;
+                       STA.B r_ev_2_37-$EA8                 ;87AB24|8537    |000EDF;
+                       JMP.W CODE_87AB73                    ;87AB26|4C73AB  |87AB73;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AB29:
+                       JSR.W CODE_87AB80                    ;87AB29|2080AB  |87AB80;
+                       JSL.L CODE_82825D                    ;87AB2C|225D8282|82825D;
+                       JSL.L updateEv_13_14_17_0f           ;87AB30|22EA8E84|848EEA;
+                       RTS                                  ;87AB34|60      |      ;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AB35:
+                       LDX.B r_ev_2_03_do-$EA8              ;87AB35|A603    |000EAB;
+                       BNE CODE_87AB41                      ;87AB37|D008    |87AB41;
+                       INC.B r_ev_2_03_do-$EA8              ;87AB39|E603    |000EAB;
+                       LDA.B #$03                           ;87AB3B|A903    |      ;
+                       JSL.L CODE_848F07                    ;87AB3D|22078F84|848F07;
+                                                            ;      |        |      ;
+          CODE_87AB41:
+                       JSL.L updateEv_13_14_17_0f           ;87AB41|22EA8E84|848EEA;
+                       LDA.B r_ev_2_0f-$EA8                 ;87AB45|A50F    |000EB7;
+                       BPL CODE_87AB4E                      ;87AB47|1005    |87AB4E;
+                       LDA.B #$00                           ;87AB49|A900    |      ;
+                       JMP.W CODE_87AB6E                    ;87AB4B|4C6EAB  |87AB6E;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AB4E:
+                       AND.B #$0F                           ;87AB4E|290F    |      ;
+                       TAX                                  ;87AB50|AA      |      ;
+                       BNE CODE_87AB57                      ;87AB51|D004    |87AB57;
+                       LDA.B #$70                           ;87AB53|A970    |      ;
+                       STA.B r_ev_2_34-$EA8                 ;87AB55|8534    |000EDC;
+                                                            ;      |        |      ;
+          CODE_87AB57:
+                       REP #$20                             ;87AB57|C220    |      ;
+                       LDA.W UNREACH_86D173,X               ;87AB59|BD73D1  |86D173;
+                       AND.W #$00FF                         ;87AB5C|29FF00  |      ;
+                       EOR.W #$FFFF                         ;87AB5F|49FFFF  |      ;
+                       INC A                                ;87AB62|1A      |      ;
+                       ADC.B r_ev_2_35-$EA8                 ;87AB63|6535    |000EDD;
+                       STA.B r_ev_2_05_xPos-$EA8            ;87AB65|8505    |000EAD;
+                       SEP #$20                             ;87AB67|E220    |      ;
+                       RTS                                  ;87AB69|60      |      ;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_87AB6A:
                        JML.L clearStateIf_0cEqual           ;87AB6A|5C878382|828387;
                                                             ;      |        |      ;
-                       db $85,$02,$64,$03,$60               ;87AB6E|        |000002;
+                                                            ;      |        |      ;
+          CODE_87AB6E:
+                       STA.B $02                            ;87AB6E|8502    |000FEA;
+                       STZ.B $03                            ;87AB70|6403    |000FEB;
+                       RTS                                  ;87AB72|60      |      ;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_87AB73:
                        REP #$20                             ;87AB73|C220    |      ;
@@ -6322,7 +6594,7 @@ eventID_textBoxFace_3c_main:
  textBoxFace_3c_state:
                        dw textBoxFace_3c_state_00           ;87ABA8|        |87ABAE;
                        dw CODE_87ABF9                       ;87ABAA|        |87ABF9;
-                       dw UNREACH_87ADCC                    ;87ABAC|        |87ADCC;
+                       dw CODE_87ADCC                       ;87ABAC|        |87ADCC;
                                                             ;      |        |      ;
 textBoxFace_3c_state_00:
                        LDA.B #$02                           ;87ABAE|A902    |      ;
@@ -6364,19 +6636,32 @@ textBoxFace_3c_state_00:
                        LDA.B r_ev_0b_subID-$E68             ;87ABF9|A50B    |000E73;
                        ASL A                                ;87ABFB|0A      |      ;
                        TAX                                  ;87ABFC|AA      |      ;
-                       JMP.W (UNREACH_87AC00,X)             ;87ABFD|7C00AC  |87AC00;
+                       JMP.W (PTR16_87AC00,X)               ;87ABFD|7C00AC  |87AC00;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_87AC00:
-                       db $14,$AC,$5D,$AC,$7F,$AC,$AB,$AC   ;87AC00|        |0000AC;
-                       db $D5,$AC,$03,$AD,$2F,$AD,$79,$AD   ;87AC08|        |0000AC;
-                       db $03,$AD,$5D,$AC                   ;87AC10|        |0000AD;
+         PTR16_87AC00:
+                       dw CODE_87AC14                       ;87AC00|        |87AC14;
+                       dw CODE_87AC5D                       ;87AC02|        |87AC5D;
+                       dw CODE_87AC7F                       ;87AC04|        |87AC7F;
+                       dw CODE_87ACAB                       ;87AC06|        |87ACAB;
+                       dw CODE_87ACD5                       ;87AC08|        |87ACD5;
+                       dw CODE_87AD03                       ;87AC0A|        |87AD03;
+                       dw CODE_87AD2F                       ;87AC0C|        |87AD2F;
+                       dw CODE_87AD79                       ;87AC0E|        |87AD79;
+                       dw CODE_87AD03                       ;87AC10|        |87AD03;
+                       dw CODE_87AC5D                       ;87AC12|        |87AC5D;
+                                                            ;      |        |      ;
+          CODE_87AC14:
                        LDX.B $02                            ;87AC14|A602    |000F2A;
-                       JMP.W (UNREACH_87AC19,X)             ;87AC16|7C19AC  |87AC19;
+                       JMP.W (PTR16_87AC19,X)               ;87AC16|7C19AC  |87AC19;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_87AC19:
-                       db $1F,$AC,$32,$AC,$52,$AC           ;87AC19|        |AC32AC;
+         PTR16_87AC19:
+                       dw CODE_87AC1F                       ;87AC19|        |87AC1F;
+                       dw CODE_87AC32                       ;87AC1B|        |87AC32;
+                       dw CODE_87AC52                       ;87AC1D|        |87AC52;
+                                                            ;      |        |      ;
+          CODE_87AC1F:
                        LDA.W r_1f3c                         ;87AC1F|AD3C1F  |861F3C;
                        BNE CODE_87AC25                      ;87AC22|D001    |87AC25;
                        RTL                                  ;87AC24|6B      |      ;
@@ -6391,6 +6676,8 @@ textBoxFace_3c_state_00:
                        JSL.L CODE_848F07                    ;87AC2B|22078F84|848F07;
                        JMP.W CODE_87ADD0                    ;87AC2F|4CD0AD  |87ADD0;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AC32:
                        LDA.W r_1f3c                         ;87AC32|AD3C1F  |861F3C;
                        CMP.B #$03                           ;87AC35|C903    |      ;
                        BNE CODE_87AC46                      ;87AC37|D00D    |87AC46;
@@ -6409,11 +6696,15 @@ textBoxFace_3c_state_00:
                        JSL.L updateEv_13_14_17_0f           ;87AC4B|22EA8E84|848EEA;
                        JMP.W CODE_87ADD0                    ;87AC4F|4CD0AD  |87ADD0;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AC52:
                        LDA.W r_1f3c                         ;87AC52|AD3C1F  |861F3C;
                        CMP.B #$04                           ;87AC55|C904    |      ;
                        BNE CODE_87AC4B                      ;87AC57|D0F2    |87AC4B;
                        JML.L clearStates_00_02_0E           ;87AC59|5C988382|828398;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AC5D:
                        LDX.B r_ev_2_02_action-$EA8          ;87AC5D|A602    |000EAA;
                        BNE CODE_87AC72                      ;87AC5F|D011    |87AC72;
                        LDA.W r_1f3c                         ;87AC61|AD3C1F  |861F3C;
@@ -6437,6 +6728,8 @@ textBoxFace_3c_state_00:
           CODE_87AC7B:
                        JML.L eventID_vile_68_afterInit      ;87AC7B|5CB48082|8280B4;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AC7F:
                        LDX.B r_ev_02_action-$E68            ;87AC7F|A602    |000E6A;
                        BNE CODE_87AC96                      ;87AC81|D013    |87AC96;
                        LDA.W r_1f3c                         ;87AC83|AD3C1F  |861F3C;
@@ -6466,6 +6759,8 @@ textBoxFace_3c_state_00:
                        JSL.L updateEv_13_14_17_0f           ;87ACA4|22EA8E84|848EEA;
                        JMP.W CODE_87ADD0                    ;87ACA8|4CD0AD  |87ADD0;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87ACAB:
                        LDX.B r_ev_2_02_action-$EA8          ;87ACAB|A602    |000EAA;
                        BNE CODE_87ACC0                      ;87ACAD|D011    |87ACC0;
                        LDA.W r_1f3c                         ;87ACAF|AD3C1F  |861F3C;
@@ -6494,6 +6789,8 @@ textBoxFace_3c_state_00:
                        JSL.L updateEv_13_14_17_0f           ;87ACCE|22EA8E84|848EEA;
                        JMP.W CODE_87ADD0                    ;87ACD2|4CD0AD  |87ADD0;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87ACD5:
                        LDX.B $02                            ;87ACD5|A602    |000F6A;
                        BNE CODE_87ACEC                      ;87ACD7|D013    |87ACEC;
                        LDA.W r_1f3c                         ;87ACD9|AD3C1F  |861F3C;
@@ -6524,6 +6821,8 @@ textBoxFace_3c_state_00:
                        JSL.L updateEv_13_14_17_0f           ;87ACFC|22EA8E84|848EEA;
                        JMP.W CODE_87ADD0                    ;87AD00|4CD0AD  |87ADD0;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AD03:
                        LDX.B $02                            ;87AD03|A602    |000EEA;
                        BNE CODE_87AD18                      ;87AD05|D011    |87AD18;
                        LDA.W r_1f3c                         ;87AD07|AD3C1F  |861F3C;
@@ -6553,6 +6852,8 @@ textBoxFace_3c_state_00:
                        JSL.L updateEv_13_14_17_0f           ;87AD28|22EA8E84|848EEA;
                        JMP.W CODE_87ADD0                    ;87AD2C|4CD0AD  |87ADD0;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AD2F:
                        LDX.B r_ev_02_action-$E68            ;87AD2F|A602    |000E6A;
                        BNE CODE_87AD49                      ;87AD31|D016    |87AD49;
                        LDA.W r_1f3c                         ;87AD33|AD3C1F  |861F3C;
@@ -6597,12 +6898,19 @@ textBoxFace_3c_state_00:
                        STA.B r_ev_33-$E68                   ;87AD74|8533    |000E9B;
                        JMP.W CODE_87ADD0                    ;87AD76|4CD0AD  |87ADD0;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AD79:
                        LDX.B $02                            ;87AD79|A602    |000F2A;
-                       JMP.W (UNREACH_87AD7E,X)             ;87AD7B|7C7EAD  |87AD7E;
+                       JMP.W (PTR16_87AD7E,X)               ;87AD7B|7C7EAD  |87AD7E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_87AD7E:
-                       db $86,$AD,$99,$AD,$A8,$AD,$BD,$AD   ;87AD7E|        |0000AD;
+         PTR16_87AD7E:
+                       dw CODE_87AD86                       ;87AD7E|        |87AD86;
+                       dw CODE_87AD99                       ;87AD80|        |87AD99;
+                       dw CODE_87ADA8                       ;87AD82|        |87ADA8;
+                       dw CODE_87ADBD                       ;87AD84|        |87ADBD;
+                                                            ;      |        |      ;
+          CODE_87AD86:
                        LDA.W r_1f3c                         ;87AD86|AD3C1F  |861F3C;
                        BNE CODE_87AD8C                      ;87AD89|D001    |87AD8C;
                        RTL                                  ;87AD8B|6B      |      ;
@@ -6615,6 +6923,8 @@ textBoxFace_3c_state_00:
                        JSL.L CODE_848F07                    ;87AD92|22078F84|848F07;
                        JMP.W CODE_87ADD0                    ;87AD96|4CD0AD  |87ADD0;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87AD99:
                        LDA.W r_1f3c                         ;87AD99|AD3C1F  |861F3C;
                        CMP.B #$02                           ;87AD9C|C902    |      ;
                        BNE CODE_87ADA4                      ;87AD9E|D004    |87ADA4;
@@ -6624,6 +6934,8 @@ textBoxFace_3c_state_00:
           CODE_87ADA4:
                        JML.L eventID_vile_68_afterInit      ;87ADA4|5CB48082|8280B4;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87ADA8:
                        LDA.W r_1f3c                         ;87ADA8|AD3C1F  |861F3C;
                        CMP.B #$06                           ;87ADAB|C906    |      ;
                        BNE CODE_87ADBC                      ;87ADAD|D00D    |87ADBC;
@@ -6637,6 +6949,8 @@ textBoxFace_3c_state_00:
           CODE_87ADBC:
                        RTL                                  ;87ADBC|6B      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87ADBD:
                        LDA.W r_1f3c                         ;87ADBD|AD3C1F  |861F3C;
                        CMP.B #$07                           ;87ADC0|C907    |      ;
                        BNE CODE_87ADC8                      ;87ADC2|D004    |87ADC8;
@@ -6647,8 +6961,9 @@ textBoxFace_3c_state_00:
                        JML.L eventID_vile_68_afterInit      ;87ADC8|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_87ADCC:
-                       db $5C,$98,$83,$82                   ;87ADCC|        |828398;
+          CODE_87ADCC:
+                       JML.L clearStates_00_02_0E           ;87ADCC|5C988382|828398;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_87ADD0:
                        JSL.L CODE_848FCA                    ;87ADD0|22CA8F84|848FCA;
@@ -10713,12 +11028,22 @@ lightCapsule_4d_state_00:
                        BMI CODE_87CAC4                      ;87CA90|3032    |87CAC4;
                        INC A                                ;87CA92|1A      |      ;
                        STA.W r_1f7e                         ;87CA93|8D7E1F  |861F7E;
-                       CMP.B #$05                           ;87CA96|C905    |      ;
+                       CMP.B #$05                           ;87CA96|C905    |      ; 01 will make appear on the first visit with all the upgrades.
                        BCC CODE_87CAC4                      ;87CA98|902A    |87CAC4;
-                       db $A9,$05,$8D,$7E,$1F,$AD,$99,$1F   ;87CA9A|        |      ;
-                       db $2D,$9C,$1F,$C9,$FF,$D0,$1B,$2C   ;87CAA2|        |001F9C;
-                       db $7C,$1F,$50,$16,$AD,$CF,$0B,$29   ;87CAAA|        |87501F;
-                       db $7F,$C9,$20,$D0,$0D,$80,$0F       ;87CAB2|        |D020C9;
+                       LDA.B #$05                           ;87CA9A|A905    |      ;
+                       STA.W r_1f7e                         ;87CA9C|8D7E1F  |861F7E;
+                       LDA.W r_player_upgradeMask           ;87CA9F|AD991F  |861F99;
+                       AND.W r_1f9c                         ;87CAA2|2D9C1F  |861F9C;
+                       CMP.B #$FF                           ;87CAA5|C9FF    |      ;
+                       BNE CODE_87CAC4                      ;87CAA7|D01B    |87CAC4;
+                       BIT.W r_1f7c                         ;87CAA9|2C7C1F  |861F7C;
+                       BVC CODE_87CAC4                      ;87CAAC|5016    |87CAC4;
+                       LDA.W r_0bcf                         ;87CAAE|ADCF0B  |860BCF;
+                       AND.B #$7F                           ;87CAB1|297F    |      ;
+                       CMP.B #$20                           ;87CAB3|C920    |      ;
+                       BNE CODE_87CAC4                      ;87CAB5|D00D    |87CAC4;
+                       BRA CODE_87CAC8                      ;87CAB7|800F    |87CAC8;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_87CAB9:
                        LDY.W UNREACH_86D362,X               ;87CAB9|BC62D3  |86D362;
@@ -10800,24 +11125,62 @@ lightCapsule_4d_state_00:
                        JSL.L CODE_849A02                    ;87CB4D|22029A84|849A02;
                        SEP #$20                             ;87CB51|E220    |      ;
                        LDX.B r_ev_02_action-$E68            ;87CB53|A602    |000E6A;
-                       JSR.W (UNREACH_87CB60,X)             ;87CB55|FC60CB  |87CB60;
+                       JSR.W (PTR16_87CB60,X)               ;87CB55|FC60CB  |87CB60;
                        JSL.L CODE_848FCA                    ;87CB58|22CA8F84|848FCA;
                        JML.L CODE_82808F                    ;87CB5C|5C8F8082|82808F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_87CB60:
-                       db $6A,$CB,$BB,$CB,$2A,$CC,$84,$CC   ;87CB60|        |      ;
-                       db $B2,$CC,$A6,$03,$D0,$29,$E6,$03   ;87CB68|        |000F34;
-                       db $C2,$20,$A9,$00,$02,$85,$1C,$A9   ;87CB70|        |      ;
-                       db $00,$2C,$85,$29,$E2,$20,$AD,$7A   ;87CB78|        |      ;
-                       db $1F,$C9,$02,$D0,$06,$A9,$20,$22   ;87CB80|        |D002C9;
-                       db $A2,$88,$80,$A9,$40,$22,$16,$A3   ;87CB88|        |      ;
-                       db $84,$A9,$00,$22,$07,$8F,$84,$AD   ;87CB90|        |000F11;
-                       db $7A,$1F,$C9,$05,$F0,$06,$20,$5D   ;87CB98|        |      ;
-                       db $CF,$20,$90,$CF,$22,$A0,$90,$84   ;87CBA0|        |CF9020;
-                       db $C9,$34,$B0,$06,$A9,$02,$85,$02   ;87CBA8|        |      ;
-                       db $64,$03,$22,$5D,$82,$82,$22,$EA   ;87CBB0|        |000E6B;
-                       db $8E,$84,$60                       ;87CBB8|        |006084;
+         PTR16_87CB60:
+                       dw CODE_87CB6A                       ;87CB60|        |87CB6A;
+                       dw CODE_87CBBB                       ;87CB62|        |87CBBB;
+                       dw CODE_87CC2A                       ;87CB64|        |87CC2A;
+                       dw CODE_87CC84                       ;87CB66|        |87CC84;
+                       dw CODE_87CCB2                       ;87CB68|        |87CCB2;
+                                                            ;      |        |      ;
+          CODE_87CB6A:
+                       LDX.B r_ev_03_do-$E68                ;87CB6A|A603    |000E6B;
+                       BNE CODE_87CB97                      ;87CB6C|D029    |87CB97;
+                       INC.B r_ev_03_do-$E68                ;87CB6E|E603    |000E6B;
+                       REP #$20                             ;87CB70|C220    |      ;
+                       LDA.W #$0200                         ;87CB72|A90002  |      ;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;87CB75|851C    |000E84;
+                       LDA.W #$2C00                         ;87CB77|A9002C  |      ;
+                       STA.B r_ev_29-$E68                   ;87CB7A|8529    |000E91;
+                       SEP #$20                             ;87CB7C|E220    |      ;
+                       LDA.W $1F7A                          ;87CB7E|AD7A1F  |001F7A;
+                       CMP.B #$02                           ;87CB81|C902    |      ;
+                       BNE CODE_87CB8B                      ;87CB83|D006    |87CB8B;
+                       LDA.B #$20                           ;87CB85|A920    |      ;
+                       JSL.L CODE_8088A2                    ;87CB87|22A28880|8088A2;
+                                                            ;      |        |      ;
+          CODE_87CB8B:
+                       LDA.B #$40                           ;87CB8B|A940    |      ;
+                       JSL.L CODE_84A316                    ;87CB8D|2216A384|84A316;
+                       LDA.B #$00                           ;87CB91|A900    |      ;
+                       JSL.L CODE_848F07                    ;87CB93|22078F84|848F07;
+                                                            ;      |        |      ;
+          CODE_87CB97:
+                       LDA.W $1F7A                          ;87CB97|AD7A1F  |001F7A;
+                       CMP.B #$05                           ;87CB9A|C905    |      ;
+                       BEQ CODE_87CBA4                      ;87CB9C|F006    |87CBA4;
+                       JSR.W CODE_87CF5D                    ;87CB9E|205DCF  |87CF5D;
+                       JSR.W CODE_87CF90                    ;87CBA1|2090CF  |87CF90;
+                                                            ;      |        |      ;
+          CODE_87CBA4:
+                       JSL.L CODE_8490A0                    ;87CBA4|22A09084|8490A0;
+                       CMP.B #$34                           ;87CBA8|C934    |      ;
+                       BCS CODE_87CBB2                      ;87CBAA|B006    |87CBB2;
+                       LDA.B #$02                           ;87CBAC|A902    |      ;
+                       STA.B r_ev_02_action-$E68            ;87CBAE|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;87CBB0|6403    |000E6B;
+                                                            ;      |        |      ;
+          CODE_87CBB2:
+                       JSL.L CODE_82825D                    ;87CBB2|225D8282|82825D;
+                       JSL.L updateEv_13_14_17_0f           ;87CBB6|22EA8E84|848EEA;
+                       RTS                                  ;87CBBA|60      |      ;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CBBB:
                        LDX.B r_ev_03_do-$E68                ;87CBBB|A603    |000E6B;
                        BNE CODE_87CBC7                      ;87CBBD|D008    |87CBC7;
                        INC.B r_ev_03_do-$E68                ;87CBBF|E603    |000E6B;
@@ -10867,12 +11230,18 @@ lightCapsule_4d_state_00:
                        JSL.L updateEv_13_14_17_0f           ;87CC25|22EA8E84|848EEA;
                        RTS                                  ;87CC29|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CC2A:
                        LDX.B r_ev_03_do-$E68                ;87CC2A|A603    |000E6B;
-                       JMP.W (UNREACH_87CC2F,X)             ;87CC2C|7C2FCC  |87CC2F;
+                       JMP.W (PTR16_87CC2F,X)               ;87CC2C|7C2FCC  |87CC2F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_87CC2F:
-                       db $35,$CC,$62,$CC,$72,$CC           ;87CC2F|        |000F34;
+         PTR16_87CC2F:
+                       dw CODE_87CC35                       ;87CC2F|        |87CC35;
+                       dw CODE_87CC62                       ;87CC31|        |87CC62;
+                       dw CODE_87CC72                       ;87CC33|        |87CC72;
+                                                            ;      |        |      ;
+          CODE_87CC35:
                        REP #$20                             ;87CC35|C220    |      ;
                        LDA.W r_level_current                ;87CC37|AD7A1F  |861F7A;
                        AND.W #$00FF                         ;87CC3A|29FF00  |      ;
@@ -10900,12 +11269,16 @@ lightCapsule_4d_state_00:
                        STZ.W r_1f49                         ;87CC5E|9C491F  |861F49;
                        RTS                                  ;87CC61|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CC62:
                        LDA.B #$04                           ;87CC62|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;87CC64|8503    |000E6B;
                        LDA.B #$2A                           ;87CC66|A92A    |      ;
                        JSL.L CODE_8088A2                    ;87CC68|22A28880|8088A2;
                        LDA.B #$01                           ;87CC6C|A901    |      ;
                        JSL.L CODE_848F07                    ;87CC6E|22078F84|848F07;
+                                                            ;      |        |      ;
+          CODE_87CC72:
                        LDA.B r_ev_0f-$E68                   ;87CC72|A50F    |000E77;
                        BPL CODE_87CC7F                      ;87CC74|1009    |87CC7F;
                        LDA.B #$06                           ;87CC76|A906    |      ;
@@ -10918,6 +11291,8 @@ lightCapsule_4d_state_00:
                        JSL.L updateEv_13_14_17_0f           ;87CC7F|22EA8E84|848EEA;
                        RTS                                  ;87CC83|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CC84:
                        LDX.B r_ev_03_do-$E68                ;87CC84|A603    |000E6B;
                        BNE CODE_87CC90                      ;87CC86|D008    |87CC90;
                        INC.B r_ev_03_do-$E68                ;87CC88|E603    |000E6B;
@@ -10942,14 +11317,24 @@ lightCapsule_4d_state_00:
                        JSL.L updateEv_13_14_17_0f           ;87CCAD|22EA8E84|848EEA;
                        RTS                                  ;87CCB1|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CCB2:
                        LDX.B r_ev_03_do-$E68                ;87CCB2|A603    |000E6B;
-                       JMP.W (UNREACH_87CCB7,X)             ;87CCB4|7CB7CC  |87CCB7;
+                       JMP.W (PTR16_87CCB7,X)               ;87CCB4|7CB7CC  |87CCB7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_87CCB7:
-                       db $C9,$CC,$24,$CD,$49,$CD,$6B,$CD   ;87CCB7|        |      ;
-                       db $9B,$CD,$AD,$CD,$BE,$CD,$ED,$CD   ;87CCBF|        |      ;
-                       db $40,$CE                           ;87CCC7|        |      ;
+         PTR16_87CCB7:
+                       dw CODE_87CCC9                       ;87CCB7|        |87CCC9;
+                       dw CODE_87CD24                       ;87CCB9|        |87CD24;
+                       dw CODE_87CD49                       ;87CCBB|        |87CD49;
+                       dw CODE_87CD6B                       ;87CCBD|        |87CD6B;
+                       dw CODE_87CD9B                       ;87CCBF|        |87CD9B;
+                       dw CODE_87CDAD                       ;87CCC1|        |87CDAD;
+                       dw CODE_87CDBE                       ;87CCC3|        |87CDBE;
+                       dw CODE_87CDED                       ;87CCC5|        |87CDED;
+                       dw CODE_87CE40                       ;87CCC7|        |87CE40;
+                                                            ;      |        |      ;
+          CODE_87CCC9:
                        LDA.B #$02                           ;87CCC9|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;87CCCB|8503    |000E6B;
                        STZ.W r_1f49                         ;87CCCD|9C491F  |861F49;
@@ -10985,6 +11370,8 @@ lightCapsule_4d_state_00:
                        STZ.W r_blaster1a                    ;87CD20|9C160C  |860C16;
                        RTS                                  ;87CD23|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CD24:
                        DEC.B r_ev_33-$E68                   ;87CD24|C633    |000E9B;
                        BNE CODE_87CD48                      ;87CD26|D020    |87CD48;
                        LDA.B #$04                           ;87CD28|A904    |      ;
@@ -11007,6 +11394,8 @@ lightCapsule_4d_state_00:
           CODE_87CD48:
                        RTS                                  ;87CD48|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CD49:
                        LDA.B #$00                           ;87CD49|A900    |      ;
                        JSR.W CODE_87CE53                    ;87CD4B|2053CE  |87CE53;
                        DEC.B r_ev_33-$E68                   ;87CD4E|C633    |000E9B;
@@ -11029,6 +11418,8 @@ lightCapsule_4d_state_00:
                        LDX.B #$00                           ;87CD66|A200    |      ;
                        JMP.W CODE_87CEF3                    ;87CD68|4CF3CE  |87CEF3;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CD6B:
                        LDA.B #$01                           ;87CD6B|A901    |      ;
                        JSR.W CODE_87CE53                    ;87CD6D|2053CE  |87CE53;
                        DEC.B r_ev_33-$E68                   ;87CD70|C633    |000E9B;
@@ -11053,6 +11444,8 @@ lightCapsule_4d_state_00:
                        LDX.B #$01                           ;87CD96|A201    |      ;
                        JMP.W CODE_87CEF3                    ;87CD98|4CF3CE  |87CEF3;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CD9B:
                        DEC.B r_ev_33-$E68                   ;87CD9B|C633    |000E9B;
                        BNE CODE_87CDAC                      ;87CD9D|D00D    |87CDAC;
                        LDA.B #$0A                           ;87CD9F|A90A    |      ;
@@ -11065,6 +11458,8 @@ lightCapsule_4d_state_00:
           CODE_87CDAC:
                        RTS                                  ;87CDAC|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CDAD:
                        DEC.B r_ev_33-$E68                   ;87CDAD|C633    |000E9B;
                        BNE CODE_87CDBD                      ;87CDAF|D00C    |87CDBD;
                        LDA.B #$0C                           ;87CDB1|A90C    |      ;
@@ -11076,6 +11471,8 @@ lightCapsule_4d_state_00:
           CODE_87CDBD:
                        RTS                                  ;87CDBD|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CDBE:
                        DEC.B r_ev_33-$E68                   ;87CDBE|C633    |000E9B;
                        BNE CODE_87CDEC                      ;87CDC0|D02A    |87CDEC;
                        STZ.W r_0bd8                         ;87CDC2|9CD80B  |860BD8;
@@ -11103,6 +11500,8 @@ lightCapsule_4d_state_00:
           CODE_87CDEC:
                        RTS                                  ;87CDEC|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CDED:
                        DEC.B r_ev_3c-$E68                   ;87CDED|C63C    |000EA4;
                        BNE CODE_87CE2B                      ;87CDEF|D03A    |87CE2B;
                        LDX.W r_level_current                ;87CDF1|AE7A1F  |861F7A;
@@ -11146,6 +11545,8 @@ lightCapsule_4d_state_00:
                        STA.W $00AC                          ;87CE3C|8DAC00  |8600AC;
                        RTS                                  ;87CE3F|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CE40:
                        JSL.L initPosAllign                  ;87CE40|226E8082|82806E;
                        BCC CODE_87CE4A                      ;87CE44|9004    |87CE4A;
                        db $A9,$04,$85,$01                   ;87CE46|        |      ;
@@ -11331,6 +11732,8 @@ lightCapsule_4d_state_00:
                        SEP #$30                             ;87CF5A|E230    |      ;
                        RTS                                  ;87CF5C|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CF5D:
                        LDA.W $0B9C                          ;87CF5D|AD9C0B  |860B9C;
                        AND.B #$0F                           ;87CF60|290F    |      ;
                        BNE CODE_87CF8F                      ;87CF62|D02B    |87CF8F;
@@ -11362,6 +11765,8 @@ lightCapsule_4d_state_00:
           CODE_87CF8F:
                        RTS                                  ;87CF8F|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_87CF90:
                        LDA.W $0B9C                          ;87CF90|AD9C0B  |860B9C;
                        BIT.B #$03                           ;87CF93|8903    |      ;
                        BNE CODE_87CFB0                      ;87CF95|D019    |87CFB0;

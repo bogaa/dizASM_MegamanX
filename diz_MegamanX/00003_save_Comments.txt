@@ -32,6 +32,28 @@
         <sys:Item Key="8687342" Value="There's a bit in the subid that reverse the flow of the change, too." />
         <sys:Item Key="8687344" Value="(2,4,3) activates the platforms in Eagle. I was trying to figure out why magic carpet works and it's because of that event and how the boomerang carries items." />
         <sys:Item Key="8691012" Value="set this to 00 to remove the reduced damage ability" />
+        <sys:Item Key="8702166" Value="80 Line break." />
+        <sys:Item Key="8702167" Value="81 Waits for the player to press any of the buttons  assigned to an action in the game." />
+        <sys:Item Key="8702168" Value="82 Closes dialogue box." />
+        <sys:Item Key="8702169" Value="83 Indicates the next number should be used to  set the x position of the dialogue arrow." />
+        <sys:Item Key="8702170" Value="86 Indicates the next number should be used to  move the displayed text upwards" />
+        <sys:Item Key="8702171" Value="     Text is moved up by (8X) pixels." />
+        <sys:Item Key="8702172" Value="87 Indicates the next number should be used to" />
+        <sys:Item Key="8702173" Value="     pause text temporarily. Formula is  around (X60) seconds." />
+        <sys:Item Key="8702174" Value="88 Indicates the next number should be used to" />
+        <sys:Item Key="8702175" Value="     determine default text speed. Formula is" />
+        <sys:Item Key="8702176" Value="     around (60X) letters per second." />
+        <sys:Item Key="8702177" Value="89 Indicates that next two numbers are to be used to" />
+        <sys:Item Key="8702178" Value="      determined the starting place of the text." />
+        <sys:Item Key="8702179" Value="8A Toggles onoff cutscene mode. This determines" />
+        <sys:Item Key="8702180" Value="      whether or not the character is in speaking" />
+        <sys:Item Key="8702181" Value="      mode, and whether the character icon should" />
+        <sys:Item Key="8702182" Value="      be displayed on screen." />
+        <sys:Item Key="8702183" Value="C0-FF Dialogue color. Color is picked from the " />
+        <sys:Item Key="8702184" Value="      layer 3 palette. There are 8 colors to choose" />
+        <sys:Item Key="8702185" Value="         from, one being a duplicate of the light blue" />
+        <sys:Item Key="8702186" Value="        palette. The colors loop around C8 is the same" />
+        <sys:Item Key="8702187" Value="       as C0, C1 is C9, etc." />
         <sys:Item Key="8843063" Value="offset where to find the damage value" />
         <sys:Item Key="8843133" Value="Buster Uncharged" />
         <sys:Item Key="8843134" Value="Buster Charge L.1" />
@@ -75,5 +97,6 @@
         <sys:Item Key="8843673" Value="Wolf Sigma" />
         <sys:Item Key="8884646" Value="flame" />
         <sys:Item Key="8886163" Value="01 with canon" />
+        <sys:Item Key="8899222" Value="01 will make appear on the first visit with all the upgrades." />
       </Comments>
       
