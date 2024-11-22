@@ -20,9 +20,12 @@
         <sys:Item Key="8493311" Value="set this to 00 to remove the ability to break blocks with leg upgrade" />
         <sys:Item Key="8493335" Value="setting this to 00 will prevent blocks from breaking" />
         <sys:Item Key="8495598" Value="set this to 00 to remove the level 3 charge shot palette" />
+        <sys:Item Key="8553085" Value="bunny" />
         <sys:Item Key="8553265" Value="check last slot" />
         <sys:Item Key="8553481" Value="cutterInitSpeed" />
         <sys:Item Key="8553486" Value="cutterInitSpeed" />
+        <sys:Item Key="8564248" Value="subID 11 vehicles" />
+        <sys:Item Key="8566944" Value="01 second Bridge" />
         <sys:Item Key="8687338" Value="15 = object/enemy tiles, 16=background tiles, 17=palette" />
         <sys:Item Key="8687339" Value="the subid is two 4 bit values. the lower (right) 4 bits is what to change to when you cross the trigger in the forward direction. the second 4 bits is what to change (back) to when you go in the backwards direction" />
         <sys:Item Key="8687340" Value="18,19, and 1A do the same thing but they check Y for the trigger. 15-17 check X." />
@@ -70,5 +73,7 @@
         <sys:Item Key="8843613" Value="Unused?" />
         <sys:Item Key="8843643" Value="Sigma" />
         <sys:Item Key="8843673" Value="Wolf Sigma" />
+        <sys:Item Key="8884646" Value="flame" />
+        <sys:Item Key="8886163" Value="01 with canon" />
       </Comments>
       

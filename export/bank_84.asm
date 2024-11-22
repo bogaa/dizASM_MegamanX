@@ -34,16 +34,16 @@
                        ADC.W LOOSE_OP_00B8AC,X              ;848028|7DACB8  |00B8AC;
                        TAX                                  ;84802B|AA      |      ;
                        LDA.W LOOSE_OP_00B8AC,X              ;84802C|BDACB8  |00B8AC;
-                       STA.B $20                            ;84802F|8520    |000020;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;84802F|8520    |000E88;
                        LDA.W CODE_00B8AD,X                  ;848031|BDADB8  |00B8AD;
-                       STA.B $21                            ;848034|8521    |000021;
+                       STA.B r_ev_21-$E68                   ;848034|8521    |000E89;
                        REP #$10                             ;848036|C210    |      ;
                        LDX.W #$5000                         ;848038|A20050  |      ;
                        STX.W $1FA1                          ;84803B|8EA11F  |001FA1;
                        LDX.W $0B95                          ;84803E|AE950B  |000B95;
                        STX.W $1FAD                          ;848041|8EAD1F  |001FAD;
                        LDX.W #$0000                         ;848044|A20000  |      ;
-                       LDA.B ($20)                          ;848047|B220    |000020;
+                       LDA.B ($20)                          ;848047|B220    |000E88;
                        BNE CODE_84804E                      ;848049|D003    |84804E;
                        JMP.W CODE_8480E9                    ;84804B|4CE980  |8480E9;
                                                             ;      |        |      ;
@@ -912,7 +912,7 @@
                        PHB                                  ;848F08|8B      |      ;
                        REP #$30                             ;848F09|C230    |      ;
                        STA.W r_000e                         ;848F0B|8D0E00  |86000E;
-                       LDA.B $16                            ;848F0E|A516    |000016;
+                       LDA.B $16                            ;848F0E|A516    |000EFE;
                        AND.W #$00FF                         ;848F10|29FF00  |      ;
                        STA.W r_000c                         ;848F13|8D0C00  |86000C;
                        ASL A                                ;848F16|0A      |      ;
@@ -920,7 +920,7 @@
                        ADC.W r_000c                         ;848F18|6D0C00  |86000C;
                        TAX                                  ;848F1B|AA      |      ;
                        LDA.L DATA8_AFA000,X                 ;848F1C|BF00A0AF|AFA000;
-                       STA.B $14                            ;848F20|8514    |000014;
+                       STA.B $14                            ;848F20|8514    |000EFC;
                        SEP #$20                             ;848F22|E220    |      ;
                        LDA.L DATA8_AFA002,X                 ;848F24|BF02A0AF|AFA002;
                        PHA                                  ;848F28|48      |      ;
@@ -930,22 +930,22 @@
                        AND.W #$00FF                         ;848F2F|29FF00  |      ;
                        ASL A                                ;848F32|0A      |      ;
                        TAY                                  ;848F33|A8      |      ;
-                       LDA.B ($14),Y                        ;848F34|B114    |000014;
-                       ADC.B $14                            ;848F36|6514    |000014;
+                       LDA.B ($14),Y                        ;848F34|B114    |000EFC;
+                       ADC.B $14                            ;848F36|6514    |000EFC;
                                                             ;      |        |      ;
           CODE_848F38:
-                       STA.B $14                            ;848F38|8514    |000014;
+                       STA.B $14                            ;848F38|8514    |000EFC;
                        SEP #$30                             ;848F3A|E230    |      ;
-                       LDA.B ($14)                          ;848F3C|B214    |000014;
-                       STA.B $13                            ;848F3E|8513    |000013;
+                       LDA.B ($14)                          ;848F3C|B214    |000EFC;
+                       STA.B $13                            ;848F3E|8513    |000EFB;
                        LDY.B #$01                           ;848F40|A001    |      ;
-                       LDA.B ($14),Y                        ;848F42|B114    |000014;
-                       STA.B $0F                            ;848F44|850F    |00000F;
+                       LDA.B ($14),Y                        ;848F42|B114    |000EFC;
+                       STA.B $0F                            ;848F44|850F    |000EF7;
                        INY                                  ;848F46|C8      |      ;
-                       LDA.B ($14),Y                        ;848F47|B114    |000014;
-                       STA.B $17                            ;848F49|8517    |000017;
+                       LDA.B ($14),Y                        ;848F47|B114    |000EFC;
+                       STA.B $17                            ;848F49|8517    |000EFF;
                        LDA.B #$80                           ;848F4B|A980    |      ;
-                       TSB.B $17                            ;848F4D|0417    |000017;
+                       TSB.B $17                            ;848F4D|0417    |000EFF;
                                                             ;      |        |      ;
           CODE_848F4F:
                        PLB                                  ;848F4F|AB      |      ;
@@ -1035,7 +1035,7 @@
                        LDA.L CODE_84A48B                    ;848FCD|AF8BA484|84A48B;
                        CMP.L CODE_849D2E                    ;848FD1|CF2E9D84|849D2E;
                        BEQ CODE_848FDA                      ;848FD5|F003    |848FDA;
-                       db $EE,$9D,$1F                       ;848FD7|        |001F9D;
+                       INC.W r_1f9d                         ;848FD7|EE9D1F  |861F9D;
                                                             ;      |        |      ;
           CODE_848FDA:
                        LDA.B $17                            ;848FDA|A517    |000BBF;
@@ -1134,16 +1134,16 @@
           CODE_849086:
                        PHP                                  ;849086|08      |      ;
                        REP #$20                             ;849087|C220    |      ;
-                       LDA.W r_RNG_00                       ;849089|ADA60B  |860BA6;
+                       LDA.W $0BA6                          ;849089|ADA60B  |000BA6;
                        ASL A                                ;84908C|0A      |      ;
                        CLC                                  ;84908D|18      |      ;
-                       ADC.W r_RNG_00                       ;84908E|6DA60B  |860BA6;
+                       ADC.W $0BA6                          ;84908E|6DA60B  |000BA6;
                        XBA                                  ;849091|EB      |      ;
                        SEP #$20                             ;849092|E220    |      ;
-                       STA.W r_RNG_01                       ;849094|8DA70B  |860BA7;
+                       STA.W $0BA7                          ;849094|8DA70B  |000BA7;
                        CLC                                  ;849097|18      |      ;
-                       ADC.W r_RNG_00                       ;849098|6DA60B  |860BA6;
-                       STA.W r_RNG_00                       ;84909B|8DA60B  |860BA6;
+                       ADC.W $0BA6                          ;849098|6DA60B  |000BA6;
+                       STA.W $0BA6                          ;84909B|8DA60B  |000BA6;
                        PLP                                  ;84909E|28      |      ;
                        RTL                                  ;84909F|6B      |      ;
                                                             ;      |        |      ;
@@ -2626,13 +2626,13 @@
                                                             ;      |        |      ;
           CODE_849B43:
                        REP #$10                             ;849B43|C210    |      ;
-                       LDA.B $27                            ;849B45|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;849B45|A527    |000E8F;
                        AND.B #$7F                           ;849B47|297F    |      ;
-                       STA.B $27                            ;849B49|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;849B49|8527    |000E8F;
                        BEQ CODE_849B79                      ;849B4B|F02C    |849B79;
-                       LDA.B $30                            ;849B4D|A530    |000E98;
+                       LDA.B r_ev_30-$E68                   ;849B4D|A530    |000E98;
                        BNE CODE_849B79                      ;849B4F|D028    |849B79;
-                       LDA.B $0E                            ;849B51|A50E    |000E76;
+                       LDA.B r_ev_0e-$E68                   ;849B51|A50E    |000E76;
                        BEQ CODE_849B79                      ;849B53|F024    |849B79;
                        LDX.W #$1228                         ;849B55|A22812  |      ;
                                                             ;      |        |      ;
@@ -2663,13 +2663,13 @@
                                                             ;      |        |      ;
           CODE_849B7E:
                        REP #$10                             ;849B7E|C210    |      ;
-                       LDA.B $27                            ;849B80|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;849B80|A527    |000E8F;
                        AND.B #$7F                           ;849B82|297F    |      ;
-                       STA.B $27                            ;849B84|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;849B84|8527    |000E8F;
                        BEQ CODE_849BC5                      ;849B86|F03D    |849BC5;
-                       LDA.B $30                            ;849B88|A530    |000E98;
+                       LDA.B r_ev_30-$E68                   ;849B88|A530    |000E98;
                        BNE CODE_849BC5                      ;849B8A|D039    |849BC5;
-                       LDA.B $0E                            ;849B8C|A50E    |000E76;
+                       LDA.B r_ev_0e-$E68                   ;849B8C|A50E    |000E76;
                        BEQ CODE_849BC5                      ;849B8E|F035    |849BC5;
                        LDX.W #$0E68                         ;849B90|A2680E  |      ;
                                                             ;      |        |      ;
@@ -2973,20 +2973,20 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_849D83:
-                       LDA.B $26                            ;849D83|A526    |000E8E;
+                       LDA.B r_ev_26-$E68                   ;849D83|A526    |000E8E;
                        BMI CODE_849DCA                      ;849D85|3043    |849DCA;
                        INC.W $0E48                          ;849D87|EE480E  |860E48;
                        LDA.B #$79                           ;849D8A|A979    |      ;
                        STA.W $0E3E                          ;849D8C|8D3E0E  |860E3E;
                        LDA.B #$00                           ;849D8F|A900    |      ;
-                       LDY.B $05                            ;849D91|A405    |000E6D;
+                       LDY.B r_ev_05_xPos-$E68              ;849D91|A405    |000E6D;
                        CPY.W $0E1D                          ;849D93|CC1D0E  |860E1D;
                        BCC CODE_849D9A                      ;849D96|9002    |849D9A;
                        LDA.B #$40                           ;849D98|A940    |      ;
                                                             ;      |        |      ;
           CODE_849D9A:
                        STA.W $0E4B                          ;849D9A|8D4B0E  |860E4B;
-                       LDA.B $26                            ;849D9D|A526    |000E8E;
+                       LDA.B r_ev_26-$E68                   ;849D9D|A526    |000E8E;
                        CMP.B #$08                           ;849D9F|C908    |      ;
                        BCC CODE_849DA5                      ;849DA1|9002    |849DA5;
                        LDA.B #$07                           ;849DA3|A907    |      ;
@@ -3002,7 +3002,7 @@
                        LDA.W $0E3F                          ;849DB0|AD3F0E  |860E3F;
                        AND.B #$7F                           ;849DB3|297F    |      ;
                        SEC                                  ;849DB5|38      |      ;
-                       SBC.B $26                            ;849DB6|E526    |000E8E;
+                       SBC.B r_ev_26-$E68                   ;849DB6|E526    |000E8E;
                        STA.W $0E3F                          ;849DB8|8D3F0E  |860E3F;
                        BPL CODE_849DC0                      ;849DBB|1003    |849DC0;
                        STZ.W $0E3F                          ;849DBD|9C3F0E  |860E3F;
@@ -3038,14 +3038,14 @@
                                                             ;      |        |      ;
           CODE_849DE8:
                        REP #$20                             ;849DE8|C220    |      ;
-                       LDA.B $05                            ;849DEA|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;849DEA|A505    |000EAD;
                        STA.W r_0005,X                       ;849DEC|9D0500  |860005;
-                       LDA.B $08                            ;849DEF|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;849DEF|A508    |000EB0;
                        STA.W r_0008,X                       ;849DF1|9D0800  |860008;
-                       LDA.B $20                            ;849DF4|A520    |000EC8;
+                       LDA.B r_ev_2_20_hitBoxAddr-$EA8      ;849DF4|A520    |000EC8;
                        STA.W r_0020,X                       ;849DF6|9D2000  |860020;
                        SEP #$20                             ;849DF9|E220    |      ;
-                       LDA.B $11                            ;849DFB|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;849DFB|A511    |000EB9;
                        STA.W r_0011,X                       ;849DFD|9D1100  |860011;
                        PHX                                  ;849E00|DA      |      ;
                        JSL.L CODE_849E15                    ;849E01|22159E84|849E15;
@@ -3069,7 +3069,7 @@
                        LDA.W r_000a,X                       ;849E1A|BD0A00  |86000A;
                        AND.W #$00FF                         ;849E1D|29FF00  |      ;
                        STA.W r_0000                         ;849E20|8D0000  |860000;
-                       LDA.B $28                            ;849E23|A528    |000E90;
+                       LDA.B r_ev_28-$E68                   ;849E23|A528    |000E90;
                        AND.W #$00FF                         ;849E25|29FF00  |      ;
                        ASL A                                ;849E28|0A      |      ;
                        TAY                                  ;849E29|A8      |      ;
@@ -3111,13 +3111,13 @@
                        JSL.L CODE_8088A2                    ;849E6A|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_849E6E:
-                       LDA.B $27                            ;849E6E|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;849E6E|A527    |000E8F;
                        AND.B #$7F                           ;849E70|297F    |      ;
                        SEC                                  ;849E72|38      |      ;
                        SBC.W weaponDamage_index,Y           ;849E73|F937EF  |86EF37;
                        BMI CODE_849E99                      ;849E76|3021    |849E99;
                        BEQ CODE_849E99                      ;849E78|F01F    |849E99;
-                       STA.B $27                            ;849E7A|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;849E7A|8527    |000E8F;
                        LDA.B #$11                           ;849E7C|A911    |      ;
                        JSL.L CODE_8088A2                    ;849E7E|22A28880|8088A2;
                        LDA.B #$08                           ;849E82|A908    |      ;
@@ -3132,7 +3132,7 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_849E99:
-                       STZ.B $27                            ;849E99|6427    |000E8F;
+                       STZ.B r_ev_27-$E68                   ;849E99|6427    |000E8F;
                        LDA.B #$FF                           ;849E9B|A9FF    |      ;
                        STA.W r_0004                         ;849E9D|8D0400  |860004;
                        LDA.B #$06                           ;849EA0|A906    |      ;
@@ -3140,7 +3140,7 @@
                                                             ;      |        |      ;
           CODE_849EA5:
                        LDA.B #$80                           ;849EA5|A980    |      ;
-                       TSB.B $27                            ;849EA7|0427    |000E8F;
+                       TSB.B r_ev_27-$E68                   ;849EA7|0427    |000E8F;
                                                             ;      |        |      ;
           CODE_849EA9:
                        LDA.B #$00                           ;849EA9|A900    |      ;
@@ -3157,7 +3157,7 @@
                                                             ;      |        |      ;
           CODE_849EBC:
                        LDY.W r_0005,X                       ;849EBC|BC0500  |860005;
-                       CPY.B $05                            ;849EBF|C405    |000E6D;
+                       CPY.B r_ev_05_xPos-$E68              ;849EBF|C405    |000E6D;
                        BCC CODE_849EC5                      ;849EC1|9002    |849EC5;
                        BRA CODE_849EB5                      ;849EC3|80F0    |849EB5;
                                                             ;      |        |      ;
@@ -3575,7 +3575,7 @@
                        BEQ CODE_84A1FC                      ;84A1E0|F01A    |84A1FC;
                        SEP #$20                             ;84A1E2|E220    |      ;
                        LDA.W r_000a,X                       ;84A1E4|BD0A00  |86000A;
-                       CMP.B $0A                            ;84A1E7|C50A    |000E72;
+                       CMP.B r_ev_0a_ID-$E68                ;84A1E7|C50A    |000E72;
                        REP #$20                             ;84A1E9|C220    |      ;
                        BNE CODE_84A1FC                      ;84A1EB|D00F    |84A1FC;
                        TXA                                  ;84A1ED|8A      |      ;
@@ -3769,13 +3769,13 @@
                        SEP #$30                             ;84A320|E230    |      ;
                                                             ;      |        |      ;
           CODE_84A322:
-                       STA.W r_1e79                         ;84A322|8D791E  |861E79;
-                       STX.W r_1e82                         ;84A325|8E821E  |861E82;
-                       STY.W r_1e7e                         ;84A328|8C7E1E  |861E7E;
-                       STY.W r_1e80                         ;84A32B|8C801E  |861E80;
-                       STZ.W r_1e84                         ;84A32E|9C841E  |861E84;
+                       STA.W $1E79                          ;84A322|8D791E  |001E79;
+                       STX.W $1E82                          ;84A325|8E821E  |001E82;
+                       STY.W $1E7E                          ;84A328|8C7E1E  |001E7E;
+                       STY.W $1E80                          ;84A32B|8C801E  |001E80;
+                       STZ.W $1E84                          ;84A32E|9C841E  |001E84;
                        LDA.B #$01                           ;84A331|A901    |      ;
-                       TSB.W r_1e78                         ;84A333|0C781E  |861E78;
+                       TSB.W $1E78                          ;84A333|0C781E  |001E78;
                        PLP                                  ;84A336|28      |      ;
                        RTL                                  ;84A337|6B      |      ;
                                                             ;      |        |      ;
@@ -3815,9 +3815,9 @@
                        LDA.W r_0000                         ;84A36D|AD0000  |860000;
                        STA.W r_000b,X                       ;84A370|9D0B00  |86000B;
                        REP #$20                             ;84A373|C220    |      ;
-                       LDA.B $05                            ;84A375|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;84A375|A505    |000EAD;
                        STA.W r_0005,X                       ;84A377|9D0500  |860005;
-                       LDA.B $08                            ;84A37A|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;84A37A|A508    |000EB0;
                        STA.W r_0008,X                       ;84A37C|9D0800  |860008;
                        SEP #$20                             ;84A37F|E220    |      ;
                                                             ;      |        |      ;
@@ -3911,9 +3911,9 @@
                        LDA.W r_0000                         ;84A3E5|AD0000  |860000;
                        STA.W r_000b,X                       ;84A3E8|9D0B00  |86000B;
                        REP #$20                             ;84A3EB|C220    |      ;
-                       LDA.B $05                            ;84A3ED|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;84A3ED|A505    |000E6D;
                        STA.W r_0005,X                       ;84A3EF|9D0500  |860005;
-                       LDA.B $08                            ;84A3F2|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;84A3F2|A508    |000E70;
                        STA.W r_0008,X                       ;84A3F4|9D0800  |860008;
                        SEP #$20                             ;84A3F7|E220    |      ;
                                                             ;      |        |      ;
@@ -3931,9 +3931,9 @@
           CODE_84A407:
                        STA.W r_000a,X                       ;84A407|9D0A00  |86000A;
                        REP #$20                             ;84A40A|C220    |      ;
-                       LDA.B $05                            ;84A40C|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;84A40C|A505    |000EAD;
                        STA.W r_0005,X                       ;84A40E|9D0500  |860005;
-                       LDA.B $08                            ;84A411|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;84A411|A508    |000EB0;
                        STA.W r_0008,X                       ;84A413|9D0800  |860008;
                        SEP #$20                             ;84A416|E220    |      ;
                        LDA.L CODE_00804E                    ;84A418|AF4E8000|00804E;
@@ -3954,9 +3954,9 @@
                        STA.W r_000a,X                       ;84A433|9D0A00  |86000A;
                        STZ.W r_000b,X                       ;84A436|9E0B00  |86000B;
                        REP #$20                             ;84A439|C220    |      ;
-                       LDA.B $05                            ;84A43B|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;84A43B|A505    |000EAD;
                        STA.W r_0005,X                       ;84A43D|9D0500  |860005;
-                       LDA.B $08                            ;84A440|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;84A440|A508    |000EB0;
                        STA.W r_0008,X                       ;84A442|9D0800  |860008;
                        SEP #$20                             ;84A445|E220    |      ;
                                                             ;      |        |      ;
@@ -3997,9 +3997,9 @@
                                                             ;      |        |      ;
           CODE_84A47F:
                        BEQ CODE_84A48B                      ;84A47F|F00A    |84A48B;
-                       DEC.W r_1f9d                         ;84A481|CE9D1F  |861F9D;
+                       DEC.W $1F9D                          ;84A481|CE9D1F  |001F9D;
                        BPL CODE_84A48E                      ;84A484|1008    |84A48E;
-                       STZ.W r_1f9d                         ;84A486|9C9D1F  |861F9D;
+                       STZ.W $1F9D                          ;84A486|9C9D1F  |001F9D;
                        BRA CODE_84A48E                      ;84A489|8003    |84A48E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4007,19 +4007,19 @@
                        INC.W r_1f9d                         ;84A48B|EE9D1F  |861F9D;
                                                             ;      |        |      ;
           CODE_84A48E:
-                       INC.W r_0000,X                       ;84A48E|FE0000  |860000;
+                       INC.W $0000,X                        ;84A48E|FE0000  |000000;
                        LDA.B #$02                           ;84A491|A902    |      ;
-                       STA.W r_000a,X                       ;84A493|9D0A00  |86000A;
-                       LDA.W r_0004                         ;84A496|AD0400  |860004;
-                       STA.W r_0016,X                       ;84A499|9D1600  |860016;
-                       LDA.W r_0005                         ;84A49C|AD0500  |860005;
-                       STA.W r_000b,X                       ;84A49F|9D0B00  |86000B;
-                       STZ.W r_0018,X                       ;84A4A2|9E1800  |860018;
+                       STA.W $000A,X                        ;84A493|9D0A00  |00000A;
+                       LDA.W $0004                          ;84A496|AD0400  |000004;
+                       STA.W $0016,X                        ;84A499|9D1600  |000016;
+                       LDA.W $0005                          ;84A49C|AD0500  |000005;
+                       STA.W $000B,X                        ;84A49F|9D0B00  |00000B;
+                       STZ.W $0018,X                        ;84A4A2|9E1800  |000018;
                        REP #$20                             ;84A4A5|C220    |      ;
-                       LDA.W r_0000                         ;84A4A7|AD0000  |860000;
-                       STA.W r_0005,X                       ;84A4AA|9D0500  |860005;
-                       LDA.W r_0002                         ;84A4AD|AD0200  |860002;
-                       STA.W r_0008,X                       ;84A4B0|9D0800  |860008;
+                       LDA.W $0000                          ;84A4A7|AD0000  |000000;
+                       STA.W $0005,X                        ;84A4AA|9D0500  |000005;
+                       LDA.W $0002                          ;84A4AD|AD0200  |000002;
+                       STA.W $0008,X                        ;84A4B0|9D0800  |000008;
                                                             ;      |        |      ;
           CODE_84A4B3:
                        PLP                                  ;84A4B3|28      |      ;
@@ -4031,9 +4031,9 @@
                        LDA.B #$23                           ;84A4B6|A923    |      ;
                        JSL.L CODE_8088A2                    ;84A4B8|22A28880|8088A2;
                        REP #$20                             ;84A4BC|C220    |      ;
-                       LDA.B $05                            ;84A4BE|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;84A4BE|A505    |000E6D;
                        STA.W r_0000                         ;84A4C0|8D0000  |860000;
-                       LDA.B $08                            ;84A4C3|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;84A4C3|A508    |000E70;
                        STA.W r_0002                         ;84A4C5|8D0200  |860002;
                        LDA.W #$0508                         ;84A4C8|A90805  |      ;
                        STA.W r_0004                         ;84A4CB|8D0400  |860004;
@@ -4111,7 +4111,7 @@
                        TXY                                  ;84A558|9B      |      ;
                        LDX.W r_0020,Y                       ;84A559|BE2000  |860020;
                        TXY                                  ;84A55C|9B      |      ;
-                       LDX.B $20                            ;84A55D|A620    |000E88;
+                       LDX.B r_ev_20_hitBoxAddr-$E68        ;84A55D|A620    |000E88;
                        SEP #$20                             ;84A55F|E220    |      ;
                        LDA.W r_0002,Y                       ;84A561|B90200  |860002;
                        CMP.W r_0004                         ;84A564|CD0400  |860004;
@@ -4121,7 +4121,7 @@
                        LDA.W r_0001                         ;84A56F|AD0100  |860001;
                        BMI CODE_84A5A5                      ;84A572|3031    |84A5A5;
                        LDA.W r_0000,X                       ;84A574|BD0000  |860000;
-                       BIT.B $11                            ;84A577|2411    |000E79;
+                       BIT.B r_ev_11_sprAtri-$E68           ;84A577|2411    |000E79;
                        BVC CODE_84A57E                      ;84A579|5003    |84A57E;
                        EOR.B #$FF                           ;84A57B|49FF    |      ;
                        INC A                                ;84A57D|1A      |      ;
@@ -4139,7 +4139,7 @@
                                                             ;      |        |      ;
           CODE_84A58C:
                        CLC                                  ;84A58C|18      |      ;
-                       ADC.B $05                            ;84A58D|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;84A58D|6505    |000E6D;
                        STA.W r_0008                         ;84A58F|8D0800  |860008;
                        LDA.W r_0002,X                       ;84A592|BD0200  |860002;
                        AND.W #$00FF                         ;84A595|29FF00  |      ;
@@ -4153,7 +4153,7 @@
                                                             ;      |        |      ;
           CODE_84A5A5:
                        LDA.W r_0000,X                       ;84A5A5|BD0000  |860000;
-                       BIT.B $11                            ;84A5A8|2411    |000E79;
+                       BIT.B r_ev_11_sprAtri-$E68           ;84A5A8|2411    |000E79;
                        BVC CODE_84A5AF                      ;84A5AA|5003    |84A5AF;
                        EOR.B #$FF                           ;84A5AC|49FF    |      ;
                        INC A                                ;84A5AE|1A      |      ;
@@ -4171,7 +4171,7 @@
                                                             ;      |        |      ;
           CODE_84A5BD:
                        CLC                                  ;84A5BD|18      |      ;
-                       ADC.B $05                            ;84A5BE|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;84A5BE|6505    |000E6D;
                        PHA                                  ;84A5C0|48      |      ;
                        LDA.W r_0002,X                       ;84A5C1|BD0200  |860002;
                        AND.W #$00FF                         ;84A5C4|29FF00  |      ;
@@ -4214,7 +4214,7 @@
                                                             ;      |        |      ;
           CODE_84A609:
                        CLC                                  ;84A609|18      |      ;
-                       ADC.B $08                            ;84A60A|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;84A60A|6508    |000E70;
                        STA.W r_0008                         ;84A60C|8D0800  |860008;
                        LDA.W r_0003,X                       ;84A60F|BD0300  |860003;
                        AND.W #$00FF                         ;84A612|29FF00  |      ;
@@ -4239,7 +4239,7 @@
                                                             ;      |        |      ;
           CODE_84A631:
                        CLC                                  ;84A631|18      |      ;
-                       ADC.B $08                            ;84A632|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;84A632|6508    |000E70;
                        PHA                                  ;84A634|48      |      ;
                        LDA.W r_0003,X                       ;84A635|BD0300  |860003;
                        AND.W #$00FF                         ;84A638|29FF00  |      ;
@@ -4269,7 +4269,7 @@
                        db $90,$1E,$E2,$20,$28,$6B           ;84A671|        |84A691;
                                                             ;      |        |      ;
           CODE_84A677:
-                       LDX.B $03                            ;84A677|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;84A677|A603    |000E6B;
                        JMP.W (UNREACH_84A67C,X)             ;84A679|7C7CA6  |84A67C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4278,10 +4278,10 @@
                        db $FC,$A7,$CA,$A7,$FC,$A7,$CA,$A7   ;84A684|        |84CAA7;
                        db $33,$A8,$21,$A9,$67,$A9,$EF,$A9   ;84A68C|        |0000A8;
                        db $45,$AA                           ;84A694|        |0000AA;
-                       INC.B $03                            ;84A696|E603    |000E6B;
-                       INC.B $03                            ;84A698|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A696|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A698|E603    |000E6B;
                        LDA.B #$FF                           ;84A69A|A9FF    |      ;
-                       STA.B $00                            ;84A69C|8500    |000E68;
+                       STA.B r_event_active_00-$E68         ;84A69C|8500    |000E68;
                        LDA.B #$3C                           ;84A69E|A93C    |      ;
                        STA.L $7FE000                        ;84A6A0|8F00E07F|7FE000;
                        INC.W r_1f13                         ;84A6A4|EE131F  |861F13;
@@ -4390,8 +4390,8 @@
                        STA.L $7FE000                        ;84A779|8F00E07F|7FE000;
                        LDA.B #$1F                           ;84A77D|A91F    |      ;
                        STA.L $7FE001                        ;84A77F|8F01E07F|7FE001;
-                       INC.B $03                            ;84A783|E603    |000E6B;
-                       INC.B $03                            ;84A785|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A783|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A785|E603    |000E6B;
                        LDA.B #$21                           ;84A787|A921    |      ;
                        JSL.L CODE_8088A2                    ;84A789|22A28880|8088A2;
                        JSR.W CODE_84AA8F                    ;84A78D|208FAA  |84AA8F;
@@ -4413,8 +4413,8 @@
                        SEP #$30                             ;84A7B3|E230    |      ;
                        LDA.B #$02                           ;84A7B5|A902    |      ;
                        STA.L $7FE000                        ;84A7B7|8F00E07F|7FE000;
-                       INC.B $03                            ;84A7BB|E603    |000E6B;
-                       INC.B $03                            ;84A7BD|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A7BB|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A7BD|E603    |000E6B;
                        LDA.B #$01                           ;84A7BF|A901    |      ;
                        TSB.W $00A1                          ;84A7C1|0CA100  |8600A1;
                                                             ;      |        |      ;
@@ -4436,8 +4436,8 @@
                        SEP #$30                             ;84A7E5|E230    |      ;
                        LDA.B #$02                           ;84A7E7|A902    |      ;
                        STA.L $7FE000                        ;84A7E9|8F00E07F|7FE000;
-                       INC.B $03                            ;84A7ED|E603    |000E6B;
-                       INC.B $03                            ;84A7EF|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A7ED|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A7EF|E603    |000E6B;
                        LDA.B #$01                           ;84A7F1|A901    |      ;
                        TSB.W $00A1                          ;84A7F3|0CA100  |8600A1;
                                                             ;      |        |      ;
@@ -4461,8 +4461,8 @@
                        PLB                                  ;84A81D|AB      |      ;
                        LDA.B #$02                           ;84A81E|A902    |      ;
                        STA.L $7FE000                        ;84A820|8F00E07F|7FE000;
-                       INC.B $03                            ;84A824|E603    |000E6B;
-                       INC.B $03                            ;84A826|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A824|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A826|E603    |000E6B;
                        LDA.B #$01                           ;84A828|A901    |      ;
                        TSB.W $00A1                          ;84A82A|0CA100  |8600A1;
                                                             ;      |        |      ;
@@ -4593,8 +4593,8 @@
                        STA.L $7FE000                        ;84A910|8F00E07F|7FE000;
                        LDA.B #$1F                           ;84A914|A91F    |      ;
                        STA.L $7FE001                        ;84A916|8F01E07F|7FE001;
-                       INC.B $03                            ;84A91A|E603    |000E6B;
-                       INC.B $03                            ;84A91C|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A91A|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A91C|E603    |000E6B;
                                                             ;      |        |      ;
           CODE_84A91E:
                        JMP.W CODE_84AA6D                    ;84A91E|4C6DAA  |84AA6D;
@@ -4629,8 +4629,8 @@
                        STA.L $7FE000                        ;84A956|8F00E07F|7FE000;
                        LDA.B #$1F                           ;84A95A|A91F    |      ;
                        STA.L $7FE001                        ;84A95C|8F01E07F|7FE001;
-                       INC.B $03                            ;84A960|E603    |000E6B;
-                       INC.B $03                            ;84A962|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A960|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A962|E603    |000E6B;
                                                             ;      |        |      ;
           CODE_84A964:
                        JMP.W CODE_84AA6D                    ;84A964|4C6DAA  |84AA6D;
@@ -4703,8 +4703,8 @@
                        DEC A                                ;84A9DB|3A      |      ;
                        STA.L $7FE001                        ;84A9DC|8F01E07F|7FE001;
                        BNE CODE_84A9EC                      ;84A9E0|D00A    |84A9EC;
-                       INC.B $03                            ;84A9E2|E603    |000E6B;
-                       INC.B $03                            ;84A9E4|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A9E2|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84A9E4|E603    |000E6B;
                        LDA.B #$1E                           ;84A9E6|A91E    |      ;
                        STA.L $7FE000                        ;84A9E8|8F00E07F|7FE000;
                                                             ;      |        |      ;
@@ -4725,8 +4725,8 @@
                        SEP #$10                             ;84AA0A|E210    |      ;
                                                             ;      |        |      ;
           CODE_84AA0C:
-                       INC.B $03                            ;84AA0C|E603    |000E6B;
-                       INC.B $03                            ;84AA0E|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84AA0C|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84AA0E|E603    |000E6B;
                        LDA.W r_level_current                ;84AA10|AD7A1F  |861F7A;
                        CMP.B #$09                           ;84AA13|C909    |      ;
                        BCS CODE_84AA48                      ;84AA15|B031    |84AA48;
@@ -4805,7 +4805,7 @@
                        STA.W r_000a,X                       ;84AAA1|9D0A00  |86000A;
                        LDA.B #$80                           ;84AAA4|A980    |      ;
                        STA.W r_000b,X                       ;84AAA6|9D0B00  |86000B;
-                       LDA.B $11                            ;84AAA9|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;84AAA9|A511    |000E79;
                        AND.B #$40                           ;84AAAB|2940    |      ;
                        STA.W r_000c,X                       ;84AAAD|9D0C00  |86000C;
                        REP #$20                             ;84AAB0|C220    |      ;
@@ -4818,7 +4818,7 @@
                                                             ;      |        |      ;
           CODE_84AAC0:
                        CLC                                  ;84AAC0|18      |      ;
-                       ADC.B $05                            ;84AAC1|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;84AAC1|6505    |000E6D;
                        STA.W r_0005,X                       ;84AAC3|9D0500  |860005;
                        JSL.L CODE_849086                    ;84AAC6|22869084|849086;
                        AND.W #$000F                         ;84AACA|290F00  |      ;
@@ -4829,7 +4829,7 @@
                                                             ;      |        |      ;
           CODE_84AAD4:
                        CLC                                  ;84AAD4|18      |      ;
-                       ADC.B $08                            ;84AAD5|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;84AAD5|6508    |000E70;
                        STA.W r_0008,X                       ;84AAD7|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_84AADA:
@@ -4846,7 +4846,10 @@
                        LDA.W r_1f86,X                       ;84AAE6|BD861F  |861F86;
                        AND.B #$40                           ;84AAE9|2940    |      ;
                        BEQ CODE_84AAF3                      ;84AAEB|F006    |84AAF3;
-                       db $EE,$23,$1F,$A9,$01,$6B           ;84AAED|        |001F23;
+                       INC.W r_1f23                         ;84AAED|EE231F  |861F23;
+                       LDA.B #$01                           ;84AAF0|A901    |      ;
+                       RTL                                  ;84AAF2|6B      |      ;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84AAF3:
                        LDA.B #$00                           ;84AAF3|A900    |      ;
@@ -4904,15 +4907,15 @@
                        AND.B #$04                           ;84AB8E|2904    |      ;
                        BNE CODE_84ABAE                      ;84AB90|D01C    |84ABAE;
                        REP #$20                             ;84AB92|C220    |      ;
-                       LDA.B $05                            ;84AB94|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;84AB94|A505    |000EAD;
                        SEC                                  ;84AB96|38      |      ;
-                       SBC.B $22                            ;84AB97|E522    |000ECA;
+                       SBC.B r_ev_2_22_xPosBkp-$EA8         ;84AB97|E522    |000ECA;
                        CLC                                  ;84AB99|18      |      ;
                        ADC.W r_0bad                         ;84AB9A|6DAD0B  |860BAD;
                        STA.W r_0bad                         ;84AB9D|8DAD0B  |860BAD;
-                       LDA.B $08                            ;84ABA0|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;84ABA0|A508    |000EB0;
                        SEC                                  ;84ABA2|38      |      ;
-                       SBC.B $24                            ;84ABA3|E524    |000ECC;
+                       SBC.B r_ev_2_24_yPosBkp-$EA8         ;84ABA3|E524    |000ECC;
                        CLC                                  ;84ABA5|18      |      ;
                        ADC.W r_0bb0                         ;84ABA6|6DB00B  |860BB0;
                        STA.W r_0bb0                         ;84ABA9|8DB00B  |860BB0;
@@ -4961,7 +4964,7 @@
                                                             ;      |        |      ;
           CODE_84ABF8:
                        LDA.B #$01                           ;84ABF8|A901    |      ;
-                       STA.B $2C                            ;84ABFA|852C    |000ED4;
+                       STA.B r_ev_2_2c-$EA8                 ;84ABFA|852C    |000ED4;
                        LDA.B #$04                           ;84ABFC|A904    |      ;
                                                             ;      |        |      ;
           CODE_84ABFE:
@@ -5092,16 +5095,16 @@
                        PHP                                  ;84ACA5|08      |      ;
                        SEP #$20                             ;84ACA6|E220    |      ;
                        LDA.B #$40                           ;84ACA8|A940    |      ;
-                       TRB.B $11                            ;84ACAA|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;84ACAA|1411    |000E79;
                        REP #$20                             ;84ACAC|C220    |      ;
                        LDA.W r_0bad                         ;84ACAE|ADAD0B  |860BAD;
                        SEC                                  ;84ACB1|38      |      ;
-                       SBC.B $05                            ;84ACB2|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;84ACB2|E505    |000E6D;
                        SEP #$20                             ;84ACB4|E220    |      ;
                        LDA.B #$00                           ;84ACB6|A900    |      ;
                        ROR A                                ;84ACB8|6A      |      ;
                        LSR A                                ;84ACB9|4A      |      ;
-                       TSB.B $11                            ;84ACBA|0411    |000E79;
+                       TSB.B r_ev_11_sprAtri-$E68           ;84ACBA|0411    |000E79;
                        PLP                                  ;84ACBC|28      |      ;
                        RTL                                  ;84ACBD|6B      |      ;
                                                             ;      |        |      ;
@@ -5343,7 +5346,7 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
 eventID_slimVolt_02_main:
-                       LDX.B $01                            ;84AE47|A601    |000E69;
+                       LDX.B r_ev_01_state-$E68             ;84AE47|A601    |000E69;
                        JMP.W (PTR16_84AE4C,X)               ;84AE49|7C4CAE  |84AE4C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5353,7 +5356,7 @@ eventID_slimVolt_02_main:
                        dw slimVolt_state1_02                ;84AE50|        |84B30B;
                                                             ;      |        |      ;
    slimVolt_state1_00:
-                       LDX.B $02                            ;84AE52|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;84AE52|A602    |000E6A;
                        JMP.W (PTR16_84AE57,X)               ;84AE54|7C57AE  |84AE57;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5364,26 +5367,26 @@ eventID_slimVolt_02_main:
                                                             ;      |        |      ;
    slimVolt_state2_00:
                        LDA.B #$02                           ;84AE5D|A902    |      ;
-                       STA.B $02                            ;84AE5F|8502    |000E6A;
-                       STA.B $30                            ;84AE61|8530    |000E98;
+                       STA.B r_ev_02_action-$E68            ;84AE5F|8502    |000E6A;
+                       STA.B r_ev_30-$E68                   ;84AE61|8530    |000E98;
                        LDA.B #$08                           ;84AE63|A908    |      ;
-                       STA.B $17                            ;84AE65|8517    |000E7F;
+                       STA.B r_ev_17-$E68                   ;84AE65|8517    |000E7F;
                        LDA.B #$04                           ;84AE67|A904    |      ;
-                       STA.B $16                            ;84AE69|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;84AE69|8516    |000E7E;
                        JML.L CODE_848000                    ;84AE6B|5C008084|848000;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    slimVolt_state2_01:
-                       DEC.B $17                            ;84AE6F|C617    |000E7F;
+                       DEC.B r_ev_17-$E68                   ;84AE6F|C617    |000E7F;
                        BNE CODE_84AE8D                      ;84AE71|D01A    |84AE8D;
                        LDA.B #$08                           ;84AE73|A908    |      ;
-                       STA.B $17                            ;84AE75|8517    |000E7F;
-                       INC.B $16                            ;84AE77|E616    |000E7E;
-                       LDA.B $16                            ;84AE79|A516    |000E7E;
+                       STA.B r_ev_17-$E68                   ;84AE75|8517    |000E7F;
+                       INC.B r_ev_16-$E68                   ;84AE77|E616    |000E7E;
+                       LDA.B r_ev_16-$E68                   ;84AE79|A516    |000E7E;
                        CMP.B #$07                           ;84AE7B|C907    |      ;
                        BCC CODE_84AE89                      ;84AE7D|900A    |84AE89;
                        LDA.B #$04                           ;84AE7F|A904    |      ;
-                       STA.B $02                            ;84AE81|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;84AE81|8502    |000E6A;
                        LDA.B #$20                           ;84AE83|A920    |      ;
                        JML.L CODE_8088CD                    ;84AE85|5CCD8880|8088CD;
                                                             ;      |        |      ;
@@ -5397,28 +5400,28 @@ eventID_slimVolt_02_main:
                                                             ;      |        |      ;
    slimVolt_state2_02:
                        LDA.B #$02                           ;84AE8E|A902    |      ;
-                       STA.B $01                            ;84AE90|8501    |000E69;
-                       STZ.B $02                            ;84AE92|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;84AE90|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;84AE92|6402    |000E6A;
                        LDA.B #$30                           ;84AE94|A930    |      ;
-                       STA.B $27                            ;84AE96|8527    |000E8F;
-                       STA.B $36                            ;84AE98|8536    |000E9E;
+                       STA.B r_ev_27-$E68                   ;84AE96|8527    |000E8F;
+                       STA.B r_ev_36-$E68                   ;84AE98|8536    |000E9E;
                        LDA.W r_1f9e                         ;84AE9A|AD9E1F  |861F9E;
                        BPL CODE_84AEA1                      ;84AE9D|1002    |84AEA1;
-                       ASL.B $27                            ;84AE9F|0627    |000E8F;
+                       ASL.B r_ev_27-$E68                   ;84AE9F|0627    |000E8F;
                                                             ;      |        |      ;
           CODE_84AEA1:
                        LDA.B #$01                           ;84AEA1|A901    |      ;
-                       STA.B $0E                            ;84AEA3|850E    |000E76;
+                       STA.B r_ev_0e-$E68                   ;84AEA3|850E    |000E76;
                        LDA.B #$0A                           ;84AEA5|A90A    |      ;
-                       STA.B $28                            ;84AEA7|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;84AEA7|8528    |000E90;
                        LDA.B #$05                           ;84AEA9|A905    |      ;
-                       STA.B $26                            ;84AEAB|8526    |000E8E;
-                       STZ.B $11                            ;84AEAD|6411    |000E79;
-                       STZ.B $2F                            ;84AEAF|642F    |000E97;
-                       STZ.B $38                            ;84AEB1|6438    |000EA0;
-                       STZ.B $33                            ;84AEB3|6433    |000E9B;
-                       STZ.B $10                            ;84AEB5|6410    |000E78;
-                       STZ.B $37                            ;84AEB7|6437    |000E9F;
+                       STA.B r_ev_26-$E68                   ;84AEAB|8526    |000E8E;
+                       STZ.B r_ev_11_sprAtri-$E68           ;84AEAD|6411    |000E79;
+                       STZ.B r_ev_2f-$E68                   ;84AEAF|642F    |000E97;
+                       STZ.B r_ev_38-$E68                   ;84AEB1|6438    |000EA0;
+                       STZ.B r_ev_33-$E68                   ;84AEB3|6433    |000E9B;
+                       STZ.B r_ev_10-$E68                   ;84AEB5|6410    |000E78;
+                       STZ.B r_ev_37-$E68                   ;84AEB7|6437    |000E9F;
                        LDA.B #$10                           ;84AEB9|A910    |      ;
                        STA.W r_00c1                         ;84AEBB|8DC100  |8600C1;
                        LDA.B #$02                           ;84AEBE|A902    |      ;
@@ -5435,17 +5438,17 @@ eventID_slimVolt_02_main:
                        LDA.W r_cam_BG0_yPos_lock            ;84AEDF|AD5C1E  |861E5C;
                        STA.L $7FD38A                        ;84AEE2|8F8AD37F|7FD38A;
                        LDA.W #$0C80                         ;84AEE6|A9800C  |      ;
-                       STA.B $05                            ;84AEE9|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;84AEE9|8505    |000E6D;
                        LDA.W #$0340                         ;84AEEB|A94003  |      ;
-                       STA.B $08                            ;84AEEE|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;84AEEE|8508    |000E70;
                        LDA.W #$0048                         ;84AEF0|A94800  |      ;
-                       STA.B $12                            ;84AEF3|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;84AEF3|8512    |000E7A;
                        LDA.W #$0458                         ;84AEF5|A95804  |      ;
-                       STA.B $14                            ;84AEF8|8514    |000E7C;
+                       STA.B r_ev_14-$E68                   ;84AEF8|8514    |000E7C;
                        LDA.W #$C4CB                         ;84AEFA|A9CBC4  |      ;
-                       STA.B $20                            ;84AEFD|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;84AEFD|8520    |000E88;
                        LDA.W #$0020                         ;84AEFF|A92000  |      ;
-                       STA.B $1E                            ;84AF02|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;84AF02|851E    |000E86;
                        PHB                                  ;84AF04|8B      |      ;
                        LDX.W #$C4D5                         ;84AF05|A2D5C4  |      ;
                        LDY.W #$0AA1                         ;84AF08|A0A10A  |      ;
@@ -5458,39 +5461,39 @@ eventID_slimVolt_02_main:
                        JSR.W CODE_84B5E1                    ;84AF19|20E1B5  |84B5E1;
                                                             ;      |        |      ;
    slimVolt_state1_01:
-                       LDX.B $02                            ;84AF1C|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;84AF1C|A602    |000E6A;
                        JSR.W (slimVolt_state1_01plus,X)     ;84AF1E|FC5FAF  |84AF5F;
                        JSR.W CODE_84B633                    ;84AF21|2033B6  |84B633;
                        JSR.W CODE_84B3FD                    ;84AF24|20FDB3  |84B3FD;
                        JSR.W CODE_84B446                    ;84AF27|2046B4  |84B446;
-                       LDA.B $33                            ;84AF2A|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;84AF2A|A533    |000E9B;
                        EOR.B #$40                           ;84AF2C|4940    |      ;
-                       STA.B $33                            ;84AF2E|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;84AF2E|8533    |000E9B;
                        JSL.L CODE_849B43                    ;84AF30|22439B84|849B43;
                        BEQ CODE_84AF47                      ;84AF34|F011    |84AF47;
                        BPL CODE_84AF3F                      ;84AF36|1007    |84AF3F;
                        LDA.B #$04                           ;84AF38|A904    |      ;
-                       STA.B $01                            ;84AF3A|8501    |000E69;
-                       STZ.B $02                            ;84AF3C|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;84AF3A|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;84AF3C|6402    |000E6A;
                        RTL                                  ;84AF3E|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84AF3F:
                        LDA.B #$08                           ;84AF3F|A908    |      ;
-                       STA.B $38                            ;84AF41|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;84AF41|8538    |000EA0;
                        LDA.B #$05                           ;84AF43|A905    |      ;
-                       STA.B $28                            ;84AF45|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;84AF45|8528    |000E90;
                                                             ;      |        |      ;
           CODE_84AF47:
-                       LDA.B $38                            ;84AF47|A538    |000EA0;
+                       LDA.B r_ev_38-$E68                   ;84AF47|A538    |000EA0;
                        BEQ CODE_84AF53                      ;84AF49|F008    |84AF53;
-                       DEC.B $38                            ;84AF4B|C638    |000EA0;
+                       DEC.B r_ev_38-$E68                   ;84AF4B|C638    |000EA0;
                        BNE CODE_84AF53                      ;84AF4D|D004    |84AF53;
                        LDA.B #$03                           ;84AF4F|A903    |      ;
-                       STA.B $28                            ;84AF51|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;84AF51|8528    |000E90;
                                                             ;      |        |      ;
           CODE_84AF53:
-                       LDA.B $33                            ;84AF53|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;84AF53|A533    |000E9B;
                        BMI CODE_84AF5B                      ;84AF55|3004    |84AF5B;
                        JSL.L CODE_8491BE                    ;84AF57|22BE9184|8491BE;
                                                             ;      |        |      ;
@@ -5507,16 +5510,16 @@ slimVolt_state1_01plus:
                        dw slimVolt_state1_01plus_00         ;84AF69|        |84AF6B;
                                                             ;      |        |      ;
 slimVolt_state1_01plus_00:
-                       LDX.B $03                            ;84AF6B|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;84AF6B|A603    |000E6B;
                        BNE CODE_84AFB2                      ;84AF6D|D043    |84AFB2;
-                       INC.B $03                            ;84AF6F|E603    |000E6B;
-                       STZ.B $16                            ;84AF71|6416    |000E7E;
+                       INC.B r_ev_03_do-$E68                ;84AF6F|E603    |000E6B;
+                       STZ.B r_ev_16-$E68                   ;84AF71|6416    |000E7E;
                        JSL.L CODE_849086                    ;84AF73|22869084|849086;
                        AND.B #$03                           ;84AF77|2903    |      ;
                        BEQ CODE_84AF97                      ;84AF79|F01C    |84AF97;
                        REP #$20                             ;84AF7B|C220    |      ;
                        LDX.B #$01                           ;84AF7D|A201    |      ;
-                       LDA.B $05                            ;84AF7F|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;84AF7F|A505    |000E6D;
                        CMP.W #$0C40                         ;84AF81|C9400C  |      ;
                        BCC CODE_84AF93                      ;84AF84|900D    |84AF93;
                        INX                                  ;84AF86|E8      |      ;
@@ -5528,7 +5531,7 @@ slimVolt_state1_01plus_00:
                        INX                                  ;84AF92|E8      |      ;
                                                             ;      |        |      ;
           CODE_84AF93:
-                       STX.B $16                            ;84AF93|8616    |000E7E;
+                       STX.B r_ev_16-$E68                   ;84AF93|8616    |000E7E;
                        SEP #$20                             ;84AF95|E220    |      ;
                                                             ;      |        |      ;
           CODE_84AF97:
@@ -5536,29 +5539,29 @@ slimVolt_state1_01plus_00:
                        INC.W r_0aa1                         ;84AF9A|EEA10A  |860AA1;
                        INC.W r_0aa8                         ;84AF9D|EEA80A  |860AA8;
                        LDA.B #$00                           ;84AFA0|A900    |      ;
-                       STA.B $1C                            ;84AFA2|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;84AFA2|851C    |000E84;
                        LDA.B #$08                           ;84AFA4|A908    |      ;
-                       STA.B $1D                            ;84AFA6|851D    |000E85;
+                       STA.B r_ev_1d_ySpd-$E68              ;84AFA6|851D    |000E85;
                        LDA.B #$5B                           ;84AFA8|A95B    |      ;
-                       STA.B $18                            ;84AFAA|8518    |000E80;
+                       STA.B r_ev_18_gfxSlot-$E68           ;84AFAA|8518    |000E80;
                        LDA.B #$46                           ;84AFAC|A946    |      ;
                        JSL.L CODE_8088A2                    ;84AFAE|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_84AFB2:
-                       LDA.B $18                            ;84AFB2|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;84AFB2|A518    |000E80;
                        CMP.B #$40                           ;84AFB4|C940    |      ;
                        BCS CODE_84AFBB                      ;84AFB6|B003    |84AFBB;
                        JSR.W CODE_84B756                    ;84AFB8|2056B7  |84B756;
                                                             ;      |        |      ;
           CODE_84AFBB:
-                       LDA.B $18                            ;84AFBB|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;84AFBB|A518    |000E80;
                        CMP.B #$4B                           ;84AFBD|C94B    |      ;
                        BCS CODE_84AFC8                      ;84AFBF|B007    |84AFC8;
                        JSL.L CODE_82825D                    ;84AFC1|225D8282|82825D;
                        JSR.W CODE_84B781                    ;84AFC5|2081B7  |84B781;
                                                             ;      |        |      ;
           CODE_84AFC8:
-                       DEC.B $18                            ;84AFC8|C618    |000E80;
+                       DEC.B r_ev_18_gfxSlot-$E68           ;84AFC8|C618    |000E80;
                        BNE CODE_84AFEA                      ;84AFCA|D01E    |84AFEA;
                        STZ.W r_0aa1                         ;84AFCC|9CA10A  |860AA1;
                        STZ.W r_0aa8                         ;84AFCF|9CA80A  |860AA8;
@@ -5590,55 +5593,55 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84AFFD:
-                       LDX.B $03                            ;84AFFD|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;84AFFD|A603    |000E6B;
                        JMP.W (UNREACH_84B002,X)             ;84AFFF|7C02B0  |84B002;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_84B002:
                        db $08,$B0,$38,$B0,$5D,$B0           ;84B002|        |      ;
                        LDA.B #$02                           ;84B008|A902    |      ;
-                       STA.B $03                            ;84B00A|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;84B00A|8503    |000E6B;
                        LDA.B #$02                           ;84B00C|A902    |      ;
-                       STA.B $10                            ;84B00E|8510    |000E78;
+                       STA.B r_ev_10-$E68                   ;84B00E|8510    |000E78;
                        LDA.B #$80                           ;84B010|A980    |      ;
-                       TSB.B $33                            ;84B012|0433    |000E9B;
-                       LDA.B $2B                            ;84B014|A52B    |000E93;
+                       TSB.B r_ev_33-$E68                   ;84B012|0433    |000E9B;
+                       LDA.B r_ev_2b-$E68                   ;84B014|A52B    |000E93;
                        BIT.B #$04                           ;84B016|8904    |      ;
                        BNE CODE_84B024                      ;84B018|D00A    |84B024;
                        REP #$20                             ;84B01A|C220    |      ;
-                       STZ.B $1A                            ;84B01C|641A    |000E82;
-                       STZ.B $1C                            ;84B01E|641C    |000E84;
-                       STZ.B $1E                            ;84B020|641E    |000E86;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;84B01C|641A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;84B01E|641C    |000E84;
+                       STZ.B r_ev_1e_weight-$E68            ;84B020|641E    |000E86;
                        BRA CODE_84B02D                      ;84B022|8009    |84B02D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B024:
                        REP #$20                             ;84B024|C220    |      ;
                        LDA.W #$FE85                         ;84B026|A985FE  |      ;
-                       STA.B $1C                            ;84B029|851C    |000E84;
-                       STZ.B $1A                            ;84B02B|641A    |000E82;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;84B029|851C    |000E84;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;84B02B|641A    |000E82;
                                                             ;      |        |      ;
           CODE_84B02D:
                        SEP #$20                             ;84B02D|E220    |      ;
                        LDA.B #$18                           ;84B02F|A918    |      ;
-                       STA.B $35                            ;84B031|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;84B031|8535    |000E9D;
                        LDA.B #$04                           ;84B033|A904    |      ;
                        JSR.W CODE_84B5E1                    ;84B035|20E1B5  |84B5E1;
-                       DEC.B $35                            ;84B038|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;84B038|C635    |000E9D;
                        BNE CODE_84B058                      ;84B03A|D01C    |84B058;
                        LDA.B #$04                           ;84B03C|A904    |      ;
-                       STA.B $03                            ;84B03E|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;84B03E|8503    |000E6B;
                        REP #$20                             ;84B040|C220    |      ;
-                       STZ.B $1C                            ;84B042|641C    |000E84;
-                       LDA.B $08                            ;84B044|A508    |000E70;
-                       STA.B $24                            ;84B046|8524    |000E8C;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;84B042|641C    |000E84;
+                       LDA.B r_ev_08_yPos-$E68              ;84B044|A508    |000E70;
+                       STA.B r_ev_24_yPosBkp-$E68           ;84B046|8524    |000E8C;
                        LDA.W #$0020                         ;84B048|A92000  |      ;
-                       STA.B $1E                            ;84B04B|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;84B04B|851E    |000E86;
                        SEP #$20                             ;84B04D|E220    |      ;
                        LDA.B #$80                           ;84B04F|A980    |      ;
-                       TRB.B $33                            ;84B051|1433    |000E9B;
+                       TRB.B r_ev_33-$E68                   ;84B051|1433    |000E9B;
                        LDA.B #$72                           ;84B053|A972    |      ;
-                       STA.B $35                            ;84B055|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;84B055|8535    |000E9D;
                        RTS                                  ;84B057|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5646,9 +5649,9 @@ slimVolt_state1_01plus_00:
                        JSL.L CODE_8281B2                    ;84B058|22B28182|8281B2;
                        RTS                                  ;84B05C|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $35                            ;84B05D|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;84B05D|C635    |000E9D;
                        BNE CODE_84B088                      ;84B05F|D027    |84B088;
-                       LDA.B $2B                            ;84B061|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;84B061|A52B    |000E93;
                        BIT.B #$04                           ;84B063|8904    |      ;
                        BEQ CODE_84B076                      ;84B065|F00F    |84B076;
                        LDX.B #$04                           ;84B067|A204    |      ;
@@ -5679,7 +5682,7 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B089:
-                       LDX.B $03                            ;84B089|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;84B089|A603    |000E6B;
                        JMP.W (UNREACH_84B08E,X)             ;84B08B|7C8EB0  |84B08E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5687,24 +5690,24 @@ slimVolt_state1_01plus_00:
                        db $9E,$B0,$B5,$B0,$CD,$B0,$E4,$B0   ;84B08E|        |00B5B0;
                        db $32,$B1,$40,$B1,$9D,$B1,$BE,$B1   ;84B096|        |0000B1;
                        LDA.B #$02                           ;84B09E|A902    |      ;
-                       STA.B $03                            ;84B0A0|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;84B0A0|8503    |000E6B;
                        REP #$30                             ;84B0A2|C230    |      ;
                        LDX.W #$0100                         ;84B0A4|A20001  |      ;
                        LDA.W #$0C80                         ;84B0A7|A9800C  |      ;
-                       CMP.B $05                            ;84B0AA|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;84B0AA|C505    |000E6D;
                        BCS CODE_84B0B1                      ;84B0AC|B003    |84B0B1;
                        db $A2,$00,$FF                       ;84B0AE|        |      ;
                                                             ;      |        |      ;
           CODE_84B0B1:
-                       STX.B $1A                            ;84B0B1|861A    |000E82;
+                       STX.B r_ev_1a_xSpdSub-$E68           ;84B0B1|861A    |000E82;
                        SEP #$30                             ;84B0B3|E230    |      ;
-                       LDA.B $05                            ;84B0B5|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;84B0B5|A505    |000E6D;
                        CMP.B #$80                           ;84B0B7|C980    |      ;
                        BNE CODE_84B0C8                      ;84B0B9|D00D    |84B0C8;
                        LDA.B #$04                           ;84B0BB|A904    |      ;
-                       STA.B $03                            ;84B0BD|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;84B0BD|8503    |000E6B;
                        LDA.B #$20                           ;84B0BF|A920    |      ;
-                       STA.B $16                            ;84B0C1|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;84B0C1|8516    |000E7E;
                        LDA.B #$01                           ;84B0C3|A901    |      ;
                        JMP.W CODE_84B5E1                    ;84B0C5|4CE1B5  |84B5E1;
                                                             ;      |        |      ;
@@ -5713,26 +5716,26 @@ slimVolt_state1_01plus_00:
                        JSL.L CODE_82823E                    ;84B0C8|223E8282|82823E;
                        RTS                                  ;84B0CC|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $16                            ;84B0CD|C616    |000E7E;
+                       DEC.B r_ev_16-$E68                   ;84B0CD|C616    |000E7E;
                        BNE CODE_84B0E3                      ;84B0CF|D012    |84B0E3;
                        LDA.B #$10                           ;84B0D1|A910    |      ;
                        LDX.B #$01                           ;84B0D3|A201    |      ;
                        LDY.B #$04                           ;84B0D5|A004    |      ;
                        JSL.L CODE_84A341                    ;84B0D7|2241A384|84A341;
                        LDA.B #$06                           ;84B0DB|A906    |      ;
-                       STA.B $03                            ;84B0DD|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;84B0DD|8503    |000E6B;
                        LDA.B #$3C                           ;84B0DF|A93C    |      ;
-                       STA.B $16                            ;84B0E1|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;84B0E1|8516    |000E7E;
                                                             ;      |        |      ;
           CODE_84B0E3:
                        RTS                                  ;84B0E3|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $16                            ;84B0E4|C616    |000E7E;
+                       DEC.B r_ev_16-$E68                   ;84B0E4|C616    |000E7E;
                        BNE CODE_84B11A                      ;84B0E6|D032    |84B11A;
                        LDA.B #$08                           ;84B0E8|A908    |      ;
-                       STA.B $03                            ;84B0EA|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;84B0EA|8503    |000E6B;
                        LDA.B #$1E                           ;84B0EC|A91E    |      ;
-                       STA.B $16                            ;84B0EE|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;84B0EE|8516    |000E7E;
                        LDA.B #$03                           ;84B0F0|A903    |      ;
                        JSR.W CODE_84B5E1                    ;84B0F2|20E1B5  |84B5E1;
                        LDA.B #$42                           ;84B0F5|A942    |      ;
@@ -5740,12 +5743,12 @@ slimVolt_state1_01plus_00:
                        REP #$30                             ;84B0FA|C230    |      ;
                        LDX.W #$0100                         ;84B0FC|A20001  |      ;
                        LDA.W r_0bad                         ;84B0FF|ADAD0B  |860BAD;
-                       CMP.B $05                            ;84B102|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;84B102|C505    |000E6D;
                        BCS CODE_84B109                      ;84B104|B003    |84B109;
                        LDX.W #$FF00                         ;84B106|A200FF  |      ;
                                                             ;      |        |      ;
           CODE_84B109:
-                       STX.B $1A                            ;84B109|861A    |000E82;
+                       STX.B r_ev_1a_xSpdSub-$E68           ;84B109|861A    |000E82;
                        SEP #$30                             ;84B10B|E230    |      ;
                        LDX.B #$03                           ;84B10D|A203    |      ;
                        JSR.W CODE_84B5DA                    ;84B10F|20DAB5  |84B5DA;
@@ -5754,7 +5757,7 @@ slimVolt_state1_01plus_00:
                        DEX                                  ;84B116|CA      |      ;
                                                             ;      |        |      ;
           CODE_84B117:
-                       STX.B $18                            ;84B117|8618    |000E80;
+                       STX.B r_ev_18_gfxSlot-$E68           ;84B117|8618    |000E80;
                        RTS                                  ;84B119|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5768,10 +5771,10 @@ slimVolt_state1_01plus_00:
           CODE_84B131:
                        RTS                                  ;84B131|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $16                            ;84B132|C616    |000E7E;
+                       DEC.B r_ev_16-$E68                   ;84B132|C616    |000E7E;
                        BNE CODE_84B13F                      ;84B134|D009    |84B13F;
                        LDA.B #$0A                           ;84B136|A90A    |      ;
-                       STA.B $03                            ;84B138|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;84B138|8503    |000E6B;
                        LDA.B #$00                           ;84B13A|A900    |      ;
                        JMP.W CODE_84B5E1                    ;84B13C|4CE1B5  |84B5E1;
                                                             ;      |        |      ;
@@ -5783,12 +5786,12 @@ slimVolt_state1_01plus_00:
                        REP #$30                             ;84B144|C230    |      ;
                        LDX.W #$0100                         ;84B146|A20001  |      ;
                        LDA.W r_0bad                         ;84B149|ADAD0B  |860BAD;
-                       CMP.B $05                            ;84B14C|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;84B14C|C505    |000E6D;
                        BCS CODE_84B153                      ;84B14E|B003    |84B153;
                        LDX.W #$FF00                         ;84B150|A200FF  |      ;
                                                             ;      |        |      ;
           CODE_84B153:
-                       CPX.B $1A                            ;84B153|E41A    |000E82;
+                       CPX.B r_ev_1a_xSpdSub-$E68           ;84B153|E41A    |000E82;
                        SEP #$30                             ;84B155|E230    |      ;
                        BEQ CODE_84B15C                      ;84B157|F003    |84B15C;
                        JMP.W CODE_84B1E2                    ;84B159|4CE2B1  |84B1E2;
@@ -5796,7 +5799,7 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B15C:
                        REP #$20                             ;84B15C|C220    |      ;
-                       LDA.B $05                            ;84B15E|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;84B15E|A505    |000E6D;
                        SEC                                  ;84B160|38      |      ;
                        SBC.W r_0bad                         ;84B161|EDAD0B  |860BAD;
                        CLC                                  ;84B164|18      |      ;
@@ -5805,9 +5808,9 @@ slimVolt_state1_01plus_00:
                        SEP #$20                             ;84B16B|E220    |      ;
                        BCS CODE_84B177                      ;84B16D|B008    |84B177;
                        LDA.B #$0C                           ;84B16F|A90C    |      ;
-                       STA.B $03                            ;84B171|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;84B171|8503    |000E6B;
                        LDA.B #$1E                           ;84B173|A91E    |      ;
-                       STA.B $16                            ;84B175|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;84B175|8516    |000E7E;
                                                             ;      |        |      ;
           CODE_84B177:
                        LDX.B #$1F                           ;84B177|A21F    |      ;
@@ -5822,20 +5825,20 @@ slimVolt_state1_01plus_00:
                        db $A9,$03,$8D,$00,$00               ;84B188|        |      ;
                                                             ;      |        |      ;
           CODE_84B18D:
-                       LDA.B $05                            ;84B18D|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;84B18D|A505    |000E6D;
                        AND.W r_0000                         ;84B18F|2D0000  |860000;
                        BNE CODE_84B19C                      ;84B192|D008    |84B19C;
                        LDA.B #$0E                           ;84B194|A90E    |      ;
-                       STA.B $03                            ;84B196|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;84B196|8503    |000E6B;
                        LDA.B #$1E                           ;84B198|A91E    |      ;
-                       STA.B $16                            ;84B19A|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;84B19A|8516    |000E7E;
                                                             ;      |        |      ;
           CODE_84B19C:
                        RTS                                  ;84B19C|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $16                            ;84B19D|C616    |000E7E;
+                       DEC.B r_ev_16-$E68                   ;84B19D|C616    |000E7E;
                        BNE CODE_84B1AC                      ;84B19F|D00B    |84B1AC;
-                       DEC.B $18                            ;84B1A1|C618    |000E80;
+                       DEC.B r_ev_18_gfxSlot-$E68           ;84B1A1|C618    |000E80;
                        BNE CODE_84B1D4                      ;84B1A3|D02F    |84B1D4;
                        LDA.B #$42                           ;84B1A5|A942    |      ;
                        STA.W r_colorV_ca                    ;84B1A7|8DCA00  |8600CA;
@@ -5843,7 +5846,7 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B1AC:
-                       LDA.B $16                            ;84B1AC|A516    |000E7E;
+                       LDA.B r_ev_16-$E68                   ;84B1AC|A516    |000E7E;
                        CMP.B #$0F                           ;84B1AE|C90F    |      ;
                        BNE CODE_84B1B5                      ;84B1B0|D003    |84B1B5;
                        JSR.W CODE_84B5EE                    ;84B1B2|20EEB5  |84B5EE;
@@ -5854,9 +5857,9 @@ slimVolt_state1_01plus_00:
                        STA.W r_colorV_ca                    ;84B1BA|8DCA00  |8600CA;
                        RTS                                  ;84B1BD|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $16                            ;84B1BE|C616    |000E7E;
+                       DEC.B r_ev_16-$E68                   ;84B1BE|C616    |000E7E;
                        BEQ CODE_84B1D4                      ;84B1C0|F012    |84B1D4;
-                       LDA.B $16                            ;84B1C2|A516    |000E7E;
+                       LDA.B r_ev_16-$E68                   ;84B1C2|A516    |000E7E;
                        CMP.B #$0F                           ;84B1C4|C90F    |      ;
                        BNE CODE_84B1CB                      ;84B1C6|D003    |84B1CB;
                        JSR.W CODE_84B5EE                    ;84B1C8|20EEB5  |84B5EE;
@@ -5870,9 +5873,9 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B1D4:
                        LDA.B #$0A                           ;84B1D4|A90A    |      ;
-                       STA.B $03                            ;84B1D6|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;84B1D6|8503    |000E6B;
                        LDA.B #$08                           ;84B1D8|A908    |      ;
-                       STA.B $17                            ;84B1DA|8517    |000E7F;
+                       STA.B r_ev_17-$E68                   ;84B1DA|8517    |000E7F;
                        LDA.B #$42                           ;84B1DC|A942    |      ;
                        STA.W r_colorV_ca                    ;84B1DE|8DCA00  |8600CA;
                        RTS                                  ;84B1E1|60      |      ;
@@ -5892,7 +5895,7 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B1F4:
-                       LDX.B $03                            ;84B1F4|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;84B1F4|A603    |000E6B;
                        JMP.W (UNREACH_84B1F9,X)             ;84B1F6|7CF9B1  |84B1F9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5910,7 +5913,7 @@ slimVolt_state1_01plus_00:
                        STA.W r_cam_BG0_yPos_lock_Set        ;84B218|8D6E1E  |861E6E;
                        SEP #$20                             ;84B21B|E220    |      ;
                        LDA.B #$02                           ;84B21D|A902    |      ;
-                       STA.B $03                            ;84B21F|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;84B21F|8503    |000E6B;
                        JSL.L CODE_849FEB                    ;84B221|22EB9F84|849FEB;
                                                             ;      |        |      ;
           CODE_84B225:
@@ -5925,23 +5928,23 @@ slimVolt_state1_01plus_00:
                        SEP #$20                             ;84B230|E220    |      ;
                        BNE CODE_84B227                      ;84B232|D0F3    |84B227;
                        LDA.B #$04                           ;84B234|A904    |      ;
-                       STA.B $03                            ;84B236|8503    |000E6B;
-                       STZ.B $16                            ;84B238|6416    |000E7E;
+                       STA.B r_ev_03_do-$E68                ;84B236|8503    |000E6B;
+                       STZ.B r_ev_16-$E68                   ;84B238|6416    |000E7E;
                        LDA.B #$08                           ;84B23A|A908    |      ;
-                       STA.B $17                            ;84B23C|8517    |000E7F;
+                       STA.B r_ev_17-$E68                   ;84B23C|8517    |000E7F;
                        LDA.B #$00                           ;84B23E|A900    |      ;
                        JSL.L CODE_848000                    ;84B240|22008084|848000;
                        RTS                                  ;84B244|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $17                            ;84B245|C617    |000E7F;
+                       DEC.B r_ev_17-$E68                   ;84B245|C617    |000E7F;
                        BNE CODE_84B26A                      ;84B247|D021    |84B26A;
                        LDA.B #$08                           ;84B249|A908    |      ;
-                       STA.B $17                            ;84B24B|8517    |000E7F;
-                       INC.B $16                            ;84B24D|E616    |000E7E;
-                       LDA.B $16                            ;84B24F|A516    |000E7E;
+                       STA.B r_ev_17-$E68                   ;84B24B|8517    |000E7F;
+                       INC.B r_ev_16-$E68                   ;84B24D|E616    |000E7E;
+                       LDA.B r_ev_16-$E68                   ;84B24F|A516    |000E7E;
                        CMP.B #$03                           ;84B251|C903    |      ;
                        BCC CODE_84B266                      ;84B253|9011    |84B266;
-                       STZ.B $30                            ;84B255|6430    |000E98;
+                       STZ.B r_ev_30-$E68                   ;84B255|6430    |000E98;
                        LDA.B #$20                           ;84B257|A920    |      ;
                        JSL.L CODE_8088CD                    ;84B259|22CD8880|8088CD;
                        JSL.L CODE_84A003                    ;84B25D|2203A084|84A003;
@@ -5957,18 +5960,18 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B26B:
-                       LDX.B $03                            ;84B26B|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;84B26B|A603    |000E6B;
                        BNE CODE_84B275                      ;84B26D|D006    |84B275;
-                       INC.B $03                            ;84B26F|E603    |000E6B;
-                       STZ.B $1C                            ;84B271|641C    |000E84;
-                       STZ.B $1D                            ;84B273|641D    |000E85;
+                       INC.B r_ev_03_do-$E68                ;84B26F|E603    |000E6B;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;84B271|641C    |000E84;
+                       STZ.B r_ev_1d_ySpd-$E68              ;84B273|641D    |000E85;
                                                             ;      |        |      ;
           CODE_84B275:
-                       LDA.B $2B                            ;84B275|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;84B275|A52B    |000E93;
                        BIT.B #$04                           ;84B277|8904    |      ;
                        BEQ CODE_84B28E                      ;84B279|F013    |84B28E;
                        LDA.B #$02                           ;84B27B|A902    |      ;
-                       STA.B $10                            ;84B27D|8510    |000E78;
+                       STA.B r_ev_10-$E68                   ;84B27D|8510    |000E78;
                        LDX.B #$04                           ;84B27F|A204    |      ;
                        JSR.W CODE_84B5DA                    ;84B281|20DAB5  |84B5DA;
                        CMP.B #$0A                           ;84B284|C90A    |      ;
@@ -5986,14 +5989,14 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B293:
-                       LDX.B $03                            ;84B293|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;84B293|A603    |000E6B;
                        BNE CODE_84B2F7                      ;84B295|D060    |84B2F7;
-                       INC.B $03                            ;84B297|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;84B297|E603    |000E6B;
                        REP #$30                             ;84B299|C230    |      ;
                        LDX.W #$000A                         ;84B29B|A20A00  |      ;
                        LDA.W r_0bad                         ;84B29E|ADAD0B  |860BAD;
                        SEC                                  ;84B2A1|38      |      ;
-                       SBC.B $05                            ;84B2A2|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;84B2A2|E505    |000E6D;
                        BPL CODE_84B2AA                      ;84B2A4|1004    |84B2AA;
                        EOR.W #$FFFF                         ;84B2A6|49FFFF  |      ;
                        INC A                                ;84B2A9|1A      |      ;
@@ -6006,22 +6009,22 @@ slimVolt_state1_01plus_00:
           CODE_84B2B2:
                        STX.W r_0000                         ;84B2B2|8E0000  |860000;
                        LDX.W #$0421                         ;84B2B5|A22104  |      ;
-                       LDA.B $27                            ;84B2B8|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;84B2B8|A527    |000E8F;
                        AND.W #$007F                         ;84B2BA|297F00  |      ;
                        CMP.W #$0018                         ;84B2BD|C91800  |      ;
                        BCS CODE_84B2C5                      ;84B2C0|B003    |84B2C5;
                        LDX.W #$0600                         ;84B2C2|A20006  |      ;
                                                             ;      |        |      ;
           CODE_84B2C5:
-                       STX.B $1C                            ;84B2C5|861C    |000E84;
+                       STX.B r_ev_1c_ySpdSub-$E68           ;84B2C5|861C    |000E84;
                        LDX.W #$0100                         ;84B2C7|A20001  |      ;
                        LDA.W r_0bad                         ;84B2CA|ADAD0B  |860BAD;
-                       CMP.B $05                            ;84B2CD|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;84B2CD|C505    |000E6D;
                        BCS CODE_84B2D4                      ;84B2CF|B003    |84B2D4;
                        LDX.W #$FF00                         ;84B2D1|A200FF  |      ;
                                                             ;      |        |      ;
           CODE_84B2D4:
-                       STX.B $1A                            ;84B2D4|861A    |000E82;
+                       STX.B r_ev_1a_xSpdSub-$E68           ;84B2D4|861A    |000E82;
                        SEP #$20                             ;84B2D6|E220    |      ;
                        JSR.W CODE_84B5DA                    ;84B2D8|20DAB5  |84B5DA;
                        CMP.W r_0000                         ;84B2DB|CD0000  |860000;
@@ -6032,7 +6035,7 @@ slimVolt_state1_01plus_00:
                        LDX.W #$0800                         ;84B2E8|A20008  |      ;
                                                             ;      |        |      ;
           CODE_84B2EB:
-                       STX.B $1C                            ;84B2EB|861C    |000E84;
+                       STX.B r_ev_1c_ySpdSub-$E68           ;84B2EB|861C    |000E84;
                        JSR.W CODE_84B5A9                    ;84B2ED|20A9B5  |84B5A9;
                                                             ;      |        |      ;
           CODE_84B2F0:
@@ -6041,10 +6044,10 @@ slimVolt_state1_01plus_00:
                        JSR.W CODE_84B5E1                    ;84B2F4|20E1B5  |84B5E1;
                                                             ;      |        |      ;
           CODE_84B2F7:
-                       LDA.B $2B                            ;84B2F7|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;84B2F7|A52B    |000E93;
                        BIT.B #$08                           ;84B2F9|8908    |      ;
                        BNE CODE_84B301                      ;84B2FB|D004    |84B301;
-                       LDA.B $1D                            ;84B2FD|A51D    |000E85;
+                       LDA.B r_ev_1d_ySpd-$E68              ;84B2FD|A51D    |000E85;
                        BPL CODE_84B306                      ;84B2FF|1005    |84B306;
                                                             ;      |        |      ;
           CODE_84B301:
@@ -6058,7 +6061,7 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    slimVolt_state1_02:
-                       LDX.B $02                            ;84B30B|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;84B30B|A602    |000E6A;
                        JMP.W (PTR16_84B310,X)               ;84B30D|7C10B3  |84B310;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6072,23 +6075,23 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B31C:
                        LDA.B #$02                           ;84B31C|A902    |      ;
-                       STA.B $02                            ;84B31E|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;84B31E|8502    |000E6A;
                        LDA.B #$FF                           ;84B320|A9FF    |      ;
-                       STA.B $27                            ;84B322|8527    |000E8F;
-                       INC.B $30                            ;84B324|E630    |000E98;
+                       STA.B r_ev_27-$E68                   ;84B322|8527    |000E8F;
+                       INC.B r_ev_30-$E68                   ;84B324|E630    |000E98;
                        LDA.B #$21                           ;84B326|A921    |      ;
                        JSL.L CODE_8088A2                    ;84B328|22A28880|8088A2;
                        LDA.B #$01                           ;84B32C|A901    |      ;
-                       STA.B $18                            ;84B32E|8518    |000E80;
+                       STA.B r_ev_18_gfxSlot-$E68           ;84B32E|8518    |000E80;
                                                             ;      |        |      ;
           CODE_84B330:
-                       DEC.B $18                            ;84B330|C618    |000E80;
+                       DEC.B r_ev_18_gfxSlot-$E68           ;84B330|C618    |000E80;
                        BEQ CODE_84B338                      ;84B332|F004    |84B338;
                        db $20,$9B,$B7,$6B                   ;84B334|        |84B79B;
                                                             ;      |        |      ;
           CODE_84B338:
                        LDA.B #$04                           ;84B338|A904    |      ;
-                       STA.B $02                            ;84B33A|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;84B33A|8502    |000E6A;
                        INC.W r_0aa1                         ;84B33C|EEA10A  |860AA1;
                        REP #$30                             ;84B33F|C230    |      ;
                        PHB                                  ;84B341|8B      |      ;
@@ -6098,15 +6101,15 @@ slimVolt_state1_01plus_00:
                        MVN $00,$86                          ;84B34B|540086  |      ;
                        PLB                                  ;84B34E|AB      |      ;
                        LDA.W #$0001                         ;84B34F|A90100  |      ;
-                       STA.B $18                            ;84B352|8518    |000E80;
+                       STA.B r_ev_18_gfxSlot-$E68           ;84B352|8518    |000E80;
                        SEP #$30                             ;84B354|E230    |      ;
                                                             ;      |        |      ;
           CODE_84B356:
                        LDA.W $0B9C                          ;84B356|AD9C0B  |860B9C;
                        LSR A                                ;84B359|4A      |      ;
                        BCC CODE_84B367                      ;84B35A|900B    |84B367;
-                       INC.B $18                            ;84B35C|E618    |000E80;
-                       LDA.B $18                            ;84B35E|A518    |000E80;
+                       INC.B r_ev_18_gfxSlot-$E68           ;84B35C|E618    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;84B35E|A518    |000E80;
                        CMP.B #$10                           ;84B360|C910    |      ;
                        BEQ CODE_84B36B                      ;84B362|F007    |84B36B;
                        JSR.W CODE_84B835                    ;84B364|2035B8  |84B835;
@@ -6118,14 +6121,14 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B36B:
                        LDA.B #$06                           ;84B36B|A906    |      ;
-                       STA.B $02                            ;84B36D|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;84B36D|8502    |000E6A;
                        LDA.B #$10                           ;84B36F|A910    |      ;
-                       STA.B $18                            ;84B371|8518    |000E80;
-                       STZ.B $19                            ;84B373|6419    |000E81;
+                       STA.B r_ev_18_gfxSlot-$E68           ;84B371|8518    |000E80;
+                       STZ.B r_ev_19-$E68                   ;84B373|6419    |000E81;
                                                             ;      |        |      ;
           CODE_84B375:
-                       DEC.B $18                            ;84B375|C618    |000E80;
-                       DEC.B $18                            ;84B377|C618    |000E80;
+                       DEC.B r_ev_18_gfxSlot-$E68           ;84B375|C618    |000E80;
+                       DEC.B r_ev_18_gfxSlot-$E68           ;84B377|C618    |000E80;
                        BMI CODE_84B382                      ;84B379|3007    |84B382;
                        JSR.W CODE_84B889                    ;84B37B|2089B8  |84B889;
                        JSR.W CODE_84B79B                    ;84B37E|209BB7  |84B79B;
@@ -6134,12 +6137,12 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B382:
                        LDA.B #$08                           ;84B382|A908    |      ;
-                       STA.B $02                            ;84B384|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;84B384|8502    |000E6A;
                        LDA.B #$F0                           ;84B386|A9F0    |      ;
-                       STA.B $18                            ;84B388|8518    |000E80;
+                       STA.B r_ev_18_gfxSlot-$E68           ;84B388|8518    |000E80;
                                                             ;      |        |      ;
           CODE_84B38A:
-                       DEC.B $18                            ;84B38A|C618    |000E80;
+                       DEC.B r_ev_18_gfxSlot-$E68           ;84B38A|C618    |000E80;
                        BEQ CODE_84B392                      ;84B38C|F004    |84B392;
                        JSR.W CODE_84B79B                    ;84B38E|209BB7  |84B79B;
                        RTL                                  ;84B391|6B      |      ;
@@ -6148,7 +6151,7 @@ slimVolt_state1_01plus_00:
           CODE_84B392:
                        LDA.B #$02                           ;84B392|A902    |      ;
                        STA.W r_1e89                         ;84B394|8D891E  |861E89;
-                       STZ.B $27                            ;84B397|6427    |000E8F;
+                       STZ.B r_ev_27-$E68                   ;84B397|6427    |000E8F;
                        STZ.W r_0aa1                         ;84B399|9CA10A  |860AA1;
                        STZ.W r_0aa8                         ;84B39C|9CA80A  |860AA8;
                        STZ.W r_1e9a                         ;84B39F|9C9A1E  |861E9A;
@@ -6179,7 +6182,7 @@ slimVolt_state1_01plus_00:
                        STA.W r_1e68                         ;84B3EF|8D681E  |861E68;
                        LDA.L $7FD38A                        ;84B3F2|AF8AD37F|7FD38A;
                        STA.W r_cam_BG0_yPos_lock_Set        ;84B3F6|8D6E1E  |861E6E;
-                       JML.L CODE_828398                    ;84B3F9|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;84B3F9|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B3FD:
@@ -6209,11 +6212,11 @@ slimVolt_state1_01plus_00:
                        STA.W r_000a,X                       ;84B429|9D0A00  |86000A;
                        LDA.B #$30                           ;84B42C|A930    |      ;
                        STA.W r_0011,X                       ;84B42E|9D1100  |860011;
-                       STX.B $31                            ;84B431|8631    |000E99;
+                       STX.B r_ev_31-$E68                   ;84B431|8631    |000E99;
                        REP #$20                             ;84B433|C220    |      ;
-                       LDA.B $05                            ;84B435|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;84B435|A505    |000E6D;
                        STA.W r_0005,X                       ;84B437|9D0500  |860005;
-                       LDA.B $08                            ;84B43A|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;84B43A|A508    |000E70;
                        STA.W r_0008,X                       ;84B43C|9D0800  |860008;
                        TDC                                  ;84B43F|7B      |      ;
                        STA.W r_000c,X                       ;84B440|9D0C00  |86000C;
@@ -6224,30 +6227,30 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B446:
-                       LDX.B $10                            ;84B446|A610    |000E78;
+                       LDX.B r_ev_10-$E68                   ;84B446|A610    |000E78;
                        JMP.W (UNREACH_84B44B,X)             ;84B448|7C4BB4  |84B44B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_84B44B:
                        db $45,$B4,$51,$B4,$66,$B4           ;84B44B|        |0000B4;
                        LDA.B #$04                           ;84B451|A904    |      ;
-                       STA.B $10                            ;84B453|8510    |000E78;
-                       STZ.B $17                            ;84B455|6417    |000E7F;
-                       DEC.B $17                            ;84B457|C617    |000E7F;
+                       STA.B r_ev_10-$E68                   ;84B453|8510    |000E78;
+                       STZ.B r_ev_17-$E68                   ;84B455|6417    |000E7F;
+                       DEC.B r_ev_17-$E68                   ;84B457|C617    |000E7F;
                        INC.W r_0aa1                         ;84B459|EEA10A  |860AA1;
                        LDA.B #$01                           ;84B45C|A901    |      ;
-                       STA.B $16                            ;84B45E|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;84B45E|8516    |000E7E;
                        LDA.B #$45                           ;84B460|A945    |      ;
                        JSL.L CODE_8088A2                    ;84B462|22A28880|8088A2;
-                       DEC.B $16                            ;84B466|C616    |000E7E;
+                       DEC.B r_ev_16-$E68                   ;84B466|C616    |000E7E;
                        BNE CODE_84B47D                      ;84B468|D013    |84B47D;
                        LDA.B #$02                           ;84B46A|A902    |      ;
-                       STA.B $16                            ;84B46C|8516    |000E7E;
-                       INC.B $17                            ;84B46E|E617    |000E7F;
-                       LDX.B $17                            ;84B470|A617    |000E7F;
+                       STA.B r_ev_16-$E68                   ;84B46C|8516    |000E7E;
+                       INC.B r_ev_17-$E68                   ;84B46E|E617    |000E7F;
+                       LDX.B r_ev_17-$E68                   ;84B470|A617    |000E7F;
                        LDA.W UNREACH_86C4F7,X               ;84B472|BDF7C4  |86C4F7;
                        BPL CODE_84B47D                      ;84B475|1006    |84B47D;
-                       STZ.B $10                            ;84B477|6410    |000E78;
+                       STZ.B r_ev_10-$E68                   ;84B477|6410    |000E78;
                        STZ.W r_0aa1                         ;84B479|9CA10A  |860AA1;
                        RTS                                  ;84B47C|60      |      ;
                                                             ;      |        |      ;
@@ -6259,14 +6262,14 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B483:
                        REP #$30                             ;84B483|C230    |      ;
-                       LDA.B $17                            ;84B485|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;84B485|A517    |000E7F;
                        AND.W #$00FF                         ;84B487|29FF00  |      ;
                        TAX                                  ;84B48A|AA      |      ;
                        LDA.W UNREACH_86C4F7,X               ;84B48B|BDF7C4  |86C4F7;
                        AND.W #$00FF                         ;84B48E|29FF00  |      ;
                        STA.W r_0000                         ;84B491|8D0000  |860000;
                        LDX.W #$0000                         ;84B494|A20000  |      ;
-                       BIT.B $32                            ;84B497|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;84B497|2432    |000E9A;
                        BVC CODE_84B49E                      ;84B499|5003    |84B49E;
                        LDX.W #$00C2                         ;84B49B|A2C200  |      ;
                                                             ;      |        |      ;
@@ -6286,14 +6289,14 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B4B1:
                        LDA.W r_0000                         ;84B4B1|AD0000  |860000;
-                       STA.B $18                            ;84B4B4|8518    |000E80;
+                       STA.B r_ev_18_gfxSlot-$E68           ;84B4B4|8518    |000E80;
                        EOR.W #$FFFF                         ;84B4B6|49FFFF  |      ;
                        INC A                                ;84B4B9|1A      |      ;
                        CLC                                  ;84B4BA|18      |      ;
                        ADC.W r_cam_BG1_slot                 ;84B4BB|6D901E  |861E90;
                                                             ;      |        |      ;
           CODE_84B4BE:
-                       DEC.B $18                            ;84B4BE|C618    |000E80;
+                       DEC.B r_ev_18_gfxSlot-$E68           ;84B4BE|C618    |000E80;
                        BMI CODE_84B4D1                      ;84B4C0|300F    |84B4D1;
                        LDY.W #$0007                         ;84B4C2|A00700  |      ;
                                                             ;      |        |      ;
@@ -6312,11 +6315,11 @@ slimVolt_state1_01plus_00:
                        SEC                                  ;84B4D4|38      |      ;
                        SBC.W r_0000                         ;84B4D5|ED0000  |860000;
                        ASL A                                ;84B4D8|0A      |      ;
-                       STA.B $18                            ;84B4D9|8518    |000E80;
+                       STA.B r_ev_18_gfxSlot-$E68           ;84B4D9|8518    |000E80;
                        LDA.W r_cam_BG1_slot                 ;84B4DB|AD901E  |861E90;
                                                             ;      |        |      ;
           CODE_84B4DE:
-                       DEC.B $18                            ;84B4DE|C618    |000E80;
+                       DEC.B r_ev_18_gfxSlot-$E68           ;84B4DE|C618    |000E80;
                        BMI CODE_84B4F0                      ;84B4E0|300E    |84B4F0;
                        LDY.W #$0008                         ;84B4E2|A00800  |      ;
                                                             ;      |        |      ;
@@ -6331,12 +6334,12 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B4F0:
                        LDA.W r_0000                         ;84B4F0|AD0000  |860000;
-                       STA.B $18                            ;84B4F3|8518    |000E80;
+                       STA.B r_ev_18_gfxSlot-$E68           ;84B4F3|8518    |000E80;
                        LDA.W r_cam_BG1_slot                 ;84B4F5|AD901E  |861E90;
                        INC A                                ;84B4F8|1A      |      ;
                                                             ;      |        |      ;
           CODE_84B4F9:
-                       DEC.B $18                            ;84B4F9|C618    |000E80;
+                       DEC.B r_ev_18_gfxSlot-$E68           ;84B4F9|C618    |000E80;
                        BMI CODE_84B50C                      ;84B4FB|300F    |84B50C;
                        LDY.W #$0007                         ;84B4FD|A00700  |      ;
                                                             ;      |        |      ;
@@ -6369,14 +6372,14 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B51E:
                        LDA.W #$0000                         ;84B51E|A90000  |      ;
-                       BIT.B $32                            ;84B521|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;84B521|2432    |000E9A;
                        BVC CODE_84B528                      ;84B523|5003    |84B528;
                        LDA.W #$00C2                         ;84B525|A9C200  |      ;
                                                             ;      |        |      ;
           CODE_84B528:
                        STA.W r_0000                         ;84B528|8D0000  |860000;
                        LDX.W #$0000                         ;84B52B|A20000  |      ;
-                       LDA.B $08                            ;84B52E|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;84B52E|A508    |000E70;
                        SEC                                  ;84B530|38      |      ;
                        SBC.W #$0030                         ;84B531|E93000  |      ;
                        SEC                                  ;84B534|38      |      ;
@@ -6395,7 +6398,7 @@ slimVolt_state1_01plus_00:
                        INX                                  ;84B550|E8      |      ;
                        INX                                  ;84B551|E8      |      ;
                        INX                                  ;84B552|E8      |      ;
-                       LDA.B $08                            ;84B553|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;84B553|A508    |000E70;
                        CLC                                  ;84B555|18      |      ;
                        ADC.W #$0030                         ;84B556|693000  |      ;
                        STA.W r_0002                         ;84B559|8D0200  |860002;
@@ -6439,7 +6442,7 @@ slimVolt_state1_01plus_00:
                        STZ.W r_0000                         ;84B5AB|9C0000  |860000;
                        LDA.W r_0bad                         ;84B5AE|ADAD0B  |860BAD;
                        SEC                                  ;84B5B1|38      |      ;
-                       SBC.B $05                            ;84B5B2|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;84B5B2|E505    |000E6D;
                        BPL CODE_84B5BD                      ;84B5B4|1007    |84B5BD;
                        DEC.W r_0000                         ;84B5B6|CE0000  |860000;
                        EOR.W #$FFFF                         ;84B5B9|49FFFF  |      ;
@@ -6464,7 +6467,7 @@ slimVolt_state1_01plus_00:
                        INC A                                ;84B5D4|1A      |      ;
                                                             ;      |        |      ;
           CODE_84B5D5:
-                       STA.B $1A                            ;84B5D5|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;84B5D5|851A    |000E82;
                        SEP #$20                             ;84B5D7|E220    |      ;
                        RTS                                  ;84B5D9|60      |      ;
                                                             ;      |        |      ;
@@ -6477,7 +6480,7 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B5E1:
                        REP #$10                             ;84B5E1|C210    |      ;
-                       LDX.B $31                            ;84B5E3|A631    |000E99;
+                       LDX.B r_ev_31-$E68                   ;84B5E3|A631    |000E99;
                        STA.W r_0010,X                       ;84B5E5|9D1000  |860010;
                        STZ.W r_0002,X                       ;84B5E8|9E0200  |860002;
                        SEP #$10                             ;84B5EB|E210    |      ;
@@ -6491,10 +6494,10 @@ slimVolt_state1_01plus_00:
                        LDA.B #$18                           ;84B5F7|A918    |      ;
                        STA.W r_000a,X                       ;84B5F9|9D0A00  |86000A;
                        REP #$21                             ;84B5FC|C221    |      ;
-                       LDA.B $08                            ;84B5FE|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;84B5FE|A508    |000E70;
                        ADC.W #$0023                         ;84B600|692300  |      ;
                        STA.W r_0008,X                       ;84B603|9D0800  |860008;
-                       LDA.B $05                            ;84B606|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;84B606|A505    |000E6D;
                        STA.W r_0005,X                       ;84B608|9D0500  |860005;
                                                             ;      |        |      ;
           CODE_84B60B:
@@ -6514,24 +6517,24 @@ slimVolt_state1_01plus_00:
                        JSL.L CODE_849086                    ;84B63A|22869084|849086;
                        AND.B #$03                           ;84B63E|2903    |      ;
                        BEQ CODE_84B653                      ;84B640|F011    |84B653;
-                       LDA.B $27                            ;84B642|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;84B642|A527    |000E8F;
                        AND.B #$7F                           ;84B644|297F    |      ;
                        STA.W r_0000                         ;84B646|8D0000  |860000;
-                       LDA.B $36                            ;84B649|A536    |000E9E;
+                       LDA.B r_ev_36-$E68                   ;84B649|A536    |000E9E;
                        SEC                                  ;84B64B|38      |      ;
                        SBC.W r_0000                         ;84B64C|ED0000  |860000;
                        CMP.B #$03                           ;84B64F|C903    |      ;
                        BCC CODE_84B65A                      ;84B651|9007    |84B65A;
                                                             ;      |        |      ;
           CODE_84B653:
-                       LDA.B $37                            ;84B653|A537    |000E9F;
+                       LDA.B r_ev_37-$E68                   ;84B653|A537    |000E9F;
                        BNE CODE_84B65A                      ;84B655|D003    |84B65A;
                        JSR.W CODE_84B661                    ;84B657|2061B6  |84B661;
                                                             ;      |        |      ;
           CODE_84B65A:
-                       LDA.B $27                            ;84B65A|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;84B65A|A527    |000E8F;
                        AND.B #$7F                           ;84B65C|297F    |      ;
-                       STA.B $36                            ;84B65E|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;84B65E|8536    |000E9E;
                                                             ;      |        |      ;
           CODE_84B660:
                        RTS                                  ;84B660|60      |      ;
@@ -6545,7 +6548,7 @@ slimVolt_state1_01plus_00:
                        JSL.L CODE_828358                    ;84B666|22588382|828358;
                        BNE CODE_84B69C                      ;84B66A|D030    |84B69C;
                        INC.W r_0000,X                       ;84B66C|FE0000  |860000;
-                       INC.B $37                            ;84B66F|E637    |000E9F;
+                       INC.B r_ev_37-$E68                   ;84B66F|E637    |000E9F;
                        LDA.B #$19                           ;84B671|A919    |      ;
                        STA.W r_000a,X                       ;84B673|9D0A00  |86000A;
                        TYA                                  ;84B676|98      |      ;
@@ -6556,10 +6559,10 @@ slimVolt_state1_01plus_00:
                        ASL A                                ;84B67E|0A      |      ;
                        ASL A                                ;84B67F|0A      |      ;
                        TAY                                  ;84B680|A8      |      ;
-                       LDA.B $05                            ;84B681|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;84B681|A505    |000E6D;
                        ADC.W UNREACH_86C537,Y               ;84B683|7937C5  |86C537;
                        STA.W r_0005,X                       ;84B686|9D0500  |860005;
-                       LDA.B $08                            ;84B689|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;84B689|A508    |000E70;
                        CLC                                  ;84B68B|18      |      ;
                        ADC.W UNREACH_86C539,Y               ;84B68C|7939C5  |86C539;
                        STA.W r_0008,X                       ;84B68F|9D0800  |860008;
@@ -6577,47 +6580,47 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B69F:
                        REP #$30                             ;84B69F|C230    |      ;
-                       LDA.B $05                            ;84B6A1|A505    |000E6D;
-                       STA.B $22                            ;84B6A3|8522    |000E8A;
-                       STZ.B $1A                            ;84B6A5|641A    |000E82;
-                       LDA.B $16                            ;84B6A7|A516    |000E7E;
+                       LDA.B r_ev_05_xPos-$E68              ;84B6A1|A505    |000E6D;
+                       STA.B r_ev_22_xPosBkp-$E68           ;84B6A3|8522    |000E8A;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;84B6A5|641A    |000E82;
+                       LDA.B r_ev_16-$E68                   ;84B6A7|A516    |000E7E;
                        AND.W #$00FF                         ;84B6A9|29FF00  |      ;
                        ASL A                                ;84B6AC|0A      |      ;
                        TAX                                  ;84B6AD|AA      |      ;
                        LDA.W UNREACH_86C547,X               ;84B6AE|BD47C5  |86C547;
-                       STA.B $1C                            ;84B6B1|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;84B6B1|851C    |000E84;
                        LDX.W #$012A                         ;84B6B3|A22A01  |      ;
-                       STZ.B $04                            ;84B6B6|6404    |000E6C;
+                       STZ.B r_ev_04-$E68                   ;84B6B6|6404    |000E6C;
                        LDA.W r_cam_BG0_xPos_ff              ;84B6B8|AD8D1E  |861E8D;
-                       STA.B $05                            ;84B6BB|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;84B6BB|8505    |000E6D;
                        STA.L $7FD2EE                        ;84B6BD|8FEED27F|7FD2EE;
                                                             ;      |        |      ;
           CODE_84B6C1:
-                       LDA.B $05                            ;84B6C1|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;84B6C1|A505    |000E6D;
                        STA.L $7FD1C2,X                      ;84B6C3|9FC2D17F|7FD1C2;
                        STZ.W r_0000                         ;84B6C7|9C0000  |860000;
-                       LDA.B $1A                            ;84B6CA|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;84B6CA|A51A    |000E82;
                        BPL CODE_84B6D1                      ;84B6CC|1003    |84B6D1;
                        db $CE,$00,$00                       ;84B6CE|        |000000;
                                                             ;      |        |      ;
           CODE_84B6D1:
                        CLC                                  ;84B6D1|18      |      ;
-                       ADC.B $04                            ;84B6D2|6504    |000E6C;
-                       STA.B $04                            ;84B6D4|8504    |000E6C;
+                       ADC.B r_ev_04-$E68                   ;84B6D2|6504    |000E6C;
+                       STA.B r_ev_04-$E68                   ;84B6D4|8504    |000E6C;
                        SEP #$20                             ;84B6D6|E220    |      ;
                        LDA.B $06                            ;84B6D8|A506    |000E6E;
                        ADC.W r_0000                         ;84B6DA|6D0000  |860000;
                        STA.B $06                            ;84B6DD|8506    |000E6E;
                        REP #$21                             ;84B6DF|C221    |      ;
-                       LDA.B $1A                            ;84B6E1|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;84B6E1|A51A    |000E82;
                        CLC                                  ;84B6E3|18      |      ;
-                       ADC.B $1C                            ;84B6E4|651C    |000E84;
-                       STA.B $1A                            ;84B6E6|851A    |000E82;
+                       ADC.B r_ev_1c_ySpdSub-$E68           ;84B6E4|651C    |000E84;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;84B6E6|851A    |000E82;
                        DEX                                  ;84B6E8|CA      |      ;
                        DEX                                  ;84B6E9|CA      |      ;
                        BPL CODE_84B6C1                      ;84B6EA|10D5    |84B6C1;
-                       LDA.B $22                            ;84B6EC|A522    |000E8A;
-                       STA.B $05                            ;84B6EE|8505    |000E6D;
+                       LDA.B r_ev_22_xPosBkp-$E68           ;84B6EC|A522    |000E8A;
+                       STA.B r_ev_05_xPos-$E68              ;84B6EE|8505    |000E6D;
                        PHB                                  ;84B6F0|8B      |      ;
                        LDX.W #$C4DC                         ;84B6F1|A2DCC4  |      ;
                        LDY.W #$0AA8                         ;84B6F4|A0A80A  |      ;
@@ -6701,24 +6704,24 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B77C:
-                       STA.B $02                            ;84B77C|8502    |000E6A;
-                       STZ.B $03                            ;84B77E|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;84B77C|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;84B77E|6403    |000E6B;
                        RTS                                  ;84B780|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B781:
                        REP #$30                             ;84B781|C230    |      ;
-                       LDA.B $08                            ;84B783|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;84B783|A508    |000E70;
                        SEC                                  ;84B785|38      |      ;
                        SBC.W #$0300                         ;84B786|E90003  |      ;
                        ASL A                                ;84B789|0A      |      ;
                        TAX                                  ;84B78A|AA      |      ;
-                       LDA.B $12                            ;84B78B|A512    |000E7A;
+                       LDA.B r_ev_12-$E68                   ;84B78B|A512    |000E7A;
                        CLC                                  ;84B78D|18      |      ;
                        ADC.W #$0C00                         ;84B78E|69000C  |      ;
                        SEC                                  ;84B791|38      |      ;
                        SBC.L $7FD1C2,X                      ;84B792|FFC2D17F|7FD1C2;
-                       STA.B $05                            ;84B796|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;84B796|8505    |000E6D;
                        SEP #$30                             ;84B798|E230    |      ;
                        RTS                                  ;84B79A|60      |      ;
                                                             ;      |        |      ;
@@ -6744,7 +6747,7 @@ slimVolt_state1_01plus_00:
                        INC.W r_0000,X                       ;84B7CA|FE0000  |860000;
                        LDA.B #$2B                           ;84B7CD|A92B    |      ;
                        STA.W r_000a,X                       ;84B7CF|9D0A00  |86000A;
-                       LDA.B $11                            ;84B7D2|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;84B7D2|A511    |000E79;
                        ORA.B #$32                           ;84B7D4|0932    |      ;
                        STA.W r_0011,X                       ;84B7D6|9D1100  |860011;
                        LDA.B #$23                           ;84B7D9|A923    |      ;
@@ -6757,11 +6760,11 @@ slimVolt_state1_01plus_00:
                        TAY                                  ;84B7ED|A8      |      ;
                        LDA.W UNREACH_86C537,Y               ;84B7EE|B937C5  |86C537;
                        CLC                                  ;84B7F1|18      |      ;
-                       ADC.B $05                            ;84B7F2|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;84B7F2|6505    |000E6D;
                        STA.W r_0005,X                       ;84B7F4|9D0500  |860005;
                        LDA.W UNREACH_86C539,Y               ;84B7F7|B939C5  |86C539;
                        CLC                                  ;84B7FA|18      |      ;
-                       ADC.B $08                            ;84B7FB|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;84B7FB|6508    |000E70;
                        STA.W r_0008,X                       ;84B7FD|9D0800  |860008;
                        LDA.W #$0040                         ;84B800|A94000  |      ;
                        STA.W r_001e,X                       ;84B803|9D1E00  |86001E;
@@ -6793,9 +6796,9 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B835:
                        REP #$30                             ;84B835|C230    |      ;
-                       LDA.B $18                            ;84B837|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;84B837|A518    |000E80;
                        STA.W r_0000                         ;84B839|8D0000  |860000;
-                       LDA.B $08                            ;84B83C|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;84B83C|A508    |000E70;
                        SEC                                  ;84B83E|38      |      ;
                        SBC.W #$0300                         ;84B83F|E90003  |      ;
                        ASL A                                ;84B842|0A      |      ;
@@ -6809,7 +6812,7 @@ slimVolt_state1_01plus_00:
                        STA.L $7FD000,X                      ;84B84F|9F00D07F|7FD000;
                        DEC.W r_0000                         ;84B853|CE0000  |860000;
                        BNE CODE_84B85E                      ;84B856|D006    |84B85E;
-                       LDY.B $18                            ;84B858|A418    |000E80;
+                       LDY.B r_ev_18_gfxSlot-$E68           ;84B858|A418    |000E80;
                        STY.W r_0000                         ;84B85A|8C0000  |860000;
                        INC A                                ;84B85D|1A      |      ;
                                                             ;      |        |      ;
@@ -6817,7 +6820,7 @@ slimVolt_state1_01plus_00:
                        DEX                                  ;84B85E|CA      |      ;
                        DEX                                  ;84B85F|CA      |      ;
                        BPL CODE_84B84E                      ;84B860|10EC    |84B84E;
-                       LDA.B $18                            ;84B862|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;84B862|A518    |000E80;
                        STA.W r_0000                         ;84B864|8D0000  |860000;
                        LDX.W r_0002                         ;84B867|AE0200  |860002;
                        INX                                  ;84B86A|E8      |      ;
@@ -6829,7 +6832,7 @@ slimVolt_state1_01plus_00:
                        STA.L $7FD000,X                      ;84B870|9F00D07F|7FD000;
                        DEC.W r_0000                         ;84B874|CE0000  |860000;
                        BNE CODE_84B87F                      ;84B877|D006    |84B87F;
-                       LDY.B $18                            ;84B879|A418    |000E80;
+                       LDY.B r_ev_18_gfxSlot-$E68           ;84B879|A418    |000E80;
                        STY.W r_0000                         ;84B87B|8C0000  |860000;
                        DEC A                                ;84B87E|3A      |      ;
                                                             ;      |        |      ;
@@ -6844,7 +6847,7 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
           CODE_84B889:
                        REP #$30                             ;84B889|C230    |      ;
-                       LDX.B $18                            ;84B88B|A618    |000E80;
+                       LDX.B r_ev_18_gfxSlot-$E68           ;84B88B|A618    |000E80;
                                                             ;      |        |      ;
           CODE_84B88D:
                        TXA                                  ;84B88D|8A      |      ;
@@ -6863,7 +6866,7 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B8A5:
-                       LDA.B $27                            ;84B8A5|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;84B8A5|A527    |000E8F;
                        AND.B #$7F                           ;84B8A7|297F    |      ;
                        CMP.B #$18                           ;84B8A9|C918    |      ;
                        RTS                                  ;84B8AB|60      |      ;

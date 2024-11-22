@@ -75,17 +75,17 @@
                        RTL                                  ;82806D|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82806E:
+        initPosAllign:
                        REP #$20                             ;82806E|C220    |      ;
                        SEC                                  ;828070|38      |      ;
-                       LDA.B $05                            ;828071|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;828071|A505    |000EAD;
                        SBC.W r_cam_BG0_xPos_target          ;828073|ED4D1E  |861E4D;
                        CLC                                  ;828076|18      |      ;
                        ADC.W #$0040                         ;828077|694000  |      ;
                        CMP.W #$0180                         ;82807A|C98001  |      ;
                        BCS CODE_82808C                      ;82807D|B00D    |82808C;
                        SEC                                  ;82807F|38      |      ;
-                       LDA.B $08                            ;828080|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;828080|A508    |000EB0;
                        SBC.W r_cam_BG0_yPos_target          ;828082|ED501E  |861E50;
                        CLC                                  ;828085|18      |      ;
                        ADC.W #$0040                         ;828086|694000  |      ;
@@ -119,7 +119,7 @@
                        RTL                                  ;8280B3|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_8280B4:
+eventID_vile_68_afterInit:
                        REP #$20                             ;8280B4|C220    |      ;
                        SEC                                  ;8280B6|38      |      ;
                        LDA.B $05                            ;8280B7|A505    |00198D;
@@ -145,9 +145,9 @@
           CODE_8280D9:
                        SEP #$20                             ;8280D9|E220    |      ;
                        LDA.B #$81                           ;8280DB|A981    |      ;
-                       STA.B $0E                            ;8280DD|850E    |000E76;
+                       STA.B r_ev_0e-$E68                   ;8280DD|850E    |000E76;
                        SEP #$30                             ;8280DF|E230    |      ;
-                       LDX.B $12                            ;8280E1|A612    |000E7A;
+                       LDX.B r_ev_12-$E68                   ;8280E1|A612    |000E7A;
                        BPL CODE_8280E7                      ;8280E3|1002    |8280E7;
                        LDX.B #$0A                           ;8280E5|A20A    |      ;
                                                             ;      |        |      ;
@@ -319,15 +319,15 @@
                        PHP                                  ;8281CF|08      |      ;
                        REP #$20                             ;8281D0|C220    |      ;
                        CLC                                  ;8281D2|18      |      ;
-                       LDA.B $1E                            ;8281D3|A51E    |000EC6;
+                       LDA.B r_ev_2_1e_weight-$EA8          ;8281D3|A51E    |000EC6;
                        AND.W #$00FF                         ;8281D5|29FF00  |      ;
-                       ADC.B $1C                            ;8281D8|651C    |000EC4;
-                       STA.B $1C                            ;8281DA|851C    |000EC4;
+                       ADC.B r_ev_2_1c_ySpdSub-$EA8         ;8281D8|651C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;8281DA|851C    |000EC4;
                        CLC                                  ;8281DC|18      |      ;
-                       LDA.B $1F                            ;8281DD|A51F    |000EC7;
+                       LDA.B r_ev_2_1f-$EA8                 ;8281DD|A51F    |000EC7;
                        AND.W #$00FF                         ;8281DF|29FF00  |      ;
-                       ADC.B $1A                            ;8281E2|651A    |000EC2;
-                       STA.B $1A                            ;8281E4|851A    |000EC2;
+                       ADC.B r_ev_2_1a_xSpdSub-$EA8         ;8281E2|651A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;8281E4|851A    |000EC2;
                        BRA CODE_82820B                      ;8281E6|8023    |82820B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -418,12 +418,12 @@
           CODE_82825D:
                        PHP                                  ;82825D|08      |      ;
                        REP #$20                             ;82825E|C220    |      ;
-                       LDA.B $07                            ;828260|A507    |000E6F;
+                       LDA.B r_ev_07-$E68                   ;828260|A507    |000E6F;
                        SEC                                  ;828262|38      |      ;
-                       SBC.B $1C                            ;828263|E51C    |000E84;
-                       STA.B $07                            ;828265|8507    |000E6F;
+                       SBC.B r_ev_1c_ySpdSub-$E68           ;828263|E51C    |000E84;
+                       STA.B r_ev_07-$E68                   ;828265|8507    |000E6F;
                        SEP #$20                             ;828267|E220    |      ;
-                       BIT.B $1D                            ;828269|241D    |000E85;
+                       BIT.B r_ev_1d_ySpd-$E68              ;828269|241D    |000E85;
                        BMI CODE_828275                      ;82826B|3008    |828275;
                        LDA.B $09                            ;82826D|A509    |000E71;
                        SBC.B #$00                           ;82826F|E900    |      ;
@@ -440,28 +440,28 @@
                        RTL                                  ;82827C|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82827D:
-                       LDA.B #$02                           ;82827D|A902    |      ;
-                       STA.B $01                            ;82827F|8501    |000E69;
+enemy_initiate_jumpPhysic:
+                       LDA.B #$02                           ;82827D|A902    |      ; bunny
+                       STA.B r_ev_01_state-$E68             ;82827F|8501    |000E69;
                        LDA.B #$03                           ;828281|A903    |      ;
-                       STA.B $28                            ;828283|8528    |000E90;
-                       LDA.B $0A                            ;828285|A50A    |000E72;
+                       STA.B r_ev_28-$E68                   ;828283|8528    |000E90;
+                       LDA.B r_ev_0a_ID-$E68                ;828285|A50A    |000E72;
                        DEC A                                ;828287|3A      |      ;
                        ASL A                                ;828288|0A      |      ;
                        TAX                                  ;828289|AA      |      ;
                        LDA.W UNREACH_86A5E4,X               ;82828A|BDE4A5  |86A5E4;
-                       STA.B $16                            ;82828D|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;82828D|8516    |000E7E;
                        LDA.W UNREACH_86A5E5,X               ;82828F|BDE5A5  |86A5E5;
                        TAX                                  ;828292|AA      |      ;
                        LDA.L $7F8200,X                      ;828293|BF00827F|7F8200;
-                       STA.B $18                            ;828297|8518    |000E80;
+                       STA.B r_ev_18_gfxSlot-$E68           ;828297|8518    |000E80;
                        LDA.L $7F8300,X                      ;828299|BF00837F|7F8300;
-                       STA.B $11                            ;82829D|8511    |000E79;
-                       STZ.B $30                            ;82829F|6430    |000E98;
+                       STA.B r_ev_11_sprAtri-$E68           ;82829D|8511    |000E79;
+                       STZ.B r_ev_30-$E68                   ;82829F|6430    |000E98;
                        REP #$20                             ;8282A1|C220    |      ;
-                       STZ.B $1A                            ;8282A3|641A    |000E82;
-                       STZ.B $1C                            ;8282A5|641C    |000E84;
-                       STZ.B $1E                            ;8282A7|641E    |000E86;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;8282A3|641A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;8282A5|641C    |000E84;
+                       STZ.B r_ev_1e_weight-$E68            ;8282A7|641E    |000E86;
                        SEP #$20                             ;8282A9|E220    |      ;
                        RTL                                  ;8282AB|6B      |      ;
                                                             ;      |        |      ;
@@ -609,8 +609,8 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                        SEP #$20                             ;828372|E220    |      ;
                        REP #$10                             ;828374|C210    |      ;
-                       LDX.B $0C                            ;828376|A60C    |000E74;
-                       BEQ CODE_828398                      ;828378|F01E    |828398;
+                       LDX.B r_ev_0c-$E68                   ;828376|A60C    |000E74;
+                       BEQ clearStates_00_02_0E             ;828378|F01E    |828398;
                        PHB                                  ;82837A|8B      |      ;
                        LDA.B #$7E                           ;82837B|A97E    |      ;
                        PHA                                  ;82837D|48      |      ;
@@ -618,14 +618,14 @@ loadProjectileSlotBase:
                        LDA.B #$87                           ;82837F|A987    |      ;
                        STA.W r_0000,X                       ;828381|9D0000  |860000;
                        PLB                                  ;828384|AB      |      ;
-                       BRA CODE_828398                      ;828385|8011    |828398;
+                       BRA clearStates_00_02_0E             ;828385|8011    |828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_828387:
+ clearStateIf_0cEqual:
                        SEP #$20                             ;828387|E220    |      ;
                        REP #$10                             ;828389|C210    |      ;
-                       LDX.B $0C                            ;82838B|A60C    |000EB4;
-                       BEQ CODE_828398                      ;82838D|F009    |828398;
+                       LDX.B r_ev_2_0c-$EA8                 ;82838B|A60C    |000EB4;
+                       BEQ clearStates_00_02_0E             ;82838D|F009    |828398;
                        PHB                                  ;82838F|8B      |      ;
                        LDA.B #$7E                           ;828390|A97E    |      ;
                        PHA                                  ;828392|48      |      ;
@@ -633,16 +633,16 @@ loadProjectileSlotBase:
                        STZ.W r_0000,X                       ;828394|9E0000  |860000;
                        PLB                                  ;828397|AB      |      ;
                                                             ;      |        |      ;
-          CODE_828398:
+ clearStates_00_02_0E:
                        REP #$20                             ;828398|C220    |      ;
-                       STZ.B $00                            ;82839A|6400    |001988;
-                       STZ.B $02                            ;82839C|6402    |00198A;
-                       STZ.B $0E                            ;82839E|640E    |001996;
+                       STZ.B r_event_active_00-$E68         ;82839A|6400    |000E68;
+                       STZ.B r_ev_02_action-$E68            ;82839C|6402    |000E6A;
+                       STZ.B r_ev_0e-$E68                   ;82839E|640E    |000E76;
                        SEP #$20                             ;8283A0|E220    |      ;
                        RTL                                  ;8283A2|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_8283A3:
+clearStates_01_00_02_0E_2C:
                        REP #$20                             ;8283A3|C220    |      ;
                        STZ.B $00                            ;8283A5|6400    |000000;
                        STZ.B $02                            ;8283A7|6402    |000002;
@@ -652,7 +652,7 @@ loadProjectileSlotBase:
                        RTL                                  ;8283AF|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_8283B0:
+cutterProjectile_main:
                        LDX.B $01                            ;8283B0|A601    |001269;
                        JMP.W (PTR16_8283B5,X)               ;8283B2|7CB583  |8283B5;
                                                             ;      |        |      ;
@@ -666,23 +666,23 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
      we_cutterState00:
                        LDA.B #$02                           ;8283BF|A902    |      ;
-                       STA.B $01                            ;8283C1|8501    |0012A9;
+                       STA.B r_ev_proj_21-$12A8             ;8283C1|8501    |0012A9;
                        LDX.W r_level_current                ;8283C3|AE7A1F  |861F7A;
                        LDA.W r_0bb9                         ;8283C6|ADB90B  |860BB9;
                        AND.B #$70                           ;8283C9|2970    |      ;
                        ORA.B #$06                           ;8283CB|0906    |      ;
-                       STA.B $11                            ;8283CD|8511    |0012B9;
+                       STA.B r_ev_proj_31-$12A8             ;8283CD|8511    |0012B9;
                        STZ.B $30                            ;8283CF|6430    |0012D8;
                        STZ.B $39                            ;8283D1|6439    |0012E1;
                        STZ.B $3A                            ;8283D3|643A    |0012E2;
-                       STZ.B $18                            ;8283D5|6418    |0012C0;
+                       STZ.B r_ev_proj_38-$12A8             ;8283D5|6418    |0012C0;
                        LDA.B #$FF                           ;8283D7|A9FF    |      ;
-                       STA.B $10                            ;8283D9|8510    |0012B8;
+                       STA.B r_ev_proj_30-$12A8             ;8283D9|8510    |0012B8;
                        LDA.B #$05                           ;8283DB|A905    |      ;
-                       STA.B $16                            ;8283DD|8516    |0012BE;
+                       STA.B r_ev_proj_36-$12A8             ;8283DD|8516    |0012BE;
                        LDA.B #$11                           ;8283DF|A911    |      ;
                        STA.B $37                            ;8283E1|8537    |0012DF;
-                       LDA.B $11                            ;8283E3|A511    |0012B9;
+                       LDA.B r_ev_proj_31-$12A8             ;8283E3|A511    |0012B9;
                        ASL A                                ;8283E5|0A      |      ;
                        ASL A                                ;8283E6|0A      |      ;
                        LDA.B #$08                           ;8283E7|A908    |      ;
@@ -699,8 +699,8 @@ loadProjectileSlotBase:
                        LDA.W r_0bad                         ;8283FB|ADAD0B  |860BAD;
                        STA.B $05                            ;8283FE|8505    |0012AD;
                        LDA.W r_0bb0                         ;828400|ADB00B  |860BB0;
-                       STA.B $08                            ;828403|8508    |0012B0;
-                       LDA.B $10                            ;828405|A510    |0012B8;
+                       STA.B r_ev_proj_28-$12A8             ;828403|8508    |0012B0;
+                       LDA.B r_ev_proj_30-$12A8             ;828405|A510    |0012B8;
                        ASL A                                ;828407|0A      |      ;
                        ASL A                                ;828408|0A      |      ;
                        LDA.W #$0480                         ;828409|A98004  |      ; cutterInitSpeed
@@ -708,12 +708,12 @@ loadProjectileSlotBase:
                        LDA.W #$FB80                         ;82840E|A980FB  |      ; cutterInitSpeed
                                                             ;      |        |      ;
           CODE_828411:
-                       STA.B $1A                            ;828411|851A    |0012C2;
-                       STZ.B $1C                            ;828413|641C    |0012C4;
+                       STA.B r_ev_proj_3a-$12A8             ;828411|851A    |0012C2;
+                       STZ.B r_ev_proj_3c-$12A8             ;828413|641C    |0012C4;
                        SEP #$20                             ;828415|E220    |      ;
                        LDA.B #$01                           ;828417|A901    |      ;
                        JSL.L CODE_848F07                    ;828419|22078F84|848F07;
-                       JML.L CODE_8280B4                    ;82841D|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82841D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
      we_cutterState03:
@@ -727,10 +727,10 @@ loadProjectileSlotBase:
                        JSR.W (PTR16_828452,X)               ;82842B|FC5284  |828452;
                        JSR.W CODE_828538                    ;82842E|203885  |828538;
                        JSL.L updateEv_13_14_17_0f           ;828431|22EA8E84|848EEA;
-                       JSL.L CODE_8280B4                    ;828435|22B48082|8280B4;
-                       JSL.L CODE_82806E                    ;828439|226E8082|82806E;
+                       JSL.L eventID_vile_68_afterInit      ;828435|22B48082|8280B4;
+                       JSL.L initPosAllign                  ;828439|226E8082|82806E;
                        BCC CODE_828451                      ;82843D|9012    |828451;
-                       LDA.B $3A                            ;82843F|A53A    |0012A2;
+                       LDA.B r_ev_proj_1a_xSpdSub-$1268     ;82843F|A53A    |0012A2;
                        BEQ CODE_82844A                      ;828441|F007    |82844A;
                        REP #$10                             ;828443|C210    |      ;
                        LDX.B $0C                            ;828445|A60C    |001274;
@@ -738,7 +738,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82844A:
                        DEC.W r_0bdd                         ;82844A|CEDD0B  |860BDD;
-                       JML.L CODE_8283A3                    ;82844D|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;82844D|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828451:
@@ -754,7 +754,7 @@ loadProjectileSlotBase:
                        DEC.B $37                            ;82845A|C637    |0012DF;
                        BNE CODE_828478                      ;82845C|D01A    |828478;
                        LDA.B #$02                           ;82845E|A902    |      ;
-                       STA.B $02                            ;828460|8502    |0012AA;
+                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;828460|8502    |0012AA;
                        LDA.B #$02                           ;828462|A902    |      ;
                        STA.B $37                            ;828464|8537    |0012DF;
                        LDA.B $38                            ;828466|A538    |0012E0;
@@ -777,17 +777,17 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828479:
-                       DEC.B $37                            ;828479|C637    |00129F;
+                       DEC.B r_ev_proj_17-$1268             ;828479|C637    |00129F;
                        BNE CODE_8284AC                      ;82847B|D02F    |8284AC;
                        LDA.B #$02                           ;82847D|A902    |      ;
-                       STA.B $37                            ;82847F|8537    |00129F;
+                       STA.B r_ev_proj_17-$1268             ;82847F|8537    |00129F;
                        JSL.L CODE_84A081                    ;828481|2281A084|84A081;
                        SEC                                  ;828485|38      |      ;
-                       SBC.B $38                            ;828486|E538    |0012A0;
+                       SBC.B r_ev_proj_18_gfxSlot-$1268     ;828486|E538    |0012A0;
                        AND.B #$1F                           ;828488|291F    |      ;
                        CMP.B #$10                           ;82848A|C910    |      ;
                        BCC CODE_828492                      ;82848C|9004    |828492;
-                       DEC.B $38                            ;82848E|C638    |0012A0;
+                       DEC.B r_ev_proj_18_gfxSlot-$1268     ;82848E|C638    |0012A0;
                        BRA CODE_828494                      ;828490|8002    |828494;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -795,9 +795,9 @@ loadProjectileSlotBase:
                        INC.B $38                            ;828492|E638    |0012E0;
                                                             ;      |        |      ;
           CODE_828494:
-                       LDA.B $38                            ;828494|A538    |0012A0;
+                       LDA.B r_ev_proj_18_gfxSlot-$1268     ;828494|A538    |0012A0;
                        AND.B #$1F                           ;828496|291F    |      ;
-                       STA.B $38                            ;828498|8538    |0012A0;
+                       STA.B r_ev_proj_18_gfxSlot-$1268     ;828498|8538    |0012A0;
                        JSL.L CODE_8284F2                    ;82849A|22F28482|8284F2;
                        REP #$20                             ;82849E|C220    |      ;
                        LDA.W r_0000                         ;8284A0|AD0000  |860000;
@@ -811,7 +811,7 @@ loadProjectileSlotBase:
                        LDA.W r_0bcf                         ;8284B0|ADCF0B  |860BCF;
                        AND.B #$7F                           ;8284B3|297F    |      ;
                        BEQ CODE_8284DF                      ;8284B5|F028    |8284DF;
-                       LDA.B $3A                            ;8284B7|A53A    |0012A2;
+                       LDA.B r_ev_proj_1a_xSpdSub-$1268     ;8284B7|A53A    |0012A2;
                        BNE CODE_8284DF                      ;8284B9|D024    |8284DF;
                        REP #$10                             ;8284BB|C210    |      ;
                        LDX.W #$0BA8                         ;8284BD|A2A80B  |      ;
@@ -823,7 +823,7 @@ loadProjectileSlotBase:
                        ADC.W #$2000                         ;8284CC|690020  |      ;
                        STA.B $08                            ;8284CF|8508    |001270;
                        SEP #$20                             ;8284D1|E220    |      ;
-                       LDA.B $39                            ;8284D3|A539    |0012A1;
+                       LDA.B r_ev_proj_19-$1268             ;8284D3|A539    |0012A1;
                        BNE CODE_8284DF                      ;8284D5|D008    |8284DF;
                        INC.W r_1f94                         ;8284D7|EE941F  |861F94;
                        LDA.B #$80                           ;8284DA|A980    |      ;
@@ -842,7 +842,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_8284EB:
                        DEC.W r_0bdd                         ;8284EB|CEDD0B  |860BDD;
-                       JML.L CODE_8283A3                    ;8284EE|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;8284EE|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8284F2:
@@ -853,16 +853,16 @@ loadProjectileSlotBase:
                        PEA.W r_0000                         ;8284F6|F40000  |860000;
                        PLD                                  ;8284F9|2B      |      ;
                        REP #$20                             ;8284FA|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;8284FC|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;8284FC|BD37EE  |86EE37;
                        AND.W #$8000                         ;8284FF|290080  |      ;
                        STA.B $00                            ;828502|8500    |000000;
                        LDA.W DATA8_86EE39,X                 ;828504|BD39EE  |86EE39;
                        AND.W #$8000                         ;828507|290080  |      ;
                        STA.B $02                            ;82850A|8502    |000002;
-                       LDA.W DATA8_86EE37,X                 ;82850C|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;82850C|BD37EE  |86EE37;
                        ASL A                                ;82850F|0A      |      ;
                        STA.B $04                            ;828510|8504    |000004;
-                       LDA.W DATA8_86EE37,X                 ;828512|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;828512|BD37EE  |86EE37;
                        LSR A                                ;828515|4A      |      ;
                        ORA.B $00                            ;828516|0500    |000000;
                        LSR A                                ;828518|4A      |      ;
@@ -887,7 +887,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828538:
-                       LDA.B $3A                            ;828538|A53A    |0012A2;
+                       LDA.B r_ev_proj_1a_xSpdSub-$1268     ;828538|A53A    |0012A2;
                        BNE CODE_828588                      ;82853A|D04C    |828588;
                        JSL.L CODE_84AC6D                    ;82853C|226DAC84|84AC6D;
                        CPY.B #$00                           ;828540|C000    |      ;
@@ -1010,7 +1010,7 @@ loadProjectileSlotBase:
                        LDA.B $27                            ;8285FE|A527    |00148F;
                        AND.B #$7F                           ;828600|297F    |      ;
                        BEQ CODE_828608                      ;828602|F004    |828608;
-                       JSL.L CODE_8280B4                    ;828604|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;828604|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_828608:
                        JSL.L CODE_849B43                    ;828608|22439B84|849B43;
@@ -1453,7 +1453,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8288B0:
-                       JSL.L CODE_8283A3                    ;8288B0|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;8288B0|22A38382|8283A3;
                        JMP.W CODE_82899C                    ;8288B4|4C9C89  |82899C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1929,10 +1929,10 @@ loadProjectileSlotBase:
                        LDX.B $01                            ;828BFA|A601    |001429;
                        JSR.W (PTR16_828C10,X)               ;828BFC|FC108C  |828C10;
                        JSL.L CODE_849B03                    ;828BFF|22039B84|849B03;
-                       JSL.L CODE_8280B4                    ;828C03|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;828C03|22B48082|8280B4;
                        LDA.B $0E                            ;828C07|A50E    |001436;
                        BNE CODE_828C0F                      ;828C09|D004    |828C0F;
-                       JML.L CODE_8283A3                    ;828C0B|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;828C0B|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828C0F:
@@ -1998,7 +1998,7 @@ loadProjectileSlotBase:
           CODE_828C62:
                        LDA.B #$19                           ;828C62|A919    |      ;
                        STA.B $0A                            ;828C64|850A    |001432;
-                       JSL.L CODE_82827D                    ;828C66|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;828C66|227D8282|82827D;
                        LDA.B #$0B                           ;828C6A|A90B    |      ;
                        STA.B $0A                            ;828C6C|850A    |001432;
                        STA.B $28                            ;828C6E|8528    |001450;
@@ -2026,14 +2026,14 @@ loadProjectileSlotBase:
                        SEP #$20                             ;828C96|E220    |      ;
                        LDA.B #$03                           ;828C98|A903    |      ;
                        JSL.L CODE_848F07                    ;828C9A|22078F84|848F07;
-                       JML.L CODE_8280B4                    ;828C9E|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;828C9E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828CA2:
                        JSL.L CODE_8281E8                    ;828CA2|22E88182|8281E8;
-                       JSL.L CODE_82806E                    ;828CA6|226E8082|82806E;
+                       JSL.L initPosAllign                  ;828CA6|226E8082|82806E;
                        BCC CODE_828CB0                      ;828CAA|9004    |828CB0;
-                       JML.L CODE_8283A3                    ;828CAC|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;828CAC|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828CB0:
@@ -2067,7 +2067,7 @@ loadProjectileSlotBase:
                        JSL.L CODE_848F07                    ;828CE0|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_828CE4:
-                       JML.L CODE_8280B4                    ;828CE4|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;828CE4|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828CE8:
@@ -2086,7 +2086,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_828D02:
                        JSR.W CODE_828D72                    ;828D02|20728D  |828D72;
-                       JML.L CODE_8280B4                    ;828D05|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;828D05|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D09:
@@ -2099,7 +2099,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_828D17:
                        JSL.L updateEv_13_14_17_0f           ;828D17|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;828D1B|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;828D1B|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D1F:
@@ -2125,7 +2125,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_828D41:
                        JSR.W CODE_828D72                    ;828D41|20728D  |828D72;
-                       JML.L CODE_8280B4                    ;828D44|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;828D44|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D48:
@@ -2138,7 +2138,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_828D56:
                        JSL.L updateEv_13_14_17_0f           ;828D56|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;828D5A|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;828D5A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D5E:
@@ -2146,11 +2146,11 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;828D62|22EA8E84|848EEA;
                        LDA.B $0F                            ;828D66|A50F    |0014F7;
                        BPL CODE_828D6E                      ;828D68|1004    |828D6E;
-                       JML.L CODE_8283A3                    ;828D6A|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;828D6A|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D6E:
-                       JML.L CODE_8280B4                    ;828D6E|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;828D6E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D72:
@@ -2192,11 +2192,11 @@ loadProjectileSlotBase:
                        JSL.L CODE_84A4B5                    ;828DBB|22B5A484|84A4B5;
                                                             ;      |        |      ;
           CODE_828DBF:
-                       JML.L CODE_8283A3                    ;828DBF|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;828DBF|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828DC3:
-                       JSL.L CODE_8280B4                    ;828DC3|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;828DC3|22B48082|8280B4;
                        LDA.B $0E                            ;828DC7|A50E    |001436;
                        BEQ CODE_828DBF                      ;828DC9|F0F4    |828DBF;
                        RTL                                  ;828DCB|6B      |      ;
@@ -2211,7 +2211,7 @@ loadProjectileSlotBase:
           CODE_828DD4:
                        LDA.B #$20                           ;828DD4|A920    |      ;
                        STA.B $0A                            ;828DD6|850A    |001432;
-                       JSL.L CODE_82827D                    ;828DD8|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;828DD8|227D8282|82827D;
                        LDA.B #$0C                           ;828DDC|A90C    |      ;
                        STA.B $0A                            ;828DDE|850A    |001432;
                        LDA.B #$04                           ;828DE0|A904    |      ;
@@ -2324,7 +2324,7 @@ loadProjectileSlotBase:
           CODE_828E8C:
                        LDA.B #$22                           ;828E8C|A922    |      ;
                        STA.B $0A                            ;828E8E|850A    |001472;
-                       JSL.L CODE_82827D                    ;828E90|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;828E90|227D8282|82827D;
                        LDA.B #$02                           ;828E94|A902    |      ;
                        STA.B $12                            ;828E96|8512    |00147A;
                        LDA.B #$0D                           ;828E98|A90D    |      ;
@@ -2353,7 +2353,7 @@ loadProjectileSlotBase:
                        SEP #$20                             ;828EC3|E220    |      ;
                        LDA.B #$02                           ;828EC5|A902    |      ;
                        JSL.L CODE_848F07                    ;828EC7|22078F84|848F07;
-                       JML.L CODE_8280B4                    ;828ECB|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;828ECB|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828ECF:
@@ -2378,7 +2378,7 @@ loadProjectileSlotBase:
                        STA.B $39                            ;828EF5|8539    |0014A1;
                        LDA.B #$04                           ;828EF7|A904    |      ;
                        JSL.L CODE_848F07                    ;828EF9|22078F84|848F07;
-                       JML.L CODE_8280B4                    ;828EFD|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;828EFD|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828F01:
@@ -2392,18 +2392,18 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;828F15|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_828F19:
-                       JML.L CODE_8280B4                    ;828F19|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;828F19|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828F1D:
                        JSL.L updateEv_13_14_17_0f           ;828F1D|22EA8E84|848EEA;
                        LDA.B $0F                            ;828F21|A50F    |001437;
                        BPL CODE_828F29                      ;828F23|1004    |828F29;
-                       JML.L CODE_8283A3                    ;828F25|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;828F25|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828F29:
-                       JML.L CODE_8280B4                    ;828F29|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;828F29|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828F2D:
@@ -2456,7 +2456,7 @@ loadProjectileSlotBase:
                        ASL A                                ;828F77|0A      |      ;
                        TAX                                  ;828F78|AA      |      ;
                        REP #$20                             ;828F79|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;828F7B|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;828F7B|BD37EE  |86EE37;
                        ASL A                                ;828F7E|0A      |      ;
                        STA.B $1A                            ;828F7F|851A    |001482;
                        LDA.W DATA8_86EE39,X                 ;828F81|BD39EE  |86EE39;
@@ -2498,7 +2498,7 @@ loadProjectileSlotBase:
                        ASL A                                ;828FB8|0A      |      ;
                        TAX                                  ;828FB9|AA      |      ;
                        REP #$20                             ;828FBA|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;828FBC|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;828FBC|BD37EE  |86EE37;
                        ASL A                                ;828FBF|0A      |      ;
                        STA.B $1A                            ;828FC0|851A    |001442;
                        LDA.W DATA8_86EE39,X                 ;828FC2|BD39EE  |86EE39;
@@ -2532,7 +2532,7 @@ loadProjectileSlotBase:
                        LDA.B ($0C),Y                        ;828FEF|B10C    |001474;
                        AND.B #$7F                           ;828FF1|297F    |      ;
                        BEQ CODE_829027                      ;828FF3|F032    |829027;
-                       JSL.L CODE_8280B4                    ;828FF5|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;828FF5|22B48082|8280B4;
                        LDA.B $0E                            ;828FF9|A50E    |001476;
                        BEQ CODE_82902B                      ;828FFB|F02E    |82902B;
                        DEC.B $3A                            ;828FFD|C63A    |0014A2;
@@ -2563,7 +2563,7 @@ loadProjectileSlotBase:
                        JSL.L CODE_84A4B5                    ;829027|22B5A484|84A4B5;
                                                             ;      |        |      ;
           CODE_82902B:
-                       JML.L CODE_8283A3                    ;82902B|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;82902B|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82902F:
@@ -2579,7 +2579,7 @@ loadProjectileSlotBase:
           CODE_82903A:
                        LDA.B #$29                           ;82903A|A929    |      ;
                        STA.B $0A                            ;82903C|850A    |001432;
-                       JSL.L CODE_82827D                    ;82903E|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;82903E|227D8282|82827D;
                        LDA.B #$0E                           ;829042|A90E    |      ;
                        STA.B $0A                            ;829044|850A    |001432;
                        LDA.B #$02                           ;829046|A902    |      ;
@@ -2618,7 +2618,7 @@ loadProjectileSlotBase:
                        LDA.B #$02                           ;829087|A902    |      ;
                        STA.B $26                            ;829089|8526    |00144E;
                        STZ.B $28                            ;82908B|6428    |001450;
-                       JML.L CODE_8280B4                    ;82908D|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82908D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829091:
@@ -2629,14 +2629,14 @@ loadProjectileSlotBase:
                        JSL.L CODE_84A4B5                    ;82909F|22B5A484|84A4B5;
                                                             ;      |        |      ;
           CODE_8290A3:
-                       JML.L CODE_8283A3                    ;8290A3|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;8290A3|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8290A7:
-                       JSL.L CODE_82806E                    ;8290A7|226E8082|82806E;
+                       JSL.L initPosAllign                  ;8290A7|226E8082|82806E;
                        BCS CODE_8290A3                      ;8290AB|B0F6    |8290A3;
                        JSR.W CODE_8290E2                    ;8290AD|20E290  |8290E2;
-                       JML.L CODE_8280B4                    ;8290B0|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;8290B0|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8290B4:
@@ -2654,13 +2654,13 @@ loadProjectileSlotBase:
                        INC.B $02                            ;8290D2|E602    |0014AA;
                                                             ;      |        |      ;
           CODE_8290D4:
-                       JSL.L CODE_82806E                    ;8290D4|226E8082|82806E;
+                       JSL.L initPosAllign                  ;8290D4|226E8082|82806E;
                        BCS CODE_8290DE                      ;8290D8|B004    |8290DE;
-                       JML.L CODE_8280B4                    ;8290DA|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;8290DA|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8290DE:
-                       JML.L CODE_8283A3                    ;8290DE|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;8290DE|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8290E2:
@@ -2721,10 +2721,10 @@ loadProjectileSlotBase:
                        JSL.L CODE_849B03                    ;82913E|22039B84|849B03;
                                                             ;      |        |      ;
           CODE_829142:
-                       JSL.L CODE_8280B4                    ;829142|22B48082|8280B4;
-                       JSL.L CODE_82806E                    ;829146|226E8082|82806E;
+                       JSL.L eventID_vile_68_afterInit      ;829142|22B48082|8280B4;
+                       JSL.L initPosAllign                  ;829146|226E8082|82806E;
                        BCC CODE_829150                      ;82914A|9004    |829150;
-                       JSL.L CODE_8283A3                    ;82914C|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;82914C|22A38382|8283A3;
                                                             ;      |        |      ;
           CODE_829150:
                        RTL                                  ;829150|6B      |      ;
@@ -3237,7 +3237,7 @@ loadProjectileSlotBase:
                        LDA.B $3C                            ;829437|A53C    |0014E4;
                        STA.B $08                            ;829439|8508    |0014B0;
                        SEP #$20                             ;82943B|E220    |      ;
-                       JSL.L CODE_8283A3                    ;82943D|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;82943D|22A38382|8283A3;
                        RTS                                  ;829441|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3471,43 +3471,43 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;829597|22EA8E84|848EEA;
                        LDA.B $0F                            ;82959B|A50F    |00000F;
                        BPL CODE_8295A3                      ;82959D|1004    |8295A3;
-                       JSL.L CODE_8283A3                    ;82959F|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;82959F|22A38382|8283A3;
                                                             ;      |        |      ;
           CODE_8295A3:
                        RTS                                  ;8295A3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_8295A4:
-                       LDX.B $01                            ;8295A4|A601    |000EA9;
-                       JMP.W (PTR16_8295A9,X)               ;8295A6|7CA995  |8295A9;
+eventID_mammothTrunk_0e_main:
+                       LDX.B r_ev_2_01_state-$EA8           ;8295A4|A601    |000EA9;
+                       JMP.W (mammothTrunk_0e_state,X)      ;8295A6|7CA995  |8295A9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_8295A9:
-                       dw CODE_8295B5                       ;8295A9|        |8295B5;
+mammothTrunk_0e_state:
+                       dw mammothTrunk_0e_state_00          ;8295A9|        |8295B5;
                        dw CODE_8295D5                       ;8295AB|        |8295D5;
                        dw CODE_8295E6                       ;8295AD|        |8295E6;
                        dw CODE_8295F7                       ;8295AF|        |8295F7;
                        dw CODE_8295F7                       ;8295B1|        |8295F7;
                        dw CODE_829612                       ;8295B3|        |829612;
                                                             ;      |        |      ;
-          CODE_8295B5:
-                       LDA.B $02                            ;8295B5|A502    |000EAA;
+mammothTrunk_0e_state_00:
+                       LDA.B r_ev_2_02_action-$EA8          ;8295B5|A502    |000EAA;
                        BNE CODE_8295BF                      ;8295B7|D006    |8295BF;
-                       INC.B $02                            ;8295B9|E602    |000EAA;
+                       INC.B r_ev_2_02_action-$EA8          ;8295B9|E602    |000EAA;
                        LDA.B #$3C                           ;8295BB|A93C    |      ;
-                       STA.B $33                            ;8295BD|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;8295BD|8533    |000EDB;
                                                             ;      |        |      ;
           CODE_8295BF:
-                       DEC.B $33                            ;8295BF|C633    |000EDB;
+                       DEC.B r_ev_2_33-$EA8                 ;8295BF|C633    |000EDB;
                        BEQ CODE_8295C4                      ;8295C1|F001    |8295C4;
                        RTL                                  ;8295C3|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8295C4:
-                       JSL.L CODE_82827D                    ;8295C4|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;8295C4|227D8282|82827D;
                        LDA.B #$04                           ;8295C8|A904    |      ;
-                       STA.B $12                            ;8295CA|8512    |000EBA;
-                       STZ.B $02                            ;8295CC|6402    |000EAA;
+                       STA.B r_ev_2_12-$EA8                 ;8295CA|8512    |000EBA;
+                       STZ.B r_ev_2_02_action-$EA8          ;8295CC|6402    |000EAA;
                        LDA.B #$06                           ;8295CE|A906    |      ;
                        JSL.L CODE_848F07                    ;8295D0|22078F84|848F07;
                        RTL                                  ;8295D4|6B      |      ;
@@ -3518,7 +3518,7 @@ loadProjectileSlotBase:
                        JSR.W CODE_829644                    ;8295D8|204496  |829644;
                        JSR.W CODE_82966D                    ;8295DB|206D96  |82966D;
                        JSL.L updateEv_13_14_17_0f           ;8295DE|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;8295E2|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;8295E2|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8295E6:
@@ -3526,7 +3526,7 @@ loadProjectileSlotBase:
                        JSR.W CODE_829644                    ;8295E9|204496  |829644;
                        JSR.W CODE_82966D                    ;8295EC|206D96  |82966D;
                        JSL.L updateEv_13_14_17_0f           ;8295EF|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;8295F3|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;8295F3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8295F7:
@@ -3534,27 +3534,27 @@ loadProjectileSlotBase:
                        JSR.W CODE_829644                    ;8295FA|204496  |829644;
                        JSR.W CODE_82966D                    ;8295FD|206D96  |82966D;
                        JSL.L updateEv_13_14_17_0f           ;829600|22EA8E84|848EEA;
-                       LDA.B $03                            ;829604|A503    |000EAB;
+                       LDA.B r_ev_2_03_do-$EA8              ;829604|A503    |000EAB;
                        CMP.B #$14                           ;829606|C914    |      ;
                        BCS CODE_82960E                      ;829608|B004    |82960E;
-                       JML.L CODE_8280B4                    ;82960A|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82960A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82960E:
-                       JML.L CODE_828398                    ;82960E|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82960E|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829612:
-                       LDA.B $02                            ;829612|A502    |000EAA;
+                       LDA.B r_ev_2_02_action-$EA8          ;829612|A502    |000EAA;
                        BNE CODE_82962D                      ;829614|D017    |82962D;
-                       INC.B $02                            ;829616|E602    |000EAA;
+                       INC.B r_ev_2_02_action-$EA8          ;829616|E602    |000EAA;
                        REP #$20                             ;829618|C220    |      ;
-                       STZ.B $1A                            ;82961A|641A    |000EC2;
+                       STZ.B r_ev_2_1a_xSpdSub-$EA8         ;82961A|641A    |000EC2;
                        LDA.W #$FF00                         ;82961C|A900FF  |      ;
-                       STA.B $1C                            ;82961F|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;82961F|851C    |000EC4;
                        SEP #$20                             ;829621|E220    |      ;
                        LDA.B #$10                           ;829623|A910    |      ;
-                       STA.B $1E                            ;829625|851E    |000EC6;
+                       STA.B r_ev_2_1e_weight-$EA8          ;829625|851E    |000EC6;
                        LDA.B #$12                           ;829627|A912    |      ;
                        JSL.L CODE_848F07                    ;829629|22078F84|848F07;
                                                             ;      |        |      ;
@@ -3563,10 +3563,10 @@ loadProjectileSlotBase:
                        LDA.W $0B9C                          ;829631|AD9C0B  |860B9C;
                        LSR A                                ;829634|4A      |      ;
                        BCC CODE_829643                      ;829635|900C    |829643;
-                       JSL.L CODE_8280B4                    ;829637|22B48082|8280B4;
-                       LDA.B $0E                            ;82963B|A50E    |000EB6;
+                       JSL.L eventID_vile_68_afterInit      ;829637|22B48082|8280B4;
+                       LDA.B r_ev_2_0e-$EA8                 ;82963B|A50E    |000EB6;
                        BNE CODE_829643                      ;82963D|D004    |829643;
-                       JML.L CODE_828398                    ;82963F|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82963F|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829643:
@@ -3575,36 +3575,36 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_829644:
                        REP #$10                             ;829644|C210    |      ;
-                       LDX.B $0C                            ;829646|A60C    |000EB4;
+                       LDX.B r_ev_2_0c-$EA8                 ;829646|A60C    |000EB4;
                        LDA.W r_0036,X                       ;829648|BD3600  |860036;
                        BNE CODE_829656                      ;82964B|D009    |829656;
                        LDA.B #$0A                           ;82964D|A90A    |      ;
-                       STA.B $01                            ;82964F|8501    |000EA9;
-                       STZ.B $02                            ;829651|6402    |000EAA;
+                       STA.B r_ev_2_01_state-$EA8           ;82964F|8501    |000EA9;
+                       STZ.B r_ev_2_02_action-$EA8          ;829651|6402    |000EAA;
                        SEP #$10                             ;829653|E210    |      ;
                        RTS                                  ;829655|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829656:
                        LDA.W r_0001,X                       ;829656|BD0100  |860001;
-                       STA.B $01                            ;829659|8501    |000EA9;
+                       STA.B r_ev_2_01_state-$EA8           ;829659|8501    |000EA9;
                        LDA.W r_0002,X                       ;82965B|BD0200  |860002;
-                       STA.B $02                            ;82965E|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82965E|8502    |000EAA;
                        LDA.W r_0003,X                       ;829660|BD0300  |860003;
-                       STA.B $03                            ;829663|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;829663|8503    |000EAB;
                        LDA.W r_0011,X                       ;829665|BD1100  |860011;
-                       STA.B $11                            ;829668|8511    |000EB9;
+                       STA.B r_ev_2_11_sprAtri-$EA8         ;829668|8511    |000EB9;
                        SEP #$30                             ;82966A|E230    |      ;
                        RTS                                  ;82966C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82966D:
                        REP #$30                             ;82966D|C230    |      ;
-                       LDX.B $0C                            ;82966F|A60C    |000EB4;
+                       LDX.B r_ev_2_0c-$EA8                 ;82966F|A60C    |000EB4;
                        LDA.W r_0005,X                       ;829671|BD0500  |860005;
-                       STA.B $05                            ;829674|8505    |000EAD;
+                       STA.B r_ev_2_05_xPos-$EA8            ;829674|8505    |000EAD;
                        LDA.W r_0008,X                       ;829676|BD0800  |860008;
-                       STA.B $08                            ;829679|8508    |000EB0;
+                       STA.B r_ev_2_08_yPos-$EA8            ;829679|8508    |000EB0;
                        SEP #$30                             ;82967B|E230    |      ;
                        RTS                                  ;82967D|60      |      ;
                                                             ;      |        |      ;
@@ -3619,23 +3619,23 @@ loadProjectileSlotBase:
                        RTS                                  ;829688|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_829689:
-                       LDX.B $01                            ;829689|A601    |000EA9;
-                       JSR.W (PTR16_829697,X)               ;82968B|FC9796  |829697;
-                       LDA.B $11                            ;82968E|A511    |000EB9;
+eventID_crusher_0f_main:
+                       LDX.B r_ev_2_01_state-$EA8           ;829689|A601    |000EA9;
+                       JSR.W (crusher_0f_state,X)           ;82968B|FC9796  |829697;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82968E|A511    |000EB9;
                        AND.B #$3F                           ;829690|293F    |      ;
-                       ORA.B $33                            ;829692|0533    |000EDB;
-                       STA.B $11                            ;829694|8511    |000EB9;
+                       ORA.B r_ev_2_33-$EA8                 ;829692|0533    |000EDB;
+                       STA.B r_ev_2_11_sprAtri-$EA8         ;829694|8511    |000EB9;
                        RTL                                  ;829696|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_829697:
-                       dw CODE_82969D                       ;829697|        |82969D;
+     crusher_0f_state:
+                       dw crusher_0f_state_00               ;829697|        |82969D;
                        dw CODE_829710                       ;829699|        |829710;
                        dw CODE_829937                       ;82969B|        |829937;
                                                             ;      |        |      ;
-          CODE_82969D:
-                       JSL.L CODE_82827D                    ;82969D|227D8282|82827D;
+  crusher_0f_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;82969D|227D8282|82827D;
                        LDA.B #$01                           ;8296A1|A901    |      ;
                        STA.B $28                            ;8296A3|8528    |000F10;
                        LDA.B #$30                           ;8296A5|A930    |      ;
@@ -3646,13 +3646,13 @@ loadProjectileSlotBase:
                        JSL.L CODE_84A1D5                    ;8296AF|22D5A184|84A1D5;
                        CPY.B #$04                           ;8296B3|C004    |      ;
                        BCC CODE_8296BC                      ;8296B5|9005    |8296BC;
-                       JSL.L CODE_828387                    ;8296B7|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;8296B7|22878382|828387;
                        RTS                                  ;8296BB|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8296BC:
                        LDA.B #$04                           ;8296BC|A904    |      ;
-                       STA.B $12                            ;8296BE|8512    |000EBA;
+                       STA.B r_ev_2_12-$EA8                 ;8296BE|8512    |000EBA;
                        CPY.B #$02                           ;8296C0|C002    |      ;
                        BNE CODE_8296D4                      ;8296C2|D010    |8296D4;
                        REP #$10                             ;8296C4|C210    |      ;
@@ -3660,47 +3660,47 @@ loadProjectileSlotBase:
                        LDA.W r_0012,X                       ;8296C9|BD1200  |860012;
                        CMP.B #$04                           ;8296CC|C904    |      ;
                        BCC CODE_8296D2                      ;8296CE|9002    |8296D2;
-                       STZ.B $12                            ;8296D0|6412    |000EBA;
+                       STZ.B r_ev_2_12-$EA8                 ;8296D0|6412    |000EBA;
                                                             ;      |        |      ;
           CODE_8296D2:
                        SEP #$10                             ;8296D2|E210    |      ;
                                                             ;      |        |      ;
           CODE_8296D4:
                        LDA.B #$40                           ;8296D4|A940    |      ;
-                       STA.B $1E                            ;8296D6|851E    |000EC6;
+                       STA.B r_ev_2_1e_weight-$EA8          ;8296D6|851E    |000EC6;
                        JSL.L CODE_828358                    ;8296D8|22588382|828358;
                        INC.W r_0000,X                       ;8296DC|FE0000  |860000;
                        LDA.B #$09                           ;8296DF|A909    |      ;
                        STA.W r_000a,X                       ;8296E1|9D0A00  |86000A;
-                       STX.B $34                            ;8296E4|8634    |000EDC;
+                       STX.B r_ev_2_34-$EA8                 ;8296E4|8634    |000EDC;
                        REP #$21                             ;8296E6|C221    |      ;
                        TDC                                  ;8296E8|7B      |      ;
                        STA.W r_000c,X                       ;8296E9|9D0C00  |86000C;
-                       LDA.B $05                            ;8296EC|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;8296EC|A505    |000EAD;
                        STA.W r_0005,X                       ;8296EE|9D0500  |860005;
-                       LDA.B $08                            ;8296F1|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;8296F1|A508    |000EB0;
                        STA.W r_0008,X                       ;8296F3|9D0800  |860008;
-                       LDA.B $12                            ;8296F6|A512    |000EBA;
+                       LDA.B r_ev_2_12-$EA8                 ;8296F6|A512    |000EBA;
                        ADC.W #$0002                         ;8296F8|690200  |      ;
                        STA.W r_0012,X                       ;8296FB|9D1200  |860012;
                        SEP #$10                             ;8296FE|E210    |      ;
                        LDX.B #$00                           ;829700|A200    |      ;
-                       STX.B $33                            ;829702|8633    |000EDB;
+                       STX.B r_ev_2_33-$EA8                 ;829702|8633    |000EDB;
                        LDA.W #$C8CB                         ;829704|A9CBC8  |      ;
-                       STA.B $20                            ;829707|8520    |000EC8;
-                       LDA.B $05                            ;829709|A505    |000EAD;
-                       STA.B $3B                            ;82970B|853B    |000EE3;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;829707|8520    |000EC8;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;829709|A505    |000EAD;
+                       STA.B r_ev_2_3b-$EA8                 ;82970B|853B    |000EE3;
                        SEP #$20                             ;82970D|E220    |      ;
                        RTS                                  ;82970F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829710:
-                       JSL.L CODE_82806E                    ;829710|226E8082|82806E;
+                       JSL.L initPosAllign                  ;829710|226E8082|82806E;
                        BCC CODE_829726                      ;829714|9010    |829726;
                        LDA.B #$04                           ;829716|A904    |      ;
-                       STA.B $01                            ;829718|8501    |000EA9;
+                       STA.B r_ev_2_01_state-$EA8           ;829718|8501    |000EA9;
                        REP #$10                             ;82971A|C210    |      ;
-                       LDX.B $34                            ;82971C|A634    |000EDC;
+                       LDX.B r_ev_2_34-$EA8                 ;82971C|A634    |000EDC;
                        LDA.B #$04                           ;82971E|A904    |      ;
                        STA.W r_0001,X                       ;829720|9D0100  |860001;
                        SEP #$10                             ;829723|E210    |      ;
@@ -3709,22 +3709,22 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_829726:
                        SEP #$20                             ;829726|E220    |      ;
-                       LDX.B $02                            ;829728|A602    |000EAA;
+                       LDX.B r_ev_2_02_action-$EA8          ;829728|A602    |000EAA;
                        JSR.W (PTR16_82976B,X)               ;82972A|FC6B97  |82976B;
                        LDA.L $7F831E                        ;82972D|AF1E837F|7F831E;
-                       STA.B $11                            ;829731|8511    |000EB9;
-                       JSL.L CODE_8280B4                    ;829733|22B48082|8280B4;
+                       STA.B r_ev_2_11_sprAtri-$EA8         ;829731|8511    |000EB9;
+                       JSL.L eventID_vile_68_afterInit      ;829733|22B48082|8280B4;
                        JSL.L CODE_849B43                    ;829737|22439B84|849B43;
                        BEQ CODE_829766                      ;82973B|F029    |829766;
                        LDA.B #$0E                           ;82973D|A90E    |      ;
-                       TRB.B $11                            ;82973F|1411    |000EB9;
-                       LDA.B $27                            ;829741|A527    |000ECF;
+                       TRB.B r_ev_2_11_sprAtri-$EA8         ;82973F|1411    |000EB9;
+                       LDA.B r_ev_2_27-$EA8                 ;829741|A527    |000ECF;
                        AND.B #$7F                           ;829743|297F    |      ;
                        BNE CODE_829766                      ;829745|D01F    |829766;
                        LDA.B #$06                           ;829747|A906    |      ;
-                       STA.B $02                            ;829749|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;829749|8502    |000EAA;
                        REP #$10                             ;82974B|C210    |      ;
-                       LDX.B $34                            ;82974D|A634    |000EDC;
+                       LDX.B r_ev_2_34-$EA8                 ;82974D|A634    |000EDC;
                        LDA.B #$7F                           ;82974F|A97F    |      ;
                        STA.W r_002a,X                       ;829751|9D2A00  |86002A;
                        LDA.W r_0027,X                       ;829754|BD2700  |860027;
@@ -3751,25 +3751,25 @@ loadProjectileSlotBase:
                        dw CODE_829928                       ;829771|        |829928;
                                                             ;      |        |      ;
           CODE_829773:
-                       LDX.B $03                            ;829773|A603    |000EAB;
+                       LDX.B r_ev_2_03_do-$EA8              ;829773|A603    |000EAB;
                        BNE CODE_8297A0                      ;829775|D029    |8297A0;
                        REP #$10                             ;829777|C210    |      ;
-                       INC.B $03                            ;829779|E603    |000EAB;
-                       LDX.B $34                            ;82977B|A634    |000EDC;
+                       INC.B r_ev_2_03_do-$EA8              ;829779|E603    |000EAB;
+                       LDX.B r_ev_2_34-$EA8                 ;82977B|A634    |000EDC;
                        STZ.W r_0002,X                       ;82977D|9E0200  |860002;
                        STZ.W r_0003,X                       ;829780|9E0300  |860003;
                        SEP #$10                             ;829783|E210    |      ;
                        REP #$20                             ;829785|C220    |      ;
                        LDA.W #$00C0                         ;829787|A9C000  |      ;
-                       BIT.B $32                            ;82978A|2432    |000EDA;
+                       BIT.B r_ev_2_32-$EA8                 ;82978A|2432    |000EDA;
                        BVS CODE_829791                      ;82978C|7003    |829791;
                        LDA.W #$FF40                         ;82978E|A940FF  |      ;
                                                             ;      |        |      ;
           CODE_829791:
-                       STA.B $1A                            ;829791|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;829791|851A    |000EC2;
                        SEP #$20                             ;829793|E220    |      ;
                        LDA.B #$20                           ;829795|A920    |      ;
-                       STA.B $36                            ;829797|8536    |000EDE;
+                       STA.B r_ev_2_36-$EA8                 ;829797|8536    |000EDE;
                        LDA.B #$01                           ;829799|A901    |      ;
                        JSL.L CODE_848F07                    ;82979B|22078F84|848F07;
                        RTS                                  ;82979F|60      |      ;
@@ -3777,9 +3777,9 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_8297A0:
                        REP #$20                             ;8297A0|C220    |      ;
-                       LDA.B $05                            ;8297A2|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;8297A2|A505    |000EAD;
                        SEC                                  ;8297A4|38      |      ;
-                       SBC.B $3B                            ;8297A5|E53B    |000EE3;
+                       SBC.B r_ev_2_3b-$EA8                 ;8297A5|E53B    |000EE3;
                        STA.W r_0000                         ;8297A7|8D0000  |860000;
                        BPL CODE_8297B0                      ;8297AA|1004    |8297B0;
                        EOR.W #$FFFF                         ;8297AC|49FFFF  |      ;
@@ -3796,48 +3796,48 @@ loadProjectileSlotBase:
                        LDX.B #$40                           ;8297C2|A240    |      ;
                                                             ;      |        |      ;
           CODE_8297C4:
-                       STA.B $1A                            ;8297C4|851A    |000E82;
-                       STX.B $33                            ;8297C6|8633    |000E9B;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;8297C4|851A    |000E82;
+                       STX.B r_ev_33-$E68                   ;8297C6|8633    |000E9B;
                                                             ;      |        |      ;
           CODE_8297C8:
                        SEP #$20                             ;8297C8|E220    |      ;
                        JSL.L CODE_82823E                    ;8297CA|223E8282|82823E;
                        JSL.L CODE_8491BE                    ;8297CE|22BE9184|8491BE;
-                       LDA.B $2B                            ;8297D2|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;8297D2|A52B    |000ED3;
                        BIT.B #$03                           ;8297D4|8903    |      ;
                        BEQ CODE_8297EA                      ;8297D6|F012    |8297EA;
                        REP #$20                             ;8297D8|C220    |      ;
-                       LDA.B $1A                            ;8297DA|A51A    |000EC2;
+                       LDA.B r_ev_2_1a_xSpdSub-$EA8         ;8297DA|A51A    |000EC2;
                        EOR.W #$FFFF                         ;8297DC|49FFFF  |      ;
                        INC A                                ;8297DF|1A      |      ;
-                       STA.B $1A                            ;8297E0|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;8297E0|851A    |000EC2;
                        SEP #$20                             ;8297E2|E220    |      ;
-                       LDA.B $33                            ;8297E4|A533    |000EDB;
+                       LDA.B r_ev_2_33-$EA8                 ;8297E4|A533    |000EDB;
                        EOR.B #$40                           ;8297E6|4940    |      ;
-                       STA.B $33                            ;8297E8|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;8297E8|8533    |000EDB;
                                                             ;      |        |      ;
           CODE_8297EA:
-                       LDA.B $36                            ;8297EA|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;8297EA|A536    |000EDE;
                        BEQ CODE_8297F2                      ;8297EC|F004    |8297F2;
-                       DEC.B $36                            ;8297EE|C636    |000EDE;
+                       DEC.B r_ev_2_36-$EA8                 ;8297EE|C636    |000EDE;
                        BRA CODE_829808                      ;8297F0|8016    |829808;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8297F2:
-                       LDA.B $05                            ;8297F2|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;8297F2|A505    |000EAD;
                        AND.B #$0F                           ;8297F4|290F    |      ;
                        BNE CODE_829808                      ;8297F6|D010    |829808;
                        JSR.W CODE_82993C                    ;8297F8|203C99  |82993C;
                        BNE CODE_829804                      ;8297FB|D007    |829804;
                        LDA.B #$02                           ;8297FD|A902    |      ;
-                       STA.B $02                            ;8297FF|8502    |000EAA;
-                       STZ.B $03                            ;829801|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;8297FF|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;829801|6403    |000EAB;
                        RTS                                  ;829803|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829804:
                        LDA.B #$1E                           ;829804|A91E    |      ;
-                       STA.B $36                            ;829806|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;829806|8536    |000E9E;
                                                             ;      |        |      ;
           CODE_829808:
                        JSL.L updateEv_13_14_17_0f           ;829808|22EA8E84|848EEA;
@@ -3845,11 +3845,11 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82980F:
-                       LDX.B $03                            ;82980F|A603    |000EAB;
+                       LDX.B r_ev_2_03_do-$EA8              ;82980F|A603    |000EAB;
                        BNE CODE_82982A                      ;829811|D017    |82982A;
-                       INC.B $03                            ;829813|E603    |000EAB;
+                       INC.B r_ev_2_03_do-$EA8              ;829813|E603    |000EAB;
                        REP #$10                             ;829815|C210    |      ;
-                       LDX.B $34                            ;829817|A634    |000EDC;
+                       LDX.B r_ev_2_34-$EA8                 ;829817|A634    |000EDC;
                        LDA.B #$02                           ;829819|A902    |      ;
                        STA.W r_0002,X                       ;82981B|9D0200  |860002;
                        STZ.W r_0003,X                       ;82981E|9E0300  |860003;
@@ -3860,18 +3860,18 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82982A:
-                       LDA.B $0F                            ;82982A|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82982A|A50F    |000EB7;
                        BPL CODE_829847                      ;82982C|1019    |829847;
                        LDA.B #$04                           ;82982E|A904    |      ;
-                       STA.B $02                            ;829830|8502    |000EAA;
-                       STZ.B $03                            ;829832|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;829830|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;829832|6403    |000EAB;
                        REP #$10                             ;829834|C210    |      ;
-                       LDX.B $34                            ;829836|A634    |000EDC;
+                       LDX.B r_ev_2_34-$EA8                 ;829836|A634    |000EDC;
                        LDA.B #$04                           ;829838|A904    |      ;
                        STA.W r_0002,X                       ;82983A|9D0200  |860002;
                        STZ.W r_0003,X                       ;82983D|9E0300  |860003;
                        LDX.W #$0002                         ;829840|A20200  |      ;
-                       STX.B $37                            ;829843|8637    |000EDF;
+                       STX.B r_ev_2_37-$EA8                 ;829843|8637    |000EDF;
                        SEP #$10                             ;829845|E210    |      ;
                                                             ;      |        |      ;
           CODE_829847:
@@ -3880,7 +3880,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82984E:
-                       LDX.B $03                            ;82984E|A603    |000EAB;
+                       LDX.B r_ev_2_03_do-$EA8              ;82984E|A603    |000EAB;
                        JMP.W (PTR16_829853,X)               ;829850|7C5398  |829853;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3894,37 +3894,37 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82985F:
                        LDA.B #$02                           ;82985F|A902    |      ;
-                       STA.B $03                            ;829861|8503    |000EAB;
-                       LDA.B $08                            ;829863|A508    |000EB0;
-                       STA.B $39                            ;829865|8539    |000EE1;
+                       STA.B r_ev_2_03_do-$EA8              ;829861|8503    |000EAB;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;829863|A508    |000EB0;
+                       STA.B r_ev_2_39-$EA8                 ;829865|8539    |000EE1;
                        LDA.B $09                            ;829867|A509    |000EB1;
-                       STA.B $3A                            ;829869|853A    |000EE2;
+                       STA.B r_ev_2_3a-$EA8                 ;829869|853A    |000EE2;
                        LDA.B #$08                           ;82986B|A908    |      ;
-                       STA.B $36                            ;82986D|8536    |000EDE;
+                       STA.B r_ev_2_36-$EA8                 ;82986D|8536    |000EDE;
                        LDA.B #$0C                           ;82986F|A90C    |      ;
                        JSL.L CODE_848F07                    ;829871|22078F84|848F07;
                        RTS                                  ;829875|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829876:
-                       DEC.B $36                            ;829876|C636    |000EDE;
+                       DEC.B r_ev_2_36-$EA8                 ;829876|C636    |000EDE;
                        BNE CODE_8298A9                      ;829878|D02F    |8298A9;
                        LDA.B #$04                           ;82987A|A904    |      ;
-                       STA.B $03                            ;82987C|8503    |000EAB;
-                       STZ.B $37                            ;82987E|6437    |000EDF;
-                       STZ.B $38                            ;829880|6438    |000EE0;
+                       STA.B r_ev_2_03_do-$EA8              ;82987C|8503    |000EAB;
+                       STZ.B r_ev_2_37-$EA8                 ;82987E|6437    |000EDF;
+                       STZ.B r_ev_2_38-$EA8                 ;829880|6438    |000EE0;
                        JSL.L CODE_8282D3                    ;829882|22D38282|8282D3;
                        BNE CODE_8298A6                      ;829886|D01E    |8298A6;
                        INC.W r_0000,X                       ;829888|FE0000  |860000;
                        LDA.B #$10                           ;82988B|A910    |      ;
                        STA.W r_000a,X                       ;82988D|9D0A00  |86000A;
                        STZ.W r_000b,X                       ;829890|9E0B00  |86000B;
-                       LDA.B $11                            ;829893|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;829893|A511    |000EB9;
                        STA.W r_0011,X                       ;829895|9D1100  |860011;
                        REP #$20                             ;829898|C220    |      ;
-                       LDA.B $05                            ;82989A|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82989A|A505    |000EAD;
                        STA.W r_0005,X                       ;82989C|9D0500  |860005;
-                       LDA.B $08                            ;82989F|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;82989F|A508    |000EB0;
                        STA.W r_0008,X                       ;8298A1|9D0800  |860008;
                        SEP #$20                             ;8298A4|E220    |      ;
                                                             ;      |        |      ;
@@ -3938,13 +3938,13 @@ loadProjectileSlotBase:
                        LSR A                                ;8298AC|4A      |      ;
                        BCC CODE_8298C1                      ;8298AD|9012    |8298C1;
                        REP #$21                             ;8298AF|C221    |      ;
-                       LDA.B $05                            ;8298B1|A505    |000EAD;
-                       ADC.B $37                            ;8298B3|6537    |000EDF;
-                       STA.B $05                            ;8298B5|8505    |000EAD;
-                       LDA.B $37                            ;8298B7|A537    |000EDF;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;8298B1|A505    |000EAD;
+                       ADC.B r_ev_2_37-$EA8                 ;8298B3|6537    |000EDF;
+                       STA.B r_ev_2_05_xPos-$EA8            ;8298B5|8505    |000EAD;
+                       LDA.B r_ev_2_37-$EA8                 ;8298B7|A537    |000EDF;
                        EOR.W #$FFFF                         ;8298B9|49FFFF  |      ;
                        INC A                                ;8298BC|1A      |      ;
-                       STA.B $37                            ;8298BD|8537    |000EDF;
+                       STA.B r_ev_2_37-$EA8                 ;8298BD|8537    |000EDF;
                        SEP #$20                             ;8298BF|E220    |      ;
                                                             ;      |        |      ;
           CODE_8298C1:
@@ -3953,26 +3953,26 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8298C8:
-                       LDA.B $37                            ;8298C8|A537    |000EDF;
+                       LDA.B r_ev_2_37-$EA8                 ;8298C8|A537    |000EDF;
                        BEQ CODE_8298EA                      ;8298CA|F01E    |8298EA;
                        BPL CODE_8298DE                      ;8298CC|1010    |8298DE;
                        LDA.B #$0A                           ;8298CE|A90A    |      ;
-                       STA.B $03                            ;8298D0|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;8298D0|8503    |000E6B;
                        REP #$20                             ;8298D2|C220    |      ;
-                       STZ.B $1A                            ;8298D4|641A    |000E82;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;8298D4|641A    |000E82;
                        LDA.W #$FE00                         ;8298D6|A900FE  |      ;
-                       STA.B $1C                            ;8298D9|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;8298D9|851C    |000E84;
                        SEP #$20                             ;8298DB|E220    |      ;
                        RTS                                  ;8298DD|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8298DE:
                        LDA.B #$06                           ;8298DE|A906    |      ;
-                       STA.B $03                            ;8298E0|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;8298E0|8503    |000EAB;
                        LDA.B #$00                           ;8298E2|A900    |      ;
-                       STA.B $1C                            ;8298E4|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;8298E4|851C    |000EC4;
                        LDA.B #$01                           ;8298E6|A901    |      ;
-                       STA.B $1D                            ;8298E8|851D    |000EC5;
+                       STA.B r_ev_2_1d_ySpd-$EA8            ;8298E8|851D    |000EC5;
                                                             ;      |        |      ;
           CODE_8298EA:
                        JSL.L updateEv_13_14_17_0f           ;8298EA|22EA8E84|848EEA;
@@ -3982,12 +3982,12 @@ loadProjectileSlotBase:
           CODE_8298EF:
                        JSL.L CODE_82825D                    ;8298EF|225D8282|82825D;
                        REP #$20                             ;8298F3|C220    |      ;
-                       LDA.B $39                            ;8298F5|A539    |000EE1;
-                       CMP.B $08                            ;8298F7|C508    |000EB0;
+                       LDA.B r_ev_2_39-$EA8                 ;8298F5|A539    |000EE1;
+                       CMP.B r_ev_2_08_yPos-$EA8            ;8298F7|C508    |000EB0;
                        SEP #$20                             ;8298F9|E220    |      ;
                        BCC CODE_829901                      ;8298FB|9004    |829901;
                        LDA.B #$08                           ;8298FD|A908    |      ;
-                       STA.B $03                            ;8298FF|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;8298FF|8503    |000EAB;
                                                             ;      |        |      ;
           CODE_829901:
                        JSL.L updateEv_13_14_17_0f           ;829901|22EA8E84|848EEA;
@@ -3995,10 +3995,10 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829906:
-                       LDA.B $37                            ;829906|A537    |000EDF;
+                       LDA.B r_ev_2_37-$EA8                 ;829906|A537    |000EDF;
                        BNE CODE_82990E                      ;829908|D004    |82990E;
-                       STZ.B $02                            ;82990A|6402    |000EAA;
-                       STZ.B $03                            ;82990C|6403    |000EAB;
+                       STZ.B r_ev_2_02_action-$EA8          ;82990A|6402    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;82990C|6403    |000EAB;
                                                             ;      |        |      ;
           CODE_82990E:
                        JSL.L updateEv_13_14_17_0f           ;82990E|22EA8E84|848EEA;
@@ -4007,12 +4007,12 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_829913:
                        JSL.L CODE_8281B2                    ;829913|22B28182|8281B2;
-                       LDA.B $1D                            ;829917|A51D    |000E85;
+                       LDA.B r_ev_1d_ySpd-$E68              ;829917|A51D    |000E85;
                        CMP.B #$02                           ;829919|C902    |      ;
                        BMI CODE_829923                      ;82991B|3006    |829923;
                        LDA.B #$04                           ;82991D|A904    |      ;
-                       STA.B $03                            ;82991F|8503    |000E6B;
-                       STZ.B $37                            ;829921|6437    |000E9F;
+                       STA.B r_ev_03_do-$E68                ;82991F|8503    |000E6B;
+                       STZ.B r_ev_37-$E68                   ;829921|6437    |000E9F;
                                                             ;      |        |      ;
           CODE_829923:
                        JSL.L updateEv_13_14_17_0f           ;829923|22EA8E84|848EEA;
@@ -4021,7 +4021,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_829928:
                        LDA.B #$04                           ;829928|A904    |      ;
-                       STA.B $01                            ;82992A|8501    |000EA9;
+                       STA.B r_ev_2_01_state-$EA8           ;82992A|8501    |000EA9;
                        JSL.L CODE_84A4B5                    ;82992C|22B5A484|84A4B5;
                        LDA.B #$03                           ;829930|A903    |      ;
                        JSL.L CODE_84A384                    ;829932|2284A384|84A384;
@@ -4029,18 +4029,18 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829937:
-                       JSL.L CODE_828387                    ;829937|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;829937|22878382|828387;
                        RTS                                  ;82993B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82993C:
-                       STZ.B $2A                            ;82993C|642A    |000ED2;
+                       STZ.B r_ev_2_2a-$EA8                 ;82993C|642A    |000ED2;
                        LDA.B #$F8                           ;82993E|A9F8    |      ;
-                       STA.B $29                            ;829940|8529    |000ED1;
+                       STA.B r_ev_2_29-$EA8                 ;829940|8529    |000ED1;
                        JSR.W CODE_82994F                    ;829942|204F99  |82994F;
                        BNE CODE_82994E                      ;829945|D007    |82994E;
                        LDA.B #$08                           ;829947|A908    |      ;
-                       STA.B $29                            ;829949|8529    |000ED1;
+                       STA.B r_ev_2_29-$EA8                 ;829949|8529    |000ED1;
                        JSR.W CODE_82994F                    ;82994B|204F99  |82994F;
                                                             ;      |        |      ;
           CODE_82994E:
@@ -4049,10 +4049,10 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82994F:
                        LDA.B #$10                           ;82994F|A910    |      ;
-                       STA.B $36                            ;829951|8536    |000EDE;
+                       STA.B r_ev_2_36-$EA8                 ;829951|8536    |000EDE;
                        REP #$20                             ;829953|C220    |      ;
-                       LDA.B $08                            ;829955|A508    |000EB0;
-                       STA.B $37                            ;829957|8537    |000EDF;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;829955|A508    |000EB0;
+                       STA.B r_ev_2_37-$EA8                 ;829957|8537    |000EDF;
                                                             ;      |        |      ;
           CODE_829959:
                        JSL.L CODE_8490A0                    ;829959|22A09084|8490A0;
@@ -4072,45 +4072,45 @@ loadProjectileSlotBase:
                        BEQ CODE_82998E                      ;829976|F016    |82998E;
                                                             ;      |        |      ;
           CODE_829978:
-                       LDA.B $08                            ;829978|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;829978|A508    |000EB0;
                        CLC                                  ;82997A|18      |      ;
                        ADC.W #$0010                         ;82997B|691000  |      ;
-                       STA.B $08                            ;82997E|8508    |000EB0;
-                       LDX.B $36                            ;829980|A636    |000EDE;
+                       STA.B r_ev_2_08_yPos-$EA8            ;82997E|8508    |000EB0;
+                       LDX.B r_ev_2_36-$EA8                 ;829980|A636    |000EDE;
                        DEX                                  ;829982|CA      |      ;
-                       STX.B $36                            ;829983|8636    |000EDE;
+                       STX.B r_ev_2_36-$EA8                 ;829983|8636    |000EDE;
                        BNE CODE_829959                      ;829985|D0D2    |829959;
                                                             ;      |        |      ;
           CODE_829987:
-                       LDA.B $37                            ;829987|A537    |000E9F;
-                       STA.B $08                            ;829989|8508    |000E70;
+                       LDA.B r_ev_37-$E68                   ;829987|A537    |000E9F;
+                       STA.B r_ev_08_yPos-$E68              ;829989|8508    |000E70;
                        SEP #$20                             ;82998B|E220    |      ;
                        RTS                                  ;82998D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82998E:
-                       LDA.B $37                            ;82998E|A537    |000EDF;
-                       STA.B $08                            ;829990|8508    |000EB0;
+                       LDA.B r_ev_2_37-$EA8                 ;82998E|A537    |000EDF;
+                       STA.B r_ev_2_08_yPos-$EA8            ;829990|8508    |000EB0;
                        SEP #$22                             ;829992|E222    |      ;
                        RTS                                  ;829994|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829995:
                        REP #$30                             ;829995|C230    |      ;
-                       LDX.B $34                            ;829997|A634    |000EDC;
-                       LDA.B $05                            ;829999|A505    |000EAD;
+                       LDX.B r_ev_2_34-$EA8                 ;829997|A634    |000EDC;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;829999|A505    |000EAD;
                        STA.W r_0005,X                       ;82999B|9D0500  |860005;
-                       LDA.B $08                            ;82999E|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;82999E|A508    |000EB0;
                        STA.W r_0008,X                       ;8299A0|9D0800  |860008;
                        SEP #$30                             ;8299A3|E230    |      ;
                        RTS                                  ;8299A5|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_8299A6:
-                       LDA.B $33                            ;8299A6|A533    |000EDB;
-                       TSB.B $11                            ;8299A8|0411    |000EB9;
-                       LDX.B $01                            ;8299AA|A601    |000EA9;
-                       JSR.W (PTR16_8299D7,X)               ;8299AC|FCD799  |8299D7;
+eventID_dodgeBlaster_13_main:
+                       LDA.B r_ev_2_33-$EA8                 ;8299A6|A533    |000EDB;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;8299A8|0411    |000EB9;
+                       LDX.B r_ev_2_01_state-$EA8           ;8299AA|A601    |000EA9;
+                       JSR.W (dodgeBlaster_13_state,X)      ;8299AC|FCD799  |8299D7;
                        JSL.L CODE_849B03                    ;8299AF|22039B84|849B03;
                        JSL.L CODE_849B43                    ;8299B3|22439B84|849B43;
                        BEQ CODE_8299CD                      ;8299B7|F014    |8299CD;
@@ -4120,42 +4120,42 @@ loadProjectileSlotBase:
                        JSL.L CODE_84A384                    ;8299C1|2284A384|84A384;
                                                             ;      |        |      ;
           CODE_8299C5:
-                       JML.L CODE_828387                    ;8299C5|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;8299C5|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8299C9:
                        LDA.B #$0E                           ;8299C9|A90E    |      ;
-                       TRB.B $11                            ;8299CB|1411    |000EB9;
+                       TRB.B r_ev_2_11_sprAtri-$EA8         ;8299CB|1411    |000EB9;
                                                             ;      |        |      ;
           CODE_8299CD:
-                       JSL.L CODE_82806E                    ;8299CD|226E8082|82806E;
+                       JSL.L initPosAllign                  ;8299CD|226E8082|82806E;
                        BCS CODE_8299C5                      ;8299D1|B0F2    |8299C5;
-                       JML.L CODE_8280B4                    ;8299D3|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;8299D3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_8299D7:
-                       dw CODE_8299DF                       ;8299D7|        |8299DF;
+dodgeBlaster_13_state:
+                       dw dodgeBlaster_13_state_00          ;8299D7|        |8299DF;
                        dw CODE_829A3E                       ;8299D9|        |829A3E;
                        dw CODE_829A4F                       ;8299DB|        |829A4F;
                        dw CODE_829AF4                       ;8299DD|        |829AF4;
                                                             ;      |        |      ;
-          CODE_8299DF:
-                       JSL.L CODE_82827D                    ;8299DF|227D8282|82827D;
+dodgeBlaster_13_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;8299DF|227D8282|82827D;
                        REP #$20                             ;8299E3|C220    |      ;
                        LDA.W #$C93B                         ;8299E5|A93BC9  |      ;
-                       STA.B $20                            ;8299E8|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;8299E8|8520    |000EC8;
                        LDA.W #$0080                         ;8299EA|A98000  |      ;
-                       STA.B $1C                            ;8299ED|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;8299ED|851C    |000EC4;
                        SEP #$20                             ;8299EF|E220    |      ;
-                       LDA.B $11                            ;8299F1|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;8299F1|A511    |000EB9;
                        AND.B #$0E                           ;8299F3|290E    |      ;
-                       STA.B $33                            ;8299F5|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;8299F5|8533    |000EDB;
                        LDA.B #$FF                           ;8299F7|A9FF    |      ;
-                       STA.B $2F                            ;8299F9|852F    |000ED7;
-                       LDA.B $0B                            ;8299FB|A50B    |000EB3;
+                       STA.B r_ev_2_2f-$EA8                 ;8299F9|852F    |000ED7;
+                       LDA.B r_ev_2_0b_subID-$EA8           ;8299FB|A50B    |000EB3;
                        AND.B #$40                           ;8299FD|2940    |      ;
-                       TSB.B $11                            ;8299FF|0411    |000EB9;
-                       LDA.B $0B                            ;829A01|A50B    |000EB3;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;8299FF|0411    |000EB9;
+                       LDA.B r_ev_2_0b_subID-$EA8           ;829A01|A50B    |000EB3;
                        ASL A                                ;829A03|0A      |      ;
                        ASL A                                ;829A04|0A      |      ;
                        REP #$20                             ;829A05|C220    |      ;
@@ -4164,29 +4164,29 @@ loadProjectileSlotBase:
                        LDA.W #$F800                         ;829A0C|A900F8  |      ;
                                                             ;      |        |      ;
           CODE_829A0F:
-                       STA.B $1A                            ;829A0F|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;829A0F|851A    |000EC2;
                        SEP #$20                             ;829A11|E220    |      ;
                        LDA.B #$08                           ;829A13|A908    |      ;
-                       STA.B $34                            ;829A15|8534    |000EDC;
+                       STA.B r_ev_2_34-$EA8                 ;829A15|8534    |000EDC;
                                                             ;      |        |      ;
           CODE_829A17:
                        JSL.L CODE_82823E                    ;829A17|223E8282|82823E;
                        JSL.L CODE_8491BE                    ;829A1B|22BE9184|8491BE;
-                       LDA.B $2B                            ;829A1F|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;829A1F|A52B    |000ED3;
                        AND.B #$03                           ;829A21|2903    |      ;
                        BNE CODE_829A2F                      ;829A23|D00A    |829A2F;
-                       DEC.B $34                            ;829A25|C634    |000EDC;
+                       DEC.B r_ev_2_34-$EA8                 ;829A25|C634    |000EDC;
                        BNE CODE_829A17                      ;829A27|D0EE    |829A17;
                        PLA                                  ;829A29|68      |      ;
                        PLA                                  ;829A2A|68      |      ;
-                       JML.L CODE_828387                    ;829A2B|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;829A2B|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829A2F:
                        LDA.B #$03                           ;829A2F|A903    |      ;
-                       STA.B $27                            ;829A31|8527    |000ECF;
+                       STA.B r_ev_2_27-$EA8                 ;829A31|8527    |000ECF;
                        LDA.B #$02                           ;829A33|A902    |      ;
-                       STA.B $26                            ;829A35|8526    |000ECE;
+                       STA.B r_ev_2_26-$EA8                 ;829A35|8526    |000ECE;
                        LDA.B #$00                           ;829A37|A900    |      ;
                        JSL.L CODE_848F07                    ;829A39|22078F84|848F07;
                        RTS                                  ;829A3D|60      |      ;
@@ -4195,21 +4195,21 @@ loadProjectileSlotBase:
           CODE_829A3E:
                        LDA.W r_0bad                         ;829A3E|ADAD0B  |860BAD;
                        SEC                                  ;829A41|38      |      ;
-                       SBC.B $05                            ;829A42|E505    |000EAD;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;829A42|E505    |000EAD;
                        BCC CODE_829A4A                      ;829A44|9004    |829A4A;
                        CMP.B #$80                           ;829A46|C980    |      ;
                        BPL CODE_829A4E                      ;829A48|1004    |829A4E;
                                                             ;      |        |      ;
           CODE_829A4A:
                        LDA.B #$04                           ;829A4A|A904    |      ;
-                       STA.B $01                            ;829A4C|8501    |000EA9;
+                       STA.B r_ev_2_01_state-$EA8           ;829A4C|8501    |000EA9;
                                                             ;      |        |      ;
           CODE_829A4E:
                        RTS                                  ;829A4E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829A4F:
-                       LDX.B $02                            ;829A4F|A602    |000EAA;
+                       LDX.B r_ev_2_02_action-$EA8          ;829A4F|A602    |000EAA;
                        JMP.W (PTR16_829A54,X)               ;829A51|7C549A  |829A54;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4220,29 +4220,29 @@ loadProjectileSlotBase:
           CODE_829A58:
                        LDA.W r_1f0d                         ;829A58|AD0D1F  |861F0D;
                        BEQ CODE_829A99                      ;829A5B|F03C    |829A99;
-                       STZ.B $36                            ;829A5D|6436    |000EDE;
+                       STZ.B r_ev_2_36-$EA8                 ;829A5D|6436    |000EDE;
                        REP #$20                             ;829A5F|C220    |      ;
-                       LDA.B $08                            ;829A61|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;829A61|A508    |000EB0;
                        SEC                                  ;829A63|38      |      ;
                        SBC.W r_0bb0                         ;829A64|EDB00B  |860BB0;
                        BCS CODE_829A6F                      ;829A67|B006    |829A6F;
                        EOR.W #$FFFF                         ;829A69|49FFFF  |      ;
                        INC A                                ;829A6C|1A      |      ;
-                       INC.B $36                            ;829A6D|E636    |000EDE;
+                       INC.B r_ev_2_36-$EA8                 ;829A6D|E636    |000EDE;
                                                             ;      |        |      ;
           CODE_829A6F:
                        CMP.W #$0020                         ;829A6F|C92000  |      ;
                        SEP #$20                             ;829A72|E220    |      ;
                        BCS CODE_829A99                      ;829A74|B023    |829A99;
                        LDA.B #$02                           ;829A76|A902    |      ;
-                       STA.B $02                            ;829A78|8502    |000EAA;
-                       LDA.B $36                            ;829A7A|A536    |000EDE;
+                       STA.B r_ev_2_02_action-$EA8          ;829A78|8502    |000EAA;
+                       LDA.B r_ev_2_36-$EA8                 ;829A7A|A536    |000EDE;
                        CLC                                  ;829A7C|18      |      ;
                        ADC.B #$02                           ;829A7D|6902    |      ;
                        JSL.L CODE_848F07                    ;829A7F|22078F84|848F07;
                        LDA.B #$10                           ;829A83|A910    |      ;
-                       STA.B $35                            ;829A85|8535    |000EDD;
-                       LDA.B $36                            ;829A87|A536    |000EDE;
+                       STA.B r_ev_2_35-$EA8                 ;829A85|8535    |000EDD;
+                       LDA.B r_ev_2_36-$EA8                 ;829A87|A536    |000EDE;
                        LSR A                                ;829A89|4A      |      ;
                        REP #$20                             ;829A8A|C220    |      ;
                        LDA.W #$0200                         ;829A8C|A90002  |      ;
@@ -4250,7 +4250,7 @@ loadProjectileSlotBase:
                        LDA.W #$FE00                         ;829A91|A900FE  |      ;
                                                             ;      |        |      ;
           CODE_829A94:
-                       STA.B $1C                            ;829A94|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;829A94|851C    |000EC4;
                        SEP #$20                             ;829A96|E220    |      ;
                        RTS                                  ;829A98|60      |      ;
                                                             ;      |        |      ;
@@ -4258,7 +4258,7 @@ loadProjectileSlotBase:
           CODE_829A99:
                        JSR.W CODE_829B42                    ;829A99|20429B  |829B42;
                        REP #$20                             ;829A9C|C220    |      ;
-                       LDA.B $08                            ;829A9E|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;829A9E|A508    |000EB0;
                        SEC                                  ;829AA0|38      |      ;
                        SBC.W r_0bb0                         ;829AA1|EDB00B  |860BB0;
                        BCS CODE_829AAA                      ;829AA4|B004    |829AAA;
@@ -4270,12 +4270,12 @@ loadProjectileSlotBase:
                        SEP #$20                             ;829AAD|E220    |      ;
                        BCS CODE_829AC1                      ;829AAF|B010    |829AC1;
                        LDA.B #$06                           ;829AB1|A906    |      ;
-                       STA.B $01                            ;829AB3|8501    |000E69;
-                       STZ.B $02                            ;829AB5|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;829AB3|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;829AB5|6402    |000E6A;
                        LDA.B #$01                           ;829AB7|A901    |      ;
                        JSL.L CODE_848F07                    ;829AB9|22078F84|848F07;
                        LDA.B #$30                           ;829ABD|A930    |      ;
-                       STA.B $35                            ;829ABF|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;829ABF|8535    |000E9D;
                                                             ;      |        |      ;
           CODE_829AC1:
                        RTS                                  ;829AC1|60      |      ;
@@ -4285,23 +4285,23 @@ loadProjectileSlotBase:
                        JSR.W CODE_829B66                    ;829AC2|20669B  |829B66;
                        CMP.B #$34                           ;829AC5|C934    |      ;
                        BCS CODE_829ADB                      ;829AC7|B012    |829ADB;
-                       LDA.B $36                            ;829AC9|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;829AC9|A536    |000EDE;
                        EOR.B #$01                           ;829ACB|4901    |      ;
-                       STA.B $36                            ;829ACD|8536    |000EDE;
+                       STA.B r_ev_2_36-$EA8                 ;829ACD|8536    |000EDE;
                        REP #$20                             ;829ACF|C220    |      ;
-                       LDA.B $1C                            ;829AD1|A51C    |000EC4;
+                       LDA.B r_ev_2_1c_ySpdSub-$EA8         ;829AD1|A51C    |000EC4;
                        EOR.W #$FFFF                         ;829AD3|49FFFF  |      ;
                        INC A                                ;829AD6|1A      |      ;
-                       STA.B $1C                            ;829AD7|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;829AD7|851C    |000EC4;
                        SEP #$20                             ;829AD9|E220    |      ;
                                                             ;      |        |      ;
           CODE_829ADB:
                        JSL.L CODE_82825D                    ;829ADB|225D8282|82825D;
                        JSL.L CODE_8491BE                    ;829ADF|22BE9184|8491BE;
                        JSL.L updateEv_13_14_17_0f           ;829AE3|22EA8E84|848EEA;
-                       DEC.B $35                            ;829AE7|C635    |000EDD;
+                       DEC.B r_ev_2_35-$EA8                 ;829AE7|C635    |000EDD;
                        BNE CODE_829AF3                      ;829AE9|D008    |829AF3;
-                       STZ.B $02                            ;829AEB|6402    |000E6A;
+                       STZ.B r_ev_02_action-$E68            ;829AEB|6402    |000E6A;
                        LDA.B #$00                           ;829AED|A900    |      ;
                        JSL.L CODE_848F07                    ;829AEF|22078F84|848F07;
                                                             ;      |        |      ;
@@ -4312,23 +4312,23 @@ loadProjectileSlotBase:
           CODE_829AF4:
                        JSR.W CODE_829B42                    ;829AF4|20429B  |829B42;
                        JSL.L updateEv_13_14_17_0f           ;829AF7|22EA8E84|848EEA;
-                       DEC.B $35                            ;829AFB|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;829AFB|C635    |000E9D;
                        BNE CODE_829B41                      ;829AFD|D042    |829B41;
                        JSL.L CODE_828358                    ;829AFF|22588382|828358;
                        BNE CODE_829B35                      ;829B03|D030    |829B35;
                        INC.W r_0000,X                       ;829B05|FE0000  |860000;
                        LDA.B #$02                           ;829B08|A902    |      ;
                        STA.W r_000a,X                       ;829B0A|9D0A00  |86000A;
-                       LDA.B $11                            ;829B0D|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;829B0D|A511    |000E79;
                        STA.W r_0011,X                       ;829B0F|9D1100  |860011;
-                       LDA.B $18                            ;829B12|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;829B12|A518    |000E80;
                        STA.W r_0018,X                       ;829B14|9D1800  |860018;
                        LDA.B #$03                           ;829B17|A903    |      ;
                        STA.W r_0016,X                       ;829B19|9D1600  |860016;
                        REP #$20                             ;829B1C|C220    |      ;
-                       LDA.B $08                            ;829B1E|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;829B1E|A508    |000E70;
                        STA.W r_0008,X                       ;829B20|9D0800  |860008;
-                       LDA.B $10                            ;829B23|A510    |000E78;
+                       LDA.B r_ev_10-$E68                   ;829B23|A510    |000E78;
                        ASL A                                ;829B25|0A      |      ;
                        ASL A                                ;829B26|0A      |      ;
                        LDA.W #$000C                         ;829B27|A90C00  |      ;
@@ -4337,13 +4337,13 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_829B2F:
                        CLC                                  ;829B2F|18      |      ;
-                       ADC.B $05                            ;829B30|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;829B30|6505    |000E6D;
                        STA.W r_0005,X                       ;829B32|9D0500  |860005;
                                                             ;      |        |      ;
           CODE_829B35:
                        SEP #$30                             ;829B35|E230    |      ;
                        LDA.B #$04                           ;829B37|A904    |      ;
-                       STA.B $01                            ;829B39|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;829B39|8501    |000E69;
                        LDA.B #$00                           ;829B3B|A900    |      ;
                        JSL.L CODE_848F07                    ;829B3D|22078F84|848F07;
                                                             ;      |        |      ;
@@ -4355,13 +4355,13 @@ loadProjectileSlotBase:
                        REP #$20                             ;829B42|C220    |      ;
                        LDA.W r_0bb0                         ;829B44|ADB00B  |860BB0;
                        SEC                                  ;829B47|38      |      ;
-                       SBC.B $08                            ;829B48|E508    |000EB0;
+                       SBC.B r_ev_2_08_yPos-$EA8            ;829B48|E508    |000EB0;
                        LDA.W #$0080                         ;829B4A|A98000  |      ;
                        BCC CODE_829B52                      ;829B4D|9003    |829B52;
                        LDA.W #$FF80                         ;829B4F|A980FF  |      ;
                                                             ;      |        |      ;
           CODE_829B52:
-                       STA.B $1C                            ;829B52|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;829B52|851C    |000EC4;
                        SEP #$20                             ;829B54|E220    |      ;
                        JSR.W CODE_829B66                    ;829B56|20669B  |829B66;
                        CMP.B #$34                           ;829B59|C934    |      ;
@@ -4374,7 +4374,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829B66:
-                       LDA.B $11                            ;829B66|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;829B66|A511    |000EB9;
                        ASL A                                ;829B68|0A      |      ;
                        ASL A                                ;829B69|0A      |      ;
                        LDA.B #$10                           ;829B6A|A910    |      ;
@@ -4382,15 +4382,15 @@ loadProjectileSlotBase:
                        LDA.B #$F0                           ;829B6E|A9F0    |      ;
                                                             ;      |        |      ;
           CODE_829B70:
-                       STA.B $29                            ;829B70|8529    |000ED1;
-                       LDA.B $1D                            ;829B72|A51D    |000EC5;
+                       STA.B r_ev_2_29-$EA8                 ;829B70|8529    |000ED1;
+                       LDA.B r_ev_2_1d_ySpd-$EA8            ;829B72|A51D    |000EC5;
                        ASL A                                ;829B74|0A      |      ;
                        LDA.B #$10                           ;829B75|A910    |      ;
                        BCS CODE_829B7B                      ;829B77|B002    |829B7B;
                        LDA.B #$F0                           ;829B79|A9F0    |      ;
                                                             ;      |        |      ;
           CODE_829B7B:
-                       STA.B $2A                            ;829B7B|852A    |000ED2;
+                       STA.B r_ev_2_2a-$EA8                 ;829B7B|852A    |000ED2;
                        JSL.L CODE_8490A0                    ;829B7D|22A09084|8490A0;
                        RTS                                  ;829B81|60      |      ;
                                                             ;      |        |      ;
@@ -4429,92 +4429,92 @@ loadProjectileSlotBase:
                        BNE CODE_829BCE                      ;829BBF|D00D    |829BCE;
                        DEC.B $35                            ;829BC1|C635    |0014DD;
                        BEQ CODE_829BCE                      ;829BC3|F009    |829BCE;
-                       JSL.L CODE_8280B4                    ;829BC5|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;829BC5|22B48082|8280B4;
                        LDA.B $0E                            ;829BC9|A50E    |0014B6;
                        BEQ CODE_829BCE                      ;829BCB|F001    |829BCE;
                        RTL                                  ;829BCD|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829BCE:
-                       JML.L CODE_8283A3                    ;829BCE|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;829BCE|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_829BD2:
-                       LDX.B $01                            ;829BD2|A601    |000E69;
-                       JSR.W (PTR16_829C6A,X)               ;829BD4|FC6A9C  |829C6A;
-                       LDA.B $3D                            ;829BD7|A53D    |000EA5;
+eventID_spiky_15_main:
+                       LDX.B r_ev_01_state-$E68             ;829BD2|A601    |000E69;
+                       JSR.W (spiky_15_state,X)             ;829BD4|FC6A9C  |829C6A;
+                       LDA.B r_ev_3d-$E68                   ;829BD7|A53D    |000EA5;
                        BEQ CODE_829BDE                      ;829BD9|F003    |829BDE;
                        JMP.W CODE_829C69                    ;829BDB|4C699C  |829C69;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829BDE:
-                       LDA.B $27                            ;829BDE|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;829BDE|A527    |000E8F;
                        BEQ CODE_829C41                      ;829BE0|F05F    |829C41;
                        JSL.L CODE_849B43                    ;829BE2|22439B84|849B43;
                        BEQ CODE_829C29                      ;829BE6|F041    |829C29;
-                       LDA.B $27                            ;829BE8|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;829BE8|A527    |000E8F;
                        AND.B #$7F                           ;829BEA|297F    |      ;
                        BNE CODE_829C21                      ;829BEC|D033    |829C21;
-                       LDA.B $01                            ;829BEE|A501    |000E69;
+                       LDA.B r_ev_01_state-$E68             ;829BEE|A501    |000E69;
                        CMP.B #$04                           ;829BF0|C904    |      ;
                        BEQ CODE_829BF8                      ;829BF2|F004    |829BF8;
                        LDA.B #$01                           ;829BF4|A901    |      ;
-                       STA.B $27                            ;829BF6|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;829BF6|8527    |000E8F;
                                                             ;      |        |      ;
           CODE_829BF8:
-                       LDA.B $27                            ;829BF8|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;829BF8|A527    |000E8F;
                        CMP.B #$80                           ;829BFA|C980    |      ;
                        BNE CODE_829C04                      ;829BFC|D006    |829C04;
                        LDA.B #$01                           ;829BFE|A901    |      ;
-                       STA.B $34                            ;829C00|8534    |000E9C;
-                       INC.B $3B                            ;829C02|E63B    |000EA3;
+                       STA.B r_ev_34-$E68                   ;829C00|8534    |000E9C;
+                       INC.B r_ev_3b-$E68                   ;829C02|E63B    |000EA3;
                                                             ;      |        |      ;
           CODE_829C04:
                        REP #$20                             ;829C04|C220    |      ;
                        LDA.W #$CA35                         ;829C06|A935CA  |      ;
-                       STA.B $20                            ;829C09|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;829C09|8520    |000E88;
                        SEP #$20                             ;829C0B|E220    |      ;
-                       LDA.B $01                            ;829C0D|A501    |000E69;
+                       LDA.B r_ev_01_state-$E68             ;829C0D|A501    |000E69;
                        CMP.B #$04                           ;829C0F|C904    |      ;
                        BEQ CODE_829C1B                      ;829C11|F008    |829C1B;
-                       STZ.B $02                            ;829C13|6402    |000E6A;
+                       STZ.B r_ev_02_action-$E68            ;829C13|6402    |000E6A;
                        LDA.B #$02                           ;829C15|A902    |      ;
                        JSL.L CODE_848F07                    ;829C17|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_829C1B:
                        LDA.B #$04                           ;829C1B|A904    |      ;
-                       STA.B $01                            ;829C1D|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;829C1D|8501    |000E69;
                        BRA CODE_829C41                      ;829C1F|8020    |829C41;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829C21:
                        LDA.B #$F1                           ;829C21|A9F1    |      ;
-                       AND.B $11                            ;829C23|2511    |000EB9;
-                       STA.B $11                            ;829C25|8511    |000EB9;
+                       AND.B r_ev_2_11_sprAtri-$EA8         ;829C23|2511    |000EB9;
+                       STA.B r_ev_2_11_sprAtri-$EA8         ;829C25|8511    |000EB9;
                        BRA CODE_829C2F                      ;829C27|8006    |829C2F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829C29:
-                       LDA.B $33                            ;829C29|A533    |000E9B;
-                       ORA.B $11                            ;829C2B|0511    |000E79;
-                       STA.B $11                            ;829C2D|8511    |000E79;
+                       LDA.B r_ev_33-$E68                   ;829C29|A533    |000E9B;
+                       ORA.B r_ev_11_sprAtri-$E68           ;829C2B|0511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;829C2D|8511    |000E79;
                                                             ;      |        |      ;
           CODE_829C2F:
                        JSL.L CODE_849ACD                    ;829C2F|22CD9A84|849ACD;
-                       STA.B $38                            ;829C33|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;829C33|8538    |000EA0;
                        CMP.B #$04                           ;829C35|C904    |      ;
                        BPL CODE_829C41                      ;829C37|1008    |829C41;
-                       LDA.B $03                            ;829C39|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;829C39|A503    |000E6B;
                        BNE CODE_829C41                      ;829C3B|D004    |829C41;
                        LDA.B #$02                           ;829C3D|A902    |      ;
-                       STA.B $02                            ;829C3F|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;829C3F|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_829C41:
                        JSL.L CODE_849B03                    ;829C41|22039B84|849B03;
-                       JSL.L CODE_8280B4                    ;829C45|22B48082|8280B4;
-                       JSL.L CODE_82806E                    ;829C49|226E8082|82806E;
+                       JSL.L eventID_vile_68_afterInit      ;829C45|22B48082|8280B4;
+                       JSL.L initPosAllign                  ;829C49|226E8082|82806E;
                        BCC CODE_829C53                      ;829C4D|9004    |829C53;
-                       JML.L CODE_828387                    ;829C4F|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;829C4F|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829C53:
@@ -4522,45 +4522,45 @@ loadProjectileSlotBase:
                        CMP.B #$3F                           ;829C57|C93F    |      ;
                        BNE CODE_829C69                      ;829C59|D00E    |829C69;
                        LDA.B #$04                           ;829C5B|A904    |      ;
-                       STA.B $01                            ;829C5D|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;829C5D|8501    |000E69;
                        LDA.B #$01                           ;829C5F|A901    |      ;
-                       STA.B $3B                            ;829C61|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;829C61|853B    |000EA3;
                        LDA.B #$01                           ;829C63|A901    |      ;
-                       STA.B $34                            ;829C65|8534    |000E9C;
-                       STA.B $3E                            ;829C67|853E    |000EA6;
+                       STA.B r_ev_34-$E68                   ;829C65|8534    |000E9C;
+                       STA.B r_ev_3e-$E68                   ;829C67|853E    |000EA6;
                                                             ;      |        |      ;
           CODE_829C69:
                        RTL                                  ;829C69|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_829C6A:
-                       dw CODE_829C70                       ;829C6A|        |829C70;
+       spiky_15_state:
+                       dw spiky_15_state_00                 ;829C6A|        |829C70;
                        dw CODE_829CD2                       ;829C6C|        |829CD2;
                        dw CODE_829EBD                       ;829C6E|        |829EBD;
                                                             ;      |        |      ;
-          CODE_829C70:
-                       STZ.B $3D                            ;829C70|643D    |000EA5;
-                       JSL.L CODE_82827D                    ;829C72|227D8282|82827D;
-                       LDA.B $11                            ;829C76|A511    |000E79;
+    spiky_15_state_00:
+                       STZ.B r_ev_3d-$E68                   ;829C70|643D    |000EA5;
+                       JSL.L enemy_initiate_jumpPhysic      ;829C72|227D8282|82827D;
+                       LDA.B r_ev_11_sprAtri-$E68           ;829C76|A511    |000E79;
                        AND.B #$0E                           ;829C78|290E    |      ;
-                       STA.B $33                            ;829C7A|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;829C7A|8533    |000E9B;
                        LDA.B #$02                           ;829C7C|A902    |      ;
-                       STA.B $27                            ;829C7E|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;829C7E|8527    |000E8F;
                        LDA.B #$03                           ;829C80|A903    |      ;
-                       STA.B $28                            ;829C82|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;829C82|8528    |000E90;
                        LDA.B #$02                           ;829C84|A902    |      ;
-                       STA.B $26                            ;829C86|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;829C86|8526    |000E8E;
                        LDA.B #$04                           ;829C88|A904    |      ;
-                       STA.B $12                            ;829C8A|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;829C8A|8512    |000E7A;
                        LDA.B #$06                           ;829C8C|A906    |      ;
-                       STA.B $39                            ;829C8E|8539    |000EA1;
+                       STA.B r_ev_39-$E68                   ;829C8E|8539    |000EA1;
                        LDA.B #$01                           ;829C90|A901    |      ;
-                       STA.B $35                            ;829C92|8535    |000E9D;
-                       STZ.B $3B                            ;829C94|643B    |000EA3;
-                       STZ.B $3E                            ;829C96|643E    |000EA6;
+                       STA.B r_ev_35-$E68                   ;829C92|8535    |000E9D;
+                       STZ.B r_ev_3b-$E68                   ;829C94|643B    |000EA3;
+                       STZ.B r_ev_3e-$E68                   ;829C96|643E    |000EA6;
                        REP #$20                             ;829C98|C220    |      ;
                        LDA.W #$0180                         ;829C9A|A98001  |      ;
-                       STA.B $36                            ;829C9D|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;829C9D|8536    |000E9E;
                        SEP #$20                             ;829C9F|E220    |      ;
                        JSR.W CODE_829F39                    ;829CA1|20399F  |829F39;
                        BEQ CODE_829CB0                      ;829CA4|F00A    |829CB0;
@@ -4573,16 +4573,16 @@ loadProjectileSlotBase:
           CODE_829CB0:
                        REP #$20                             ;829CB0|C220    |      ;
                        LDA.W #$FE80                         ;829CB2|A980FE  |      ;
-                       STA.B $1A                            ;829CB5|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;829CB5|851A    |000E82;
                                                             ;      |        |      ;
           CODE_829CB7:
                        LDA.W #$FC00                         ;829CB7|A900FC  |      ;
-                       STA.B $1C                            ;829CBA|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;829CBA|851C    |000E84;
                        LDA.W #$CA2B                         ;829CBC|A92BCA  |      ;
-                       STA.B $20                            ;829CBF|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;829CBF|8520    |000E88;
                        SEP #$20                             ;829CC1|E220    |      ;
                        LDA.B #$FF                           ;829CC3|A9FF    |      ;
-                       STA.B $2F                            ;829CC5|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;829CC5|852F    |000E97;
                        JSL.L CODE_8491BE                    ;829CC7|22BE9184|8491BE;
                        LDA.B #$00                           ;829CCB|A900    |      ;
                        JSL.L CODE_848F07                    ;829CCD|22078F84|848F07;
@@ -4590,7 +4590,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829CD2:
-                       LDX.B $02                            ;829CD2|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;829CD2|A602    |000E6A;
                        JSR.W (PTR16_829CDC,X)               ;829CD4|FCDC9C  |829CDC;
                        JSL.L updateEv_13_14_17_0f           ;829CD7|22EA8E84|848EEA;
                        RTS                                  ;829CDB|60      |      ;
@@ -4602,7 +4602,7 @@ loadProjectileSlotBase:
                        dw CODE_829E89                       ;829CE0|        |829E89;
                                                             ;      |        |      ;
           CODE_829CE2:
-                       LDA.B $39                            ;829CE2|A539    |000EA1;
+                       LDA.B r_ev_39-$E68                   ;829CE2|A539    |000EA1;
                        BNE CODE_829CE8                      ;829CE4|D002    |829CE8;
                        BRA CODE_829D06                      ;829CE6|801E    |829D06;
                                                             ;      |        |      ;
@@ -4610,37 +4610,37 @@ loadProjectileSlotBase:
           CODE_829CE8:
                        CMP.B #$02                           ;829CE8|C902    |      ;
                        BEQ CODE_829D06                      ;829CEA|F01A    |829D06;
-                       LDA.B $11                            ;829CEC|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;829CEC|A511    |000E79;
                        AND.B #$40                           ;829CEE|2940    |      ;
                        BNE CODE_829CFC                      ;829CF0|D00A    |829CFC;
                        REP #$20                             ;829CF2|C220    |      ;
                        LDA.W #$FE80                         ;829CF4|A980FE  |      ;
-                       STA.B $1A                            ;829CF7|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;829CF7|851A    |000E82;
                        JMP.W CODE_829D42                    ;829CF9|4C429D  |829D42;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829CFC:
                        REP #$20                             ;829CFC|C220    |      ;
                        LDA.W #$0180                         ;829CFE|A98001  |      ;
-                       STA.B $1A                            ;829D01|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;829D01|851A    |000EC2;
                        JMP.W CODE_829D42                    ;829D03|4C429D  |829D42;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829D06:
-                       LDA.B $11                            ;829D06|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;829D06|A511    |000E79;
                        AND.B #$40                           ;829D08|2940    |      ;
                        BNE CODE_829D29                      ;829D0A|D01D    |829D29;
                        REP #$20                             ;829D0C|C220    |      ;
-                       LDA.B $1A                            ;829D0E|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;829D0E|A51A    |000E82;
                        CLC                                  ;829D10|18      |      ;
                        ADC.W #$0004                         ;829D11|690400  |      ;
-                       STA.B $1A                            ;829D14|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;829D14|851A    |000E82;
                        CMP.W #$FE80                         ;829D16|C980FE  |      ;
                        BMI CODE_829D25                      ;829D19|300A    |829D25;
                        LDA.W #$0006                         ;829D1B|A90600  |      ;
-                       STA.B $39                            ;829D1E|8539    |000EA1;
+                       STA.B r_ev_39-$E68                   ;829D1E|8539    |000EA1;
                        LDA.W #$FE80                         ;829D20|A980FE  |      ;
-                       STA.B $1A                            ;829D23|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;829D23|851A    |000E82;
                                                             ;      |        |      ;
           CODE_829D25:
                        SEP #$20                             ;829D25|E220    |      ;
@@ -4666,17 +4666,17 @@ loadProjectileSlotBase:
           CODE_829D44:
                        JSL.L CODE_82820A                    ;829D44|220A8282|82820A;
                        LDA.B #$FF                           ;829D48|A9FF    |      ;
-                       STA.B $2F                            ;829D4A|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;829D4A|852F    |000E97;
                        JSL.L CODE_8491BE                    ;829D4C|22BE9184|8491BE;
-                       STZ.B $03                            ;829D50|6403    |000E6B;
-                       LDA.B $2B                            ;829D52|A52B    |000E93;
+                       STZ.B r_ev_03_do-$E68                ;829D50|6403    |000E6B;
+                       LDA.B r_ev_2b-$E68                   ;829D52|A52B    |000E93;
                        AND.B #$03                           ;829D54|2903    |      ;
                        BNE CODE_829D59                      ;829D56|D001    |829D59;
                        RTS                                  ;829D58|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829D59:
-                       LDA.B $2B                            ;829D59|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;829D59|A52B    |000ED3;
                        AND.B #$04                           ;829D5B|2904    |      ;
                        BNE CODE_829D73                      ;829D5D|D014    |829D73;
                        LDA.B $11                            ;829D5F|A511    |000F39;
@@ -4693,25 +4693,25 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_829D73:
                        LDA.B #$04                           ;829D73|A904    |      ;
-                       STA.B $02                            ;829D75|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;829D75|8502    |000EAA;
                        LDA.B #$01                           ;829D77|A901    |      ;
                        JSL.L CODE_848F07                    ;829D79|22078F84|848F07;
                        REP #$20                             ;829D7D|C220    |      ;
                        LDA.W #$0600                         ;829D7F|A90006  |      ;
-                       STA.B $1C                            ;829D82|851C    |000EC4;
-                       LDA.B $1A                            ;829D84|A51A    |000EC2;
-                       STA.B $36                            ;829D86|8536    |000EDE;
-                       STZ.B $1A                            ;829D88|641A    |000EC2;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;829D82|851C    |000EC4;
+                       LDA.B r_ev_2_1a_xSpdSub-$EA8         ;829D84|A51A    |000EC2;
+                       STA.B r_ev_2_36-$EA8                 ;829D86|8536    |000EDE;
+                       STZ.B r_ev_2_1a_xSpdSub-$EA8         ;829D88|641A    |000EC2;
                        SEP #$20                             ;829D8A|E220    |      ;
                        LDA.B #$C0                           ;829D8C|A9C0    |      ;
-                       STA.B $1E                            ;829D8E|851E    |000EC6;
+                       STA.B r_ev_2_1e_weight-$EA8          ;829D8E|851E    |000EC6;
                                                             ;      |        |      ;
           CODE_829D90:
                        RTS                                  ;829D90|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829D91:
-                       LDX.B $03                            ;829D91|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;829D91|A603    |000E6B;
                        JSR.W (DATA8_829D9B,X)               ;829D93|FC9B9D  |829D9B;
                        JSL.L updateEv_13_14_17_0f           ;829D96|22EA8E84|848EEA;
                        RTS                                  ;829D9A|60      |      ;
@@ -4719,25 +4719,25 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
          DATA8_829D9B:
                        db $9F,$9D,$2C,$9E                   ;829D9B|        |      ;
-                       STZ.B $1E                            ;829D9F|641E    |000E86;
-                       LDA.B $38                            ;829DA1|A538    |000EA0;
-                       STA.B $39                            ;829DA3|8539    |000EA1;
-                       STA.B $3C                            ;829DA5|853C    |000EA4;
+                       STZ.B r_ev_1e_weight-$E68            ;829D9F|641E    |000E86;
+                       LDA.B r_ev_38-$E68                   ;829DA1|A538    |000EA0;
+                       STA.B r_ev_39-$E68                   ;829DA3|8539    |000EA1;
+                       STA.B r_ev_3c-$E68                   ;829DA5|853C    |000EA4;
                        BNE CODE_829DC8                      ;829DA7|D01F    |829DC8;
                        LDA.B #$04                           ;829DA9|A904    |      ;
-                       STA.B $1F                            ;829DAB|851F    |000E87;
+                       STA.B r_ev_1f-$E68                   ;829DAB|851F    |000E87;
                        LDA.B #$02                           ;829DAD|A902    |      ;
-                       STA.B $03                            ;829DAF|8503    |000E6B;
-                       LDA.B $11                            ;829DB1|A511    |000E79;
+                       STA.B r_ev_03_do-$E68                ;829DAF|8503    |000E6B;
+                       LDA.B r_ev_11_sprAtri-$E68           ;829DB1|A511    |000E79;
                        AND.B #$40                           ;829DB3|2940    |      ;
                        BNE CODE_829DBB                      ;829DB5|D004    |829DBB;
-                       STZ.B $3A                            ;829DB7|643A    |000EA2;
+                       STZ.B r_ev_3a-$E68                   ;829DB7|643A    |000EA2;
                        BRA CODE_829DBF                      ;829DB9|8004    |829DBF;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829DBB:
                        LDA.B #$01                           ;829DBB|A901    |      ;
-                       STA.B $3A                            ;829DBD|853A    |000EA2;
+                       STA.B r_ev_3a-$E68                   ;829DBD|853A    |000EA2;
                                                             ;      |        |      ;
           CODE_829DBF:
                        LDA.B #$03                           ;829DBF|A903    |      ;
@@ -4749,19 +4749,19 @@ loadProjectileSlotBase:
                        DEC A                                ;829DC8|3A      |      ;
                        BNE CODE_829DEA                      ;829DC9|D01F    |829DEA;
                        LDA.B #$04                           ;829DCB|A904    |      ;
-                       STA.B $1F                            ;829DCD|851F    |000E87;
+                       STA.B r_ev_1f-$E68                   ;829DCD|851F    |000E87;
                        LDA.B #$02                           ;829DCF|A902    |      ;
-                       STA.B $03                            ;829DD1|8503    |000E6B;
-                       LDA.B $11                            ;829DD3|A511    |000E79;
+                       STA.B r_ev_03_do-$E68                ;829DD1|8503    |000E6B;
+                       LDA.B r_ev_11_sprAtri-$E68           ;829DD3|A511    |000E79;
                        AND.B #$40                           ;829DD5|2940    |      ;
                        BNE CODE_829DDF                      ;829DD7|D006    |829DDF;
                        LDA.B #$01                           ;829DD9|A901    |      ;
-                       STA.B $3A                            ;829DDB|853A    |000EA2;
+                       STA.B r_ev_3a-$E68                   ;829DDB|853A    |000EA2;
                        BRA CODE_829DE1                      ;829DDD|8002    |829DE1;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829DDF:
-                       STZ.B $3A                            ;829DDF|643A    |000EA2;
+                       STZ.B r_ev_3a-$E68                   ;829DDF|643A    |000EA2;
                                                             ;      |        |      ;
           CODE_829DE1:
                        LDA.B #$06                           ;829DE1|A906    |      ;
@@ -4773,19 +4773,19 @@ loadProjectileSlotBase:
                        DEC A                                ;829DEA|3A      |      ;
                        BNE CODE_829E0C                      ;829DEB|D01F    |829E0C;
                        LDA.B #$03                           ;829DED|A903    |      ;
-                       STA.B $1F                            ;829DEF|851F    |000E87;
+                       STA.B r_ev_1f-$E68                   ;829DEF|851F    |000E87;
                        LDA.B #$02                           ;829DF1|A902    |      ;
-                       STA.B $03                            ;829DF3|8503    |000E6B;
-                       LDA.B $11                            ;829DF5|A511    |000E79;
+                       STA.B r_ev_03_do-$E68                ;829DF3|8503    |000E6B;
+                       LDA.B r_ev_11_sprAtri-$E68           ;829DF5|A511    |000E79;
                        AND.B #$40                           ;829DF7|2940    |      ;
                        BNE CODE_829DFF                      ;829DF9|D004    |829DFF;
-                       STZ.B $3A                            ;829DFB|643A    |000EA2;
+                       STZ.B r_ev_3a-$E68                   ;829DFB|643A    |000EA2;
                        BRA CODE_829E03                      ;829DFD|8004    |829E03;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829DFF:
                        LDA.B #$01                           ;829DFF|A901    |      ;
-                       STA.B $3A                            ;829E01|853A    |000EA2;
+                       STA.B r_ev_3a-$E68                   ;829E01|853A    |000EA2;
                                                             ;      |        |      ;
           CODE_829E03:
                        LDA.B #$03                           ;829E03|A903    |      ;
@@ -4818,22 +4818,22 @@ loadProjectileSlotBase:
           CODE_829E2B:
                        RTS                                  ;829E2B|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $1B                            ;829E2C|A51B    |000E83;
+                       LDA.B r_ev_1b_xSpd-$E68              ;829E2C|A51B    |000E83;
                        CMP.B #$04                           ;829E2E|C904    |      ;
                        BEQ CODE_829E58                      ;829E30|F026    |829E58;
                        REP #$20                             ;829E32|C220    |      ;
-                       LDA.B $1A                            ;829E34|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;829E34|A51A    |000E82;
                        BNE CODE_829E46                      ;829E36|D00E    |829E46;
                        SEP #$20                             ;829E38|E220    |      ;
-                       LDA.B $11                            ;829E3A|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;829E3A|A511    |000E79;
                        EOR.B #$40                           ;829E3C|4940    |      ;
-                       STA.B $11                            ;829E3E|8511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;829E3E|8511    |000E79;
                        LDA.B #$03                           ;829E40|A903    |      ;
                        JSL.L CODE_848F07                    ;829E42|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_829E46:
                        SEP #$20                             ;829E46|E220    |      ;
-                       LDA.B $3A                            ;829E48|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;829E48|A53A    |000EA2;
                        BNE CODE_829E52                      ;829E4A|D006    |829E52;
                        JSL.L CODE_828174                    ;829E4C|22748182|828174;
                        BRA CODE_829E5C                      ;829E50|800A    |829E5C;
@@ -4856,22 +4856,22 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_829E66:
                        LDA.B #$00                           ;829E66|A900    |      ;
-                       STA.B $02                            ;829E68|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;829E68|8502    |000E6A;
                        JSL.L CODE_848F07                    ;829E6A|22078F84|848F07;
                        BRA CODE_829E77                      ;829E6E|8007    |829E77;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829E70:
                        SEC                                  ;829E70|38      |      ;
-                       SBC.B $3C                            ;829E71|E53C    |000EA4;
+                       SBC.B r_ev_3c-$E68                   ;829E71|E53C    |000EA4;
                        BEQ CODE_829E77                      ;829E73|F002    |829E77;
-                       STZ.B $03                            ;829E75|6403    |000E6B;
+                       STZ.B r_ev_03_do-$E68                ;829E75|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_829E77:
                        LDA.B #$FF                           ;829E77|A9FF    |      ;
-                       STA.B $2F                            ;829E79|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;829E79|852F    |000E97;
                        JSL.L CODE_8491BE                    ;829E7B|22BE9184|8491BE;
-                       LDA.B $2B                            ;829E7F|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;829E7F|A52B    |000E93;
                        AND.B #$03                           ;829E81|2903    |      ;
                        BEQ CODE_829E88                      ;829E83|F003    |829E88;
                        JSR.W CODE_829D59                    ;829E85|20599D  |829D59;
@@ -4883,25 +4883,25 @@ loadProjectileSlotBase:
           CODE_829E89:
                        JSL.L CODE_8281E8                    ;829E89|22E88182|8281E8;
                        LDA.B #$FF                           ;829E8D|A9FF    |      ;
-                       STA.B $2F                            ;829E8F|852F    |000ED7;
+                       STA.B r_ev_2_2f-$EA8                 ;829E8F|852F    |000ED7;
                        JSL.L CODE_8491BE                    ;829E91|22BE9184|8491BE;
-                       LDA.B $2B                            ;829E95|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;829E95|A52B    |000ED3;
                        AND.B #$04                           ;829E97|2904    |      ;
                        BEQ CODE_829EBC                      ;829E99|F021    |829EBC;
                        LDA.B #$00                           ;829E9B|A900    |      ;
-                       STA.B $02                            ;829E9D|8502    |000EAA;
-                       STZ.B $03                            ;829E9F|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;829E9D|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;829E9F|6403    |000EAB;
                        JSL.L CODE_848F07                    ;829EA1|22078F84|848F07;
-                       LDA.B $11                            ;829EA5|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;829EA5|A511    |000EB9;
                        EOR.B #$40                           ;829EA7|4940    |      ;
-                       STA.B $11                            ;829EA9|8511    |000EB9;
+                       STA.B r_ev_2_11_sprAtri-$EA8         ;829EA9|8511    |000EB9;
                        REP #$20                             ;829EAB|C220    |      ;
-                       LDA.B $36                            ;829EAD|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;829EAD|A536    |000EDE;
                        EOR.W #$FFFF                         ;829EAF|49FFFF  |      ;
                        INC A                                ;829EB2|1A      |      ;
-                       STA.B $1A                            ;829EB3|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;829EB3|851A    |000EC2;
                        LDA.W #$FC00                         ;829EB5|A900FC  |      ;
-                       STA.B $1C                            ;829EB8|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;829EB8|851C    |000EC4;
                        SEP #$20                             ;829EBA|E220    |      ;
                                                             ;      |        |      ;
           CODE_829EBC:
@@ -4909,30 +4909,30 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829EBD:
-                       LDA.B $3B                            ;829EBD|A53B    |000EA3;
+                       LDA.B r_ev_3b-$E68                   ;829EBD|A53B    |000EA3;
                        BNE CODE_829F1C                      ;829EBF|D05B    |829F1C;
-                       LDA.B $2B                            ;829EC1|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;829EC1|A52B    |000E93;
                        BEQ CODE_829F13                      ;829EC3|F04E    |829F13;
-                       LDA.B $0F                            ;829EC5|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;829EC5|A50F    |000E77;
                        CMP.B #$80                           ;829EC7|C980    |      ;
                        BEQ CODE_829F13                      ;829EC9|F048    |829F13;
                        CMP.B #$01                           ;829ECB|C901    |      ;
                        BNE CODE_829F0D                      ;829ECD|D03E    |829F0D;
-                       LDA.B $2B                            ;829ECF|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;829ECF|A52B    |000E93;
                        AND.B #$04                           ;829ED1|2904    |      ;
                        CMP.B #$04                           ;829ED3|C904    |      ;
                        BEQ CODE_829EE2                      ;829ED5|F00B    |829EE2;
                        LDA.B #$C0                           ;829ED7|A9C0    |      ;
-                       STA.B $1E                            ;829ED9|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;829ED9|851E    |000E86;
                        JSL.L CODE_8281E8                    ;829EDB|22E88182|8281E8;
                        JMP.W CODE_829EE4                    ;829EDF|4CE49E  |829EE4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829EE2:
-                       STZ.B $1E                            ;829EE2|641E    |000E86;
+                       STZ.B r_ev_1e_weight-$E68            ;829EE2|641E    |000E86;
                                                             ;      |        |      ;
           CODE_829EE4:
-                       LDA.B $11                            ;829EE4|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;829EE4|A511    |000E79;
                        AND.B #$40                           ;829EE6|2940    |      ;
                        BEQ CODE_829EFD                      ;829EE8|F013    |829EFD;
                        LDA.B #$05                           ;829EEA|A905    |      ;
@@ -4946,10 +4946,10 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_829EFD:
                        LDA.B #$05                           ;829EFD|A905    |      ;
-                       STA.B $1F                            ;829EFF|851F    |000E87;
+                       STA.B r_ev_1f-$E68                   ;829EFF|851F    |000E87;
                        JSL.L CODE_828195                    ;829F01|22958182|828195;
                        LDA.B #$01                           ;829F05|A901    |      ;
-                       STA.B $2F                            ;829F07|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;829F07|852F    |000E97;
                        JSL.L CODE_8491BE                    ;829F09|22BE9184|8491BE;
                                                             ;      |        |      ;
           CODE_829F0D:
@@ -4958,9 +4958,9 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829F13:
-                       INC.B $3B                            ;829F13|E63B    |000EE3;
+                       INC.B r_ev_2_3b-$EA8                 ;829F13|E63B    |000EE3;
                        LDA.B #$03                           ;829F15|A903    |      ;
-                       STA.B $34                            ;829F17|8534    |000EDC;
+                       STA.B r_ev_2_34-$EA8                 ;829F17|8534    |000EDC;
                        SEP #$10                             ;829F19|E210    |      ;
                                                             ;      |        |      ;
           CODE_829F1B:
@@ -4968,14 +4968,14 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829F1C:
-                       DEC.B $34                            ;829F1C|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;829F1C|C634    |000E9C;
                        BNE CODE_829F38                      ;829F1E|D018    |829F38;
                        LDA.B #$01                           ;829F20|A901    |      ;
-                       STA.B $3D                            ;829F22|853D    |000EA5;
+                       STA.B r_ev_3d-$E68                   ;829F22|853D    |000EA5;
                        JSL.L CODE_84A4B5                    ;829F24|22B5A484|84A4B5;
-                       JSL.L CODE_828387                    ;829F28|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;829F28|22878382|828387;
                        SEP #$10                             ;829F2C|E210    |      ;
-                       LDA.B $3E                            ;829F2E|A53E    |000EA6;
+                       LDA.B r_ev_3e-$E68                   ;829F2E|A53E    |000EA6;
                        BNE CODE_829F38                      ;829F30|D006    |829F38;
                        LDA.B #$01                           ;829F32|A901    |      ;
                        JSL.L CODE_84A384                    ;829F34|2284A384|84A384;
@@ -4988,7 +4988,7 @@ loadProjectileSlotBase:
                        REP #$20                             ;829F39|C220    |      ;
                        LDA.W r_0bad                         ;829F3B|ADAD0B  |860BAD;
                        SEC                                  ;829F3E|38      |      ;
-                       SBC.B $05                            ;829F3F|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;829F3F|E505    |000E6D;
                        BCS CODE_829F48                      ;829F41|B005    |829F48;
                        LDA.W #$0000                         ;829F43|A90000  |      ;
                        BRA CODE_829F4F                      ;829F46|8007    |829F4F;
@@ -5004,82 +5004,82 @@ loadProjectileSlotBase:
                        RTS                                  ;829F51|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_829F52:
-                       LDX.B $01                            ;829F52|A601    |000EA9;
-                       JSR.W (PTR16_829F81,X)               ;829F54|FC819F  |829F81;
-                       LDA.B $33                            ;829F57|A533    |000EDB;
-                       TSB.B $11                            ;829F59|0411    |000EB9;
-                       JSL.L CODE_82806E                    ;829F5B|226E8082|82806E;
+eventID_bombBeen_19_main:
+                       LDX.B r_ev_2_01_state-$EA8           ;829F52|A601    |000EA9;
+                       JSR.W (bombBeen_19_state,X)          ;829F54|FC819F  |829F81;
+                       LDA.B r_ev_2_33-$EA8                 ;829F57|A533    |000EDB;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;829F59|0411    |000EB9;
+                       JSL.L initPosAllign                  ;829F5B|226E8082|82806E;
                        BCS CODE_829F7D                      ;829F5F|B01C    |829F7D;
                        JSL.L CODE_849B03                    ;829F61|22039B84|849B03;
                        JSL.L CODE_849B43                    ;829F65|22439B84|849B43;
                        BEQ CODE_829F75                      ;829F69|F00A    |829F75;
                        LDA.B #$0E                           ;829F6B|A90E    |      ;
-                       TRB.B $11                            ;829F6D|1411    |000EB9;
-                       LDA.B $27                            ;829F6F|A527    |000ECF;
+                       TRB.B r_ev_2_11_sprAtri-$EA8         ;829F6D|1411    |000EB9;
+                       LDA.B r_ev_2_27-$EA8                 ;829F6F|A527    |000ECF;
                        AND.B #$7F                           ;829F71|297F    |      ;
                        BEQ CODE_829F79                      ;829F73|F004    |829F79;
                                                             ;      |        |      ;
           CODE_829F75:
-                       JML.L CODE_8280B4                    ;829F75|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;829F75|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829F79:
                        JSL.L CODE_84A4B5                    ;829F79|22B5A484|84A4B5;
                                                             ;      |        |      ;
           CODE_829F7D:
-                       JML.L CODE_828387                    ;829F7D|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;829F7D|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_829F81:
-                       dw CODE_829F8D                       ;829F81|        |829F8D;
+    bombBeen_19_state:
+                       dw bombBeen_19_state_00              ;829F81|        |829F8D;
                        dw CODE_829FE4                       ;829F83|        |829FE4;
                        dw CODE_82A00E                       ;829F85|        |82A00E;
                        dw CODE_82A040                       ;829F87|        |82A040;
                        dw CODE_82A091                       ;829F89|        |82A091;
                        dw CODE_82A0B3                       ;829F8B|        |82A0B3;
                                                             ;      |        |      ;
-          CODE_829F8D:
-                       JSL.L CODE_82827D                    ;829F8D|227D8282|82827D;
+ bombBeen_19_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;829F8D|227D8282|82827D;
                        LDA.B #$02                           ;829F91|A902    |      ;
-                       STA.B $12                            ;829F93|8512    |000EBA;
+                       STA.B r_ev_2_12-$EA8                 ;829F93|8512    |000EBA;
                        LDA.B #$02                           ;829F95|A902    |      ;
-                       STA.B $27                            ;829F97|8527    |000ECF;
+                       STA.B r_ev_2_27-$EA8                 ;829F97|8527    |000ECF;
                        LDA.B #$02                           ;829F99|A902    |      ;
-                       STA.B $26                            ;829F9B|8526    |000ECE;
-                       LDA.B $11                            ;829F9D|A511    |000EB9;
+                       STA.B r_ev_2_26-$EA8                 ;829F9B|8526    |000ECE;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;829F9D|A511    |000EB9;
                        AND.B #$0E                           ;829F9F|290E    |      ;
-                       STA.B $33                            ;829FA1|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;829FA1|8533    |000EDB;
                        LDA.B #$5A                           ;829FA3|A95A    |      ;
-                       STA.B $38                            ;829FA5|8538    |000EE0;
-                       STZ.B $37                            ;829FA7|6437    |000EDF;
+                       STA.B r_ev_2_38-$EA8                 ;829FA5|8538    |000EE0;
+                       STZ.B r_ev_2_37-$EA8                 ;829FA7|6437    |000EDF;
                        REP #$20                             ;829FA9|C220    |      ;
                        LDA.W #$CAFA                         ;829FAB|A9FACA  |      ;
-                       STA.B $20                            ;829FAE|8520    |000EC8;
-                       LDA.B $05                            ;829FB0|A505    |000EAD;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;829FAE|8520    |000EC8;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;829FB0|A505    |000EAD;
                        SEC                                  ;829FB2|38      |      ;
                        SBC.W r_0bad                         ;829FB3|EDAD0B  |860BAD;
                        BCS CODE_829FC5                      ;829FB6|B00D    |829FC5;
                        LDA.W #$0140                         ;829FB8|A94001  |      ;
-                       STA.B $1A                            ;829FBB|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;829FBB|851A    |000E82;
                        SEP #$20                             ;829FBD|E220    |      ;
                        LDA.B #$40                           ;829FBF|A940    |      ;
-                       TSB.B $11                            ;829FC1|0411    |000E79;
+                       TSB.B r_ev_11_sprAtri-$E68           ;829FC1|0411    |000E79;
                        BRA CODE_829FD0                      ;829FC3|800B    |829FD0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829FC5:
                        LDA.W #$FEC0                         ;829FC5|A9C0FE  |      ;
-                       STA.B $1A                            ;829FC8|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;829FC8|851A    |000EC2;
                        SEP #$20                             ;829FCA|E220    |      ;
                        LDA.B #$40                           ;829FCC|A940    |      ;
-                       TRB.B $11                            ;829FCE|1411    |000EB9;
+                       TRB.B r_ev_2_11_sprAtri-$EA8         ;829FCE|1411    |000EB9;
                                                             ;      |        |      ;
           CODE_829FD0:
                        LDA.B #$00                           ;829FD0|A900    |      ;
-                       STA.B $34                            ;829FD2|8534    |000EDC;
+                       STA.B r_ev_2_34-$EA8                 ;829FD2|8534    |000EDC;
                        JSL.L CODE_848F07                    ;829FD4|22078F84|848F07;
-                       STZ.B $3A                            ;829FD8|643A    |000EE2;
+                       STZ.B r_ev_2_3a-$EA8                 ;829FD8|643A    |000EE2;
                        LDA.W r_level_current                ;829FDA|AD7A1F  |861F7A;
                        BEQ CODE_829FE3                      ;829FDD|F004    |829FE3;
                        LDA.B #$02                           ;829FDF|A902    |      ;
@@ -5092,14 +5092,14 @@ loadProjectileSlotBase:
           CODE_829FE4:
                        JSL.L CODE_82823E                    ;829FE4|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;829FE8|22EA8E84|848EEA;
-                       DEC.B $38                            ;829FEC|C638    |000EE0;
+                       DEC.B r_ev_2_38-$EA8                 ;829FEC|C638    |000EE0;
                        BNE CODE_82A000                      ;829FEE|D010    |82A000;
                        LDA.B #$5A                           ;829FF0|A95A    |      ;
-                       STA.B $38                            ;829FF2|8538    |000EE0;
-                       LDA.B $37                            ;829FF4|A537    |000EDF;
+                       STA.B r_ev_2_38-$EA8                 ;829FF2|8538    |000EE0;
+                       LDA.B r_ev_2_37-$EA8                 ;829FF4|A537    |000EDF;
                        LDY.B #$03                           ;829FF6|A003    |      ;
                        JSL.L CODE_84AC35                    ;829FF8|2235AC84|84AC35;
-                       STA.B $37                            ;829FFC|8537    |000EDF;
+                       STA.B r_ev_2_37-$EA8                 ;829FFC|8537    |000EDF;
                        BMI CODE_82A003                      ;829FFE|3003    |82A003;
                                                             ;      |        |      ;
           CODE_82A000:
@@ -5108,65 +5108,65 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A003:
                        LDA.B #$04                           ;82A003|A904    |      ;
-                       STA.B $01                            ;82A005|8501    |000EA9;
+                       STA.B r_ev_2_01_state-$EA8           ;82A005|8501    |000EA9;
                        LDA.B #$08                           ;82A007|A908    |      ;
-                       STA.B $35                            ;82A009|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82A009|8535    |000EDD;
                        JMP.W CODE_82A0BC                    ;82A00B|4CBCA0  |82A0BC;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A00E:
                        JSL.L updateEv_13_14_17_0f           ;82A00E|22EA8E84|848EEA;
-                       DEC.B $35                            ;82A012|C635    |000EDD;
+                       DEC.B r_ev_2_35-$EA8                 ;82A012|C635    |000EDD;
                        BNE CODE_82A03F                      ;82A014|D029    |82A03F;
-                       LDA.B $34                            ;82A016|A534    |000EDC;
+                       LDA.B r_ev_2_34-$EA8                 ;82A016|A534    |000EDC;
                        CMP.B #$02                           ;82A018|C902    |      ;
                        BCC CODE_82A034                      ;82A01A|9018    |82A034;
                        LDA.B #$06                           ;82A01C|A906    |      ;
-                       STA.B $01                            ;82A01E|8501    |000E69;
-                       STZ.B $02                            ;82A020|6402    |000E6A;
-                       INC.B $35                            ;82A022|E635    |000E9D;
+                       STA.B r_ev_01_state-$E68             ;82A01E|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82A020|6402    |000E6A;
+                       INC.B r_ev_35-$E68                   ;82A022|E635    |000E9D;
                        REP #$20                             ;82A024|C220    |      ;
                        LDA.W r_0bad                         ;82A026|ADAD0B  |860BAD;
                        SEC                                  ;82A029|38      |      ;
-                       SBC.B $05                            ;82A02A|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;82A02A|E505    |000E6D;
                        SEP #$20                             ;82A02C|E220    |      ;
                        XBA                                  ;82A02E|EB      |      ;
                        AND.B #$80                           ;82A02F|2980    |      ;
-                       STA.B $39                            ;82A031|8539    |000EA1;
+                       STA.B r_ev_39-$E68                   ;82A031|8539    |000EA1;
                        RTS                                  ;82A033|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A034:
                        INC A                                ;82A034|1A      |      ;
-                       STA.B $34                            ;82A035|8534    |000EDC;
+                       STA.B r_ev_2_34-$EA8                 ;82A035|8534    |000EDC;
                        JSL.L CODE_848F07                    ;82A037|22078F84|848F07;
                        LDA.B #$08                           ;82A03B|A908    |      ;
-                       STA.B $35                            ;82A03D|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82A03D|8535    |000EDD;
                                                             ;      |        |      ;
           CODE_82A03F:
                        RTS                                  ;82A03F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A040:
-                       DEC.B $35                            ;82A040|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;82A040|C635    |000E9D;
                        BNE CODE_82A08C                      ;82A042|D048    |82A08C;
                        JSL.L CODE_828358                    ;82A044|22588382|828358;
                        BNE CODE_82A084                      ;82A048|D03A    |82A084;
                        INC.W r_0000,X                       ;82A04A|FE0000  |860000;
-                       LDA.B $39                            ;82A04D|A539    |000EA1;
-                       ORA.B $02                            ;82A04F|0502    |000E6A;
+                       LDA.B r_ev_39-$E68                   ;82A04D|A539    |000EA1;
+                       ORA.B r_ev_02_action-$E68            ;82A04F|0502    |000E6A;
                        STA.W r_000b,X                       ;82A051|9D0B00  |86000B;
                        LDA.B #$0B                           ;82A054|A90B    |      ;
                        STA.W r_000a,X                       ;82A056|9D0A00  |86000A;
                        REP #$20                             ;82A059|C220    |      ;
-                       LDA.B $05                            ;82A05B|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82A05B|A505    |000E6D;
                        STA.W r_0005,X                       ;82A05D|9D0500  |860005;
-                       LDA.B $08                            ;82A060|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82A060|A508    |000E70;
                        CLC                                  ;82A062|18      |      ;
                        ADC.W #$000A                         ;82A063|690A00  |      ;
                        STA.W r_0008,X                       ;82A066|9D0800  |860008;
                        SEP #$30                             ;82A069|E230    |      ;
-                       LDA.B $02                            ;82A06B|A502    |000E6A;
+                       LDA.B r_ev_02_action-$E68            ;82A06B|A502    |000E6A;
                        ASL A                                ;82A06D|0A      |      ;
                        TAX                                  ;82A06E|AA      |      ;
                        JMP.W (PTR16_82A072,X)               ;82A06F|7C72A0  |82A072;
@@ -5186,16 +5186,16 @@ loadProjectileSlotBase:
                        LDA.B #$30                           ;82A07C|A930    |      ;
                                                             ;      |        |      ;
           CODE_82A07E:
-                       STA.B $35                            ;82A07E|8535    |000E9D;
-                       INC.B $02                            ;82A080|E602    |000E6A;
+                       STA.B r_ev_35-$E68                   ;82A07E|8535    |000E9D;
+                       INC.B r_ev_02_action-$E68            ;82A080|E602    |000E6A;
                        BRA CODE_82A08C                      ;82A082|8008    |82A08C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A084:
                        LDA.B #$08                           ;82A084|A908    |      ;
-                       STA.B $01                            ;82A086|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82A086|8501    |000E69;
                        LDA.B #$08                           ;82A088|A908    |      ;
-                       STA.B $38                            ;82A08A|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;82A08A|8538    |000EA0;
                                                             ;      |        |      ;
           CODE_82A08C:
                        JSL.L updateEv_13_14_17_0f           ;82A08C|22EA8E84|848EEA;
@@ -5203,20 +5203,20 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A091:
-                       DEC.B $38                            ;82A091|C638    |000EA0;
+                       DEC.B r_ev_38-$E68                   ;82A091|C638    |000EA0;
                        BNE CODE_82A0AE                      ;82A093|D019    |82A0AE;
-                       LDA.B $34                            ;82A095|A534    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;82A095|A534    |000E9C;
                        DEC A                                ;82A097|3A      |      ;
-                       STA.B $34                            ;82A098|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82A098|8534    |000E9C;
                        JSL.L CODE_848F07                    ;82A09A|22078F84|848F07;
                        LDA.B #$08                           ;82A09E|A908    |      ;
-                       STA.B $38                            ;82A0A0|8538    |000EA0;
-                       LDA.B $34                            ;82A0A2|A534    |000E9C;
+                       STA.B r_ev_38-$E68                   ;82A0A0|8538    |000EA0;
+                       LDA.B r_ev_34-$E68                   ;82A0A2|A534    |000E9C;
                        BNE CODE_82A0AE                      ;82A0A4|D008    |82A0AE;
                        LDA.B #$02                           ;82A0A6|A902    |      ;
-                       STA.B $01                            ;82A0A8|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82A0A8|8501    |000E69;
                        LDA.B #$5A                           ;82A0AA|A95A    |      ;
-                       STA.B $38                            ;82A0AC|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;82A0AC|8538    |000EA0;
                                                             ;      |        |      ;
           CODE_82A0AE:
                        JSL.L updateEv_13_14_17_0f           ;82A0AE|22EA8E84|848EEA;
@@ -5230,13 +5230,13 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A0BC:
-                       LDX.B $3A                            ;82A0BC|A63A    |000EE2;
+                       LDX.B r_ev_2_3a-$EA8                 ;82A0BC|A63A    |000EE2;
                        REP #$20                             ;82A0BE|C220    |      ;
                        LDA.W UNREACH_86CAFE,X               ;82A0C0|BDFECA  |86CAFE;
-                       CMP.B $05                            ;82A0C3|C505    |000EAD;
+                       CMP.B r_ev_2_05_xPos-$EA8            ;82A0C3|C505    |000EAD;
                        BCC CODE_82A0D1                      ;82A0C5|900A    |82A0D1;
                        LDA.W UNREACH_86CB02,X               ;82A0C7|BD02CB  |86CB02;
-                       CMP.B $05                            ;82A0CA|C505    |000EAD;
+                       CMP.B r_ev_2_05_xPos-$EA8            ;82A0CA|C505    |000EAD;
                        BCS CODE_82A0D1                      ;82A0CC|B003    |82A0D1;
                        SEP #$20                             ;82A0CE|E220    |      ;
                        RTS                                  ;82A0D0|60      |      ;
@@ -5248,13 +5248,13 @@ loadProjectileSlotBase:
                        TRB.W r_1a64                         ;82A0D5|1C641A  |861A64;
                        SEP #$20                             ;82A0D8|E220    |      ;
                        LDA.B #$0A                           ;82A0DA|A90A    |      ;
-                       STA.B $01                            ;82A0DC|8501    |000EA9;
+                       STA.B r_ev_2_01_state-$EA8           ;82A0DC|8501    |000EA9;
                        LDA.B #$00                           ;82A0DE|A900    |      ;
                        JSL.L CODE_848F07                    ;82A0E0|22078F84|848F07;
                        RTS                                  ;82A0E4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82A0E5:
+     eventID__1b_main:
                        LDX.B $01                            ;82A0E5|A601    |000F29;
                        JMP.W (PTR16_82A0EA,X)               ;82A0E7|7CEAA0  |82A0EA;
                                                             ;      |        |      ;
@@ -5266,7 +5266,7 @@ loadProjectileSlotBase:
                        dw CODE_82A155                       ;82A0F0|        |82A155;
                                                             ;      |        |      ;
           CODE_82A0F2:
-                       JSL.L CODE_82827D                    ;82A0F2|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;82A0F2|227D8282|82827D;
                        LDA.B #$06                           ;82A0F6|A906    |      ;
                        STA.B $12                            ;82A0F8|8512    |000F3A;
                        LDA.B #$00                           ;82A0FA|A900    |      ;
@@ -5278,7 +5278,7 @@ loadProjectileSlotBase:
                        STZ.B $35                            ;82A108|6435    |000F5D;
                        SEP #$20                             ;82A10A|E220    |      ;
                        JSR.W CODE_82A178                    ;82A10C|2078A1  |82A178;
-                       JML.L CODE_8280B4                    ;82A10F|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82A10F|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A113:
@@ -5291,7 +5291,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A11F:
                        JSR.W CODE_82A178                    ;82A11F|2078A1  |82A178;
-                       JML.L CODE_8280B4                    ;82A122|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82A122|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A126:
@@ -5317,7 +5317,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A14E:
                        JSR.W CODE_82A178                    ;82A14E|2078A1  |82A178;
-                       JML.L CODE_8280B4                    ;82A151|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82A151|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A155:
@@ -5334,12 +5334,12 @@ loadProjectileSlotBase:
                        DEC.B $35                            ;82A167|C635    |000F5D;
                        DEC.B $37                            ;82A169|C637    |000F5F;
                        BNE CODE_82A171                      ;82A16B|D004    |82A171;
-                       JML.L CODE_828398                    ;82A16D|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82A16D|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A171:
                        JSR.W CODE_82A178                    ;82A171|2078A1  |82A178;
-                       JML.L CODE_8280B4                    ;82A174|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82A174|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A178:
@@ -5358,10 +5358,10 @@ loadProjectileSlotBase:
                        RTS                                  ;82A18F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82A190:
-                       LDX.B $01                            ;82A190|A601    |000E69;
-                       JSR.W (PTR16_82A1D4,X)               ;82A192|FCD4A1  |82A1D4;
-                       LDA.B $27                            ;82A195|A527    |000E8F;
+eventID_seaAttacker_1c_main:
+                       LDX.B r_ev_01_state-$E68             ;82A190|A601    |000E69;
+                       JSR.W (seaAttacker_1c_state,X)       ;82A192|FCD4A1  |82A1D4;
+                       LDA.B r_ev_27-$E68                   ;82A195|A527    |000E8F;
                        BEQ CODE_82A1C5                      ;82A197|F02C    |82A1C5;
                        JSL.L CODE_849B43                    ;82A199|22439B84|849B43;
                        BEQ CODE_82A1B9                      ;82A19D|F01A    |82A1B9;
@@ -5384,32 +5384,32 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A1B9:
-                       LDA.B $34                            ;82A1B9|A534    |000E9C;
-                       ORA.B $11                            ;82A1BB|0511    |000E79;
-                       STA.B $11                            ;82A1BD|8511    |000E79;
+                       LDA.B r_ev_34-$E68                   ;82A1B9|A534    |000E9C;
+                       ORA.B r_ev_11_sprAtri-$E68           ;82A1BB|0511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;82A1BD|8511    |000E79;
                                                             ;      |        |      ;
           CODE_82A1BF:
                        JSL.L CODE_849B03                    ;82A1BF|22039B84|849B03;
                        BEQ CODE_82A1C5                      ;82A1C3|F000    |82A1C5;
                                                             ;      |        |      ;
           CODE_82A1C5:
-                       JSL.L CODE_8280B4                    ;82A1C5|22B48082|8280B4;
-                       JSL.L CODE_82806E                    ;82A1C9|226E8082|82806E;
+                       JSL.L eventID_vile_68_afterInit      ;82A1C5|22B48082|8280B4;
+                       JSL.L initPosAllign                  ;82A1C9|226E8082|82806E;
                        BCC CODE_82A1D3                      ;82A1CD|9004    |82A1D3;
-                       JSL.L CODE_828398                    ;82A1CF|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;82A1CF|22988382|828398;
                                                             ;      |        |      ;
           CODE_82A1D3:
                        RTL                                  ;82A1D3|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82A1D4:
-                       dw CODE_82A1DC                       ;82A1D4|        |82A1DC;
+ seaAttacker_1c_state:
+                       dw seaAttacker_1c_state_00           ;82A1D4|        |82A1DC;
                        dw CODE_82A20D                       ;82A1D6|        |82A20D;
                        dw CODE_82A25B                       ;82A1D8|        |82A25B;
                        dw CODE_82A2D6                       ;82A1DA|        |82A2D6;
                                                             ;      |        |      ;
-          CODE_82A1DC:
-                       JSL.L CODE_82827D                    ;82A1DC|227D8282|82827D;
+seaAttacker_1c_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;82A1DC|227D8282|82827D;
                        LDA.B $11                            ;82A1E0|A511    |000F79;
                        AND.B #$0E                           ;82A1E2|290E    |      ;
                        STA.B $34                            ;82A1E4|8534    |000F9C;
@@ -5475,11 +5475,11 @@ loadProjectileSlotBase:
                        CMP.B $38                            ;82A241|C538    |000FA0;
                        BNE CODE_82A254                      ;82A243|D00F    |82A254;
                        LDA.W #$0004                         ;82A245|A90400  |      ;
-                       STA.B $01                            ;82A248|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82A248|8501    |000E69;
                        LDA.W #$0000                         ;82A24A|A90000  |      ;
-                       STA.B $02                            ;82A24D|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82A24D|8502    |000E6A;
                        LDA.W #$003C                         ;82A24F|A93C00  |      ;
-                       STA.B $3A                            ;82A252|853A    |000EA2;
+                       STA.B r_ev_3a-$E68                   ;82A252|853A    |000EA2;
                                                             ;      |        |      ;
           CODE_82A254:
                        SEP #$20                             ;82A254|E220    |      ;
@@ -5488,7 +5488,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A25B:
-                       LDX.B $02                            ;82A25B|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82A25B|A602    |000E6A;
                        JSR.W (PTR16_82A261,X)               ;82A25D|FC61A2  |82A261;
                        RTS                                  ;82A260|60      |      ;
                                                             ;      |        |      ;
@@ -5523,7 +5523,7 @@ loadProjectileSlotBase:
                        REP #$20                             ;82A289|C220    |      ;
                        LDA.W #$0080                         ;82A28B|A98000  |      ;
                        STA.W r_0000                         ;82A28E|8D0000  |860000;
-                       LDA.B $3C                            ;82A291|A53C    |000EA4;
+                       LDA.B r_ev_3c-$E68                   ;82A291|A53C    |000EA4;
                        STA.W r_0002                         ;82A293|8D0200  |860002;
                        SEP #$20                             ;82A296|E220    |      ;
                        JSL.L CODE_87A3EC                    ;82A298|22ECA387|87A3EC;
@@ -5538,20 +5538,20 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A2AE:
-                       DEC.B $3A                            ;82A2AE|C63A    |000EA2;
+                       DEC.B r_ev_3a-$E68                   ;82A2AE|C63A    |000EA2;
                        BNE CODE_82A2C5                      ;82A2B0|D013    |82A2C5;
                        JSR.W CODE_82A2E7                    ;82A2B2|20E7A2  |82A2E7;
-                       STZ.B $1C                            ;82A2B5|641C    |000E84;
-                       STZ.B $1D                            ;82A2B7|641D    |000E85;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;82A2B5|641C    |000E84;
+                       STZ.B r_ev_1d_ySpd-$E68              ;82A2B7|641D    |000E85;
                        LDA.B #$02                           ;82A2B9|A902    |      ;
-                       STA.B $02                            ;82A2BB|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82A2BB|8502    |000E6A;
                        LDA.B #$03                           ;82A2BD|A903    |      ;
                        JSL.L CODE_848F07                    ;82A2BF|22078F84|848F07;
                        BRA CODE_82A2D5                      ;82A2C3|8010    |82A2D5;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A2C5:
-                       LDA.B $0F                            ;82A2C5|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;82A2C5|A50F    |000E77;
                        CMP.B #$80                           ;82A2C7|C980    |      ;
                        BNE CODE_82A2D1                      ;82A2C9|D006    |82A2D1;
                        LDA.B #$02                           ;82A2CB|A902    |      ;
@@ -5566,7 +5566,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A2D6:
                        JSL.L CODE_84A4B5                    ;82A2D6|22B5A484|84A4B5;
-                       JSL.L CODE_828398                    ;82A2DA|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;82A2DA|22988382|828398;
                        SEP #$10                             ;82A2DE|E210    |      ;
                        LDA.B #$01                           ;82A2E0|A901    |      ;
                        JSL.L CODE_84A384                    ;82A2E2|2284A384|84A384;
@@ -5577,7 +5577,7 @@ loadProjectileSlotBase:
                        REP #$20                             ;82A2E7|C220    |      ;
                        LDA.W r_0bad                         ;82A2E9|ADAD0B  |860BAD;
                        SEC                                  ;82A2EC|38      |      ;
-                       SBC.B $05                            ;82A2ED|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;82A2ED|E505    |000E6D;
                        BCS CODE_82A2F6                      ;82A2EF|B005    |82A2F6;
                        LDA.W #$0000                         ;82A2F1|A90000  |      ;
                        BRA CODE_82A2FD                      ;82A2F4|8007    |82A2FD;
@@ -5596,16 +5596,16 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A306:
-                       LDA.B $11                            ;82A306|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82A306|A511    |000E79;
                        AND.W #$00BF                         ;82A308|29BF00  |      ;
-                       STA.B $11                            ;82A30B|8511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;82A30B|8511    |000E79;
                        LDA.W #$FC00                         ;82A30D|A900FC  |      ;
-                       STA.B $1A                            ;82A310|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82A310|851A    |000E82;
                                                             ;      |        |      ;
           CODE_82A312:
-                       LDX.B $33                            ;82A312|A633    |000E9B;
+                       LDX.B r_ev_33-$E68                   ;82A312|A633    |000E9B;
                        SEP #$20                             ;82A314|E220    |      ;
-                       LDA.B $0B                            ;82A316|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82A316|A50B    |000E73;
                        BEQ CODE_82A321                      ;82A318|F007    |82A321;
                        REP #$20                             ;82A31A|C220    |      ;
                        LDA.W UNREACH_86CB20,X               ;82A31C|BD20CB  |86CB20;
@@ -5617,7 +5617,7 @@ loadProjectileSlotBase:
                        LDA.W UNREACH_86CB1A,X               ;82A323|BD1ACB  |86CB1A;
                                                             ;      |        |      ;
           CODE_82A326:
-                       STA.B $1C                            ;82A326|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82A326|851C    |000E84;
                        SEP #$20                             ;82A328|E220    |      ;
                        RTS                                  ;82A32A|60      |      ;
                                                             ;      |        |      ;
@@ -5625,27 +5625,27 @@ loadProjectileSlotBase:
           CODE_82A32B:
                        REP #$20                             ;82A32B|C220    |      ;
                        LDA.W #$0000                         ;82A32D|A90000  |      ;
-                       STA.B $1A                            ;82A330|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82A330|851A    |000E82;
                        LDA.W #$FA00                         ;82A332|A900FA  |      ;
-                       STA.B $1C                            ;82A335|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82A335|851C    |000E84;
                        LDA.W #$0002                         ;82A337|A90200  |      ;
                        JSL.L CODE_848F07                    ;82A33A|22078F84|848F07;
                        SEP #$20                             ;82A33E|E220    |      ;
                        RTS                                  ;82A340|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82A341:
-                       LDA.B $3C                            ;82A341|A53C    |000EE4;
-                       TSB.B $11                            ;82A343|0411    |000EB9;
-                       LDX.B $01                            ;82A345|A601    |000EA9;
-                       JSR.W (PTR16_82A3A8,X)               ;82A347|FCA8A3  |82A3A8;
-                       JSL.L CODE_82806E                    ;82A34A|226E8082|82806E;
+eventID_gulpferd_1d_main:
+                       LDA.B r_ev_2_3c-$EA8                 ;82A341|A53C    |000EE4;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;82A343|0411    |000EB9;
+                       LDX.B r_ev_2_01_state-$EA8           ;82A345|A601    |000EA9;
+                       JSR.W (gulpferd_1d_state,X)          ;82A347|FCA8A3  |82A3A8;
+                       JSL.L initPosAllign                  ;82A34A|226E8082|82806E;
                        BCC CODE_82A354                      ;82A34E|9004    |82A354;
-                       JML.L CODE_828387                    ;82A350|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82A350|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A354:
-                       LDA.B $3D                            ;82A354|A53D    |000EE5;
+                       LDA.B r_ev_2_3d-$EA8                 ;82A354|A53D    |000EE5;
                        BEQ CODE_82A363                      ;82A356|F00B    |82A363;
                        LDA.W r_1f0d                         ;82A358|AD0D1F  |861F0D;
                        BEQ CODE_82A363                      ;82A35B|F006    |82A363;
@@ -5658,90 +5658,90 @@ loadProjectileSlotBase:
                        BEQ CODE_82A3A4                      ;82A367|F03B    |82A3A4;
                                                             ;      |        |      ;
           CODE_82A369:
-                       LDA.B $27                            ;82A369|A527    |000ECF;
+                       LDA.B r_ev_2_27-$EA8                 ;82A369|A527    |000ECF;
                        AND.B #$7F                           ;82A36B|297F    |      ;
                        BNE CODE_82A3A0                      ;82A36D|D031    |82A3A0;
                        LDA.B #$0A                           ;82A36F|A90A    |      ;
-                       STA.B $01                            ;82A371|8501    |000EA9;
-                       STZ.B $03                            ;82A373|6403    |000EAB;
+                       STA.B r_ev_2_01_state-$EA8           ;82A371|8501    |000EA9;
+                       STZ.B r_ev_2_03_do-$EA8              ;82A373|6403    |000EAB;
                        LDA.B #$07                           ;82A375|A907    |      ;
                        JSL.L CODE_848F07                    ;82A377|22078F84|848F07;
                        LDA.B #$23                           ;82A37B|A923    |      ;
                        JSL.L CODE_8088A2                    ;82A37D|22A28880|8088A2;
-                       LDA.B $3E                            ;82A381|A53E    |000EE6;
+                       LDA.B r_ev_2_3e-$EA8                 ;82A381|A53E    |000EE6;
                        BEQ CODE_82A38B                      ;82A383|F006    |82A38B;
                        JSL.L CODE_849FB2                    ;82A385|22B29F84|849FB2;
-                       STZ.B $3E                            ;82A389|643E    |000EA6;
+                       STZ.B r_ev_3e-$E68                   ;82A389|643E    |000EA6;
                                                             ;      |        |      ;
           CODE_82A38B:
-                       LDA.B $3B                            ;82A38B|A53B    |000EE3;
+                       LDA.B r_ev_2_3b-$EA8                 ;82A38B|A53B    |000EE3;
                        BEQ CODE_82A392                      ;82A38D|F003    |82A392;
                        STZ.W r_0bd8                         ;82A38F|9CD80B  |860BD8;
                                                             ;      |        |      ;
           CODE_82A392:
-                       LDA.B $3D                            ;82A392|A53D    |000EE5;
+                       LDA.B r_ev_2_3d-$EA8                 ;82A392|A53D    |000EE5;
                        BEQ CODE_82A3A0                      ;82A394|F00A    |82A3A0;
                        LDA.B #$01                           ;82A396|A901    |      ;
                        STA.W r_0bb6                         ;82A398|8DB60B  |860BB6;
-                       STZ.B $3D                            ;82A39B|643D    |000EE5;
+                       STZ.B r_ev_2_3d-$EA8                 ;82A39B|643D    |000EE5;
                        STZ.W r_0be5                         ;82A39D|9CE50B  |860BE5;
                                                             ;      |        |      ;
           CODE_82A3A0:
                        LDA.B #$0E                           ;82A3A0|A90E    |      ;
-                       TRB.B $11                            ;82A3A2|1411    |000EB9;
+                       TRB.B r_ev_2_11_sprAtri-$EA8         ;82A3A2|1411    |000EB9;
                                                             ;      |        |      ;
           CODE_82A3A4:
-                       JML.L CODE_8280B4                    ;82A3A4|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82A3A4|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82A3A8:
-                       dw CODE_82A3B4                       ;82A3A8|        |82A3B4;
+    gulpferd_1d_state:
+                       dw gulpferd_1d_state_00              ;82A3A8|        |82A3B4;
                        dw CODE_82A3EA                       ;82A3AA|        |82A3EA;
                        dw CODE_82A429                       ;82A3AC|        |82A429;
                        dw CODE_82A53F                       ;82A3AE|        |82A53F;
                        dw CODE_82A5CB                       ;82A3B0|        |82A5CB;
                        dw CODE_82A692                       ;82A3B2|        |82A692;
                                                             ;      |        |      ;
-          CODE_82A3B4:
-                       JSL.L CODE_82827D                    ;82A3B4|227D8282|82827D;
+ gulpferd_1d_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;82A3B4|227D8282|82827D;
                        LDA.B #$02                           ;82A3B8|A902    |      ;
-                       STA.B $12                            ;82A3BA|8512    |000EBA;
-                       STZ.B $03                            ;82A3BC|6403    |000EAB;
-                       STZ.B $3B                            ;82A3BE|643B    |000EE3;
-                       STZ.B $3D                            ;82A3C0|643D    |000EE5;
-                       STZ.B $3E                            ;82A3C2|643E    |000EE6;
+                       STA.B r_ev_2_12-$EA8                 ;82A3BA|8512    |000EBA;
+                       STZ.B r_ev_2_03_do-$EA8              ;82A3BC|6403    |000EAB;
+                       STZ.B r_ev_2_3b-$EA8                 ;82A3BE|643B    |000EE3;
+                       STZ.B r_ev_2_3d-$EA8                 ;82A3C0|643D    |000EE5;
+                       STZ.B r_ev_2_3e-$EA8                 ;82A3C2|643E    |000EE6;
                        LDA.B #$00                           ;82A3C4|A900    |      ;
                        JSL.L CODE_848F07                    ;82A3C6|22078F84|848F07;
                        LDA.B #$FF                           ;82A3CA|A9FF    |      ;
-                       STA.B $2F                            ;82A3CC|852F    |000ED7;
-                       LDA.B $11                            ;82A3CE|A511    |000EB9;
+                       STA.B r_ev_2_2f-$EA8                 ;82A3CC|852F    |000ED7;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82A3CE|A511    |000EB9;
                        AND.B #$0E                           ;82A3D0|290E    |      ;
-                       STA.B $3C                            ;82A3D2|853C    |000EE4;
+                       STA.B r_ev_2_3c-$EA8                 ;82A3D2|853C    |000EE4;
                        LDA.B #$0A                           ;82A3D4|A90A    |      ;
-                       STA.B $27                            ;82A3D6|8527    |000ECF;
+                       STA.B r_ev_2_27-$EA8                 ;82A3D6|8527    |000ECF;
                        LDA.B #$02                           ;82A3D8|A902    |      ;
-                       STA.B $26                            ;82A3DA|8526    |000ECE;
+                       STA.B r_ev_2_26-$EA8                 ;82A3DA|8526    |000ECE;
                        REP #$20                             ;82A3DC|C220    |      ;
                        LDA.W #$CB2E                         ;82A3DE|A92ECB  |      ;
-                       STA.B $20                            ;82A3E1|8520    |000EC8;
-                       LDA.B $05                            ;82A3E3|A505    |000EAD;
-                       STA.B $31                            ;82A3E5|8531    |000ED9;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82A3E1|8520    |000EC8;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82A3E3|A505    |000EAD;
+                       STA.B r_ev_2_31-$EA8                 ;82A3E5|8531    |000ED9;
                        SEP #$20                             ;82A3E7|E220    |      ;
                        RTS                                  ;82A3E9|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A3EA:
-                       LDA.B $02                            ;82A3EA|A502    |000EAA;
+                       LDA.B r_ev_2_02_action-$EA8          ;82A3EA|A502    |000EAA;
                        BNE CODE_82A415                      ;82A3EC|D027    |82A415;
-                       INC.B $02                            ;82A3EE|E602    |000EAA;
+                       INC.B r_ev_2_02_action-$EA8          ;82A3EE|E602    |000EAA;
                        REP #$20                             ;82A3F0|C220    |      ;
                        LDA.W r_0bad                         ;82A3F2|ADAD0B  |860BAD;
-                       CMP.B $05                            ;82A3F5|C505    |000EAD;
+                       CMP.B r_ev_2_05_xPos-$EA8            ;82A3F5|C505    |000EAD;
                        SEP #$20                             ;82A3F7|E220    |      ;
                        LDA.B #$00                           ;82A3F9|A900    |      ;
                        ROR A                                ;82A3FB|6A      |      ;
                        LSR A                                ;82A3FC|4A      |      ;
-                       TSB.B $11                            ;82A3FD|0411    |000EB9;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;82A3FD|0411    |000EB9;
                        AND.B #$40                           ;82A3FF|2940    |      ;
                        REP #$20                             ;82A401|C220    |      ;
                        BEQ CODE_82A40A                      ;82A403|F005    |82A40A;
@@ -5753,15 +5753,15 @@ loadProjectileSlotBase:
                        LDA.W #$FF80                         ;82A40A|A980FF  |      ;
                                                             ;      |        |      ;
           CODE_82A40D:
-                       STA.B $1A                            ;82A40D|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82A40D|851A    |000EC2;
                        SEP #$20                             ;82A40F|E220    |      ;
                        LDA.B #$1E                           ;82A411|A91E    |      ;
-                       STA.B $33                            ;82A413|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;82A413|8533    |000EDB;
                                                             ;      |        |      ;
           CODE_82A415:
                        JSL.L CODE_82823E                    ;82A415|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;82A419|22EA8E84|848EEA;
-                       DEC.B $33                            ;82A41D|C633    |000EDB;
+                       DEC.B r_ev_2_33-$EA8                 ;82A41D|C633    |000EDB;
                        BNE CODE_82A424                      ;82A41F|D003    |82A424;
                        JSR.W CODE_82A732                    ;82A421|2032A7  |82A732;
                                                             ;      |        |      ;
@@ -5771,7 +5771,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A429:
-                       LDX.B $02                            ;82A429|A602    |000EAA;
+                       LDX.B r_ev_2_02_action-$EA8          ;82A429|A602    |000EAA;
                        JMP.W (PTR16_82A42E,X)               ;82A42B|7C2EA4  |82A42E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5782,19 +5782,19 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A434:
                        LDA.B #$02                           ;82A434|A902    |      ;
-                       STA.B $02                            ;82A436|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82A436|8502    |000EAA;
                        LDA.B #$B4                           ;82A438|A9B4    |      ;
-                       STA.B $33                            ;82A43A|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;82A43A|8533    |000EDB;
                                                             ;      |        |      ;
           CODE_82A43C:
                        JSL.L updateEv_13_14_17_0f           ;82A43C|22EA8E84|848EEA;
-                       DEC.B $33                            ;82A440|C633    |000EDB;
+                       DEC.B r_ev_2_33-$EA8                 ;82A440|C633    |000EDB;
                        BNE CODE_82A44F                      ;82A442|D00B    |82A44F;
                        LDA.B #$06                           ;82A444|A906    |      ;
-                       STA.B $01                            ;82A446|8501    |000EA9;
-                       STZ.B $02                            ;82A448|6402    |000EAA;
-                       STZ.B $34                            ;82A44A|6434    |000EDC;
-                       STZ.B $03                            ;82A44C|6403    |000EAB;
+                       STA.B r_ev_2_01_state-$EA8           ;82A446|8501    |000EA9;
+                       STZ.B r_ev_2_02_action-$EA8          ;82A448|6402    |000EAA;
+                       STZ.B r_ev_2_34-$EA8                 ;82A44A|6434    |000EDC;
+                       STZ.B r_ev_2_03_do-$EA8              ;82A44C|6403    |000EAB;
                        RTS                                  ;82A44E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5815,12 +5815,12 @@ loadProjectileSlotBase:
                        REP #$20                             ;82A464|C220    |      ;
                        LDA.W r_0bad                         ;82A466|ADAD0B  |860BAD;
                        SEC                                  ;82A469|38      |      ;
-                       SBC.B $05                            ;82A46A|E505    |000EAD;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;82A46A|E505    |000EAD;
                        BCC CODE_82A495                      ;82A46C|9027    |82A495;
                        CMP.W #$0060                         ;82A46E|C96000  |      ;
                        SEP #$20                             ;82A471|E220    |      ;
                        BCS CODE_82A488                      ;82A473|B013    |82A488;
-                       LDA.B $11                            ;82A475|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82A475|A511    |000EB9;
                        AND.B #$40                           ;82A477|2940    |      ;
                        BNE CODE_82A47E                      ;82A479|D003    |82A47E;
                        JMP.W CODE_82A500                    ;82A47B|4C00A5  |82A500;
@@ -5834,7 +5834,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A488:
                        BCS CODE_82A500                      ;82A488|B076    |82A500;
-                       STA.B $35                            ;82A48A|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82A48A|8535    |000EDD;
                        LDA.W r_0bd3                         ;82A48C|ADD30B  |860BD3;
                        AND.B #$04                           ;82A48F|2904    |      ;
                        BEQ CODE_82A4BC                      ;82A491|F029    |82A4BC;
@@ -5845,7 +5845,7 @@ loadProjectileSlotBase:
                        CMP.W #$FFA0                         ;82A495|C9A0FF  |      ;
                        SEP #$20                             ;82A498|E220    |      ;
                        BCC CODE_82A500                      ;82A49A|9064    |82A500;
-                       LDA.B $11                            ;82A49C|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82A49C|A511    |000E79;
                        AND.B #$40                           ;82A49E|2940    |      ;
                        BNE CODE_82A500                      ;82A4A0|D05E    |82A500;
                        JSL.L CODE_84A081                    ;82A4A2|2281A084|84A081;
@@ -5853,7 +5853,7 @@ loadProjectileSlotBase:
                        BCC CODE_82A500                      ;82A4A8|9056    |82A500;
                        CMP.B #$1B                           ;82A4AA|C91B    |      ;
                        BCS CODE_82A500                      ;82A4AC|B052    |82A500;
-                       STA.B $35                            ;82A4AE|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82A4AE|8535    |000E9D;
                        LDA.W r_0bd3                         ;82A4B0|ADD30B  |860BD3;
                        AND.B #$04                           ;82A4B3|2904    |      ;
                        BEQ CODE_82A4BC                      ;82A4B5|F005    |82A4BC;
@@ -5868,31 +5868,31 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A4BF:
                        REP #$30                             ;82A4BF|C230    |      ;
-                       LDA.B $20                            ;82A4C1|A520    |000EC8;
+                       LDA.B r_ev_2_20_hitBoxAddr-$EA8      ;82A4C1|A520    |000EC8;
                        PHA                                  ;82A4C3|48      |      ;
                        LDA.W #$CB38                         ;82A4C4|A938CB  |      ;
-                       STA.B $20                            ;82A4C7|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82A4C7|8520    |000EC8;
                        SEP #$20                             ;82A4C9|E220    |      ;
                        LDX.W #$0BA8                         ;82A4CB|A2A80B  |      ;
                        JSL.L CODE_849C0E                    ;82A4CE|220E9C84|849C0E;
                        REP #$20                             ;82A4D2|C220    |      ;
                        PLA                                  ;82A4D4|68      |      ;
-                       STA.B $20                            ;82A4D5|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82A4D5|8520    |000EC8;
                        SEP #$30                             ;82A4D7|E230    |      ;
                        BCC CODE_82A500                      ;82A4D9|9025    |82A500;
                        LDA.B #$01                           ;82A4DB|A901    |      ;
                        STA.W r_0bd8                         ;82A4DD|8DD80B  |860BD8;
-                       STA.B $3B                            ;82A4E0|853B    |000EE3;
+                       STA.B r_ev_2_3b-$EA8                 ;82A4E0|853B    |000EE3;
                        LDA.B #$04                           ;82A4E2|A904    |      ;
-                       STA.B $02                            ;82A4E4|8502    |000EAA;
-                       STZ.B $03                            ;82A4E6|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;82A4E4|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;82A4E6|6403    |000EAB;
                        LDA.B #$10                           ;82A4E8|A910    |      ;
                        STA.W r_0000                         ;82A4EA|8D0000  |860000;
                        STZ.W r_0001                         ;82A4ED|9C0100  |860001;
                        JSR.W CODE_82A765                    ;82A4F0|2065A7  |82A765;
                        LDA.B #$01                           ;82A4F3|A901    |      ;
                        JSL.L CODE_848F07                    ;82A4F5|22078F84|848F07;
-                       INC.B $3E                            ;82A4F9|E63E    |000EE6;
+                       INC.B r_ev_2_3e-$EA8                 ;82A4F9|E63E    |000EE6;
                        JSL.L CODE_849F8A                    ;82A4FB|228A9F84|849F8A;
                        RTS                                  ;82A4FF|60      |      ;
                                                             ;      |        |      ;
@@ -5906,25 +5906,25 @@ loadProjectileSlotBase:
                        LDA.B #$03                           ;82A505|A903    |      ;
                        TSB.W r_0bd4                         ;82A507|0CD40B  |860BD4;
                        JSL.L CODE_84A081                    ;82A50A|2281A084|84A081;
-                       STA.B $35                            ;82A50E|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82A50E|8535    |000EDD;
                        JSR.W CODE_82A6A8                    ;82A510|20A8A6  |82A6A8;
                        JSL.L updateEv_13_14_17_0f           ;82A513|22EA8E84|848EEA;
-                       LDA.B $0F                            ;82A517|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82A517|A50F    |000EB7;
                        BPL CODE_82A53E                      ;82A519|1023    |82A53E;
                        LDA.B #$08                           ;82A51B|A908    |      ;
-                       STA.B $01                            ;82A51D|8501    |000EA9;
-                       STZ.B $02                            ;82A51F|6402    |000EAA;
+                       STA.B r_ev_2_01_state-$EA8           ;82A51D|8501    |000EA9;
+                       STZ.B r_ev_2_02_action-$EA8          ;82A51F|6402    |000EAA;
                        JSL.L CODE_849FB2                    ;82A521|22B29F84|849FB2;
-                       STZ.B $3E                            ;82A525|643E    |000EE6;
+                       STZ.B r_ev_2_3e-$EA8                 ;82A525|643E    |000EE6;
                        STZ.W r_0bb6                         ;82A527|9CB60B  |860BB6;
-                       INC.B $3D                            ;82A52A|E63D    |000EE5;
+                       INC.B r_ev_2_3d-$EA8                 ;82A52A|E63D    |000EE5;
                        LDA.B #$01                           ;82A52C|A901    |      ;
                        STA.W r_0be5                         ;82A52E|8DE50B  |860BE5;
                        LDA.B #$B4                           ;82A531|A9B4    |      ;
-                       STA.B $33                            ;82A533|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;82A533|8533    |000EDB;
                        REP #$20                             ;82A535|C220    |      ;
                        LDA.W #$CB3C                         ;82A537|A93CCB  |      ;
-                       STA.B $20                            ;82A53A|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82A53A|8520    |000EC8;
                        SEP #$20                             ;82A53C|E220    |      ;
                                                             ;      |        |      ;
           CODE_82A53E:
@@ -5932,10 +5932,10 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A53F:
-                       LDA.B $02                            ;82A53F|A502    |000EAA;
+                       LDA.B r_ev_2_02_action-$EA8          ;82A53F|A502    |000EAA;
                        BNE CODE_82A595                      ;82A541|D052    |82A595;
-                       INC.B $34                            ;82A543|E634    |000EDC;
-                       LDA.B $34                            ;82A545|A534    |000EDC;
+                       INC.B r_ev_2_34-$EA8                 ;82A543|E634    |000EDC;
+                       LDA.B r_ev_2_34-$EA8                 ;82A545|A534    |000EDC;
                        CMP.B #$08                           ;82A547|C908    |      ;
                        BCC CODE_82A556                      ;82A549|900B    |82A556;
                        JSL.L CODE_849086                    ;82A54B|22869084|849086;
@@ -5946,9 +5946,9 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A556:
-                       INC.B $34                            ;82A556|E634    |000EDC;
+                       INC.B r_ev_2_34-$EA8                 ;82A556|E634    |000EDC;
                        LDA.B #$1E                           ;82A558|A91E    |      ;
-                       STA.B $33                            ;82A55A|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;82A55A|8533    |000EDB;
                        JSL.L CODE_84A081                    ;82A55C|2281A084|84A081;
                        ASL A                                ;82A560|0A      |      ;
                        ASL A                                ;82A561|0A      |      ;
@@ -5956,17 +5956,17 @@ loadProjectileSlotBase:
                        BIT.B #$40                           ;82A563|8940    |      ;
                        BEQ CODE_82A56D                      ;82A565|F006    |82A56D;
                        LDA.B #$40                           ;82A567|A940    |      ;
-                       TRB.B $11                            ;82A569|1411    |000EB9;
+                       TRB.B r_ev_2_11_sprAtri-$EA8         ;82A569|1411    |000EB9;
                        BRA CODE_82A571                      ;82A56B|8004    |82A571;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A56D:
                        LDA.B #$40                           ;82A56D|A940    |      ;
-                       TSB.B $11                            ;82A56F|0411    |000EB9;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;82A56F|0411    |000EB9;
                                                             ;      |        |      ;
           CODE_82A571:
                        REP #$20                             ;82A571|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;82A573|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;82A573|BD37EE  |86EE37;
                        LSR A                                ;82A576|4A      |      ;
                        LSR A                                ;82A577|4A      |      ;
                        BIT.W #$2000                         ;82A578|890020  |      ;
@@ -5974,7 +5974,7 @@ loadProjectileSlotBase:
                        ORA.W #$C000                         ;82A57D|0900C0  |      ;
                                                             ;      |        |      ;
           CODE_82A580:
-                       STA.B $1A                            ;82A580|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82A580|851A    |000EC2;
                        LDA.W DATA8_86EE39,X                 ;82A582|BD39EE  |86EE39;
                        LSR A                                ;82A585|4A      |      ;
                        LSR A                                ;82A586|4A      |      ;
@@ -5983,17 +5983,17 @@ loadProjectileSlotBase:
                        ORA.W #$C000                         ;82A58C|0900C0  |      ;
                                                             ;      |        |      ;
           CODE_82A58F:
-                       STA.B $1C                            ;82A58F|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;82A58F|851C    |000EC4;
                        SEP #$20                             ;82A591|E220    |      ;
-                       INC.B $02                            ;82A593|E602    |000EAA;
+                       INC.B r_ev_2_02_action-$EA8          ;82A593|E602    |000EAA;
                                                             ;      |        |      ;
           CODE_82A595:
                        JSR.W CODE_82A7A0                    ;82A595|20A0A7  |82A7A0;
-                       LDA.B $1D                            ;82A598|A51D    |000EC5;
+                       LDA.B r_ev_2_1d_ySpd-$EA8            ;82A598|A51D    |000EC5;
                        BMI CODE_82A5B0                      ;82A59A|3014    |82A5B0;
                        LDA.B #$E8                           ;82A59C|A9E8    |      ;
-                       STA.B $2A                            ;82A59E|852A    |000ED2;
-                       STZ.B $29                            ;82A5A0|6429    |000ED1;
+                       STA.B r_ev_2_2a-$EA8                 ;82A59E|852A    |000ED2;
+                       STZ.B r_ev_2_29-$EA8                 ;82A5A0|6429    |000ED1;
                        JSL.L CODE_8490A0                    ;82A5A2|22A09084|8490A0;
                        CMP.B #$0D                           ;82A5A6|C90D    |      ;
                        BEQ CODE_82A5B0                      ;82A5A8|F006    |82A5B0;
@@ -6006,13 +6006,13 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A5B4:
                        JSL.L CODE_8491BE                    ;82A5B4|22BE9184|8491BE;
-                       LDA.B $2B                            ;82A5B8|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82A5B8|A52B    |000ED3;
                        BNE CODE_82A5C0                      ;82A5BA|D004    |82A5C0;
-                       DEC.B $33                            ;82A5BC|C633    |000EDB;
+                       DEC.B r_ev_2_33-$EA8                 ;82A5BC|C633    |000EDB;
                        BNE CODE_82A5C2                      ;82A5BE|D002    |82A5C2;
                                                             ;      |        |      ;
           CODE_82A5C0:
-                       STZ.B $02                            ;82A5C0|6402    |000EAA;
+                       STZ.B r_ev_2_02_action-$EA8          ;82A5C0|6402    |000EAA;
                                                             ;      |        |      ;
           CODE_82A5C2:
                        JSL.L updateEv_13_14_17_0f           ;82A5C2|22EA8E84|848EEA;
@@ -6024,7 +6024,7 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;82A5CB|22EA8E84|848EEA;
                        JSR.W CODE_82A7A0                    ;82A5CF|20A0A7  |82A7A0;
                        STZ.W $0C19                          ;82A5D2|9C190C  |860C19;
-                       LDA.B $11                            ;82A5D5|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82A5D5|A511    |000EB9;
                        AND.B #$40                           ;82A5D7|2940    |      ;
                        REP #$20                             ;82A5D9|C220    |      ;
                        BNE CODE_82A5E2                      ;82A5DB|D005    |82A5E2;
@@ -6036,11 +6036,11 @@ loadProjectileSlotBase:
                        LDA.W #$0080                         ;82A5E2|A98000  |      ;
                                                             ;      |        |      ;
           CODE_82A5E5:
-                       STA.B $1A                            ;82A5E5|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82A5E5|851A    |000EC2;
                        SEP #$20                             ;82A5E7|E220    |      ;
                        JSL.L CODE_82823E                    ;82A5E9|223E8282|82823E;
                        JSL.L CODE_8491BE                    ;82A5ED|22BE9184|8491BE;
-                       LDA.B $2B                            ;82A5F1|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82A5F1|A52B    |000ED3;
                        AND.B #$03                           ;82A5F3|2903    |      ;
                        BNE CODE_82A5FB                      ;82A5F5|D004    |82A5FB;
                        LDA.B $06                            ;82A5F7|A506    |000EAE;
@@ -6048,26 +6048,26 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A5FB:
                        LDA.B #$40                           ;82A5FB|A940    |      ;
-                       EOR.B $11                            ;82A5FD|4511    |000E79;
-                       STA.B $11                            ;82A5FF|8511    |000E79;
+                       EOR.B r_ev_11_sprAtri-$E68           ;82A5FD|4511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;82A5FF|8511    |000E79;
                                                             ;      |        |      ;
           CODE_82A601:
                        REP #$20                             ;82A601|C220    |      ;
-                       LDA.B $05                            ;82A603|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82A603|A505    |000EAD;
                        STA.W r_0bad                         ;82A605|8DAD0B  |860BAD;
-                       LDA.B $08                            ;82A608|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;82A608|A508    |000EB0;
                        STA.W r_0bb0                         ;82A60A|8DB00B  |860BB0;
                        SEP #$30                             ;82A60D|E230    |      ;
-                       DEC.B $33                            ;82A60F|C633    |000EDB;
+                       DEC.B r_ev_2_33-$EA8                 ;82A60F|C633    |000EDB;
                        BNE CODE_82A620                      ;82A611|D00D    |82A620;
                        LDA.B #$02                           ;82A613|A902    |      ;
                        STA.W r_0bce                         ;82A615|8DCE0B  |860BCE;
                        JSL.L CODE_849F2A                    ;82A618|222A9F84|849F2A;
                        LDA.B #$B4                           ;82A61C|A9B4    |      ;
-                       STA.B $33                            ;82A61E|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;82A61E|8533    |000E9B;
                                                             ;      |        |      ;
           CODE_82A620:
-                       LDX.B $02                            ;82A620|A602    |000EAA;
+                       LDX.B r_ev_2_02_action-$EA8          ;82A620|A602    |000EAA;
                        JMP.W (PTR16_82A625,X)               ;82A622|7C25A6  |82A625;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6083,7 +6083,7 @@ loadProjectileSlotBase:
                        BIT.B #$80                           ;82A633|8980    |      ;
                        BEQ CODE_82A645                      ;82A635|F00E    |82A645;
                        LDA.B #$04                           ;82A637|A904    |      ;
-                       STA.B $02                            ;82A639|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82A639|8502    |000E6A;
                        LDA.B #$04                           ;82A63B|A904    |      ;
                        JSL.L CODE_848F07                    ;82A63D|22078F84|848F07;
                        JSR.W CODE_82A6EB                    ;82A641|20EBA6  |82A6EB;
@@ -6095,7 +6095,7 @@ loadProjectileSlotBase:
                        AND.B #$03                           ;82A648|2903    |      ;
                        BEQ CODE_82A656                      ;82A64A|F00A    |82A656;
                        LDA.B #$02                           ;82A64C|A902    |      ;
-                       STA.B $02                            ;82A64E|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82A64E|8502    |000E6A;
                        LDA.B #$03                           ;82A650|A903    |      ;
                        JSL.L CODE_848F07                    ;82A652|22078F84|848F07;
                                                             ;      |        |      ;
@@ -6110,7 +6110,7 @@ loadProjectileSlotBase:
                        AND.B #$80                           ;82A65F|2980    |      ;
                        BEQ CODE_82A671                      ;82A661|F00E    |82A671;
                        LDA.B #$04                           ;82A663|A904    |      ;
-                       STA.B $02                            ;82A665|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82A665|8502    |000EAA;
                        LDA.B #$04                           ;82A667|A904    |      ;
                        JSL.L CODE_848F07                    ;82A669|22078F84|848F07;
                        JSR.W CODE_82A6EB                    ;82A66D|20EBA6  |82A6EB;
@@ -6118,12 +6118,12 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A671:
-                       LDA.B $0F                            ;82A671|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;82A671|A50F    |000E77;
                        BPL CODE_82A684                      ;82A673|100F    |82A684;
                        LDA.W r_joy1_buttonHoldHi_0          ;82A675|ADDF0B  |860BDF;
                        AND.B #$03                           ;82A678|2903    |      ;
                        BNE CODE_82A684                      ;82A67A|D008    |82A684;
-                       STZ.B $02                            ;82A67C|6402    |000E6A;
+                       STZ.B r_ev_02_action-$E68            ;82A67C|6402    |000E6A;
                        LDA.B #$02                           ;82A67E|A902    |      ;
                        JSL.L CODE_848F07                    ;82A680|22078F84|848F07;
                                                             ;      |        |      ;
@@ -6132,9 +6132,9 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A685:
-                       LDA.B $0F                            ;82A685|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;82A685|A50F    |000E77;
                        BPL CODE_82A68C                      ;82A687|1003    |82A68C;
-                       STZ.B $02                            ;82A689|6402    |000EAA;
+                       STZ.B r_ev_2_02_action-$EA8          ;82A689|6402    |000EAA;
                        RTS                                  ;82A68B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6146,9 +6146,9 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A692:
                        JSL.L updateEv_13_14_17_0f           ;82A692|22EA8E84|848EEA;
-                       LDA.B $0F                            ;82A696|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82A696|A50F    |000EB7;
                        BPL CODE_82A6A7                      ;82A698|100D    |82A6A7;
-                       JSL.L CODE_828387                    ;82A69A|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;82A69A|22878382|828387;
                        STZ.W r_0000                         ;82A69E|9C0000  |860000;
                        STZ.W r_0001                         ;82A6A1|9C0100  |860001;
                        JSR.W CODE_82A765                    ;82A6A4|2065A7  |82A765;
@@ -6160,16 +6160,16 @@ loadProjectileSlotBase:
           CODE_82A6A8:
                        PHP                                  ;82A6A8|08      |      ;
                        SEP #$30                             ;82A6A9|E230    |      ;
-                       LDA.B $35                            ;82A6AB|A535    |000EDD;
+                       LDA.B r_ev_2_35-$EA8                 ;82A6AB|A535    |000EDD;
                        ASL A                                ;82A6AD|0A      |      ;
                        ASL A                                ;82A6AE|0A      |      ;
                        TAX                                  ;82A6AF|AA      |      ;
                        REP #$20                             ;82A6B0|C220    |      ;
                        LDA.W r_player_xSubSpd               ;82A6B2|ADC20B  |860BC2;
-                       STA.B $37                            ;82A6B5|8537    |000EDF;
+                       STA.B r_ev_2_37-$EA8                 ;82A6B5|8537    |000EDF;
                        LDA.W r_player_ySubSpd               ;82A6B7|ADC40B  |860BC4;
-                       STA.B $39                            ;82A6BA|8539    |000EE1;
-                       LDA.W DATA8_86EE37,X                 ;82A6BC|BD37EE  |86EE37;
+                       STA.B r_ev_2_39-$EA8                 ;82A6BA|8539    |000EE1;
+                       LDA.W stormEagle_56_subID,X          ;82A6BC|BD37EE  |86EE37;
                        EOR.W #$FFFF                         ;82A6BF|49FFFF  |      ;
                        INC A                                ;82A6C2|1A      |      ;
                        STA.W r_player_xSubSpd               ;82A6C3|8DC20B  |860BC2;
@@ -6182,9 +6182,9 @@ loadProjectileSlotBase:
                        PLD                                  ;82A6D4|2B      |      ;
                        JSL.L CODE_82820A                    ;82A6D5|220A8282|82820A;
                        PLD                                  ;82A6D9|2B      |      ;
-                       LDA.B $37                            ;82A6DA|A537    |000EDF;
+                       LDA.B r_ev_2_37-$EA8                 ;82A6DA|A537    |000EDF;
                        STA.W r_player_xSubSpd               ;82A6DC|8DC20B  |860BC2;
-                       LDA.B $39                            ;82A6DF|A539    |000EE1;
+                       LDA.B r_ev_2_39-$EA8                 ;82A6DF|A539    |000EE1;
                        BPL CODE_82A6E6                      ;82A6E1|1003    |82A6E6;
                        LDA.W #$0000                         ;82A6E3|A90000  |      ;
                                                             ;      |        |      ;
@@ -6195,66 +6195,66 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A6EB:
-                       LDA.B $27                            ;82A6EB|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;82A6EB|A527    |000E8F;
                        AND.B #$7F                           ;82A6ED|297F    |      ;
                        SEC                                  ;82A6EF|38      |      ;
                        SBC.B #$02                           ;82A6F0|E902    |      ;
-                       STA.B $27                            ;82A6F2|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;82A6F2|8527    |000E8F;
                        BEQ CODE_82A6F8                      ;82A6F4|F002    |82A6F8;
                        BPL CODE_82A72D                      ;82A6F6|1035    |82A72D;
                                                             ;      |        |      ;
           CODE_82A6F8:
                        LDA.B #$80                           ;82A6F8|A980    |      ;
-                       STA.B $27                            ;82A6FA|8527    |000ECF;
+                       STA.B r_ev_2_27-$EA8                 ;82A6FA|8527    |000ECF;
                        LDA.B #$0A                           ;82A6FC|A90A    |      ;
-                       STA.B $01                            ;82A6FE|8501    |000EA9;
+                       STA.B r_ev_2_01_state-$EA8           ;82A6FE|8501    |000EA9;
                        LDA.B #$06                           ;82A700|A906    |      ;
                        JSL.L CODE_848F07                    ;82A702|22078F84|848F07;
                        LDA.B #$23                           ;82A706|A923    |      ;
                        JSL.L CODE_8088A2                    ;82A708|22A28880|8088A2;
-                       LDA.B $3E                            ;82A70C|A53E    |000EE6;
+                       LDA.B r_ev_2_3e-$EA8                 ;82A70C|A53E    |000EE6;
                        BEQ CODE_82A716                      ;82A70E|F006    |82A716;
                        JSL.L CODE_849FB2                    ;82A710|22B29F84|849FB2;
-                       STZ.B $3E                            ;82A714|643E    |000EE6;
+                       STZ.B r_ev_2_3e-$EA8                 ;82A714|643E    |000EE6;
                                                             ;      |        |      ;
           CODE_82A716:
-                       LDA.B $3B                            ;82A716|A53B    |000EE3;
+                       LDA.B r_ev_2_3b-$EA8                 ;82A716|A53B    |000EE3;
                        BEQ CODE_82A71F                      ;82A718|F005    |82A71F;
                        STZ.W r_0bd8                         ;82A71A|9CD80B  |860BD8;
-                       STZ.B $3B                            ;82A71D|643B    |000EE3;
+                       STZ.B r_ev_2_3b-$EA8                 ;82A71D|643B    |000EE3;
                                                             ;      |        |      ;
           CODE_82A71F:
-                       LDA.B $3D                            ;82A71F|A53D    |000EE5;
+                       LDA.B r_ev_2_3d-$EA8                 ;82A71F|A53D    |000EE5;
                        BEQ CODE_82A72D                      ;82A721|F00A    |82A72D;
                        LDA.B #$01                           ;82A723|A901    |      ;
                        STA.W r_0bb6                         ;82A725|8DB60B  |860BB6;
                        STZ.W r_0be5                         ;82A728|9CE50B  |860BE5;
-                       STZ.B $3D                            ;82A72B|643D    |000EE5;
+                       STZ.B r_ev_2_3d-$EA8                 ;82A72B|643D    |000EE5;
                                                             ;      |        |      ;
           CODE_82A72D:
                        LDA.B #$0E                           ;82A72D|A90E    |      ;
-                       TRB.B $11                            ;82A72F|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;82A72F|1411    |000E79;
                        RTS                                  ;82A731|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A732:
                        LDA.B #$04                           ;82A732|A904    |      ;
-                       STA.B $01                            ;82A734|8501    |000EA9;
-                       STZ.B $02                            ;82A736|6402    |000EAA;
-                       INC.B $03                            ;82A738|E603    |000EAB;
+                       STA.B r_ev_2_01_state-$EA8           ;82A734|8501    |000EA9;
+                       STZ.B r_ev_2_02_action-$EA8          ;82A736|6402    |000EAA;
+                       INC.B r_ev_2_03_do-$EA8              ;82A738|E603    |000EAB;
                        JSL.L CODE_8282D3                    ;82A73A|22D38282|8282D3;
                        BNE CODE_82A762                      ;82A73E|D022    |82A762;
                        INC.W r_0000,X                       ;82A740|FE0000  |860000;
                        STZ.W r_000b,X                       ;82A743|9E0B00  |86000B;
                        LDA.B #$17                           ;82A746|A917    |      ;
                        STA.W r_000a,X                       ;82A748|9D0A00  |86000A;
-                       LDA.B $11                            ;82A74B|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82A74B|A511    |000EB9;
                        AND.B #$40                           ;82A74D|2940    |      ;
                        STA.W r_0011,X                       ;82A74F|9D1100  |860011;
                        REP #$20                             ;82A752|C220    |      ;
-                       LDA.B $05                            ;82A754|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82A754|A505    |000EAD;
                        STA.W r_0005,X                       ;82A756|9D0500  |860005;
-                       LDA.B $08                            ;82A759|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;82A759|A508    |000EB0;
                        STA.W r_0008,X                       ;82A75B|9D0800  |860008;
                        TDC                                  ;82A75E|7B      |      ;
                        STA.W r_000c,X                       ;82A75F|9D0C00  |86000C;
@@ -6272,25 +6272,25 @@ loadProjectileSlotBase:
                        STA.W r_000a,X                       ;82A770|9D0A00  |86000A;
                        LDA.B #$01                           ;82A773|A901    |      ;
                        STA.W r_000b,X                       ;82A775|9D0B00  |86000B;
-                       LDA.B $11                            ;82A778|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82A778|A511    |000EB9;
                        AND.B #$40                           ;82A77A|2940    |      ;
                        STA.W r_0011,X                       ;82A77C|9D1100  |860011;
                        REP #$20                             ;82A77F|C220    |      ;
                        BNE CODE_82A78B                      ;82A781|D008    |82A78B;
-                       LDA.B $05                            ;82A783|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82A783|A505    |000E6D;
                        SEC                                  ;82A785|38      |      ;
                        SBC.W r_0000                         ;82A786|ED0000  |860000;
                        BRA CODE_82A791                      ;82A789|8006    |82A791;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A78B:
-                       LDA.B $05                            ;82A78B|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82A78B|A505    |000EAD;
                        CLC                                  ;82A78D|18      |      ;
                        ADC.W r_0000                         ;82A78E|6D0000  |860000;
                                                             ;      |        |      ;
           CODE_82A791:
                        STA.W r_0005,X                       ;82A791|9D0500  |860005;
-                       LDA.B $08                            ;82A794|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;82A794|A508    |000EB0;
                        STA.W r_0008,X                       ;82A796|9D0800  |860008;
                        TDC                                  ;82A799|7B      |      ;
                        STA.W r_000c,X                       ;82A79A|9D0C00  |86000C;
@@ -6302,14 +6302,14 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A7A0:
                        REP #$20                             ;82A7A0|C220    |      ;
-                       LDA.B $05                            ;82A7A2|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82A7A2|A505    |000EAD;
                        SEC                                  ;82A7A4|38      |      ;
-                       SBC.B $31                            ;82A7A5|E531    |000ED9;
+                       SBC.B r_ev_2_31-$EA8                 ;82A7A5|E531    |000ED9;
                        BCC CODE_82A7B7                      ;82A7A7|900E    |82A7B7;
                        CMP.W #$0080                         ;82A7A9|C98000  |      ;
                        BCC CODE_82A7D8                      ;82A7AC|902A    |82A7D8;
                        SEP #$20                             ;82A7AE|E220    |      ;
-                       LDA.B $11                            ;82A7B0|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82A7B0|A511    |000EB9;
                        AND.B #$40                           ;82A7B2|2940    |      ;
                        BNE CODE_82A7C8                      ;82A7B4|D012    |82A7C8;
                        RTS                                  ;82A7B6|60      |      ;
@@ -6321,31 +6321,31 @@ loadProjectileSlotBase:
                        CMP.W #$0080                         ;82A7BB|C98000  |      ;
                        BCC CODE_82A7D8                      ;82A7BE|9018    |82A7D8;
                        SEP #$20                             ;82A7C0|E220    |      ;
-                       LDA.B $11                            ;82A7C2|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82A7C2|A511    |000EB9;
                        AND.B #$40                           ;82A7C4|2940    |      ;
                        BNE CODE_82A7D8                      ;82A7C6|D010    |82A7D8;
                                                             ;      |        |      ;
           CODE_82A7C8:
-                       LDA.B $11                            ;82A7C8|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82A7C8|A511    |000EB9;
                        EOR.B #$40                           ;82A7CA|4940    |      ;
-                       STA.B $11                            ;82A7CC|8511    |000EB9;
+                       STA.B r_ev_2_11_sprAtri-$EA8         ;82A7CC|8511    |000EB9;
                        REP #$20                             ;82A7CE|C220    |      ;
-                       LDA.B $1A                            ;82A7D0|A51A    |000EC2;
+                       LDA.B r_ev_2_1a_xSpdSub-$EA8         ;82A7D0|A51A    |000EC2;
                        EOR.W #$FFFF                         ;82A7D2|49FFFF  |      ;
                        INC A                                ;82A7D5|1A      |      ;
-                       STA.B $1A                            ;82A7D6|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82A7D6|851A    |000EC2;
                                                             ;      |        |      ;
           CODE_82A7D8:
                        SEP #$20                             ;82A7D8|E220    |      ;
                        RTS                                  ;82A7DA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82A7DB:
-                       LDA.B $35                            ;82A7DB|A535    |000EDD;
-                       TSB.B $11                            ;82A7DD|0411    |000EB9;
-                       LDX.B $01                            ;82A7DF|A601    |000EA9;
-                       JSR.W (PTR16_82A805,X)               ;82A7E1|FC05A8  |82A805;
-                       LDA.B $00                            ;82A7E4|A500    |000EA8;
+eventID_madPeker_1e_main:
+                       LDA.B r_ev_2_35-$EA8                 ;82A7DB|A535    |000EDD;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;82A7DD|0411    |000EB9;
+                       LDX.B r_ev_2_01_state-$EA8           ;82A7DF|A601    |000EA9;
+                       JSR.W (madPeker_1e_state,X)          ;82A7E1|FC05A8  |82A805;
+                       LDA.B r_event_2_active_00-$EA8       ;82A7E4|A500    |000EA8;
                        BNE CODE_82A7E9                      ;82A7E6|D001    |82A7E9;
                        RTL                                  ;82A7E8|6B      |      ;
                                                             ;      |        |      ;
@@ -6354,50 +6354,50 @@ loadProjectileSlotBase:
                        JSL.L CODE_849B43                    ;82A7E9|22439B84|849B43;
                        BEQ CODE_82A7FD                      ;82A7ED|F00E    |82A7FD;
                        LDA.B #$0E                           ;82A7EF|A90E    |      ;
-                       TRB.B $11                            ;82A7F1|1411    |000EB9;
-                       LDA.B $27                            ;82A7F3|A527    |000ECF;
+                       TRB.B r_ev_2_11_sprAtri-$EA8         ;82A7F1|1411    |000EB9;
+                       LDA.B r_ev_2_27-$EA8                 ;82A7F3|A527    |000ECF;
                        AND.B #$7F                           ;82A7F5|297F    |      ;
                        BNE CODE_82A7FD                      ;82A7F7|D004    |82A7FD;
                        LDA.B #$08                           ;82A7F9|A908    |      ;
-                       STA.B $01                            ;82A7FB|8501    |000EA9;
+                       STA.B r_ev_2_01_state-$EA8           ;82A7FB|8501    |000EA9;
                                                             ;      |        |      ;
           CODE_82A7FD:
                        JSL.L CODE_849B03                    ;82A7FD|22039B84|849B03;
-                       JML.L CODE_8280B4                    ;82A801|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82A801|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82A805:
-                       dw CODE_82A80F                       ;82A805|        |82A80F;
+    madPeker_1e_state:
+                       dw madPeker_1e_state_00              ;82A805|        |82A80F;
                        dw CODE_82A856                       ;82A807|        |82A856;
                        dw CODE_82A87A                       ;82A809|        |82A87A;
                        dw CODE_82A904                       ;82A80B|        |82A904;
                        dw CODE_82A93C                       ;82A80D|        |82A93C;
                                                             ;      |        |      ;
-          CODE_82A80F:
-                       JSL.L CODE_82827D                    ;82A80F|227D8282|82827D;
-                       LDA.B $11                            ;82A813|A511    |000EB9;
+ madPeker_1e_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;82A80F|227D8282|82827D;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82A813|A511    |000EB9;
                        AND.B #$0E                           ;82A815|290E    |      ;
-                       STA.B $35                            ;82A817|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82A817|8535    |000EDD;
                        LDA.B #$06                           ;82A819|A906    |      ;
-                       STA.B $27                            ;82A81B|8527    |000ECF;
+                       STA.B r_ev_2_27-$EA8                 ;82A81B|8527    |000ECF;
                        LDA.B #$02                           ;82A81D|A902    |      ;
-                       STA.B $26                            ;82A81F|8526    |000ECE;
+                       STA.B r_ev_2_26-$EA8                 ;82A81F|8526    |000ECE;
                        LDA.B #$04                           ;82A821|A904    |      ;
-                       STA.B $12                            ;82A823|8512    |000EBA;
+                       STA.B r_ev_2_12-$EA8                 ;82A823|8512    |000EBA;
                        LDA.B #$00                           ;82A825|A900    |      ;
                        JSL.L CODE_848F07                    ;82A827|22078F84|848F07;
                        REP #$20                             ;82A82B|C220    |      ;
                        LDA.W #$CB46                         ;82A82D|A946CB  |      ;
-                       STA.B $20                            ;82A830|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82A830|8520    |000EC8;
                        LDA.W r_0bad                         ;82A832|ADAD0B  |860BAD;
                        SEC                                  ;82A835|38      |      ;
-                       SBC.B $05                            ;82A836|E505    |000EAD;
-                       STZ.B $31                            ;82A838|6431    |000ED9;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;82A836|E505    |000EAD;
+                       STZ.B r_ev_2_31-$EA8                 ;82A838|6431    |000ED9;
                        SEP #$20                             ;82A83A|E220    |      ;
                        LDA.B #$00                           ;82A83C|A900    |      ;
                        ROR A                                ;82A83E|6A      |      ;
                        ROR A                                ;82A83F|6A      |      ;
-                       TSB.B $11                            ;82A840|0411    |000EB9;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;82A840|0411    |000EB9;
                        ASL A                                ;82A842|0A      |      ;
                        ASL A                                ;82A843|0A      |      ;
                        REP #$20                             ;82A844|C220    |      ;
@@ -6407,8 +6407,8 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A84E:
                        CLC                                  ;82A84E|18      |      ;
-                       ADC.B $05                            ;82A84F|6505    |000EAD;
-                       STA.B $05                            ;82A851|8505    |000EAD;
+                       ADC.B r_ev_2_05_xPos-$EA8            ;82A84F|6505    |000EAD;
+                       STA.B r_ev_2_05_xPos-$EA8            ;82A851|8505    |000EAD;
                        SEP #$20                             ;82A853|E220    |      ;
                        RTS                                  ;82A855|60      |      ;
                                                             ;      |        |      ;
@@ -6420,15 +6420,15 @@ loadProjectileSlotBase:
                        LDA.B #$01                           ;82A85F|A901    |      ;
                        JSL.L CODE_848F07                    ;82A861|22078F84|848F07;
                        LDA.B #$04                           ;82A865|A904    |      ;
-                       STA.B $01                            ;82A867|8501    |000EA9;
-                       STZ.B $02                            ;82A869|6402    |000EAA;
+                       STA.B r_ev_2_01_state-$EA8           ;82A867|8501    |000EA9;
+                       STZ.B r_ev_2_02_action-$EA8          ;82A869|6402    |000EAA;
                        LDA.B #$12                           ;82A86B|A912    |      ;
-                       STA.B $33                            ;82A86D|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;82A86D|8533    |000EDB;
                                                             ;      |        |      ;
           CODE_82A86F:
-                       JSL.L CODE_82806E                    ;82A86F|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82A86F|226E8082|82806E;
                        BCC CODE_82A879                      ;82A873|9004    |82A879;
-                       JSL.L CODE_828387                    ;82A875|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;82A875|22878382|828387;
                                                             ;      |        |      ;
           CODE_82A879:
                        RTS                                  ;82A879|60      |      ;
@@ -6436,19 +6436,19 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A87A:
                        JSL.L updateEv_13_14_17_0f           ;82A87A|22EA8E84|848EEA;
-                       LDA.B $02                            ;82A87E|A502    |000EAA;
+                       LDA.B r_ev_2_02_action-$EA8          ;82A87E|A502    |000EAA;
                        BNE CODE_82A8D1                      ;82A880|D04F    |82A8D1;
-                       DEC.B $33                            ;82A882|C633    |000EDB;
+                       DEC.B r_ev_2_33-$EA8                 ;82A882|C633    |000EDB;
                        BNE CODE_82A903                      ;82A884|D07D    |82A903;
-                       INC.B $02                            ;82A886|E602    |000EAA;
+                       INC.B r_ev_2_02_action-$EA8          ;82A886|E602    |000EAA;
                        JSL.L loadEnitySlotBase              ;82A888|22218382|828321;
                        BEQ CODE_82A89B                      ;82A88C|F00D    |82A89B;
                        SEP #$10                             ;82A88E|E210    |      ;
                        LDA.B #$06                           ;82A890|A906    |      ;
-                       STA.B $01                            ;82A892|8501    |000EA9;
-                       STZ.B $02                            ;82A894|6402    |000EAA;
+                       STA.B r_ev_2_01_state-$EA8           ;82A892|8501    |000EA9;
+                       STZ.B r_ev_2_02_action-$EA8          ;82A894|6402    |000EAA;
                        LDA.B #$3C                           ;82A896|A93C    |      ;
-                       STA.B $33                            ;82A898|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;82A898|8533    |000EDB;
                        RTS                                  ;82A89A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6465,49 +6465,49 @@ loadProjectileSlotBase:
                        LDA.W UNREACH_86CB4A,Y               ;82A8AE|B94ACB  |86CB4A;
                        STA.W r_000b,X                       ;82A8B1|9D0B00  |86000B;
                        REP #$20                             ;82A8B4|C220    |      ;
-                       LDA.B $05                            ;82A8B6|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82A8B6|A505    |000EAD;
                        STA.W r_0005,X                       ;82A8B8|9D0500  |860005;
-                       LDA.B $08                            ;82A8BB|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;82A8BB|A508    |000EB0;
                        SEC                                  ;82A8BD|38      |      ;
                        SBC.W #$0009                         ;82A8BE|E90900  |      ;
                        STA.W r_0008,X                       ;82A8C1|9D0800  |860008;
                        SEP #$20                             ;82A8C4|E220    |      ;
-                       LDA.B $11                            ;82A8C6|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82A8C6|A511    |000EB9;
                        AND.B #$40                           ;82A8C8|2940    |      ;
                        STA.W r_0011,X                       ;82A8CA|9D1100  |860011;
-                       STX.B $31                            ;82A8CD|8631    |000ED9;
+                       STX.B r_ev_2_31-$EA8                 ;82A8CD|8631    |000ED9;
                        SEP #$10                             ;82A8CF|E210    |      ;
                                                             ;      |        |      ;
           CODE_82A8D1:
-                       LDA.B $0F                            ;82A8D1|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82A8D1|A50F    |000EB7;
                        BEQ CODE_82A903                      ;82A8D3|F02E    |82A903;
-                       LDA.B $11                            ;82A8D5|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82A8D5|A511    |000EB9;
                        AND.B #$40                           ;82A8D7|2940    |      ;
                        REP #$30                             ;82A8D9|C230    |      ;
                        BEQ CODE_82A8E5                      ;82A8DB|F008    |82A8E5;
-                       LDA.B $05                            ;82A8DD|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82A8DD|A505    |000EAD;
                        CLC                                  ;82A8DF|18      |      ;
                        ADC.W #$0012                         ;82A8E0|691200  |      ;
                        BRA CODE_82A8EB                      ;82A8E3|8006    |82A8EB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A8E5:
-                       LDA.B $05                            ;82A8E5|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82A8E5|A505    |000EAD;
                        SEC                                  ;82A8E7|38      |      ;
                        SBC.W #$0012                         ;82A8E8|E91200  |      ;
                                                             ;      |        |      ;
           CODE_82A8EB:
-                       LDX.B $31                            ;82A8EB|A631    |000ED9;
+                       LDX.B r_ev_2_31-$EA8                 ;82A8EB|A631    |000ED9;
                        STA.W r_0005,X                       ;82A8ED|9D0500  |860005;
-                       STZ.B $31                            ;82A8F0|6431    |000ED9;
+                       STZ.B r_ev_2_31-$EA8                 ;82A8F0|6431    |000ED9;
                        SEP #$20                             ;82A8F2|E220    |      ;
                        LDA.B #$04                           ;82A8F4|A904    |      ;
                        STA.W r_0001,X                       ;82A8F6|9D0100  |860001;
                        SEP #$10                             ;82A8F9|E210    |      ;
                        LDA.B #$3C                           ;82A8FB|A93C    |      ;
-                       STA.B $33                            ;82A8FD|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;82A8FD|8533    |000EDB;
                        LDA.B #$06                           ;82A8FF|A906    |      ;
-                       STA.B $01                            ;82A901|8501    |000EA9;
+                       STA.B r_ev_2_01_state-$EA8           ;82A901|8501    |000EA9;
                                                             ;      |        |      ;
           CODE_82A903:
                        RTS                                  ;82A903|60      |      ;
@@ -6520,10 +6520,10 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A90D:
                        LDA.B #$3C                           ;82A90D|A93C    |      ;
-                       STA.B $33                            ;82A90F|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;82A90F|8533    |000EDB;
                                                             ;      |        |      ;
           CODE_82A911:
-                       DEC.B $33                            ;82A911|C633    |000EDB;
+                       DEC.B r_ev_2_33-$EA8                 ;82A911|C633    |000EDB;
                        BNE CODE_82A931                      ;82A913|D01C    |82A931;
                        JSL.L CODE_849086                    ;82A915|22869084|849086;
                        AND.B #$0F                           ;82A919|290F    |      ;
@@ -6531,17 +6531,17 @@ loadProjectileSlotBase:
                        LDA.W UNREACH_86CB4A,X               ;82A91C|BD4ACB  |86CB4A;
                        BNE CODE_82A90D                      ;82A91F|D0EC    |82A90D;
                        LDA.B #$12                           ;82A921|A912    |      ;
-                       STA.B $33                            ;82A923|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;82A923|8533    |000EDB;
                        LDA.B #$04                           ;82A925|A904    |      ;
-                       STA.B $01                            ;82A927|8501    |000EA9;
-                       STZ.B $02                            ;82A929|6402    |000EAA;
+                       STA.B r_ev_2_01_state-$EA8           ;82A927|8501    |000EA9;
+                       STZ.B r_ev_2_02_action-$EA8          ;82A929|6402    |000EAA;
                        LDA.B #$01                           ;82A92B|A901    |      ;
                        JSL.L CODE_848F07                    ;82A92D|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82A931:
-                       JSL.L CODE_82806E                    ;82A931|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82A931|226E8082|82806E;
                        BCC CODE_82A93B                      ;82A935|9004    |82A93B;
-                       JSL.L CODE_828387                    ;82A937|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;82A937|22878382|828387;
                                                             ;      |        |      ;
           CODE_82A93B:
                        RTS                                  ;82A93B|60      |      ;
@@ -6552,13 +6552,13 @@ loadProjectileSlotBase:
                        JSL.L CODE_84A384                    ;82A93E|2284A384|84A384;
                        JSL.L CODE_84A4B5                    ;82A942|22B5A484|84A4B5;
                        REP #$10                             ;82A946|C210    |      ;
-                       LDX.B $31                            ;82A948|A631    |000ED9;
+                       LDX.B r_ev_2_31-$EA8                 ;82A948|A631    |000ED9;
                        BEQ CODE_82A951                      ;82A94A|F005    |82A951;
                        LDA.B #$04                           ;82A94C|A904    |      ;
                        STA.W r_0001,X                       ;82A94E|9D0100  |860001;
                                                             ;      |        |      ;
           CODE_82A951:
-                       JSL.L CODE_828387                    ;82A951|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;82A951|22878382|828387;
                        SEP #$10                             ;82A955|E210    |      ;
                        RTS                                  ;82A957|60      |      ;
                                                             ;      |        |      ;
@@ -6567,17 +6567,17 @@ loadProjectileSlotBase:
                        REP #$20                             ;82A958|C220    |      ;
                        LDA.W r_0bad                         ;82A95A|ADAD0B  |860BAD;
                        SEC                                  ;82A95D|38      |      ;
-                       SBC.B $05                            ;82A95E|E505    |000EAD;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;82A95E|E505    |000EAD;
                        SEP #$20                             ;82A960|E220    |      ;
                        ROR A                                ;82A962|6A      |      ;
                        ROR A                                ;82A963|6A      |      ;
-                       EOR.B $11                            ;82A964|4511    |000EB9;
+                       EOR.B r_ev_2_11_sprAtri-$EA8         ;82A964|4511    |000EB9;
                        AND.B #$40                           ;82A966|2940    |      ;
                        BNE CODE_82A98E                      ;82A968|D024    |82A98E;
                        REP #$20                             ;82A96A|C220    |      ;
                        LDA.W r_0bad                         ;82A96C|ADAD0B  |860BAD;
                        SEC                                  ;82A96F|38      |      ;
-                       SBC.B $05                            ;82A970|E505    |000EAD;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;82A970|E505    |000EAD;
                        BCS CODE_82A978                      ;82A972|B004    |82A978;
                        EOR.W #$FFFF                         ;82A974|49FFFF  |      ;
                        INC A                                ;82A977|1A      |      ;
@@ -6587,10 +6587,10 @@ loadProjectileSlotBase:
                        SEP #$20                             ;82A97B|E220    |      ;
                        BCS CODE_82A98E                      ;82A97D|B00F    |82A98E;
                        LDA.B #$1F                           ;82A97F|A91F    |      ;
-                       STA.B $0A                            ;82A981|850A    |000EB2;
+                       STA.B r_ev_2_0a_ID-$EA8              ;82A981|850A    |000EB2;
                        JSL.L CODE_84A1D5                    ;82A983|22D5A184|84A1D5;
                        LDA.B #$1E                           ;82A987|A91E    |      ;
-                       STA.B $0A                            ;82A989|850A    |000EB2;
+                       STA.B r_ev_2_0a_ID-$EA8              ;82A989|850A    |000EB2;
                        CPY.B #$0C                           ;82A98B|C00C    |      ;
                        RTS                                  ;82A98D|60      |      ;
                                                             ;      |        |      ;
@@ -6600,12 +6600,12 @@ loadProjectileSlotBase:
                        RTS                                  ;82A98F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82A990:
-                       LDA.B $33                            ;82A990|A533    |000E9B;
-                       TSB.B $11                            ;82A992|0411    |000E79;
-                       LDX.B $01                            ;82A994|A601    |000E69;
-                       JSR.W (CODE_82A9D0,X)                ;82A996|FCD0A9  |82A9D0;
-                       LDA.B $00                            ;82A999|A500    |000E68;
+eventID_creeper_1f_main:
+                       LDA.B r_ev_33-$E68                   ;82A990|A533    |000E9B;
+                       TSB.B r_ev_11_sprAtri-$E68           ;82A992|0411    |000E79;
+                       LDX.B r_ev_01_state-$E68             ;82A994|A601    |000E69;
+                       JSR.W (creeper_1f_state,X)           ;82A996|FCD0A9  |82A9D0;
+                       LDA.B r_event_active_00-$E68         ;82A999|A500    |000E68;
                        BNE CODE_82A99E                      ;82A99B|D001    |82A99E;
                        RTL                                  ;82A99D|6B      |      ;
                                                             ;      |        |      ;
@@ -6614,8 +6614,8 @@ loadProjectileSlotBase:
                        JSL.L CODE_849B43                    ;82A99E|22439B84|849B43;
                        BEQ CODE_82A9BC                      ;82A9A2|F018    |82A9BC;
                        LDA.B #$0E                           ;82A9A4|A90E    |      ;
-                       TRB.B $11                            ;82A9A6|1411    |000E79;
-                       LDA.B $27                            ;82A9A8|A527    |000E8F;
+                       TRB.B r_ev_11_sprAtri-$E68           ;82A9A6|1411    |000E79;
+                       LDA.B r_ev_27-$E68                   ;82A9A8|A527    |000E8F;
                        AND.B #$7F                           ;82A9AA|297F    |      ;
                        BNE CODE_82A9BC                      ;82A9AC|D00E    |82A9BC;
                        LDA.B #$01                           ;82A9AE|A901    |      ;
@@ -6623,50 +6623,50 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82A9B4:
                        JSL.L CODE_84A4B5                    ;82A9B4|22B5A484|84A4B5;
-                       JML.L CODE_828398                    ;82A9B8|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82A9B8|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A9BC:
-                       STZ.B $29                            ;82A9BC|6429    |000E91;
-                       STZ.B $2A                            ;82A9BE|642A    |000E92;
+                       STZ.B r_ev_29-$E68                   ;82A9BC|6429    |000E91;
+                       STZ.B r_ev_2a-$E68                   ;82A9BE|642A    |000E92;
                        JSL.L CODE_8490A0                    ;82A9C0|22A09084|8490A0;
                        CMP.B #$34                           ;82A9C4|C934    |      ;
                        BCS CODE_82A9B4                      ;82A9C6|B0EC    |82A9B4;
                        JSL.L CODE_849B03                    ;82A9C8|22039B84|849B03;
-                       JML.L CODE_8280B4                    ;82A9CC|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82A9CC|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82A9D0:
-                       CLD                                  ;82A9D0|D8      |      ;
-                       LDA.B #$29                           ;82A9D1|A929    |      ;
-                       TAX                                  ;82A9D3|AA      |      ;
-                       ROL A                                ;82A9D4|2A      |      ;
-                       TAX                                  ;82A9D5|AA      |      ;
-                       BCC CODE_82A982                      ;82A9D6|90AA    |82A982;
-                       LDA.B $11                            ;82A9D8|A511    |000E79;
+     creeper_1f_state:
+                       dw creeper_1f_state_00               ;82A9D0|        |82A9D8;
+                       dw CODE_82AA29                       ;82A9D2|        |82AA29;
+                       dw CODE_82AA2A                       ;82A9D4|        |82AA2A;
+                       dw CODE_82AA90                       ;82A9D6|        |82AA90;
+                                                            ;      |        |      ;
+  creeper_1f_state_00:
+                       LDA.B r_ev_11_sprAtri-$E68           ;82A9D8|A511    |000E79;
                        AND.B #$40                           ;82A9DA|2940    |      ;
                        PHA                                  ;82A9DC|48      |      ;
-                       JSL.L CODE_82827D                    ;82A9DD|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;82A9DD|227D8282|82827D;
                        PLA                                  ;82A9E1|68      |      ;
-                       TSB.B $11                            ;82A9E2|0411    |000E79;
-                       LDA.B $11                            ;82A9E4|A511    |000E79;
+                       TSB.B r_ev_11_sprAtri-$E68           ;82A9E2|0411    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82A9E4|A511    |000E79;
                        AND.B #$0E                           ;82A9E6|290E    |      ;
-                       STA.B $33                            ;82A9E8|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;82A9E8|8533    |000E9B;
                        LDA.B #$01                           ;82A9EA|A901    |      ;
-                       STA.B $27                            ;82A9EC|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;82A9EC|8527    |000E8F;
                        LDA.B #$01                           ;82A9EE|A901    |      ;
-                       STA.B $26                            ;82A9F0|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;82A9F0|8526    |000E8E;
                        LDA.B #$04                           ;82A9F2|A904    |      ;
-                       STA.B $12                            ;82A9F4|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;82A9F4|8512    |000E7A;
                        LDA.B #$FF                           ;82A9F6|A9FF    |      ;
-                       STA.B $2F                            ;82A9F8|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;82A9F8|852F    |000E97;
                        LDA.B #$03                           ;82A9FA|A903    |      ;
                        JSL.L CODE_848F07                    ;82A9FC|22078F84|848F07;
-                       LDA.B $11                            ;82AA00|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82AA00|A511    |000E79;
                        AND.B #$40                           ;82AA02|2940    |      ;
                        REP #$20                             ;82AA04|C220    |      ;
                        BEQ CODE_82AA11                      ;82AA06|F009    |82AA11;
-                       LDA.B $0B                            ;82AA08|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82AA08|A50B    |000E73;
                        ASL A                                ;82AA0A|0A      |      ;
                        TAX                                  ;82AA0B|AA      |      ;
                        LDA.W UNREACH_86CB64,X               ;82AA0C|BD64CB  |86CB64;
@@ -6674,7 +6674,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AA11:
-                       LDA.B $0B                            ;82AA11|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82AA11|A50B    |000E73;
                        ASL A                                ;82AA13|0A      |      ;
                        TAX                                  ;82AA14|AA      |      ;
                        LDA.W UNREACH_86CB64,X               ;82AA15|BD64CB  |86CB64;
@@ -6682,49 +6682,53 @@ loadProjectileSlotBase:
                        INC A                                ;82AA1B|1A      |      ;
                                                             ;      |        |      ;
           CODE_82AA1C:
-                       STA.B $1A                            ;82AA1C|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82AA1C|851A    |000E82;
                        LDA.W #$CB5A                         ;82AA1E|A95ACB  |      ;
-                       STA.B $20                            ;82AA21|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;82AA21|8520    |000E88;
                        SEP #$20                             ;82AA23|E220    |      ;
                        LDA.B #$40                           ;82AA25|A940    |      ;
-                       STA.B $1E                            ;82AA27|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;82AA27|851E    |000E86;
+                                                            ;      |        |      ;
+          CODE_82AA29:
                        RTS                                  ;82AA29|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82AA2A:
                        JSL.L CODE_8281E8                    ;82AA2A|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;82AA2E|22BE9184|8491BE;
-                       LDA.B $2B                            ;82AA32|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;82AA32|A52B    |000E93;
                        AND.B #$03                           ;82AA34|2903    |      ;
                        BEQ CODE_82AA4A                      ;82AA36|F012    |82AA4A;
-                       LDA.B $11                            ;82AA38|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82AA38|A511    |000E79;
                        EOR.B #$40                           ;82AA3A|4940    |      ;
-                       STA.B $11                            ;82AA3C|8511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;82AA3C|8511    |000E79;
                        REP #$20                             ;82AA3E|C220    |      ;
-                       LDA.B $1A                            ;82AA40|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82AA40|A51A    |000E82;
                        EOR.W #$FFFF                         ;82AA42|49FFFF  |      ;
                        INC A                                ;82AA45|1A      |      ;
-                       STA.B $1A                            ;82AA46|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82AA46|851A    |000E82;
                        SEP #$20                             ;82AA48|E220    |      ;
                                                             ;      |        |      ;
           CODE_82AA4A:
-                       LDA.B $2B                            ;82AA4A|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;82AA4A|A52B    |000E93;
                        AND.B #$04                           ;82AA4C|2904    |      ;
                        BEQ CODE_82AA81                      ;82AA4E|F031    |82AA81;
                        LDA.B #$06                           ;82AA50|A906    |      ;
-                       STA.B $01                            ;82AA52|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82AA52|8501    |000E69;
                        LDA.B #$04                           ;82AA54|A904    |      ;
                        JSL.L CODE_848F07                    ;82AA56|22078F84|848F07;
-                       STZ.B $2F                            ;82AA5A|642F    |000E97;
+                       STZ.B r_ev_2f-$E68                   ;82AA5A|642F    |000E97;
                        LDA.B #$40                           ;82AA5C|A940    |      ;
-                       TRB.B $11                            ;82AA5E|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;82AA5E|1411    |000E79;
                        REP #$20                             ;82AA60|C220    |      ;
                        LDA.W r_0bad                         ;82AA62|ADAD0B  |860BAD;
                        SEC                                  ;82AA65|38      |      ;
-                       SBC.B $05                            ;82AA66|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;82AA66|E505    |000E6D;
                        SEP #$20                             ;82AA68|E220    |      ;
                        LDA.B #$00                           ;82AA6A|A900    |      ;
                        ROR A                                ;82AA6C|6A      |      ;
                        ROR A                                ;82AA6D|6A      |      ;
-                       TSB.B $11                            ;82AA6E|0411    |000E79;
+                       TSB.B r_ev_11_sprAtri-$E68           ;82AA6E|0411    |000E79;
                        ASL A                                ;82AA70|0A      |      ;
                        ASL A                                ;82AA71|0A      |      ;
                        REP #$20                             ;82AA72|C220    |      ;
@@ -6733,68 +6737,70 @@ loadProjectileSlotBase:
                        LDA.W #$FF80                         ;82AA79|A980FF  |      ;
                                                             ;      |        |      ;
           CODE_82AA7C:
-                       STA.B $1A                            ;82AA7C|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82AA7C|851A    |000E82;
                        SEP #$20                             ;82AA7E|E220    |      ;
                        RTS                                  ;82AA80|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AA81:
                        JSL.L updateEv_13_14_17_0f           ;82AA81|22EA8E84|848EEA;
-                       JSL.L CODE_82806E                    ;82AA85|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82AA85|226E8082|82806E;
                        BCC CODE_82AA8F                      ;82AA89|9004    |82AA8F;
-                       JSL.L CODE_828398                    ;82AA8B|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;82AA8B|22988382|828398;
                                                             ;      |        |      ;
           CODE_82AA8F:
                        RTS                                  ;82AA8F|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82AA90:
                        JSL.L CODE_82823E                    ;82AA90|223E8282|82823E;
                        JSL.L CODE_8491BE                    ;82AA94|22BE9184|8491BE;
-                       LDA.B $2B                            ;82AA98|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;82AA98|A52B    |000E93;
                        AND.B #$03                           ;82AA9A|2903    |      ;
                        BEQ CODE_82AAB0                      ;82AA9C|F012    |82AAB0;
-                       LDA.B $11                            ;82AA9E|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82AA9E|A511    |000E79;
                        EOR.B #$40                           ;82AAA0|4940    |      ;
-                       STA.B $11                            ;82AAA2|8511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;82AAA2|8511    |000E79;
                        REP #$20                             ;82AAA4|C220    |      ;
-                       LDA.B $1A                            ;82AAA6|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82AAA6|A51A    |000E82;
                        EOR.W #$FFFF                         ;82AAA8|49FFFF  |      ;
                        INC A                                ;82AAAB|1A      |      ;
-                       STA.B $1A                            ;82AAAC|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82AAAC|851A    |000E82;
                        SEP #$20                             ;82AAAE|E220    |      ;
                                                             ;      |        |      ;
           CODE_82AAB0:
-                       LDA.B $2B                            ;82AAB0|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;82AAB0|A52B    |000E93;
                        AND.B #$04                           ;82AAB2|2904    |      ;
                        BNE CODE_82AAC8                      ;82AAB4|D012    |82AAC8;
-                       STZ.B $1C                            ;82AAB6|641C    |000E84;
-                       STZ.B $1D                            ;82AAB8|641D    |000E85;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;82AAB6|641C    |000E84;
+                       STZ.B r_ev_1d_ySpd-$E68              ;82AAB8|641D    |000E85;
                        LDA.B #$04                           ;82AABA|A904    |      ;
-                       STA.B $01                            ;82AABC|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82AABC|8501    |000E69;
                        LDA.B #$03                           ;82AABE|A903    |      ;
                        JSL.L CODE_848F07                    ;82AAC0|22078F84|848F07;
                        LDA.B #$FF                           ;82AAC4|A9FF    |      ;
-                       STA.B $2F                            ;82AAC6|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;82AAC6|852F    |000E97;
                                                             ;      |        |      ;
           CODE_82AAC8:
                        JSL.L updateEv_13_14_17_0f           ;82AAC8|22EA8E84|848EEA;
-                       JSL.L CODE_82806E                    ;82AACC|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82AACC|226E8082|82806E;
                        BCC CODE_82AAD6                      ;82AAD0|9004    |82AAD6;
-                       JSL.L CODE_828398                    ;82AAD2|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;82AAD2|22988382|828398;
                                                             ;      |        |      ;
           CODE_82AAD6:
                        RTS                                  ;82AAD6|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82AAD7:
-                       LDA.B $33                            ;82AAD7|A533    |000E9B;
-                       TSB.B $11                            ;82AAD9|0411    |000E79;
-                       LDX.B $01                            ;82AADB|A601    |000E69;
-                       JSR.W (PTR16_82AB0C,X)               ;82AADD|FC0CAB  |82AB0C;
+eventID_amenHopper_20_main:
+                       LDA.B r_ev_33-$E68                   ;82AAD7|A533    |000E9B;
+                       TSB.B r_ev_11_sprAtri-$E68           ;82AAD9|0411    |000E79;
+                       LDX.B r_ev_01_state-$E68             ;82AADB|A601    |000E69;
+                       JSR.W (amenHopper_20_state,X)        ;82AADD|FC0CAB  |82AB0C;
                        JSL.L CODE_849B43                    ;82AAE0|22439B84|849B43;
                        BEQ CODE_82AAFE                      ;82AAE4|F018    |82AAFE;
                        LDA.B #$0E                           ;82AAE6|A90E    |      ;
-                       TRB.B $11                            ;82AAE8|1411    |000E79;
-                       LDA.B $27                            ;82AAEA|A527    |000E8F;
+                       TRB.B r_ev_11_sprAtri-$E68           ;82AAE8|1411    |000E79;
+                       LDA.B r_ev_27-$E68                   ;82AAEA|A527    |000E8F;
                        AND.B #$7F                           ;82AAEC|297F    |      ;
                        BNE CODE_82AAFE                      ;82AAEE|D00E    |82AAFE;
                        JSL.L CODE_84A4B5                    ;82AAF0|22B5A484|84A4B5;
@@ -6802,42 +6808,42 @@ loadProjectileSlotBase:
                        JSL.L CODE_84A384                    ;82AAF6|2284A384|84A384;
                                                             ;      |        |      ;
           CODE_82AAFA:
-                       JML.L CODE_828387                    ;82AAFA|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82AAFA|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AAFE:
                        JSL.L CODE_849B03                    ;82AAFE|22039B84|849B03;
-                       JSL.L CODE_82806E                    ;82AB02|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82AB02|226E8082|82806E;
                        BCS CODE_82AAFA                      ;82AB06|B0F2    |82AAFA;
-                       JML.L CODE_8280B4                    ;82AB08|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82AB08|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82AB0C:
-                       dw CODE_82AB16                       ;82AB0C|        |82AB16;
+  amenHopper_20_state:
+                       dw amenHopper_20_state_00            ;82AB0C|        |82AB16;
                        dw CODE_82AB46                       ;82AB0E|        |82AB46;
                        dw CODE_82AC17                       ;82AB10|        |82AC17;
                        dw CODE_82AD15                       ;82AB12|        |82AD15;
                        dw CODE_82AD33                       ;82AB14|        |82AD33;
                                                             ;      |        |      ;
-          CODE_82AB16:
-                       JSL.L CODE_82827D                    ;82AB16|227D8282|82827D;
-                       LDA.B $11                            ;82AB1A|A511    |000E79;
+amenHopper_20_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;82AB16|227D8282|82827D;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82AB1A|A511    |000E79;
                        AND.B #$0E                           ;82AB1C|290E    |      ;
-                       STA.B $33                            ;82AB1E|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;82AB1E|8533    |000E9B;
                        LDA.B #$04                           ;82AB20|A904    |      ;
-                       STA.B $12                            ;82AB22|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;82AB22|8512    |000E7A;
                        LDA.B #$02                           ;82AB24|A902    |      ;
-                       STA.B $26                            ;82AB26|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;82AB26|8526    |000E8E;
                        LDA.B #$02                           ;82AB28|A902    |      ;
-                       STA.B $27                            ;82AB2A|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;82AB2A|8527    |000E8F;
                        LDA.B #$3C                           ;82AB2C|A93C    |      ;
-                       STA.B $35                            ;82AB2E|8535    |000E9D;
-                       STZ.B $38                            ;82AB30|6438    |000EA0;
+                       STA.B r_ev_35-$E68                   ;82AB2E|8535    |000E9D;
+                       STZ.B r_ev_38-$E68                   ;82AB30|6438    |000EA0;
                        REP #$20                             ;82AB32|C220    |      ;
                        LDA.W #$CB6A                         ;82AB34|A96ACB  |      ;
-                       STA.B $20                            ;82AB37|8520    |000E88;
-                       LDA.B $05                            ;82AB39|A505    |000E6D;
-                       STA.B $36                            ;82AB3B|8536    |000E9E;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;82AB37|8520    |000E88;
+                       LDA.B r_ev_05_xPos-$E68              ;82AB39|A505    |000E6D;
+                       STA.B r_ev_36-$E68                   ;82AB3B|8536    |000E9E;
                        SEP #$20                             ;82AB3D|E220    |      ;
                        LDA.B #$04                           ;82AB3F|A904    |      ;
                        JSL.L CODE_848F07                    ;82AB41|22078F84|848F07;
@@ -6845,7 +6851,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AB46:
-                       LDX.B $02                            ;82AB46|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82AB46|A602    |000E6A;
                        JMP.W (PTR16_82AB4B,X)               ;82AB48|7C4BAB  |82AB4B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6857,42 +6863,42 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82AB53:
                        REP #$20                             ;82AB53|C220    |      ;
-                       STZ.B $1C                            ;82AB55|641C    |000E84;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;82AB55|641C    |000E84;
                        SEP #$20                             ;82AB57|E220    |      ;
                        LDA.B #$40                           ;82AB59|A940    |      ;
-                       STA.B $1E                            ;82AB5B|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;82AB5B|851E    |000E86;
                        LDA.B #$FF                           ;82AB5D|A9FF    |      ;
-                       STA.B $2F                            ;82AB5F|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;82AB5F|852F    |000E97;
                        LDA.B #$04                           ;82AB61|A904    |      ;
                        JSL.L CODE_848F07                    ;82AB63|22078F84|848F07;
                        LDA.B #$02                           ;82AB67|A902    |      ;
-                       STA.B $02                            ;82AB69|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82AB69|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_82AB6B:
                        JSL.L updateEv_13_14_17_0f           ;82AB6B|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;82AB6F|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;82AB73|22BE9184|8491BE;
                        REP #$20                             ;82AB77|C220    |      ;
-                       LDA.B $1C                            ;82AB79|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82AB79|A51C    |000E84;
                        CMP.W #$F800                         ;82AB7B|C900F8  |      ;
                        BPL CODE_82AB85                      ;82AB7E|1005    |82AB85;
                        LDA.W #$F800                         ;82AB80|A900F8  |      ;
-                       STA.B $1C                            ;82AB83|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82AB83|851C    |000E84;
                                                             ;      |        |      ;
           CODE_82AB85:
                        SEP #$20                             ;82AB85|E220    |      ;
-                       LDA.B $2B                            ;82AB87|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;82AB87|A52B    |000E93;
                        AND.B #$04                           ;82AB89|2904    |      ;
                        BEQ CODE_82AB98                      ;82AB8B|F00B    |82AB98;
                        LDA.B #$06                           ;82AB8D|A906    |      ;
-                       STA.B $02                            ;82AB8F|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82AB8F|8502    |000E6A;
                        LDA.B #$05                           ;82AB91|A905    |      ;
                        JSL.L CODE_848F07                    ;82AB93|22078F84|848F07;
                        RTS                                  ;82AB97|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AB98:
-                       LDA.B $2E                            ;82AB98|A52E    |000E96;
+                       LDA.B r_ev_2e-$E68                   ;82AB98|A52E    |000E96;
                        CMP.B #$0E                           ;82AB9A|C90E    |      ;
                        BEQ CODE_82ABA2                      ;82AB9C|F004    |82ABA2;
                        CMP.B #$0D                           ;82AB9E|C90D    |      ;
@@ -6900,11 +6906,11 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82ABA2:
                        LDA.B #$04                           ;82ABA2|A904    |      ;
-                       STA.B $02                            ;82ABA4|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82ABA4|8502    |000E6A;
                        LDA.B #$05                           ;82ABA6|A905    |      ;
                        JSL.L CODE_848F07                    ;82ABA8|22078F84|848F07;
                        REP #$20                             ;82ABAC|C220    |      ;
-                       LDA.B $08                            ;82ABAE|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82ABAE|A508    |000E70;
                        CLC                                  ;82ABB0|18      |      ;
                        ADC.W #$0007                         ;82ABB1|690700  |      ;
                        AND.W #$FFF0                         ;82ABB4|29F0FF  |      ;
@@ -6915,7 +6921,7 @@ loadProjectileSlotBase:
                        ADC.W r_0000                         ;82ABC1|6D0000  |860000;
                        SEC                                  ;82ABC4|38      |      ;
                        SBC.W #$0007                         ;82ABC5|E90700  |      ;
-                       STA.B $08                            ;82ABC8|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;82ABC8|8508    |000E70;
                        SEP #$20                             ;82ABCA|E220    |      ;
                        JSL.L CODE_8282D3                    ;82ABCC|22D38282|8282D3;
                        BNE CODE_82ABEC                      ;82ABD0|D01A    |82ABEC;
@@ -6927,7 +6933,7 @@ loadProjectileSlotBase:
                        REP #$20                             ;82ABDF|C220    |      ;
                        LDA.W r_0000                         ;82ABE1|AD0000  |860000;
                        STA.W r_0008,X                       ;82ABE4|9D0800  |860008;
-                       LDA.B $05                            ;82ABE7|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82ABE7|A505    |000E6D;
                        STA.W r_0005,X                       ;82ABE9|9D0500  |860005;
                                                             ;      |        |      ;
           CODE_82ABEC:
@@ -6939,11 +6945,11 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82ABEF:
                        JSL.L updateEv_13_14_17_0f           ;82ABEF|22EA8E84|848EEA;
-                       LDA.B $0F                            ;82ABF3|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;82ABF3|A50F    |000E77;
                        BPL CODE_82ABFD                      ;82ABF5|1006    |82ABFD;
                        LDA.B #$04                           ;82ABF7|A904    |      ;
-                       STA.B $01                            ;82ABF9|8501    |000E69;
-                       STZ.B $02                            ;82ABFB|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;82ABF9|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82ABFB|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_82ABFD:
                        RTS                                  ;82ABFD|60      |      ;
@@ -6951,18 +6957,18 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82ABFE:
                        JSL.L updateEv_13_14_17_0f           ;82ABFE|22EA8E84|848EEA;
-                       LDA.B $0F                            ;82AC02|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;82AC02|A50F    |000E77;
                        BPL CODE_82AC16                      ;82AC04|1010    |82AC16;
                        LDA.B #$06                           ;82AC06|A906    |      ;
-                       STA.B $01                            ;82AC08|8501    |000E69;
-                       STZ.B $02                            ;82AC0A|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;82AC08|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82AC0A|6402    |000E6A;
                        LDA.B #$01                           ;82AC0C|A901    |      ;
-                       LDX.B $38                            ;82AC0E|A638    |000EA0;
+                       LDX.B r_ev_38-$E68                   ;82AC0E|A638    |000EA0;
                        BEQ CODE_82AC14                      ;82AC10|F002    |82AC14;
                        LDA.B #$78                           ;82AC12|A978    |      ;
                                                             ;      |        |      ;
           CODE_82AC14:
-                       STA.B $34                            ;82AC14|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82AC14|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_82AC16:
                        RTS                                  ;82AC16|60      |      ;
@@ -6970,7 +6976,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82AC17:
                        REP #$20                             ;82AC17|C220    |      ;
-                       LDA.B $08                            ;82AC19|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82AC19|A508    |000E70;
                        CLC                                  ;82AC1B|18      |      ;
                        ADC.W #$0007                         ;82AC1C|690700  |      ;
                        AND.W #$FFF0                         ;82AC1F|29F0FF  |      ;
@@ -6981,9 +6987,9 @@ loadProjectileSlotBase:
                        ADC.W r_0000                         ;82AC2C|6D0000  |860000;
                        SEC                                  ;82AC2F|38      |      ;
                        SBC.W #$0007                         ;82AC30|E90700  |      ;
-                       STA.B $08                            ;82AC33|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;82AC33|8508    |000E70;
                        SEP #$20                             ;82AC35|E220    |      ;
-                       LDX.B $02                            ;82AC37|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82AC37|A602    |000E6A;
                        JMP.W (PTR16_82AC3C,X)               ;82AC39|7C3CAC  |82AC3C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6996,13 +7002,13 @@ loadProjectileSlotBase:
           CODE_82AC44:
                        JSR.W CODE_82ADBD                    ;82AC44|20BDAD  |82ADBD;
                        LDA.B #$02                           ;82AC47|A902    |      ;
-                       STA.B $02                            ;82AC49|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82AC49|8502    |000E6A;
                        LDA.B #$01                           ;82AC4B|A901    |      ;
                        JSL.L CODE_848F07                    ;82AC4D|22078F84|848F07;
-                       STZ.B $1E                            ;82AC51|641E    |000E86;
+                       STZ.B r_ev_1e_weight-$E68            ;82AC51|641E    |000E86;
                        LDA.B #$1C                           ;82AC53|A91C    |      ;
-                       STA.B $1F                            ;82AC55|851F    |000E87;
-                       LDA.B $11                            ;82AC57|A511    |000E79;
+                       STA.B r_ev_1f-$E68                   ;82AC55|851F    |000E87;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82AC57|A511    |000E79;
                        ASL A                                ;82AC59|0A      |      ;
                        ASL A                                ;82AC5A|0A      |      ;
                        REP #$20                             ;82AC5B|C220    |      ;
@@ -7015,17 +7021,17 @@ loadProjectileSlotBase:
                        LDA.W #$FBA0                         ;82AC64|A9A0FB  |      ;
                                                             ;      |        |      ;
           CODE_82AC67:
-                       STA.B $1A                            ;82AC67|851A    |000E82;
-                       STZ.B $1C                            ;82AC69|641C    |000E84;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82AC67|851A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;82AC69|641C    |000E84;
                        SEP #$20                             ;82AC6B|E220    |      ;
                                                             ;      |        |      ;
           CODE_82AC6D:
                        JSL.L updateEv_13_14_17_0f           ;82AC6D|22EA8E84|848EEA;
-                       LDA.B $0F                            ;82AC71|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;82AC71|A50F    |000E77;
                        BPL CODE_82AC87                      ;82AC73|1012    |82AC87;
                        LDA.B #$02                           ;82AC75|A902    |      ;
                        JSL.L CODE_848F07                    ;82AC77|22078F84|848F07;
-                       LDA.B $11                            ;82AC7B|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82AC7B|A511    |000E79;
                        ASL A                                ;82AC7D|0A      |      ;
                        ASL A                                ;82AC7E|0A      |      ;
                        LDA.B #$04                           ;82AC7F|A904    |      ;
@@ -7033,7 +7039,7 @@ loadProjectileSlotBase:
                        LDA.B #$06                           ;82AC83|A906    |      ;
                                                             ;      |        |      ;
           CODE_82AC85:
-                       STA.B $02                            ;82AC85|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82AC85|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_82AC87:
                        RTS                                  ;82AC87|60      |      ;
@@ -7044,32 +7050,32 @@ loadProjectileSlotBase:
                        JSL.L CODE_828195                    ;82AC8C|22958182|828195;
                        JSR.W CODE_82ADE9                    ;82AC90|20E9AD  |82ADE9;
                        JSL.L CODE_8491BE                    ;82AC93|22BE9184|8491BE;
-                       LDA.B $2B                            ;82AC97|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;82AC97|A52B    |000E93;
                        AND.B #$02                           ;82AC99|2902    |      ;
                        BEQ CODE_82ACBF                      ;82AC9B|F022    |82ACBF;
                        LDA.B #$E6                           ;82AC9D|A9E6    |      ;
-                       STA.B $29                            ;82AC9F|8529    |000E91;
+                       STA.B r_ev_29-$E68                   ;82AC9F|8529    |000E91;
                        LDA.B #$E0                           ;82ACA1|A9E0    |      ;
-                       STA.B $2A                            ;82ACA3|852A    |000E92;
+                       STA.B r_ev_2a-$E68                   ;82ACA3|852A    |000E92;
                        JSL.L CODE_8490A0                    ;82ACA5|22A09084|8490A0;
                        CMP.B #$34                           ;82ACA9|C934    |      ;
                        BCC CODE_82ACCA                      ;82ACAB|901D    |82ACCA;
                        LDA.B #$40                           ;82ACAD|A940    |      ;
-                       TSB.B $11                            ;82ACAF|0411    |000E79;
+                       TSB.B r_ev_11_sprAtri-$E68           ;82ACAF|0411    |000E79;
                        LDA.B #$06                           ;82ACB1|A906    |      ;
-                       STA.B $02                            ;82ACB3|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82ACB3|8502    |000E6A;
                        REP #$20                             ;82ACB5|C220    |      ;
-                       LDA.B $1A                            ;82ACB7|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82ACB7|A51A    |000E82;
                        EOR.W #$FFFF                         ;82ACB9|49FFFF  |      ;
                        INC A                                ;82ACBC|1A      |      ;
-                       STA.B $1A                            ;82ACBD|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82ACBD|851A    |000E82;
                                                             ;      |        |      ;
           CODE_82ACBF:
                        REP #$20                             ;82ACBF|C220    |      ;
-                       LDA.B $1A                            ;82ACC1|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82ACC1|A51A    |000E82;
                        SEP #$20                             ;82ACC3|E220    |      ;
                        BNE CODE_82ACC9                      ;82ACC5|D002    |82ACC9;
-                       STZ.B $02                            ;82ACC7|6402    |000E6A;
+                       STZ.B r_ev_02_action-$E68            ;82ACC7|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_82ACC9:
                        RTS                                  ;82ACC9|60      |      ;
@@ -7077,9 +7083,9 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82ACCA:
                        LDA.B #$08                           ;82ACCA|A908    |      ;
-                       STA.B $01                            ;82ACCC|8501    |000E69;
-                       STZ.B $02                            ;82ACCE|6402    |000E6A;
-                       STZ.B $38                            ;82ACD0|6438    |000EA0;
+                       STA.B r_ev_01_state-$E68             ;82ACCC|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82ACCE|6402    |000E6A;
+                       STZ.B r_ev_38-$E68                   ;82ACD0|6438    |000EA0;
                        RTS                                  ;82ACD2|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7088,32 +7094,32 @@ loadProjectileSlotBase:
                        JSL.L CODE_828174                    ;82ACD7|22748182|828174;
                        JSR.W CODE_82ADE9                    ;82ACDB|20E9AD  |82ADE9;
                        JSL.L CODE_8491BE                    ;82ACDE|22BE9184|8491BE;
-                       LDA.B $2B                            ;82ACE2|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;82ACE2|A52B    |000E93;
                        AND.B #$01                           ;82ACE4|2901    |      ;
                        BEQ CODE_82AD0A                      ;82ACE6|F022    |82AD0A;
                        LDA.B #$1A                           ;82ACE8|A91A    |      ;
-                       STA.B $29                            ;82ACEA|8529    |000E91;
+                       STA.B r_ev_29-$E68                   ;82ACEA|8529    |000E91;
                        LDA.B #$E0                           ;82ACEC|A9E0    |      ;
-                       STA.B $2A                            ;82ACEE|852A    |000E92;
+                       STA.B r_ev_2a-$E68                   ;82ACEE|852A    |000E92;
                        JSL.L CODE_8490A0                    ;82ACF0|22A09084|8490A0;
                        CMP.B #$34                           ;82ACF4|C934    |      ;
                        BCC CODE_82ACCA                      ;82ACF6|90D2    |82ACCA;
                        LDA.B #$40                           ;82ACF8|A940    |      ;
-                       TRB.B $11                            ;82ACFA|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;82ACFA|1411    |000E79;
                        LDA.B #$04                           ;82ACFC|A904    |      ;
-                       STA.B $02                            ;82ACFE|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82ACFE|8502    |000E6A;
                        REP #$20                             ;82AD00|C220    |      ;
-                       LDA.B $1A                            ;82AD02|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82AD02|A51A    |000E82;
                        EOR.W #$FFFF                         ;82AD04|49FFFF  |      ;
                        INC A                                ;82AD07|1A      |      ;
-                       STA.B $1A                            ;82AD08|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82AD08|851A    |000E82;
                                                             ;      |        |      ;
           CODE_82AD0A:
                        REP #$20                             ;82AD0A|C220    |      ;
-                       LDA.B $1A                            ;82AD0C|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82AD0C|A51A    |000E82;
                        SEP #$20                             ;82AD0E|E220    |      ;
                        BNE CODE_82AD14                      ;82AD10|D002    |82AD14;
-                       STZ.B $02                            ;82AD12|6402    |000E6A;
+                       STZ.B r_ev_02_action-$E68            ;82AD12|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_82AD14:
                        RTS                                  ;82AD14|60      |      ;
@@ -7121,18 +7127,18 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82AD15:
                        JSL.L updateEv_13_14_17_0f           ;82AD15|22EA8E84|848EEA;
-                       DEC.B $34                            ;82AD19|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;82AD19|C634    |000E9C;
                        BNE CODE_82AD29                      ;82AD1B|D00C    |82AD29;
                        JSR.W CODE_82ADBD                    ;82AD1D|20BDAD  |82ADBD;
                        LDA.B #$08                           ;82AD20|A908    |      ;
-                       STA.B $01                            ;82AD22|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82AD22|8501    |000E69;
                        LDA.B #$01                           ;82AD24|A901    |      ;
-                       STA.B $38                            ;82AD26|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;82AD26|8538    |000EA0;
                        RTS                                  ;82AD28|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AD29:
-                       LDA.B $34                            ;82AD29|A534    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;82AD29|A534    |000E9C;
                        CMP.B #$28                           ;82AD2B|C928    |      ;
                        BNE CODE_82AD32                      ;82AD2D|D003    |82AD32;
                        JSR.W CODE_82ADF1                    ;82AD2F|20F1AD  |82ADF1;
@@ -7142,7 +7148,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AD33:
-                       LDX.B $02                            ;82AD33|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82AD33|A602    |000E6A;
                        JMP.W (PTR16_82AD38,X)               ;82AD35|7C38AD  |82AD38;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7153,8 +7159,8 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82AD3E:
                        LDA.B #$02                           ;82AD3E|A902    |      ;
-                       STA.B $02                            ;82AD40|8502    |000E6A;
-                       LDA.B $11                            ;82AD42|A511    |000E79;
+                       STA.B r_ev_02_action-$E68            ;82AD40|8502    |000E6A;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82AD42|A511    |000E79;
                        ASL A                                ;82AD44|0A      |      ;
                        ASL A                                ;82AD45|0A      |      ;
                        REP #$20                             ;82AD46|C220    |      ;
@@ -7163,12 +7169,12 @@ loadProjectileSlotBase:
                        LDA.W #$FEC0                         ;82AD4D|A9C0FE  |      ;
                                                             ;      |        |      ;
           CODE_82AD50:
-                       STA.B $1A                            ;82AD50|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82AD50|851A    |000E82;
                        LDA.W #$0421                         ;82AD52|A92104  |      ;
-                       STA.B $1C                            ;82AD55|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82AD55|851C    |000E84;
                        SEP #$20                             ;82AD57|E220    |      ;
                        LDA.B #$40                           ;82AD59|A940    |      ;
-                       STA.B $1E                            ;82AD5B|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;82AD5B|851E    |000E86;
                        LDA.B #$03                           ;82AD5D|A903    |      ;
                        JSL.L CODE_848F07                    ;82AD5F|22078F84|848F07;
                        BRA CODE_82AD7D                      ;82AD63|8018    |82AD7D;
@@ -7176,22 +7182,22 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82AD65:
                        JSL.L updateEv_13_14_17_0f           ;82AD65|22EA8E84|848EEA;
-                       LDA.B $0F                            ;82AD69|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;82AD69|A50F    |000E77;
                        BPL CODE_82AD7D                      ;82AD6B|1010    |82AD7D;
                        REP #$20                             ;82AD6D|C220    |      ;
-                       LDA.B $08                            ;82AD6F|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82AD6F|A508    |000E70;
                        SEC                                  ;82AD71|38      |      ;
                        SBC.W #$0006                         ;82AD72|E90600  |      ;
-                       STA.B $08                            ;82AD75|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;82AD75|8508    |000E70;
                        SEP #$20                             ;82AD77|E220    |      ;
                        LDA.B #$04                           ;82AD79|A904    |      ;
-                       STA.B $02                            ;82AD7B|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82AD7B|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_82AD7D:
-                       LDA.B $38                            ;82AD7D|A538    |000EA0;
+                       LDA.B r_ev_38-$E68                   ;82AD7D|A538    |000EA0;
                        BNE CODE_82AD9F                      ;82AD7F|D01E    |82AD9F;
                        REP #$20                             ;82AD81|C220    |      ;
-                       LDA.B $08                            ;82AD83|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82AD83|A508    |000E70;
                        CLC                                  ;82AD85|18      |      ;
                        ADC.W #$0007                         ;82AD86|690700  |      ;
                        AND.W #$FFF0                         ;82AD89|29F0FF  |      ;
@@ -7202,7 +7208,7 @@ loadProjectileSlotBase:
                        ADC.W r_0000                         ;82AD96|6D0000  |860000;
                        SEC                                  ;82AD99|38      |      ;
                        SBC.W #$0007                         ;82AD9A|E90700  |      ;
-                       STA.B $08                            ;82AD9D|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;82AD9D|8508    |000E70;
                                                             ;      |        |      ;
           CODE_82AD9F:
                        SEP #$20                             ;82AD9F|E220    |      ;
@@ -7214,12 +7220,12 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;82ADA6|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;82ADAA|22BE9184|8491BE;
                        REP #$20                             ;82ADAE|C220    |      ;
-                       LDA.B $1C                            ;82ADB0|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82ADB0|A51C    |000E84;
                        SEP #$20                             ;82ADB2|E220    |      ;
                        BPL CODE_82ADBC                      ;82ADB4|1006    |82ADBC;
                        LDA.B #$02                           ;82ADB6|A902    |      ;
-                       STA.B $01                            ;82ADB8|8501    |000E69;
-                       STZ.B $02                            ;82ADBA|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;82ADB8|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82ADBA|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_82ADBC:
                        RTS                                  ;82ADBC|60      |      ;
@@ -7227,11 +7233,11 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82ADBD:
                        LDA.B #$40                           ;82ADBD|A940    |      ;
-                       TRB.B $11                            ;82ADBF|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;82ADBF|1411    |000E79;
                        REP #$20                             ;82ADC1|C220    |      ;
-                       LDA.B $05                            ;82ADC3|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82ADC3|A505    |000E6D;
                        SEC                                  ;82ADC5|38      |      ;
-                       SBC.B $36                            ;82ADC6|E536    |000E9E;
+                       SBC.B r_ev_36-$E68                   ;82ADC6|E536    |000E9E;
                        BCS CODE_82ADCE                      ;82ADC8|B004    |82ADCE;
                        EOR.W #$FFFF                         ;82ADCA|49FFFF  |      ;
                        INC A                                ;82ADCD|1A      |      ;
@@ -7239,31 +7245,31 @@ loadProjectileSlotBase:
           CODE_82ADCE:
                        CMP.W #$0080                         ;82ADCE|C98000  |      ;
                        BCC CODE_82ADDA                      ;82ADD1|9007    |82ADDA;
-                       LDA.B $36                            ;82ADD3|A536    |000E9E;
+                       LDA.B r_ev_36-$E68                   ;82ADD3|A536    |000E9E;
                        SEC                                  ;82ADD5|38      |      ;
-                       SBC.B $05                            ;82ADD6|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;82ADD6|E505    |000E6D;
                        BRA CODE_82ADE0                      ;82ADD8|8006    |82ADE0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82ADDA:
                        LDA.W r_0bad                         ;82ADDA|ADAD0B  |860BAD;
                        SEC                                  ;82ADDD|38      |      ;
-                       SBC.B $05                            ;82ADDE|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;82ADDE|E505    |000E6D;
                                                             ;      |        |      ;
           CODE_82ADE0:
                        SEP #$20                             ;82ADE0|E220    |      ;
                        LDA.B #$00                           ;82ADE2|A900    |      ;
                        ROR A                                ;82ADE4|6A      |      ;
                        ROR A                                ;82ADE5|6A      |      ;
-                       TSB.B $11                            ;82ADE6|0411    |000E79;
+                       TSB.B r_ev_11_sprAtri-$E68           ;82ADE6|0411    |000E79;
                        RTS                                  ;82ADE8|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82ADE9:
-                       DEC.B $35                            ;82ADE9|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;82ADE9|C635    |000E9D;
                        BNE CODE_82AE17                      ;82ADEB|D02A    |82AE17;
                        LDA.B #$3C                           ;82ADED|A93C    |      ;
-                       STA.B $35                            ;82ADEF|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82ADEF|8535    |000E9D;
                                                             ;      |        |      ;
           CODE_82ADF1:
                        JSL.L CODE_849086                    ;82ADF1|22869084|849086;
@@ -7276,9 +7282,9 @@ loadProjectileSlotBase:
                        LDA.B #$0C                           ;82AE04|A90C    |      ;
                        STA.W r_000a,X                       ;82AE06|9D0A00  |86000A;
                        REP #$20                             ;82AE09|C220    |      ;
-                       LDA.B $05                            ;82AE0B|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82AE0B|A505    |000E6D;
                        STA.W r_0005,X                       ;82AE0D|9D0500  |860005;
-                       LDA.B $08                            ;82AE10|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82AE10|A508    |000E70;
                        STA.W r_0008,X                       ;82AE12|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82AE15:
@@ -7288,38 +7294,38 @@ loadProjectileSlotBase:
                        RTS                                  ;82AE17|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82AE18:
-                       LDX.B $01                            ;82AE18|A601    |000E69;
-                       JMP.W (PTR16_82AE1D,X)               ;82AE1A|7C1DAE  |82AE1D;
+eventID_angler_21_main:
+                       LDX.B r_ev_01_state-$E68             ;82AE18|A601    |000E69; subID 11 vehicles
+                       JMP.W (eventID_21_state,X)           ;82AE1A|7C1DAE  |82AE1D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82AE1D:
-                       dw CODE_82AE23                       ;82AE1D|        |82AE23;
+     eventID_21_state:
+                       dw eventID_21_state_00               ;82AE1D|        |82AE23;
                        dw CODE_82AF98                       ;82AE1F|        |82AF98;
                        dw CODE_82B349                       ;82AE21|        |82B349;
                                                             ;      |        |      ;
-          CODE_82AE23:
-                       LDX.B $02                            ;82AE23|A602    |000E6A;
-                       JMP.W (PTR16_82AE28,X)               ;82AE25|7C28AE  |82AE28;
+  eventID_21_state_00:
+                       LDX.B r_ev_02_action-$E68            ;82AE23|A602    |000E6A;
+                       JMP.W (eventID_21_action,X)          ;82AE25|7C28AE  |82AE28;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82AE28:
-                       dw CODE_82AE30                       ;82AE28|        |82AE30;
-                       dw CODE_82AECB                       ;82AE2A|        |82AECB;
-                       dw CODE_82AF5B                       ;82AE2C|        |82AF5B;
-                       dw CODE_82AF43                       ;82AE2E|        |82AF43;
+    eventID_21_action:
+                       dw eventID_21_action_00              ;82AE28|        |82AE30;
+                       dw eventID_21_action_01              ;82AE2A|        |82AECB;
+                       dw eventID_21_action_02              ;82AE2C|        |82AF5B;
+                       dw eventID_21_action_03              ;82AE2E|        |82AF43;
                                                             ;      |        |      ;
-          CODE_82AE30:
+ eventID_21_action_00:
                        PHB                                  ;82AE30|8B      |      ;
                        REP #$31                             ;82AE31|C231    |      ;
                        LDA.W #$CBAA                         ;82AE33|A9AACB  |      ;
-                       STA.B $20                            ;82AE36|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;82AE36|8520    |000E88;
                        LDX.W #$CB74                         ;82AE38|A274CB  |      ;
                        LDY.W #$0AA1                         ;82AE3B|A0A10A  |      ;
                        LDA.W #$000D                         ;82AE3E|A90D00  |      ;
                        MVN $00,$86                          ;82AE41|540086  |      ;
                        LDA.W #$012C                         ;82AE44|A92C01  |      ;
-                       STA.B $3B                            ;82AE47|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;82AE47|853B    |000EA3;
                        SEP #$30                             ;82AE49|E230    |      ;
                        PLB                                  ;82AE4B|AB      |      ;
                        JSR.W CODE_82B7E2                    ;82AE4C|20E2B7  |82B7E2;
@@ -7327,48 +7333,48 @@ loadProjectileSlotBase:
                        JSR.W CODE_82B70D                    ;82AE52|200DB7  |82B70D;
                        JSR.W CODE_82B738                    ;82AE55|2038B7  |82B738;
                        LDA.B #$01                           ;82AE58|A901    |      ;
-                       STA.B $0E                            ;82AE5A|850E    |000E76;
-                       STZ.B $11                            ;82AE5C|6411    |000E79;
+                       STA.B r_ev_0e-$E68                   ;82AE5A|850E    |000E76;
+                       STZ.B r_ev_11_sprAtri-$E68           ;82AE5C|6411    |000E79;
                        LDA.B #$04                           ;82AE5E|A904    |      ;
-                       STA.B $26                            ;82AE60|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;82AE60|8526    |000E8E;
                        LDA.B #$40                           ;82AE62|A940    |      ;
-                       STA.B $27                            ;82AE64|8527    |000E8F;
-                       STA.B $29                            ;82AE66|8529    |000E91;
+                       STA.B r_ev_27-$E68                   ;82AE64|8527    |000E8F;
+                       STA.B r_ev_29-$E68                   ;82AE66|8529    |000E91;
                        LDA.B #$07                           ;82AE68|A907    |      ;
-                       STA.B $28                            ;82AE6A|8528    |000E90;
-                       STZ.B $2C                            ;82AE6C|642C    |000E94;
-                       STZ.B $3A                            ;82AE6E|643A    |000EA2;
-                       STZ.B $2A                            ;82AE70|642A    |000E92;
-                       STZ.B $19                            ;82AE72|6419    |000E81;
+                       STA.B r_ev_28-$E68                   ;82AE6A|8528    |000E90;
+                       STZ.B r_ev_2c-$E68                   ;82AE6C|642C    |000E94;
+                       STZ.B r_ev_3a-$E68                   ;82AE6E|643A    |000EA2;
+                       STZ.B r_ev_2a-$E68                   ;82AE70|642A    |000E92;
+                       STZ.B r_ev_19-$E68                   ;82AE72|6419    |000E81;
                        LDA.B #$FF                           ;82AE74|A9FF    |      ;
-                       STA.B $18                            ;82AE76|8518    |000E80;
-                       LDA.B $0B                            ;82AE78|A50B    |000E73;
+                       STA.B r_ev_18_gfxSlot-$E68           ;82AE76|8518    |000E80;
+                       LDA.B r_ev_0b_subID-$E68             ;82AE78|A50B    |000E73;
                        BMI CODE_82AE81                      ;82AE7A|3005    |82AE81;
                        LDA.B #$02                           ;82AE7C|A902    |      ;
-                       STA.B $01                            ;82AE7E|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82AE7E|8501    |000E69;
                        RTL                                  ;82AE80|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AE81:
                        LDA.B #$02                           ;82AE81|A902    |      ;
-                       STA.B $02                            ;82AE83|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82AE83|8502    |000E6A;
                        STA.W r_0ba1                         ;82AE85|8DA10B  |860BA1;
                        REP #$31                             ;82AE88|C231    |      ;
-                       LDX.B $1A                            ;82AE8A|A61A    |000E82;
+                       LDX.B r_ev_1a_xSpdSub-$E68           ;82AE8A|A61A    |000E82;
                        LDA.W r_0008,X                       ;82AE8C|BD0800  |860008;
                        ADC.W #$0050                         ;82AE8F|695000  |      ;
                        STA.W r_0008,X                       ;82AE92|9D0800  |860008;
-                       LDX.B $1C                            ;82AE95|A61C    |000E84;
+                       LDX.B r_ev_1c_ySpdSub-$E68           ;82AE95|A61C    |000E84;
                        LDA.W r_0008,X                       ;82AE97|BD0800  |860008;
                        CLC                                  ;82AE9A|18      |      ;
                        ADC.W #$0050                         ;82AE9B|695000  |      ;
                        STA.W r_0008,X                       ;82AE9E|9D0800  |860008;
-                       LDX.B $0F                            ;82AEA1|A60F    |000E77;
+                       LDX.B r_ev_0f-$E68                   ;82AEA1|A60F    |000E77;
                        LDA.W r_0008,X                       ;82AEA3|BD0800  |860008;
                        CLC                                  ;82AEA6|18      |      ;
                        ADC.W #$0050                         ;82AEA7|695000  |      ;
                        STA.W r_0008,X                       ;82AEAA|9D0800  |860008;
-                       LDA.B $0B                            ;82AEAD|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82AEAD|A50B    |000E73;
                        AND.W #$007F                         ;82AEAF|297F00  |      ;
                        ASL A                                ;82AEB2|0A      |      ;
                        TAX                                  ;82AEB3|AA      |      ;
@@ -7377,16 +7383,16 @@ loadProjectileSlotBase:
                        LDA.W UNREACH_86CBF2,X               ;82AEBA|BDF2CB  |86CBF2;
                        STA.W r_1f2a                         ;82AEBD|8D2A1F  |861F2A;
                        LDA.W #$0050                         ;82AEC0|A95000  |      ;
-                       STA.B $34                            ;82AEC3|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82AEC3|8534    |000E9C;
                        JSR.W CODE_82B414                    ;82AEC5|2014B4  |82B414;
                        SEP #$30                             ;82AEC8|E230    |      ;
                        RTL                                  ;82AECA|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82AECB:
+ eventID_21_action_01:
                        REP #$20                             ;82AECB|C220    |      ;
                        JSR.W CODE_82B414                    ;82AECD|2014B4  |82B414;
-                       LDA.B $05                            ;82AED0|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82AED0|A505    |000E6D;
                        CLC                                  ;82AED2|18      |      ;
                        ADC.W #$FEE0                         ;82AED3|69E0FE  |      ;
                        CMP.W r_cam_BG0_xPos_target          ;82AED6|CD4D1E  |861E4D;
@@ -7394,12 +7400,12 @@ loadProjectileSlotBase:
                        LDX.B #$00                           ;82AEDB|A200    |      ;
                        STX.W r_0ba1                         ;82AEDD|8EA10B  |860BA1;
                        LDX.B #$06                           ;82AEE0|A206    |      ;
-                       STX.B $02                            ;82AEE2|8602    |000E6A;
+                       STX.B r_ev_02_action-$E68            ;82AEE2|8602    |000E6A;
                        RTL                                  ;82AEE4|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AEE5:
-                       LDA.B $05                            ;82AEE5|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82AEE5|A505    |000E6D;
                        CLC                                  ;82AEE7|18      |      ;
                        ADC.W #$FF00                         ;82AEE8|6900FF  |      ;
                        CMP.W r_cam_BG0_xPos_target          ;82AEEB|CD4D1E  |861E4D;
@@ -7412,25 +7418,25 @@ loadProjectileSlotBase:
                        STA.L $7FD61E                        ;82AF01|8F1ED67F|7FD61E;
                        LDA.W r_cam_BG0_yPos_lock_Set        ;82AF05|AD6E1E  |861E6E;
                        STA.L $7FD620                        ;82AF08|8F20D67F|7FD620;
-                       LDA.B $05                            ;82AF0C|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82AF0C|A505    |000E6D;
                        CLC                                  ;82AF0E|18      |      ;
                        ADC.W #$FF60                         ;82AF0F|6960FF  |      ;
                        STA.W r_1e5e                         ;82AF12|8D5E1E  |861E5E;
-                       LDA.B $05                            ;82AF15|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82AF15|A505    |000E6D;
                        CLC                                  ;82AF17|18      |      ;
                        ADC.W #$FF70                         ;82AF18|6970FF  |      ;
                        STA.W r_cam_BG0_xPos_lock            ;82AF1B|8D601E  |861E60;
-                       LDA.B $08                            ;82AF1E|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82AF1E|A508    |000E70;
                        CLC                                  ;82AF20|18      |      ;
                        ADC.W #$FF30                         ;82AF21|6930FF  |      ;
                        STA.W r_1e68                         ;82AF24|8D681E  |861E68;
-                       LDA.B $08                            ;82AF27|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82AF27|A508    |000E70;
                        CLC                                  ;82AF29|18      |      ;
                        ADC.W #$FF80                         ;82AF2A|6980FF  |      ;
                        STA.W r_cam_BG0_yPos_lock_Set        ;82AF2D|8D6E1E  |861E6E;
                        SEP #$20                             ;82AF30|E220    |      ;
                        LDA.B #$04                           ;82AF32|A904    |      ;
-                       STA.B $02                            ;82AF34|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82AF34|8502    |000E6A;
                        LDA.B #$3C                           ;82AF36|A93C    |      ;
                        JSL.L CODE_84A338                    ;82AF38|2238A384|84A338;
                        LDA.B #$30                           ;82AF3C|A930    |      ;
@@ -7440,15 +7446,15 @@ loadProjectileSlotBase:
                        RTL                                  ;82AF42|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82AF43:
+ eventID_21_action_03:
                        REP #$21                             ;82AF43|C221    |      ;
-                       LDA.B $05                            ;82AF45|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82AF45|A505    |000E6D;
                        ADC.W #$FEE0                         ;82AF47|69E0FE  |      ;
                        CMP.W r_cam_BG0_xPos_target          ;82AF4A|CD4D1E  |861E4D;
                        SEP #$20                             ;82AF4D|E220    |      ;
                        BCS CODE_82AF5A                      ;82AF4F|B009    |82AF5A;
                        LDA.B #$02                           ;82AF51|A902    |      ;
-                       STA.B $02                            ;82AF53|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82AF53|8502    |000E6A;
                        LDA.B #$02                           ;82AF55|A902    |      ;
                        STA.W r_0ba1                         ;82AF57|8DA10B  |860BA1;
                                                             ;      |        |      ;
@@ -7456,31 +7462,31 @@ loadProjectileSlotBase:
                        RTL                                  ;82AF5A|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82AF5B:
+ eventID_21_action_02:
                        JSR.W CODE_82B760                    ;82AF5B|2060B7  |82B760;
                        JSR.W CODE_82B836                    ;82AF5E|2036B8  |82B836;
                        REP #$20                             ;82AF61|C220    |      ;
-                       LDA.B $33                            ;82AF63|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;82AF63|A533    |000E9B;
                        SEC                                  ;82AF65|38      |      ;
                        SBC.W #$0108                         ;82AF66|E90801  |      ;
-                       STA.B $33                            ;82AF69|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;82AF69|8533    |000E9B;
                        SEP #$20                             ;82AF6B|E220    |      ;
-                       LDA.B $35                            ;82AF6D|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;82AF6D|A535    |000E9D;
                        SBC.B #$00                           ;82AF6F|E900    |      ;
-                       STA.B $35                            ;82AF71|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82AF71|8535    |000E9D;
                        BPL CODE_82AF92                      ;82AF73|101D    |82AF92;
                        REP #$10                             ;82AF75|C210    |      ;
-                       LDX.B $1A                            ;82AF77|A61A    |000E82;
-                       LDA.B $08                            ;82AF79|A508    |000E70;
+                       LDX.B r_ev_1a_xSpdSub-$E68           ;82AF77|A61A    |000E82;
+                       LDA.B r_ev_08_yPos-$E68              ;82AF79|A508    |000E70;
                        CLC                                  ;82AF7B|18      |      ;
                        ADC.B #$08                           ;82AF7C|6908    |      ;
                        STA.W r_0008,X                       ;82AF7E|9D0800  |860008;
-                       LDX.B $1C                            ;82AF81|A61C    |000E84;
+                       LDX.B r_ev_1c_ySpdSub-$E68           ;82AF81|A61C    |000E84;
                        STZ.W r_002b,X                       ;82AF83|9E2B00  |86002B;
                        SEP #$10                             ;82AF86|E210    |      ;
                        LDA.B #$02                           ;82AF88|A902    |      ;
-                       STA.B $01                            ;82AF8A|8501    |000E69;
-                       STZ.B $02                            ;82AF8C|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;82AF8A|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82AF8C|6402    |000E6A;
                        STZ.W r_0ba1                         ;82AF8E|9CA10B  |860BA1;
                        RTL                                  ;82AF91|6B      |      ;
                                                             ;      |        |      ;
@@ -7492,44 +7498,44 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AF98:
-                       DEC.B $3B                            ;82AF98|C63B    |000EA3;
+                       DEC.B r_ev_3b-$E68                   ;82AF98|C63B    |000EA3;
                        BPL CODE_82AF9E                      ;82AF9A|1002    |82AF9E;
-                       STZ.B $3B                            ;82AF9C|643B    |000EA3;
+                       STZ.B r_ev_3b-$E68                   ;82AF9C|643B    |000EA3;
                                                             ;      |        |      ;
           CODE_82AF9E:
-                       LDX.B $02                            ;82AF9E|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82AF9E|A602    |000E6A;
                        JSR.W (PTR16_82AFDB,X)               ;82AFA0|FCDBAF  |82AFDB;
-                       LDA.B $2A                            ;82AFA3|A52A    |000E92;
+                       LDA.B r_ev_2a-$E68                   ;82AFA3|A52A    |000E92;
                        BEQ CODE_82AFAC                      ;82AFA5|F005    |82AFAC;
-                       STZ.B $2A                            ;82AFA7|642A    |000E92;
+                       STZ.B r_ev_2a-$E68                   ;82AFA7|642A    |000E92;
                        JSR.W CODE_82B7C8                    ;82AFA9|20C8B7  |82B7C8;
                                                             ;      |        |      ;
           CODE_82AFAC:
                        JSL.L CODE_849B43                    ;82AFAC|22439B84|849B43;
                        BEQ CODE_82AFCB                      ;82AFB0|F019    |82AFCB;
                        BMI CODE_82AFC3                      ;82AFB2|300F    |82AFC3;
-                       INC.B $2A                            ;82AFB4|E62A    |000E92;
+                       INC.B r_ev_2a-$E68                   ;82AFB4|E62A    |000E92;
                        LDA.B #$0A                           ;82AFB6|A90A    |      ;
-                       STA.B $3D                            ;82AFB8|853D    |000EA5;
+                       STA.B r_ev_3d-$E68                   ;82AFB8|853D    |000EA5;
                        LDA.B #$05                           ;82AFBA|A905    |      ;
-                       STA.B $28                            ;82AFBC|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;82AFBC|8528    |000E90;
                        JSR.W CODE_82B7A9                    ;82AFBE|20A9B7  |82B7A9;
                        BRA CODE_82AFCB                      ;82AFC1|8008    |82AFCB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AFC3:
                        LDA.B #$04                           ;82AFC3|A904    |      ;
-                       STA.B $01                            ;82AFC5|8501    |000E69;
-                       STZ.B $03                            ;82AFC7|6403    |000E6B;
-                       STZ.B $27                            ;82AFC9|6427    |000E8F;
+                       STA.B r_ev_01_state-$E68             ;82AFC5|8501    |000E69;
+                       STZ.B r_ev_03_do-$E68                ;82AFC7|6403    |000E6B;
+                       STZ.B r_ev_27-$E68                   ;82AFC9|6427    |000E8F;
                                                             ;      |        |      ;
           CODE_82AFCB:
-                       LDA.B $3D                            ;82AFCB|A53D    |000EA5;
+                       LDA.B r_ev_3d-$E68                   ;82AFCB|A53D    |000EA5;
                        BEQ CODE_82AFD7                      ;82AFCD|F008    |82AFD7;
-                       DEC.B $3D                            ;82AFCF|C63D    |000EA5;
+                       DEC.B r_ev_3d-$E68                   ;82AFCF|C63D    |000EA5;
                        BNE CODE_82AFD7                      ;82AFD1|D004    |82AFD7;
                        LDA.B #$01                           ;82AFD3|A901    |      ;
-                       STA.B $28                            ;82AFD5|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;82AFD5|8528    |000E90;
                                                             ;      |        |      ;
           CODE_82AFD7:
                        JML.L CODE_849B03                    ;82AFD7|5C039B84|849B03;
@@ -7543,7 +7549,7 @@ loadProjectileSlotBase:
                        dw CODE_82AFE5                       ;82AFE3|        |82AFE5;
                                                             ;      |        |      ;
           CODE_82AFE5:
-                       LDX.B $03                            ;82AFE5|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;82AFE5|A603    |000E6B;
                        JMP.W (PTR16_82AFEA,X)               ;82AFE7|7CEAAF  |82AFEA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7553,47 +7559,47 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82AFEE:
                        LDA.B #$02                           ;82AFEE|A902    |      ;
-                       STA.B $03                            ;82AFF0|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82AFF0|8503    |000E6B;
                        LDA.B #$FF                           ;82AFF2|A9FF    |      ;
-                       STA.B $16                            ;82AFF4|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;82AFF4|8516    |000E7E;
                        JMP.W CODE_82B6AC                    ;82AFF6|4CACB6  |82B6AC;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AFF9:
-                       DEC.B $16                            ;82AFF9|C616    |000E7E;
+                       DEC.B r_ev_16-$E68                   ;82AFF9|C616    |000E7E;
                        BNE CODE_82B001                      ;82AFFB|D004    |82B001;
-                       STZ.B $02                            ;82AFFD|6402    |000E6A;
-                       STZ.B $03                            ;82AFFF|6403    |000E6B;
+                       STZ.B r_ev_02_action-$E68            ;82AFFD|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82AFFF|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_82B001:
                        RTS                                  ;82B001|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B002:
-                       LDX.B $03                            ;82B002|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;82B002|A603    |000E6B;
                        BNE CODE_82B00D                      ;82B004|D007    |82B00D;
-                       INC.B $03                            ;82B006|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;82B006|E603    |000E6B;
                        LDA.B #$14                           ;82B008|A914    |      ;
-                       STA.B $16                            ;82B00A|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;82B00A|8516    |000E7E;
                        RTS                                  ;82B00C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B00D:
-                       JSL.L CODE_82806E                    ;82B00D|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82B00D|226E8082|82806E;
                        BCC CODE_82B014                      ;82B011|9001    |82B014;
                        RTS                                  ;82B013|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B014:
-                       DEC.B $16                            ;82B014|C616    |000E7E;
+                       DEC.B r_ev_16-$E68                   ;82B014|C616    |000E7E;
                        BNE CODE_82B077                      ;82B016|D05F    |82B077;
                        REP #$21                             ;82B018|C221    |      ;
-                       LDA.B $0B                            ;82B01A|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82B01A|A50B    |000E73;
                        AND.W #$0003                         ;82B01C|290300  |      ;
                        ASL A                                ;82B01F|0A      |      ;
                        ASL A                                ;82B020|0A      |      ;
                        TAX                                  ;82B021|AA      |      ;
-                       LDA.B $05                            ;82B022|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B022|A505    |000E6D;
                        ADC.W #$FFC0                         ;82B024|69C0FF  |      ;
                        CMP.W r_0bad                         ;82B027|CDAD0B  |860BAD;
                        BCC CODE_82B02E                      ;82B02A|9002    |82B02E;
@@ -7609,24 +7615,24 @@ loadProjectileSlotBase:
           CODE_82B038:
                        SEP #$20                             ;82B038|E220    |      ;
                        LDA.W UNREACH_86CBB6,X               ;82B03A|BDB6CB  |86CBB6;
-                       STA.B $02                            ;82B03D|8502    |000E6A;
-                       STZ.B $03                            ;82B03F|6403    |000E6B;
-                       CMP.B $18                            ;82B041|C518    |000E80;
+                       STA.B r_ev_02_action-$E68            ;82B03D|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82B03F|6403    |000E6B;
+                       CMP.B r_ev_18_gfxSlot-$E68           ;82B041|C518    |000E80;
                        BNE CODE_82B050                      ;82B043|D00B    |82B050;
-                       INC.B $19                            ;82B045|E619    |000E81;
-                       LDA.B $19                            ;82B047|A519    |000E81;
+                       INC.B r_ev_19-$E68                   ;82B045|E619    |000E81;
+                       LDA.B r_ev_19-$E68                   ;82B047|A519    |000E81;
                        CMP.B #$02                           ;82B049|C902    |      ;
                        BCC CODE_82B052                      ;82B04B|9005    |82B052;
                        JSR.W CODE_82B078                    ;82B04D|2078B0  |82B078;
                                                             ;      |        |      ;
           CODE_82B050:
-                       STZ.B $19                            ;82B050|6419    |000E81;
+                       STZ.B r_ev_19-$E68                   ;82B050|6419    |000E81;
                                                             ;      |        |      ;
           CODE_82B052:
-                       LDA.B $02                            ;82B052|A502    |000E6A;
+                       LDA.B r_ev_02_action-$E68            ;82B052|A502    |000E6A;
                        CMP.B #$02                           ;82B054|C902    |      ;
                        BNE CODE_82B06B                      ;82B056|D013    |82B06B;
-                       LDA.B $29                            ;82B058|A529    |000E91;
+                       LDA.B r_ev_29-$E68                   ;82B058|A529    |000E91;
                        BEQ CODE_82B068                      ;82B05A|F00C    |82B068;
                        BIT.W r_1f2c                         ;82B05C|2C2C1F  |861F2C;
                        BVS CODE_82B068                      ;82B05F|7007    |82B068;
@@ -7639,14 +7645,14 @@ loadProjectileSlotBase:
                        JSR.W CODE_82B078                    ;82B068|2078B0  |82B078;
                                                             ;      |        |      ;
           CODE_82B06B:
-                       LDA.B $3A                            ;82B06B|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;82B06B|A53A    |000EA2;
                        BEQ CODE_82B073                      ;82B06D|F004    |82B073;
                        LDA.B #$06                           ;82B06F|A906    |      ;
-                       STA.B $02                            ;82B071|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82B071|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_82B073:
-                       LDA.B $02                            ;82B073|A502    |000E6A;
-                       STA.B $18                            ;82B075|8518    |000E80;
+                       LDA.B r_ev_02_action-$E68            ;82B073|A502    |000E6A;
+                       STA.B r_ev_18_gfxSlot-$E68           ;82B075|8518    |000E80;
                                                             ;      |        |      ;
           CODE_82B077:
                        RTS                                  ;82B077|60      |      ;
@@ -7657,54 +7663,54 @@ loadProjectileSlotBase:
                        EOR.B #$01                           ;82B079|4901    |      ;
                        TAX                                  ;82B07B|AA      |      ;
                        LDA.W UNREACH_86CBB6,X               ;82B07C|BDB6CB  |86CBB6;
-                       STA.B $02                            ;82B07F|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82B07F|8502    |000E6A;
                        RTS                                  ;82B081|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B082:
-                       LDX.B $03                            ;82B082|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;82B082|A603    |000E6B;
                        BNE CODE_82B0BC                      ;82B084|D036    |82B0BC;
-                       INC.B $03                            ;82B086|E603    |000E6B;
-                       INC.B $2C                            ;82B088|E62C    |000E94;
+                       INC.B r_ev_03_do-$E68                ;82B086|E603    |000E6B;
+                       INC.B r_ev_2c-$E68                   ;82B088|E62C    |000E94;
                        LDA.B #$78                           ;82B08A|A978    |      ;
-                       STA.B $16                            ;82B08C|8516    |000E7E;
-                       STA.B $1F                            ;82B08E|851F    |000E87;
-                       STZ.B $36                            ;82B090|6436    |000E9E;
-                       STZ.B $37                            ;82B092|6437    |000E9F;
-                       LDA.B $02                            ;82B094|A502    |000E6A;
+                       STA.B r_ev_16-$E68                   ;82B08C|8516    |000E7E;
+                       STA.B r_ev_1f-$E68                   ;82B08E|851F    |000E87;
+                       STZ.B r_ev_36-$E68                   ;82B090|6436    |000E9E;
+                       STZ.B r_ev_37-$E68                   ;82B092|6437    |000E9F;
+                       LDA.B r_ev_02_action-$E68            ;82B094|A502    |000E6A;
                        CMP.B #$06                           ;82B096|C906    |      ;
                        BNE CODE_82B0BB                      ;82B098|D021    |82B0BB;
                        STZ.W r_0000                         ;82B09A|9C0000  |860000;
-                       LDA.B $3A                            ;82B09D|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;82B09D|A53A    |000EA2;
                        BNE CODE_82B0A6                      ;82B09F|D005    |82B0A6;
                        LDA.B #$03                           ;82B0A1|A903    |      ;
                        STA.W r_0000                         ;82B0A3|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_82B0A6:
-                       STZ.B $3A                            ;82B0A6|643A    |000EA2;
+                       STZ.B r_ev_3a-$E68                   ;82B0A6|643A    |000EA2;
                        JSL.L CODE_849086                    ;82B0A8|22869084|849086;
                        AND.W r_0000                         ;82B0AC|2D0000  |860000;
-                       STA.B $1F                            ;82B0AF|851F    |000E87;
+                       STA.B r_ev_1f-$E68                   ;82B0AF|851F    |000E87;
                        BNE CODE_82B0BB                      ;82B0B1|D008    |82B0BB;
-                       LDA.B $3B                            ;82B0B3|A53B    |000EA3;
+                       LDA.B r_ev_3b-$E68                   ;82B0B3|A53B    |000EA3;
                        BNE CODE_82B0B9                      ;82B0B5|D002    |82B0B9;
                        BEQ CODE_82B0BB                      ;82B0B7|F002    |82B0BB;
                                                             ;      |        |      ;
           CODE_82B0B9:
-                       INC.B $1F                            ;82B0B9|E61F    |000E87;
+                       INC.B r_ev_1f-$E68                   ;82B0B9|E61F    |000E87;
                                                             ;      |        |      ;
           CODE_82B0BB:
                        RTS                                  ;82B0BB|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B0BC:
-                       STZ.B $2C                            ;82B0BC|642C    |000E94;
+                       STZ.B r_ev_2c-$E68                   ;82B0BC|642C    |000E94;
                        JSR.W CODE_82B637                    ;82B0BE|2037B6  |82B637;
                        LDA.W $0B9C                          ;82B0C1|AD9C0B  |860B9C;
                        AND.B #$1F                           ;82B0C4|291F    |      ;
                        BNE CODE_82B0D6                      ;82B0C6|D00E    |82B0D6;
                        LDA.B #$31                           ;82B0C8|A931    |      ;
-                       LDX.B $02                            ;82B0CA|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82B0CA|A602    |000E6A;
                        CPX.B #$06                           ;82B0CC|E006    |      ;
                        BNE CODE_82B0D2                      ;82B0CE|D002    |82B0D2;
                        LDA.B #$32                           ;82B0D0|A932    |      ;
@@ -7713,19 +7719,19 @@ loadProjectileSlotBase:
                        JSL.L CODE_8088A2                    ;82B0D2|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_82B0D6:
-                       DEC.B $16                            ;82B0D6|C616    |000E7E;
+                       DEC.B r_ev_16-$E68                   ;82B0D6|C616    |000E7E;
                        BNE CODE_82B0EA                      ;82B0D8|D010    |82B0EA;
                                                             ;      |        |      ;
           CODE_82B0DA:
                        REP #$10                             ;82B0DA|C210    |      ;
-                       LDX.B $36                            ;82B0DC|A636    |000E9E;
+                       LDX.B r_ev_36-$E68                   ;82B0DC|A636    |000E9E;
                        BEQ CODE_82B0E3                      ;82B0DE|F003    |82B0E3;
                        INC.W r_000b,X                       ;82B0E0|FE0B00  |86000B;
                                                             ;      |        |      ;
           CODE_82B0E3:
                        SEP #$10                             ;82B0E3|E210    |      ;
-                       STZ.B $02                            ;82B0E5|6402    |000E6A;
-                       STZ.B $03                            ;82B0E7|6403    |000E6B;
+                       STZ.B r_ev_02_action-$E68            ;82B0E5|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82B0E7|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_82B0E9:
                        RTS                                  ;82B0E9|60      |      ;
@@ -7736,7 +7742,7 @@ loadProjectileSlotBase:
                        BEQ CODE_82B0E9                      ;82B0ED|F0FA    |82B0E9;
                        BMI CODE_82B0DA                      ;82B0EF|30E9    |82B0DA;
                        REP #$10                             ;82B0F1|C210    |      ;
-                       LDA.B $02                            ;82B0F3|A502    |000E6A;
+                       LDA.B r_ev_02_action-$E68            ;82B0F3|A502    |000E6A;
                        CMP.B #$06                           ;82B0F5|C906    |      ;
                        BEQ CODE_82B108                      ;82B0F7|F00F    |82B108;
                        LDY.W #$0200                         ;82B0F9|A00002  |      ;
@@ -7755,7 +7761,7 @@ loadProjectileSlotBase:
                        LDX.W #$0004                         ;82B112|A20400  |      ;
                                                             ;      |        |      ;
           CODE_82B115:
-                       LDA.B $1F                            ;82B115|A51F    |000E87;
+                       LDA.B r_ev_1f-$E68                   ;82B115|A51F    |000E87;
                        BEQ CODE_82B11B                      ;82B117|F002    |82B11B;
                        INX                                  ;82B119|E8      |      ;
                        INX                                  ;82B11A|E8      |      ;
@@ -7764,15 +7770,15 @@ loadProjectileSlotBase:
                        LDY.W UNREACH_86CBAE,X               ;82B11B|BCAECB  |86CBAE;
                                                             ;      |        |      ;
           CODE_82B11E:
-                       STY.B $1A                            ;82B11E|841A    |000E82;
+                       STY.B r_ev_1a_xSpdSub-$E68           ;82B11E|841A    |000E82;
                        SEP #$10                             ;82B120|E210    |      ;
                        REP #$21                             ;82B122|C221    |      ;
                        LDA.W r_0bac                         ;82B124|ADAC0B  |860BAC;
-                       ADC.B $1A                            ;82B127|651A    |000E82;
+                       ADC.B r_ev_1a_xSpdSub-$E68           ;82B127|651A    |000E82;
                        STA.W r_0bac                         ;82B129|8DAC0B  |860BAC;
                        SEP #$20                             ;82B12C|E220    |      ;
                        STZ.W r_0000                         ;82B12E|9C0000  |860000;
-                       LDA.B $1B                            ;82B131|A51B    |000E83;
+                       LDA.B r_ev_1b_xSpd-$E68              ;82B131|A51B    |000E83;
                        BPL CODE_82B138                      ;82B133|1003    |82B138;
                        DEC.W r_0000                         ;82B135|CE0000  |860000;
                                                             ;      |        |      ;
@@ -7784,19 +7790,19 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B142:
-                       LDA.B $29                            ;82B142|A529    |000E91;
+                       LDA.B r_ev_29-$E68                   ;82B142|A529    |000E91;
                        BNE CODE_82B14D                      ;82B144|D007    |82B14D;
-                       STZ.B $02                            ;82B146|6402    |000E6A;
-                       STZ.B $03                            ;82B148|6403    |000E6B;
+                       STZ.B r_ev_02_action-$E68            ;82B146|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82B148|6403    |000E6B;
                        JMP.W CODE_82B3EA                    ;82B14A|4CEAB3  |82B3EA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B14D:
-                       LDX.B $03                            ;82B14D|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;82B14D|A603    |000E6B;
                        JSR.W (PTR16_82B1AD,X)               ;82B14F|FCADB1  |82B1AD;
                        PHB                                  ;82B152|8B      |      ;
                        REP #$30                             ;82B153|C230    |      ;
-                       LDA.B $17                            ;82B155|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;82B155|A517    |000E7F;
                        BNE CODE_82B17F                      ;82B157|D026    |82B17F;
                        LDX.W #$CB82                         ;82B159|A282CB  |      ;
                        LDY.W #$0B22                         ;82B15C|A0220B  |      ;
@@ -7829,9 +7835,9 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82B1A3:
                        SEP #$30                             ;82B1A3|E230    |      ;
-                       LDA.B $17                            ;82B1A5|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;82B1A5|A517    |000E7F;
                        EOR.B #$01                           ;82B1A7|4901    |      ;
-                       STA.B $17                            ;82B1A9|8517    |000E7F;
+                       STA.B r_ev_17-$E68                   ;82B1A9|8517    |000E7F;
                        PLB                                  ;82B1AB|AB      |      ;
                        RTS                                  ;82B1AC|60      |      ;
                                                             ;      |        |      ;
@@ -7847,25 +7853,25 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82B1BB:
                        LDA.B #$02                           ;82B1BB|A902    |      ;
-                       STA.B $03                            ;82B1BD|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82B1BD|8503    |000E6B;
                        INC.W r_0aa1                         ;82B1BF|EEA10A  |860AA1;
                        INC.W r_0aa8                         ;82B1C2|EEA80A  |860AA8;
-                       STZ.B $17                            ;82B1C5|6417    |000E7F;
-                       STZ.B $3A                            ;82B1C7|643A    |000EA2;
+                       STZ.B r_ev_17-$E68                   ;82B1C5|6417    |000E7F;
+                       STZ.B r_ev_3a-$E68                   ;82B1C7|643A    |000EA2;
                        REP #$20                             ;82B1C9|C220    |      ;
                        LDA.W #$FF80                         ;82B1CB|A980FF  |      ;
-                       STA.B $1A                            ;82B1CE|851A    |000E82;
-                       STA.B $1C                            ;82B1D0|851C    |000E84;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82B1CE|851A    |000E82;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82B1D0|851C    |000E84;
                        LDA.W #$0002                         ;82B1D2|A90200  |      ;
-                       STA.B $12                            ;82B1D5|8512    |000E7A;
-                       LDA.B $08                            ;82B1D7|A508    |000E70;
+                       STA.B r_ev_12-$E68                   ;82B1D5|8512    |000E7A;
+                       LDA.B r_ev_08_yPos-$E68              ;82B1D7|A508    |000E70;
                        SEC                                  ;82B1D9|38      |      ;
                        SBC.W #$0020                         ;82B1DA|E92000  |      ;
                        SEC                                  ;82B1DD|38      |      ;
                        SBC.W r_cam_BG0_yPos_target          ;82B1DE|ED501E  |861E50;
                        CLC                                  ;82B1E1|18      |      ;
-                       ADC.B $12                            ;82B1E2|6512    |000E7A;
-                       STA.B $0F                            ;82B1E4|850F    |000E77;
+                       ADC.B r_ev_12-$E68                   ;82B1E2|6512    |000E7A;
+                       STA.B r_ev_0f-$E68                   ;82B1E4|850F    |000E77;
                        LDA.W r_0bcf                         ;82B1E6|ADCF0B  |860BCF;
                        AND.W #$007F                         ;82B1E9|297F00  |      ;
                        BEQ CODE_82B1F4                      ;82B1EC|F006    |82B1F4;
@@ -7895,36 +7901,36 @@ loadProjectileSlotBase:
                        STZ.W $212F                          ;82B220|9C2F21  |86212F;
                        STZ.W r_00cf                         ;82B223|9CCF00  |8600CF;
                        LDA.B #$04                           ;82B226|A904    |      ;
-                       STA.B $03                            ;82B228|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82B228|8503    |000E6B;
                        RTS                                  ;82B22A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B22B:
                        REP #$21                             ;82B22B|C221    |      ;
-                       LDA.B $12                            ;82B22D|A512    |000E7A;
+                       LDA.B r_ev_12-$E68                   ;82B22D|A512    |000E7A;
                        ADC.W #$0006                         ;82B22F|690600  |      ;
-                       STA.B $12                            ;82B232|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;82B232|8512    |000E7A;
                        CMP.W #$00C0                         ;82B234|C9C000  |      ;
                        BCC CODE_82B240                      ;82B237|9007    |82B240;
                        SEP #$20                             ;82B239|E220    |      ;
                        LDA.B #$06                           ;82B23B|A906    |      ;
-                       STA.B $03                            ;82B23D|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82B23D|8503    |000E6B;
                        RTS                                  ;82B23F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B240:
-                       LDA.B $08                            ;82B240|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B240|A508    |000E70;
                        SEC                                  ;82B242|38      |      ;
                        SBC.W #$0020                         ;82B243|E92000  |      ;
                        SEC                                  ;82B246|38      |      ;
                        SBC.W r_cam_BG0_yPos_target          ;82B247|ED501E  |861E50;
                        CLC                                  ;82B24A|18      |      ;
-                       ADC.B $12                            ;82B24B|6512    |000E7A;
-                       STA.B $0F                            ;82B24D|850F    |000E77;
+                       ADC.B r_ev_12-$E68                   ;82B24B|6512    |000E7A;
+                       STA.B r_ev_0f-$E68                   ;82B24D|850F    |000E77;
                        SEP #$20                             ;82B24F|E220    |      ;
                        JSR.W CODE_82B523                    ;82B251|2023B5  |82B523;
                        BEQ CODE_82B258                      ;82B254|F002    |82B258;
-                       INC.B $3A                            ;82B256|E63A    |000EA2;
+                       INC.B r_ev_3a-$E68                   ;82B256|E63A    |000EA2;
                                                             ;      |        |      ;
           CODE_82B258:
                        JMP.W CODE_82B420                    ;82B258|4C20B4  |82B420;
@@ -7932,63 +7938,63 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82B25B:
                        REP #$21                             ;82B25B|C221    |      ;
-                       LDA.B $1A                            ;82B25D|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82B25D|A51A    |000E82;
                        ADC.W #$FFFC                         ;82B25F|69FCFF  |      ;
-                       STA.B $1A                            ;82B262|851A    |000E82;
-                       LDA.B $1C                            ;82B264|A51C    |000E84;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82B262|851A    |000E82;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82B264|A51C    |000E84;
                        CLC                                  ;82B266|18      |      ;
                        ADC.W #$0004                         ;82B267|690400  |      ;
-                       STA.B $1C                            ;82B26A|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82B26A|851C    |000E84;
                        CMP.W #$FFC0                         ;82B26C|C9C0FF  |      ;
                        BMI CODE_82B287                      ;82B26F|3016    |82B287;
                        LDA.W #$FF40                         ;82B271|A940FF  |      ;
-                       STA.B $1A                            ;82B274|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82B274|851A    |000E82;
                        LDA.W #$FFC0                         ;82B276|A9C0FF  |      ;
-                       STA.B $1C                            ;82B279|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82B279|851C    |000E84;
                        LDX.B #$08                           ;82B27B|A208    |      ;
-                       STX.B $03                            ;82B27D|8603    |000E6B;
+                       STX.B r_ev_03_do-$E68                ;82B27D|8603    |000E6B;
                        LDX.B #$00                           ;82B27F|A200    |      ;
-                       STX.B $1E                            ;82B281|861E    |000E86;
+                       STX.B r_ev_1e_weight-$E68            ;82B281|861E    |000E86;
                        LDX.B #$01                           ;82B283|A201    |      ;
-                       STX.B $1F                            ;82B285|861F    |000E87;
+                       STX.B r_ev_1f-$E68                   ;82B285|861F    |000E87;
                                                             ;      |        |      ;
           CODE_82B287:
                        SEP #$20                             ;82B287|E220    |      ;
                        JSR.W CODE_82B523                    ;82B289|2023B5  |82B523;
                        BEQ CODE_82B290                      ;82B28C|F002    |82B290;
-                       INC.B $3A                            ;82B28E|E63A    |000EA2;
+                       INC.B r_ev_3a-$E68                   ;82B28E|E63A    |000EA2;
                                                             ;      |        |      ;
           CODE_82B290:
                        JMP.W CODE_82B420                    ;82B290|4C20B4  |82B420;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B293:
-                       LDA.B $3A                            ;82B293|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;82B293|A53A    |000EA2;
                        BNE CODE_82B2A6                      ;82B295|D00F    |82B2A6;
-                       DEC.B $1F                            ;82B297|C61F    |000E87;
+                       DEC.B r_ev_1f-$E68                   ;82B297|C61F    |000E87;
                        BNE CODE_82B2B7                      ;82B299|D01C    |82B2B7;
-                       LDX.B $1E                            ;82B29B|A61E    |000E86;
-                       INC.B $1E                            ;82B29D|E61E    |000E86;
-                       INC.B $1E                            ;82B29F|E61E    |000E86;
+                       LDX.B r_ev_1e_weight-$E68            ;82B29B|A61E    |000E86;
+                       INC.B r_ev_1e_weight-$E68            ;82B29D|E61E    |000E86;
+                       INC.B r_ev_1e_weight-$E68            ;82B29F|E61E    |000E86;
                        LDA.W UNREACH_86CBC2,X               ;82B2A1|BDC2CB  |86CBC2;
                        BPL CODE_82B2B0                      ;82B2A4|100A    |82B2B0;
                                                             ;      |        |      ;
           CODE_82B2A6:
                        LDA.B #$0A                           ;82B2A6|A90A    |      ;
-                       STA.B $03                            ;82B2A8|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82B2A8|8503    |000E6B;
                        LDA.B #$10                           ;82B2AA|A910    |      ;
-                       STA.B $16                            ;82B2AC|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;82B2AC|8516    |000E7E;
                        BRA CODE_82B2CF                      ;82B2AE|801F    |82B2CF;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B2B0:
-                       STA.B $16                            ;82B2B0|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;82B2B0|8516    |000E7E;
                        LDA.W UNREACH_86CBC3,X               ;82B2B2|BDC3CB  |86CBC3;
-                       STA.B $1F                            ;82B2B5|851F    |000E87;
+                       STA.B r_ev_1f-$E68                   ;82B2B5|851F    |000E87;
                                                             ;      |        |      ;
           CODE_82B2B7:
                        REP #$20                             ;82B2B7|C220    |      ;
-                       LDX.B $16                            ;82B2B9|A616    |000E7E;
+                       LDX.B r_ev_16-$E68                   ;82B2B9|A616    |000E7E;
                        BNE CODE_82B2C7                      ;82B2BB|D00A    |82B2C7;
                        JSR.W CODE_82B2DB                    ;82B2BD|20DBB2  |82B2DB;
                        BMI CODE_82B2CF                      ;82B2C0|300D    |82B2CF;
@@ -8005,7 +8011,7 @@ loadProjectileSlotBase:
                        SEP #$20                             ;82B2CF|E220    |      ;
                        JSR.W CODE_82B523                    ;82B2D1|2023B5  |82B523;
                        BEQ CODE_82B2D8                      ;82B2D4|F002    |82B2D8;
-                       INC.B $3A                            ;82B2D6|E63A    |000EA2;
+                       INC.B r_ev_3a-$E68                   ;82B2D6|E63A    |000EA2;
                                                             ;      |        |      ;
           CODE_82B2D8:
                        JMP.W CODE_82B420                    ;82B2D8|4C20B4  |82B420;
@@ -8013,18 +8019,18 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82B2DB:
                        LDA.W #$FFFC                         ;82B2DB|A9FCFF  |      ;
-                       LDX.B $16                            ;82B2DE|A616    |000E7E;
+                       LDX.B r_ev_16-$E68                   ;82B2DE|A616    |000E7E;
                        BEQ CODE_82B2E5                      ;82B2E0|F003    |82B2E5;
                        LDA.W #$0004                         ;82B2E2|A90400  |      ;
                                                             ;      |        |      ;
           CODE_82B2E5:
                        STA.W r_0000                         ;82B2E5|8D0000  |860000;
-                       LDA.B $1A                            ;82B2E8|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82B2E8|A51A    |000E82;
                        CLC                                  ;82B2EA|18      |      ;
                        ADC.W r_0000                         ;82B2EB|6D0000  |860000;
                        CMP.W #$FE70                         ;82B2EE|C970FE  |      ;
                        BMI CODE_82B2F5                      ;82B2F1|3002    |82B2F5;
-                       STA.B $1A                            ;82B2F3|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82B2F3|851A    |000E82;
                                                             ;      |        |      ;
           CODE_82B2F5:
                        RTS                                  ;82B2F5|60      |      ;
@@ -8032,34 +8038,34 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82B2F6:
                        LDA.W #$FFFD                         ;82B2F6|A9FDFF  |      ;
-                       LDX.B $16                            ;82B2F9|A616    |000E7E;
+                       LDX.B r_ev_16-$E68                   ;82B2F9|A616    |000E7E;
                        BEQ CODE_82B300                      ;82B2FB|F003    |82B300;
                        LDA.W #$0003                         ;82B2FD|A90300  |      ;
                                                             ;      |        |      ;
           CODE_82B300:
                        STA.W r_0000                         ;82B300|8D0000  |860000;
-                       LDA.B $1C                            ;82B303|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82B303|A51C    |000E84;
                        CLC                                  ;82B305|18      |      ;
                        ADC.W r_0000                         ;82B306|6D0000  |860000;
                        BPL CODE_82B30D                      ;82B309|1002    |82B30D;
-                       STA.B $1C                            ;82B30B|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82B30B|851C    |000E84;
                                                             ;      |        |      ;
           CODE_82B30D:
                        RTS                                  ;82B30D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B30E:
-                       DEC.B $16                            ;82B30E|C616    |000E7E;
+                       DEC.B r_ev_16-$E68                   ;82B30E|C616    |000E7E;
                        BNE CODE_82B317                      ;82B310|D005    |82B317;
                        LDA.B #$0C                           ;82B312|A90C    |      ;
-                       STA.B $03                            ;82B314|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82B314|8503    |000E6B;
                        RTS                                  ;82B316|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B317:
                        JSR.W CODE_82B523                    ;82B317|2023B5  |82B523;
                        BEQ CODE_82B31E                      ;82B31A|F002    |82B31E;
-                       INC.B $3A                            ;82B31C|E63A    |000EA2;
+                       INC.B r_ev_3a-$E68                   ;82B31C|E63A    |000EA2;
                                                             ;      |        |      ;
           CODE_82B31E:
                        JMP.W CODE_82B420                    ;82B31E|4C20B4  |82B420;
@@ -8067,39 +8073,39 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82B321:
                        REP #$21                             ;82B321|C221    |      ;
-                       LDA.B $1A                            ;82B323|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82B323|A51A    |000E82;
                        ADC.W #$0004                         ;82B325|690400  |      ;
-                       STA.B $1A                            ;82B328|851A    |000E82;
-                       LDA.B $1C                            ;82B32A|A51C    |000E84;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82B328|851A    |000E82;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82B32A|A51C    |000E84;
                        CLC                                  ;82B32C|18      |      ;
                        ADC.W #$FFFC                         ;82B32D|69FCFF  |      ;
-                       STA.B $1C                            ;82B330|851C    |000E84;
-                       CMP.B $1A                            ;82B332|C51A    |000E82;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82B330|851C    |000E84;
+                       CMP.B r_ev_1a_xSpdSub-$E68           ;82B332|C51A    |000E82;
                        SEP #$20                             ;82B334|E220    |      ;
                        BPL CODE_82B33F                      ;82B336|1007    |82B33F;
-                       STZ.B $02                            ;82B338|6402    |000E6A;
-                       STZ.B $03                            ;82B33A|6403    |000E6B;
+                       STZ.B r_ev_02_action-$E68            ;82B338|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82B33A|6403    |000E6B;
                        JMP.W CODE_82B3EA                    ;82B33C|4CEAB3  |82B3EA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B33F:
                        JSR.W CODE_82B523                    ;82B33F|2023B5  |82B523;
                        BEQ CODE_82B346                      ;82B342|F002    |82B346;
-                       INC.B $3A                            ;82B344|E63A    |000EA2;
+                       INC.B r_ev_3a-$E68                   ;82B344|E63A    |000EA2;
                                                             ;      |        |      ;
           CODE_82B346:
                        JMP.W CODE_82B420                    ;82B346|4C20B4  |82B420;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B349:
-                       LDX.B $03                            ;82B349|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;82B349|A603    |000E6B;
                        BNE CODE_82B363                      ;82B34B|D016    |82B363;
-                       INC.B $03                            ;82B34D|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;82B34D|E603    |000E6B;
                        LDA.B #$78                           ;82B34F|A978    |      ;
-                       STA.B $16                            ;82B351|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;82B351|8516    |000E7E;
                        LDA.B #$21                           ;82B353|A921    |      ;
                        JSL.L CODE_8088A2                    ;82B355|22A28880|8088A2;
-                       LDA.B $02                            ;82B359|A502    |000E6A;
+                       LDA.B r_ev_02_action-$E68            ;82B359|A502    |000E6A;
                        CMP.B #$02                           ;82B35B|C902    |      ;
                        BNE CODE_82B362                      ;82B35D|D003    |82B362;
                        JSR.W CODE_82B3EA                    ;82B35F|20EAB3  |82B3EA;
@@ -8109,12 +8115,12 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B363:
-                       DEC.B $16                            ;82B363|C616    |000E7E;
+                       DEC.B r_ev_16-$E68                   ;82B363|C616    |000E7E;
                        BNE CODE_82B3A1                      ;82B365|D03A    |82B3A1;
                        REP #$21                             ;82B367|C221    |      ;
-                       LDA.B $05                            ;82B369|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B369|A505    |000E6D;
                        STA.W r_002c                         ;82B36B|8D2C00  |86002C;
-                       LDA.B $08                            ;82B36E|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B36E|A508    |000E70;
                        ADC.W #$FFE0                         ;82B370|69E0FF  |      ;
                        STA.W r_002e                         ;82B373|8D2E00  |86002E;
                        LDA.L $7FD61A                        ;82B376|AF1AD67F|7FD61A;
@@ -8129,7 +8135,7 @@ loadProjectileSlotBase:
                        LDA.B #$00                           ;82B394|A900    |      ;
                        JSL.L CODE_848011                    ;82B396|22118084|848011;
                        JSR.W CODE_82B807                    ;82B39A|2007B8  |82B807;
-                       JML.L CODE_828398                    ;82B39D|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82B39D|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B3A1:
@@ -8138,9 +8144,9 @@ loadProjectileSlotBase:
                        AND.W #$00FF                         ;82B3A6|29FF00  |      ;
                        CMP.W #$0020                         ;82B3A9|C92000  |      ;
                        BCS CODE_82B3CC                      ;82B3AC|B01E    |82B3CC;
-                       LDA.B $05                            ;82B3AE|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B3AE|A505    |000E6D;
                        STA.W r_002c                         ;82B3B0|8D2C00  |86002C;
-                       LDA.B $08                            ;82B3B3|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B3B3|A508    |000E70;
                        ADC.W #$FFE0                         ;82B3B5|69E0FF  |      ;
                        STA.W r_002e                         ;82B3B8|8D2E00  |86002E;
                        LDX.B #$00                           ;82B3BB|A200    |      ;
@@ -8191,7 +8197,7 @@ loadProjectileSlotBase:
           CODE_82B414:
                        LDA.W r_cam_BG0_yPos_target          ;82B414|AD501E  |861E50;
                        SEC                                  ;82B417|38      |      ;
-                       SBC.B $34                            ;82B418|E534    |000E9C;
+                       SBC.B r_ev_34-$E68                   ;82B418|E534    |000E9C;
                        STA.W r_00c4                         ;82B41A|8DC400  |8600C4;
                        RTS                                  ;82B41D|60      |      ;
                                                             ;      |        |      ;
@@ -8206,7 +8212,7 @@ loadProjectileSlotBase:
                        REP #$30                             ;82B421|C230    |      ;
                        LDX.W #$0000                         ;82B423|A20000  |      ;
                        LDY.W #$0006                         ;82B426|A00600  |      ;
-                       LDA.B $1A                            ;82B429|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82B429|A51A    |000E82;
                        CMP.W #$FF00                         ;82B42B|C900FF  |      ;
                        BCC CODE_82B436                      ;82B42E|9006    |82B436;
                        LDX.W #$0003                         ;82B430|A20300  |      ;
@@ -8215,21 +8221,21 @@ loadProjectileSlotBase:
           CODE_82B436:
                        STX.W r_0000                         ;82B436|8E0000  |860000;
                        STY.W r_0002                         ;82B439|8C0200  |860002;
-                       STZ.B $33                            ;82B43C|6433    |000E9B;
-                       LDA.B $05                            ;82B43E|A505    |000E6D;
+                       STZ.B r_ev_33-$E68                   ;82B43C|6433    |000E9B;
+                       LDA.B r_ev_05_xPos-$E68              ;82B43E|A505    |000E6D;
                        SEC                                  ;82B440|38      |      ;
                        SBC.W r_cam_BG0_xPos_target          ;82B441|ED4D1E  |861E4D;
                        CLC                                  ;82B444|18      |      ;
                        ADC.W r_0000                         ;82B445|6D0000  |860000;
-                       STA.B $34                            ;82B448|8534    |000E9C;
-                       LDA.B $08                            ;82B44A|A508    |000E70;
+                       STA.B r_ev_34-$E68                   ;82B448|8534    |000E9C;
+                       LDA.B r_ev_08_yPos-$E68              ;82B44A|A508    |000E70;
                        SEC                                  ;82B44C|38      |      ;
                        SBC.W #$0020                         ;82B44D|E92000  |      ;
                        SEC                                  ;82B450|38      |      ;
                        SBC.W r_cam_BG0_yPos_target          ;82B451|ED501E  |861E50;
                        CLC                                  ;82B454|18      |      ;
                        ADC.W r_0002                         ;82B455|6D0200  |860002;
-                       STA.B $36                            ;82B458|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;82B458|8536    |000E9E;
                        BMI CODE_82B41E                      ;82B45A|30C2    |82B41E;
                        CMP.W #$00E8                         ;82B45C|C9E800  |      ;
                        BPL CODE_82B41E                      ;82B45F|10BD    |82B41E;
@@ -8242,25 +8248,25 @@ loadProjectileSlotBase:
                        STA.L $7FD0FF,X                      ;82B46E|9FFFD07F|7FD0FF;
                        INX                                  ;82B472|E8      |      ;
                        INX                                  ;82B473|E8      |      ;
-                       CPX.B $36                            ;82B474|E436    |000E9E;
+                       CPX.B r_ev_36-$E68                   ;82B474|E436    |000E9E;
                        BCC CODE_82B464                      ;82B476|90EC    |82B464;
                        LDA.W #$FFFF                         ;82B478|A9FFFF  |      ;
                        STA.L $7FD000,X                      ;82B47B|9F00D07F|7FD000;
                        LDA.W #$0000                         ;82B47F|A90000  |      ;
                        STA.L $7FD0FF,X                      ;82B482|9FFFD07F|7FD0FF;
-                       LDX.B $36                            ;82B486|A636    |000E9E;
+                       LDX.B r_ev_36-$E68                   ;82B486|A636    |000E9E;
                                                             ;      |        |      ;
           CODE_82B488:
-                       LDA.B $33                            ;82B488|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;82B488|A533    |000E9B;
                        CLC                                  ;82B48A|18      |      ;
-                       ADC.B $1A                            ;82B48B|651A    |000E82;
-                       STA.B $33                            ;82B48D|8533    |000E9B;
+                       ADC.B r_ev_1a_xSpdSub-$E68           ;82B48B|651A    |000E82;
+                       STA.B r_ev_33-$E68                   ;82B48D|8533    |000E9B;
                        SEP #$20                             ;82B48F|E220    |      ;
-                       LDA.B $35                            ;82B491|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;82B491|A535    |000E9D;
                        ADC.B #$FF                           ;82B493|69FF    |      ;
-                       STA.B $35                            ;82B495|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82B495|8535    |000E9D;
                        REP #$20                             ;82B497|C220    |      ;
-                       LDA.B $34                            ;82B499|A534    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;82B499|A534    |000E9C;
                        BPL CODE_82B4A2                      ;82B49B|1005    |82B4A2;
                        LDA.W #$0000                         ;82B49D|A90000  |      ;
                        BRA CODE_82B4AA                      ;82B4A0|8008    |82B4AA;
@@ -8276,7 +8282,7 @@ loadProjectileSlotBase:
                        INX                                  ;82B4AE|E8      |      ;
                        CPX.W #$00E8                         ;82B4AF|E0E800  |      ;
                        BCS CODE_82B4C6                      ;82B4B2|B012    |82B4C6;
-                       CPX.B $0F                            ;82B4B4|E40F    |000E77;
+                       CPX.B r_ev_0f-$E68                   ;82B4B4|E40F    |000E77;
                        BCC CODE_82B488                      ;82B4B6|90D0    |82B488;
                        LDA.W #$FFFF                         ;82B4B8|A9FFFF  |      ;
                                                             ;      |        |      ;
@@ -8290,25 +8296,25 @@ loadProjectileSlotBase:
           CODE_82B4C6:
                        LDA.W #$FFFF                         ;82B4C6|A9FFFF  |      ;
                        STA.L $7FD0E8                        ;82B4C9|8FE8D07F|7FD0E8;
-                       STZ.B $33                            ;82B4CD|6433    |000E9B;
-                       LDA.B $05                            ;82B4CF|A505    |000E6D;
+                       STZ.B r_ev_33-$E68                   ;82B4CD|6433    |000E9B;
+                       LDA.B r_ev_05_xPos-$E68              ;82B4CF|A505    |000E6D;
                        SEC                                  ;82B4D1|38      |      ;
                        SBC.W r_cam_BG0_xPos_target          ;82B4D2|ED4D1E  |861E4D;
                        CLC                                  ;82B4D5|18      |      ;
                        ADC.W r_0000                         ;82B4D6|6D0000  |860000;
-                       STA.B $34                            ;82B4D9|8534    |000E9C;
-                       LDX.B $36                            ;82B4DB|A636    |000E9E;
+                       STA.B r_ev_34-$E68                   ;82B4D9|8534    |000E9C;
+                       LDX.B r_ev_36-$E68                   ;82B4DB|A636    |000E9E;
                                                             ;      |        |      ;
           CODE_82B4DD:
-                       LDA.B $33                            ;82B4DD|A533    |000E9B;
-                       ADC.B $1C                            ;82B4DF|651C    |000E84;
-                       STA.B $33                            ;82B4E1|8533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;82B4DD|A533    |000E9B;
+                       ADC.B r_ev_1c_ySpdSub-$E68           ;82B4DF|651C    |000E84;
+                       STA.B r_ev_33-$E68                   ;82B4E1|8533    |000E9B;
                        SEP #$20                             ;82B4E3|E220    |      ;
-                       LDA.B $35                            ;82B4E5|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;82B4E5|A535    |000E9D;
                        ADC.B #$FF                           ;82B4E7|69FF    |      ;
-                       STA.B $35                            ;82B4E9|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82B4E9|8535    |000E9D;
                        REP #$20                             ;82B4EB|C220    |      ;
-                       LDA.B $34                            ;82B4ED|A534    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;82B4ED|A534    |000E9C;
                        BPL CODE_82B4FD                      ;82B4EF|100C    |82B4FD;
                        LDA.W #$FFFF                         ;82B4F1|A9FFFF  |      ;
                        STA.L $7FD000,X                      ;82B4F4|9F00D07F|7FD000;
@@ -8326,7 +8332,7 @@ loadProjectileSlotBase:
                        INX                                  ;82B509|E8      |      ;
                        CPX.W #$00E8                         ;82B50A|E0E800  |      ;
                        BCS CODE_82B521                      ;82B50D|B012    |82B521;
-                       CPX.B $0F                            ;82B50F|E40F    |000E77;
+                       CPX.B r_ev_0f-$E68                   ;82B50F|E40F    |000E77;
                        BCC CODE_82B4DD                      ;82B511|90CA    |82B4DD;
                        LDA.W #$0000                         ;82B513|A90000  |      ;
                                                             ;      |        |      ;
@@ -8348,9 +8354,9 @@ loadProjectileSlotBase:
                        REP #$20                             ;82B528|C220    |      ;
                        JSR.W CODE_82B592                    ;82B52A|2092B5  |82B592;
                        JSR.W CODE_82B5BD                    ;82B52D|20BDB5  |82B5BD;
-                       LDA.B $05                            ;82B530|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B530|A505    |000E6D;
                        STA.W r_0000                         ;82B532|8D0000  |860000;
-                       LDA.B $08                            ;82B535|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B535|A508    |000E70;
                        CLC                                  ;82B537|18      |      ;
                        ADC.W #$FFE0                         ;82B538|69E0FF  |      ;
                        STA.W r_0002                         ;82B53B|8D0200  |860002;
@@ -8364,7 +8370,7 @@ loadProjectileSlotBase:
                        STA.W r_0006                         ;82B54F|8D0600  |860006;
                        SEP #$20                             ;82B552|E220    |      ;
                        JSL.L CODE_84A09C                    ;82B554|229CA084|84A09C;
-                       CMP.B $38                            ;82B558|C538    |000EA0;
+                       CMP.B r_ev_38-$E68                   ;82B558|C538    |000EA0;
                        BEQ CODE_82B55E                      ;82B55A|F002    |82B55E;
                        BCS CODE_82B58F                      ;82B55C|B031    |82B58F;
                                                             ;      |        |      ;
@@ -8379,13 +8385,13 @@ loadProjectileSlotBase:
                        STA.W r_0006                         ;82B570|8D0600  |860006;
                        SEP #$20                             ;82B573|E220    |      ;
                        JSL.L CODE_84A09C                    ;82B575|229CA084|84A09C;
-                       CMP.B $39                            ;82B579|C539    |000EA1;
+                       CMP.B r_ev_39-$E68                   ;82B579|C539    |000EA1;
                        BCC CODE_82B58F                      ;82B57B|9012    |82B58F;
                        REP #$20                             ;82B57D|C220    |      ;
                        LDA.W r_0bb0                         ;82B57F|ADB00B  |860BB0;
                        SEC                                  ;82B582|38      |      ;
                        SBC.W r_cam_BG0_yPos_target          ;82B583|ED501E  |861E50;
-                       CMP.B $0F                            ;82B586|C50F    |000E77;
+                       CMP.B r_ev_0f-$E68                   ;82B586|C50F    |000E77;
                        SEP #$20                             ;82B588|E220    |      ;
                        BCS CODE_82B58F                      ;82B58A|B003    |82B58F;
                        LDA.B #$01                           ;82B58C|A901    |      ;
@@ -8399,7 +8405,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82B592:
                        LDY.B #$0F                           ;82B592|A00F    |      ;
-                       LDA.B $1A                            ;82B594|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82B594|A51A    |000E82;
                        CMP.W #$FFE0                         ;82B596|C9E0FF  |      ;
                        BPL CODE_82B59C                      ;82B599|1001    |82B59C;
                        INY                                  ;82B59B|C8      |      ;
@@ -8430,13 +8436,13 @@ loadProjectileSlotBase:
                        INY                                  ;82B5B9|C8      |      ;
                                                             ;      |        |      ;
           CODE_82B5BA:
-                       STY.B $38                            ;82B5BA|8438    |000EA0;
+                       STY.B r_ev_38-$E68                   ;82B5BA|8438    |000EA0;
                        RTS                                  ;82B5BC|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B5BD:
                        LDY.B #$17                           ;82B5BD|A017    |      ;
-                       LDA.B $1C                            ;82B5BF|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82B5BF|A51C    |000E84;
                        CMP.W #$FE71                         ;82B5C1|C971FE  |      ;
                        BMI CODE_82B5C7                      ;82B5C4|3001    |82B5C7;
                        DEY                                  ;82B5C6|88      |      ;
@@ -8467,7 +8473,7 @@ loadProjectileSlotBase:
                        DEY                                  ;82B5E4|88      |      ;
                                                             ;      |        |      ;
           CODE_82B5E5:
-                       STY.B $39                            ;82B5E5|8439    |000EA1;
+                       STY.B r_ev_39-$E68                   ;82B5E5|8439    |000EA1;
                        RTS                                  ;82B5E7|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8477,15 +8483,15 @@ loadProjectileSlotBase:
                        BNE CODE_82B62D                      ;82B5ED|D03E    |82B62D;
                        LDX.W r_1f0c                         ;82B5EF|AE0C1F  |861F0C;
                        BNE CODE_82B62D                      ;82B5F2|D039    |82B62D;
-                       LDA.B $05                            ;82B5F4|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B5F4|A505    |000E6D;
                        ADC.W #$FF60                         ;82B5F6|6960FF  |      ;
                        CMP.W r_0bad                         ;82B5F9|CDAD0B  |860BAD;
                        BCS CODE_82B632                      ;82B5FC|B034    |82B632;
-                       LDA.B $05                            ;82B5FE|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B5FE|A505    |000E6D;
                        CLC                                  ;82B600|18      |      ;
                        ADC.W #$0010                         ;82B601|691000  |      ;
                        STA.W r_0000                         ;82B604|8D0000  |860000;
-                       LDA.B $08                            ;82B607|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B607|A508    |000E70;
                        CLC                                  ;82B609|18      |      ;
                        ADC.W #$0009                         ;82B60A|690900  |      ;
                        STA.W r_0002                         ;82B60D|8D0200  |860002;
@@ -8525,7 +8531,7 @@ loadProjectileSlotBase:
                        LDA.B #$1B                           ;82B647|A91B    |      ;
                        STA.W r_000a,X                       ;82B649|9D0A00  |86000A;
                        LDY.W #$FFFF                         ;82B64C|A0FFFF  |      ;
-                       LDA.B $02                            ;82B64F|A502    |000E6A;
+                       LDA.B r_ev_02_action-$E68            ;82B64F|A502    |000E6A;
                        CMP.B #$06                           ;82B651|C906    |      ;
                        BEQ CODE_82B65C                      ;82B653|F007    |82B65C;
                        JSL.L CODE_849086                    ;82B655|22869084|849086;
@@ -8538,14 +8544,14 @@ loadProjectileSlotBase:
                        REP #$21                             ;82B660|C221    |      ;
                        JSL.L CODE_849086                    ;82B662|22869084|849086;
                        AND.W #$000F                         ;82B666|290F00  |      ;
-                       ADC.B $08                            ;82B669|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;82B669|6508    |000E70;
                        STA.W r_0008,X                       ;82B66B|9D0800  |860008;
                        JSL.L CODE_849086                    ;82B66E|22869084|849086;
                        AND.W #$0007                         ;82B672|290700  |      ;
                        CLC                                  ;82B675|18      |      ;
                        ADC.W #$FFF4                         ;82B676|69F4FF  |      ;
                        CLC                                  ;82B679|18      |      ;
-                       ADC.B $05                            ;82B67A|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;82B67A|6505    |000E6D;
                        STA.W r_0005,X                       ;82B67C|9D0500  |860005;
                        SEP #$20                             ;82B67F|E220    |      ;
                                                             ;      |        |      ;
@@ -8561,14 +8567,14 @@ loadProjectileSlotBase:
                        INC.W r_0000,X                       ;82B688|FE0000  |860000;
                        LDA.B #$1C                           ;82B68B|A91C    |      ;
                        STA.W r_000a,X                       ;82B68D|9D0A00  |86000A;
-                       STX.B $1A                            ;82B690|861A    |000E82;
+                       STX.B r_ev_1a_xSpdSub-$E68           ;82B690|861A    |000E82;
                        REP #$21                             ;82B692|C221    |      ;
                        TDC                                  ;82B694|7B      |      ;
                        STA.W r_000c,X                       ;82B695|9D0C00  |86000C;
-                       LDA.B $05                            ;82B698|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B698|A505    |000E6D;
                        ADC.W #$0032                         ;82B69A|693200  |      ;
                        STA.W r_0005,X                       ;82B69D|9D0500  |860005;
-                       LDA.B $08                            ;82B6A0|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B6A0|A508    |000E70;
                        CLC                                  ;82B6A2|18      |      ;
                        ADC.W #$0008                         ;82B6A3|690800  |      ;
                        STA.W r_0008,X                       ;82B6A6|9D0800  |860008;
@@ -8606,12 +8612,12 @@ loadProjectileSlotBase:
                        LDA.W UNREACH_86CBD5,Y               ;82B6E7|B9D5CB  |86CBD5;
                        AND.W #$00FF                         ;82B6EA|29FF00  |      ;
                        CLC                                  ;82B6ED|18      |      ;
-                       ADC.B $05                            ;82B6EE|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;82B6EE|6505    |000E6D;
                        STA.W r_0005,X                       ;82B6F0|9D0500  |860005;
                        LDA.W UNREACH_86CBD6,Y               ;82B6F3|B9D6CB  |86CBD6;
                        AND.W #$00FF                         ;82B6F6|29FF00  |      ;
                        CLC                                  ;82B6F9|18      |      ;
-                       ADC.B $08                            ;82B6FA|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;82B6FA|6508    |000E70;
                        SEC                                  ;82B6FC|38      |      ;
                        SBC.W #$0020                         ;82B6FD|E92000  |      ;
                        STA.W r_0008,X                       ;82B700|9D0800  |860008;
@@ -8630,14 +8636,14 @@ loadProjectileSlotBase:
                        LDA.B #$0A                           ;82B714|A90A    |      ;
                        STA.W r_000a,X                       ;82B716|9D0A00  |86000A;
                        STA.W r_002b,X                       ;82B719|9D2B00  |86002B;
-                       STX.B $1C                            ;82B71C|861C    |000E84;
+                       STX.B r_ev_1c_ySpdSub-$E68           ;82B71C|861C    |000E84;
                        REP #$21                             ;82B71E|C221    |      ;
                        TDC                                  ;82B720|7B      |      ;
                        STA.W r_000c,X                       ;82B721|9D0C00  |86000C;
-                       LDA.B $05                            ;82B724|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B724|A505    |000E6D;
                        ADC.W #$000E                         ;82B726|690E00  |      ;
                        STA.W r_0005,X                       ;82B729|9D0500  |860005;
-                       LDA.B $08                            ;82B72C|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B72C|A508    |000E70;
                        CLC                                  ;82B72E|18      |      ;
                        ADC.W #$FFEF                         ;82B72F|69EFFF  |      ;
                        STA.W r_0008,X                       ;82B732|9D0800  |860008;
@@ -8650,14 +8656,14 @@ loadProjectileSlotBase:
                        INC.W r_0000,X                       ;82B73C|FE0000  |860000;
                        LDA.B #$1E                           ;82B73F|A91E    |      ;
                        STA.W r_000a,X                       ;82B741|9D0A00  |86000A;
-                       STX.B $0F                            ;82B744|860F    |000E77;
+                       STX.B r_ev_0f-$E68                   ;82B744|860F    |000E77;
                        REP #$21                             ;82B746|C221    |      ;
                        TDC                                  ;82B748|7B      |      ;
                        STA.W r_000c,X                       ;82B749|9D0C00  |86000C;
-                       LDA.B $05                            ;82B74C|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B74C|A505    |000E6D;
                        ADC.W #$0000                         ;82B74E|690000  |      ;
                        STA.W r_0005,X                       ;82B751|9D0500  |860005;
-                       LDA.B $08                            ;82B754|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B754|A508    |000E70;
                        CLC                                  ;82B756|18      |      ;
                        ADC.W #$0004                         ;82B757|690400  |      ;
                        STA.W r_0008,X                       ;82B75A|9D0800  |860008;
@@ -8667,7 +8673,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82B760:
                        REP #$30                             ;82B760|C230    |      ;
-                       LDX.B $1A                            ;82B762|A61A    |000E82;
+                       LDX.B r_ev_1a_xSpdSub-$E68           ;82B762|A61A    |000E82;
                        LDA.W r_0007,X                       ;82B764|BD0700  |860007;
                        SEC                                  ;82B767|38      |      ;
                        SBC.W #$0108                         ;82B768|E90801  |      ;
@@ -8677,7 +8683,7 @@ loadProjectileSlotBase:
                        SBC.B #$00                           ;82B773|E900    |      ;
                        STA.W r_0009,X                       ;82B775|9D0900  |860009;
                        REP #$30                             ;82B778|C230    |      ;
-                       LDX.B $1C                            ;82B77A|A61C    |000E84;
+                       LDX.B r_ev_1c_ySpdSub-$E68           ;82B77A|A61C    |000E84;
                        LDA.W r_0007,X                       ;82B77C|BD0700  |860007;
                        SEC                                  ;82B77F|38      |      ;
                        SBC.W #$0108                         ;82B780|E90801  |      ;
@@ -8687,7 +8693,7 @@ loadProjectileSlotBase:
                        SBC.B #$00                           ;82B78B|E900    |      ;
                        STA.W r_0009,X                       ;82B78D|9D0900  |860009;
                        REP #$30                             ;82B790|C230    |      ;
-                       LDX.B $0F                            ;82B792|A60F    |000E77;
+                       LDX.B r_ev_0f-$E68                   ;82B792|A60F    |000E77;
                        LDA.W r_0007,X                       ;82B794|BD0700  |860007;
                        SEC                                  ;82B797|38      |      ;
                        SBC.W #$0108                         ;82B798|E90801  |      ;
@@ -8759,7 +8765,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B7F9:
-                       LDA.B $0B                            ;82B7F9|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82B7F9|A50B    |000E73;
                        AND.B #$7F                           ;82B7FB|297F    |      ;
                        ASL A                                ;82B7FD|0A      |      ;
                        ASL A                                ;82B7FE|0A      |      ;
@@ -8780,14 +8786,14 @@ loadProjectileSlotBase:
                        REP #$20                             ;82B80B|C220    |      ;
                        LDA.W UNREACH_86CBDD,Y               ;82B80D|B9DDCB  |86CBDD;
                        CLC                                  ;82B810|18      |      ;
-                       ADC.B $05                            ;82B811|6505    |000E6D;
-                       STA.B $05                            ;82B813|8505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;82B811|6505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;82B813|8505    |000E6D;
                        LDA.W UNREACH_86CBDF,Y               ;82B815|B9DFCB  |86CBDF;
                        CLC                                  ;82B818|18      |      ;
-                       ADC.B $08                            ;82B819|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;82B819|6508    |000E70;
                        SEC                                  ;82B81B|38      |      ;
                        SBC.W #$0020                         ;82B81C|E92000  |      ;
-                       STA.B $08                            ;82B81F|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;82B81F|8508    |000E70;
                        SEP #$20                             ;82B821|E220    |      ;
                        LDA.W UNREACH_86CBE9,X               ;82B823|BDE9CB  |86CBE9;
                        PHX                                  ;82B826|DA      |      ;
@@ -8813,13 +8819,13 @@ loadProjectileSlotBase:
                        LDA.B #$20                           ;82B846|A920    |      ;
                        STA.W r_000a,X                       ;82B848|9D0A00  |86000A;
                        REP #$21                             ;82B84B|C221    |      ;
-                       LDA.B $08                            ;82B84D|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B84D|A508    |000E70;
                        ADC.W #$0030                         ;82B84F|693000  |      ;
                        STA.W r_0008,X                       ;82B852|9D0800  |860008;
                        JSL.L CODE_849086                    ;82B855|22869084|849086;
                        AND.W #$003F                         ;82B859|293F00  |      ;
                        CLC                                  ;82B85C|18      |      ;
-                       ADC.B $05                            ;82B85D|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;82B85D|6505    |000E6D;
                        STA.W r_0005,X                       ;82B85F|9D0500  |860005;
                        SEP #$20                             ;82B862|E220    |      ;
                                                             ;      |        |      ;
@@ -8835,12 +8841,12 @@ loadProjectileSlotBase:
                        LDA.B #$12                           ;82B870|A912    |      ;
                        STA.W r_000a,X                       ;82B872|9D0A00  |86000A;
                        STZ.W r_000b,X                       ;82B875|9E0B00  |86000B;
-                       STX.B $36                            ;82B878|8636    |000E9E;
+                       STX.B r_ev_36-$E68                   ;82B878|8636    |000E9E;
                        REP #$21                             ;82B87A|C221    |      ;
-                       LDA.B $05                            ;82B87C|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B87C|A505    |000E6D;
                        ADC.W #$FFF8                         ;82B87E|69F8FF  |      ;
                        STA.W r_0005,X                       ;82B881|9D0500  |860005;
-                       LDA.B $08                            ;82B884|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B884|A508    |000E70;
                        CLC                                  ;82B886|18      |      ;
                        ADC.W #$0007                         ;82B887|690700  |      ;
                        STA.W r_0008,X                       ;82B88A|9D0800  |860008;
@@ -8853,44 +8859,44 @@ loadProjectileSlotBase:
                        RTS                                  ;82B895|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82B896:
-                       LDA.B $33                            ;82B896|A533    |000E9B;
-                       TSB.B $11                            ;82B898|0411    |000E79;
-                       JSL.L CODE_82806E                    ;82B89A|226E8082|82806E;
+eventID_beeBlader_22_main:
+                       LDA.B r_ev_33-$E68                   ;82B896|A533    |000E9B;
+                       TSB.B r_ev_11_sprAtri-$E68           ;82B898|0411    |000E79;
+                       JSL.L initPosAllign                  ;82B89A|226E8082|82806E;
                        BCS CODE_82B8A5                      ;82B89E|B005    |82B8A5;
                                                             ;      |        |      ;
           CODE_82B8A0:
-                       LDX.B $01                            ;82B8A0|A601    |000E69;
-                       JMP.W (PTR16_82B8D3,X)               ;82B8A2|7CD3B8  |82B8D3;
+                       LDX.B r_ev_01_state-$E68             ;82B8A0|A601    |000E69; 01 second Bridge
+                       JMP.W (beeBlader_22_state,X)         ;82B8A2|7CD3B8  |82B8D3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B8A5:
-                       LDA.B $01                            ;82B8A5|A501    |000E69;
+                       LDA.B r_ev_01_state-$E68             ;82B8A5|A501    |000E69;
                        CMP.B #$0E                           ;82B8A7|C90E    |      ;
                        BEQ CODE_82B8A0                      ;82B8A9|F0F5    |82B8A0;
                        REP #$20                             ;82B8AB|C220    |      ;
                        LDA.W r_0bad                         ;82B8AD|ADAD0B  |860BAD;
                        SEC                                  ;82B8B0|38      |      ;
-                       SBC.B $05                            ;82B8B1|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;82B8B1|E505    |000E6D;
                        BCC CODE_82B8D2                      ;82B8B3|901D    |82B8D2;
                        CMP.W #$0200                         ;82B8B5|C90002  |      ;
                        BCC CODE_82B8D2                      ;82B8B8|9018    |82B8D2;
                        REP #$30                             ;82B8BA|C230    |      ;
-                       LDX.B $39                            ;82B8BC|A639    |000EA1;
+                       LDX.B r_ev_39-$E68                   ;82B8BC|A639    |000EA1;
                        STZ.W r_0000,X                       ;82B8BE|9E0000  |860000;
                        STZ.W r_0002,X                       ;82B8C1|9E0200  |860002;
-                       LDA.B $3B                            ;82B8C4|A53B    |000EA3;
+                       LDA.B r_ev_3b-$E68                   ;82B8C4|A53B    |000EA3;
                        STA.W r_1e5e                         ;82B8C6|8D5E1E  |861E5E;
-                       LDA.B $31                            ;82B8C9|A531    |000E99;
+                       LDA.B r_ev_31-$E68                   ;82B8C9|A531    |000E99;
                        STA.W r_cam_BG0_xPos_lock            ;82B8CB|8D601E  |861E60;
-                       JML.L CODE_828387                    ;82B8CE|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82B8CE|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B8D2:
                        RTL                                  ;82B8D2|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82B8D3:
+   beeBlader_22_state:
                        dw CODE_82B8E6                       ;82B8D3|        |82B8E6;
                        dw CODE_82B964                       ;82B8D5|        |82B964;
                        dw CODE_82B979                       ;82B8D7|        |82B979;
@@ -8900,73 +8906,73 @@ loadProjectileSlotBase:
                        dw CODE_82BA4F                       ;82B8DF|        |82BA4F;
                        dw CODE_82BA97                       ;82B8E1|        |82BA97;
                                                             ;      |        |      ;
-          CODE_82B8E3:
+beeBlader_22_state_00:
                        STZ.B $01                            ;82B8E3|6401    |000001;
                        RTL                                  ;82B8E5|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B8E6:
-                       JSL.L CODE_82827D                    ;82B8E6|227D8282|82827D;
-                       STZ.B $3E                            ;82B8EA|643E    |000EA6;
+                       JSL.L enemy_initiate_jumpPhysic      ;82B8E6|227D8282|82827D;
+                       STZ.B r_ev_3e-$E68                   ;82B8EA|643E    |000EA6;
                        REP #$20                             ;82B8EC|C220    |      ;
-                       LDA.B $05                            ;82B8EE|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B8EE|A505    |000E6D;
                        CMP.W r_0bad                         ;82B8F0|CDAD0B  |860BAD;
                        SEP #$20                             ;82B8F3|E220    |      ;
                        BCS CODE_82B8FB                      ;82B8F5|B004    |82B8FB;
-                       JML.L CODE_828387                    ;82B8F7|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82B8F7|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B8FB:
                        JSL.L CODE_8282D3                    ;82B8FB|22D38282|8282D3;
-                       BNE CODE_82B8E3                      ;82B8FF|D0E2    |82B8E3;
+                       BNE beeBlader_22_state_00            ;82B8FF|D0E2    |82B8E3;
                        INC.W r_0000,X                       ;82B901|FE0000  |860000;
                        LDA.B #$1F                           ;82B904|A91F    |      ;
                        STA.W r_000a,X                       ;82B906|9D0A00  |86000A;
                        REP #$20                             ;82B909|C220    |      ;
                        TDC                                  ;82B90B|7B      |      ;
                        STA.W r_000c,X                       ;82B90C|9D0C00  |86000C;
-                       STX.B $39                            ;82B90F|8639    |000EA1;
+                       STX.B r_ev_39-$E68                   ;82B90F|8639    |000EA1;
                        STZ.W r_0005,X                       ;82B911|9E0500  |860005;
                        STZ.W r_0008,X                       ;82B914|9E0800  |860008;
                        SEP #$30                             ;82B917|E230    |      ;
-                       LDA.B $11                            ;82B919|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82B919|A511    |000E79;
                        AND.B #$0E                           ;82B91B|290E    |      ;
-                       STA.B $33                            ;82B91D|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;82B91D|8533    |000E9B;
                        LDA.B #$04                           ;82B91F|A904    |      ;
-                       STA.B $12                            ;82B921|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;82B921|8512    |000E7A;
                        LDA.B #$20                           ;82B923|A920    |      ;
-                       STA.B $27                            ;82B925|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;82B925|8527    |000E8F;
                        LDA.B #$04                           ;82B927|A904    |      ;
-                       STA.B $26                            ;82B929|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;82B929|8526    |000E8E;
                        LDA.B #$FF                           ;82B92B|A9FF    |      ;
-                       STA.B $2F                            ;82B92D|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;82B92D|852F    |000E97;
                        REP #$20                             ;82B92F|C220    |      ;
                        LDA.W #$CC18                         ;82B931|A918CC  |      ;
-                       STA.B $20                            ;82B934|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;82B934|8520    |000E88;
                        LDA.W #$FA00                         ;82B936|A900FA  |      ;
-                       STA.B $1C                            ;82B939|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82B939|851C    |000E84;
                        LDA.W #$00F0                         ;82B93B|A9F000  |      ;
-                       STA.B $08                            ;82B93E|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;82B93E|8508    |000E70;
                        LDA.W r_1e5e                         ;82B940|AD5E1E  |861E5E;
-                       STA.B $3B                            ;82B943|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;82B943|853B    |000EA3;
                        LDA.W r_cam_BG0_xPos_lock            ;82B945|AD601E  |861E60;
-                       STA.B $31                            ;82B948|8531    |000E99;
-                       LDA.B $05                            ;82B94A|A505    |000E6D;
+                       STA.B r_ev_31-$E68                   ;82B948|8531    |000E99;
+                       LDA.B r_ev_05_xPos-$E68              ;82B94A|A505    |000E6D;
                        SEC                                  ;82B94C|38      |      ;
                        SBC.W #$00F0                         ;82B94D|E9F000  |      ;
                        STA.W r_1e5e                         ;82B950|8D5E1E  |861E5E;
                        STA.W r_cam_BG0_xPos_lock            ;82B953|8D601E  |861E60;
                        SEP #$20                             ;82B956|E220    |      ;
-                       STZ.B $07                            ;82B958|6407    |000E6F;
+                       STZ.B r_ev_07-$E68                   ;82B958|6407    |000E6F;
                        LDA.B #$18                           ;82B95A|A918    |      ;
-                       STA.B $1E                            ;82B95C|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;82B95C|851E    |000E86;
                        LDA.B #$00                           ;82B95E|A900    |      ;
                        JML.L CODE_848F07                    ;82B960|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B964:
                        REP #$20                             ;82B964|C220    |      ;
-                       LDA.B $05                            ;82B966|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B966|A505    |000E6D;
                        SEC                                  ;82B968|38      |      ;
                        SBC.W #$0080                         ;82B969|E98000  |      ;
                        SEC                                  ;82B96C|38      |      ;
@@ -8974,7 +8980,7 @@ loadProjectileSlotBase:
                        SEP #$20                             ;82B970|E220    |      ;
                        BCS CODE_82B978                      ;82B972|B004    |82B978;
                        LDA.B #$04                           ;82B974|A904    |      ;
-                       STA.B $01                            ;82B976|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82B976|8501    |000E69;
                                                             ;      |        |      ;
           CODE_82B978:
                        RTL                                  ;82B978|6B      |      ;
@@ -8983,22 +8989,22 @@ loadProjectileSlotBase:
           CODE_82B979:
                        JSL.L CODE_8281FB                    ;82B979|22FB8182|8281FB;
                        JSL.L CODE_8491BE                    ;82B97D|22BE9184|8491BE;
-                       LDA.B $2B                            ;82B981|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;82B981|A52B    |000E93;
                        AND.B #$04                           ;82B983|2904    |      ;
                        BEQ CODE_82B9A2                      ;82B985|F01B    |82B9A2;
                        REP #$20                             ;82B987|C220    |      ;
-                       LDA.B $08                            ;82B989|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B989|A508    |000E70;
                        SEC                                  ;82B98B|38      |      ;
                        SBC.W #$000C                         ;82B98C|E90C00  |      ;
-                       STA.B $35                            ;82B98F|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82B98F|8535    |000E9D;
                        LDA.W #$0040                         ;82B991|A94000  |      ;
-                       STA.B $1C                            ;82B994|851C    |000E84;
-                       DEC.B $08                            ;82B996|C608    |000E70;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82B994|851C    |000E84;
+                       DEC.B r_ev_08_yPos-$E68              ;82B996|C608    |000E70;
                        SEP #$20                             ;82B998|E220    |      ;
                        LDA.B #$06                           ;82B99A|A906    |      ;
-                       STA.B $01                            ;82B99C|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82B99C|8501    |000E69;
                        LDA.B #$01                           ;82B99E|A901    |      ;
-                       STA.B $34                            ;82B9A0|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82B9A0|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_82B9A2:
                        SEP #$20                             ;82B9A2|E220    |      ;
@@ -9007,14 +9013,14 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B9AC:
-                       DEC.B $34                            ;82B9AC|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;82B9AC|C634    |000E9C;
                        BNE CODE_82B9BE                      ;82B9AE|D00E    |82B9BE;
                        JSL.L CODE_849086                    ;82B9B0|22869084|849086;
                        AND.B #$1F                           ;82B9B4|291F    |      ;
                        TAX                                  ;82B9B6|AA      |      ;
                        LDA.W UNREACH_86CBF8,X               ;82B9B7|BDF8CB  |86CBF8;
-                       STA.B $01                            ;82B9BA|8501    |000E69;
-                       STZ.B $02                            ;82B9BC|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;82B9BA|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82B9BC|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_82B9BE:
                        JSR.W CODE_82BBD8                    ;82B9BE|20D8BB  |82BBD8;
@@ -9023,15 +9029,15 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B9C8:
-                       LDA.B $02                            ;82B9C8|A502    |000E6A;
+                       LDA.B r_ev_02_action-$E68            ;82B9C8|A502    |000E6A;
                        BNE CODE_82B9D2                      ;82B9CA|D006    |82B9D2;
                        LDA.B #$F1                           ;82B9CC|A9F1    |      ;
-                       STA.B $34                            ;82B9CE|8534    |000E9C;
-                       INC.B $02                            ;82B9D0|E602    |000E6A;
+                       STA.B r_ev_34-$E68                   ;82B9CE|8534    |000E9C;
+                       INC.B r_ev_02_action-$E68            ;82B9D0|E602    |000E6A;
                                                             ;      |        |      ;
           CODE_82B9D2:
-                       DEC.B $34                            ;82B9D2|C634    |000E9C;
-                       LDA.B $34                            ;82B9D4|A534    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;82B9D2|C634    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;82B9D4|A534    |000E9C;
                        AND.B #$03                           ;82B9D6|2903    |      ;
                        BNE CODE_82BA13                      ;82B9D8|D039    |82BA13;
                        LDA.B #$1D                           ;82B9DA|A91D    |      ;
@@ -9043,23 +9049,23 @@ loadProjectileSlotBase:
                        STA.W r_000a,X                       ;82B9EB|9D0A00  |86000A;
                        STZ.W r_000b,X                       ;82B9EE|9E0B00  |86000B;
                        REP #$20                             ;82B9F1|C220    |      ;
-                       LDA.B $05                            ;82B9F3|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82B9F3|A505    |000E6D;
                        SEC                                  ;82B9F5|38      |      ;
                        SBC.W #$0034                         ;82B9F6|E93400  |      ;
                        STA.W r_0005,X                       ;82B9F9|9D0500  |860005;
-                       LDA.B $08                            ;82B9FC|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82B9FC|A508    |000E70;
                        CLC                                  ;82B9FE|18      |      ;
                        ADC.W #$001C                         ;82B9FF|691C00  |      ;
                        STA.W r_0008,X                       ;82BA02|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82BA05:
                        SEP #$30                             ;82BA05|E230    |      ;
-                       LDA.B $34                            ;82BA07|A534    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;82BA07|A534    |000E9C;
                        BNE CODE_82BA13                      ;82BA09|D008    |82BA13;
                        LDA.B #$10                           ;82BA0B|A910    |      ;
-                       STA.B $34                            ;82BA0D|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82BA0D|8534    |000E9C;
                        LDA.B #$06                           ;82BA0F|A906    |      ;
-                       STA.B $01                            ;82BA11|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82BA11|8501    |000E69;
                                                             ;      |        |      ;
           CODE_82BA13:
                        JSR.W CODE_82BBD8                    ;82BA13|20D8BB  |82BBD8;
@@ -9068,25 +9074,25 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BA1D:
-                       LDA.B $02                            ;82BA1D|A502    |000E6A;
+                       LDA.B r_ev_02_action-$E68            ;82BA1D|A502    |000E6A;
                        BNE CODE_82BA30                      ;82BA1F|D00F    |82BA30;
-                       INC.B $02                            ;82BA21|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;82BA21|E602    |000E6A;
                        LDA.B #$3C                           ;82BA23|A93C    |      ;
-                       STA.B $34                            ;82BA25|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82BA25|8534    |000E9C;
                        JSR.W CODE_82BBFD                    ;82BA27|20FDBB  |82BBFD;
                        LDA.B #$1E                           ;82BA2A|A91E    |      ;
                        JSL.L CODE_8088A2                    ;82BA2C|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_82BA30:
-                       DEC.B $34                            ;82BA30|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;82BA30|C634    |000E9C;
                        BNE CODE_82BA45                      ;82BA32|D011    |82BA45;
                        JSR.W CODE_82BBFD                    ;82BA34|20FDBB  |82BBFD;
                        LDA.B #$1E                           ;82BA37|A91E    |      ;
                        JSL.L CODE_8088A2                    ;82BA39|22A28880|8088A2;
                        LDA.B #$3C                           ;82BA3D|A93C    |      ;
-                       STA.B $34                            ;82BA3F|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82BA3F|8534    |000E9C;
                        LDA.B #$06                           ;82BA41|A906    |      ;
-                       STA.B $01                            ;82BA43|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82BA43|8501    |000E69;
                                                             ;      |        |      ;
           CODE_82BA45:
                        JSR.W CODE_82BBD8                    ;82BA45|20D8BB  |82BBD8;
@@ -9095,38 +9101,38 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BA4F:
-                       LDA.B $02                            ;82BA4F|A502    |000E6A;
+                       LDA.B r_ev_02_action-$E68            ;82BA4F|A502    |000E6A;
                        BNE CODE_82BA6C                      ;82BA51|D019    |82BA6C;
-                       INC.B $02                            ;82BA53|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;82BA53|E602    |000E6A;
                        LDA.B #$78                           ;82BA55|A978    |      ;
-                       STA.B $34                            ;82BA57|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82BA57|8534    |000E9C;
                        LDA.B #$27                           ;82BA59|A927    |      ;
-                       STA.B $0A                            ;82BA5B|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82BA5B|850A    |000E72;
                        JSL.L CODE_84A1D5                    ;82BA5D|22D5A184|84A1D5;
                        LDA.B #$22                           ;82BA61|A922    |      ;
-                       STA.B $0A                            ;82BA63|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82BA63|850A    |000E72;
                        CPY.B #$03                           ;82BA65|C003    |      ;
                        BCS CODE_82BA6C                      ;82BA67|B003    |82BA6C;
                        JSR.W CODE_82BC29                    ;82BA69|2029BC  |82BC29;
                                                             ;      |        |      ;
           CODE_82BA6C:
-                       DEC.B $34                            ;82BA6C|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;82BA6C|C634    |000E9C;
                        BNE CODE_82BA8D                      ;82BA6E|D01D    |82BA8D;
                        LDA.B #$27                           ;82BA70|A927    |      ;
-                       STA.B $0A                            ;82BA72|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82BA72|850A    |000E72;
                        JSL.L CODE_84A1D5                    ;82BA74|22D5A184|84A1D5;
                        LDA.B #$22                           ;82BA78|A922    |      ;
-                       STA.B $0A                            ;82BA7A|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82BA7A|850A    |000E72;
                        CPY.B #$03                           ;82BA7C|C003    |      ;
                        BCS CODE_82BA83                      ;82BA7E|B003    |82BA83;
                        JSR.W CODE_82BC29                    ;82BA80|2029BC  |82BC29;
                                                             ;      |        |      ;
           CODE_82BA83:
                        LDA.B #$06                           ;82BA83|A906    |      ;
-                       STA.B $01                            ;82BA85|8501    |000E69;
-                       STZ.B $02                            ;82BA87|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;82BA85|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82BA87|6402    |000E6A;
                        LDA.B #$3C                           ;82BA89|A93C    |      ;
-                       STA.B $34                            ;82BA8B|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82BA8B|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_82BA8D:
                        JSR.W CODE_82BBD8                    ;82BA8D|20D8BB  |82BBD8;
@@ -9136,7 +9142,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82BA97:
                        JSR.W CODE_82BD58                    ;82BA97|2058BD  |82BD58;
-                       LDX.B $02                            ;82BA9A|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82BA9A|A602    |000E6A;
                        JMP.W (PTR16_82BA9F,X)               ;82BA9C|7C9FBA  |82BA9F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9148,17 +9154,17 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82BAA7:
                        LDA.B #$02                           ;82BAA7|A902    |      ;
-                       STA.B $02                            ;82BAA9|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82BAA9|8502    |000E6A;
                        LDA.B #$21                           ;82BAAB|A921    |      ;
                        JSL.L CODE_8088A2                    ;82BAAD|22A28880|8088A2;
                        REP #$20                             ;82BAB1|C220    |      ;
                        LDA.W #$CC22                         ;82BAB3|A922CC  |      ;
-                       STA.B $20                            ;82BAB6|8520    |000E88;
-                       STZ.B $1A                            ;82BAB8|641A    |000E82;
-                       STZ.B $1C                            ;82BABA|641C    |000E84;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;82BAB6|8520    |000E88;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;82BAB8|641A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;82BABA|641C    |000E84;
                        SEP #$20                             ;82BABC|E220    |      ;
                        LDA.B #$20                           ;82BABE|A920    |      ;
-                       STA.B $1E                            ;82BAC0|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;82BAC0|851E    |000E86;
                        JSL.L CODE_84AB81                    ;82BAC2|2281AB84|84AB81;
                        JML.L CODE_82808F                    ;82BAC6|5C8F8082|82808F;
                                                             ;      |        |      ;
@@ -9177,22 +9183,22 @@ loadProjectileSlotBase:
                        BEQ CODE_82BAFA                      ;82BAE4|F014    |82BAFA;
                        JSL.L CODE_84A4B5                    ;82BAE6|22B5A484|84A4B5;
                        REP #$20                             ;82BAEA|C220    |      ;
-                       LDA.B $3B                            ;82BAEC|A53B    |000EA3;
+                       LDA.B r_ev_3b-$E68                   ;82BAEC|A53B    |000EA3;
                        STA.W r_1e5e                         ;82BAEE|8D5E1E  |861E5E;
-                       LDA.B $31                            ;82BAF1|A531    |000E99;
+                       LDA.B r_ev_31-$E68                   ;82BAF1|A531    |000E99;
                        STA.W r_cam_BG0_xPos_lock            ;82BAF3|8D601E  |861E60;
-                       JML.L CODE_828398                    ;82BAF6|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82BAF6|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BAFA:
                        LDA.B #$04                           ;82BAFA|A904    |      ;
-                       STA.B $02                            ;82BAFC|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82BAFC|8502    |000E6A;
                        REP #$20                             ;82BAFE|C220    |      ;
                        LDA.W #$0100                         ;82BB00|A90001  |      ;
-                       STA.B $1C                            ;82BB03|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82BB03|851C    |000E84;
                        SEP #$20                             ;82BB05|E220    |      ;
                        LDA.B #$30                           ;82BB07|A930    |      ;
-                       STA.B $1E                            ;82BB09|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;82BB09|851E    |000E86;
                        LDA.B #$0A                           ;82BB0B|A90A    |      ;
                        JSL.L CODE_848F07                    ;82BB0D|22078F84|848F07;
                        JSL.L CODE_8282B9                    ;82BB11|22B98282|8282B9;
@@ -9200,10 +9206,10 @@ loadProjectileSlotBase:
                        INC.W r_0000,X                       ;82BB17|FE0000  |860000;
                        LDA.B #$08                           ;82BB1A|A908    |      ;
                        STA.W r_000a,X                       ;82BB1C|9D0A00  |86000A;
-                       LDA.B $0B                            ;82BB1F|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82BB1F|A50B    |000E73;
                        ASL A                                ;82BB21|0A      |      ;
                        STA.W r_000b,X                       ;82BB22|9D0B00  |86000B;
-                       STX.B $37                            ;82BB25|8637    |000E9F;
+                       STX.B r_ev_37-$E68                   ;82BB25|8637    |000E9F;
                                                             ;      |        |      ;
           CODE_82BB27:
                        JML.L CODE_82808F                    ;82BB27|5C8F8082|82808F;
@@ -9215,10 +9221,10 @@ loadProjectileSlotBase:
                        BEQ CODE_82BB4D                      ;82BB30|F01B    |82BB4D;
                        REP #$20                             ;82BB32|C220    |      ;
                        LDA.W #$0220                         ;82BB34|A92002  |      ;
-                       STA.B $1C                            ;82BB37|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82BB37|851C    |000E84;
                        SEP #$20                             ;82BB39|E220    |      ;
                        LDA.B #$06                           ;82BB3B|A906    |      ;
-                       STA.B $02                            ;82BB3D|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82BB3D|8502    |000E6A;
                        LDA.B #$01                           ;82BB3F|A901    |      ;
                        JSL.L CODE_848F07                    ;82BB41|22078F84|848F07;
                        STZ.W r_0000                         ;82BB45|9C0000  |860000;
@@ -9234,11 +9240,11 @@ loadProjectileSlotBase:
                        JSR.W CODE_82BD42                    ;82BB53|2042BD  |82BD42;
                        BEQ CODE_82BBBB                      ;82BB56|F063    |82BBBB;
                        REP #$20                             ;82BB58|C220    |      ;
-                       LDA.B $05                            ;82BB5A|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82BB5A|A505    |000E6D;
                        SEC                                  ;82BB5C|38      |      ;
                        SBC.W #$0044                         ;82BB5D|E94400  |      ;
                        STA.W r_002c                         ;82BB60|8D2C00  |86002C;
-                       LDA.B $08                            ;82BB63|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82BB63|A508    |000E70;
                        SEC                                  ;82BB65|38      |      ;
                        SBC.W #$0020                         ;82BB66|E92000  |      ;
                        STA.W r_002e                         ;82BB69|8D2E00  |86002E;
@@ -9256,9 +9262,9 @@ loadProjectileSlotBase:
                        STA.W r_000b,X                       ;82BB8A|9D0B00  |86000B;
                        STZ.W r_0011,X                       ;82BB8D|9E1100  |860011;
                        REP #$20                             ;82BB90|C220    |      ;
-                       LDA.B $05                            ;82BB92|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82BB92|A505    |000E6D;
                        STA.W r_0005,X                       ;82BB94|9D0500  |860005;
-                       LDA.B $08                            ;82BB97|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82BB97|A508    |000E70;
                        CLC                                  ;82BB99|18      |      ;
                        ADC.W #$0010                         ;82BB9A|691000  |      ;
                        STA.W r_0008,X                       ;82BB9D|9D0800  |860008;
@@ -9269,11 +9275,11 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82BBAB:
                        REP #$20                             ;82BBAB|C220    |      ;
-                       LDA.B $3B                            ;82BBAD|A53B    |000EA3;
+                       LDA.B r_ev_3b-$E68                   ;82BBAD|A53B    |000EA3;
                        STA.W r_1e5e                         ;82BBAF|8D5E1E  |861E5E;
-                       LDA.B $31                            ;82BBB2|A531    |000E99;
+                       LDA.B r_ev_31-$E68                   ;82BBB2|A531    |000E99;
                        STA.W r_cam_BG0_xPos_lock            ;82BBB4|8D601E  |861E60;
-                       JML.L CODE_828398                    ;82BBB7|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82BBB7|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BBBB:
@@ -9284,11 +9290,11 @@ loadProjectileSlotBase:
           CODE_82BBC3:
                        JSL.L CODE_8281E8                    ;82BBC3|22E88182|8281E8;
                        REP #$20                             ;82BBC7|C220    |      ;
-                       LDA.B $1C                            ;82BBC9|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82BBC9|A51C    |000E84;
                        CMP.W #$FB00                         ;82BBCB|C900FB  |      ;
                        BPL CODE_82BBD5                      ;82BBCE|1005    |82BBD5;
                        LDA.W #$FB00                         ;82BBD0|A900FB  |      ;
-                       STA.B $1C                            ;82BBD3|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82BBD3|851C    |000E84;
                                                             ;      |        |      ;
           CODE_82BBD5:
                        SEP #$20                             ;82BBD5|E220    |      ;
@@ -9298,9 +9304,9 @@ loadProjectileSlotBase:
           CODE_82BBD8:
                        JSL.L CODE_82825D                    ;82BBD8|225D8282|82825D;
                        REP #$20                             ;82BBDC|C220    |      ;
-                       LDA.B $08                            ;82BBDE|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82BBDE|A508    |000E70;
                        SEC                                  ;82BBE0|38      |      ;
-                       SBC.B $35                            ;82BBE1|E535    |000E9D;
+                       SBC.B r_ev_35-$E68                   ;82BBE1|E535    |000E9D;
                        BCS CODE_82BBE9                      ;82BBE3|B004    |82BBE9;
                        EOR.W #$FFFF                         ;82BBE5|49FFFF  |      ;
                        INC A                                ;82BBE8|1A      |      ;
@@ -9308,10 +9314,10 @@ loadProjectileSlotBase:
           CODE_82BBE9:
                        CMP.W #$000C                         ;82BBE9|C90C00  |      ;
                        BCC CODE_82BBFA                      ;82BBEC|900C    |82BBFA;
-                       LDA.B $1C                            ;82BBEE|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82BBEE|A51C    |000E84;
                        EOR.W #$FFFF                         ;82BBF0|49FFFF  |      ;
                        INC A                                ;82BBF3|1A      |      ;
-                       STA.B $1C                            ;82BBF4|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82BBF4|851C    |000E84;
                        JSL.L CODE_82825D                    ;82BBF6|225D8282|82825D;
                                                             ;      |        |      ;
           CODE_82BBFA:
@@ -9327,11 +9333,11 @@ loadProjectileSlotBase:
                        STA.W r_000a,X                       ;82BC08|9D0A00  |86000A;
                        STA.W r_000b,X                       ;82BC0B|9D0B00  |86000B;
                        REP #$20                             ;82BC0E|C220    |      ;
-                       LDA.B $05                            ;82BC10|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82BC10|A505    |000E6D;
                        SEC                                  ;82BC12|38      |      ;
                        SBC.W #$0018                         ;82BC13|E91800  |      ;
                        STA.W r_0005,X                       ;82BC16|9D0500  |860005;
-                       LDA.B $08                            ;82BC19|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82BC19|A508    |000E70;
                        CLC                                  ;82BC1B|18      |      ;
                        ADC.W #$000B                         ;82BC1C|690B00  |      ;
                        STA.W r_0008,X                       ;82BC1F|9D0800  |860008;
@@ -9351,11 +9357,11 @@ loadProjectileSlotBase:
                        STA.W r_000a,X                       ;82BC34|9D0A00  |86000A;
                        STZ.W r_000b,X                       ;82BC37|9E0B00  |86000B;
                        REP #$20                             ;82BC3A|C220    |      ;
-                       LDA.B $05                            ;82BC3C|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82BC3C|A505    |000E6D;
                        CLC                                  ;82BC3E|18      |      ;
                        ADC.W #$001D                         ;82BC3F|691D00  |      ;
                        STA.W r_0005,X                       ;82BC42|9D0500  |860005;
-                       LDA.B $08                            ;82BC45|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82BC45|A508    |000E70;
                        CLC                                  ;82BC47|18      |      ;
                        ADC.W #$001B                         ;82BC48|691B00  |      ;
                        STA.W r_0008,X                       ;82BC4B|9D0800  |860008;
@@ -9367,47 +9373,47 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82BC51:
                        JSR.W CODE_82BD58                    ;82BC51|2058BD  |82BD58;
-                       LDA.B $27                            ;82BC54|A527    |000E8F;
-                       STA.B $3D                            ;82BC56|853D    |000EA5;
+                       LDA.B r_ev_27-$E68                   ;82BC54|A527    |000E8F;
+                       STA.B r_ev_3d-$E68                   ;82BC56|853D    |000EA5;
                        JSL.L CODE_849B03                    ;82BC58|22039B84|849B03;
                        JSL.L CODE_849B43                    ;82BC5C|22439B84|849B43;
                        BEQ CODE_82BC8A                      ;82BC60|F028    |82BC8A;
                        LDA.B #$80                           ;82BC62|A980    |      ;
-                       TRB.B $27                            ;82BC64|1427    |000E8F;
+                       TRB.B r_ev_27-$E68                   ;82BC64|1427    |000E8F;
                        LDA.B #$01                           ;82BC66|A901    |      ;
                        STA.W r_1f30                         ;82BC68|8D301F  |861F30;
-                       LDA.B $3D                            ;82BC6B|A53D    |000EA5;
+                       LDA.B r_ev_3d-$E68                   ;82BC6B|A53D    |000EA5;
                        SEC                                  ;82BC6D|38      |      ;
-                       SBC.B $27                            ;82BC6E|E527    |000E8F;
+                       SBC.B r_ev_27-$E68                   ;82BC6E|E527    |000E8F;
                        STA.W r_0000                         ;82BC70|8D0000  |860000;
                        ASL A                                ;82BC73|0A      |      ;
                        ADC.W r_0000                         ;82BC74|6D0000  |860000;
                        CLC                                  ;82BC77|18      |      ;
-                       ADC.B $3E                            ;82BC78|653E    |000EA6;
-                       STA.B $3E                            ;82BC7A|853E    |000EA6;
+                       ADC.B r_ev_3e-$E68                   ;82BC78|653E    |000EA6;
+                       STA.B r_ev_3e-$E68                   ;82BC7A|853E    |000EA6;
                        LDA.B #$0E                           ;82BC7C|A90E    |      ;
-                       TRB.B $11                            ;82BC7E|1411    |000E79;
-                       LDA.B $27                            ;82BC80|A527    |000E8F;
+                       TRB.B r_ev_11_sprAtri-$E68           ;82BC7E|1411    |000E79;
+                       LDA.B r_ev_27-$E68                   ;82BC80|A527    |000E8F;
                        BNE CODE_82BC8A                      ;82BC82|D006    |82BC8A;
                        LDA.B #$0E                           ;82BC84|A90E    |      ;
-                       STA.B $01                            ;82BC86|8501    |000E69;
-                       STZ.B $02                            ;82BC88|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;82BC86|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82BC88|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_82BC8A:
                        JSL.L CODE_82808F                    ;82BC8A|228F8082|82808F;
                        LDA.W r_level_current                ;82BC8E|AD7A1F  |861F7A;
                        BEQ CODE_82BCAF                      ;82BC91|F01C    |82BCAF;
-                       JSL.L CODE_82806E                    ;82BC93|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82BC93|226E8082|82806E;
                        BCC CODE_82BCAF                      ;82BC97|9016    |82BCAF;
-                       LDA.B $01                            ;82BC99|A501    |000E69;
+                       LDA.B r_ev_01_state-$E68             ;82BC99|A501    |000E69;
                        CMP.B #$0E                           ;82BC9B|C90E    |      ;
                        BEQ CODE_82BCAF                      ;82BC9D|F010    |82BCAF;
                        REP #$20                             ;82BC9F|C220    |      ;
-                       LDA.B $3B                            ;82BCA1|A53B    |000EA3;
+                       LDA.B r_ev_3b-$E68                   ;82BCA1|A53B    |000EA3;
                        STA.W r_1e5e                         ;82BCA3|8D5E1E  |861E5E;
-                       LDA.B $31                            ;82BCA6|A531    |000E99;
+                       LDA.B r_ev_31-$E68                   ;82BCA6|A531    |000E99;
                        STA.W r_cam_BG0_xPos_lock            ;82BCA8|8D601E  |861E60;
-                       JML.L CODE_828387                    ;82BCAB|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82BCAB|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BCAF:
@@ -9436,18 +9442,18 @@ loadProjectileSlotBase:
                        AND.B #$04                           ;82BCDA|2904    |      ;
                        BEQ CODE_82BD0E                      ;82BCDC|F030    |82BD0E;
                        REP #$30                             ;82BCDE|C230    |      ;
-                       LDA.B $1C                            ;82BCE0|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82BCE0|A51C    |000E84;
                        BPL CODE_82BD0E                      ;82BCE2|102A    |82BD0E;
-                       LDA.B $20                            ;82BCE4|A520    |000E88;
+                       LDA.B r_ev_20_hitBoxAddr-$E68        ;82BCE4|A520    |000E88;
                        PHA                                  ;82BCE6|48      |      ;
                        LDA.W #$CC2C                         ;82BCE7|A92CCC  |      ;
-                       STA.B $20                            ;82BCEA|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;82BCEA|8520    |000E88;
                        SEP #$20                             ;82BCEC|E220    |      ;
                        LDX.W #$0BA8                         ;82BCEE|A2A80B  |      ;
                        JSL.L CODE_849C0E                    ;82BCF1|220E9C84|849C0E;
                        REP #$20                             ;82BCF5|C220    |      ;
                        PLA                                  ;82BCF7|68      |      ;
-                       STA.B $20                            ;82BCF8|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;82BCF8|8520    |000E88;
                        BCC CODE_82BD0E                      ;82BCFA|9012    |82BD0E;
                        SEP #$20                             ;82BCFC|E220    |      ;
                        LDA.W r_0bcf                         ;82BCFE|ADCF0B  |860BCF;
@@ -9473,13 +9479,13 @@ loadProjectileSlotBase:
                        CLC                                  ;82BD22|18      |      ;
                        ADC.W r_0000                         ;82BD23|6D0000  |860000;
                        STA.W r_000b,X                       ;82BD26|9D0B00  |86000B;
-                       LDA.B $11                            ;82BD29|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82BD29|A511    |000E79;
                        AND.B #$FE                           ;82BD2B|29FE    |      ;
                        STA.W r_0011,X                       ;82BD2D|9D1100  |860011;
                        REP #$20                             ;82BD30|C220    |      ;
-                       LDA.B $05                            ;82BD32|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82BD32|A505    |000E6D;
                        STA.W r_0005,X                       ;82BD34|9D0500  |860005;
-                       LDA.B $08                            ;82BD37|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82BD37|A508    |000E70;
                        STA.W r_0008,X                       ;82BD39|9D0800  |860008;
                        DEY                                  ;82BD3C|88      |      ;
                        BPL CODE_82BD11                      ;82BD3D|10D2    |82BD11;
@@ -9495,7 +9501,7 @@ loadProjectileSlotBase:
                        JSL.L CODE_8491BE                    ;82BD48|22BE9184|8491BE;
                        JSL.L CODE_84AB81                    ;82BD4C|2281AB84|84AB81;
                        JSR.W CODE_82BCD4                    ;82BD50|20D4BC  |82BCD4;
-                       LDA.B $2B                            ;82BD53|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;82BD53|A52B    |000E93;
                        AND.B #$04                           ;82BD55|2904    |      ;
                        RTS                                  ;82BD57|60      |      ;
                                                             ;      |        |      ;
@@ -9504,31 +9510,31 @@ loadProjectileSlotBase:
                        LDA.W $0B9C                          ;82BD58|AD9C0B  |860B9C;
                        LSR A                                ;82BD5B|4A      |      ;
                        BCC CODE_82BD6A                      ;82BD5C|900C    |82BD6A;
-                       LDA.B $3E                            ;82BD5E|A53E    |000EA6;
+                       LDA.B r_ev_3e-$E68                   ;82BD5E|A53E    |000EA6;
                        BEQ CODE_82BD6A                      ;82BD60|F008    |82BD6A;
-                       DEC.B $3E                            ;82BD62|C63E    |000EA6;
+                       DEC.B r_ev_3e-$E68                   ;82BD62|C63E    |000EA6;
                        REP #$20                             ;82BD64|C220    |      ;
-                       DEC.B $05                            ;82BD66|C605    |000E6D;
+                       DEC.B r_ev_05_xPos-$E68              ;82BD66|C605    |000E6D;
                        SEP #$20                             ;82BD68|E220    |      ;
                                                             ;      |        |      ;
           CODE_82BD6A:
                        RTS                                  ;82BD6A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82BD6B:
-                       LDX.B $01                            ;82BD6B|A601    |000E69;
-                       JMP.W (PTR16_82BD70,X)               ;82BD6D|7C70BD  |82BD70;
+eventID_utuborosHead_23_main:
+                       LDX.B r_ev_01_state-$E68             ;82BD6B|A601    |000E69;
+                       JMP.W (utuborosHead_23_state,X)      ;82BD6D|7C70BD  |82BD70;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82BD70:
-                       dw CODE_82BD76                       ;82BD70|        |82BD76;
+utuborosHead_23_state:
+                       dw utuborosHead_23_state_00          ;82BD70|        |82BD76;
                        dw CODE_82BE1A                       ;82BD72|        |82BE1A;
                        dw CODE_82C1E5                       ;82BD74|        |82C1E5;
                                                             ;      |        |      ;
-          CODE_82BD76:
-                       JSL.L CODE_82827D                    ;82BD76|227D8282|82827D;
+utuborosHead_23_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;82BD76|227D8282|82827D;
                        LDA.B #$18                           ;82BD7A|A918    |      ;
-                       STA.B $0A                            ;82BD7C|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82BD7C|850A    |000E72;
                        JSL.L CODE_84A23F                    ;82BD7E|223FA284|84A23F;
                        TYA                                  ;82BD82|98      |      ;
                        BEQ CODE_82BD92                      ;82BD83|F00D    |82BD92;
@@ -9540,21 +9546,21 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82BD92:
                        LDA.B #$23                           ;82BD92|A923    |      ;
-                       STA.B $0A                            ;82BD94|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82BD94|850A    |000E72;
                        LDA.B #$48                           ;82BD96|A948    |      ;
-                       STA.B $27                            ;82BD98|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;82BD98|8527    |000E8F;
                        LDA.B #$04                           ;82BD9A|A904    |      ;
-                       STA.B $26                            ;82BD9C|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;82BD9C|8526    |000E8E;
                        LDA.B #$04                           ;82BD9E|A904    |      ;
-                       STA.B $12                            ;82BDA0|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;82BDA0|8512    |000E7A;
                        LDA.B #$06                           ;82BDA2|A906    |      ;
-                       STA.B $28                            ;82BDA4|8528    |000E90;
-                       STZ.B $33                            ;82BDA6|6433    |000E9B;
-                       STZ.B $39                            ;82BDA8|6439    |000EA1;
-                       STZ.B $3C                            ;82BDAA|643C    |000EA4;
-                       STZ.B $3E                            ;82BDAC|643E    |000EA6;
+                       STA.B r_ev_28-$E68                   ;82BDA4|8528    |000E90;
+                       STZ.B r_ev_33-$E68                   ;82BDA6|6433    |000E9B;
+                       STZ.B r_ev_39-$E68                   ;82BDA8|6439    |000EA1;
+                       STZ.B r_ev_3c-$E68                   ;82BDAA|643C    |000EA4;
+                       STZ.B r_ev_3e-$E68                   ;82BDAC|643E    |000EA6;
                        REP #$20                             ;82BDAE|C220    |      ;
-                       STZ.B $34                            ;82BDB0|6434    |000E9C;
+                       STZ.B r_ev_34-$E68                   ;82BDB0|6434    |000E9C;
                        LDA.W r_1e5e                         ;82BDB2|AD5E1E  |861E5E;
                        STA.L $7FD700                        ;82BDB5|8F00D77F|7FD700;
                        LDA.W r_cam_BG0_xPos_lock            ;82BDB9|AD601E  |861E60;
@@ -9563,12 +9569,12 @@ loadProjectileSlotBase:
                        STA.L $7FD704                        ;82BDC3|8F04D77F|7FD704;
                        LDA.W r_cam_BG0_yPos_lock_Set        ;82BDC7|AD6E1E  |861E6E;
                        STA.L $7FD706                        ;82BDCA|8F06D77F|7FD706;
-                       LDA.B $0B                            ;82BDCE|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82BDCE|A50B    |000E73;
                        AND.W #$00FF                         ;82BDD0|29FF00  |      ;
                        ASL A                                ;82BDD3|0A      |      ;
                        TAX                                  ;82BDD4|AA      |      ;
                        LDA.W UNREACH_86CCA2,X               ;82BDD5|BDA2CC  |86CCA2;
-                       STA.B $05                            ;82BDD8|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;82BDD8|8505    |000E6D;
                        LDA.W UNREACH_86CCA6,X               ;82BDDA|BDA6CC  |86CCA6;
                        STA.W r_1e5e                         ;82BDDD|8D5E1E  |861E5E;
                        LDA.W UNREACH_86CCAA,X               ;82BDE0|BDAACC  |86CCAA;
@@ -9578,18 +9584,18 @@ loadProjectileSlotBase:
                        LDA.W UNREACH_86CCB2,X               ;82BDEC|BDB2CC  |86CCB2;
                        STA.W r_cam_BG0_yPos_lock_Set        ;82BDEF|8D6E1E  |861E6E;
                        LDA.W #$CC30                         ;82BDF2|A930CC  |      ;
-                       STA.B $20                            ;82BDF5|8520    |000E88;
-                       LDA.B $0B                            ;82BDF7|A50B    |000E73;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;82BDF5|8520    |000E88;
+                       LDA.B r_ev_0b_subID-$E68             ;82BDF7|A50B    |000E73;
                        AND.W #$00FF                         ;82BDF9|29FF00  |      ;
                        BNE CODE_82BE11                      ;82BDFC|D013    |82BE11;
                        LDA.W #$0006                         ;82BDFE|A90600  |      ;
-                       STA.B $02                            ;82BE01|8502    |000E6A;
-                       STZ.B $03                            ;82BE03|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;82BE01|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82BE03|6403    |000E6B;
                        LDA.W r_0bad                         ;82BE05|ADAD0B  |860BAD;
-                       STA.B $05                            ;82BE08|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;82BE08|8505    |000E6D;
                        LDA.W #$02E0                         ;82BE0A|A9E002  |      ;
-                       STA.B $08                            ;82BE0D|8508    |000E70;
-                       INC.B $39                            ;82BE0F|E639    |000EA1;
+                       STA.B r_ev_08_yPos-$E68              ;82BE0D|8508    |000E70;
+                       INC.B r_ev_39-$E68                   ;82BE0F|E639    |000EA1;
                                                             ;      |        |      ;
           CODE_82BE11:
                        SEP #$20                             ;82BE11|E220    |      ;
@@ -9599,85 +9605,85 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BE1A:
-                       LDX.B $02                            ;82BE1A|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82BE1A|A602    |000E6A;
                        JSR.W (PTR16_82BEA6,X)               ;82BE1C|FCA6BE  |82BEA6;
-                       LDA.B $39                            ;82BE1F|A539    |000EA1;
+                       LDA.B r_ev_39-$E68                   ;82BE1F|A539    |000EA1;
                        BNE CODE_82BE4D                      ;82BE21|D02A    |82BE4D;
                        JSL.L CODE_8491BE                    ;82BE23|22BE9184|8491BE;
-                       LDA.B $2B                            ;82BE27|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;82BE27|A52B    |000E93;
                        BIT.B #$04                           ;82BE29|8904    |      ;
                        BEQ CODE_82BE4D                      ;82BE2B|F020    |82BE4D;
-                       LDA.B $0B                            ;82BE2D|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82BE2D|A50B    |000E73;
                        BNE CODE_82BE37                      ;82BE2F|D006    |82BE37;
-                       LDA.B $27                            ;82BE31|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;82BE31|A527    |000E8F;
                        CMP.B #$24                           ;82BE33|C924    |      ;
                        BCS CODE_82BE45                      ;82BE35|B00E    |82BE45;
                                                             ;      |        |      ;
           CODE_82BE37:
                        REP #$20                             ;82BE37|C220    |      ;
-                       LDA.B $1C                            ;82BE39|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82BE39|A51C    |000E84;
                        EOR.W #$FFFF                         ;82BE3B|49FFFF  |      ;
                        INC A                                ;82BE3E|1A      |      ;
-                       STA.B $1C                            ;82BE3F|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82BE3F|851C    |000E84;
                        SEP #$20                             ;82BE41|E220    |      ;
                        BRA CODE_82BE4D                      ;82BE43|8008    |82BE4D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BE45:
-                       INC.B $39                            ;82BE45|E639    |000EA1;
+                       INC.B r_ev_39-$E68                   ;82BE45|E639    |000EA1;
                        LDA.B #$06                           ;82BE47|A906    |      ;
-                       STA.B $02                            ;82BE49|8502    |000E6A;
-                       STZ.B $03                            ;82BE4B|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;82BE49|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82BE4B|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_82BE4D:
                        JSR.W CODE_82C284                    ;82BE4D|2084C2  |82C284;
-                       LDA.B $2E                            ;82BE50|A52E    |000E96;
+                       LDA.B r_ev_2e-$E68                   ;82BE50|A52E    |000E96;
                        CMP.B #$0E                           ;82BE52|C90E    |      ;
                        BNE CODE_82BE62                      ;82BE54|D00C    |82BE62;
                        REP #$20                             ;82BE56|C220    |      ;
-                       LDA.B $1C                            ;82BE58|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82BE58|A51C    |000E84;
                        EOR.W #$FFFF                         ;82BE5A|49FFFF  |      ;
                        INC A                                ;82BE5D|1A      |      ;
-                       STA.B $1C                            ;82BE5E|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82BE5E|851C    |000E84;
                        SEP #$20                             ;82BE60|E220    |      ;
                                                             ;      |        |      ;
           CODE_82BE62:
                        LDA.L $7F832E                        ;82BE62|AF2E837F|7F832E;
-                       STA.B $11                            ;82BE66|8511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;82BE66|8511    |000E79;
                        JSL.L CODE_849B43                    ;82BE68|22439B84|849B43;
                        BEQ CODE_82BE8E                      ;82BE6C|F020    |82BE8E;
-                       INC.B $3C                            ;82BE6E|E63C    |000EA4;
+                       INC.B r_ev_3c-$E68                   ;82BE6E|E63C    |000EA4;
                        REP #$10                             ;82BE70|C210    |      ;
-                       LDX.B $3A                            ;82BE72|A63A    |000EA2;
+                       LDX.B r_ev_3a-$E68                   ;82BE72|A63A    |000EA2;
                        STA.W r_003c,X                       ;82BE74|9D3C00  |86003C;
-                       LDA.B $27                            ;82BE77|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;82BE77|A527    |000E8F;
                        STA.W r_0027,X                       ;82BE79|9D2700  |860027;
                        SEP #$10                             ;82BE7C|E210    |      ;
-                       LDA.B $27                            ;82BE7E|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;82BE7E|A527    |000E8F;
                        AND.B #$7F                           ;82BE80|297F    |      ;
                        BNE CODE_82BE8E                      ;82BE82|D00A    |82BE8E;
                        LDA.B #$04                           ;82BE84|A904    |      ;
-                       STA.B $01                            ;82BE86|8501    |000E69;
-                       STZ.B $02                            ;82BE88|6402    |000E6A;
-                       STZ.B $03                            ;82BE8A|6403    |000E6B;
+                       STA.B r_ev_01_state-$E68             ;82BE86|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82BE88|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82BE8A|6403    |000E6B;
                        BRA CODE_82BE9A                      ;82BE8C|800C    |82BE9A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BE8E:
-                       LDA.B $3C                            ;82BE8E|A53C    |000EA4;
+                       LDA.B r_ev_3c-$E68                   ;82BE8E|A53C    |000EA4;
                        BEQ CODE_82BE96                      ;82BE90|F004    |82BE96;
                        LDA.B #$0E                           ;82BE92|A90E    |      ;
-                       TRB.B $11                            ;82BE94|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;82BE94|1411    |000E79;
                                                             ;      |        |      ;
           CODE_82BE96:
                        JSL.L CODE_849B03                    ;82BE96|22039B84|849B03;
                                                             ;      |        |      ;
           CODE_82BE9A:
-                       LDA.B $11                            ;82BE9A|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82BE9A|A511    |000E79;
                        AND.B #$3F                           ;82BE9C|293F    |      ;
-                       ORA.B $33                            ;82BE9E|0533    |000E9B;
-                       STA.B $11                            ;82BEA0|8511    |000E79;
-                       JML.L CODE_8280B4                    ;82BEA2|5CB48082|8280B4;
+                       ORA.B r_ev_33-$E68                   ;82BE9E|0533    |000E9B;
+                       STA.B r_ev_11_sprAtri-$E68           ;82BEA0|8511    |000E79;
+                       JML.L eventID_vile_68_afterInit      ;82BEA2|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_82BEA6:
@@ -9688,7 +9694,7 @@ loadProjectileSlotBase:
                        dw CODE_82BF26                       ;82BEAE|        |82BF26;
                                                             ;      |        |      ;
           CODE_82BEB0:
-                       LDX.B $03                            ;82BEB0|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;82BEB0|A603    |000E6B;
                        JMP.W (PTR16_82BEB5,X)               ;82BEB2|7CB5BE  |82BEB5;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9699,11 +9705,11 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82BEBB:
                        LDA.B #$02                           ;82BEBB|A902    |      ;
-                       STA.B $03                            ;82BEBD|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82BEBD|8503    |000E6B;
                        REP #$20                             ;82BEBF|C220    |      ;
-                       STZ.B $1A                            ;82BEC1|641A    |000E82;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;82BEC1|641A    |000E82;
                        LDA.W #$FE80                         ;82BEC3|A980FE  |      ;
-                       STA.B $1C                            ;82BEC6|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82BEC6|851C    |000E84;
                        LDA.W #$0010                         ;82BEC8|A91000  |      ;
                        STA.W r_0000                         ;82BECB|8D0000  |860000;
                        SEP #$20                             ;82BECE|E220    |      ;
@@ -9715,18 +9721,18 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82BEDA:
                        REP #$20                             ;82BEDA|C220    |      ;
-                       LDA.B $0B                            ;82BEDC|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82BEDC|A50B    |000E73;
                        AND.W #$00FF                         ;82BEDE|29FF00  |      ;
                        ASL A                                ;82BEE1|0A      |      ;
                        TAX                                  ;82BEE2|AA      |      ;
-                       LDA.B $08                            ;82BEE3|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82BEE3|A508    |000E70;
                        CMP.W UNREACH_86CCBE,X               ;82BEE5|DDBECC  |86CCBE;
                        SEP #$20                             ;82BEE8|E220    |      ;
                        BCC CODE_82BEF4                      ;82BEEA|9008    |82BEF4;
                        LDA.B #$C8                           ;82BEEC|A9C8    |      ;
-                       STA.B $36                            ;82BEEE|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;82BEEE|8536    |000E9E;
                        LDA.B #$04                           ;82BEF0|A904    |      ;
-                       STA.B $03                            ;82BEF2|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82BEF2|8503    |000E6B;
                                                             ;      |        |      ;
           CODE_82BEF4:
                        JSL.L CODE_82825D                    ;82BEF4|225D8282|82825D;
@@ -9735,21 +9741,21 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BEFF:
-                       DEC.B $36                            ;82BEFF|C636    |000E9E;
+                       DEC.B r_ev_36-$E68                   ;82BEFF|C636    |000E9E;
                        BNE CODE_82BF09                      ;82BF01|D006    |82BF09;
                        LDA.B #$08                           ;82BF03|A908    |      ;
-                       STA.B $02                            ;82BF05|8502    |000E6A;
-                       STZ.B $03                            ;82BF07|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;82BF05|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82BF07|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_82BF09:
                        LDA.W $0B9C                          ;82BF09|AD9C0B  |860B9C;
                        LSR A                                ;82BF0C|4A      |      ;
                        BCC CODE_82BF1B                      ;82BF0D|900C    |82BF1B;
                        REP #$20                             ;82BF0F|C220    |      ;
-                       LDA.B $1C                            ;82BF11|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82BF11|A51C    |000E84;
                        EOR.W #$FFFF                         ;82BF13|49FFFF  |      ;
                        INC A                                ;82BF16|1A      |      ;
-                       STA.B $1C                            ;82BF17|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82BF17|851C    |000E84;
                        SEP #$20                             ;82BF19|E220    |      ;
                                                             ;      |        |      ;
           CODE_82BF1B:
@@ -9759,7 +9765,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BF26:
-                       LDX.B $03                            ;82BF26|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;82BF26|A603    |000E6B;
                        JMP.W (PTR16_82BF2B,X)               ;82BF28|7C2BBF  |82BF2B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9771,7 +9777,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82BF33:
                        LDA.B #$02                           ;82BF33|A902    |      ;
-                       STA.B $03                            ;82BF35|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82BF35|8503    |000E6B;
                        REP #$30                             ;82BF37|C230    |      ;
                        LDX.W #$0040                         ;82BF39|A24000  |      ;
                        JSL.L CODE_849086                    ;82BF3C|22869084|849086;
@@ -9784,9 +9790,9 @@ loadProjectileSlotBase:
                        LDA.W r_cam_BG0_xPos_target          ;82BF49|AD4D1E  |861E4D;
                        CLC                                  ;82BF4C|18      |      ;
                        ADC.W #$0080                         ;82BF4D|698000  |      ;
-                       STA.B $05                            ;82BF50|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;82BF50|8505    |000E6D;
                        LDA.W #$0100                         ;82BF52|A90001  |      ;
-                       STA.B $1C                            ;82BF55|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82BF55|851C    |000E84;
                        LDA.W r_1e56                         ;82BF57|AD561E  |861E56;
                        CLC                                  ;82BF5A|18      |      ;
                        ADC.W r_1e58                         ;82BF5B|6D581E  |861E58;
@@ -9798,18 +9804,18 @@ loadProjectileSlotBase:
                        LDA.B #$00                           ;82BF68|A900    |      ;
                        LDY.W #$FE9E                         ;82BF6A|A09EFE  |      ;
                        LDX.W r_0000                         ;82BF6D|AE0000  |860000;
-                       CPX.B $05                            ;82BF70|E405    |000E6D;
+                       CPX.B r_ev_05_xPos-$E68              ;82BF70|E405    |000E6D;
                        BCC CODE_82BF79                      ;82BF72|9005    |82BF79;
                        LDA.B #$40                           ;82BF74|A940    |      ;
                        LDY.W #$0162                         ;82BF76|A06201  |      ;
                                                             ;      |        |      ;
           CODE_82BF79:
-                       STA.B $33                            ;82BF79|8533    |000E9B;
-                       STY.B $1A                            ;82BF7B|841A    |000E82;
+                       STA.B r_ev_33-$E68                   ;82BF79|8533    |000E9B;
+                       STY.B r_ev_1a_xSpdSub-$E68           ;82BF7B|841A    |000E82;
                        SEP #$10                             ;82BF7D|E210    |      ;
-                       STZ.B $29                            ;82BF7F|6429    |000E91;
+                       STZ.B r_ev_29-$E68                   ;82BF7F|6429    |000E91;
                        LDA.B #$E0                           ;82BF81|A9E0    |      ;
-                       STA.B $2A                            ;82BF83|852A    |000E92;
+                       STA.B r_ev_2a-$E68                   ;82BF83|852A    |000E92;
                        LDA.B #$00                           ;82BF85|A900    |      ;
                        JSL.L CODE_848F07                    ;82BF87|22078F84|848F07;
                        RTS                                  ;82BF8B|60      |      ;
@@ -9820,9 +9826,9 @@ loadProjectileSlotBase:
                        CMP.B #$0D                           ;82BF90|C90D    |      ;
                        BNE CODE_82BFA9                      ;82BF92|D015    |82BFA9;
                        LDA.B #$04                           ;82BF94|A904    |      ;
-                       STA.B $03                            ;82BF96|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82BF96|8503    |000E6B;
                        LDA.B #$3C                           ;82BF98|A93C    |      ;
-                       STA.B $36                            ;82BF9A|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;82BF9A|8536    |000E9E;
                        LDA.B #$E8                           ;82BF9C|A9E8    |      ;
                        STA.W r_0000                         ;82BF9E|8D0000  |860000;
                        LDA.B #$FF                           ;82BFA1|A9FF    |      ;
@@ -9835,24 +9841,24 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BFB0:
-                       DEC.B $36                            ;82BFB0|C636    |000E9E;
+                       DEC.B r_ev_36-$E68                   ;82BFB0|C636    |000E9E;
                        BNE CODE_82BFBC                      ;82BFB2|D008    |82BFBC;
                        LDA.B #$06                           ;82BFB4|A906    |      ;
-                       STA.B $03                            ;82BFB6|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82BFB6|8503    |000E6B;
                        LDA.B #$78                           ;82BFB8|A978    |      ;
-                       STA.B $36                            ;82BFBA|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;82BFBA|8536    |000E9E;
                                                             ;      |        |      ;
           CODE_82BFBC:
                        JMP.W CODE_82C385                    ;82BFBC|4C85C3  |82C385;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BFBF:
-                       DEC.B $36                            ;82BFBF|C636    |000E9E;
+                       DEC.B r_ev_36-$E68                   ;82BFBF|C636    |000E9E;
                        BNE CODE_82BFCB                      ;82BFC1|D008    |82BFCB;
-                       STZ.B $39                            ;82BFC3|6439    |000EA1;
+                       STZ.B r_ev_39-$E68                   ;82BFC3|6439    |000EA1;
                        LDA.B #$04                           ;82BFC5|A904    |      ;
-                       STA.B $02                            ;82BFC7|8502    |000E6A;
-                       STZ.B $03                            ;82BFC9|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;82BFC7|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82BFC9|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_82BFCB:
                        JSL.L CODE_82820A                    ;82BFCB|220A8282|82820A;
@@ -9860,7 +9866,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BFD2:
-                       LDX.B $03                            ;82BFD2|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;82BFD2|A603    |000E6B;
                        JMP.W (PTR16_82BFD7,X)               ;82BFD4|7CD7BF  |82BFD7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9903,7 +9909,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C00B:
-                       LDX.B $03                            ;82C00B|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;82C00B|A603    |000E6B;
                        BNE CODE_82C012                      ;82C00D|D003    |82C012;
                        JMP.W CODE_82C099                    ;82C00F|4C99C0  |82C099;
                                                             ;      |        |      ;
@@ -9911,78 +9917,78 @@ loadProjectileSlotBase:
           CODE_82C012:
                        REP #$21                             ;82C012|C221    |      ;
                        LDA.W #$0060                         ;82C014|A96000  |      ;
-                       BIT.B $32                            ;82C017|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;82C017|2432    |000E9A;
                        BVS CODE_82C01E                      ;82C019|7003    |82C01E;
                        LDA.W #$FFA0                         ;82C01B|A9A0FF  |      ;
                                                             ;      |        |      ;
           CODE_82C01E:
-                       ADC.B $05                            ;82C01E|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;82C01E|6505    |000E6D;
                        CMP.W r_1e56                         ;82C020|CD561E  |861E56;
                        BCC CODE_82C033                      ;82C023|900E    |82C033;
                        SBC.W #$0100                         ;82C025|E90001  |      ;
                        CMP.W r_1e58                         ;82C028|CD581E  |861E58;
                        BCS CODE_82C033                      ;82C02B|B006    |82C033;
-                       DEC.B $36                            ;82C02D|C636    |000E9E;
+                       DEC.B r_ev_36-$E68                   ;82C02D|C636    |000E9E;
                        BNE CODE_82C040                      ;82C02F|D00F    |82C040;
                        BRA CODE_82C037                      ;82C031|8004    |82C037;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C033:
                        SEP #$20                             ;82C033|E220    |      ;
-                       INC.B $3E                            ;82C035|E63E    |000EA6;
+                       INC.B r_ev_3e-$E68                   ;82C035|E63E    |000EA6;
                                                             ;      |        |      ;
           CODE_82C037:
                        SEP #$20                             ;82C037|E220    |      ;
                        LDA.B #$04                           ;82C039|A904    |      ;
-                       STA.B $02                            ;82C03B|8502    |000E6A;
-                       STZ.B $03                            ;82C03D|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;82C03B|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82C03D|6403    |000E6B;
                        RTS                                  ;82C03F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C040:
-                       LDX.B $0B                            ;82C040|A60B    |000E73;
+                       LDX.B r_ev_0b_subID-$E68             ;82C040|A60B    |000E73;
                        BEQ CODE_82C070                      ;82C042|F02C    |82C070;
-                       LDA.B $08                            ;82C044|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82C044|A508    |000E70;
                        CLC                                  ;82C046|18      |      ;
                        ADC.W #$FFB0                         ;82C047|69B0FF  |      ;
                        CMP.W r_1e5a                         ;82C04A|CD5A1E  |861E5A;
                        BCS CODE_82C05B                      ;82C04D|B00C    |82C05B;
-                       LDA.B $1C                            ;82C04F|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82C04F|A51C    |000E84;
                        BMI CODE_82C070                      ;82C051|301D    |82C070;
                        EOR.W #$FFFF                         ;82C053|49FFFF  |      ;
                        INC A                                ;82C056|1A      |      ;
-                       STA.B $1C                            ;82C057|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82C057|851C    |000E84;
                        BRA CODE_82C070                      ;82C059|8015    |82C070;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C05B:
-                       LDA.B $08                            ;82C05B|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82C05B|A508    |000E70;
                        CLC                                  ;82C05D|18      |      ;
                        ADC.W #$FFB0                         ;82C05E|69B0FF  |      ;
                        CMP.W r_cam_BG0_yPos_lock            ;82C061|CD5C1E  |861E5C;
                        BCC CODE_82C070                      ;82C064|900A    |82C070;
-                       LDA.B $1C                            ;82C066|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82C066|A51C    |000E84;
                        BPL CODE_82C070                      ;82C068|1006    |82C070;
                        EOR.W #$FFFF                         ;82C06A|49FFFF  |      ;
                        INC A                                ;82C06D|1A      |      ;
-                       STA.B $1C                            ;82C06E|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82C06E|851C    |000E84;
                                                             ;      |        |      ;
           CODE_82C070:
                        SEP #$20                             ;82C070|E220    |      ;
                        JSL.L CODE_82820A                    ;82C072|220A8282|82820A;
-                       LDA.B $27                            ;82C076|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;82C076|A527    |000E8F;
                        BPL CODE_82C08A                      ;82C078|1010    |82C08A;
                        LDA.B #$08                           ;82C07A|A908    |      ;
-                       STA.B $3D                            ;82C07C|853D    |000EA5;
+                       STA.B r_ev_3d-$E68                   ;82C07C|853D    |000EA5;
                        LDA.B #$36                           ;82C07E|A936    |      ;
                        JSL.L CODE_8088A2                    ;82C080|22A28880|8088A2;
                        LDA.B #$08                           ;82C084|A908    |      ;
                        JSL.L CODE_848F07                    ;82C086|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82C08A:
-                       LDA.B $3D                            ;82C08A|A53D    |000EA5;
+                       LDA.B r_ev_3d-$E68                   ;82C08A|A53D    |000EA5;
                        BEQ CODE_82C098                      ;82C08C|F00A    |82C098;
-                       DEC.B $3D                            ;82C08E|C63D    |000EA5;
+                       DEC.B r_ev_3d-$E68                   ;82C08E|C63D    |000EA5;
                        BNE CODE_82C098                      ;82C090|D006    |82C098;
                        LDA.B #$00                           ;82C092|A900    |      ;
                        JSL.L CODE_848F07                    ;82C094|22078F84|848F07;
@@ -9992,14 +9998,14 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C099:
-                       INC.B $03                            ;82C099|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;82C099|E603    |000E6B;
                        LDA.B #$C8                           ;82C09B|A9C8    |      ;
-                       STA.B $36                            ;82C09D|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;82C09D|8536    |000E9E;
                        LDA.B #$00                           ;82C09F|A900    |      ;
-                       STA.B $37                            ;82C0A1|8537    |000E9F;
+                       STA.B r_ev_37-$E68                   ;82C0A1|8537    |000E9F;
                        JSL.L CODE_84A081                    ;82C0A3|2281A084|84A081;
                        TAX                                  ;82C0A7|AA      |      ;
-                       BIT.B $33                            ;82C0A8|2433    |000E9B;
+                       BIT.B r_ev_33-$E68                   ;82C0A8|2433    |000E9B;
                        BVC CODE_82C0EC                      ;82C0AA|5040    |82C0EC;
                        CMP.B #$06                           ;82C0AC|C906    |      ;
                        BCS CODE_82C0B2                      ;82C0AE|B002    |82C0B2;
@@ -10023,7 +10029,7 @@ loadProjectileSlotBase:
                        LDX.B #$07                           ;82C0C4|A207    |      ;
                        REP #$10                             ;82C0C6|C210    |      ;
                        LDY.W r_0bb0                         ;82C0C8|ACB00B  |860BB0;
-                       CPY.B $08                            ;82C0CB|C408    |000E70;
+                       CPY.B r_ev_08_yPos-$E68              ;82C0CB|C408    |000E70;
                        BCC CODE_82C0D1                      ;82C0CD|9002    |82C0D1;
                        INX                                  ;82C0CF|E8      |      ;
                        INX                                  ;82C0D0|E8      |      ;
@@ -10038,9 +10044,9 @@ loadProjectileSlotBase:
                        TAX                                  ;82C0D6|AA      |      ;
                        REP #$20                             ;82C0D7|C220    |      ;
                        LDA.W UNREACH_86CC22,X               ;82C0D9|BD22CC  |86CC22;
-                       STA.B $1A                            ;82C0DC|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82C0DC|851A    |000E82;
                        LDA.W UNREACH_86CC24,X               ;82C0DE|BD24CC  |86CC24;
-                       STA.B $1C                            ;82C0E1|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82C0E1|851C    |000E84;
                        SEP #$20                             ;82C0E3|E220    |      ;
                        LDA.B #$00                           ;82C0E5|A900    |      ;
                        JSL.L CODE_848F07                    ;82C0E7|22078F84|848F07;
@@ -10070,7 +10076,7 @@ loadProjectileSlotBase:
                        LDX.B #$17                           ;82C104|A217    |      ;
                        REP #$10                             ;82C106|C210    |      ;
                        LDY.W r_0bb0                         ;82C108|ACB00B  |860BB0;
-                       CPY.B $08                            ;82C10B|C408    |000E70;
+                       CPY.B r_ev_08_yPos-$E68              ;82C10B|C408    |000E70;
                        BCS CODE_82C111                      ;82C10D|B002    |82C111;
                        INX                                  ;82C10F|E8      |      ;
                        INX                                  ;82C110|E8      |      ;
@@ -10085,9 +10091,9 @@ loadProjectileSlotBase:
                        TAX                                  ;82C116|AA      |      ;
                        REP #$20                             ;82C117|C220    |      ;
                        LDA.W UNREACH_86CBF6,X               ;82C119|BDF6CB  |86CBF6;
-                       STA.B $1A                            ;82C11C|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82C11C|851A    |000E82;
                        LDA.W UNREACH_86CBF8,X               ;82C11E|BDF8CB  |86CBF8;
-                       STA.B $1C                            ;82C121|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82C121|851C    |000E84;
                        SEP #$20                             ;82C123|E220    |      ;
                        LDA.B #$00                           ;82C125|A900    |      ;
                        JSL.L CODE_848F07                    ;82C127|22078F84|848F07;
@@ -10095,23 +10101,23 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C12C:
-                       LDX.B $03                            ;82C12C|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;82C12C|A603    |000E6B;
                        BEQ CODE_82C15F                      ;82C12E|F02F    |82C15F;
-                       DEC.B $36                            ;82C130|C636    |000E9E;
+                       DEC.B r_ev_36-$E68                   ;82C130|C636    |000E9E;
                        BNE CODE_82C156                      ;82C132|D022    |82C156;
                        LDA.B #$08                           ;82C134|A908    |      ;
-                       STA.B $36                            ;82C136|8536    |000E9E;
-                       INC.B $38                            ;82C138|E638    |000EA0;
+                       STA.B r_ev_36-$E68                   ;82C136|8536    |000E9E;
+                       INC.B r_ev_38-$E68                   ;82C138|E638    |000EA0;
                        REP #$20                             ;82C13A|C220    |      ;
                        JSR.W CODE_82C25C                    ;82C13C|205CC2  |82C25C;
                        SEP #$20                             ;82C13F|E220    |      ;
                        BEQ CODE_82C156                      ;82C141|F013    |82C156;
                        LDA.B #$02                           ;82C143|A902    |      ;
-                       STA.B $02                            ;82C145|8502    |000E6A;
-                       STZ.B $03                            ;82C147|6403    |000E6B;
-                       LDA.B $33                            ;82C149|A533    |000E9B;
+                       STA.B r_ev_02_action-$E68            ;82C145|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82C147|6403    |000E6B;
+                       LDA.B r_ev_33-$E68                   ;82C149|A533    |000E9B;
                        EOR.B #$40                           ;82C14B|4940    |      ;
-                       STA.B $33                            ;82C14D|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;82C14D|8533    |000E9B;
                        LDA.B #$00                           ;82C14F|A900    |      ;
                        JSL.L CODE_848F07                    ;82C151|22078F84|848F07;
                        RTS                                  ;82C155|60      |      ;
@@ -10124,33 +10130,33 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C15F:
-                       INC.B $03                            ;82C15F|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;82C15F|E603    |000E6B;
                        REP #$20                             ;82C161|C220    |      ;
                        LDX.B #$40                           ;82C163|A240    |      ;
                        LDA.W r_0bad                         ;82C165|ADAD0B  |860BAD;
-                       CMP.B $05                            ;82C168|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;82C168|C505    |000E6D;
                        BCS CODE_82C16E                      ;82C16A|B002    |82C16E;
                        LDX.B #$00                           ;82C16C|A200    |      ;
                                                             ;      |        |      ;
           CODE_82C16E:
-                       CPX.B $33                            ;82C16E|E433    |000E9B;
+                       CPX.B r_ev_33-$E68                   ;82C16E|E433    |000E9B;
                        BNE CODE_82C185                      ;82C170|D013    |82C185;
                        SEP #$20                             ;82C172|E220    |      ;
                        TXA                                  ;82C174|8A      |      ;
                        EOR.B #$40                           ;82C175|4940    |      ;
                        TAX                                  ;82C177|AA      |      ;
-                       LDA.B $3E                            ;82C178|A53E    |000EA6;
-                       STZ.B $3E                            ;82C17A|643E    |000EA6;
+                       LDA.B r_ev_3e-$E68                   ;82C178|A53E    |000EA6;
+                       STZ.B r_ev_3e-$E68                   ;82C17A|643E    |000EA6;
                        BNE CODE_82C185                      ;82C17C|D007    |82C185;
                        LDA.B #$02                           ;82C17E|A902    |      ;
-                       STA.B $02                            ;82C180|8502    |000E6A;
-                       STZ.B $03                            ;82C182|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;82C180|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82C182|6403    |000E6B;
                        RTS                                  ;82C184|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C185:
                        REP #$20                             ;82C185|C220    |      ;
-                       LDA.B $0B                            ;82C187|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82C187|A50B    |000E73;
                        AND.W #$007F                         ;82C189|297F00  |      ;
                        ASL A                                ;82C18C|0A      |      ;
                        TAY                                  ;82C18D|A8      |      ;
@@ -10158,7 +10164,7 @@ loadProjectileSlotBase:
                        STA.W r_0000                         ;82C191|8D0000  |860000;
                        LDA.W UNREACH_86CCBA,Y               ;82C194|B9BACC  |86CCBA;
                        STA.W r_0002                         ;82C197|8D0200  |860002;
-                       LDA.B $27                            ;82C19A|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;82C19A|A527    |000E8F;
                        AND.W #$00FF                         ;82C19C|29FF00  |      ;
                        CMP.W #$0024                         ;82C19F|C92400  |      ;
                        BCC CODE_82C1AA                      ;82C1A2|9006    |82C1AA;
@@ -10172,7 +10178,7 @@ loadProjectileSlotBase:
                        LDY.B #$20                           ;82C1B0|A020    |      ;
                                                             ;      |        |      ;
           CODE_82C1B2:
-                       LDA.B $08                            ;82C1B2|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82C1B2|A508    |000E70;
                        CMP.W r_0bb0                         ;82C1B4|CDB00B  |860BB0;
                        BCC CODE_82C1C7                      ;82C1B7|900E    |82C1C7;
                        CMP.W r_0000                         ;82C1B9|CD0000  |860000;
@@ -10196,18 +10202,18 @@ loadProjectileSlotBase:
                        BCS CODE_82C1BE                      ;82C1D1|B0EB    |82C1BE;
                                                             ;      |        |      ;
           CODE_82C1D3:
-                       STY.B $38                            ;82C1D3|8438    |000EA0;
+                       STY.B r_ev_38-$E68                   ;82C1D3|8438    |000EA0;
                        JSR.W CODE_82C25C                    ;82C1D5|205CC2  |82C25C;
                        SEP #$20                             ;82C1D8|E220    |      ;
                        LDA.B #$08                           ;82C1DA|A908    |      ;
-                       STA.B $36                            ;82C1DC|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;82C1DC|8536    |000E9E;
                        LDA.B #$00                           ;82C1DE|A900    |      ;
                        JSL.L CODE_848F07                    ;82C1E0|22078F84|848F07;
                        RTS                                  ;82C1E4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C1E5:
-                       LDX.B $02                            ;82C1E5|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82C1E5|A602    |000E6A;
                        JMP.W (PTR16_82C1EA,X)               ;82C1E7|7CEAC1  |82C1EA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10218,14 +10224,14 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82C1F0:
                        LDA.B #$02                           ;82C1F0|A902    |      ;
-                       STA.B $02                            ;82C1F2|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82C1F2|8502    |000E6A;
                        JSR.W CODE_82C331                    ;82C1F4|2031C3  |82C331;
                        JSL.L CODE_84A4B5                    ;82C1F7|22B5A484|84A4B5;
-                       STZ.B $29                            ;82C1FB|6429    |000E91;
+                       STZ.B r_ev_29-$E68                   ;82C1FB|6429    |000E91;
                        LDA.B #$F0                           ;82C1FD|A9F0    |      ;
-                       STA.B $2A                            ;82C1FF|852A    |000E92;
+                       STA.B r_ev_2a-$E68                   ;82C1FF|852A    |000E92;
                        LDA.B #$78                           ;82C201|A978    |      ;
-                       STA.B $36                            ;82C203|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;82C203|8536    |000E9E;
                        RTL                                  ;82C205|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10234,19 +10240,19 @@ loadProjectileSlotBase:
                        CMP.B #$0E                           ;82C20A|C90E    |      ;
                        BNE CODE_82C21A                      ;82C20C|D00C    |82C21A;
                        REP #$20                             ;82C20E|C220    |      ;
-                       LDA.B $1C                            ;82C210|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;82C210|A51C    |000E84;
                        EOR.W #$FFFF                         ;82C212|49FFFF  |      ;
                        INC A                                ;82C215|1A      |      ;
-                       STA.B $1C                            ;82C216|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82C216|851C    |000E84;
                        SEP #$20                             ;82C218|E220    |      ;
                                                             ;      |        |      ;
           CODE_82C21A:
                        JSL.L CODE_82820A                    ;82C21A|220A8282|82820A;
                        JSR.W CODE_82C284                    ;82C21E|2084C2  |82C284;
-                       DEC.B $36                            ;82C221|C636    |000E9E;
+                       DEC.B r_ev_36-$E68                   ;82C221|C636    |000E9E;
                        BNE CODE_82C229                      ;82C223|D004    |82C229;
                        LDA.B #$04                           ;82C225|A904    |      ;
-                       STA.B $02                            ;82C227|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82C227|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_82C229:
                        RTL                                  ;82C229|6B      |      ;
@@ -10254,10 +10260,10 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82C22A:
                        LDA.B #$25                           ;82C22A|A925    |      ;
-                       STA.B $0A                            ;82C22C|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82C22C|850A    |000E72;
                        JSL.L CODE_84A1D5                    ;82C22E|22D5A184|84A1D5;
                        LDA.B #$23                           ;82C232|A923    |      ;
-                       STA.B $0A                            ;82C234|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82C234|850A    |000E72;
                        TYA                                  ;82C236|98      |      ;
                        BNE CODE_82C25B                      ;82C237|D022    |82C25B;
                        REP #$20                             ;82C239|C220    |      ;
@@ -10269,14 +10275,14 @@ loadProjectileSlotBase:
                        STA.W r_1e68                         ;82C24D|8D681E  |861E68;
                        LDA.L $7FD706                        ;82C250|AF06D77F|7FD706;
                        STA.W r_cam_BG0_yPos_lock_Set        ;82C254|8D6E1E  |861E6E;
-                       JSL.L CODE_828398                    ;82C257|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;82C257|22988382|828398;
                                                             ;      |        |      ;
           CODE_82C25B:
                        RTL                                  ;82C25B|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C25C:
-                       LDY.B $38                            ;82C25C|A438    |000EA0;
+                       LDY.B r_ev_38-$E68                   ;82C25C|A438    |000EA0;
                        LDA.W UNREACH_86CC62,Y               ;82C25E|B962CC  |86CC62;
                        AND.W #$00FF                         ;82C261|29FF00  |      ;
                        BIT.W #$0080                         ;82C264|898000  |      ;
@@ -10284,14 +10290,14 @@ loadProjectileSlotBase:
                        ASL A                                ;82C269|0A      |      ;
                        ASL A                                ;82C26A|0A      |      ;
                        TAX                                  ;82C26B|AA      |      ;
-                       LDA.W DATA8_86EE37,X                 ;82C26C|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;82C26C|BD37EE  |86EE37;
                        CLC                                  ;82C26F|18      |      ;
                        BPL CODE_82C273                      ;82C270|1001    |82C273;
                        SEC                                  ;82C272|38      |      ;
                                                             ;      |        |      ;
           CODE_82C273:
                        ROR A                                ;82C273|6A      |      ;
-                       STA.B $1A                            ;82C274|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82C274|851A    |000E82;
                        LDA.W DATA8_86EE39,X                 ;82C276|BD39EE  |86EE39;
                        CLC                                  ;82C279|18      |      ;
                        BPL CODE_82C27D                      ;82C27A|1001    |82C27D;
@@ -10299,7 +10305,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82C27D:
                        ROR A                                ;82C27D|6A      |      ;
-                       STA.B $1C                            ;82C27E|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82C27E|851C    |000E84;
                        LDA.W #$0000                         ;82C280|A90000  |      ;
                                                             ;      |        |      ;
           CODE_82C283:
@@ -10308,23 +10314,23 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82C284:
                        REP #$30                             ;82C284|C230    |      ;
-                       LDA.B $05                            ;82C286|A505    |000E6D;
-                       CMP.B $22                            ;82C288|C522    |000E8A;
+                       LDA.B r_ev_05_xPos-$E68              ;82C286|A505    |000E6D;
+                       CMP.B r_ev_22_xPosBkp-$E68           ;82C288|C522    |000E8A;
                        BNE CODE_82C292                      ;82C28A|D006    |82C292;
-                       LDA.B $08                            ;82C28C|A508    |000E70;
-                       CMP.B $24                            ;82C28E|C524    |000E8C;
+                       LDA.B r_ev_08_yPos-$E68              ;82C28C|A508    |000E70;
+                       CMP.B r_ev_24_yPosBkp-$E68           ;82C28E|C524    |000E8C;
                        BEQ CODE_82C2BA                      ;82C290|F028    |82C2BA;
                                                             ;      |        |      ;
           CODE_82C292:
-                       LDX.B $34                            ;82C292|A634    |000E9C;
-                       LDA.B $05                            ;82C294|A505    |000E6D;
+                       LDX.B r_ev_34-$E68                   ;82C292|A634    |000E9C;
+                       LDA.B r_ev_05_xPos-$E68              ;82C294|A505    |000E6D;
                        STA.L $7FD200,X                      ;82C296|9F00D27F|7FD200;
-                       LDA.B $08                            ;82C29A|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82C29A|A508    |000E70;
                        STA.L $7FD202,X                      ;82C29C|9F02D27F|7FD202;
                        SEP #$20                             ;82C2A0|E220    |      ;
-                       LDA.B $0F                            ;82C2A2|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;82C2A2|A50F    |000E77;
                        AND.B #$7F                           ;82C2A4|297F    |      ;
-                       ORA.B $33                            ;82C2A6|0533    |000E9B;
+                       ORA.B r_ev_33-$E68                   ;82C2A6|0533    |000E9B;
                        STA.L $7FD204,X                      ;82C2A8|9F04D27F|7FD204;
                        REP #$20                             ;82C2AC|C220    |      ;
                        TXA                                  ;82C2AE|8A      |      ;
@@ -10335,7 +10341,7 @@ loadProjectileSlotBase:
                        INC A                                ;82C2B3|1A      |      ;
                        AND.W #$03FF                         ;82C2B4|29FF03  |      ;
                        TAX                                  ;82C2B7|AA      |      ;
-                       STX.B $34                            ;82C2B8|8634    |000E9C;
+                       STX.B r_ev_34-$E68                   ;82C2B8|8634    |000E9C;
                                                             ;      |        |      ;
           CODE_82C2BA:
                        SEP #$30                             ;82C2BA|E230    |      ;
@@ -10357,9 +10363,9 @@ loadProjectileSlotBase:
                        REP #$20                             ;82C2D3|C220    |      ;
                        TDC                                  ;82C2D5|7B      |      ;
                        STA.W r_000c,X                       ;82C2D6|9D0C00  |86000C;
-                       LDA.B $05                            ;82C2D9|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82C2D9|A505    |000E6D;
                        STA.W r_0005,X                       ;82C2DB|9D0500  |860005;
-                       LDA.B $08                            ;82C2DE|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82C2DE|A508    |000E70;
                        STA.W r_0008,X                       ;82C2E0|9D0800  |860008;
                        SEP #$20                             ;82C2E3|E220    |      ;
                        INY                                  ;82C2E5|C8      |      ;
@@ -10369,13 +10375,13 @@ loadProjectileSlotBase:
                        INC.W r_0000,X                       ;82C2EF|FE0000  |860000;
                        LDA.B #$25                           ;82C2F2|A925    |      ;
                        STA.W r_000a,X                       ;82C2F4|9D0A00  |86000A;
-                       STX.B $3A                            ;82C2F7|863A    |000EA2;
+                       STX.B r_ev_3a-$E68                   ;82C2F7|863A    |000EA2;
                        REP #$20                             ;82C2F9|C220    |      ;
                        TDC                                  ;82C2FB|7B      |      ;
                        STA.W r_000c,X                       ;82C2FC|9D0C00  |86000C;
-                       LDA.B $05                            ;82C2FF|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82C2FF|A505    |000E6D;
                        STA.W r_0005,X                       ;82C301|9D0500  |860005;
-                       LDA.B $08                            ;82C304|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82C304|A508    |000E70;
                        STA.W r_0008,X                       ;82C306|9D0800  |860008;
                        SEP #$30                             ;82C309|E230    |      ;
                        RTS                                  ;82C30B|60      |      ;
@@ -10388,9 +10394,9 @@ loadProjectileSlotBase:
                        LDX.W #$0400                         ;82C312|A20004  |      ;
                                                             ;      |        |      ;
           CODE_82C315:
-                       LDA.B $05                            ;82C315|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82C315|A505    |000E6D;
                        STA.W $D200,X                        ;82C317|9D00D2  |7FD200;
-                       LDA.B $08                            ;82C31A|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82C31A|A508    |000E70;
                        STA.W $D202,X                        ;82C31C|9D02D2  |7FD202;
                        SEP #$20                             ;82C31F|E220    |      ;
                        STZ.W $D204,X                        ;82C321|9E04D2  |7FD204;
@@ -10412,17 +10418,17 @@ loadProjectileSlotBase:
                        LDA.B #$1A                           ;82C338|A91A    |      ;
                        STA.W r_000a,X                       ;82C33A|9D0A00  |86000A;
                        LDA.L $7F832E                        ;82C33D|AF2E837F|7F832E;
-                       ORA.B $33                            ;82C341|0533    |000E9B;
+                       ORA.B r_ev_33-$E68                   ;82C341|0533    |000E9B;
                        STA.W r_0011,X                       ;82C343|9D1100  |860011;
-                       LDA.B $18                            ;82C346|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;82C346|A518    |000E80;
                        STA.W r_0018,X                       ;82C348|9D1800  |860018;
-                       LDA.B $0F                            ;82C34B|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;82C34B|A50F    |000E77;
                        AND.B #$7F                           ;82C34D|297F    |      ;
                        STA.W r_0017,X                       ;82C34F|9D1700  |860017;
                        REP #$20                             ;82C352|C220    |      ;
-                       LDA.B $05                            ;82C354|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82C354|A505    |000E6D;
                        STA.W r_0005,X                       ;82C356|9D0500  |860005;
-                       LDA.B $08                            ;82C359|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82C359|A508    |000E70;
                        STA.W r_0008,X                       ;82C35B|9D0800  |860008;
                        SEP #$20                             ;82C35E|E220    |      ;
                        SEP #$10                             ;82C360|E210    |      ;
@@ -10436,10 +10442,10 @@ loadProjectileSlotBase:
                        LDA.B #$12                           ;82C36C|A912    |      ;
                        STA.W r_000a,X                       ;82C36E|9D0A00  |86000A;
                        REP #$21                             ;82C371|C221    |      ;
-                       LDA.B $08                            ;82C373|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82C373|A508    |000E70;
                        ADC.W r_0000                         ;82C375|6D0000  |860000;
                        STA.W r_0008,X                       ;82C378|9D0800  |860008;
-                       LDA.B $05                            ;82C37B|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82C37B|A505    |000E6D;
                        STA.W r_0005,X                       ;82C37D|9D0500  |860005;
                        SEP #$20                             ;82C380|E220    |      ;
                                                             ;      |        |      ;
@@ -10459,17 +10465,17 @@ loadProjectileSlotBase:
                        RTS                                  ;82C392|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82C393:
+eventID_utuborosBody_24_main:
                        LDX.B $01                            ;82C393|A601    |000FE9;
-                       JMP.W (PTR16_82C398,X)               ;82C395|7C98C3  |82C398;
+                       JMP.W (utuborosBody_24_state,X)      ;82C395|7C98C3  |82C398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82C398:
-                       dw CODE_82C39E                       ;82C398|        |82C39E;
+utuborosBody_24_state:
+                       dw utuborosBody_24_state_00          ;82C398|        |82C39E;
                        dw CODE_82C3BE                       ;82C39A|        |82C3BE;
                        dw CODE_82C409                       ;82C39C|        |82C409;
                                                             ;      |        |      ;
-          CODE_82C39E:
+utuborosBody_24_state_00:
                        LDA.B #$02                           ;82C39E|A902    |      ;
                        STA.B $01                            ;82C3A0|8501    |000FE9;
                        LDA.B #$04                           ;82C3A2|A904    |      ;
@@ -10525,7 +10531,7 @@ loadProjectileSlotBase:
                        LDA.B #$CC                           ;82C3FD|A9CC    |      ;
                        STA.B $21                            ;82C3FF|8521    |000FC9;
                        JSL.L CODE_849B43                    ;82C401|22439B84|849B43;
-                       JML.L CODE_8280B4                    ;82C405|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82C405|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C409:
@@ -10536,7 +10542,7 @@ loadProjectileSlotBase:
                        BCC CODE_82C41C                      ;82C412|9008    |82C41C;
                        LDA.B $00                            ;82C414|A500    |001028;
                        BEQ CODE_82C41C                      ;82C416|F004    |82C41C;
-                       JML.L CODE_8280B4                    ;82C418|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82C418|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C41C:
@@ -10618,7 +10624,7 @@ loadProjectileSlotBase:
                        JSR.W CODE_82C4EC                    ;82C499|20ECC4  |82C4EC;
                                                             ;      |        |      ;
           CODE_82C49C:
-                       JSL.L CODE_828398                    ;82C49C|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;82C49C|22988382|828398;
                                                             ;      |        |      ;
           CODE_82C4A0:
                        JMP.W CODE_82C6C0                    ;82C4A0|4CC0C6  |82C6C0;
@@ -10664,7 +10670,7 @@ loadProjectileSlotBase:
                        JSR.W CODE_82C4EC                    ;82C4E4|20ECC4  |82C4EC;
                                                             ;      |        |      ;
           CODE_82C4E7:
-                       JSL.L CODE_828398                    ;82C4E7|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;82C4E7|22988382|828398;
                                                             ;      |        |      ;
           CODE_82C4EB:
                        RTS                                  ;82C4EB|60      |      ;
@@ -10737,7 +10743,7 @@ loadProjectileSlotBase:
                        LDA.W r_0bb0                         ;82C559|ADB00B  |860BB0;
                        CLC                                  ;82C55C|18      |      ;
                        ADC.W #$FFE5                         ;82C55D|69E5FF  |      ;
-                       CMP.B $08                            ;82C560|C508    |000EB0;
+                       CMP.B r_ev_2_08_yPos-$EA8            ;82C560|C508    |000EB0;
                        BCS CODE_82C5A7                      ;82C562|B043    |82C5A7;
                        LDA.W r_0008                         ;82C564|AD0800  |860008;
                        STA.W r_000a                         ;82C567|8D0A00  |86000A;
@@ -10874,7 +10880,7 @@ loadProjectileSlotBase:
                        CLC                                  ;82C68F|18      |      ;
                        ADC.W r_0bad                         ;82C690|6DAD0B  |860BAD;
                        SEC                                  ;82C693|38      |      ;
-                       SBC.B $05                            ;82C694|E505    |000EAD;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;82C694|E505    |000EAD;
                        CLC                                  ;82C696|18      |      ;
                        ADC.W #$0010                         ;82C697|691000  |      ;
                        CMP.W #$0020                         ;82C69A|C92000  |      ;
@@ -10950,15 +10956,15 @@ loadProjectileSlotBase:
           CODE_82C715:
                        PHP                                  ;82C715|08      |      ;
                        REP #$20                             ;82C716|C220    |      ;
-                       LDA.B $05                            ;82C718|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82C718|A505    |000E6D;
                        SEC                                  ;82C71A|38      |      ;
-                       SBC.B $22                            ;82C71B|E522    |000E8A;
+                       SBC.B r_ev_22_xPosBkp-$E68           ;82C71B|E522    |000E8A;
                        CLC                                  ;82C71D|18      |      ;
                        ADC.W r_0bad                         ;82C71E|6DAD0B  |860BAD;
                        STA.W r_0bad                         ;82C721|8DAD0B  |860BAD;
-                       LDA.B $08                            ;82C724|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82C724|A508    |000E70;
                        SEC                                  ;82C726|38      |      ;
-                       SBC.B $24                            ;82C727|E524    |000E8C;
+                       SBC.B r_ev_24_yPosBkp-$E68           ;82C727|E524    |000E8C;
                        CLC                                  ;82C729|18      |      ;
                        ADC.W r_0bb0                         ;82C72A|6DB00B  |860BB0;
                        STA.W r_0bb0                         ;82C72D|8DB00B  |860BB0;
@@ -10967,17 +10973,17 @@ loadProjectileSlotBase:
                        RTL                                  ;82C733|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82C734:
+eventID_utuborosTail_25_main:
                        LDX.B $01                            ;82C734|A601    |001029;
-                       JMP.W (PTR16_82C739,X)               ;82C736|7C39C7  |82C739;
+                       JMP.W (utuborosTail_state,X)         ;82C736|7C39C7  |82C739;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82C739:
-                       dw CODE_82C73F                       ;82C739|        |82C73F;
+   utuborosTail_state:
+                       dw utuborosTail_state_00             ;82C739|        |82C73F;
                        dw CODE_82C76B                       ;82C73B|        |82C76B;
                        dw CODE_82C409                       ;82C73D|        |82C409;
                                                             ;      |        |      ;
-          CODE_82C73F:
+utuborosTail_state_00:
                        LDA.B #$02                           ;82C73F|A902    |      ;
                        STA.B $01                            ;82C741|8501    |001029;
                        LDA.B #$04                           ;82C743|A904    |      ;
@@ -11053,7 +11059,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82C7C9:
                        JSL.L CODE_849B03                    ;82C7C9|22039B84|849B03;
-                       JML.L CODE_8280B4                    ;82C7CD|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82C7CD|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_82C7D1:
@@ -11120,65 +11126,65 @@ loadProjectileSlotBase:
                        RTS                                  ;82C839|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82C83A:
-                       LDX.B $01                            ;82C83A|A601    |000EA9;
-                       JMP.W (PTR16_82C83F,X)               ;82C83C|7C3FC8  |82C83F;
+eventID_velguarder_26_main:
+                       LDX.B r_ev_2_01_state-$EA8           ;82C83A|A601    |000EA9;
+                       JMP.W (velguarder_26_state,X)        ;82C83C|7C3FC8  |82C83F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82C83F:
-                       dw CODE_82C847                       ;82C83F|        |82C847;
+  velguarder_26_state:
+                       dw velguarder_26_state_00            ;82C83F|        |82C847;
                        dw CODE_82C892                       ;82C841|        |82C892;
                        dw CODE_82C913                       ;82C843|        |82C913;
                        dw CODE_82D03D                       ;82C845|        |82D03D;
                                                             ;      |        |      ;
-          CODE_82C847:
-                       LDA.B $02                            ;82C847|A502    |000EAA;
+velguarder_26_state_00:
+                       LDA.B r_ev_2_02_action-$EA8          ;82C847|A502    |000EAA;
                        BNE CODE_82C851                      ;82C849|D006    |82C851;
-                       INC.B $02                            ;82C84B|E602    |000EAA;
+                       INC.B r_ev_2_02_action-$EA8          ;82C84B|E602    |000EAA;
                        LDA.B #$10                           ;82C84D|A910    |      ;
-                       STA.B $35                            ;82C84F|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82C84F|8535    |000EDD;
                                                             ;      |        |      ;
           CODE_82C851:
-                       DEC.B $35                            ;82C851|C635    |000EDD;
+                       DEC.B r_ev_2_35-$EA8                 ;82C851|C635    |000EDD;
                        BEQ CODE_82C856                      ;82C853|F001    |82C856;
                        RTL                                  ;82C855|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C856:
-                       JSL.L CODE_82827D                    ;82C856|227D8282|82827D;
-                       LDA.B $11                            ;82C85A|A511    |000EB9;
+                       JSL.L enemy_initiate_jumpPhysic      ;82C856|227D8282|82827D;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82C85A|A511    |000EB9;
                        AND.B #$0E                           ;82C85C|290E    |      ;
-                       STA.B $34                            ;82C85E|8534    |000EDC;
+                       STA.B r_ev_2_34-$EA8                 ;82C85E|8534    |000EDC;
                        LDA.B #$02                           ;82C860|A902    |      ;
-                       STA.B $12                            ;82C862|8512    |000EBA;
+                       STA.B r_ev_2_12-$EA8                 ;82C862|8512    |000EBA;
                        LDA.B #$06                           ;82C864|A906    |      ;
-                       STA.B $26                            ;82C866|8526    |000ECE;
+                       STA.B r_ev_2_26-$EA8                 ;82C866|8526    |000ECE;
                        LDA.B #$20                           ;82C868|A920    |      ;
-                       STA.B $27                            ;82C86A|8527    |000ECF;
-                       STZ.B $02                            ;82C86C|6402    |000EAA;
+                       STA.B r_ev_2_27-$EA8                 ;82C86A|8527    |000ECF;
+                       STZ.B r_ev_2_02_action-$EA8          ;82C86C|6402    |000EAA;
                        LDA.B #$40                           ;82C86E|A940    |      ;
-                       STA.B $1E                            ;82C870|851E    |000EC6;
+                       STA.B r_ev_2_1e_weight-$EA8          ;82C870|851E    |000EC6;
                        LDA.B #$FF                           ;82C872|A9FF    |      ;
-                       STA.B $2F                            ;82C874|852F    |000ED7;
+                       STA.B r_ev_2_2f-$EA8                 ;82C874|852F    |000ED7;
                        REP #$20                             ;82C876|C220    |      ;
                        LDA.W #$CD11                         ;82C878|A911CD  |      ;
-                       STA.B $20                            ;82C87B|8520    |000EC8;
-                       STZ.B $36                            ;82C87D|6436    |000EDE;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82C87B|8520    |000EC8;
+                       STZ.B r_ev_2_36-$EA8                 ;82C87D|6436    |000EDE;
                        SEP #$20                             ;82C87F|E220    |      ;
-                       STZ.B $39                            ;82C881|6439    |000EE1;
-                       STZ.B $3A                            ;82C883|643A    |000EE2;
-                       STZ.B $3B                            ;82C885|643B    |000EE3;
-                       STZ.B $3C                            ;82C887|643C    |000EE4;
-                       STZ.B $3D                            ;82C889|643D    |000EE5;
+                       STZ.B r_ev_2_39-$EA8                 ;82C881|6439    |000EE1;
+                       STZ.B r_ev_2_3a-$EA8                 ;82C883|643A    |000EE2;
+                       STZ.B r_ev_2_3b-$EA8                 ;82C885|643B    |000EE3;
+                       STZ.B r_ev_2_3c-$EA8                 ;82C887|643C    |000EE4;
+                       STZ.B r_ev_2_3d-$EA8                 ;82C889|643D    |000EE5;
                        LDA.B #$00                           ;82C88B|A900    |      ;
                        JSL.L CODE_848F07                    ;82C88D|22078F84|848F07;
                        RTL                                  ;82C891|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C892:
-                       LDX.B $02                            ;82C892|A602    |000EAA;
+                       LDX.B r_ev_2_02_action-$EA8          ;82C892|A602    |000EAA;
                        JSR.W (PTR16_82C89B,X)               ;82C894|FC9BC8  |82C89B;
-                       JMP.W CODE_8280B4                    ;82C897|4CB480  |8280B4;
+                       JMP.W eventID_vile_68_afterInit      ;82C897|4CB480  |8280B4;
                                                             ;      |        |      ;
                        RTL                                  ;82C89A|6B      |      ;
                                                             ;      |        |      ;
@@ -11194,7 +11200,7 @@ loadProjectileSlotBase:
                        BEQ CODE_82C8BA                      ;82C8A4|F014    |82C8BA;
                        JSL.L CODE_849FEB                    ;82C8A6|22EB9F84|849FEB;
                        LDA.B #$02                           ;82C8AA|A902    |      ;
-                       STA.B $02                            ;82C8AC|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82C8AC|8502    |000EAA;
                        LDA.B #$05                           ;82C8AE|A905    |      ;
                        JSL.L CODE_848F07                    ;82C8B0|22078F84|848F07;
                        LDA.B #$7E                           ;82C8B4|A97E    |      ;
@@ -11205,7 +11211,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C8BB:
-                       LDA.B $0F                            ;82C8BB|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82C8BB|A50F    |000EB7;
                        BMI CODE_82C8C6                      ;82C8BD|3007    |82C8C6;
                        JSL.L updateEv_13_14_17_0f           ;82C8BF|22EA8E84|848EEA;
                        JMP.W CODE_82C8DA                    ;82C8C3|4CDAC8  |82C8DA;
@@ -11216,9 +11222,9 @@ loadProjectileSlotBase:
                        TDC                                  ;82C8C8|7B      |      ;
                        STA.W r_1f0e                         ;82C8C9|8D0E1F  |861F0E;
                        SEP #$20                             ;82C8CC|E220    |      ;
-                       STZ.B $27                            ;82C8CE|6427    |000ECF;
+                       STZ.B r_ev_2_27-$EA8                 ;82C8CE|6427    |000ECF;
                        LDA.B #$04                           ;82C8D0|A904    |      ;
-                       STA.B $02                            ;82C8D2|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82C8D2|8502    |000EAA;
                        LDA.B #$00                           ;82C8D4|A900    |      ;
                        JSL.L CODE_848F07                    ;82C8D6|22078F84|848F07;
                                                             ;      |        |      ;
@@ -11230,13 +11236,13 @@ loadProjectileSlotBase:
                        LDA.W $0B9C                          ;82C8DB|AD9C0B  |860B9C;
                        LSR A                                ;82C8DE|4A      |      ;
                        BCC CODE_82C90E                      ;82C8DF|902D    |82C90E;
-                       LDA.B $27                            ;82C8E1|A527    |000ECF;
+                       LDA.B r_ev_2_27-$EA8                 ;82C8E1|A527    |000ECF;
                        AND.B #$7F                           ;82C8E3|297F    |      ;
                        CMP.B #$20                           ;82C8E5|C920    |      ;
                        BEQ CODE_82C8F7                      ;82C8E7|F00E    |82C8F7;
                        INC A                                ;82C8E9|1A      |      ;
                        ORA.B #$80                           ;82C8EA|0980    |      ;
-                       STA.B $27                            ;82C8EC|8527    |000ECF;
+                       STA.B r_ev_2_27-$EA8                 ;82C8EC|8527    |000ECF;
                        LDA.B #$0C                           ;82C8EE|A90C    |      ;
                        JSL.L CODE_8088CD                    ;82C8F0|22CD8880|8088CD;
                        JMP.W CODE_82C90E                    ;82C8F4|4C0EC9  |82C90E;
@@ -11244,10 +11250,10 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82C8F7:
                        LDA.B #$04                           ;82C8F7|A904    |      ;
-                       STA.B $01                            ;82C8F9|8501    |000EA9;
-                       STZ.B $02                            ;82C8FB|6402    |000EAA;
-                       STZ.B $03                            ;82C8FD|6403    |000EAB;
-                       STZ.B $38                            ;82C8FF|6438    |000EE0;
+                       STA.B r_ev_2_01_state-$EA8           ;82C8F9|8501    |000EA9;
+                       STZ.B r_ev_2_02_action-$EA8          ;82C8FB|6402    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;82C8FD|6403    |000EAB;
+                       STZ.B r_ev_2_38-$EA8                 ;82C8FF|6438    |000EE0;
                        STZ.W r_1f1d                         ;82C901|9C1D1F  |861F1D;
                        LDA.B #$1E                           ;82C904|A91E    |      ;
                        JSL.L CODE_8087A2                    ;82C906|22A28780|8087A2;
@@ -11259,37 +11265,37 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C913:
-                       LDX.B $02                            ;82C913|A602    |000EAA;
+                       LDX.B r_ev_2_02_action-$EA8          ;82C913|A602    |000EAA;
                        JSR.W (PTR16_82C9AD,X)               ;82C915|FCADC9  |82C9AD;
-                       LDA.B $27                            ;82C918|A527    |000ECF;
+                       LDA.B r_ev_2_27-$EA8                 ;82C918|A527    |000ECF;
                        BNE CODE_82C91F                      ;82C91A|D003    |82C91F;
                        JMP.W CODE_82C9A8                    ;82C91C|4CA8C9  |82C9A8;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C91F:
-                       LDA.B $38                            ;82C91F|A538    |000EE0;
+                       LDA.B r_ev_2_38-$EA8                 ;82C91F|A538    |000EE0;
                        BEQ CODE_82C926                      ;82C921|F003    |82C926;
                        JMP.W CODE_82C92A                    ;82C923|4C2AC9  |82C92A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C926:
                        LDA.B #$0A                           ;82C926|A90A    |      ;
-                       STA.B $28                            ;82C928|8528    |000ED0;
+                       STA.B r_ev_2_28-$EA8                 ;82C928|8528    |000ED0;
                                                             ;      |        |      ;
           CODE_82C92A:
                        JSL.L CODE_849B43                    ;82C92A|22439B84|849B43;
                        BEQ CODE_82C971                      ;82C92E|F041    |82C971;
-                       LDA.B $27                            ;82C930|A527    |000ECF;
+                       LDA.B r_ev_2_27-$EA8                 ;82C930|A527    |000ECF;
                        AND.B #$7F                           ;82C932|297F    |      ;
                        BNE CODE_82C961                      ;82C934|D02B    |82C961;
                        LDA.W r_0bcf                         ;82C936|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82C939|297F    |      ;
                        BEQ CODE_82C965                      ;82C93B|F028    |82C965;
                        LDA.B #$06                           ;82C93D|A906    |      ;
-                       STA.B $01                            ;82C93F|8501    |000EA9;
-                       STZ.B $02                            ;82C941|6402    |000EAA;
+                       STA.B r_ev_2_01_state-$EA8           ;82C93F|8501    |000EA9;
+                       STZ.B r_ev_2_02_action-$EA8          ;82C941|6402    |000EAA;
                        LDA.B #$20                           ;82C943|A920    |      ;
-                       STA.B $35                            ;82C945|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82C945|8535    |000EDD;
                        LDA.B #$01                           ;82C947|A901    |      ;
                        STA.W r_0bd8                         ;82C949|8DD80B  |860BD8;
                        STA.W r_1f0c                         ;82C94C|8D0C1F  |861F0C;
@@ -11303,15 +11309,15 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82C961:
                        LDA.B #$0E                           ;82C961|A90E    |      ;
-                       TRB.B $11                            ;82C963|1411    |000EB9;
+                       TRB.B r_ev_2_11_sprAtri-$EA8         ;82C963|1411    |000EB9;
                                                             ;      |        |      ;
           CODE_82C965:
                        LDA.B #$18                           ;82C965|A918    |      ;
-                       STA.B $38                            ;82C967|8538    |000EE0;
+                       STA.B r_ev_2_38-$EA8                 ;82C967|8538    |000EE0;
                        LDA.B #$05                           ;82C969|A905    |      ;
-                       STA.B $28                            ;82C96B|8528    |000ED0;
+                       STA.B r_ev_2_28-$EA8                 ;82C96B|8528    |000ED0;
                        LDA.B #$01                           ;82C96D|A901    |      ;
-                       STA.B $3D                            ;82C96F|853D    |000EE5;
+                       STA.B r_ev_2_3d-$EA8                 ;82C96F|853D    |000EE5;
                                                             ;      |        |      ;
           CODE_82C971:
                        LDA.W r_1f1d                         ;82C971|AD1D1F  |861F1D;
@@ -11323,31 +11329,31 @@ loadProjectileSlotBase:
                        BNE CODE_82C998                      ;82C97E|D018    |82C998;
                                                             ;      |        |      ;
           CODE_82C980:
-                       LDA.B $3C                            ;82C980|A53C    |000EE4;
+                       LDA.B r_ev_2_3c-$EA8                 ;82C980|A53C    |000EE4;
                        BNE CODE_82C998                      ;82C982|D014    |82C998;
                        LDA.B #$07                           ;82C984|A907    |      ;
                        JSL.L CODE_848F07                    ;82C986|22078F84|848F07;
                        LDA.B #$0C                           ;82C98A|A90C    |      ;
-                       STA.B $02                            ;82C98C|8502    |000EAA;
-                       STZ.B $03                            ;82C98E|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;82C98C|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;82C98E|6403    |000EAB;
                        LDA.B #$01                           ;82C990|A901    |      ;
-                       STA.B $3C                            ;82C992|853C    |000EE4;
+                       STA.B r_ev_2_3c-$EA8                 ;82C992|853C    |000EE4;
                        LDA.B #$22                           ;82C994|A922    |      ;
-                       STA.B $38                            ;82C996|8538    |000EE0;
+                       STA.B r_ev_2_38-$EA8                 ;82C996|8538    |000EE0;
                                                             ;      |        |      ;
           CODE_82C998:
-                       LDA.B $3D                            ;82C998|A53D    |000EE5;
+                       LDA.B r_ev_2_3d-$EA8                 ;82C998|A53D    |000EE5;
                        BNE CODE_82C9A0                      ;82C99A|D004    |82C9A0;
-                       LDA.B $34                            ;82C99C|A534    |000EDC;
-                       TSB.B $11                            ;82C99E|0411    |000EB9;
+                       LDA.B r_ev_2_34-$EA8                 ;82C99C|A534    |000EDC;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;82C99E|0411    |000EB9;
                                                             ;      |        |      ;
           CODE_82C9A0:
-                       STZ.B $3D                            ;82C9A0|643D    |000EE5;
-                       DEC.B $38                            ;82C9A2|C638    |000EE0;
+                       STZ.B r_ev_2_3d-$EA8                 ;82C9A0|643D    |000EE5;
+                       DEC.B r_ev_2_38-$EA8                 ;82C9A2|C638    |000EE0;
                        JSL.L CODE_849B03                    ;82C9A4|22039B84|849B03;
                                                             ;      |        |      ;
           CODE_82C9A8:
-                       JML.L CODE_8280B4                    ;82C9A8|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82C9A8|5CB48082|8280B4;
                                                             ;      |        |      ;
                        RTL                                  ;82C9AC|6B      |      ;
                                                             ;      |        |      ;
@@ -11362,7 +11368,7 @@ loadProjectileSlotBase:
                        dw CODE_82CFD2                       ;82C9B9|        |82CFD2;
                                                             ;      |        |      ;
           CODE_82C9BB:
-                       LDX.B $03                            ;82C9BB|A603    |000EAB;
+                       LDX.B r_ev_2_03_do-$EA8              ;82C9BB|A603    |000EAB;
                        JSR.W (PTR16_82C9C1,X)               ;82C9BD|FCC1C9  |82C9C1;
                        RTS                                  ;82C9C0|60      |      ;
                                                             ;      |        |      ;
@@ -11378,7 +11384,7 @@ loadProjectileSlotBase:
                        dw CODE_82CB7B                       ;82C9CF|        |82CB7B;
                                                             ;      |        |      ;
           CODE_82C9D1:
-                       LDA.B $39                            ;82C9D1|A539    |000EE1;
+                       LDA.B r_ev_2_39-$EA8                 ;82C9D1|A539    |000EE1;
                        BNE CODE_82C9DE                      ;82C9D3|D009    |82C9DE;
                        LDA.B #$02                           ;82C9D5|A902    |      ;
                        JSL.L CODE_848F07                    ;82C9D7|22078F84|848F07;
@@ -11386,26 +11392,26 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C9DE:
-                       LDA.B $11                            ;82C9DE|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82C9DE|A511    |000EB9;
                        EOR.B #$40                           ;82C9E0|4940    |      ;
-                       STA.B $11                            ;82C9E2|8511    |000EB9;
-                       LDA.B $11                            ;82C9E4|A511    |000EB9;
+                       STA.B r_ev_2_11_sprAtri-$EA8         ;82C9E2|8511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82C9E4|A511    |000EB9;
                        AND.B #$40                           ;82C9E6|2940    |      ;
                        BEQ CODE_82C9F7                      ;82C9E8|F00D    |82C9F7;
                        REP #$20                             ;82C9EA|C220    |      ;
-                       LDA.B $05                            ;82C9EC|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82C9EC|A505    |000EAD;
                        CLC                                  ;82C9EE|18      |      ;
                        ADC.W #$0010                         ;82C9EF|691000  |      ;
-                       STA.B $05                            ;82C9F2|8505    |000EAD;
+                       STA.B r_ev_2_05_xPos-$EA8            ;82C9F2|8505    |000EAD;
                        JMP.W CODE_82CA01                    ;82C9F4|4C01CA  |82CA01;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C9F7:
                        REP #$20                             ;82C9F7|C220    |      ;
-                       LDA.B $05                            ;82C9F9|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82C9F9|A505    |000EAD;
                        SEC                                  ;82C9FB|38      |      ;
                        SBC.W #$0010                         ;82C9FC|E91000  |      ;
-                       STA.B $05                            ;82C9FF|8505    |000EAD;
+                       STA.B r_ev_2_05_xPos-$EA8            ;82C9FF|8505    |000EAD;
                                                             ;      |        |      ;
           CODE_82CA01:
                        SEP #$20                             ;82CA01|E220    |      ;
@@ -11413,82 +11419,82 @@ loadProjectileSlotBase:
                        JSL.L CODE_848F07                    ;82CA05|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82CA09:
-                       LDA.B $3A                            ;82CA09|A53A    |000EE2;
+                       LDA.B r_ev_2_3a-$EA8                 ;82CA09|A53A    |000EE2;
                        BNE CODE_82CA13                      ;82CA0B|D006    |82CA13;
-                       LDA.B $39                            ;82CA0D|A539    |000EE1;
+                       LDA.B r_ev_2_39-$EA8                 ;82CA0D|A539    |000EE1;
                        CMP.B #$03                           ;82CA0F|C903    |      ;
                        BNE CODE_82CA28                      ;82CA11|D015    |82CA28;
                                                             ;      |        |      ;
           CODE_82CA13:
                        REP #$20                             ;82CA13|C220    |      ;
                        LDA.W #$CD11                         ;82CA15|A911CD  |      ;
-                       STA.B $20                            ;82CA18|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82CA18|8520    |000EC8;
                        SEP #$20                             ;82CA1A|E220    |      ;
                        LDA.B #$06                           ;82CA1C|A906    |      ;
-                       STA.B $03                            ;82CA1E|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CA1E|8503    |000EAB;
                        JSR.W CODE_82D0EE                    ;82CA20|20EED0  |82D0EE;
-                       STZ.B $39                            ;82CA23|6439    |000EE1;
+                       STZ.B r_ev_2_39-$EA8                 ;82CA23|6439    |000EE1;
                        JMP.W CODE_82CA55                    ;82CA25|4C55CA  |82CA55;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CA28:
                        LDA.B #$02                           ;82CA28|A902    |      ;
-                       STA.B $03                            ;82CA2A|8503    |000EAB;
-                       INC.B $39                            ;82CA2C|E639    |000EE1;
-                       LDA.B $11                            ;82CA2E|A511    |000EB9;
+                       STA.B r_ev_2_03_do-$EA8              ;82CA2A|8503    |000EAB;
+                       INC.B r_ev_2_39-$EA8                 ;82CA2C|E639    |000EE1;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82CA2E|A511    |000EB9;
                        AND.B #$40                           ;82CA30|2940    |      ;
                        BEQ CODE_82CA3E                      ;82CA32|F00A    |82CA3E;
                        REP #$20                             ;82CA34|C220    |      ;
                        LDA.W #$0600                         ;82CA36|A90006  |      ;
-                       STA.B $1A                            ;82CA39|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82CA39|851A    |000EC2;
                        JMP.W CODE_82CA45                    ;82CA3B|4C45CA  |82CA45;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CA3E:
                        REP #$20                             ;82CA3E|C220    |      ;
                        LDA.W #$FA00                         ;82CA40|A900FA  |      ;
-                       STA.B $1A                            ;82CA43|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82CA43|851A    |000EC2;
                                                             ;      |        |      ;
           CODE_82CA45:
                        LDA.W #$0550                         ;82CA45|A95005  |      ;
-                       STA.B $1C                            ;82CA48|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;82CA48|851C    |000EC4;
                        LDA.W #$CD1B                         ;82CA4A|A91BCD  |      ;
-                       STA.B $20                            ;82CA4D|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82CA4D|8520    |000EC8;
                        SEP #$20                             ;82CA4F|E220    |      ;
                        LDA.B #$40                           ;82CA51|A940    |      ;
-                       STA.B $1E                            ;82CA53|851E    |000EC6;
+                       STA.B r_ev_2_1e_weight-$EA8          ;82CA53|851E    |000EC6;
                                                             ;      |        |      ;
           CODE_82CA55:
                        RTS                                  ;82CA55|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CA56:
-                       LDA.B $0F                            ;82CA56|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82CA56|A50F    |000EB7;
                        AND.B #$01                           ;82CA58|2901    |      ;
                        BEQ CODE_82CA60                      ;82CA5A|F004    |82CA60;
                        JSL.L updateEv_13_14_17_0f           ;82CA5C|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82CA60:
-                       LDA.B $0F                            ;82CA60|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82CA60|A50F    |000EB7;
                        AND.B #$02                           ;82CA62|2902    |      ;
                        BEQ CODE_82CA6A                      ;82CA64|F004    |82CA6A;
                        JSL.L CODE_8281E8                    ;82CA66|22E88182|8281E8;
                                                             ;      |        |      ;
           CODE_82CA6A:
                        JSL.L CODE_8491BE                    ;82CA6A|22BE9184|8491BE;
-                       LDA.B $2B                            ;82CA6E|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CA6E|A52B    |000ED3;
                        AND.B #$01                           ;82CA70|2901    |      ;
                        BNE CODE_82CA7A                      ;82CA72|D006    |82CA7A;
-                       LDA.B $2B                            ;82CA74|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CA74|A52B    |000ED3;
                        AND.B #$02                           ;82CA76|2902    |      ;
                        BEQ CODE_82CA8D                      ;82CA78|F013    |82CA8D;
                                                             ;      |        |      ;
           CODE_82CA7A:
-                       LDA.B $2B                            ;82CA7A|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CA7A|A52B    |000ED3;
                        AND.B #$04                           ;82CA7C|2904    |      ;
                        BNE CODE_82CA8D                      ;82CA7E|D00D    |82CA8D;
                        LDA.B #$04                           ;82CA80|A904    |      ;
-                       STA.B $03                            ;82CA82|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CA82|8503    |000EAB;
                        LDA.B #$09                           ;82CA84|A909    |      ;
                        JSL.L CODE_848F07                    ;82CA86|22078F84|848F07;
                        JMP.W CODE_82CAB2                    ;82CA8A|4CB2CA  |82CAB2;
@@ -11496,18 +11502,18 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82CA8D:
                        REP #$20                             ;82CA8D|C220    |      ;
-                       LDA.B $1C                            ;82CA8F|A51C    |000EC4;
+                       LDA.B r_ev_2_1c_ySpdSub-$EA8         ;82CA8F|A51C    |000EC4;
                        BPL CODE_82CAB2                      ;82CA91|101F    |82CAB2;
                        SEP #$20                             ;82CA93|E220    |      ;
-                       LDA.B $3A                            ;82CA95|A53A    |000EE2;
+                       LDA.B r_ev_2_3a-$EA8                 ;82CA95|A53A    |000EE2;
                        BEQ CODE_82CAAC                      ;82CA97|F013    |82CAAC;
-                       LDA.B $2B                            ;82CA99|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CA99|A52B    |000ED3;
                        AND.B #$04                           ;82CA9B|2904    |      ;
                        BEQ CODE_82CAB2                      ;82CA9D|F013    |82CAB2;
                        LDA.B #$04                           ;82CA9F|A904    |      ;
                        JSL.L CODE_848F07                    ;82CAA1|22078F84|848F07;
                        LDA.B #$0E                           ;82CAA5|A90E    |      ;
-                       STA.B $03                            ;82CAA7|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CAA7|8503    |000EAB;
                        JMP.W CODE_82CAB2                    ;82CAA9|4CB2CA  |82CAB2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11521,7 +11527,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CAB5:
-                       LDA.B $0F                            ;82CAB5|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82CAB5|A50F    |000EB7;
                        BMI CODE_82CAC0                      ;82CAB7|3007    |82CAC0;
                        JSL.L updateEv_13_14_17_0f           ;82CAB9|22EA8E84|848EEA;
                        JMP.W CODE_82CADA                    ;82CABD|4CDACA  |82CADA;
@@ -11529,22 +11535,22 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82CAC0:
                        REP #$20                             ;82CAC0|C220    |      ;
-                       LDA.B $08                            ;82CAC2|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;82CAC2|A508    |000EB0;
                        SEC                                  ;82CAC4|38      |      ;
                        SBC.W r_0bb0                         ;82CAC5|EDB00B  |860BB0;
                        BMI CODE_82CAD0                      ;82CAC8|3006    |82CAD0;
                        SEP #$20                             ;82CACA|E220    |      ;
-                       LDA.B $3A                            ;82CACC|A53A    |000EE2;
+                       LDA.B r_ev_2_3a-$EA8                 ;82CACC|A53A    |000EE2;
                        BEQ CODE_82CAD6                      ;82CACE|F006    |82CAD6;
                                                             ;      |        |      ;
           CODE_82CAD0:
                        SEP #$20                             ;82CAD0|E220    |      ;
                        LDA.B #$03                           ;82CAD2|A903    |      ;
-                       STA.B $39                            ;82CAD4|8539    |000EE1;
+                       STA.B r_ev_2_39-$EA8                 ;82CAD4|8539    |000EE1;
                                                             ;      |        |      ;
           CODE_82CAD6:
                        LDA.B #$00                           ;82CAD6|A900    |      ;
-                       STA.B $03                            ;82CAD8|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CAD8|8503    |000EAB;
                                                             ;      |        |      ;
           CODE_82CADA:
                        RTS                                  ;82CADA|60      |      ;
@@ -11553,13 +11559,13 @@ loadProjectileSlotBase:
           CODE_82CADB:
                        JSL.L CODE_8281E8                    ;82CADB|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;82CADF|22BE9184|8491BE;
-                       LDA.B $2B                            ;82CAE3|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CAE3|A52B    |000ED3;
                        AND.B #$04                           ;82CAE5|2904    |      ;
                        BNE CODE_82CB21                      ;82CAE7|D038    |82CB21;
-                       LDA.B $2B                            ;82CAE9|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CAE9|A52B    |000ED3;
                        AND.B #$01                           ;82CAEB|2901    |      ;
                        BNE CODE_82CAF5                      ;82CAED|D006    |82CAF5;
-                       LDA.B $2B                            ;82CAEF|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CAEF|A52B    |000ED3;
                        AND.B #$02                           ;82CAF1|2902    |      ;
                        BEQ CODE_82CB2D                      ;82CAF3|F038    |82CB2D;
                                                             ;      |        |      ;
@@ -11567,23 +11573,23 @@ loadProjectileSlotBase:
                        LDA.B #$0A                           ;82CAF5|A90A    |      ;
                        JSL.L CODE_848F07                    ;82CAF7|22078F84|848F07;
                        LDA.B #$0A                           ;82CAFB|A90A    |      ;
-                       STA.B $03                            ;82CAFD|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CAFD|8503    |000EAB;
                        LDA.B #$40                           ;82CAFF|A940    |      ;
-                       STA.B $1E                            ;82CB01|851E    |000EC6;
+                       STA.B r_ev_2_1e_weight-$EA8          ;82CB01|851E    |000EC6;
                        REP #$20                             ;82CB03|C220    |      ;
                        LDA.W #$03D5                         ;82CB05|A9D503  |      ;
-                       STA.B $1C                            ;82CB08|851C    |000EC4;
-                       LDA.B $11                            ;82CB0A|A511    |000EB9;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;82CB08|851C    |000EC4;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82CB0A|A511    |000EB9;
                        AND.W #$0040                         ;82CB0C|294000  |      ;
                        BEQ CODE_82CB19                      ;82CB0F|F008    |82CB19;
                        LDA.W #$FF00                         ;82CB11|A900FF  |      ;
-                       STA.B $1A                            ;82CB14|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82CB14|851A    |000EC2;
                        JMP.W CODE_82CB2D                    ;82CB16|4C2DCB  |82CB2D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CB19:
                        LDA.W #$0100                         ;82CB19|A90001  |      ;
-                       STA.B $1A                            ;82CB1C|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82CB1C|851A    |000EC2;
                        JMP.W CODE_82CB2D                    ;82CB1E|4C2DCB  |82CB2D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11592,7 +11598,7 @@ loadProjectileSlotBase:
                        LDA.B #$04                           ;82CB23|A904    |      ;
                        JSL.L CODE_848F07                    ;82CB25|22078F84|848F07;
                        LDA.B #$08                           ;82CB29|A908    |      ;
-                       STA.B $03                            ;82CB2B|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CB2B|8503    |000EAB;
                                                             ;      |        |      ;
           CODE_82CB2D:
                        SEP #$20                             ;82CB2D|E220    |      ;
@@ -11600,7 +11606,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CB30:
-                       LDA.B $0F                            ;82CB30|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82CB30|A50F    |000EB7;
                        BMI CODE_82CB3B                      ;82CB32|3007    |82CB3B;
                        JSL.L updateEv_13_14_17_0f           ;82CB34|22EA8E84|848EEA;
                        JMP.W CODE_82CB3E                    ;82CB38|4C3ECB  |82CB3E;
@@ -11617,29 +11623,29 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;82CB3F|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;82CB43|22E88182|8281E8;
                        REP #$20                             ;82CB47|C220    |      ;
-                       LDA.B $1C                            ;82CB49|A51C    |000EC4;
+                       LDA.B r_ev_2_1c_ySpdSub-$EA8         ;82CB49|A51C    |000EC4;
                        CMP.W #$F700                         ;82CB4B|C900F7  |      ;
                        BPL CODE_82CB55                      ;82CB4E|1005    |82CB55;
                        LDA.W #$F700                         ;82CB50|A900F7  |      ;
-                       STA.B $1C                            ;82CB53|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;82CB53|851C    |000EC4;
                                                             ;      |        |      ;
           CODE_82CB55:
                        SEP #$20                             ;82CB55|E220    |      ;
                        JSL.L CODE_8491BE                    ;82CB57|22BE9184|8491BE;
-                       LDA.B $2B                            ;82CB5B|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CB5B|A52B    |000ED3;
                        AND.B #$04                           ;82CB5D|2904    |      ;
                        BEQ CODE_82CB6B                      ;82CB5F|F00A    |82CB6B;
                        LDA.B #$0B                           ;82CB61|A90B    |      ;
                        JSL.L CODE_848F07                    ;82CB63|22078F84|848F07;
                        LDA.B #$0C                           ;82CB67|A90C    |      ;
-                       STA.B $03                            ;82CB69|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CB69|8503    |000EAB;
                                                             ;      |        |      ;
           CODE_82CB6B:
                        RTS                                  ;82CB6B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CB6C:
-                       LDA.B $0F                            ;82CB6C|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82CB6C|A50F    |000EB7;
                        BMI CODE_82CB77                      ;82CB6E|3007    |82CB77;
                        JSL.L updateEv_13_14_17_0f           ;82CB70|22EA8E84|848EEA;
                        JMP.W CODE_82CB7A                    ;82CB74|4C7ACB  |82CB7A;
@@ -11653,15 +11659,15 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CB7B:
-                       LDA.B $0F                            ;82CB7B|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82CB7B|A50F    |000EB7;
                        BPL CODE_82CB92                      ;82CB7D|1013    |82CB92;
                        LDA.B #$01                           ;82CB7F|A901    |      ;
-                       STA.B $35                            ;82CB81|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82CB81|8535    |000EDD;
                        LDA.B #$00                           ;82CB83|A900    |      ;
                        JSL.L CODE_848F07                    ;82CB85|22078F84|848F07;
                        LDA.B #$0A                           ;82CB89|A90A    |      ;
-                       STA.B $02                            ;82CB8B|8502    |000EAA;
-                       STZ.B $03                            ;82CB8D|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;82CB8B|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;82CB8D|6403    |000EAB;
                        JMP.W CODE_82CB96                    ;82CB8F|4C96CB  |82CB96;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11673,7 +11679,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CB97:
-                       LDX.B $03                            ;82CB97|A603    |000EAB;
+                       LDX.B r_ev_2_03_do-$EA8              ;82CB97|A603    |000EAB;
                        JSR.W (PTR16_82CB9D,X)               ;82CB99|FC9DCB  |82CB9D;
                        RTS                                  ;82CB9C|60      |      ;
                                                             ;      |        |      ;
@@ -11686,19 +11692,19 @@ loadProjectileSlotBase:
                        LDA.B #$05                           ;82CBA1|A905    |      ;
                        JSL.L CODE_848F07                    ;82CBA3|22078F84|848F07;
                        LDA.B #$08                           ;82CBA7|A908    |      ;
-                       STA.B $35                            ;82CBA9|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82CBA9|8535    |000EDD;
                        LDA.B #$02                           ;82CBAB|A902    |      ;
-                       STA.B $03                            ;82CBAD|8503    |000EAB;
-                       STZ.B $39                            ;82CBAF|6439    |000EE1;
+                       STA.B r_ev_2_03_do-$EA8              ;82CBAD|8503    |000EAB;
+                       STZ.B r_ev_2_39-$EA8                 ;82CBAF|6439    |000EE1;
                        REP #$20                             ;82CBB1|C220    |      ;
                        LDA.W #$CD25                         ;82CBB3|A925CD  |      ;
-                       STA.B $20                            ;82CBB6|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82CBB6|8520    |000EC8;
                        SEP #$20                             ;82CBB8|E220    |      ;
                        RTS                                  ;82CBBA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CBBB:
-                       LDA.B $0F                            ;82CBBB|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82CBBB|A50F    |000EB7;
                        CMP.B #$80                           ;82CBBD|C980    |      ;
                        BNE CODE_82CBC4                      ;82CBBF|D003    |82CBC4;
                        JMP.W CODE_82CC63                    ;82CBC1|4C63CC  |82CC63;
@@ -11711,16 +11717,16 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CBCB:
-                       LDA.B $39                            ;82CBCB|A539    |000EE1;
+                       LDA.B r_ev_2_39-$EA8                 ;82CBCB|A539    |000EE1;
                        BEQ CODE_82CBD2                      ;82CBCD|F003    |82CBD2;
                        JMP.W CODE_82CC5A                    ;82CBCF|4C5ACC  |82CC5A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CBD2:
-                       LDY.B $35                            ;82CBD2|A435    |000EDD;
+                       LDY.B r_ev_2_35-$EA8                 ;82CBD2|A435    |000EDD;
                        DEY                                  ;82CBD4|88      |      ;
                        DEY                                  ;82CBD5|88      |      ;
-                       STY.B $35                            ;82CBD6|8435    |000EDD;
+                       STY.B r_ev_2_35-$EA8                 ;82CBD6|8435    |000EDD;
                        CPY.B #$FF                           ;82CBD8|C0FF    |      ;
                        BNE CODE_82CBDF                      ;82CBDA|D003    |82CBDF;
                        JMP.W CODE_82CC63                    ;82CBDC|4C63CC  |82CC63;
@@ -11735,20 +11741,20 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82CBEA:
                        LDA.B #$01                           ;82CBEA|A901    |      ;
-                       STA.B $39                            ;82CBEC|8539    |000EE1;
+                       STA.B r_ev_2_39-$EA8                 ;82CBEC|8539    |000EE1;
                        INC.W r_0000,X                       ;82CBEE|FE0000  |860000;
                        LDA.B #$13                           ;82CBF1|A913    |      ;
                        STA.W r_000b,X                       ;82CBF3|9D0B00  |86000B;
                        LDA.B #$29                           ;82CBF6|A929    |      ;
                        STA.W r_000a,X                       ;82CBF8|9D0A00  |86000A;
-                       LDA.B $11                            ;82CBFB|A511    |000EB9;
-                       ORA.B $34                            ;82CBFD|0534    |000EDC;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82CBFB|A511    |000EB9;
+                       ORA.B r_ev_2_34-$EA8                 ;82CBFD|0534    |000EDC;
                        STA.W r_0011,X                       ;82CBFF|9D1100  |860011;
-                       LDA.B $18                            ;82CC02|A518    |000EC0;
+                       LDA.B r_ev_2_18_gfxSlot-$EA8         ;82CC02|A518    |000EC0;
                        STA.W r_0018,X                       ;82CC04|9D1800  |860018;
-                       LDA.B $16                            ;82CC07|A516    |000EBE;
+                       LDA.B r_ev_2_16-$EA8                 ;82CC07|A516    |000EBE;
                        STA.W r_0016,X                       ;82CC09|9D1600  |860016;
-                       LDA.B $11                            ;82CC0C|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82CC0C|A511    |000EB9;
                        AND.B #$40                           ;82CC0E|2940    |      ;
                        BEQ CODE_82CC23                      ;82CC10|F011    |82CC23;
                        REP #$20                             ;82CC12|C220    |      ;
@@ -11773,11 +11779,11 @@ loadProjectileSlotBase:
                        STA.W r_001c,X                       ;82CC38|9D1C00  |86001C;
                        LDA.W #$FFF4                         ;82CC3B|A9F4FF  |      ;
                        STA.W r_0002                         ;82CC3E|8D0200  |860002;
-                       LDA.B $05                            ;82CC41|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82CC41|A505    |000EAD;
                        CLC                                  ;82CC43|18      |      ;
                        ADC.W r_0000                         ;82CC44|6D0000  |860000;
                        STA.W r_0005,X                       ;82CC47|9D0500  |860005;
-                       LDA.B $08                            ;82CC4A|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;82CC4A|A508    |000EB0;
                        CLC                                  ;82CC4C|18      |      ;
                        ADC.W r_0002                         ;82CC4D|6D0200  |860002;
                        STA.W r_0008,X                       ;82CC50|9D0800  |860008;
@@ -11786,7 +11792,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CC58:
-                       STZ.B $39                            ;82CC58|6439    |000EE1;
+                       STZ.B r_ev_2_39-$EA8                 ;82CC58|6439    |000EE1;
                                                             ;      |        |      ;
           CODE_82CC5A:
                        SEP #$10                             ;82CC5A|E210    |      ;
@@ -11797,12 +11803,12 @@ loadProjectileSlotBase:
           CODE_82CC63:
                        SEP #$10                             ;82CC63|E210    |      ;
                        LDA.B #$0F                           ;82CC65|A90F    |      ;
-                       STA.B $35                            ;82CC67|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82CC67|8535    |000EDD;
                        LDA.B #$00                           ;82CC69|A900    |      ;
                        JSL.L CODE_848F07                    ;82CC6B|22078F84|848F07;
                        LDA.B #$0A                           ;82CC6F|A90A    |      ;
-                       STA.B $02                            ;82CC71|8502    |000EAA;
-                       STZ.B $03                            ;82CC73|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;82CC71|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;82CC73|6403    |000EAB;
                                                             ;      |        |      ;
           CODE_82CC75:
                        SEP #$10                             ;82CC75|E210    |      ;
@@ -11810,7 +11816,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CC78:
-                       LDX.B $03                            ;82CC78|A603    |000EAB;
+                       LDX.B r_ev_2_03_do-$EA8              ;82CC78|A603    |000EAB;
                        JSR.W (PTR16_82CC7E,X)               ;82CC7A|FC7ECC  |82CC7E;
                        RTS                                  ;82CC7D|60      |      ;
                                                             ;      |        |      ;
@@ -11822,24 +11828,24 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82CC84:
                        LDA.B #$02                           ;82CC84|A902    |      ;
-                       STA.B $03                            ;82CC86|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CC86|8503    |000EAB;
                        LDA.B #$06                           ;82CC88|A906    |      ;
                        JSL.L CODE_848F07                    ;82CC8A|22078F84|848F07;
                        LDA.B #$07                           ;82CC8E|A907    |      ;
-                       STA.B $35                            ;82CC90|8535    |000EDD;
-                       STZ.B $39                            ;82CC92|6439    |000EE1;
-                       STZ.B $36                            ;82CC94|6436    |000EDE;
-                       STZ.B $3A                            ;82CC96|643A    |000EE2;
-                       STZ.B $3E                            ;82CC98|643E    |000EE6;
+                       STA.B r_ev_2_35-$EA8                 ;82CC90|8535    |000EDD;
+                       STZ.B r_ev_2_39-$EA8                 ;82CC92|6439    |000EE1;
+                       STZ.B r_ev_2_36-$EA8                 ;82CC94|6436    |000EDE;
+                       STZ.B r_ev_2_3a-$EA8                 ;82CC96|643A    |000EE2;
+                       STZ.B r_ev_2_3e-$EA8                 ;82CC98|643E    |000EE6;
                        REP #$20                             ;82CC9A|C220    |      ;
-                       LDA.B $08                            ;82CC9C|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;82CC9C|A508    |000EB0;
                        SEC                                  ;82CC9E|38      |      ;
                        SBC.W r_0bb0                         ;82CC9F|EDB00B  |860BB0;
                        CMP.W #$0050                         ;82CCA2|C95000  |      ;
                        BMI CODE_82CCC6                      ;82CCA5|301F    |82CCC6;
                        LDA.W r_0bad                         ;82CCA7|ADAD0B  |860BAD;
                        SEC                                  ;82CCAA|38      |      ;
-                       SBC.B $05                            ;82CCAB|E505    |000EAD;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;82CCAB|E505    |000EAD;
                        BPL CODE_82CCBB                      ;82CCAD|100C    |82CCBB;
                        CMP.W #$FFE0                         ;82CCAF|C9E0FF  |      ;
                        BMI CODE_82CCC6                      ;82CCB2|3012    |82CCC6;
@@ -11854,74 +11860,74 @@ loadProjectileSlotBase:
                        LSR A                                ;82CCC0|4A      |      ;
                                                             ;      |        |      ;
           CODE_82CCC1:
-                       STA.B $1A                            ;82CCC1|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82CCC1|851A    |000EC2;
                        JMP.W CODE_82CCD1                    ;82CCC3|4CD1CC  |82CCD1;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CCC6:
                        LDA.W r_0bad                         ;82CCC6|ADAD0B  |860BAD;
                        SEC                                  ;82CCC9|38      |      ;
-                       SBC.B $05                            ;82CCCA|E505    |000EAD;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;82CCCA|E505    |000EAD;
                        ASL A                                ;82CCCC|0A      |      ;
                        ASL A                                ;82CCCD|0A      |      ;
                        ASL A                                ;82CCCE|0A      |      ;
-                       STA.B $1A                            ;82CCCF|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82CCCF|851A    |000EC2;
                                                             ;      |        |      ;
           CODE_82CCD1:
                        LDA.W #$FCA0                         ;82CCD1|A9A0FC  |      ;
-                       STA.B $1C                            ;82CCD4|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;82CCD4|851C    |000EC4;
                        LDA.W #$CD25                         ;82CCD6|A925CD  |      ;
-                       STA.B $20                            ;82CCD9|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82CCD9|8520    |000EC8;
                        SEP #$20                             ;82CCDB|E220    |      ;
                        JSL.L CODE_849086                    ;82CCDD|22869084|849086;
                        AND.B #$07                           ;82CCE1|2907    |      ;
                        LSR A                                ;82CCE3|4A      |      ;
                        BNE CODE_82CCEA                      ;82CCE4|D004    |82CCEA;
                        LDA.B #$01                           ;82CCE6|A901    |      ;
-                       STA.B $36                            ;82CCE8|8536    |000EDE;
+                       STA.B r_ev_2_36-$EA8                 ;82CCE8|8536    |000EDE;
                                                             ;      |        |      ;
           CODE_82CCEA:
                        RTS                                  ;82CCEA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CCEB:
-                       LDA.B $3E                            ;82CCEB|A53E    |000EE6;
+                       LDA.B r_ev_2_3e-$EA8                 ;82CCEB|A53E    |000EE6;
                        BNE CODE_82CCF4                      ;82CCED|D005    |82CCF4;
-                       DEC.B $3E                            ;82CCEF|C63E    |000EE6;
+                       DEC.B r_ev_2_3e-$EA8                 ;82CCEF|C63E    |000EE6;
                        JMP.W CODE_82CCFE                    ;82CCF1|4CFECC  |82CCFE;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CCF4:
                        LDA.B #$20                           ;82CCF4|A920    |      ;
-                       STA.B $3E                            ;82CCF6|853E    |000EE6;
+                       STA.B r_ev_2_3e-$EA8                 ;82CCF6|853E    |000EE6;
                        LDA.B #$77                           ;82CCF8|A977    |      ;
                        JSL.L CODE_8088CD                    ;82CCFA|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_82CCFE:
-                       LDA.B $0F                            ;82CCFE|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82CCFE|A50F    |000EB7;
                        BPL CODE_82CD09                      ;82CD00|1007    |82CD09;
-                       LDA.B $39                            ;82CD02|A539    |000EE1;
+                       LDA.B r_ev_2_39-$EA8                 ;82CD02|A539    |000EE1;
                        BNE CODE_82CD09                      ;82CD04|D003    |82CD09;
                        JMP.W CODE_82CD96                    ;82CD06|4C96CD  |82CD96;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CD09:
-                       LDA.B $0F                            ;82CD09|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82CD09|A50F    |000EB7;
                        AND.B #$01                           ;82CD0B|2901    |      ;
                        BNE CODE_82CD14                      ;82CD0D|D005    |82CD14;
-                       STZ.B $3A                            ;82CD0F|643A    |000EE2;
+                       STZ.B r_ev_2_3a-$EA8                 ;82CD0F|643A    |000EE2;
                        JMP.W CODE_82CD8D                    ;82CD11|4C8DCD  |82CD8D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CD14:
-                       LDA.B $3A                            ;82CD14|A53A    |000EE2;
+                       LDA.B r_ev_2_3a-$EA8                 ;82CD14|A53A    |000EE2;
                        BEQ CODE_82CD1B                      ;82CD16|F003    |82CD1B;
                        JMP.W CODE_82CD8D                    ;82CD18|4C8DCD  |82CD8D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CD1B:
-                       DEC.B $35                            ;82CD1B|C635    |000EDD;
-                       LDA.B $35                            ;82CD1D|A535    |000EDD;
+                       DEC.B r_ev_2_35-$EA8                 ;82CD1B|C635    |000EDD;
+                       LDA.B r_ev_2_35-$EA8                 ;82CD1D|A535    |000EDD;
                        BNE CODE_82CD24                      ;82CD1F|D003    |82CD24;
                        JMP.W CODE_82CD96                    ;82CD21|4C96CD  |82CD96;
                                                             ;      |        |      ;
@@ -11930,21 +11936,21 @@ loadProjectileSlotBase:
                        REP #$10                             ;82CD24|C210    |      ;
                        JSL.L CODE_828358                    ;82CD26|22588382|828358;
                        BNE CODE_82CD8D                      ;82CD2A|D061    |82CD8D;
-                       INC.B $3A                            ;82CD2C|E63A    |000EE2;
+                       INC.B r_ev_2_3a-$EA8                 ;82CD2C|E63A    |000EE2;
                        INC.W r_0000,X                       ;82CD2E|FE0000  |860000;
                        LDA.B #$08                           ;82CD31|A908    |      ;
                        STA.W r_000b,X                       ;82CD33|9D0B00  |86000B;
                        LDA.B #$29                           ;82CD36|A929    |      ;
                        STA.W r_000a,X                       ;82CD38|9D0A00  |86000A;
-                       LDA.B $11                            ;82CD3B|A511    |000EB9;
-                       ORA.B $34                            ;82CD3D|0534    |000EDC;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82CD3B|A511    |000EB9;
+                       ORA.B r_ev_2_34-$EA8                 ;82CD3D|0534    |000EDC;
                        STA.W r_0011,X                       ;82CD3F|9D1100  |860011;
-                       LDA.B $18                            ;82CD42|A518    |000EC0;
+                       LDA.B r_ev_2_18_gfxSlot-$EA8         ;82CD42|A518    |000EC0;
                        STA.W r_0018,X                       ;82CD44|9D1800  |860018;
-                       LDA.B $16                            ;82CD47|A516    |000EBE;
+                       LDA.B r_ev_2_16-$EA8                 ;82CD47|A516    |000EBE;
                        STA.W r_0016,X                       ;82CD49|9D1600  |860016;
                        REP #$20                             ;82CD4C|C220    |      ;
-                       LDA.B $11                            ;82CD4E|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82CD4E|A511    |000EB9;
                        AND.W #$0040                         ;82CD50|294000  |      ;
                        BNE CODE_82CD5E                      ;82CD53|D009    |82CD5E;
                        LDA.W #$FFE9                         ;82CD55|A9E9FF  |      ;
@@ -11959,17 +11965,17 @@ loadProjectileSlotBase:
           CODE_82CD64:
                        LDA.W #$0010                         ;82CD64|A91000  |      ;
                        STA.W r_0002                         ;82CD67|8D0200  |860002;
-                       LDA.B $05                            ;82CD6A|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82CD6A|A505    |000EAD;
                        CLC                                  ;82CD6C|18      |      ;
                        ADC.W r_0000                         ;82CD6D|6D0000  |860000;
                        STA.W r_0005,X                       ;82CD70|9D0500  |860005;
-                       LDA.B $08                            ;82CD73|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;82CD73|A508    |000EB0;
                        CLC                                  ;82CD75|18      |      ;
                        ADC.W r_0002                         ;82CD76|6D0200  |860002;
                        STA.W r_0008,X                       ;82CD79|9D0800  |860008;
-                       LDA.B $1A                            ;82CD7C|A51A    |000EC2;
+                       LDA.B r_ev_2_1a_xSpdSub-$EA8         ;82CD7C|A51A    |000EC2;
                        STA.W r_001a,X                       ;82CD7E|9D1A00  |86001A;
-                       LDA.B $1C                            ;82CD81|A51C    |000EC4;
+                       LDA.B r_ev_2_1c_ySpdSub-$EA8         ;82CD81|A51C    |000EC4;
                        STA.W r_001c,X                       ;82CD83|9D1C00  |86001C;
                        SEP #$20                             ;82CD86|E220    |      ;
                        LDA.B #$40                           ;82CD88|A940    |      ;
@@ -11982,12 +11988,12 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CD96:
-                       LDA.B $36                            ;82CD96|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;82CD96|A536    |000EDE;
                        BEQ CODE_82CDAB                      ;82CD98|F011    |82CDAB;
                        LDA.B #$28                           ;82CD9A|A928    |      ;
-                       STA.B $35                            ;82CD9C|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82CD9C|8535    |000EDD;
                        LDA.B #$04                           ;82CD9E|A904    |      ;
-                       STA.B $03                            ;82CDA0|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CDA0|8503    |000EAB;
                        LDA.B #$00                           ;82CDA2|A900    |      ;
                        JSL.L CODE_848F07                    ;82CDA4|22078F84|848F07;
                        JMP.W CODE_82CDBB                    ;82CDA8|4CBBCD  |82CDBB;
@@ -11995,27 +12001,27 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82CDAB:
                        LDA.B #$0F                           ;82CDAB|A90F    |      ;
-                       STA.B $35                            ;82CDAD|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82CDAD|8535    |000EDD;
                        LDA.B #$00                           ;82CDAF|A900    |      ;
                        JSL.L CODE_848F07                    ;82CDB1|22078F84|848F07;
                        LDA.B #$0A                           ;82CDB5|A90A    |      ;
-                       STA.B $02                            ;82CDB7|8502    |000EAA;
-                       STZ.B $03                            ;82CDB9|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;82CDB7|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;82CDB9|6403    |000EAB;
                                                             ;      |        |      ;
           CODE_82CDBB:
                        RTS                                  ;82CDBB|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CDBC:
-                       DEC.B $35                            ;82CDBC|C635    |000EDD;
+                       DEC.B r_ev_2_35-$EA8                 ;82CDBC|C635    |000EDD;
                        BNE CODE_82CDD7                      ;82CDBE|D017    |82CDD7;
                        LDA.B #$07                           ;82CDC0|A907    |      ;
-                       STA.B $35                            ;82CDC2|8535    |000EDD;
-                       STZ.B $39                            ;82CDC4|6439    |000EE1;
-                       STZ.B $3A                            ;82CDC6|643A    |000EE2;
-                       STZ.B $36                            ;82CDC8|6436    |000EDE;
+                       STA.B r_ev_2_35-$EA8                 ;82CDC2|8535    |000EDD;
+                       STZ.B r_ev_2_39-$EA8                 ;82CDC4|6439    |000EE1;
+                       STZ.B r_ev_2_3a-$EA8                 ;82CDC6|643A    |000EE2;
+                       STZ.B r_ev_2_36-$EA8                 ;82CDC8|6436    |000EDE;
                        LDA.B #$02                           ;82CDCA|A902    |      ;
-                       STA.B $03                            ;82CDCC|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CDCC|8503    |000EAB;
                        LDA.B #$06                           ;82CDCE|A906    |      ;
                        JSL.L CODE_848F07                    ;82CDD0|22078F84|848F07;
                        JMP.W CODE_82CDDB                    ;82CDD4|4CDBCD  |82CDDB;
@@ -12029,7 +12035,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CDDC:
-                       LDX.B $03                            ;82CDDC|A603    |000EAB;
+                       LDX.B r_ev_2_03_do-$EA8              ;82CDDC|A603    |000EAB;
                        JSR.W (PTR16_82CDE2,X)               ;82CDDE|FCE2CD  |82CDE2;
                        RTS                                  ;82CDE1|60      |      ;
                                                             ;      |        |      ;
@@ -12041,32 +12047,32 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82CDE8:
                        REP #$20                             ;82CDE8|C220    |      ;
-                       LDA.B $11                            ;82CDEA|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82CDEA|A511    |000EB9;
                        AND.W #$0040                         ;82CDEC|294000  |      ;
                        BNE CODE_82CDF9                      ;82CDEF|D008    |82CDF9;
                        LDA.W #$FDA0                         ;82CDF1|A9A0FD  |      ;
-                       STA.B $1A                            ;82CDF4|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82CDF4|851A    |000EC2;
                        JMP.W CODE_82CDFE                    ;82CDF6|4CFECD  |82CDFE;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CDF9:
                        LDA.W #$0260                         ;82CDF9|A96002  |      ;
-                       STA.B $1A                            ;82CDFC|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82CDFC|851A    |000EC2;
                                                             ;      |        |      ;
           CODE_82CDFE:
-                       STZ.B $1C                            ;82CDFE|641C    |000EC4;
+                       STZ.B r_ev_2_1c_ySpdSub-$EA8         ;82CDFE|641C    |000EC4;
                        LDA.W #$CD25                         ;82CE00|A925CD  |      ;
-                       STA.B $20                            ;82CE03|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82CE03|8520    |000EC8;
                        SEP #$20                             ;82CE05|E220    |      ;
                        LDA.B #$01                           ;82CE07|A901    |      ;
                        JSL.L CODE_848F07                    ;82CE09|22078F84|848F07;
                        LDA.B #$02                           ;82CE0D|A902    |      ;
-                       STA.B $03                            ;82CE0F|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CE0F|8503    |000EAB;
                        RTS                                  ;82CE11|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CE12:
-                       LDA.B $0F                            ;82CE12|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82CE12|A50F    |000EB7;
                        BEQ CODE_82CE1D                      ;82CE14|F007    |82CE1D;
                        JSL.L updateEv_13_14_17_0f           ;82CE16|22EA8E84|848EEA;
                        JMP.W CODE_82CE21                    ;82CE1A|4C21CE  |82CE21;
@@ -12074,7 +12080,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82CE1D:
                        LDA.B #$04                           ;82CE1D|A904    |      ;
-                       STA.B $03                            ;82CE1F|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CE1F|8503    |000EAB;
                                                             ;      |        |      ;
           CODE_82CE21:
                        RTS                                  ;82CE21|60      |      ;
@@ -12084,20 +12090,20 @@ loadProjectileSlotBase:
                        JSL.L CODE_82823E                    ;82CE22|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;82CE26|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;82CE2A|22BE9184|8491BE;
-                       LDA.B $2B                            ;82CE2E|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CE2E|A52B    |000ED3;
                        AND.B #$01                           ;82CE30|2901    |      ;
                        BNE CODE_82CE76                      ;82CE32|D042    |82CE76;
-                       LDA.B $2B                            ;82CE34|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CE34|A52B    |000ED3;
                        AND.B #$02                           ;82CE36|2902    |      ;
                        BNE CODE_82CE76                      ;82CE38|D03C    |82CE76;
-                       LDA.B $11                            ;82CE3A|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82CE3A|A511    |000EB9;
                        AND.B #$40                           ;82CE3C|2940    |      ;
                        BNE CODE_82CE4E                      ;82CE3E|D00E    |82CE4E;
                        REP #$20                             ;82CE40|C220    |      ;
                        LDA.W r_0bad                         ;82CE42|ADAD0B  |860BAD;
                        SEC                                  ;82CE45|38      |      ;
                        SBC.W #$0020                         ;82CE46|E92000  |      ;
-                       STA.B $36                            ;82CE49|8536    |000EDE;
+                       STA.B r_ev_2_36-$EA8                 ;82CE49|8536    |000EDE;
                        JMP.W CODE_82CE59                    ;82CE4B|4C59CE  |82CE59;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12106,33 +12112,33 @@ loadProjectileSlotBase:
                        LDA.W r_0bad                         ;82CE50|ADAD0B  |860BAD;
                        CLC                                  ;82CE53|18      |      ;
                        ADC.W #$0020                         ;82CE54|692000  |      ;
-                       STA.B $36                            ;82CE57|8536    |000EDE;
+                       STA.B r_ev_2_36-$EA8                 ;82CE57|8536    |000EDE;
                                                             ;      |        |      ;
           CODE_82CE59:
-                       LDA.B $36                            ;82CE59|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;82CE59|A536    |000EDE;
                        SEC                                  ;82CE5B|38      |      ;
-                       SBC.B $05                            ;82CE5C|E505    |000EAD;
-                       STA.B $36                            ;82CE5E|8536    |000EDE;
-                       LDA.B $11                            ;82CE60|A511    |000EB9;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;82CE5C|E505    |000EAD;
+                       STA.B r_ev_2_36-$EA8                 ;82CE5E|8536    |000EDE;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82CE60|A511    |000EB9;
                        AND.W #$0040                         ;82CE62|294000  |      ;
                        BNE CODE_82CE6F                      ;82CE65|D008    |82CE6F;
-                       LDA.B $36                            ;82CE67|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;82CE67|A536    |000EDE;
                        EOR.W #$FFFF                         ;82CE69|49FFFF  |      ;
                        INC A                                ;82CE6C|1A      |      ;
-                       STA.B $36                            ;82CE6D|8536    |000EDE;
+                       STA.B r_ev_2_36-$EA8                 ;82CE6D|8536    |000EDE;
                                                             ;      |        |      ;
           CODE_82CE6F:
-                       LDA.B $36                            ;82CE6F|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;82CE6F|A536    |000EDE;
                        CMP.W #$0000                         ;82CE71|C90000  |      ;
                        BPL CODE_82CE88                      ;82CE74|1012    |82CE88;
                                                             ;      |        |      ;
           CODE_82CE76:
                        SEP #$20                             ;82CE76|E220    |      ;
                        LDA.B #$08                           ;82CE78|A908    |      ;
-                       STA.B $35                            ;82CE7A|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82CE7A|8535    |000EDD;
                        LDA.B #$0A                           ;82CE7C|A90A    |      ;
-                       STA.B $02                            ;82CE7E|8502    |000EAA;
-                       STZ.B $03                            ;82CE80|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;82CE7E|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;82CE80|6403    |000EAB;
                        LDA.B #$00                           ;82CE82|A900    |      ;
                        JSL.L CODE_848F07                    ;82CE84|22078F84|848F07;
                                                             ;      |        |      ;
@@ -12143,34 +12149,34 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82CE8B:
                        REP #$20                             ;82CE8B|C220    |      ;
-                       LDA.B $11                            ;82CE8D|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82CE8D|A511    |000EB9;
                        AND.W #$0040                         ;82CE8F|294000  |      ;
                        BEQ CODE_82CE9C                      ;82CE92|F008    |82CE9C;
                        LDA.W #$03C0                         ;82CE94|A9C003  |      ;
-                       STA.B $1A                            ;82CE97|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82CE97|851A    |000EC2;
                        JMP.W CODE_82CEA1                    ;82CE99|4CA1CE  |82CEA1;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CE9C:
                        LDA.W #$FC40                         ;82CE9C|A940FC  |      ;
-                       STA.B $1A                            ;82CE9F|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82CE9F|851A    |000EC2;
                                                             ;      |        |      ;
           CODE_82CEA1:
                        LDA.W #$048A                         ;82CEA1|A98A04  |      ;
-                       STA.B $1C                            ;82CEA4|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;82CEA4|851C    |000EC4;
                        LDA.W #$CD1B                         ;82CEA6|A91BCD  |      ;
-                       STA.B $20                            ;82CEA9|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82CEA9|8520    |000EC8;
                        SEP #$20                             ;82CEAB|E220    |      ;
                        LDA.B #$40                           ;82CEAD|A940    |      ;
-                       STA.B $1E                            ;82CEAF|851E    |000EC6;
+                       STA.B r_ev_2_1e_weight-$EA8          ;82CEAF|851E    |000EC6;
                        LDA.B #$00                           ;82CEB1|A900    |      ;
-                       STA.B $02                            ;82CEB3|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82CEB3|8502    |000EAA;
                        LDA.B #$02                           ;82CEB5|A902    |      ;
-                       STA.B $03                            ;82CEB7|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CEB7|8503    |000EAB;
                        LDA.B #$01                           ;82CEB9|A901    |      ;
-                       STA.B $3A                            ;82CEBB|853A    |000EE2;
+                       STA.B r_ev_2_3a-$EA8                 ;82CEBB|853A    |000EE2;
                        LDA.B #$03                           ;82CEBD|A903    |      ;
-                       STA.B $39                            ;82CEBF|8539    |000EE1;
+                       STA.B r_ev_2_39-$EA8                 ;82CEBF|8539    |000EE1;
                        LDA.B #$02                           ;82CEC1|A902    |      ;
                        JSL.L CODE_848F07                    ;82CEC3|22078F84|848F07;
                        RTS                                  ;82CEC7|60      |      ;
@@ -12179,9 +12185,9 @@ loadProjectileSlotBase:
           CODE_82CEC8:
                        JSL.L CODE_879ED4                    ;82CEC8|22D49E87|879ED4;
                        JSL.L CODE_8491BE                    ;82CECC|22BE9184|8491BE;
-                       LDA.B $35                            ;82CED0|A535    |000EDD;
+                       LDA.B r_ev_2_35-$EA8                 ;82CED0|A535    |000EDD;
                        BEQ CODE_82CED9                      ;82CED2|F005    |82CED9;
-                       DEC.B $35                            ;82CED4|C635    |000EDD;
+                       DEC.B r_ev_2_35-$EA8                 ;82CED4|C635    |000EDD;
                        JMP.W CODE_82CFB7                    ;82CED6|4CB7CF  |82CFB7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12189,7 +12195,7 @@ loadProjectileSlotBase:
                        REP #$20                             ;82CED9|C220    |      ;
                        LDA.W r_0bad                         ;82CEDB|ADAD0B  |860BAD;
                        SEC                                  ;82CEDE|38      |      ;
-                       SBC.B $05                            ;82CEDF|E505    |000EAD;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;82CEDF|E505    |000EAD;
                        BCS CODE_82CEE7                      ;82CEE1|B004    |82CEE7;
                        EOR.W #$FFFF                         ;82CEE3|49FFFF  |      ;
                        INC A                                ;82CEE6|1A      |      ;
@@ -12199,19 +12205,19 @@ loadProjectileSlotBase:
                        BPL CODE_82CEF5                      ;82CEEA|1009    |82CEF5;
                        SEP #$20                             ;82CEEC|E220    |      ;
                        LDA.B #$01                           ;82CEEE|A901    |      ;
-                       STA.B $39                            ;82CEF0|8539    |000EE1;
+                       STA.B r_ev_2_39-$EA8                 ;82CEF0|8539    |000EE1;
                        JMP.W CODE_82CEF9                    ;82CEF2|4CF9CE  |82CEF9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CEF5:
                        SEP #$20                             ;82CEF5|E220    |      ;
-                       STZ.B $39                            ;82CEF7|6439    |000EE1;
+                       STZ.B r_ev_2_39-$EA8                 ;82CEF7|6439    |000EE1;
                                                             ;      |        |      ;
           CODE_82CEF9:
                        REP #$20                             ;82CEF9|C220    |      ;
                        LDA.W r_0bb0                         ;82CEFB|ADB00B  |860BB0;
                        SEC                                  ;82CEFE|38      |      ;
-                       SBC.B $08                            ;82CEFF|E508    |000EB0;
+                       SBC.B r_ev_2_08_yPos-$EA8            ;82CEFF|E508    |000EB0;
                        BCS CODE_82CF07                      ;82CF01|B004    |82CF07;
                        EOR.W #$FFFF                         ;82CF03|49FFFF  |      ;
                        INC A                                ;82CF06|1A      |      ;
@@ -12221,21 +12227,21 @@ loadProjectileSlotBase:
                        BMI CODE_82CF15                      ;82CF0A|3009    |82CF15;
                        SEP #$20                             ;82CF0C|E220    |      ;
                        LDA.B #$01                           ;82CF0E|A901    |      ;
-                       STA.B $3A                            ;82CF10|853A    |000EE2;
+                       STA.B r_ev_2_3a-$EA8                 ;82CF10|853A    |000EE2;
                        JMP.W CODE_82CF19                    ;82CF12|4C19CF  |82CF19;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CF15:
                        SEP #$20                             ;82CF15|E220    |      ;
-                       STZ.B $3A                            ;82CF17|643A    |000EE2;
+                       STZ.B r_ev_2_3a-$EA8                 ;82CF17|643A    |000EE2;
                                                             ;      |        |      ;
           CODE_82CF19:
                        JSR.W CODE_82D14F                    ;82CF19|204FD1  |82D14F;
-                       LDA.B $3A                            ;82CF1C|A53A    |000EE2;
+                       LDA.B r_ev_2_3a-$EA8                 ;82CF1C|A53A    |000EE2;
                        BEQ CODE_82CF58                      ;82CF1E|F038    |82CF58;
-                       LDA.B $39                            ;82CF20|A539    |000EE1;
+                       LDA.B r_ev_2_39-$EA8                 ;82CF20|A539    |000EE1;
                        BEQ CODE_82CF3E                      ;82CF22|F01A    |82CF3E;
-                       LDA.B $36                            ;82CF24|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;82CF24|A536    |000EDE;
                        CMP.B #$05                           ;82CF26|C905    |      ;
                        BPL CODE_82CF2D                      ;82CF28|1003    |82CF2D;
                        JMP.W CODE_82CF9E                    ;82CF2A|4C9ECF  |82CF9E;
@@ -12258,7 +12264,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CF3E:
-                       LDA.B $36                            ;82CF3E|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;82CF3E|A536    |000EDE;
                        CMP.B #$04                           ;82CF40|C904    |      ;
                        BPL CODE_82CF47                      ;82CF42|1003    |82CF47;
                        JMP.W CODE_82CF9E                    ;82CF44|4C9ECF  |82CF9E;
@@ -12281,9 +12287,9 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CF58:
-                       LDA.B $39                            ;82CF58|A539    |000EE1;
+                       LDA.B r_ev_2_39-$EA8                 ;82CF58|A539    |000EE1;
                        BEQ CODE_82CF7D                      ;82CF5A|F021    |82CF7D;
-                       LDA.B $36                            ;82CF5C|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;82CF5C|A536    |000EDE;
                        CMP.B #$02                           ;82CF5E|C902    |      ;
                        BPL CODE_82CF65                      ;82CF60|1003    |82CF65;
                        JMP.W CODE_82CFA5                    ;82CF62|4CA5CF  |82CFA5;
@@ -12312,7 +12318,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CF7D:
-                       LDA.B $36                            ;82CF7D|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;82CF7D|A536    |000EDE;
                        CMP.B #$02                           ;82CF7F|C902    |      ;
                        BPL CODE_82CF86                      ;82CF81|1003    |82CF86;
                        JMP.W CODE_82CFA5                    ;82CF83|4CA5CF  |82CFA5;
@@ -12336,49 +12342,49 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82CF97:
                        LDA.B #$08                           ;82CF97|A908    |      ;
-                       STA.B $02                            ;82CF99|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82CF99|8502    |000EAA;
                        JMP.W CODE_82CFB7                    ;82CF9B|4CB7CF  |82CFB7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CF9E:
                        LDA.B #$04                           ;82CF9E|A904    |      ;
-                       STA.B $02                            ;82CFA0|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82CFA0|8502    |000EAA;
                        JMP.W CODE_82CFB7                    ;82CFA2|4CB7CF  |82CFB7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CFA5:
                        LDA.B #$02                           ;82CFA5|A902    |      ;
-                       STA.B $02                            ;82CFA7|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82CFA7|8502    |000EAA;
                        JMP.W CODE_82CFB7                    ;82CFA9|4CB7CF  |82CFB7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CFAC:
                        LDA.B #$06                           ;82CFAC|A906    |      ;
-                       STA.B $02                            ;82CFAE|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82CFAE|8502    |000EAA;
                        JMP.W CODE_82CFB7                    ;82CFB0|4CB7CF  |82CFB7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CFB3:
                        LDA.B #$00                           ;82CFB3|A900    |      ;
-                       STA.B $02                            ;82CFB5|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82CFB5|8502    |000EAA;
                                                             ;      |        |      ;
           CODE_82CFB7:
-                       STZ.B $3A                            ;82CFB7|643A    |000EE2;
-                       STZ.B $39                            ;82CFB9|6439    |000EE1;
-                       STZ.B $36                            ;82CFBB|6436    |000EDE;
-                       STZ.B $37                            ;82CFBD|6437    |000EDF;
-                       STZ.B $3C                            ;82CFBF|643C    |000EE4;
+                       STZ.B r_ev_2_3a-$EA8                 ;82CFB7|643A    |000EE2;
+                       STZ.B r_ev_2_39-$EA8                 ;82CFB9|6439    |000EE1;
+                       STZ.B r_ev_2_36-$EA8                 ;82CFBB|6436    |000EDE;
+                       STZ.B r_ev_2_37-$EA8                 ;82CFBD|6437    |000EDF;
+                       STZ.B r_ev_2_3c-$EA8                 ;82CFBF|643C    |000EE4;
                        STZ.W r_1f1d                         ;82CFC1|9C1D1F  |861F1D;
                        REP #$20                             ;82CFC4|C220    |      ;
                        LDA.W #$CD11                         ;82CFC6|A911CD  |      ;
-                       STA.B $20                            ;82CFC9|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82CFC9|8520    |000EC8;
                        SEP #$20                             ;82CFCB|E220    |      ;
                        JSL.L updateEv_13_14_17_0f           ;82CFCD|22EA8E84|848EEA;
                        RTS                                  ;82CFD1|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CFD2:
-                       LDX.B $03                            ;82CFD2|A603    |000EAB;
+                       LDX.B r_ev_2_03_do-$EA8              ;82CFD2|A603    |000EAB;
                        JSR.W (PTR16_82CFD8,X)               ;82CFD4|FCD8CF  |82CFD8;
                        RTS                                  ;82CFD7|60      |      ;
                                                             ;      |        |      ;
@@ -12391,7 +12397,7 @@ loadProjectileSlotBase:
           CODE_82CFDE:
                        JSR.W CODE_82D18F                    ;82CFDE|208FD1  |82D18F;
                        LDA.B #$02                           ;82CFE1|A902    |      ;
-                       STA.B $03                            ;82CFE3|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82CFE3|8503    |000EAB;
                        RTS                                  ;82CFE5|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12399,15 +12405,15 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;82CFE6|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;82CFEA|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;82CFEE|22BE9184|8491BE;
-                       LDA.B $2B                            ;82CFF2|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CFF2|A52B    |000ED3;
                        AND.B #$01                           ;82CFF4|2901    |      ;
                        BNE CODE_82D00A                      ;82CFF6|D012    |82D00A;
-                       LDA.B $2B                            ;82CFF8|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82CFF8|A52B    |000ED3;
                        AND.B #$02                           ;82CFFA|2902    |      ;
                        BEQ CODE_82D013                      ;82CFFC|F015    |82D013;
                        REP #$20                             ;82CFFE|C220    |      ;
                        LDA.W #$0100                         ;82D000|A90001  |      ;
-                       STA.B $1A                            ;82D003|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82D003|851A    |000EC2;
                        SEP #$20                             ;82D005|E220    |      ;
                        JMP.W CODE_82D013                    ;82D007|4C13D0  |82D013;
                                                             ;      |        |      ;
@@ -12415,44 +12421,44 @@ loadProjectileSlotBase:
           CODE_82D00A:
                        REP #$20                             ;82D00A|C220    |      ;
                        LDA.W #$FF00                         ;82D00C|A900FF  |      ;
-                       STA.B $1A                            ;82D00F|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82D00F|851A    |000EC2;
                        SEP #$20                             ;82D011|E220    |      ;
                                                             ;      |        |      ;
           CODE_82D013:
-                       LDA.B $2B                            ;82D013|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82D013|A52B    |000ED3;
                        AND.B #$04                           ;82D015|2904    |      ;
                        BEQ CODE_82D023                      ;82D017|F00A    |82D023;
                        LDA.B #$0B                           ;82D019|A90B    |      ;
                        JSL.L CODE_848F07                    ;82D01B|22078F84|848F07;
                        LDA.B #$04                           ;82D01F|A904    |      ;
-                       STA.B $03                            ;82D021|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;82D021|8503    |000EAB;
                                                             ;      |        |      ;
           CODE_82D023:
                        RTS                                  ;82D023|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D024:
-                       LDA.B $0F                            ;82D024|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82D024|A50F    |000EB7;
                        BPL CODE_82D02C                      ;82D026|1004    |82D02C;
                        JSL.L updateEv_13_14_17_0f           ;82D028|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82D02C:
                        LDA.B #$01                           ;82D02C|A901    |      ;
-                       STA.B $35                            ;82D02E|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82D02E|8535    |000EDD;
                        LDA.B #$0A                           ;82D030|A90A    |      ;
-                       STA.B $02                            ;82D032|8502    |000EAA;
-                       STZ.B $03                            ;82D034|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;82D032|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;82D034|6403    |000EAB;
                        LDA.B #$00                           ;82D036|A900    |      ;
                        JSL.L CODE_848F07                    ;82D038|22078F84|848F07;
                        RTS                                  ;82D03C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D03D:
-                       LDX.B $02                            ;82D03D|A602    |000EAA;
+                       LDX.B r_ev_2_02_action-$EA8          ;82D03D|A602    |000EAA;
                        JSR.W (PTR16_82D04A,X)               ;82D03F|FC4AD0  |82D04A;
-                       LDA.B $3B                            ;82D042|A53B    |000EE3;
+                       LDA.B r_ev_2_3b-$EA8                 ;82D042|A53B    |000EE3;
                        BNE CODE_82D049                      ;82D044|D003    |82D049;
-                       JMP.W CODE_8280B4                    ;82D046|4CB480  |8280B4;
+                       JMP.W eventID_vile_68_afterInit      ;82D046|4CB480  |8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D049:
@@ -12464,11 +12470,11 @@ loadProjectileSlotBase:
                        dw CODE_82D074                       ;82D04C|        |82D074;
                                                             ;      |        |      ;
           CODE_82D04E:
-                       LDA.B $34                            ;82D04E|A534    |000EDC;
-                       TSB.B $11                            ;82D050|0411    |000EB9;
-                       LDA.B $35                            ;82D052|A535    |000EDD;
+                       LDA.B r_ev_2_34-$EA8                 ;82D04E|A534    |000EDC;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;82D050|0411    |000EB9;
+                       LDA.B r_ev_2_35-$EA8                 ;82D052|A535    |000EDD;
                        BEQ CODE_82D05B                      ;82D054|F005    |82D05B;
-                       DEC.B $35                            ;82D056|C635    |000EDD;
+                       DEC.B r_ev_2_35-$EA8                 ;82D056|C635    |000EDD;
                        JMP.W CODE_82D073                    ;82D058|4C73D0  |82D073;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12480,8 +12486,8 @@ loadProjectileSlotBase:
                        JSL.L CODE_848F07                    ;82D066|22078F84|848F07;
                        JSR.W CODE_82D18F                    ;82D06A|208FD1  |82D18F;
                        LDA.B #$02                           ;82D06D|A902    |      ;
-                       STA.B $02                            ;82D06F|8502    |000EAA;
-                       STZ.B $35                            ;82D071|6435    |000EDD;
+                       STA.B r_ev_2_02_action-$EA8          ;82D06F|8502    |000EAA;
+                       STZ.B r_ev_2_35-$EA8                 ;82D071|6435    |000EDD;
                                                             ;      |        |      ;
           CODE_82D073:
                        RTS                                  ;82D073|60      |      ;
@@ -12489,19 +12495,19 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82D074:
                        JSL.L updateEv_13_14_17_0f           ;82D074|22EA8E84|848EEA;
-                       LDA.B $35                            ;82D078|A535    |000EDD;
+                       LDA.B r_ev_2_35-$EA8                 ;82D078|A535    |000EDD;
                        BNE CODE_82D0B6                      ;82D07A|D03A    |82D0B6;
                        JSL.L CODE_8281E8                    ;82D07C|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;82D080|22BE9184|8491BE;
-                       LDA.B $2B                            ;82D084|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82D084|A52B    |000ED3;
                        AND.B #$01                           ;82D086|2901    |      ;
                        BNE CODE_82D09C                      ;82D088|D012    |82D09C;
-                       LDA.B $2B                            ;82D08A|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82D08A|A52B    |000ED3;
                        AND.B #$02                           ;82D08C|2902    |      ;
                        BEQ CODE_82D0A5                      ;82D08E|F015    |82D0A5;
                        REP #$20                             ;82D090|C220    |      ;
                        LDA.W #$0100                         ;82D092|A90001  |      ;
-                       STA.B $1A                            ;82D095|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82D095|851A    |000EC2;
                        SEP #$20                             ;82D097|E220    |      ;
                        JMP.W CODE_82D0A5                    ;82D099|4CA5D0  |82D0A5;
                                                             ;      |        |      ;
@@ -12509,18 +12515,18 @@ loadProjectileSlotBase:
           CODE_82D09C:
                        REP #$20                             ;82D09C|C220    |      ;
                        LDA.W #$FF00                         ;82D09E|A900FF  |      ;
-                       STA.B $1A                            ;82D0A1|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82D0A1|851A    |000EC2;
                        SEP #$20                             ;82D0A3|E220    |      ;
                                                             ;      |        |      ;
           CODE_82D0A5:
-                       LDA.B $2B                            ;82D0A5|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82D0A5|A52B    |000ED3;
                        AND.B #$04                           ;82D0A7|2904    |      ;
                        BEQ CODE_82D0ED                      ;82D0A9|F042    |82D0ED;
                        JSR.W CODE_82D158                    ;82D0AB|2058D1  |82D158;
                        LDA.B #$01                           ;82D0AE|A901    |      ;
-                       STA.B $3B                            ;82D0B0|853B    |000EE3;
+                       STA.B r_ev_2_3b-$EA8                 ;82D0B0|853B    |000EE3;
                        LDA.B #$50                           ;82D0B2|A950    |      ;
-                       STA.B $35                            ;82D0B4|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82D0B4|8535    |000EDD;
                                                             ;      |        |      ;
           CODE_82D0B6:
                        REP #$20                             ;82D0B6|C220    |      ;
@@ -12534,28 +12540,28 @@ loadProjectileSlotBase:
                        STA.W r_0008                         ;82D0CD|8D0800  |860008;
                        SEP #$20                             ;82D0D0|E220    |      ;
                        JSL.L CODE_84A4D0                    ;82D0D2|22D0A484|84A4D0;
-                       DEC.B $35                            ;82D0D6|C635    |000EDD;
+                       DEC.B r_ev_2_35-$EA8                 ;82D0D6|C635    |000EDD;
                        BNE CODE_82D0ED                      ;82D0D8|D013    |82D0ED;
                        STZ.W r_0bd8                         ;82D0DA|9CD80B  |860BD8;
                        STZ.W r_1f0c                         ;82D0DD|9C0C1F  |861F0C;
                        JSL.L CODE_84A003                    ;82D0E0|2203A084|84A003;
                        LDA.B #$00                           ;82D0E4|A900    |      ;
                        STA.W r_1f3f                         ;82D0E6|8D3F1F  |861F3F;
-                       JSL.L CODE_828398                    ;82D0E9|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;82D0E9|22988382|828398;
                                                             ;      |        |      ;
           CODE_82D0ED:
                        RTS                                  ;82D0ED|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D0EE:
-                       LDA.B $11                            ;82D0EE|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82D0EE|A511    |000EB9;
                        AND.B #$40                           ;82D0F0|2940    |      ;
                        BEQ CODE_82D102                      ;82D0F2|F00E    |82D102;
                        REP #$20                             ;82D0F4|C220    |      ;
                        LDA.W #$0600                         ;82D0F6|A90006  |      ;
                        CLC                                  ;82D0F9|18      |      ;
                        ADC.W #$0010                         ;82D0FA|691000  |      ;
-                       STA.B $1A                            ;82D0FD|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82D0FD|851A    |000EC2;
                        JMP.W CODE_82D10D                    ;82D0FF|4C0DD1  |82D10D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12564,15 +12570,15 @@ loadProjectileSlotBase:
                        LDA.W #$FA00                         ;82D104|A900FA  |      ;
                        SEC                                  ;82D107|38      |      ;
                        SBC.W #$0010                         ;82D108|E91000  |      ;
-                       STA.B $1A                            ;82D10B|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82D10B|851A    |000EC2;
                                                             ;      |        |      ;
           CODE_82D10D:
-                       STZ.B $1C                            ;82D10D|641C    |000EC4;
+                       STZ.B r_ev_2_1c_ySpdSub-$EA8         ;82D10D|641C    |000EC4;
                        SEP #$20                             ;82D10F|E220    |      ;
                        REP #$20                             ;82D111|C220    |      ;
                        LDA.W r_0bad                         ;82D113|ADAD0B  |860BAD;
                        SEC                                  ;82D116|38      |      ;
-                       SBC.B $05                            ;82D117|E505    |000EAD;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;82D117|E505    |000EAD;
                        BCS CODE_82D11F                      ;82D119|B004    |82D11F;
                        EOR.W #$FFFF                         ;82D11B|49FFFF  |      ;
                        INC A                                ;82D11E|1A      |      ;
@@ -12581,7 +12587,7 @@ loadProjectileSlotBase:
                        CMP.W #$0080                         ;82D11F|C98000  |      ;
                        BPL CODE_82D12B                      ;82D122|1007    |82D12B;
                        LDX.B #$30                           ;82D124|A230    |      ;
-                       STX.B $1E                            ;82D126|861E    |000EC6;
+                       STX.B r_ev_2_1e_weight-$EA8          ;82D126|861E    |000EC6;
                        JMP.W CODE_82D13B                    ;82D128|4C3BD1  |82D13B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12589,13 +12595,13 @@ loadProjectileSlotBase:
                        CMP.W #$00A0                         ;82D12B|C9A000  |      ;
                        BPL CODE_82D137                      ;82D12E|1007    |82D137;
                        LDX.B #$28                           ;82D130|A228    |      ;
-                       STX.B $1E                            ;82D132|861E    |000EC6;
+                       STX.B r_ev_2_1e_weight-$EA8          ;82D132|861E    |000EC6;
                        JMP.W CODE_82D13B                    ;82D134|4C3BD1  |82D13B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D137:
                        LDX.B #$10                           ;82D137|A210    |      ;
-                       STX.B $1E                            ;82D139|861E    |000EC6;
+                       STX.B r_ev_2_1e_weight-$EA8          ;82D139|861E    |000EC6;
                                                             ;      |        |      ;
           CODE_82D13B:
                        SEP #$20                             ;82D13B|E220    |      ;
@@ -12603,20 +12609,20 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D13E:
-                       STZ.B $03                            ;82D13E|6403    |000EAB;
+                       STZ.B r_ev_2_03_do-$EA8              ;82D13E|6403    |000EAB;
                        LDA.B #$0A                           ;82D140|A90A    |      ;
-                       STA.B $02                            ;82D142|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82D142|8502    |000EAA;
                        LDA.B #$00                           ;82D144|A900    |      ;
                        JSL.L CODE_848F07                    ;82D146|22078F84|848F07;
                        LDA.B #$08                           ;82D14A|A908    |      ;
-                       STA.B $35                            ;82D14C|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;82D14C|8535    |000EDD;
                        RTS                                  ;82D14E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D14F:
                        JSL.L CODE_849086                    ;82D14F|22869084|849086;
                        AND.B #$0F                           ;82D153|290F    |      ;
-                       STA.B $36                            ;82D155|8536    |000EDE;
+                       STA.B r_ev_2_36-$EA8                 ;82D155|8536    |000EDE;
                        RTS                                  ;82D157|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12631,16 +12637,16 @@ loadProjectileSlotBase:
                        LDA.B #$2B                           ;82D166|A92B    |      ;
                        STA.W r_000a,X                       ;82D168|9D0A00  |86000A;
                        REP #$20                             ;82D16B|C220    |      ;
-                       LDA.B $05                            ;82D16D|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82D16D|A505    |000EAD;
                        STA.W r_0005,X                       ;82D16F|9D0500  |860005;
-                       LDA.B $08                            ;82D172|A508    |000EB0;
+                       LDA.B r_ev_2_08_yPos-$EA8            ;82D172|A508    |000EB0;
                        STA.W r_0008,X                       ;82D174|9D0800  |860008;
                        STZ.W r_000c,X                       ;82D177|9E0C00  |86000C;
                        SEP #$20                             ;82D17A|E220    |      ;
                        LDA.W UNREACH_86CD37,Y               ;82D17C|B937CD  |86CD37;
                        STA.W r_000b,X                       ;82D17F|9D0B00  |86000B;
-                       LDA.B $11                            ;82D182|A511    |000EB9;
-                       ORA.B $34                            ;82D184|0534    |000EDC;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82D182|A511    |000EB9;
+                       ORA.B r_ev_2_34-$EA8                 ;82D184|0534    |000EDC;
                        STA.W r_0011,X                       ;82D186|9D1100  |860011;
                        DEY                                  ;82D189|88      |      ;
                        BNE CODE_82D15D                      ;82D18A|D0D1    |82D15D;
@@ -12654,63 +12660,63 @@ loadProjectileSlotBase:
                        REP #$20                             ;82D18F|C220    |      ;
                        LDA.W r_0bad                         ;82D191|ADAD0B  |860BAD;
                        SEC                                  ;82D194|38      |      ;
-                       SBC.B $05                            ;82D195|E505    |000EAD;
+                       SBC.B r_ev_2_05_xPos-$EA8            ;82D195|E505    |000EAD;
                        BCS CODE_82D1B4                      ;82D197|B01B    |82D1B4;
-                       LDA.B $02                            ;82D199|A502    |000EAA;
+                       LDA.B r_ev_2_02_action-$EA8          ;82D199|A502    |000EAA;
                        CMP.W #$000C                         ;82D19B|C90C00  |      ;
                        BEQ CODE_82D1AA                      ;82D19E|F00A    |82D1AA;
                        REP #$20                             ;82D1A0|C220    |      ;
                        LDA.W #$0280                         ;82D1A2|A98002  |      ;
-                       STA.B $1A                            ;82D1A5|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82D1A5|851A    |000EC2;
                        JMP.W CODE_82D1D4                    ;82D1A7|4CD4D1  |82D1D4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D1AA:
                        REP #$20                             ;82D1AA|C220    |      ;
                        LDA.W #$0280                         ;82D1AC|A98002  |      ;
-                       STA.B $1A                            ;82D1AF|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82D1AF|851A    |000EC2;
                        JMP.W CODE_82D1CC                    ;82D1B1|4CCCD1  |82D1CC;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D1B4:
-                       LDA.B $02                            ;82D1B4|A502    |000EAA;
+                       LDA.B r_ev_2_02_action-$EA8          ;82D1B4|A502    |000EAA;
                        CMP.W #$000C                         ;82D1B6|C90C00  |      ;
                        BEQ CODE_82D1C5                      ;82D1B9|F00A    |82D1C5;
                        REP #$20                             ;82D1BB|C220    |      ;
                        LDA.W #$FD80                         ;82D1BD|A980FD  |      ;
-                       STA.B $1A                            ;82D1C0|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82D1C0|851A    |000EC2;
                        JMP.W CODE_82D1D4                    ;82D1C2|4CD4D1  |82D1D4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D1C5:
                        REP #$20                             ;82D1C5|C220    |      ;
                        LDA.W #$FD80                         ;82D1C7|A980FD  |      ;
-                       STA.B $1A                            ;82D1CA|851A    |000EC2;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;82D1CA|851A    |000EC2;
                                                             ;      |        |      ;
           CODE_82D1CC:
                        LDA.W #$0280                         ;82D1CC|A98002  |      ;
-                       STA.B $1C                            ;82D1CF|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;82D1CF|851C    |000EC4;
                        JMP.W CODE_82D1D9                    ;82D1D1|4CD9D1  |82D1D9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D1D4:
                        LDA.W #$0480                         ;82D1D4|A98004  |      ;
-                       STA.B $1C                            ;82D1D7|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;82D1D7|851C    |000EC4;
                                                             ;      |        |      ;
           CODE_82D1D9:
                        LDA.W #$CD1B                         ;82D1D9|A91BCD  |      ;
-                       STA.B $20                            ;82D1DC|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;82D1DC|8520    |000EC8;
                        SEP #$20                             ;82D1DE|E220    |      ;
                        LDA.B #$40                           ;82D1E0|A940    |      ;
-                       STA.B $1E                            ;82D1E2|851E    |000EC6;
+                       STA.B r_ev_2_1e_weight-$EA8          ;82D1E2|851E    |000EC6;
                        RTS                                  ;82D1E4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82D1E5:
-                       LDA.B $33                            ;82D1E5|A533    |000EDB;
-                       TSB.B $11                            ;82D1E7|0411    |000EB9;
-                       LDX.B $01                            ;82D1E9|A601    |000EA9;
-                       JSR.W (PTR16_82D22A,X)               ;82D1EB|FC2AD2  |82D22A;
+eventID_deerball_27_main:
+                       LDA.B r_ev_2_33-$EA8                 ;82D1E5|A533    |000EDB;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;82D1E7|0411    |000EB9;
+                       LDX.B r_ev_2_01_state-$EA8           ;82D1E9|A601    |000EA9;
+                       JSR.W (deerball_27_state,X)          ;82D1EB|FC2AD2  |82D22A;
                        JSL.L CODE_849B03                    ;82D1EE|22039B84|849B03;
                        JSL.L CODE_849B43                    ;82D1F2|22439B84|849B43;
                        BEQ CODE_82D214                      ;82D1F6|F01C    |82D214;
@@ -12724,37 +12730,37 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82D208:
                        JSL.L CODE_84A4B5                    ;82D208|22B5A484|84A4B5;
-                       LDA.B $0B                            ;82D20C|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82D20C|A50B    |000E73;
                        BNE CODE_82D226                      ;82D20E|D016    |82D226;
                                                             ;      |        |      ;
           CODE_82D210:
-                       JML.L CODE_828398                    ;82D210|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82D210|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D214:
-                       LDA.B $34                            ;82D214|A534    |000EDC;
+                       LDA.B r_ev_2_34-$EA8                 ;82D214|A534    |000EDC;
                        BNE CODE_82D208                      ;82D216|D0F0    |82D208;
-                       JSL.L CODE_82806E                    ;82D218|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82D218|226E8082|82806E;
                        BCS CODE_82D222                      ;82D21C|B004    |82D222;
-                       JML.L CODE_8280B4                    ;82D21E|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82D21E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D222:
-                       LDA.B $0B                            ;82D222|A50B    |000EB3;
+                       LDA.B r_ev_2_0b_subID-$EA8           ;82D222|A50B    |000EB3;
                        BEQ CODE_82D210                      ;82D224|F0EA    |82D210;
                                                             ;      |        |      ;
           CODE_82D226:
-                       JML.L CODE_828387                    ;82D226|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82D226|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82D22A:
-                       dw CODE_82D232                       ;82D22A|        |82D232;
+    deerball_27_state:
+                       dw deerball_27_state_00              ;82D22A|        |82D232;
                        dw CODE_82D293                       ;82D22C|        |82D293;
                        dw CODE_82D352                       ;82D22E|        |82D352;
                        dw CODE_82D448                       ;82D230|        |82D448;
                                                             ;      |        |      ;
-          CODE_82D232:
-                       JSL.L CODE_82827D                    ;82D232|227D8282|82827D;
+ deerball_27_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;82D232|227D8282|82827D;
                        LDA.B $11                            ;82D236|A511    |000EF9;
                        AND.B #$0E                           ;82D238|290E    |      ;
                        STA.B $33                            ;82D23A|8533    |000F1B;
@@ -12780,24 +12786,24 @@ loadProjectileSlotBase:
                        REP #$20                             ;82D265|C220    |      ;
                        LDA.W r_0bad                         ;82D267|ADAD0B  |860BAD;
                        SEC                                  ;82D26A|38      |      ;
-                       SBC.B $05                            ;82D26B|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;82D26B|E505    |000E6D;
                        SEP #$20                             ;82D26D|E220    |      ;
                        LDA.B #$00                           ;82D26F|A900    |      ;
                        ROR A                                ;82D271|6A      |      ;
                        ROR A                                ;82D272|6A      |      ;
-                       TSB.B $11                            ;82D273|0411    |000E79;
-                       LDA.B $0B                            ;82D275|A50B    |000E73;
+                       TSB.B r_ev_11_sprAtri-$E68           ;82D273|0411    |000E79;
+                       LDA.B r_ev_0b_subID-$E68             ;82D275|A50B    |000E73;
                        BPL CODE_82D292                      ;82D277|1019    |82D292;
                        LDA.B #$00                           ;82D279|A900    |      ;
                        JSL.L CODE_848F07                    ;82D27B|22078F84|848F07;
                        LDA.B #$06                           ;82D27F|A906    |      ;
-                       STA.B $01                            ;82D281|8501    |000E69;
-                       STZ.B $2F                            ;82D283|642F    |000E97;
+                       STA.B r_ev_01_state-$E68             ;82D281|8501    |000E69;
+                       STZ.B r_ev_2f-$E68                   ;82D283|642F    |000E97;
                        LDA.B #$01                           ;82D285|A901    |      ;
-                       STA.B $28                            ;82D287|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;82D287|8528    |000E90;
                        REP #$20                             ;82D289|C220    |      ;
                        LDA.W #$CD52                         ;82D28B|A952CD  |      ;
-                       STA.B $20                            ;82D28E|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;82D28E|8520    |000E88;
                        SEP #$20                             ;82D290|E220    |      ;
                                                             ;      |        |      ;
           CODE_82D292:
@@ -12837,9 +12843,9 @@ loadProjectileSlotBase:
                        CMP.W #$FD80                         ;82D2CA|C980FD  |      ;
                        BPL CODE_82D2D9                      ;82D2CD|100A    |82D2D9;
                        LDA.W #$0200                         ;82D2CF|A90002  |      ;
-                       STA.B $1C                            ;82D2D2|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;82D2D2|851C    |000EC4;
                        SEP #$20                             ;82D2D4|E220    |      ;
-                       STZ.B $02                            ;82D2D6|6402    |000EAA;
+                       STZ.B r_ev_2_02_action-$EA8          ;82D2D6|6402    |000EAA;
                        RTS                                  ;82D2D8|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13065,7 +13071,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D448:
-                       LDX.B $02                            ;82D448|A602    |000EAA;
+                       LDX.B r_ev_2_02_action-$EA8          ;82D448|A602    |000EAA;
                        JMP.W (PTR16_82D44D,X)               ;82D44A|7C4DD4  |82D44D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13076,34 +13082,34 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82D453:
                        JSL.L updateEv_13_14_17_0f           ;82D453|22EA8E84|848EEA;
-                       LDA.B $17                            ;82D457|A517    |000EBF;
+                       LDA.B r_ev_2_17-$EA8                 ;82D457|A517    |000EBF;
                        BPL CODE_82D474                      ;82D459|1019    |82D474;
                        LDA.B #$80                           ;82D45B|A980    |      ;
-                       TRB.B $17                            ;82D45D|1417    |000EBF;
-                       LDA.B $11                            ;82D45F|A511    |000EB9;
+                       TRB.B r_ev_2_17-$EA8                 ;82D45D|1417    |000EBF;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82D45F|A511    |000EB9;
                        ASL A                                ;82D461|0A      |      ;
                        ASL A                                ;82D462|0A      |      ;
-                       LDA.B $0F                            ;82D463|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82D463|A50F    |000EB7;
                        AND.B #$7F                           ;82D465|297F    |      ;
                        BCS CODE_82D46C                      ;82D467|B003    |82D46C;
                        EOR.B #$FF                           ;82D469|49FF    |      ;
                        INC A                                ;82D46B|1A      |      ;
                                                             ;      |        |      ;
           CODE_82D46C:
-                       STA.B $1B                            ;82D46C|851B    |000EC3;
-                       STZ.B $1A                            ;82D46E|641A    |000EC2;
+                       STA.B r_ev_2_1b_xSpd-$EA8            ;82D46C|851B    |000EC3;
+                       STZ.B r_ev_2_1a_xSpdSub-$EA8         ;82D46E|641A    |000EC2;
                        JSL.L CODE_82823E                    ;82D470|223E8282|82823E;
                                                             ;      |        |      ;
           CODE_82D474:
                        JSL.L CODE_8491BE                    ;82D474|22BE9184|8491BE;
-                       LDA.B $2B                            ;82D478|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;82D478|A52B    |000ED3;
                        BIT.B #$04                           ;82D47A|8904    |      ;
                        BEQ CODE_82D4C3                      ;82D47C|F045    |82D4C3;
                        AND.B #$03                           ;82D47E|2903    |      ;
                        BNE CODE_82D49F                      ;82D480|D01D    |82D49F;
                        LDA.B #$38                           ;82D482|A938    |      ;
-                       STA.B $2A                            ;82D484|852A    |000ED2;
-                       LDA.B $11                            ;82D486|A511    |000EB9;
+                       STA.B r_ev_2_2a-$EA8                 ;82D484|852A    |000ED2;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82D486|A511    |000EB9;
                        ASL A                                ;82D488|0A      |      ;
                        ASL A                                ;82D489|0A      |      ;
                        LDA.B #$10                           ;82D48A|A910    |      ;
@@ -13111,7 +13117,7 @@ loadProjectileSlotBase:
                        LDA.B #$F0                           ;82D48E|A9F0    |      ;
                                                             ;      |        |      ;
           CODE_82D490:
-                       STA.B $29                            ;82D490|8529    |000ED1;
+                       STA.B r_ev_2_29-$EA8                 ;82D490|8529    |000ED1;
                        JSL.L CODE_8490A0                    ;82D492|22A09084|8490A0;
                        CMP.B #$00                           ;82D496|C900    |      ;
                        BEQ CODE_82D49F                      ;82D498|F005    |82D49F;
@@ -13121,27 +13127,27 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D49F:
-                       STZ.B $29                            ;82D49F|6429    |000ED1;
+                       STZ.B r_ev_2_29-$EA8                 ;82D49F|6429    |000ED1;
                        LDA.B #$10                           ;82D4A1|A910    |      ;
-                       STA.B $2A                            ;82D4A3|852A    |000ED2;
+                       STA.B r_ev_2_2a-$EA8                 ;82D4A3|852A    |000ED2;
                        JSL.L CODE_8490A0                    ;82D4A5|22A09084|8490A0;
                        CMP.B #$34                           ;82D4A9|C934    |      ;
                        BCS CODE_82D4B9                      ;82D4AB|B00C    |82D4B9;
                        LDA.B #$20                           ;82D4AD|A920    |      ;
-                       STA.B $2A                            ;82D4AF|852A    |000ED2;
+                       STA.B r_ev_2_2a-$EA8                 ;82D4AF|852A    |000ED2;
                        JSL.L CODE_8490A0                    ;82D4B1|22A09084|8490A0;
                        CMP.B #$34                           ;82D4B5|C934    |      ;
                        BCC CODE_82D4BE                      ;82D4B7|9005    |82D4BE;
                                                             ;      |        |      ;
           CODE_82D4B9:
                        LDA.B #$01                           ;82D4B9|A901    |      ;
-                       STA.B $34                            ;82D4BB|8534    |000EDC;
+                       STA.B r_ev_2_34-$EA8                 ;82D4BB|8534    |000EDC;
                        RTS                                  ;82D4BD|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D4BE:
                        LDA.B #$02                           ;82D4BE|A902    |      ;
-                       STA.B $02                            ;82D4C0|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82D4C0|8502    |000EAA;
                        RTS                                  ;82D4C2|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13170,22 +13176,22 @@ loadProjectileSlotBase:
                        LDA.B #$03                           ;82D4E9|A903    |      ;
                        JSL.L CODE_848F07                    ;82D4EB|22078F84|848F07;
                        LDA.B #$04                           ;82D4EF|A904    |      ;
-                       STA.B $02                            ;82D4F1|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;82D4F1|8502    |000EAA;
                        RTS                                  ;82D4F3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D4F4:
                        JSL.L updateEv_13_14_17_0f           ;82D4F4|22EA8E84|848EEA;
-                       LDA.B $0F                            ;82D4F8|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;82D4F8|A50F    |000EB7;
                        BPL CODE_82D50E                      ;82D4FA|1012    |82D50E;
-                       LDA.B $11                            ;82D4FC|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;82D4FC|A511    |000EB9;
                        EOR.B #$40                           ;82D4FE|4940    |      ;
-                       STA.B $11                            ;82D500|8511    |000EB9;
-                       STZ.B $02                            ;82D502|6402    |000EAA;
+                       STA.B r_ev_2_11_sprAtri-$EA8         ;82D500|8511    |000EB9;
+                       STZ.B r_ev_2_02_action-$EA8          ;82D502|6402    |000EAA;
                        LDA.B #$00                           ;82D504|A900    |      ;
                        JSL.L CODE_848F07                    ;82D506|22078F84|848F07;
                        LDA.B #$80                           ;82D50A|A980    |      ;
-                       TRB.B $17                            ;82D50C|1417    |000EBF;
+                       TRB.B r_ev_2_17-$EA8                 ;82D50C|1417    |000EBF;
                                                             ;      |        |      ;
           CODE_82D50E:
                        RTS                                  ;82D50E|60      |      ;
@@ -13204,147 +13210,147 @@ loadProjectileSlotBase:
                        RTS                                  ;82D51F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82D520:
-                       LDX.B $01                            ;82D520|A601    |000E69;
-                       JMP.W (PTR16_82D525,X)               ;82D522|7C25D5  |82D525;
+eventID_cruizler_28_main:
+                       LDX.B r_ev_01_state-$E68             ;82D520|A601    |000E69;
+                       JMP.W (cruizler_28_state,X)          ;82D522|7C25D5  |82D525;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82D525:
-                       dw CODE_82D52D                       ;82D525|        |82D52D;
+    cruizler_28_state:
+                       dw cruizler_28_state_00              ;82D525|        |82D52D;
                        dw CODE_82D57D                       ;82D527|        |82D57D;
                        dw CODE_82D5FF                       ;82D529|        |82D5FF;
                        dw UNREACH_82D788                    ;82D52B|        |82D788;
                                                             ;      |        |      ;
-          CODE_82D52D:
+ cruizler_28_state_00:
                        LDA.B #$02                           ;82D52D|A902    |      ;
-                       STA.B $01                            ;82D52F|8501    |000E69;
-                       STZ.B $10                            ;82D531|6410    |000E78;
+                       STA.B r_ev_01_state-$E68             ;82D52F|8501    |000E69;
+                       STZ.B r_ev_10-$E68                   ;82D531|6410    |000E78;
                        LDA.B #$40                           ;82D533|A940    |      ;
-                       STA.B $27                            ;82D535|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;82D535|8527    |000E8F;
                        LDA.B #$01                           ;82D537|A901    |      ;
-                       STA.B $0E                            ;82D539|850E    |000E76;
+                       STA.B r_ev_0e-$E68                   ;82D539|850E    |000E76;
                        LDA.B #$08                           ;82D53B|A908    |      ;
-                       STA.B $28                            ;82D53D|8528    |000E90;
-                       STZ.B $11                            ;82D53F|6411    |000E79;
-                       STZ.B $17                            ;82D541|6417    |000E7F;
+                       STA.B r_ev_28-$E68                   ;82D53D|8528    |000E90;
+                       STZ.B r_ev_11_sprAtri-$E68           ;82D53F|6411    |000E79;
+                       STZ.B r_ev_17-$E68                   ;82D541|6417    |000E7F;
                        REP #$20                             ;82D543|C220    |      ;
-                       LDA.B $0B                            ;82D545|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82D545|A50B    |000E73;
                        AND.W #$00FF                         ;82D547|29FF00  |      ;
                        ASL A                                ;82D54A|0A      |      ;
                        ASL A                                ;82D54B|0A      |      ;
                        TAX                                  ;82D54C|AA      |      ;
                        LDA.W UNREACH_86CDAE,X               ;82D54D|BDAECD  |86CDAE;
-                       STA.B $05                            ;82D550|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;82D550|8505    |000E6D;
                        LDA.W UNREACH_86CDB0,X               ;82D552|BDB0CD  |86CDB0;
-                       STA.B $08                            ;82D555|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;82D555|8508    |000E70;
                        LDA.W UNREACH_86CDB2,X               ;82D557|BDB2CD  |86CDB2;
-                       STA.B $12                            ;82D55A|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;82D55A|8512    |000E7A;
                        LDA.W UNREACH_86CDB4,X               ;82D55C|BDB4CD  |86CDB4;
-                       STA.B $14                            ;82D55F|8514    |000E7C;
-                       STZ.B $1A                            ;82D561|641A    |000E82;
+                       STA.B r_ev_14-$E68                   ;82D55F|8514    |000E7C;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;82D561|641A    |000E82;
                        LDA.W #$0040                         ;82D563|A94000  |      ;
-                       STA.B $1C                            ;82D566|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82D566|851C    |000E84;
                        SEP #$20                             ;82D568|E220    |      ;
                        JSR.W CODE_82D8E9                    ;82D56A|20E9D8  |82D8E9;
                        JSR.W CODE_82B7E2                    ;82D56D|20E2B7  |82B7E2;
-                       STZ.B $1F                            ;82D570|641F    |000E87;
+                       STZ.B r_ev_1f-$E68                   ;82D570|641F    |000E87;
                        LDA.B #$01                           ;82D572|A901    |      ;
-                       STA.B $1E                            ;82D574|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;82D574|851E    |000E86;
                        LDA.B #$41                           ;82D576|A941    |      ;
-                       STA.B $0F                            ;82D578|850F    |000E77;
-                       STZ.B $16                            ;82D57A|6416    |000E7E;
+                       STA.B r_ev_0f-$E68                   ;82D578|850F    |000E77;
+                       STZ.B r_ev_16-$E68                   ;82D57A|6416    |000E7E;
                        RTL                                  ;82D57C|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D57D:
-                       STZ.B $30                            ;82D57D|6430    |000E98;
-                       JSL.L CODE_82806E                    ;82D57F|226E8082|82806E;
+                       STZ.B r_ev_30-$E68                   ;82D57D|6430    |000E98;
+                       JSL.L initPosAllign                  ;82D57F|226E8082|82806E;
                        BCC CODE_82D587                      ;82D583|9002    |82D587;
-                       INC.B $30                            ;82D585|E630    |000E98;
+                       INC.B r_ev_30-$E68                   ;82D585|E630    |000E98;
                                                             ;      |        |      ;
           CODE_82D587:
-                       STZ.B $2C                            ;82D587|642C    |000E94;
+                       STZ.B r_ev_2c-$E68                   ;82D587|642C    |000E94;
                        JSR.W CODE_82D981                    ;82D589|2081D9  |82D981;
                        JSR.W CODE_82D9B2                    ;82D58C|20B2D9  |82D9B2;
                        REP #$10                             ;82D58F|C210    |      ;
                        LDX.W #$CD7A                         ;82D591|A27ACD  |      ;
-                       STX.B $20                            ;82D594|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D594|8620    |000E88;
                        JSL.L CODE_82D7D7                    ;82D596|22D7D782|82D7D7;
                        JSR.W CODE_82D87C                    ;82D59A|207CD8  |82D87C;
                        LDX.W #$CD8E                         ;82D59D|A28ECD  |      ;
-                       STX.B $20                            ;82D5A0|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D5A0|8620    |000E88;
                        JSL.L CODE_82D7D7                    ;82D5A2|22D7D782|82D7D7;
                        JSR.W CODE_82D87C                    ;82D5A6|207CD8  |82D87C;
                        LDX.W #$CD9A                         ;82D5A9|A29ACD  |      ;
-                       STX.B $20                            ;82D5AC|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D5AC|8620    |000E88;
                        JSL.L CODE_82D7D7                    ;82D5AE|22D7D782|82D7D7;
                        JSR.W CODE_82D87C                    ;82D5B2|207CD8  |82D87C;
                        LDX.W #$CD92                         ;82D5B5|A292CD  |      ;
-                       STX.B $20                            ;82D5B8|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D5B8|8620    |000E88;
                        JSL.L CODE_82D7D7                    ;82D5BA|22D7D782|82D7D7;
                        JSR.W CODE_82D87C                    ;82D5BE|207CD8  |82D87C;
                        SEP #$10                             ;82D5C1|E210    |      ;
                        JSR.W CODE_82D78C                    ;82D5C3|208CD7  |82D78C;
                        JSR.W CODE_82D7BE                    ;82D5C6|20BED7  |82D7BE;
-                       LDA.B $2C                            ;82D5C9|A52C    |000E94;
+                       LDA.B r_ev_2c-$E68                   ;82D5C9|A52C    |000E94;
                        BEQ CODE_82D5D1                      ;82D5CB|F004    |82D5D1;
                        JSL.L CODE_82C715                    ;82D5CD|2215C782|82C715;
                                                             ;      |        |      ;
           CODE_82D5D1:
-                       LDA.B $17                            ;82D5D1|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;82D5D1|A517    |000E7F;
                        BEQ CODE_82D5DA                      ;82D5D3|F005    |82D5DA;
-                       STZ.B $17                            ;82D5D5|6417    |000E7F;
+                       STZ.B r_ev_17-$E68                   ;82D5D5|6417    |000E7F;
                        JSR.W CODE_82B7C8                    ;82D5D7|20C8B7  |82B7C8;
                                                             ;      |        |      ;
           CODE_82D5DA:
                        REP #$10                             ;82D5DA|C210    |      ;
                        LDX.W #$CD8E                         ;82D5DC|A28ECD  |      ;
-                       STX.B $20                            ;82D5DF|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D5DF|8620    |000E88;
                        JSL.L CODE_849B43                    ;82D5E1|22439B84|849B43;
                        BEQ CODE_82D5F7                      ;82D5E5|F010    |82D5F7;
                        BPL CODE_82D5F2                      ;82D5E7|1009    |82D5F2;
                        LDA.B #$04                           ;82D5E9|A904    |      ;
-                       STA.B $01                            ;82D5EB|8501    |000E69;
-                       STZ.B $02                            ;82D5ED|6402    |000E6A;
-                       STZ.B $27                            ;82D5EF|6427    |000E8F;
+                       STA.B r_ev_01_state-$E68             ;82D5EB|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82D5ED|6402    |000E6A;
+                       STZ.B r_ev_27-$E68                   ;82D5EF|6427    |000E8F;
                        RTL                                  ;82D5F1|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D5F2:
-                       INC.B $17                            ;82D5F2|E617    |000E7F;
+                       INC.B r_ev_17-$E68                   ;82D5F2|E617    |000E7F;
                        JSR.W CODE_82B7A9                    ;82D5F4|20A9B7  |82B7A9;
                                                             ;      |        |      ;
           CODE_82D5F7:
                        REP #$10                             ;82D5F7|C210    |      ;
                        LDX.W #$CD7A                         ;82D5F9|A27ACD  |      ;
-                       STX.B $20                            ;82D5FC|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D5FC|8620    |000E88;
                        RTL                                  ;82D5FE|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D5FF:
                        REP #$10                             ;82D5FF|C210    |      ;
-                       STZ.B $2C                            ;82D601|642C    |000E94;
+                       STZ.B r_ev_2c-$E68                   ;82D601|642C    |000E94;
                        LDX.W #$CD7A                         ;82D603|A27ACD  |      ;
-                       STX.B $20                            ;82D606|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D606|8620    |000E88;
                        JSL.L CODE_82D7D7                    ;82D608|22D7D782|82D7D7;
                        JSR.W CODE_82D87C                    ;82D60C|207CD8  |82D87C;
                        LDX.W #$CD92                         ;82D60F|A292CD  |      ;
-                       STX.B $20                            ;82D612|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D612|8620    |000E88;
                        JSL.L CODE_82D7D7                    ;82D614|22D7D782|82D7D7;
                        JSR.W CODE_82D87C                    ;82D618|207CD8  |82D87C;
                        LDX.W #$CD8E                         ;82D61B|A28ECD  |      ;
-                       STX.B $20                            ;82D61E|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D61E|8620    |000E88;
                        JSL.L CODE_82D7D7                    ;82D620|22D7D782|82D7D7;
                        JSR.W CODE_82D87C                    ;82D624|207CD8  |82D87C;
                        LDX.W #$CD9A                         ;82D627|A29ACD  |      ;
-                       STX.B $20                            ;82D62A|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D62A|8620    |000E88;
                        JSL.L CODE_82D7D7                    ;82D62C|22D7D782|82D7D7;
                        JSR.W CODE_82D87C                    ;82D630|207CD8  |82D87C;
                        SEP #$10                             ;82D633|E210    |      ;
-                       LDX.B $02                            ;82D635|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82D635|A602    |000E6A;
                        JSR.W (PTR16_82D646,X)               ;82D637|FC46D6  |82D646;
                        JSR.W CODE_82D7BE                    ;82D63A|20BED7  |82D7BE;
-                       LDA.B $2C                            ;82D63D|A52C    |000E94;
+                       LDA.B r_ev_2c-$E68                   ;82D63D|A52C    |000E94;
                        BEQ CODE_82D645                      ;82D63F|F004    |82D645;
                        JSL.L CODE_82C715                    ;82D641|2215C782|82C715;
                                                             ;      |        |      ;
@@ -13525,17 +13531,17 @@ loadProjectileSlotBase:
                        db $20,$BE,$D7,$6B                   ;82D788|        |82D7BE;
                                                             ;      |        |      ;
           CODE_82D78C:
-                       LDX.B $16                            ;82D78C|A616    |000E7E;
+                       LDX.B r_ev_16-$E68                   ;82D78C|A616    |000E7E;
                        BNE CODE_82D7A7                      ;82D78E|D017    |82D7A7;
-                       DEC.B $0F                            ;82D790|C60F    |000E77;
+                       DEC.B r_ev_0f-$E68                   ;82D790|C60F    |000E77;
                        BNE CODE_82D7A2                      ;82D792|D00E    |82D7A2;
                        LDA.B #$41                           ;82D794|A941    |      ;
-                       STA.B $0F                            ;82D796|850F    |000E77;
-                       INC.B $16                            ;82D798|E616    |000E7E;
+                       STA.B r_ev_0f-$E68                   ;82D796|850F    |000E77;
+                       INC.B r_ev_16-$E68                   ;82D798|E616    |000E7E;
                        LDA.B #$C0                           ;82D79A|A9C0    |      ;
-                       STA.B $1C                            ;82D79C|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82D79C|851C    |000E84;
                        LDA.B #$FF                           ;82D79E|A9FF    |      ;
-                       STA.B $1D                            ;82D7A0|851D    |000E85;
+                       STA.B r_ev_1d_ySpd-$E68              ;82D7A0|851D    |000E85;
                                                             ;      |        |      ;
           CODE_82D7A2:
                        JSL.L CODE_828174                    ;82D7A2|22748182|828174;
@@ -13543,15 +13549,15 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D7A7:
-                       DEC.B $0F                            ;82D7A7|C60F    |000E77;
+                       DEC.B r_ev_0f-$E68                   ;82D7A7|C60F    |000E77;
                        BNE CODE_82D7B9                      ;82D7A9|D00E    |82D7B9;
                        LDA.B #$41                           ;82D7AB|A941    |      ;
-                       STA.B $0F                            ;82D7AD|850F    |000E77;
-                       STZ.B $16                            ;82D7AF|6416    |000E7E;
+                       STA.B r_ev_0f-$E68                   ;82D7AD|850F    |000E77;
+                       STZ.B r_ev_16-$E68                   ;82D7AF|6416    |000E7E;
                        LDA.B #$40                           ;82D7B1|A940    |      ;
-                       STA.B $1C                            ;82D7B3|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82D7B3|851C    |000E84;
                        LDA.B #$00                           ;82D7B5|A900    |      ;
-                       STA.B $1D                            ;82D7B7|851D    |000E85;
+                       STA.B r_ev_1d_ySpd-$E68              ;82D7B7|851D    |000E85;
                                                             ;      |        |      ;
           CODE_82D7B9:
                        JSL.L CODE_8281B2                    ;82D7B9|22B28182|8281B2;
@@ -13559,7 +13565,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D7BE:
-                       LDA.B $10                            ;82D7BE|A510    |000E78;
+                       LDA.B r_ev_10-$E68                   ;82D7BE|A510    |000E78;
                        BEQ CODE_82D7D6                      ;82D7C0|F014    |82D7D6;
                        REP #$20                             ;82D7C2|C220    |      ;
                        LDA.W r_cam_BG0_xPos_ff              ;82D7C4|AD8D1E  |861E8D;
@@ -13627,7 +13633,7 @@ loadProjectileSlotBase:
                        LDY.W r_0002                         ;82D82D|AC0200  |860002;
                        BPL CODE_82D84C                      ;82D830|101A    |82D84C;
                        LDA.W #$0001                         ;82D832|A90100  |      ;
-                       TSB.B $2C                            ;82D835|042C    |000E94;
+                       TSB.B r_ev_2c-$E68                   ;82D835|042C    |000E94;
                        LDX.W #$0004                         ;82D837|A20400  |      ;
                        LDA.W r_0006                         ;82D83A|AD0600  |860006;
                        CMP.W #$0004                         ;82D83D|C90400  |      ;
@@ -13643,7 +13649,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82D84C:
                        SEP #$20                             ;82D84C|E220    |      ;
-                       LDA.B $2C                            ;82D84E|A52C    |000ED4;
+                       LDA.B r_ev_2_2c-$EA8                 ;82D84E|A52C    |000ED4;
                        BMI CODE_82D862                      ;82D850|3010    |82D862;
                        db $AD,$D3,$0B,$89,$04,$F0,$09,$A9   ;82D852|        |000BD3;
                        db $7F,$8D,$CE,$0B,$22,$2F,$9F,$84   ;82D85A|        |0BCE8D;
@@ -13670,10 +13676,10 @@ loadProjectileSlotBase:
           CODE_82D87C:
                        PHP                                  ;82D87C|08      |      ;
                        REP #$10                             ;82D87D|C210    |      ;
-                       LDX.B $20                            ;82D87F|A620    |000E88;
+                       LDX.B r_ev_20_hitBoxAddr-$E68        ;82D87F|A620    |000E88;
                        PHX                                  ;82D881|DA      |      ;
                        LDX.W #$CD96                         ;82D882|A296CD  |      ;
-                       STX.B $20                            ;82D885|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D885|8620    |000E88;
                        LDX.W #$0BA8                         ;82D887|A2A80B  |      ;
                        JSL.L CODE_849C0E                    ;82D88A|220E9C84|849C0E;
                        BCC CODE_82D8A4                      ;82D88E|9014    |82D8A4;
@@ -13683,7 +13689,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82D8A4:
                        PLX                                  ;82D8A4|FA      |      ;
-                       STX.B $20                            ;82D8A5|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;82D8A5|8620    |000E88;
                        PLP                                  ;82D8A7|28      |      ;
                        RTS                                  ;82D8A8|60      |      ;
                                                             ;      |        |      ;
@@ -13805,10 +13811,10 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D981:
-                       DEC.B $34                            ;82D981|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;82D981|C634    |000E9C;
                        BNE CODE_82D9B1                      ;82D983|D02C    |82D9B1;
                        LDA.B #$78                           ;82D985|A978    |      ;
-                       STA.B $34                            ;82D987|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82D987|8534    |000E9C;
                        JSL.L loadEnitySlotBase              ;82D989|22218382|828321;
                        BNE CODE_82D9AF                      ;82D98D|D020    |82D9AF;
                        INC.W r_0000,X                       ;82D98F|FE0000  |860000;
@@ -13817,10 +13823,10 @@ loadProjectileSlotBase:
                        LDA.B #$81                           ;82D997|A981    |      ;
                        STA.W r_000b,X                       ;82D999|9D0B00  |86000B;
                        REP #$21                             ;82D99C|C221    |      ;
-                       LDA.B $05                            ;82D99E|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82D99E|A505    |000E6D;
                        ADC.W #$0014                         ;82D9A0|691400  |      ;
                        STA.W r_0005,X                       ;82D9A3|9D0500  |860005;
-                       LDA.B $08                            ;82D9A6|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82D9A6|A508    |000E70;
                        CLC                                  ;82D9A8|18      |      ;
                        ADC.W #$0000                         ;82D9A9|690000  |      ;
                        STA.W r_0008,X                       ;82D9AC|9D0800  |860008;
@@ -13869,71 +13875,71 @@ loadProjectileSlotBase:
                        RTS                                  ;82D9EE|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82D9EF:
-                       LDA.B $33                            ;82D9EF|A533    |000E9B;
-                       TSB.B $11                            ;82D9F1|0411    |000E79;
-                       LDX.B $01                            ;82D9F3|A601    |000E69;
-                       JSR.W (PTR16_82DA2C,X)               ;82D9F5|FC2CDA  |82DA2C;
+eventID_gunVolt_29_main:
+                       LDA.B r_ev_33-$E68                   ;82D9EF|A533    |000E9B;
+                       TSB.B r_ev_11_sprAtri-$E68           ;82D9F1|0411    |000E79;
+                       LDX.B r_ev_01_state-$E68             ;82D9F3|A601    |000E69;
+                       JSR.W (gunVolt_29_state,X)           ;82D9F5|FC2CDA  |82DA2C;
                        JSL.L CODE_849B03                    ;82D9F8|22039B84|849B03;
                        JSL.L CODE_849B43                    ;82D9FC|22439B84|849B43;
                        BEQ CODE_82DA1A                      ;82DA00|F018    |82DA1A;
-                       LDA.B $27                            ;82DA02|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;82DA02|A527    |000E8F;
                        AND.B #$7F                           ;82DA04|297F    |      ;
                        BNE CODE_82DA16                      ;82DA06|D00E    |82DA16;
                        JSL.L CODE_84A4B5                    ;82DA08|22B5A484|84A4B5;
                        LDA.B #$01                           ;82DA0C|A901    |      ;
                        JSL.L CODE_84A384                    ;82DA0E|2284A384|84A384;
-                       JML.L CODE_828398                    ;82DA12|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82DA12|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DA16:
                        LDA.B #$0E                           ;82DA16|A90E    |      ;
-                       TRB.B $11                            ;82DA18|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;82DA18|1411    |000E79;
                                                             ;      |        |      ;
           CODE_82DA1A:
-                       LDA.B $0B                            ;82DA1A|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82DA1A|A50B    |000E73;
                        BMI CODE_82DA24                      ;82DA1C|3006    |82DA24;
-                       JSL.L CODE_82806E                    ;82DA1E|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82DA1E|226E8082|82806E;
                        BCS CODE_82DA28                      ;82DA22|B004    |82DA28;
                                                             ;      |        |      ;
           CODE_82DA24:
-                       JML.L CODE_8280B4                    ;82DA24|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82DA24|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DA28:
-                       JML.L CODE_828387                    ;82DA28|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82DA28|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82DA2C:
-                       dw CODE_82DA34                       ;82DA2C|        |82DA34;
+     gunVolt_29_state:
+                       dw gunVolt_29_state_00               ;82DA2C|        |82DA34;
                        dw CODE_82DA74                       ;82DA2E|        |82DA74;
                        dw CODE_82DAAD                       ;82DA30|        |82DAAD;
                        dw CODE_82DADF                       ;82DA32|        |82DADF;
                                                             ;      |        |      ;
-          CODE_82DA34:
-                       JSL.L CODE_82827D                    ;82DA34|227D8282|82827D;
-                       STZ.B $37                            ;82DA38|6437    |000E9F;
-                       LDA.B $11                            ;82DA3A|A511    |000E79;
+  gunVolt_29_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;82DA34|227D8282|82827D;
+                       STZ.B r_ev_37-$E68                   ;82DA38|6437    |000E9F;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82DA3A|A511    |000E79;
                        AND.B #$0E                           ;82DA3C|290E    |      ;
-                       STA.B $33                            ;82DA3E|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;82DA3E|8533    |000E9B;
                        LDA.B #$04                           ;82DA40|A904    |      ;
-                       STA.B $12                            ;82DA42|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;82DA42|8512    |000E7A;
                        LDA.B #$03                           ;82DA44|A903    |      ;
-                       STA.B $26                            ;82DA46|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;82DA46|8526    |000E8E;
                        LDA.B #$10                           ;82DA48|A910    |      ;
-                       STA.B $27                            ;82DA4A|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;82DA4A|8527    |000E8F;
                        LDA.B #$00                           ;82DA4C|A900    |      ;
                        JSL.L CODE_848F07                    ;82DA4E|22078F84|848F07;
                        LDA.B #$3C                           ;82DA52|A93C    |      ;
-                       STA.B $34                            ;82DA54|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82DA54|8534    |000E9C;
                        REP #$20                             ;82DA56|C220    |      ;
                        LDA.W #$CDF2                         ;82DA58|A9F2CD  |      ;
-                       STA.B $20                            ;82DA5B|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;82DA5B|8520    |000E88;
                        SEP #$20                             ;82DA5D|E220    |      ;
-                       LDA.B $0B                            ;82DA5F|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;82DA5F|A50B    |000E73;
                        BMI CODE_82DA6E                      ;82DA61|300B    |82DA6E;
                        REP #$20                             ;82DA63|C220    |      ;
-                       LDA.B $05                            ;82DA65|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;82DA65|A505    |000E6D;
                        CMP.W r_0bad                         ;82DA67|CDAD0B  |860BAD;
                        BCC CODE_82DA6F                      ;82DA6A|9003    |82DA6F;
                        SEP #$20                             ;82DA6C|E220    |      ;
@@ -13944,17 +13950,17 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82DA6F:
                        PLA                                  ;82DA6F|68      |      ;
-                       JML.L CODE_828387                    ;82DA70|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82DA70|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DA74:
                        JSL.L updateEv_13_14_17_0f           ;82DA74|22EA8E84|848EEA;
-                       DEC.B $34                            ;82DA78|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;82DA78|C634    |000E9C;
                        BNE CODE_82DAA7                      ;82DA7A|D02B    |82DAA7;
-                       LDA.B $37                            ;82DA7C|A537    |000E9F;
+                       LDA.B r_ev_37-$E68                   ;82DA7C|A537    |000E9F;
                        LDY.B #$01                           ;82DA7E|A001    |      ;
                        JSL.L CODE_84AC35                    ;82DA80|2235AC84|84AC35;
-                       STA.B $37                            ;82DA84|8537    |000E9F;
+                       STA.B r_ev_37-$E68                   ;82DA84|8537    |000E9F;
                        BPL CODE_82DAA8                      ;82DA86|1020    |82DAA8;
                        JSL.L CODE_849086                    ;82DA88|22869084|849086;
                        LDX.B #$04                           ;82DA8C|A204    |      ;
@@ -13963,12 +13969,12 @@ loadProjectileSlotBase:
                        LDX.B #$06                           ;82DA91|A206    |      ;
                                                             ;      |        |      ;
           CODE_82DA93:
-                       STX.B $01                            ;82DA93|8601    |000E69;
+                       STX.B r_ev_01_state-$E68             ;82DA93|8601    |000E69;
                        LDA.B #$01                           ;82DA95|A901    |      ;
-                       STA.B $35                            ;82DA97|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82DA97|8535    |000E9D;
                        JSL.L CODE_849086                    ;82DA99|22869084|849086;
                        AND.B #$07                           ;82DA9D|2907    |      ;
-                       STA.B $36                            ;82DA9F|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;82DA9F|8536    |000E9E;
                        LDA.B #$01                           ;82DAA1|A901    |      ;
                        JSL.L CODE_848F07                    ;82DAA3|22078F84|848F07;
                                                             ;      |        |      ;
@@ -13978,17 +13984,17 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82DAA8:
                        LDA.B #$3C                           ;82DAA8|A93C    |      ;
-                       STA.B $34                            ;82DAAA|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82DAAA|8534    |000E9C;
                        RTS                                  ;82DAAC|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DAAD:
                        JSL.L updateEv_13_14_17_0f           ;82DAAD|22EA8E84|848EEA;
-                       LDA.B $17                            ;82DAB1|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;82DAB1|A517    |000E7F;
                        BPL CODE_82DADE                      ;82DAB3|1029    |82DADE;
                        AND.B #$7F                           ;82DAB5|297F    |      ;
-                       STA.B $17                            ;82DAB7|8517    |000E7F;
-                       LDA.B $0F                            ;82DAB9|A50F    |000E77;
+                       STA.B r_ev_17-$E68                   ;82DAB7|8517    |000E7F;
+                       LDA.B r_ev_0f-$E68                   ;82DAB9|A50F    |000E77;
                        AND.B #$7F                           ;82DABB|297F    |      ;
                        BEQ CODE_82DAC8                      ;82DABD|F009    |82DAC8;
                        JSR.W CODE_82DB20                    ;82DABF|2020DB  |82DB20;
@@ -13996,16 +14002,16 @@ loadProjectileSlotBase:
                        JSL.L CODE_8088A2                    ;82DAC4|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_82DAC8:
-                       LDA.B $0F                            ;82DAC8|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;82DAC8|A50F    |000E77;
                        BPL CODE_82DADE                      ;82DACA|1012    |82DADE;
-                       DEC.B $35                            ;82DACC|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;82DACC|C635    |000E9D;
                        BPL CODE_82DADE                      ;82DACE|100E    |82DADE;
                        LDA.B #$02                           ;82DAD0|A902    |      ;
-                       STA.B $01                            ;82DAD2|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82DAD2|8501    |000E69;
                        LDA.B #$07                           ;82DAD4|A907    |      ;
                        JSL.L CODE_848F07                    ;82DAD6|22078F84|848F07;
                        LDA.B #$3C                           ;82DADA|A93C    |      ;
-                       STA.B $34                            ;82DADC|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82DADC|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_82DADE:
                        RTS                                  ;82DADE|60      |      ;
@@ -14046,10 +14052,10 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DB20:
-                       LDA.B $36                            ;82DB20|A536    |000E9E;
+                       LDA.B r_ev_36-$E68                   ;82DB20|A536    |000E9E;
                        ASL A                                ;82DB22|0A      |      ;
                        CLC                                  ;82DB23|18      |      ;
-                       ADC.B $35                            ;82DB24|6535    |000E9D;
+                       ADC.B r_ev_35-$E68                   ;82DB24|6535    |000E9D;
                        TAY                                  ;82DB26|A8      |      ;
                        LDA.W UNREACH_86CDF6,Y               ;82DB27|B9F6CD  |86CDF6;
                        TAY                                  ;82DB2A|A8      |      ;
@@ -14062,11 +14068,11 @@ loadProjectileSlotBase:
                        REP #$20                             ;82DB3C|C220    |      ;
                        LDA.W UNREACH_86CE06,Y               ;82DB3E|B906CE  |86CE06;
                        CLC                                  ;82DB41|18      |      ;
-                       ADC.B $05                            ;82DB42|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;82DB42|6505    |000E6D;
                        STA.W r_0005,X                       ;82DB44|9D0500  |860005;
                        LDA.W UNREACH_86CE0E,Y               ;82DB47|B90ECE  |86CE0E;
                        CLC                                  ;82DB4A|18      |      ;
-                       ADC.B $08                            ;82DB4B|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;82DB4B|6508    |000E70;
                        STA.W r_0008,X                       ;82DB4D|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82DB50:
@@ -14097,75 +14103,75 @@ loadProjectileSlotBase:
                        RTS                                  ;82DB7C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_82DB7D:
-                       LDX.B $01                            ;82DB7D|A601    |000E69;
-                       JMP.W (PTR16_82DB82,X)               ;82DB7F|7C82DB  |82DB82;
+eventID_prisonCapsule_63_main:
+                       LDX.B r_ev_01_state-$E68             ;82DB7D|A601    |000E69;
+                       JMP.W (prisonCapsule_63_state,X)     ;82DB7F|7C82DB  |82DB82;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_82DB82:
-                       dw CODE_82DB8A                       ;82DB82|        |82DB8A;
+prisonCapsule_63_state:
+                       dw prisonCapsule_63_state_00         ;82DB82|        |82DB8A;
                        dw CODE_82DBEF                       ;82DB84|        |82DBEF;
                        dw CODE_82DC6A                       ;82DB86|        |82DC6A;
                        dw CODE_82DF86                       ;82DB88|        |82DF86;
                                                             ;      |        |      ;
-          CODE_82DB8A:
-                       LDA.B $02                            ;82DB8A|A502    |000E6A;
+prisonCapsule_63_state_00:
+                       LDA.B r_ev_02_action-$E68            ;82DB8A|A502    |000E6A;
                        BNE CODE_82DBAD                      ;82DB8C|D01F    |82DBAD;
                        JSL.L CODE_84AADD                    ;82DB8E|22DDAA84|84AADD;
                        BEQ CODE_82DB98                      ;82DB92|F004    |82DB98;
-                       JML.L CODE_828398                    ;82DB94|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82DB94|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DB98:
                        JSL.L CODE_849FEB                    ;82DB98|22EB9F84|849FEB;
-                       INC.B $02                            ;82DB9C|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;82DB9C|E602    |000E6A;
                        LDA.B #$3C                           ;82DB9E|A93C    |      ;
-                       STA.B $35                            ;82DBA0|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82DBA0|8535    |000E9D;
                        LDA.W r_1f26                         ;82DBA2|AD261F  |861F26;
                        BEQ CODE_82DBAD                      ;82DBA5|F006    |82DBAD;
                        LDA.B #$23                           ;82DBA7|A923    |      ;
                        JSL.L CODE_8087A2                    ;82DBA9|22A28780|8087A2;
                                                             ;      |        |      ;
           CODE_82DBAD:
-                       DEC.B $35                            ;82DBAD|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;82DBAD|C635    |000E9D;
                        BEQ CODE_82DBB2                      ;82DBAF|F001    |82DBB2;
                        RTL                                  ;82DBB1|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DBB2:
-                       JSL.L CODE_82827D                    ;82DBB2|227D8282|82827D;
-                       STZ.B $28                            ;82DBB6|6428    |000E90;
-                       LDA.B $11                            ;82DBB8|A511    |000E79;
+                       JSL.L enemy_initiate_jumpPhysic      ;82DBB2|227D8282|82827D;
+                       STZ.B r_ev_28-$E68                   ;82DBB6|6428    |000E90;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82DBB8|A511    |000E79;
                        AND.B #$0E                           ;82DBBA|290E    |      ;
-                       STA.B $34                            ;82DBBC|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;82DBBC|8534    |000E9C;
                        LDA.B #$04                           ;82DBBE|A904    |      ;
-                       STA.B $12                            ;82DBC0|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;82DBC0|8512    |000E7A;
                        LDA.B #$08                           ;82DBC2|A908    |      ;
-                       STA.B $26                            ;82DBC4|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;82DBC4|8526    |000E8E;
                        REP #$20                             ;82DBC6|C220    |      ;
                        LDA.W #$D652                         ;82DBC8|A952D6  |      ;
-                       STA.B $20                            ;82DBCB|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;82DBCB|8520    |000E88;
                        LDA.W #$FD80                         ;82DBCD|A980FD  |      ;
-                       STA.B $1C                            ;82DBD0|851C    |000E84;
-                       STZ.B $1A                            ;82DBD2|641A    |000E82;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82DBD0|851C    |000E84;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;82DBD2|641A    |000E82;
                        SEP #$20                             ;82DBD4|E220    |      ;
                        LDA.B #$02                           ;82DBD6|A902    |      ;
-                       STA.B $01                            ;82DBD8|8501    |000E69;
-                       STZ.B $02                            ;82DBDA|6402    |000E6A;
-                       STZ.B $3D                            ;82DBDC|643D    |000EA5;
-                       STZ.B $3E                            ;82DBDE|643E    |000EA6;
-                       STZ.B $3F                            ;82DBE0|643F    |000EA7;
-                       STZ.B $1F                            ;82DBE2|641F    |000E87;
-                       STZ.B $0D                            ;82DBE4|640D    |000E75;
+                       STA.B r_ev_01_state-$E68             ;82DBD8|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82DBDA|6402    |000E6A;
+                       STZ.B r_ev_3d-$E68                   ;82DBDC|643D    |000EA5;
+                       STZ.B r_ev_3e-$E68                   ;82DBDE|643E    |000EA6;
+                       STZ.B r_ev_3f-$E68                   ;82DBE0|643F    |000EA7;
+                       STZ.B r_ev_1f-$E68                   ;82DBE2|641F    |000E87;
+                       STZ.B r_ev_0d-$E68                   ;82DBE4|640D    |000E75;
                        LDA.B #$04                           ;82DBE6|A904    |      ;
-                       STA.B $2F                            ;82DBE8|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;82DBE8|852F    |000E97;
                        LDA.B #$10                           ;82DBEA|A910    |      ;
-                       STA.B $36                            ;82DBEC|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;82DBEC|8536    |000E9E;
                        RTL                                  ;82DBEE|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DBEF:
-                       LDX.B $02                            ;82DBEF|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82DBEF|A602    |000E6A;
                        JSR.W (UNREACH_82DBF5,X)             ;82DBF1|FCF5DB  |82DBF5;
                        RTL                                  ;82DBF4|6B      |      ;
                                                             ;      |        |      ;
@@ -14176,21 +14182,21 @@ loadProjectileSlotBase:
                        TDC                                  ;82DBFD|7B      |      ;
                        STA.W r_1f0e                         ;82DBFE|8D0E1F  |861F0E;
                        SEP #$20                             ;82DC01|E220    |      ;
-                       STZ.B $27                            ;82DC03|6427    |000E8F;
+                       STZ.B r_ev_27-$E68                   ;82DC03|6427    |000E8F;
                        LDA.B #$02                           ;82DC05|A902    |      ;
-                       STA.B $02                            ;82DC07|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82DC07|8502    |000E6A;
                        RTS                                  ;82DC09|60      |      ;
                                                             ;      |        |      ;
                        LDA.W $0B9C                          ;82DC0A|AD9C0B  |860B9C;
                        LSR A                                ;82DC0D|4A      |      ;
                        BCC CODE_82DC47                      ;82DC0E|9037    |82DC47;
-                       LDA.B $27                            ;82DC10|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;82DC10|A527    |000E8F;
                        AND.B #$7F                           ;82DC12|297F    |      ;
                        CMP.B #$20                           ;82DC14|C920    |      ;
                        BEQ CODE_82DC26                      ;82DC16|F00E    |82DC26;
                        INC A                                ;82DC18|1A      |      ;
                        ORA.B #$80                           ;82DC19|0980    |      ;
-                       STA.B $27                            ;82DC1B|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;82DC1B|8527    |000E8F;
                        LDA.B #$0C                           ;82DC1D|A90C    |      ;
                        JSL.L CODE_8088CD                    ;82DC1F|22CD8880|8088CD;
                        JMP.W CODE_82DC47                    ;82DC23|4C47DC  |82DC47;
@@ -14201,45 +14207,45 @@ loadProjectileSlotBase:
                        JSL.L CODE_848F07                    ;82DC28|22078F84|848F07;
                        JSL.L CODE_84A003                    ;82DC2C|2203A084|84A003;
                        LDA.B #$04                           ;82DC30|A904    |      ;
-                       STA.B $02                            ;82DC32|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82DC32|8502    |000E6A;
                        LDA.B #$10                           ;82DC34|A910    |      ;
-                       STA.B $35                            ;82DC36|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82DC36|8535    |000E9D;
                        LDA.W r_1f26                         ;82DC38|AD261F  |861F26;
                        BEQ CODE_82DC47                      ;82DC3B|F00A    |82DC47;
                        LDA.B #$24                           ;82DC3D|A924    |      ;
                        JSL.L CODE_8087A2                    ;82DC3F|22A28780|8087A2;
-                       JSL.L CODE_8280B4                    ;82DC43|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82DC43|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82DC47:
                        RTS                                  ;82DC47|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $35                            ;82DC48|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;82DC48|A535    |000E9D;
                        BNE CODE_82DC5B                      ;82DC4A|D00F    |82DC5B;
                        LDA.B #$04                           ;82DC4C|A904    |      ;
-                       STA.B $01                            ;82DC4E|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;82DC4E|8501    |000E69;
                        LDA.B #$08                           ;82DC50|A908    |      ;
-                       STA.B $02                            ;82DC52|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82DC52|8502    |000E6A;
                        LDA.B #$30                           ;82DC54|A930    |      ;
-                       STA.B $35                            ;82DC56|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82DC56|8535    |000E9D;
                        JMP.W CODE_82DC69                    ;82DC58|4C69DC  |82DC69;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DC5B:
-                       DEC.B $35                            ;82DC5B|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;82DC5B|C635    |000E9D;
                        JSL.L CODE_82825D                    ;82DC5D|225D8282|82825D;
                        JSL.L updateEv_13_14_17_0f           ;82DC61|22EA8E84|848EEA;
-                       JSL.L CODE_8280B4                    ;82DC65|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82DC65|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82DC69:
                        RTS                                  ;82DC69|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DC6A:
-                       LDX.B $02                            ;82DC6A|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82DC6A|A602    |000E6A;
                        JSR.W (UNREACH_82DCDF,X)             ;82DC6C|FCDFDC  |82DCDF;
-                       LDA.B $27                            ;82DC6F|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;82DC6F|A527    |000E8F;
                        BEQ CODE_82DCDB                      ;82DC71|F068    |82DCDB;
-                       LDA.B $3F                            ;82DC73|A53F    |000EA7;
+                       LDA.B r_ev_3f-$E68                   ;82DC73|A53F    |000EA7;
                        BEQ CODE_82DC7A                      ;82DC75|F003    |82DC7A;
                        JMP.W CODE_82DC7D                    ;82DC77|4C7DDC  |82DC7D;
                                                             ;      |        |      ;
@@ -14249,12 +14255,12 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DC7D:
-                       DEC.B $3F                            ;82DC7D|C63F    |000EA7;
+                       DEC.B r_ev_3f-$E68                   ;82DC7D|C63F    |000EA7;
                                                             ;      |        |      ;
           CODE_82DC7F:
                        JSL.L CODE_849B43                    ;82DC7F|22439B84|849B43;
                        BEQ CODE_82DCD3                      ;82DC83|F04E    |82DCD3;
-                       LDA.B $27                            ;82DC85|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;82DC85|A527    |000E8F;
                        AND.B #$7F                           ;82DC87|297F    |      ;
                        BNE CODE_82DCBE                      ;82DC89|D033    |82DCBE;
                        LDA.W r_0bcf                         ;82DC8B|ADCF0B  |860BCF;
@@ -14263,14 +14269,14 @@ loadProjectileSlotBase:
                        LDA.B #$13                           ;82DC92|A913    |      ;
                        JSL.L CODE_8088A2                    ;82DC94|22A28880|8088A2;
                        LDA.B #$06                           ;82DC98|A906    |      ;
-                       STA.B $01                            ;82DC9A|8501    |000E69;
-                       STZ.B $02                            ;82DC9C|6402    |000E6A;
-                       STZ.B $03                            ;82DC9E|6403    |000E6B;
+                       STA.B r_ev_01_state-$E68             ;82DC9A|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;82DC9C|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;82DC9E|6403    |000E6B;
                        LDA.B #$01                           ;82DCA0|A901    |      ;
                        STA.W r_0bd8                         ;82DCA2|8DD80B  |860BD8;
                        STA.W r_1f0c                         ;82DCA5|8D0C1F  |861F0C;
                        LDA.B #$28                           ;82DCA8|A928    |      ;
-                       STA.B $35                            ;82DCAA|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82DCAA|8535    |000E9D;
                        LDA.B #$01                           ;82DCAC|A901    |      ;
                        STA.W r_1f13                         ;82DCAE|8D131F  |861F13;
                        STA.W r_1f14                         ;82DCB1|8D141F  |861F14;
@@ -14281,52 +14287,52 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82DCBE:
                        LDA.B #$0E                           ;82DCBE|A90E    |      ;
-                       TRB.B $11                            ;82DCC0|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;82DCC0|1411    |000E79;
                                                             ;      |        |      ;
           CODE_82DCC2:
                        LDA.B #$13                           ;82DCC2|A913    |      ;
                        JSL.L CODE_8088A2                    ;82DCC4|22A28880|8088A2;
                        LDA.B #$18                           ;82DCC8|A918    |      ;
-                       STA.B $3F                            ;82DCCA|853F    |000EA7;
+                       STA.B r_ev_3f-$E68                   ;82DCCA|853F    |000EA7;
                        LDA.B #$05                           ;82DCCC|A905    |      ;
-                       STA.B $28                            ;82DCCE|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;82DCCE|8528    |000E90;
                        JMP.W CODE_82DCD7                    ;82DCD0|4CD7DC  |82DCD7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DCD3:
-                       LDA.B $34                            ;82DCD3|A534    |000E9C;
-                       TSB.B $11                            ;82DCD5|0411    |000E79;
+                       LDA.B r_ev_34-$E68                   ;82DCD3|A534    |000E9C;
+                       TSB.B r_ev_11_sprAtri-$E68           ;82DCD5|0411    |000E79;
                                                             ;      |        |      ;
           CODE_82DCD7:
                        JSL.L CODE_849B03                    ;82DCD7|22039B84|849B03;
                                                             ;      |        |      ;
           CODE_82DCDB:
-                       JML.L CODE_8280B4                    ;82DCDB|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82DCDB|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_82DCDF:
                        db $F1,$DC,$38,$DD,$BF,$DD,$05,$DE   ;82DCDF|        |0000DC;
                        db $24,$DE,$94,$DE,$39,$DF,$B1,$DD   ;82DCE7|        |0000DE;
                        db $56,$DF                           ;82DCEF|        |0000DF;
-                       LDA.B $27                            ;82DCF1|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;82DCF1|A527    |000E8F;
                        AND.B #$7F                           ;82DCF3|297F    |      ;
                        CMP.B #$10                           ;82DCF5|C910    |      ;
                        BPL CODE_82DD04                      ;82DCF7|100B    |82DD04;
                        CMP.B #$08                           ;82DCF9|C908    |      ;
                        BPL CODE_82DD09                      ;82DCFB|100C    |82DD09;
                        LDA.B #$04                           ;82DCFD|A904    |      ;
-                       STA.B $3E                            ;82DCFF|853E    |000EA6;
+                       STA.B r_ev_3e-$E68                   ;82DCFF|853E    |000EA6;
                        JMP.W CODE_82DD0D                    ;82DD01|4C0DDD  |82DD0D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DD04:
-                       STZ.B $3E                            ;82DD04|643E    |000EA6;
+                       STZ.B r_ev_3e-$E68                   ;82DD04|643E    |000EA6;
                        JMP.W CODE_82DD0D                    ;82DD06|4C0DDD  |82DD0D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DD09:
                        LDA.B #$02                           ;82DD09|A902    |      ;
-                       STA.B $3E                            ;82DD0B|853E    |000EA6;
+                       STA.B r_ev_3e-$E68                   ;82DD0B|853E    |000EA6;
                                                             ;      |        |      ;
           CODE_82DD0D:
                        JSL.L CODE_849086                    ;82DD0D|22869084|849086;
@@ -14335,32 +14341,32 @@ loadProjectileSlotBase:
                        TAX                                  ;82DD14|AA      |      ;
                        REP #$20                             ;82DD15|C220    |      ;
                        LDA.W UNREACH_86D65C,X               ;82DD17|BD5CD6  |86D65C;
-                       STA.B $05                            ;82DD1A|8505    |000E6D;
-                       LDX.B $3E                            ;82DD1C|A63E    |000EA6;
+                       STA.B r_ev_05_xPos-$E68              ;82DD1A|8505    |000E6D;
+                       LDX.B r_ev_3e-$E68                   ;82DD1C|A63E    |000EA6;
                        LDA.W UNREACH_86D6A2,X               ;82DD1E|BDA2D6  |86D6A2;
                        EOR.W #$FFFF                         ;82DD21|49FFFF  |      ;
                        INC A                                ;82DD24|1A      |      ;
-                       STA.B $1C                            ;82DD25|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82DD25|851C    |000E84;
                        SEP #$20                             ;82DD27|E220    |      ;
                        LDA.B #$30                           ;82DD29|A930    |      ;
-                       STA.B $35                            ;82DD2B|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82DD2B|8535    |000E9D;
                        LDA.B #$20                           ;82DD2D|A920    |      ;
-                       STA.B $36                            ;82DD2F|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;82DD2F|8536    |000E9E;
                        LDA.B #$08                           ;82DD31|A908    |      ;
-                       STA.B $02                            ;82DD33|8502    |000E6A;
-                       STZ.B $1F                            ;82DD35|641F    |000E87;
+                       STA.B r_ev_02_action-$E68            ;82DD33|8502    |000E6A;
+                       STZ.B r_ev_1f-$E68                   ;82DD35|641F    |000E87;
                        RTS                                  ;82DD37|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DD38:
-                       LDA.B $3B                            ;82DD38|A53B    |000EA3;
+                       LDA.B r_ev_3b-$E68                   ;82DD38|A53B    |000EA3;
                        BPL CODE_82DD3F                      ;82DD3A|1003    |82DD3F;
                        JMP.W CODE_82DDA8                    ;82DD3C|4CA8DD  |82DDA8;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DD3F:
-                       DEC.B $3B                            ;82DD3F|C63B    |000EA3;
-                       LDA.B $3A                            ;82DD41|A53A    |000EA2;
+                       DEC.B r_ev_3b-$E68                   ;82DD3F|C63B    |000EA3;
+                       LDA.B r_ev_3a-$E68                   ;82DD41|A53A    |000EA2;
                        BPL CODE_82DD4D                      ;82DD43|1008    |82DD4D;
                        LDA.B #$03                           ;82DD45|A903    |      ;
                        STA.W r_0000                         ;82DD47|8D0000  |860000;
@@ -14379,52 +14385,52 @@ loadProjectileSlotBase:
                        LDA.B #$00                           ;82DD5D|A900    |      ;
                                                             ;      |        |      ;
           CODE_82DD5F:
-                       STA.B $3A                            ;82DD5F|853A    |000EA2;
-                       LDA.B $3C                            ;82DD61|A53C    |000EA4;
+                       STA.B r_ev_3a-$E68                   ;82DD5F|853A    |000EA2;
+                       LDA.B r_ev_3c-$E68                   ;82DD61|A53C    |000EA4;
                        BPL CODE_82DD6C                      ;82DD63|1007    |82DD6C;
-                       LDA.B $3A                            ;82DD65|A53A    |000EA2;
-                       STA.B $3C                            ;82DD67|853C    |000EA4;
+                       LDA.B r_ev_3a-$E68                   ;82DD65|A53A    |000EA2;
+                       STA.B r_ev_3c-$E68                   ;82DD67|853C    |000EA4;
                        JMP.W CODE_82DDA2                    ;82DD69|4CA2DD  |82DDA2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DD6C:
                        CMP.B #$00                           ;82DD6C|C900    |      ;
                        BNE CODE_82DD86                      ;82DD6E|D016    |82DD86;
-                       LDA.B $3A                            ;82DD70|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;82DD70|A53A    |000EA2;
                        BEQ CODE_82DD7D                      ;82DD72|F009    |82DD7D;
                        LDA.B #$02                           ;82DD74|A902    |      ;
-                       STA.B $3A                            ;82DD76|853A    |000EA2;
-                       STA.B $3C                            ;82DD78|853C    |000EA4;
+                       STA.B r_ev_3a-$E68                   ;82DD76|853A    |000EA2;
+                       STA.B r_ev_3c-$E68                   ;82DD78|853C    |000EA4;
                        JMP.W CODE_82DDA2                    ;82DD7A|4CA2DD  |82DDA2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DD7D:
                        LDA.B #$01                           ;82DD7D|A901    |      ;
-                       STA.B $3A                            ;82DD7F|853A    |000EA2;
-                       STA.B $3C                            ;82DD81|853C    |000EA4;
+                       STA.B r_ev_3a-$E68                   ;82DD7F|853A    |000EA2;
+                       STA.B r_ev_3c-$E68                   ;82DD81|853C    |000EA4;
                        JMP.W CODE_82DDA2                    ;82DD83|4CA2DD  |82DDA2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DD86:
                        CMP.B #$01                           ;82DD86|C901    |      ;
                        BNE CODE_82DD9E                      ;82DD88|D014    |82DD9E;
-                       LDA.B $3A                            ;82DD8A|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;82DD8A|A53A    |000EA2;
                        BEQ CODE_82DD95                      ;82DD8C|F007    |82DD95;
-                       STZ.B $3A                            ;82DD8E|643A    |000EA2;
-                       STZ.B $3C                            ;82DD90|643C    |000EA4;
+                       STZ.B r_ev_3a-$E68                   ;82DD8E|643A    |000EA2;
+                       STZ.B r_ev_3c-$E68                   ;82DD90|643C    |000EA4;
                        JMP.W CODE_82DDA2                    ;82DD92|4CA2DD  |82DDA2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DD95:
                        LDA.B #$02                           ;82DD95|A902    |      ;
-                       STA.B $3A                            ;82DD97|853A    |000EA2;
-                       STA.B $3C                            ;82DD99|853C    |000EA4;
+                       STA.B r_ev_3a-$E68                   ;82DD97|853A    |000EA2;
+                       STA.B r_ev_3c-$E68                   ;82DD99|853C    |000EA4;
                        JMP.W CODE_82DDA2                    ;82DD9B|4CA2DD  |82DDA2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DD9E:
-                       LDA.B $3A                            ;82DD9E|A53A    |000EA2;
-                       STA.B $3C                            ;82DDA0|853C    |000EA4;
+                       LDA.B r_ev_3a-$E68                   ;82DD9E|A53A    |000EA2;
+                       STA.B r_ev_3c-$E68                   ;82DDA0|853C    |000EA4;
                                                             ;      |        |      ;
           CODE_82DDA2:
                        JSR.W CODE_82E1B9                    ;82DDA2|20B9E1  |82E1B9;
@@ -14433,49 +14439,49 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82DDA8:
                        LDA.B #$0E                           ;82DDA8|A90E    |      ;
-                       STA.B $02                            ;82DDAA|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82DDAA|8502    |000E6A;
                        LDA.B #$3C                           ;82DDAC|A93C    |      ;
-                       STA.B $35                            ;82DDAE|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82DDAE|8535    |000E9D;
                        RTS                                  ;82DDB0|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $35                            ;82DDB1|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;82DDB1|A535    |000E9D;
                        BEQ CODE_82DDBA                      ;82DDB3|F005    |82DDBA;
-                       DEC.B $35                            ;82DDB5|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;82DDB5|C635    |000E9D;
                        JMP.W CODE_82DDBE                    ;82DDB7|4CBEDD  |82DDBE;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DDBA:
                        LDA.B #$04                           ;82DDBA|A904    |      ;
-                       STA.B $02                            ;82DDBC|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82DDBC|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_82DDBE:
                        RTS                                  ;82DDBE|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $2F                            ;82DDBF|A52F    |000E97;
+                       LDA.B r_ev_2f-$E68                   ;82DDBF|A52F    |000E97;
                        BNE CODE_82DDCD                      ;82DDC1|D00A    |82DDCD;
                        LDA.B #$43                           ;82DDC3|A943    |      ;
                        JSL.L CODE_8088CD                    ;82DDC5|22CD8880|8088CD;
                        LDA.B #$04                           ;82DDC9|A904    |      ;
-                       STA.B $2F                            ;82DDCB|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;82DDCB|852F    |000E97;
                                                             ;      |        |      ;
           CODE_82DDCD:
-                       DEC.B $2F                            ;82DDCD|C62F    |000E97;
+                       DEC.B r_ev_2f-$E68                   ;82DDCD|C62F    |000E97;
                        JSL.L CODE_82825D                    ;82DDCF|225D8282|82825D;
                        JSL.L updateEv_13_14_17_0f           ;82DDD3|22EA8E84|848EEA;
                        REP #$20                             ;82DDD7|C220    |      ;
-                       LDA.B $08                            ;82DDD9|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82DDD9|A508    |000E70;
                        CMP.W #$01B0                         ;82DDDB|C9B001  |      ;
                        BMI CODE_82DDFC                      ;82DDDE|301C    |82DDFC;
                        SEP #$20                             ;82DDE0|E220    |      ;
                        LDA.B #$10                           ;82DDE2|A910    |      ;
-                       STA.B $02                            ;82DDE4|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82DDE4|8502    |000E6A;
                        LDA.B #$09                           ;82DDE6|A909    |      ;
                        JSL.L CODE_848F07                    ;82DDE8|22078F84|848F07;
                        LDA.B #$18                           ;82DDEC|A918    |      ;
-                       STA.B $35                            ;82DDEE|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82DDEE|8535    |000E9D;
                        REP #$20                             ;82DDF0|C220    |      ;
                        LDA.W #$0300                         ;82DDF2|A90003  |      ;
-                       STA.B $1C                            ;82DDF5|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82DDF5|851C    |000E84;
                        SEP #$20                             ;82DDF7|E220    |      ;
                        JMP.W CODE_82DE01                    ;82DDF9|4C01DE  |82DE01;
                                                             ;      |        |      ;
@@ -14488,15 +14494,15 @@ loadProjectileSlotBase:
                        JSR.W CODE_82E0B9                    ;82DE01|20B9E0  |82E0B9;
                        RTS                                  ;82DE04|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $2F                            ;82DE05|A52F    |000E97;
+                       LDA.B r_ev_2f-$E68                   ;82DE05|A52F    |000E97;
                        BNE CODE_82DE13                      ;82DE07|D00A    |82DE13;
                        LDA.B #$43                           ;82DE09|A943    |      ;
                        JSL.L CODE_8088CD                    ;82DE0B|22CD8880|8088CD;
                        LDA.B #$04                           ;82DE0F|A904    |      ;
-                       STA.B $2F                            ;82DE11|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;82DE11|852F    |000E97;
                                                             ;      |        |      ;
           CODE_82DE13:
-                       DEC.B $2F                            ;82DE13|C62F    |000E97;
+                       DEC.B r_ev_2f-$E68                   ;82DE13|C62F    |000E97;
                        JSL.L CODE_82823E                    ;82DE15|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;82DE19|22EA8E84|848EEA;
                        JSR.W CODE_82E0F6                    ;82DE1D|20F6E0  |82E0F6;
@@ -14504,7 +14510,7 @@ loadProjectileSlotBase:
                        RTS                                  ;82DE23|60      |      ;
                                                             ;      |        |      ;
                        REP #$20                             ;82DE24|C220    |      ;
-                       LDA.B $08                            ;82DE26|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82DE26|A508    |000E70;
                        CMP.W #$0100                         ;82DE28|C90001  |      ;
                        BPL CODE_82DE34                      ;82DE2B|1007    |82DE34;
                        JSL.L CODE_82825D                    ;82DE2D|225D8282|82825D;
@@ -14513,50 +14519,50 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82DE34:
                        SEP #$20                             ;82DE34|E220    |      ;
-                       LDA.B $1F                            ;82DE36|A51F    |000E87;
+                       LDA.B r_ev_1f-$E68                   ;82DE36|A51F    |000E87;
                        BNE CODE_82DE6A                      ;82DE38|D030    |82DE6A;
-                       LDA.B $1E                            ;82DE3A|A51E    |000E86;
+                       LDA.B r_ev_1e_weight-$E68            ;82DE3A|A51E    |000E86;
                        BNE CODE_82DE6A                      ;82DE3C|D02C    |82DE6A;
-                       LDA.B $0D                            ;82DE3E|A50D    |000E75;
+                       LDA.B r_ev_0d-$E68                   ;82DE3E|A50D    |000E75;
                        BNE CODE_82DE68                      ;82DE40|D026    |82DE68;
                        JSL.L CODE_849086                    ;82DE42|22869084|849086;
                        AND.B #$03                           ;82DE46|2903    |      ;
                        BNE CODE_82DE6A                      ;82DE48|D020    |82DE6A;
                        LDA.B #$0A                           ;82DE4A|A90A    |      ;
-                       STA.B $02                            ;82DE4C|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82DE4C|8502    |000E6A;
                        LDA.B #$0C                           ;82DE4E|A90C    |      ;
-                       STA.B $03                            ;82DE50|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;82DE50|8503    |000E6B;
                        LDA.B #$20                           ;82DE52|A920    |      ;
-                       STA.B $35                            ;82DE54|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82DE54|8535    |000E9D;
                        LDA.B #$01                           ;82DE56|A901    |      ;
-                       STA.B $1E                            ;82DE58|851E    |000E86;
-                       STA.B $0D                            ;82DE5A|850D    |000E75;
+                       STA.B r_ev_1e_weight-$E68            ;82DE58|851E    |000E86;
+                       STA.B r_ev_0d-$E68                   ;82DE5A|850D    |000E75;
                        REP #$20                             ;82DE5C|C220    |      ;
                        LDA.W #$0300                         ;82DE5E|A90003  |      ;
-                       STA.B $1C                            ;82DE61|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82DE61|851C    |000E84;
                        SEP #$20                             ;82DE63|E220    |      ;
                        JMP.W CODE_82DE93                    ;82DE65|4C93DE  |82DE93;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DE68:
-                       STZ.B $0D                            ;82DE68|640D    |000E75;
+                       STZ.B r_ev_0d-$E68                   ;82DE68|640D    |000E75;
                                                             ;      |        |      ;
           CODE_82DE6A:
                        LDA.B #$01                           ;82DE6A|A901    |      ;
-                       STA.B $1F                            ;82DE6C|851F    |000E87;
-                       DEC.B $35                            ;82DE6E|C635    |000E9D;
-                       LDA.B $35                            ;82DE70|A535    |000E9D;
+                       STA.B r_ev_1f-$E68                   ;82DE6C|851F    |000E87;
+                       DEC.B r_ev_35-$E68                   ;82DE6E|C635    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;82DE70|A535    |000E9D;
                        BNE CODE_82DE8D                      ;82DE72|D019    |82DE8D;
                        LDA.B #$00                           ;82DE74|A900    |      ;
                        JSL.L CODE_848F07                    ;82DE76|22078F84|848F07;
                        LDA.B #$02                           ;82DE7A|A902    |      ;
-                       STA.B $02                            ;82DE7C|8502    |000E6A;
-                       STZ.B $1E                            ;82DE7E|641E    |000E86;
+                       STA.B r_ev_02_action-$E68            ;82DE7C|8502    |000E6A;
+                       STZ.B r_ev_1e_weight-$E68            ;82DE7E|641E    |000E86;
                        LDA.B #$80                           ;82DE80|A980    |      ;
-                       STA.B $3A                            ;82DE82|853A    |000EA2;
-                       STA.B $3C                            ;82DE84|853C    |000EA4;
+                       STA.B r_ev_3a-$E68                   ;82DE82|853A    |000EA2;
+                       STA.B r_ev_3c-$E68                   ;82DE84|853C    |000EA4;
                        LDA.B #$08                           ;82DE86|A908    |      ;
-                       STA.B $3B                            ;82DE88|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;82DE88|853B    |000EA3;
                        JMP.W CODE_82DE93                    ;82DE8A|4C93DE  |82DE93;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14567,18 +14573,18 @@ loadProjectileSlotBase:
           CODE_82DE93:
                        RTS                                  ;82DE93|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $35                            ;82DE94|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;82DE94|C635    |000E9D;
                        BNE CODE_82DEA7                      ;82DE96|D00F    |82DEA7;
-                       STZ.B $1E                            ;82DE98|641E    |000E86;
-                       LDA.B $03                            ;82DE9A|A503    |000E6B;
-                       STA.B $02                            ;82DE9C|8502    |000E6A;
+                       STZ.B r_ev_1e_weight-$E68            ;82DE98|641E    |000E86;
+                       LDA.B r_ev_03_do-$E68                ;82DE9A|A503    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;82DE9C|8502    |000E6A;
                        LDA.B #$00                           ;82DE9E|A900    |      ;
                        JSL.L CODE_848F07                    ;82DEA0|22078F84|848F07;
                        JMP.W CODE_82DF36                    ;82DEA4|4C36DF  |82DF36;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DEA7:
-                       LDA.B $35                            ;82DEA7|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;82DEA7|A535    |000E9D;
                        CMP.B #$10                           ;82DEA9|C910    |      ;
                        BEQ CODE_82DEB0                      ;82DEAB|F003    |82DEB0;
                        JMP.W CODE_82DF36                    ;82DEAD|4C36DF  |82DF36;
@@ -14587,16 +14593,16 @@ loadProjectileSlotBase:
           CODE_82DEB0:
                        REP #$10                             ;82DEB0|C210    |      ;
                        LDY.W #$0026                         ;82DEB2|A02600  |      ;
-                       STY.B $37                            ;82DEB5|8437    |000E9F;
+                       STY.B r_ev_37-$E68                   ;82DEB5|8437    |000E9F;
                        SEP #$10                             ;82DEB7|E210    |      ;
                                                             ;      |        |      ;
           CODE_82DEB9:
                        SEP #$10                             ;82DEB9|E210    |      ;
                        LDA.B #$2B                           ;82DEBB|A92B    |      ;
-                       STA.B $0A                            ;82DEBD|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82DEBD|850A    |000E72;
                        JSR.W CODE_82E184                    ;82DEBF|2084E1  |82E184;
                        LDA.B #$63                           ;82DEC2|A963    |      ;
-                       STA.B $0A                            ;82DEC4|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82DEC4|850A    |000E72;
                        CPY.B #$08                           ;82DEC6|C008    |      ;
                        BPL CODE_82DF36                      ;82DEC8|106C    |82DF36;
                        REP #$10                             ;82DECA|C210    |      ;
@@ -14605,15 +14611,15 @@ loadProjectileSlotBase:
                        INC.W r_0000,X                       ;82DED2|FE0000  |860000;
                        LDA.B #$2B                           ;82DED5|A92B    |      ;
                        STA.W r_000a,X                       ;82DED7|9D0A00  |86000A;
-                       LDA.B $18                            ;82DEDA|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;82DEDA|A518    |000E80;
                        STA.W r_0018,X                       ;82DEDC|9D1800  |860018;
-                       LDA.B $11                            ;82DEDF|A511    |000E79;
-                       ORA.B $34                            ;82DEE1|0534    |000E9C;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82DEDF|A511    |000E79;
+                       ORA.B r_ev_34-$E68                   ;82DEE1|0534    |000E9C;
                        STA.W r_0011,X                       ;82DEE3|9D1100  |860011;
-                       LDA.B $16                            ;82DEE6|A516    |000E7E;
+                       LDA.B r_ev_16-$E68                   ;82DEE6|A516    |000E7E;
                        STA.W r_0016,X                       ;82DEE8|9D1600  |860016;
                        REP #$20                             ;82DEEB|C220    |      ;
-                       LDY.B $37                            ;82DEED|A437    |000E9F;
+                       LDY.B r_ev_37-$E68                   ;82DEED|A437    |000E9F;
                        LDA.W UNREACH_86D664,Y               ;82DEEF|B964D6  |86D664;
                        STA.W r_000b,X                       ;82DEF2|9D0B00  |86000B;
                        DEY                                  ;82DEF5|88      |      ;
@@ -14634,12 +14640,12 @@ loadProjectileSlotBase:
                        STA.W r_001c,X                       ;82DF12|9D1C00  |86001C;
                        DEY                                  ;82DF15|88      |      ;
                        DEY                                  ;82DF16|88      |      ;
-                       STY.B $37                            ;82DF17|8437    |000E9F;
-                       LDA.B $05                            ;82DF19|A505    |000E6D;
+                       STY.B r_ev_37-$E68                   ;82DF17|8437    |000E9F;
+                       LDA.B r_ev_05_xPos-$E68              ;82DF19|A505    |000E6D;
                        CLC                                  ;82DF1B|18      |      ;
                        ADC.W r_0000                         ;82DF1C|6D0000  |860000;
                        STA.W r_0005,X                       ;82DF1F|9D0500  |860005;
-                       LDA.B $08                            ;82DF22|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82DF22|A508    |000E70;
                        CLC                                  ;82DF24|18      |      ;
                        ADC.W r_0002                         ;82DF25|6D0200  |860002;
                        STA.W r_0008,X                       ;82DF28|9D0800  |860008;
@@ -14654,11 +14660,11 @@ loadProjectileSlotBase:
                        RTS                                  ;82DF38|60      |      ;
                                                             ;      |        |      ;
                        REP #$20                             ;82DF39|C220    |      ;
-                       LDA.B $08                            ;82DF3B|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82DF3B|A508    |000E70;
                        CMP.W #$00E0                         ;82DF3D|C9E000  |      ;
                        BPL CODE_82DF49                      ;82DF40|1007    |82DF49;
                        LDX.B #$00                           ;82DF42|A200    |      ;
-                       STX.B $02                            ;82DF44|8602    |000E6A;
+                       STX.B r_ev_02_action-$E68            ;82DF44|8602    |000E6A;
                        JMP.W CODE_82DF4F                    ;82DF46|4C4FDF  |82DF4F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14671,28 +14677,28 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;82DF51|22EA8E84|848EEA;
                        RTS                                  ;82DF55|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $0F                            ;82DF56|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;82DF56|A50F    |000E77;
                        BPL CODE_82DF60                      ;82DF58|1006    |82DF60;
                        LDA.B #$01                           ;82DF5A|A901    |      ;
                        JSL.L CODE_848F07                    ;82DF5C|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82DF60:
-                       LDA.B $35                            ;82DF60|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;82DF60|A535    |000E9D;
                        BEQ CODE_82DF71                      ;82DF62|F00D    |82DF71;
-                       DEC.B $35                            ;82DF64|C635    |000E9D;
-                       LDA.B $3F                            ;82DF66|A53F    |000EA7;
+                       DEC.B r_ev_35-$E68                   ;82DF64|C635    |000E9D;
+                       LDA.B r_ev_3f-$E68                   ;82DF66|A53F    |000EA7;
                        BNE CODE_82DF81                      ;82DF68|D017    |82DF81;
                        LDA.B #$0A                           ;82DF6A|A90A    |      ;
-                       STA.B $28                            ;82DF6C|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;82DF6C|8528    |000E90;
                        JMP.W CODE_82DF81                    ;82DF6E|4C81DF  |82DF81;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DF71:
                        LDA.B #$01                           ;82DF71|A901    |      ;
-                       STA.B $35                            ;82DF73|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82DF73|8535    |000E9D;
                        LDA.B #$0C                           ;82DF75|A90C    |      ;
-                       STA.B $02                            ;82DF77|8502    |000E6A;
-                       STZ.B $28                            ;82DF79|6428    |000E90;
+                       STA.B r_ev_02_action-$E68            ;82DF77|8502    |000E6A;
+                       STZ.B r_ev_28-$E68                   ;82DF79|6428    |000E90;
                        LDA.B #$00                           ;82DF7B|A900    |      ;
                        JSL.L CODE_848F07                    ;82DF7D|22078F84|848F07;
                                                             ;      |        |      ;
@@ -14702,18 +14708,18 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DF86:
-                       LDX.B $02                            ;82DF86|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;82DF86|A602    |000E6A;
                        JMP.W (UNREACH_82DF8B,X)             ;82DF88|7C8BDF  |82DF8B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_82DF8B:
                        db $97,$DF,$CB,$DF,$03,$E0,$3F,$E0   ;82DF8B|        |0000DF;
                        db $85,$E0,$A1,$E0                   ;82DF93|        |0000E0;
-                       LDA.B $35                            ;82DF97|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;82DF97|A535    |000E9D;
                        BEQ CODE_82DFA5                      ;82DF99|F00A    |82DFA5;
                        LDA.B #$01                           ;82DF9B|A901    |      ;
                        STA.W r_1f13                         ;82DF9D|8D131F  |861F13;
-                       DEC.B $35                            ;82DFA0|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;82DFA0|C635    |000E9D;
                        JMP.W CODE_82DFC7                    ;82DFA2|4CC7DF  |82DFC7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14722,7 +14728,7 @@ loadProjectileSlotBase:
                        STZ.W r_1f14                         ;82DFA8|9C141F  |861F14;
                        STZ.W r_1f17                         ;82DFAB|9C171F  |861F17;
                        LDA.B #$02                           ;82DFAE|A902    |      ;
-                       STA.B $02                            ;82DFB0|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82DFB0|8502    |000E6A;
                        LDY.B #$02                           ;82DFB2|A002    |      ;
                        LDA.B #$F6                           ;82DFB4|A9F6    |      ;
                        JSL.L CODE_80887F                    ;82DFB6|227F8880|80887F;
@@ -14730,10 +14736,10 @@ loadProjectileSlotBase:
                        LDA.B #$30                           ;82DFBE|A930    |      ;
                        TSB.W r_0bb9                         ;82DFC0|0CB90B  |860BB9;
                        LDA.B #$FF                           ;82DFC3|A9FF    |      ;
-                       STA.B $35                            ;82DFC5|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82DFC5|8535    |000E9D;
                                                             ;      |        |      ;
           CODE_82DFC7:
-                       JML.L CODE_8280B4                    ;82DFC7|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82DFC7|5CB48082|8280B4;
                                                             ;      |        |      ;
                        LDA.W $0B9C                          ;82DFCB|AD9C0B  |860B9C;
                        AND.B #$1F                           ;82DFCE|291F    |      ;
@@ -14742,10 +14748,10 @@ loadProjectileSlotBase:
                        JSL.L CODE_84A338                    ;82DFD4|2238A384|84A338;
                                                             ;      |        |      ;
           CODE_82DFD8:
-                       DEC.B $35                            ;82DFD8|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;82DFD8|C635    |000E9D;
                        BNE CODE_82DFE0                      ;82DFDA|D004    |82DFE0;
                        LDA.B #$04                           ;82DFDC|A904    |      ;
-                       STA.B $02                            ;82DFDE|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82DFDE|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_82DFE0:
                        REP #$20                             ;82DFE0|C220    |      ;
@@ -14758,11 +14764,11 @@ loadProjectileSlotBase:
                        SEP #$20                             ;82DFF4|E220    |      ;
                        LDA.B #$03                           ;82DFF6|A903    |      ;
                        STA.W r_0008                         ;82DFF8|8D0800  |860008;
-                       JSL.L CODE_8280B4                    ;82DFFB|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82DFFB|22B48082|8280B4;
                        JML.L CODE_84A4D0                    ;82DFFF|5CD0A484|84A4D0;
                                                             ;      |        |      ;
                        LDA.B #$06                           ;82E003|A906    |      ;
-                       STA.B $02                            ;82E005|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82E005|8502    |000E6A;
                        PHB                                  ;82E007|8B      |      ;
                        REP #$30                             ;82E008|C230    |      ;
                        LDX.W #$D6A8                         ;82E00A|A2A8D6  |      ;
@@ -14780,33 +14786,33 @@ loadProjectileSlotBase:
                        STA.W r_colorV_ca                    ;82E02A|8DCA00  |8600CA;
                        STZ.W r_colorV_cb                    ;82E02D|9CCB00  |8600CB;
                        LDA.B #$01                           ;82E030|A901    |      ;
-                       STA.B $0C                            ;82E032|850C    |000E74;
+                       STA.B r_ev_0c-$E68                   ;82E032|850C    |000E74;
                        JSR.W CODE_82E219                    ;82E034|2019E2  |82E219;
                        LDA.B #$C0                           ;82E037|A9C0    |      ;
-                       STA.B $35                            ;82E039|8535    |000E9D;
-                       JML.L CODE_8280B4                    ;82E03B|5CB48082|8280B4;
+                       STA.B r_ev_35-$E68                   ;82E039|8535    |000E9D;
+                       JML.L eventID_vile_68_afterInit      ;82E03B|5CB48082|8280B4;
                                                             ;      |        |      ;
                        LDA.W $0B9C                          ;82E03F|AD9C0B  |860B9C;
                        AND.B #$01                           ;82E042|2901    |      ;
                        BNE CODE_82E04E                      ;82E044|D008    |82E04E;
-                       LDA.B $0C                            ;82E046|A50C    |000E74;
+                       LDA.B r_ev_0c-$E68                   ;82E046|A50C    |000E74;
                        CMP.B #$1F                           ;82E048|C91F    |      ;
                        BEQ CODE_82E04E                      ;82E04A|F002    |82E04E;
-                       INC.B $0C                            ;82E04C|E60C    |000E74;
+                       INC.B r_ev_0c-$E68                   ;82E04C|E60C    |000E74;
                                                             ;      |        |      ;
           CODE_82E04E:
-                       LDA.B $35                            ;82E04E|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;82E04E|A535    |000E9D;
                        CMP.B #$B0                           ;82E050|C9B0    |      ;
                        BNE CODE_82E05A                      ;82E052|D006    |82E05A;
                        LDA.B #$21                           ;82E054|A921    |      ;
                        JSL.L CODE_8088CD                    ;82E056|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_82E05A:
-                       DEC.B $35                            ;82E05A|C635    |000E9D;
-                       LDA.B $35                            ;82E05C|A535    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;82E05A|C635    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;82E05C|A535    |000E9D;
                        BNE CODE_82E073                      ;82E05E|D013    |82E073;
                        LDA.B #$08                           ;82E060|A908    |      ;
-                       STA.B $02                            ;82E062|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82E062|8502    |000E6A;
                        LDA.B #$1F                           ;82E064|A91F    |      ;
                        STA.W r_colorV_cb                    ;82E066|8DCB00  |8600CB;
                        STA.W r_colorV_cc                    ;82E069|8DCC00  |8600CC;
@@ -14819,12 +14825,12 @@ loadProjectileSlotBase:
                        CMP.B #$B0                           ;82E073|C9B0    |      ;
                        BCC CODE_82E07E                      ;82E075|9007    |82E07E;
                        JSR.W CODE_82E219                    ;82E077|2019E2  |82E219;
-                       JML.L CODE_8280B4                    ;82E07A|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82E07A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E07E:
                        JSR.W CODE_82E240                    ;82E07E|2040E2  |82E240;
-                       JML.L CODE_8280B4                    ;82E081|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82E081|5CB48082|8280B4;
                                                             ;      |        |      ;
                        LDA.W $0B9C                          ;82E085|AD9C0B  |860B9C;
                        AND.B #$01                           ;82E088|2901    |      ;
@@ -14836,7 +14842,7 @@ loadProjectileSlotBase:
                        LDA.B #$01                           ;82E097|A901    |      ;
                        STA.W r_1f23                         ;82E099|8D231F  |861F23;
                        LDA.B #$0A                           ;82E09C|A90A    |      ;
-                       STA.B $02                            ;82E09E|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82E09E|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_82E0A0:
                        RTL                                  ;82E0A0|6B      |      ;
@@ -14848,24 +14854,24 @@ loadProjectileSlotBase:
                        STA.W r_1f10                         ;82E0AD|8D101F  |861F10;
                        LDA.B #$01                           ;82E0B0|A901    |      ;
                        STA.W r_1f7b                         ;82E0B2|8D7B1F  |861F7B;
-                       JML.L CODE_828398                    ;82E0B5|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82E0B5|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E0B9:
                        LDA.B #$2B                           ;82E0B9|A92B    |      ;
-                       STA.B $0A                            ;82E0BB|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82E0BB|850A    |000E72;
                        JSR.W CODE_82E184                    ;82E0BD|2084E1  |82E184;
                        LDA.B #$63                           ;82E0C0|A963    |      ;
-                       STA.B $0A                            ;82E0C2|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;82E0C2|850A    |000E72;
                        CPY.B #$08                           ;82E0C4|C008    |      ;
                        BPL CODE_82E0F3                      ;82E0C6|102B    |82E0F3;
                        REP #$20                             ;82E0C8|C220    |      ;
-                       LDA.B $08                            ;82E0CA|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;82E0CA|A508    |000E70;
                        CMP.W #$017A                         ;82E0CC|C97A01  |      ;
                        BPL CODE_82E0F3                      ;82E0CF|1022    |82E0F3;
                        LDA.W r_0bb0                         ;82E0D1|ADB00B  |860BB0;
                        SEC                                  ;82E0D4|38      |      ;
-                       SBC.B $08                            ;82E0D5|E508    |000E70;
+                       SBC.B r_ev_08_yPos-$E68              ;82E0D5|E508    |000E70;
                        BCS CODE_82E0DD                      ;82E0D7|B004    |82E0DD;
                        db $49,$FF,$FF,$1A                   ;82E0D9|        |      ;
                                                             ;      |        |      ;
@@ -14877,12 +14883,12 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E0E7:
-                       LDA.B $02                            ;82E0E7|A502    |000E6A;
-                       STA.B $03                            ;82E0E9|8503    |000E6B;
+                       LDA.B r_ev_02_action-$E68            ;82E0E7|A502    |000E6A;
+                       STA.B r_ev_03_do-$E68                ;82E0E9|8503    |000E6B;
                        LDA.B #$0A                           ;82E0EB|A90A    |      ;
-                       STA.B $02                            ;82E0ED|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82E0ED|8502    |000E6A;
                        LDA.B #$20                           ;82E0EF|A920    |      ;
-                       STA.B $35                            ;82E0F1|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;82E0F1|8535    |000E9D;
                                                             ;      |        |      ;
           CODE_82E0F3:
                        SEP #$20                             ;82E0F3|E220    |      ;
@@ -14891,33 +14897,33 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82E0F6:
                        REP #$20                             ;82E0F6|C220    |      ;
-                       LDA.B $1A                            ;82E0F8|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;82E0F8|A51A    |000E82;
                        BMI CODE_82E107                      ;82E0FA|300B    |82E107;
                        BEQ CODE_82E110                      ;82E0FC|F012    |82E110;
                        SEP #$20                             ;82E0FE|E220    |      ;
                        LDA.B #$F8                           ;82E100|A9F8    |      ;
-                       STA.B $29                            ;82E102|8529    |000E91;
+                       STA.B r_ev_29-$E68                   ;82E102|8529    |000E91;
                        JMP.W CODE_82E114                    ;82E104|4C14E1  |82E114;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E107:
                        SEP #$20                             ;82E107|E220    |      ;
                        LDA.B #$08                           ;82E109|A908    |      ;
-                       STA.B $29                            ;82E10B|8529    |000E91;
+                       STA.B r_ev_29-$E68                   ;82E10B|8529    |000E91;
                        JMP.W CODE_82E114                    ;82E10D|4C14E1  |82E114;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E110:
                        SEP #$20                             ;82E110|E220    |      ;
-                       STZ.B $29                            ;82E112|6429    |000E91;
+                       STZ.B r_ev_29-$E68                   ;82E112|6429    |000E91;
                                                             ;      |        |      ;
           CODE_82E114:
                        LDA.B #$F0                           ;82E114|A9F0    |      ;
-                       STA.B $2A                            ;82E116|852A    |000E92;
+                       STA.B r_ev_2a-$E68                   ;82E116|852A    |000E92;
                        JSL.L CODE_8490A0                    ;82E118|22A09084|8490A0;
                        CMP.B #$15                           ;82E11C|C915    |      ;
                        BEQ CODE_82E17D                      ;82E11E|F05D    |82E17D;
-                       CMP.B $3D                            ;82E120|C53D    |000EA5;
+                       CMP.B r_ev_3d-$E68                   ;82E120|C53D    |000EA5;
                        BEQ CODE_82E17D                      ;82E122|F059    |82E17D;
                        CMP.B #$14                           ;82E124|C914    |      ;
                        BEQ CODE_82E12F                      ;82E126|F007    |82E12F;
@@ -14927,53 +14933,53 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E12F:
-                       STA.B $3D                            ;82E12F|853D    |000EA5;
-                       LDA.B $02                            ;82E131|A502    |000E6A;
+                       STA.B r_ev_3d-$E68                   ;82E12F|853D    |000EA5;
+                       LDA.B r_ev_02_action-$E68            ;82E131|A502    |000E6A;
                        CMP.B #$04                           ;82E133|C904    |      ;
                        BNE CODE_82E165                      ;82E135|D02E    |82E165;
                        LDA.B #$06                           ;82E137|A906    |      ;
-                       STA.B $02                            ;82E139|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82E139|8502    |000E6A;
                        REP #$20                             ;82E13B|C220    |      ;
-                       LDX.B $3E                            ;82E13D|A63E    |000EA6;
+                       LDX.B r_ev_3e-$E68                   ;82E13D|A63E    |000EA6;
                        LDA.W UNREACH_86D6A2,X               ;82E13F|BDA2D6  |86D6A2;
-                       STA.B $1A                            ;82E142|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82E142|851A    |000E82;
                        JMP.W CODE_82E181                    ;82E144|4C81E1  |82E181;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E147:
                        SEP #$20                             ;82E147|E220    |      ;
-                       STA.B $3D                            ;82E149|853D    |000EA5;
-                       LDA.B $02                            ;82E14B|A502    |000E6A;
+                       STA.B r_ev_3d-$E68                   ;82E149|853D    |000EA5;
+                       LDA.B r_ev_02_action-$E68            ;82E14B|A502    |000E6A;
                        CMP.B #$04                           ;82E14D|C904    |      ;
                        BNE CODE_82E165                      ;82E14F|D014    |82E165;
                        LDA.B #$06                           ;82E151|A906    |      ;
-                       STA.B $02                            ;82E153|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82E153|8502    |000E6A;
                        REP #$20                             ;82E155|C220    |      ;
-                       LDX.B $3E                            ;82E157|A63E    |000EA6;
+                       LDX.B r_ev_3e-$E68                   ;82E157|A63E    |000EA6;
                        LDA.W UNREACH_86D6A2,X               ;82E159|BDA2D6  |86D6A2;
                        EOR.W #$FFFF                         ;82E15C|49FFFF  |      ;
                        INC A                                ;82E15F|1A      |      ;
-                       STA.B $1A                            ;82E160|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;82E160|851A    |000E82;
                        JMP.W CODE_82E181                    ;82E162|4C81E1  |82E181;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E165:
                        SEP #$20                             ;82E165|E220    |      ;
                        LDA.B #$04                           ;82E167|A904    |      ;
-                       STA.B $02                            ;82E169|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;82E169|8502    |000E6A;
                        REP #$20                             ;82E16B|C220    |      ;
-                       STZ.B $1A                            ;82E16D|641A    |000E82;
-                       LDX.B $3E                            ;82E16F|A63E    |000EA6;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;82E16D|641A    |000E82;
+                       LDX.B r_ev_3e-$E68                   ;82E16F|A63E    |000EA6;
                        LDA.W UNREACH_86D6A2,X               ;82E171|BDA2D6  |86D6A2;
                        EOR.W #$FFFF                         ;82E174|49FFFF  |      ;
                        INC A                                ;82E177|1A      |      ;
-                       STA.B $1C                            ;82E178|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;82E178|851C    |000E84;
                        JMP.W CODE_82E181                    ;82E17A|4C81E1  |82E181;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E17D:
                        SEP #$20                             ;82E17D|E220    |      ;
-                       STA.B $3D                            ;82E17F|853D    |000EA5;
+                       STA.B r_ev_3d-$E68                   ;82E17F|853D    |000EA5;
                                                             ;      |        |      ;
           CODE_82E181:
                        SEP #$20                             ;82E181|E220    |      ;
@@ -14990,7 +14996,7 @@ loadProjectileSlotBase:
                        BEQ CODE_82E1AB                      ;82E18F|F01A    |82E1AB;
                        SEP #$20                             ;82E191|E220    |      ;
                        LDA.W r_000a,X                       ;82E193|BD0A00  |86000A;
-                       CMP.B $0A                            ;82E196|C50A    |000E72;
+                       CMP.B r_ev_0a_ID-$E68                ;82E196|C50A    |000E72;
                        REP #$20                             ;82E198|C220    |      ;
                        BNE CODE_82E1AB                      ;82E19A|D00F    |82E1AB;
                        TXA                                  ;82E19C|8A      |      ;
@@ -15021,13 +15027,13 @@ loadProjectileSlotBase:
                        LDA.B #$3C                           ;82E1C4|A93C    |      ;
                        STA.W r_000a,X                       ;82E1C6|9D0A00  |86000A;
                        REP #$20                             ;82E1C9|C220    |      ;
-                       LDA.B $3A                            ;82E1CB|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;82E1CB|A53A    |000EA2;
                        AND.W #$00FF                         ;82E1CD|29FF00  |      ;
                        ASL A                                ;82E1D0|0A      |      ;
                        TAY                                  ;82E1D1|A8      |      ;
                        LDA.W UNREACH_86D68C,Y               ;82E1D2|B98CD6  |86D68C;
                        STA.W r_0005,X                       ;82E1D5|9D0500  |860005;
-                       LDA.B $3B                            ;82E1D8|A53B    |000EA3;
+                       LDA.B r_ev_3b-$E68                   ;82E1D8|A53B    |000EA3;
                        AND.W #$00FF                         ;82E1DA|29FF00  |      ;
                        ASL A                                ;82E1DD|0A      |      ;
                        TAY                                  ;82E1DE|A8      |      ;
@@ -15036,13 +15042,13 @@ loadProjectileSlotBase:
                        TDC                                  ;82E1E5|7B      |      ;
                        STA.W r_000c,X                       ;82E1E6|9D0C00  |86000C;
                        SEP #$20                             ;82E1E9|E220    |      ;
-                       LDA.B $16                            ;82E1EB|A516    |000E7E;
+                       LDA.B r_ev_16-$E68                   ;82E1EB|A516    |000E7E;
                        STA.W r_0016,X                       ;82E1ED|9D1600  |860016;
-                       LDA.B $11                            ;82E1F0|A511    |000E79;
-                       ORA.B $34                            ;82E1F2|0534    |000E9C;
+                       LDA.B r_ev_11_sprAtri-$E68           ;82E1F0|A511    |000E79;
+                       ORA.B r_ev_34-$E68                   ;82E1F2|0534    |000E9C;
                        ORA.B #$0A                           ;82E1F4|090A    |      ;
                        STA.W r_0011,X                       ;82E1F6|9D1100  |860011;
-                       LDA.B $18                            ;82E1F9|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;82E1F9|A518    |000E80;
                        STA.W r_0018,X                       ;82E1FB|9D1800  |860018;
                        LDA.B #$06                           ;82E1FE|A906    |      ;
                        STA.W r_0012,X                       ;82E200|9D1200  |860012;
@@ -15068,7 +15074,7 @@ loadProjectileSlotBase:
                        MVP $7F,$7F                          ;82E231|447F7F  |      ;
                        SEP #$30                             ;82E234|E230    |      ;
                        PLB                                  ;82E236|AB      |      ;
-                       LDA.B $0C                            ;82E237|A50C    |000E74;
+                       LDA.B r_ev_0c-$E68                   ;82E237|A50C    |000E74;
                        ORA.B #$E0                           ;82E239|09E0    |      ;
                        STA.L $7FD070                        ;82E23B|8F70D07F|7FD070;
                        RTS                                  ;82E23F|60      |      ;
@@ -15087,7 +15093,7 @@ loadProjectileSlotBase:
                        MVP $7F,$7F                          ;82E258|447F7F  |      ;
                        SEP #$30                             ;82E25B|E230    |      ;
                        PLB                                  ;82E25D|AB      |      ;
-                       LDA.B $0C                            ;82E25E|A50C    |000E74;
+                       LDA.B r_ev_0c-$E68                   ;82E25E|A50C    |000E74;
                        ORA.B #$E0                           ;82E260|09E0    |      ;
                        STA.L $7FD06C                        ;82E262|8F6CD07F|7FD06C;
                        STA.L $7FD06D                        ;82E266|8F6DD07F|7FD06D;
@@ -15121,7 +15127,7 @@ loadProjectileSlotBase:
                        CMP.B #$06                           ;82E29E|C906    |      ;
                        BNE CODE_82E2A8                      ;82E2A0|D006    |82E2A8;
                        SEP #$10                             ;82E2A2|E210    |      ;
-                       JSL.L CODE_828398                    ;82E2A4|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;82E2A4|22988382|828398;
                                                             ;      |        |      ;
           CODE_82E2A8:
                        SEP #$10                             ;82E2A8|E210    |      ;
@@ -15134,7 +15140,7 @@ loadProjectileSlotBase:
                        JSL.L CODE_848F07                    ;82E2B5|22078F84|848F07;
                        LDA.B #$02                           ;82E2B9|A902    |      ;
                        STA.B $01                            ;82E2BB|8501    |001A69;
-                       JSL.L CODE_8280B4                    ;82E2BD|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E2BD|22B48082|8280B4;
                        RTS                                  ;82E2C1|60      |      ;
                                                             ;      |        |      ;
                        LDA.B $0F                            ;82E2C2|A50F    |001A77;
@@ -15163,7 +15169,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E2F2:
-                       JSL.L CODE_8280B4                    ;82E2F2|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E2F2|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82E2F6:
                        RTS                                  ;82E2F6|60      |      ;
@@ -15191,7 +15197,7 @@ loadProjectileSlotBase:
                        LDA.B #$01                           ;82E31F|A901    |      ;
                        STA.B $0B                            ;82E321|850B    |001993;
                        JSL.L CODE_848011                    ;82E323|22118084|848011;
-                       JSL.L CODE_8280B4                    ;82E327|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E327|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82E32B:
                        SEP #$10                             ;82E32B|E210    |      ;
@@ -15200,12 +15206,12 @@ loadProjectileSlotBase:
                        LDA.B $0F                            ;82E32E|A50F    |001A77;
                        BMI CODE_82E33D                      ;82E330|300B    |82E33D;
                        JSL.L updateEv_13_14_17_0f           ;82E332|22EA8E84|848EEA;
-                       JSL.L CODE_8280B4                    ;82E336|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E336|22B48082|8280B4;
                        JMP.W CODE_82E341                    ;82E33A|4C41E3  |82E341;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E33D:
-                       JSL.L CODE_828398                    ;82E33D|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;82E33D|22988382|828398;
                                                             ;      |        |      ;
           CODE_82E341:
                        RTS                                  ;82E341|60      |      ;
@@ -15241,7 +15247,7 @@ loadProjectileSlotBase:
           CODE_82E375:
                        STX.B $20                            ;82E375|8620    |001648;
                        SEP #$10                             ;82E377|E210    |      ;
-                       JSL.L CODE_8280B4                    ;82E379|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E379|22B48082|8280B4;
                        LDA.B #$12                           ;82E37D|A912    |      ;
                        STA.B $16                            ;82E37F|8516    |00163E;
                        LDA.B $0B                            ;82E381|A50B    |001633;
@@ -15250,11 +15256,11 @@ loadProjectileSlotBase:
                        JSL.L CODE_848F07                    ;82E386|22078F84|848F07;
                        RTS                                  ;82E38A|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_82806E                    ;82E38B|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82E38B|226E8082|82806E;
                        BCC CODE_82E39F                      ;82E38F|900E    |82E39F;
                        LDA.B $0B                            ;82E391|A50B    |001633;
                        BPL CODE_82E39A                      ;82E393|1005    |82E39A;
-                       JSL.L CODE_828387                    ;82E395|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;82E395|22878382|828387;
                        RTS                                  ;82E399|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15295,7 +15301,7 @@ loadProjectileSlotBase:
                        BIT.B #$08                           ;82E3CC|8908    |      ;
                        BNE CODE_82E3DC                      ;82E3CE|D00C    |82E3DC;
                        JSL.L CODE_828174                    ;82E3D0|22748182|828174;
-                       JSL.L CODE_8280B4                    ;82E3D4|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E3D4|22B48082|8280B4;
                        LDA.B $1D                            ;82E3D8|A51D    |001645;
                        BPL CODE_82E3E5                      ;82E3DA|1009    |82E3E5;
                                                             ;      |        |      ;
@@ -15361,7 +15367,7 @@ loadProjectileSlotBase:
                        db $AD,$9C,$0B,$4A,$90,$04           ;82E442|        |000B9C;
                                                             ;      |        |      ;
           CODE_82E448:
-                       JSL.L CODE_8280B4                    ;82E448|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E448|22B48082|8280B4;
                        JSL.L CODE_81E109                    ;82E44C|2209E181|81E109;
                        LDA.W r_0bcf                         ;82E450|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82E453|297F    |      ;
@@ -15425,7 +15431,7 @@ loadProjectileSlotBase:
                        BNE CODE_82E4B4                      ;82E4AE|D004    |82E4B4;
                                                             ;      |        |      ;
           CODE_82E4B0:
-                       JSL.L CODE_8280B4                    ;82E4B0|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E4B0|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82E4B4:
                        LDA.W r_0bcf                         ;82E4B4|ADCF0B  |860BCF;
@@ -15590,7 +15596,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E5D1:
-                       JSL.L CODE_828398                    ;82E5D1|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;82E5D1|22988382|828398;
                        RTS                                  ;82E5D5|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15709,7 +15715,7 @@ loadProjectileSlotBase:
                        LDY.B #$40                           ;82E6C4|A040    |      ;
                        JSR.W CODE_82E6D4                    ;82E6C6|20D4E6  |82E6D4;
                        JSR.W CODE_82E6FA                    ;82E6C9|20FAE6  |82E6FA;
-                       JML.L CODE_828398                    ;82E6CC|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82E6CC|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E6D0:
@@ -15814,13 +15820,13 @@ loadProjectileSlotBase:
                        JSR.W CODE_82EA5C                    ;82E78C|205CEA  |82EA5C;
                                                             ;      |        |      ;
           CODE_82E78F:
-                       JSL.L CODE_82806E                    ;82E78F|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82E78F|226E8082|82806E;
                        BCS CODE_82E796                      ;82E793|B001    |82E796;
                        RTL                                  ;82E795|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E796:
-                       JML.L CODE_828387                    ;82E796|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82E796|5C878382|828387;
                                                             ;      |        |      ;
                        JSL.L CODE_8281E8                    ;82E79A|22E88182|8281E8;
                        REP #$20                             ;82E79E|C220    |      ;
@@ -15831,13 +15837,13 @@ loadProjectileSlotBase:
                        STA.B $20                            ;82E7AC|8520    |001648;
                        JSL.L CODE_84AB56                    ;82E7AE|2256AB84|84AB56;
                        SEP #$20                             ;82E7B2|E220    |      ;
-                       JSL.L CODE_82806E                    ;82E7B4|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82E7B4|226E8082|82806E;
                        BCS CODE_82E7BE                      ;82E7B8|B004    |82E7BE;
-                       JML.L CODE_8280B4                    ;82E7BA|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82E7BA|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E7BE:
-                       JML.L CODE_828398                    ;82E7BE|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82E7BE|5C988382|828398;
                                                             ;      |        |      ;
                        LDA.B $2F                            ;82E7C2|A52F    |001717;
                        BNE CODE_82E809                      ;82E7C4|D043    |82E809;
@@ -15855,7 +15861,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E7E5:
-                       JSL.L CODE_8280B4                    ;82E7E5|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E7E5|22B48082|8280B4;
                        INC.B $01                            ;82E7E9|E601    |0016E9;
                        INC.B $01                            ;82E7EB|E601    |0016E9;
                        JSL.L CODE_849C0E                    ;82E7ED|220E9C84|849C0E;
@@ -15868,7 +15874,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E7FE:
-                       JSL.L CODE_82806E                    ;82E7FE|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82E7FE|226E8082|82806E;
                        BCC CODE_82E808                      ;82E802|9004    |82E808;
                        db $5C,$87,$83,$82                   ;82E804|        |828387;
                                                             ;      |        |      ;
@@ -15928,7 +15934,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E872:
-                       JSL.L CODE_8280B4                    ;82E872|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E872|22B48082|8280B4;
                        INC.B $01                            ;82E876|E601    |001689;
                        INC.B $01                            ;82E878|E601    |001689;
                        JSL.L CODE_849C0E                    ;82E87A|220E9C84|849C0E;
@@ -15941,7 +15947,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E88B:
-                       JSL.L CODE_82806E                    ;82E88B|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82E88B|226E8082|82806E;
                        BCC CODE_82E895                      ;82E88F|9004    |82E895;
                        db $5C,$87,$83,$82                   ;82E891|        |828387;
                                                             ;      |        |      ;
@@ -15995,7 +16001,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E8F2:
-                       JSL.L CODE_8280B4                    ;82E8F2|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E8F2|22B48082|8280B4;
                        INC.B $01                            ;82E8F6|E601    |001659;
                        INC.B $01                            ;82E8F8|E601    |001659;
                        JSL.L CODE_849C0E                    ;82E8FA|220E9C84|849C0E;
@@ -16008,7 +16014,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E90B:
-                       JSL.L CODE_82806E                    ;82E90B|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82E90B|226E8082|82806E;
                        BCC CODE_82E915                      ;82E90F|9004    |82E915;
                        db $5C,$87,$83,$82                   ;82E911|        |828387;
                                                             ;      |        |      ;
@@ -16075,7 +16081,7 @@ loadProjectileSlotBase:
                        LDX.B $0B                            ;82E983|A60B    |001633;
                        LDA.W UNREACH_86DA39,X               ;82E985|BD39DA  |86DA39;
                        JSL.L CODE_848011                    ;82E988|22118084|848011;
-                       JSL.L CODE_8280B4                    ;82E98C|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82E98C|22B48082|8280B4;
                        INC.B $01                            ;82E990|E601    |001629;
                        INC.B $01                            ;82E992|E601    |001629;
                        LDY.B $0B                            ;82E994|A40B    |001633;
@@ -16121,7 +16127,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E9E3:
-                       JSL.L CODE_82806E                    ;82E9E3|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82E9E3|226E8082|82806E;
                        BCC CODE_82E9E2                      ;82E9E7|90F9    |82E9E2;
                        db $5C,$87,$83,$82                   ;82E9E9|        |828387;
                                                             ;      |        |      ;
@@ -16342,7 +16348,7 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;82EB82|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82EB86:
-                       JML.L CODE_8280B4                    ;82EB86|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82EB86|5CB48082|8280B4;
                                                             ;      |        |      ;
                        LDX.B $02                            ;82EB8A|A602    |00162A;
                        BNE CODE_82EBB3                      ;82EB8C|D025    |82EBB3;
@@ -16357,7 +16363,7 @@ loadProjectileSlotBase:
                        STA.B $1E                            ;82EBA0|851E    |001646;
                        LDA.L $7F8331                        ;82EBA2|AF31837F|7F8331;
                        STA.B $11                            ;82EBA6|8511    |001639;
-                       JSL.L CODE_82806E                    ;82EBA8|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82EBA8|226E8082|82806E;
                        BCS CODE_82EBB2                      ;82EBAC|B004    |82EBB2;
                        JML.L CODE_84A4B5                    ;82EBAE|5CB5A484|84A4B5;
                                                             ;      |        |      ;
@@ -16367,9 +16373,9 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EBB3:
-                       JSL.L CODE_82806E                    ;82EBB3|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82EBB3|226E8082|82806E;
                        BCC CODE_82EBBD                      ;82EBB7|9004    |82EBBD;
-                       JML.L CODE_828398                    ;82EBB9|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82EBB9|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EBBD:
@@ -16642,7 +16648,7 @@ loadProjectileSlotBase:
           CODE_82EDE6:
                        LDA.B $0F                            ;82EDE6|A50F    |001997;
                        BPL CODE_82EDEE                      ;82EDE8|1004    |82EDEE;
-                       JML.L CODE_828398                    ;82EDEA|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82EDEA|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EDEE:
@@ -16650,7 +16656,7 @@ loadProjectileSlotBase:
                        LDA.B $0B                            ;82EDF2|A50B    |001993;
                        CMP.B #$1D                           ;82EDF4|C91D    |      ;
                        BEQ CODE_82EDFC                      ;82EDF6|F004    |82EDFC;
-                       JML.L CODE_8280B4                    ;82EDF8|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82EDF8|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EDFC:
@@ -16663,12 +16669,12 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;82EE04|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82EE08:
-                       JML.L CODE_8280B4                    ;82EE08|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82EE08|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE0C:
                        JSL.L updateEv_13_14_17_0f           ;82EE0C|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;82EE10|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82EE10|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE14:
@@ -16717,7 +16723,7 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;82EE59|22EA8E84|848EEA;
                        LDA.B $0F                            ;82EE5D|A50F    |00000F;
                        BPL CODE_82EE65                      ;82EE5F|1004    |82EE65;
-                       JML.L CODE_828398                    ;82EE61|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82EE61|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE65:
@@ -16749,7 +16755,7 @@ loadProjectileSlotBase:
                        BNE CODE_82EE98                      ;82EE8E|D008    |82EE98;
                        LDA.B #$02                           ;82EE90|A902    |      ;
                        STA.B $01                            ;82EE92|8501    |001969;
-                       JML.L CODE_8280B4                    ;82EE94|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82EE94|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE98:
@@ -16759,7 +16765,7 @@ loadProjectileSlotBase:
                        LDA.W #$0100                         ;82EE9E|A90001  |      ;
                        STA.B $1C                            ;82EEA1|851C    |001964;
                        SEP #$20                             ;82EEA3|E220    |      ;
-                       JML.L CODE_8280B4                    ;82EEA5|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82EEA5|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EEA9:
@@ -16768,12 +16774,12 @@ loadProjectileSlotBase:
                        LDA.W r_0003,X                       ;82EEAD|BD0300  |860003;
                        SEP #$10                             ;82EEB0|E210    |      ;
                        BNE CODE_82EEB8                      ;82EEB2|D004    |82EEB8;
-                       JML.L CODE_828398                    ;82EEB4|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82EEB4|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EEB8:
                        JSL.L updateEv_13_14_17_0f           ;82EEB8|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;82EEBC|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82EEBC|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EEC0:
@@ -16786,14 +16792,14 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82EECF:
                        JSL.L updateEv_13_14_17_0f           ;82EECF|22EA8E84|848EEA;
-                       JSL.L CODE_8280B4                    ;82EED3|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82EED3|22B48082|8280B4;
                        LDA.B $0E                            ;82EED7|A50E    |001956;
                        BEQ CODE_82EEDC                      ;82EED9|F001    |82EEDC;
                        RTL                                  ;82EEDB|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EEDC:
-                       JML.L CODE_828398                    ;82EEDC|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82EEDC|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EEE0:
@@ -16828,7 +16834,7 @@ loadProjectileSlotBase:
                        JSL.L CODE_84A23F                    ;82EF18|223FA284|84A23F;
                        TYA                                  ;82EF1C|98      |      ;
                        BEQ CODE_82EF23                      ;82EF1D|F004    |82EF23;
-                       JML.L CODE_828398                    ;82EF1F|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82EF1F|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EF23:
@@ -16911,7 +16917,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82EFA9:
                        STA.B $11                            ;82EFA9|8511    |001959;
-                       JSL.L CODE_8280B4                    ;82EFAB|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82EFAB|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82EFAF:
                        LDA.W r_0baa                         ;82EFAF|ADAA0B  |860BAA;
@@ -17012,7 +17018,7 @@ loadProjectileSlotBase:
                        JSL.L CODE_84A20A                    ;82F046|220AA284|84A20A;
                        CPY.B #$00                           ;82F04A|C000    |      ;
                        BEQ CODE_82F052                      ;82F04C|F004    |82F052;
-                       JML.L CODE_828398                    ;82F04E|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F04E|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F052:
@@ -17081,7 +17087,7 @@ loadProjectileSlotBase:
                        PLD                                  ;82F0D4|2B      |      ;
                                                             ;      |        |      ;
           CODE_82F0D5:
-                       JML.L CODE_828398                    ;82F0D5|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F0D5|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F0D9:
@@ -17108,7 +17114,7 @@ loadProjectileSlotBase:
                        STZ.W r_0004,X                       ;82F10F|9E0400  |860004;
                                                             ;      |        |      ;
           CODE_82F112:
-                       JML.L CODE_828398                    ;82F112|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F112|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F116:
@@ -17160,7 +17166,7 @@ loadProjectileSlotBase:
                        JSL.L CODE_84A4B5                    ;82F168|22B5A484|84A4B5;
                        LDA.B #$3C                           ;82F16C|A93C    |      ;
                        JSL.L CODE_84A338                    ;82F16E|2238A384|84A338;
-                       JML.L CODE_828398                    ;82F172|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F172|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F176:
@@ -17177,7 +17183,7 @@ loadProjectileSlotBase:
                        LDA.W $0B9C                          ;82F187|AD9C0B  |860B9C;
                        LSR A                                ;82F18A|4A      |      ;
                        BCC CODE_82F191                      ;82F18B|9004    |82F191;
-                       JML.L CODE_8280B4                    ;82F18D|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82F18D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F191:
@@ -17282,14 +17288,14 @@ loadProjectileSlotBase:
                        PLA                                  ;82F22E|68      |      ;
                        STA.B $29                            ;82F22F|8529    |0019F1;
                        SEP #$20                             ;82F231|E220    |      ;
-                       JSL.L CODE_82806E                    ;82F233|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82F233|226E8082|82806E;
                        BCC CODE_82F23D                      ;82F237|9004    |82F23D;
                        LDA.B #$04                           ;82F239|A904    |      ;
                        STA.B $01                            ;82F23B|8501    |0019C9;
                                                             ;      |        |      ;
           CODE_82F23D:
                        JSL.L updateEv_13_14_17_0f           ;82F23D|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;82F241|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82F241|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_82F245:
@@ -17389,7 +17395,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F2DF:
-                       JML.L CODE_828398                    ;82F2DF|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F2DF|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F2E3:
@@ -17528,13 +17534,13 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;82F3B3|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82F3B7:
-                       JML.L CODE_8280B4                    ;82F3B7|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82F3B7|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F3BB:
-                       JSL.L CODE_82806E                    ;82F3BB|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82F3BB|226E8082|82806E;
                        BCC CODE_82F3C5                      ;82F3BF|9004    |82F3C5;
-                       JML.L CODE_828398                    ;82F3C1|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F3C1|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F3C5:
@@ -17624,15 +17630,15 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82F45B:
                        SEP #$10                             ;82F45B|E210    |      ;
-                       JML.L CODE_8280B4                    ;82F45D|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82F45D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F461:
-                       JML.L CODE_828398                    ;82F461|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F461|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F465:
-                       JSL.L CODE_82806E                    ;82F465|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82F465|226E8082|82806E;
                        BCS CODE_82F47B                      ;82F469|B010    |82F47B;
                        INC.B $0B                            ;82F46B|E60B    |001933;
                        LDA.B $0B                            ;82F46D|A50B    |001933;
@@ -17698,7 +17704,7 @@ loadProjectileSlotBase:
                        JSL.L CODE_82808F                    ;82F4DA|228F8082|82808F;
                        LDA.B $0E                            ;82F4DE|A50E    |001936;
                        BNE CODE_82F4E6                      ;82F4E0|D004    |82F4E6;
-                       JML.L CODE_828398                    ;82F4E2|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F4E2|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F4E6:
@@ -17756,14 +17762,14 @@ loadProjectileSlotBase:
                        LDA.W $0B9C                          ;82F542|AD9C0B  |860B9C;
                        LSR A                                ;82F545|4A      |      ;
                        BCC CODE_82F54C                      ;82F546|9004    |82F54C;
-                       JSL.L CODE_8280B4                    ;82F548|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82F548|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82F54C:
                        JML.L updateEv_13_14_17_0f           ;82F54C|5CEA8E84|848EEA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F550:
-                       JML.L CODE_828398                    ;82F550|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F550|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F554:
@@ -17774,7 +17780,7 @@ loadProjectileSlotBase:
                        CMP.B $05                            ;82F55D|C505    |00192D;
                        SEP #$20                             ;82F55F|E220    |      ;
                        BCC CODE_82F567                      ;82F561|9004    |82F567;
-                       JML.L CODE_828398                    ;82F563|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F563|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F567:
@@ -17824,7 +17830,7 @@ loadProjectileSlotBase:
                        JSL.L CODE_82808F                    ;82F5B8|228F8082|82808F;
                        LDA.B $0E                            ;82F5BC|A50E    |001976;
                        BNE CODE_82F5C4                      ;82F5BE|D004    |82F5C4;
-                       JML.L CODE_828398                    ;82F5C0|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F5C0|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F5C4:
@@ -17886,7 +17892,7 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;82F62E|22EA8E84|848EEA;
                        LDA.B $0F                            ;82F632|A50F    |001937;
                        BPL CODE_82F63A                      ;82F634|1004    |82F63A;
-                       JML.L CODE_828398                    ;82F636|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F636|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F63A:
@@ -17929,7 +17935,7 @@ loadProjectileSlotBase:
                        EOR.W $0B9C                          ;82F67D|4D9C0B  |860B9C;
                        LSR A                                ;82F680|4A      |      ;
                        BCC CODE_82F68B                      ;82F681|9008    |82F68B;
-                       JSL.L CODE_8280B4                    ;82F683|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82F683|22B48082|8280B4;
                        LDA.B $0E                            ;82F687|A50E    |001956;
                        BEQ CODE_82F68C                      ;82F689|F001    |82F68C;
                                                             ;      |        |      ;
@@ -17938,7 +17944,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F68C:
-                       JML.L CODE_828398                    ;82F68C|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F68C|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F690:
@@ -17985,13 +17991,13 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82F6E4:
                        JSL.L CODE_8281E8                    ;82F6E4|22E88182|8281E8;
-                       JSL.L CODE_82806E                    ;82F6E8|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82F6E8|226E8082|82806E;
                        BCS CODE_82F6F2                      ;82F6EC|B004    |82F6F2;
-                       JML.L CODE_8280B4                    ;82F6EE|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82F6EE|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F6F2:
-                       JML.L CODE_828398                    ;82F6F2|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F6F2|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F6F6:
@@ -18038,17 +18044,17 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82F74A:
                        JSL.L CODE_8281E8                    ;82F74A|22E88182|8281E8;
-                       JSL.L CODE_82806E                    ;82F74E|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82F74E|226E8082|82806E;
                        BCS CODE_82F760                      ;82F752|B00C    |82F760;
                        LDA.W $0B9C                          ;82F754|AD9C0B  |860B9C;
                        EOR.B $0B                            ;82F757|450B    |001A33;
                        LSR A                                ;82F759|4A      |      ;
                        BCC CODE_82F764                      ;82F75A|9008    |82F764;
-                       JML.L CODE_8280B4                    ;82F75C|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82F75C|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F760:
-                       JML.L CODE_828398                    ;82F760|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F760|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F764:
@@ -18101,10 +18107,10 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82F7BA:
                        SEP #$10                             ;82F7BA|E210    |      ;
-                       JSL.L CODE_8280B4                    ;82F7BC|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;82F7BC|22B48082|8280B4;
                        JML.L updateEv_13_14_17_0f           ;82F7C0|5CEA8E84|848EEA;
                                                             ;      |        |      ;
-                       JML.L CODE_828398                    ;82F7C4|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F7C4|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F7C8:
@@ -18318,13 +18324,13 @@ loadProjectileSlotBase:
           CODE_82F935:
                        LDA.B $0F                            ;82F935|A50F    |0019D7;
                        BPL CODE_82F93D                      ;82F937|1004    |82F93D;
-                       JML.L CODE_828398                    ;82F939|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F939|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F93D:
                        JSL.L updateEv_13_14_17_0f           ;82F93D|22EA8E84|848EEA;
                        JSL.L CODE_8281B2                    ;82F941|22B28182|8281B2;
-                       JML.L CODE_8280B4                    ;82F945|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82F945|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F949:
@@ -18374,7 +18380,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82F9A6:
                        SEP #$10                             ;82F9A6|E210    |      ;
-                       JML.L CODE_8280B4                    ;82F9A8|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82F9A8|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_82F9AC:
@@ -18393,14 +18399,14 @@ loadProjectileSlotBase:
                        LDX.B $0C                            ;82F9CB|A60C    |0019F4;
                        LDA.W r_0027,X                       ;82F9CD|BD2700  |860027;
                        BNE CODE_82F9D6                      ;82F9D0|D004    |82F9D6;
-                       JML.L CODE_828398                    ;82F9D2|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82F9D2|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F9D6:
                        LDA.W $0B9C                          ;82F9D6|AD9C0B  |860B9C;
                        LSR A                                ;82F9D9|4A      |      ;
                        BCC CODE_82F9E0                      ;82F9DA|9004    |82F9E0;
-                       JML.L CODE_8280B4                    ;82F9DC|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82F9DC|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F9E0:
@@ -18423,7 +18429,7 @@ loadProjectileSlotBase:
                        LDA.W r_000a,X                       ;82F9F8|BD0A00  |86000A;
                        CMP.B $0A                            ;82F9FB|C50A    |001952;
                        BNE CODE_82FA03                      ;82F9FD|D004    |82FA03;
-                       JML.L CODE_828387                    ;82F9FF|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82F9FF|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FA03:
@@ -18488,7 +18494,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FA6D:
-                       JML.L CODE_828387                    ;82FA6D|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82FA6D|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FA71:
@@ -18513,7 +18519,7 @@ loadProjectileSlotBase:
                        STA.B $16                            ;82FA96|8516    |001A1E;
                        LDX.B $02                            ;82FA98|A602    |0019CA;
                        JSR.W (UNREACH_82FAA1,X)             ;82FA9A|FCA1FA  |82FAA1;
-                       JML.L CODE_8280B4                    ;82FA9D|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82FA9D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_82FAA1:
@@ -18553,7 +18559,7 @@ loadProjectileSlotBase:
                        JSL.L CODE_828174                    ;82FAE8|22748182|828174;
                        RTS                                  ;82FAEC|60      |      ;
                                                             ;      |        |      ;
-                       JML.L CODE_828398                    ;82FAED|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82FAED|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FAF1:
@@ -18578,7 +18584,7 @@ loadProjectileSlotBase:
                        JSL.L updateEv_13_14_17_0f           ;82FB16|22EA8E84|848EEA;
                        LDA.B $0F                            ;82FB1A|A50F    |0019F7;
                        BPL CODE_82FB22                      ;82FB1C|1004    |82FB22;
-                       JML.L CODE_828398                    ;82FB1E|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82FB1E|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FB22:
@@ -18589,7 +18595,7 @@ loadProjectileSlotBase:
                        LDA.W r_0008,X                       ;82FB2B|BD0800  |860008;
                        STA.B $08                            ;82FB2E|8508    |0019F0;
                        SEP #$30                             ;82FB30|E230    |      ;
-                       JML.L CODE_8280B4                    ;82FB32|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;82FB32|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FB36:
@@ -18621,7 +18627,7 @@ loadProjectileSlotBase:
                        INC.W r_0000,X                       ;82FB68|FE0000  |860000;
                        LDA.B #$1A                           ;82FB6B|A91A    |      ;
                        STA.W r_000a,X                       ;82FB6D|9D0A00  |86000A;
-                       JML.L CODE_828398                    ;82FB70|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82FB70|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FB74:
@@ -18760,7 +18766,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82FC48:
                        REP #$20                             ;82FC48|C220    |      ;
-                       LDA.B $05                            ;82FC4A|A505    |000EAD;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;82FC4A|A505    |000EAD;
                        SEC                                  ;82FC4C|38      |      ;
                        SBC.W r_0bad                         ;82FC4D|EDAD0B  |860BAD;
                        BCS CODE_82FC56                      ;82FC50|B004    |82FC56;
@@ -18789,9 +18795,9 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FC7A:
-                       JSL.L CODE_82806E                    ;82FC7A|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82FC7A|226E8082|82806E;
                        BCC CODE_82FC84                      ;82FC7E|9004    |82FC84;
-                       JML.L CODE_828387                    ;82FC80|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82FC80|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FC84:
@@ -19011,7 +19017,7 @@ loadProjectileSlotBase:
           CODE_82FDD8:
                        DEC.B $0E                            ;82FDD8|C60E    |001D26;
                        BNE CODE_82FDE0                      ;82FDDA|D004    |82FDE0;
-                       JML.L CODE_828398                    ;82FDDC|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82FDDC|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FDE0:
@@ -19047,7 +19053,7 @@ loadProjectileSlotBase:
                        LDA.W r_1f90                         ;82FE14|AD901F  |861F90;
                        AND.B #$40                           ;82FE17|2940    |      ;
                        BNE CODE_82FE1F                      ;82FE19|D004    |82FE1F;
-                       JML.L CODE_828398                    ;82FE1B|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82FE1B|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE1F:
@@ -19063,14 +19069,14 @@ loadProjectileSlotBase:
                        STA.W r_1e68                         ;82FE37|8D681E  |861E68;
                        SEP #$20                             ;82FE3A|E220    |      ;
                        INC.W r_1f23                         ;82FE3C|EE231F  |861F23;
-                       JML.L CODE_828398                    ;82FE3F|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82FE3F|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE43:
                        SEP #$20                             ;82FE43|E220    |      ;
-                       JSL.L CODE_82806E                    ;82FE45|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82FE45|226E8082|82806E;
                        BCC CODE_82FE4F                      ;82FE49|9004    |82FE4F;
-                       JML.L CODE_828387                    ;82FE4B|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82FE4B|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE4F:
@@ -19096,7 +19102,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
           CODE_82FE75:
                        SEP #$30                             ;82FE75|E230    |      ;
-                       JML.L CODE_828398                    ;82FE77|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82FE77|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE7B:
@@ -19107,9 +19113,9 @@ loadProjectileSlotBase:
                        STZ.B $0F                            ;82FE83|640F    |001D17;
                                                             ;      |        |      ;
           CODE_82FE85:
-                       JSL.L CODE_82806E                    ;82FE85|226E8082|82806E;
+                       JSL.L initPosAllign                  ;82FE85|226E8082|82806E;
                        BCC CODE_82FE8F                      ;82FE89|9004    |82FE8F;
-                       JML.L CODE_828387                    ;82FE8B|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;82FE8B|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE8F:
@@ -19270,7 +19276,7 @@ loadProjectileSlotBase:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FFA6:
-                       JML.L CODE_828398                    ;82FFA6|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;82FFA6|5C988382|828398;
                                                             ;      |        |      ;
                        db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;82FFAA|        |FFFFFF;
                        db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;82FFB2|        |FFFFFF;

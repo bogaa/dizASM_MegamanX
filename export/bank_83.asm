@@ -59,7 +59,7 @@
                                                             ;      |        |      ;
                        JSR.W CODE_838948                    ;83806C|204889  |838948;
                        BCC CODE_838076                      ;83806F|9005    |838076;
-                       JSL.L CODE_828398                    ;838071|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;838071|22988382|828398;
                        RTS                                  ;838075|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -745,7 +745,7 @@
                        SEP #$20                             ;8385FD|E220    |      ;
                        RTS                                  ;8385FF|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_828398                    ;838600|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;838600|22988382|828398;
                        RTS                                  ;838604|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -861,8 +861,8 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8386F1:
-                       STA.B $02                            ;8386F1|8502    |000E6A;
-                       STZ.B $03                            ;8386F3|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;8386F1|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;8386F3|6403    |000E6B;
                        RTS                                  ;8386F5|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1285,7 +1285,7 @@
                        LDA.B #$02                           ;838A0D|A902    |      ;
                        STA.B $01                            ;838A0F|8501    |001329;
                        JSL.L CODE_84A524                    ;838A11|2224A584|84A524;
-                       LDA.B $0E                            ;838A15|A50E    |0012B6;
+                       LDA.B r_ev_proj_2e-$12A8             ;838A15|A50E    |0012B6;
                        BNE CODE_838A24                      ;838A17|D00B    |838A24;
                        LDA.B #$08                           ;838A19|A908    |      ;
                        STA.B $01                            ;838A1B|8501    |0012E9;
@@ -1296,9 +1296,9 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_838A24:
-                       LDX.B $02                            ;838A24|A602    |0012AA;
+                       LDX.B r_ev_proj_22_xPosBkp-$12A8     ;838A24|A602    |0012AA;
                        JSR.W (UNREACH_838A2E,X)             ;838A26|FC2E8A  |838A2E;
-                       JSL.L CODE_8280B4                    ;838A29|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;838A29|22B48082|8280B4;
                        RTS                                  ;838A2D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1351,23 +1351,23 @@
                        LDA.B #$04                           ;838A7D|A904    |      ;
                        STA.B $03                            ;838A7F|8503    |0012AB;
                        REP #$21                             ;838A81|C221    |      ;
-                       LDA.B $0B                            ;838A83|A50B    |0012B3;
+                       LDA.B r_ev_proj_2b-$12A8             ;838A83|A50B    |0012B3;
                        AND.W #$00FF                         ;838A85|29FF00  |      ;
                        TAX                                  ;838A88|AA      |      ;
                        LDA.W UNREACH_86BE8D,X               ;838A89|BD8DBE  |86BE8D;
-                       ADC.B $08                            ;838A8C|6508    |0012B0;
-                       STA.B $08                            ;838A8E|8508    |0012B0;
+                       ADC.B r_ev_proj_28-$12A8             ;838A8C|6508    |0012B0;
+                       STA.B r_ev_proj_28-$12A8             ;838A8E|8508    |0012B0;
                        LDA.W UNREACH_86BE81,X               ;838A90|BD81BE  |86BE81;
-                       STA.B $1C                            ;838A93|851C    |0012C4;
+                       STA.B r_ev_proj_3c-$12A8             ;838A93|851C    |0012C4;
                        LDA.W #$00C0                         ;838A95|A9C000  |      ;
-                       STA.B $1E                            ;838A98|851E    |0012C6;
+                       STA.B r_ev_proj_3e-$12A8             ;838A98|851E    |0012C6;
                        LDA.W #$0600                         ;838A9A|A90006  |      ;
-                       BIT.B $10                            ;838A9D|2410    |0012B8;
+                       BIT.B r_ev_proj_30-$12A8             ;838A9D|2410    |0012B8;
                        BVS CODE_838AA4                      ;838A9F|7003    |838AA4;
                        LDA.W #$FA00                         ;838AA1|A900FA  |      ;
                                                             ;      |        |      ;
           CODE_838AA4:
-                       STA.B $1A                            ;838AA4|851A    |0012C2;
+                       STA.B r_ev_proj_3a-$12A8             ;838AA4|851A    |0012C2;
                        SEP #$20                             ;838AA6|E220    |      ;
                        LDA.W UNREACH_86BE87,X               ;838AA8|BD87BE  |86BE87;
                        STA.B $39                            ;838AAB|8539    |0012E1;
@@ -1375,12 +1375,12 @@
                        STA.B $38                            ;838AB0|8538    |0012E0;
                        JSR.W CODE_838BCE                    ;838AB2|20CE8B  |838BCE;
                        LDX.B #$00                           ;838AB5|A200    |      ;
-                       LDA.B $1D                            ;838AB7|A51D    |0012C5;
+                       LDA.B r_ev_proj_3d-$12A8             ;838AB7|A51D    |0012C5;
                        BPL CODE_838ABD                      ;838AB9|1002    |838ABD;
                        LDX.B #$02                           ;838ABB|A202    |      ;
                                                             ;      |        |      ;
           CODE_838ABD:
-                       STX.B $12                            ;838ABD|8612    |0012BA;
+                       STX.B r_ev_proj_32-$12A8             ;838ABD|8612    |0012BA;
                        JSR.W CODE_838BF8                    ;838ABF|20F88B  |838BF8;
                        LDX.B $39                            ;838AC2|A639    |0012E1;
                        BNE CODE_838ADD                      ;838AC4|D017    |838ADD;
@@ -1404,9 +1404,9 @@
                        BNE CODE_838AEF                      ;838ADF|D00E    |838AEF;
                        STZ.B $39                            ;838AE1|6439    |0012E1;
                        LDA.B #$4A                           ;838AE3|A94A    |      ;
-                       STA.B $1C                            ;838AE5|851C    |0012C4;
+                       STA.B r_ev_proj_3c-$12A8             ;838AE5|851C    |0012C4;
                        LDA.B #$05                           ;838AE7|A905    |      ;
-                       STA.B $1D                            ;838AE9|851D    |0012C5;
+                       STA.B r_ev_proj_3d-$12A8             ;838AE9|851D    |0012C5;
                        LDA.B #$08                           ;838AEB|A908    |      ;
                        STA.B $38                            ;838AED|8538    |0012E0;
                                                             ;      |        |      ;
@@ -1414,9 +1414,9 @@
                        JSL.L CODE_8281B2                    ;838AEF|22B28182|8281B2;
                        RTS                                  ;838AF3|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;838AF4|A602    |0012AA;
+                       LDX.B r_ev_proj_22_xPosBkp-$12A8     ;838AF4|A602    |0012AA;
                        JSR.W (UNREACH_838AFE,X)             ;838AF6|FCFE8A  |838AFE;
-                       JSL.L CODE_8280B4                    ;838AF9|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;838AF9|22B48082|8280B4;
                        RTS                                  ;838AFD|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1426,19 +1426,19 @@
                        LDA.B $33                            ;838B04|A533    |0012DB;
                        STA.B $05                            ;838B06|8505    |0012AD;
                        LDA.B $35                            ;838B08|A535    |0012DD;
-                       STA.B $08                            ;838B0A|8508    |0012B0;
+                       STA.B r_ev_proj_28-$12A8             ;838B0A|8508    |0012B0;
                        SEP #$20                             ;838B0C|E220    |      ;
                        LDA.B #$02                           ;838B0E|A902    |      ;
-                       STA.B $02                            ;838B10|8502    |0012AA;
+                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;838B10|8502    |0012AA;
                        INC.B $30                            ;838B12|E630    |0012D8;
                        LDA.B #$08                           ;838B14|A908    |      ;
                        JSL.L CODE_848F07                    ;838B16|22078F84|848F07;
-                       LDA.B $0F                            ;838B1A|A50F    |0012B7;
+                       LDA.B r_ev_proj_2f-$12A8             ;838B1A|A50F    |0012B7;
                        BPL CODE_838B27                      ;838B1C|1009    |838B27;
                        LDA.B #$08                           ;838B1E|A908    |      ;
-                       STA.B $01                            ;838B20|8501    |0012A9;
+                       STA.B r_ev_proj_21-$12A8             ;838B20|8501    |0012A9;
                        LDA.B #$02                           ;838B22|A902    |      ;
-                       STA.B $02                            ;838B24|8502    |0012AA;
+                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;838B24|8502    |0012AA;
                        RTS                                  ;838B26|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1453,12 +1453,12 @@
        UNREACH_838B33:
                        db $39,$8B,$42,$8B,$54,$8B           ;838B33|        |00428B;
                        LDA.B #$02                           ;838B39|A902    |      ;
-                       STA.B $02                            ;838B3B|8502    |0012AA;
+                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;838B3B|8502    |0012AA;
                        JSL.L CODE_84A524                    ;838B3D|2224A584|84A524;
                        RTS                                  ;838B41|60      |      ;
                                                             ;      |        |      ;
                        LDA.B #$04                           ;838B42|A904    |      ;
-                       STA.B $02                            ;838B44|8502    |0012AA;
+                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;838B44|8502    |0012AA;
                        LDA.B #$10                           ;838B46|A910    |      ;
                        STA.B $38                            ;838B48|8538    |0012E0;
                        LDY.B $3A                            ;838B4A|A43A    |0012E2;
@@ -1479,7 +1479,7 @@
                                                             ;      |        |      ;
           CODE_838B62:
                        DEC.W $0C25                          ;838B62|CE250C  |860C25;
-                       JSL.L CODE_8283A3                    ;838B65|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;838B65|22A38382|8283A3;
                        RTS                                  ;838B69|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1551,7 +1551,7 @@
                        STZ.W r_000a,X                       ;838BD9|9E0A00  |86000A;
                        TYA                                  ;838BDC|98      |      ;
                        STA.W r_000b,X                       ;838BDD|9D0B00  |86000B;
-                       LDA.B $11                            ;838BE0|A511    |0012B9;
+                       LDA.B r_ev_proj_31-$12A8             ;838BE0|A511    |0012B9;
                        STA.W r_0011,X                       ;838BE2|9D1100  |860011;
                        REP #$20                             ;838BE5|C220    |      ;
                        TDC                                  ;838BE7|7B      |      ;
@@ -1571,7 +1571,7 @@
                        REP #$20                             ;838BF8|C220    |      ;
                        LDY.B $3A                            ;838BFA|A43A    |0012E2;
                        LDA.W #$0000                         ;838BFC|A90000  |      ;
-                       LDX.B $12                            ;838BFF|A612    |0012BA;
+                       LDX.B r_ev_proj_32-$12A8             ;838BFF|A612    |0012BA;
                        BEQ CODE_838C06                      ;838C01|F003    |838C06;
                        LDA.W #$4000                         ;838C03|A90040  |      ;
                                                             ;      |        |      ;
@@ -1580,7 +1580,7 @@
                        STA.B [$26],Y                        ;838C08|9726    |0012CE;
                        INY                                  ;838C0A|C8      |      ;
                        INY                                  ;838C0B|C8      |      ;
-                       LDA.B $08                            ;838C0C|A508    |0012B0;
+                       LDA.B r_ev_proj_28-$12A8             ;838C0C|A508    |0012B0;
                        STA.B [$26],Y                        ;838C0E|9726    |0012CE;
                        INY                                  ;838C10|C8      |      ;
                        INY                                  ;838C11|C8      |      ;
@@ -1656,7 +1656,7 @@
                        LDX.B $02                            ;838C7F|A602    |00122A;
                        JSR.W (DATA8_838C9D,X)               ;838C81|FC9D8C  |838C9D;
                        JSL.L CODE_848FCA                    ;838C84|22CA8F84|848FCA;
-                       JSL.L CODE_8280B4                    ;838C88|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;838C88|22B48082|8280B4;
                        LDA.B $0E                            ;838C8C|A50E    |001236;
                        BNE CODE_838C9A                      ;838C8E|D00A    |838C9A;
                        LDA.B #$08                           ;838C90|A908    |      ;
@@ -1728,7 +1728,7 @@
                        INC.B $30                            ;838CFF|E630    |001258;
                        LDA.B #$02                           ;838D01|A902    |      ;
                        STA.B $02                            ;838D03|8502    |00122A;
-                       JSL.L CODE_8280B4                    ;838D05|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;838D05|22B48082|8280B4;
                        LDA.B #$02                           ;838D09|A902    |      ;
                        JSL.L CODE_848F07                    ;838D0B|22078F84|848F07;
                        JSL.L CODE_848FCA                    ;838D0F|22CA8F84|848FCA;
@@ -1740,20 +1740,20 @@
                        STA.B $02                            ;838D1A|8502    |00122A;
                                                             ;      |        |      ;
           CODE_838D1C:
-                       JSL.L CODE_8280B4                    ;838D1C|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;838D1C|22B48082|8280B4;
                        JSL.L CODE_848FCA                    ;838D20|22CA8F84|848FCA;
                        JSL.L updateEv_13_14_17_0f           ;838D24|22EA8E84|848EEA;
                        RTS                                  ;838D28|60      |      ;
                                                             ;      |        |      ;
                        DEC.W r_0bdd                         ;838D29|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;838D2C|CE250C  |860C25;
-                       JSL.L CODE_8283A3                    ;838D2F|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;838D2F|22A38382|8283A3;
                        RTS                                  ;838D33|60      |      ;
                                                             ;      |        |      ;
                        LDX.B $02                            ;838D34|A602    |00122A;
                        JSR.W (UNREACH_838D42,X)             ;838D36|FC428D  |838D42;
                        JSL.L CODE_848FCA                    ;838D39|22CA8F84|848FCA;
-                       JSL.L CODE_8280B4                    ;838D3D|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;838D3D|22B48082|8280B4;
                        RTS                                  ;838D41|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1983,7 +1983,7 @@
                        ASL A                                ;838F87|0A      |      ;
                        TAX                                  ;838F88|AA      |      ;
                        REP #$20                             ;838F89|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;838F8B|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;838F8B|BD37EE  |86EE37;
                        ASL A                                ;838F8E|0A      |      ;
                        ASL A                                ;838F8F|0A      |      ;
                        ASL A                                ;838F90|0A      |      ;
@@ -2084,7 +2084,7 @@
                                                             ;      |        |      ;
           CODE_839031:
                        SEP #$20                             ;839031|E220    |      ;
-                       JSL.L CODE_8280B4                    ;839033|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;839033|22B48082|8280B4;
                        LDA.B $0E                            ;839037|A50E    |001236;
                        BEQ CODE_839040                      ;839039|F005    |839040;
                        RTL                                  ;83903B|6B      |      ;
@@ -2093,7 +2093,7 @@
                                                             ;      |        |      ;
           CODE_839040:
                        DEC.W r_0bdd                         ;839040|CEDD0B  |860BDD;
-                       JML.L CODE_8283A3                    ;839043|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;839043|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_839047:
@@ -2211,10 +2211,10 @@
                        ASL A                                ;839116|0A      |      ;
                        TAX                                  ;839117|AA      |      ;
                        REP #$20                             ;839118|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;83911A|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;83911A|BD37EE  |86EE37;
                        ASL A                                ;83911D|0A      |      ;
                        CLC                                  ;83911E|18      |      ;
-                       ADC.W DATA8_86EE37,X                 ;83911F|7D37EE  |86EE37;
+                       ADC.W stormEagle_56_subID,X          ;83911F|7D37EE  |86EE37;
                        STA.W r_0000                         ;839122|8D0000  |860000;
                        LDA.W DATA8_86EE39,X                 ;839125|BD39EE  |86EE39;
                        ASL A                                ;839128|0A      |      ;
@@ -2241,7 +2241,7 @@
                        ASL A                                ;839151|0A      |      ;
                        ASL A                                ;839152|0A      |      ;
                        TAY                                  ;839153|A8      |      ;
-                       LDA.W DATA8_86EE37,Y                 ;839154|B937EE  |86EE37;
+                       LDA.W stormEagle_56_subID,Y          ;839154|B937EE  |86EE37;
                        ASL A                                ;839157|0A      |      ;
                        AND.W #$FF00                         ;839158|2900FF  |      ;
                        BPL CODE_839160                      ;83915B|1003    |839160;
@@ -2367,7 +2367,7 @@
                                                             ;      |        |      ;
                        LDX.B $02                            ;83920C|A602    |0012EA;
                        JSR.W (DATA8_83921E,X)               ;83920E|FC1E92  |83921E;
-                       JSL.L CODE_8280B4                    ;839211|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;839211|22B48082|8280B4;
                        LDA.B $0E                            ;839215|A50E    |0012F6;
                        BNE CODE_83921D                      ;839217|D004    |83921D;
                        LDA.B #$0A                           ;839219|A90A    |      ;
@@ -2451,7 +2451,7 @@
                        JSL.L CODE_84A524                    ;839296|2224A584|84A524;
                        INC.B $30                            ;83929A|E630    |001318;
                        DEC.W r_0bdd                         ;83929C|CEDD0B  |860BDD;
-                       JSL.L CODE_8283A3                    ;83929F|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;83929F|22A38382|8283A3;
                        RTS                                  ;8392A3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2562,7 +2562,7 @@
                        JSL.L CODE_8491BE                    ;839360|22BE9184|8491BE;
                        LDA.B $00                            ;839364|A500    |001228;
                        BEQ CODE_839346                      ;839366|F0DE    |839346;
-                       JSL.L CODE_8280B4                    ;839368|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;839368|22B48082|8280B4;
                        LDA.B $0E                            ;83936C|A50E    |001236;
                        BNE CODE_839378                      ;83936E|D008    |839378;
                        LDA.B #$04                           ;839370|A904    |      ;
@@ -2680,7 +2680,7 @@
                        JSL.L CODE_84A4B5                    ;83941C|22B5A484|84A4B5;
                        INC.B $30                            ;839420|E630    |001258;
                        DEC.W r_0bdd                         ;839422|CEDD0B  |860BDD;
-                       JSL.L CODE_8283A3                    ;839425|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;839425|22A38382|8283A3;
                        RTS                                  ;839429|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2756,16 +2756,16 @@
                                                             ;      |        |      ;
                        LDA.B #$02                           ;8394A4|A902    |      ;
                        STA.B $01                            ;8394A6|8501    |001269;
-                       LDA.B $38                            ;8394A8|A538    |0012A0;
+                       LDA.B r_ev_proj_18_gfxSlot-$1268     ;8394A8|A538    |0012A0;
                        STA.B $02                            ;8394AA|8502    |00126A;
-                       LDA.B $39                            ;8394AC|A539    |0012A1;
+                       LDA.B r_ev_proj_19-$1268             ;8394AC|A539    |0012A1;
                        STA.B $03                            ;8394AE|8503    |00126B;
-                       STZ.B $30                            ;8394B0|6430    |001298;
+                       STZ.B r_ev_proj_10-$1268             ;8394B0|6430    |001298;
                        LDX.B $02                            ;8394B2|A602    |00132A;
                        JSR.W (DATA8_8394CE,X)               ;8394B4|FCCE94  |8394CE;
                        LDA.B $00                            ;8394B7|A500    |001328;
                        BEQ CODE_8394A3                      ;8394B9|F0E8    |8394A3;
-                       JSL.L CODE_8280B4                    ;8394BB|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;8394BB|22B48082|8280B4;
                        LDA.B $02                            ;8394BF|A502    |00132A;
                        STA.B $38                            ;8394C1|8538    |001360;
                        LDA.B $03                            ;8394C3|A503    |00132B;
@@ -2814,7 +2814,7 @@
                        BPL CODE_839513                      ;839507|100A    |839513;
                        INC.B $30                            ;839509|E630    |001358;
                        DEC.W r_0bdd                         ;83950B|CEDD0B  |860BDD;
-                       JSL.L CODE_8283A3                    ;83950E|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;83950E|22A38382|8283A3;
                        RTS                                  ;839512|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2970,7 +2970,7 @@
                                                             ;      |        |      ;
                        INC.B $30                            ;83961F|E630    |001258;
                        DEC.W r_0bdd                         ;839621|CEDD0B  |860BDD;
-                       JSL.L CODE_8283A3                    ;839624|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;839624|22A38382|8283A3;
                        RTS                                  ;839628|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3034,7 +3034,7 @@
                        LDA.B $0B                            ;839688|A50B    |001233;
                        BEQ CODE_839690                      ;83968A|F004    |839690;
                        LDA.B #$04                           ;83968C|A904    |      ;
-                       STA.B $02                            ;83968E|8502    |0012AA;
+                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;83968E|8502    |0012AA;
                                                             ;      |        |      ;
           CODE_839690:
                        REP #$20                             ;839690|C220    |      ;
@@ -3046,7 +3046,7 @@
                        STA.B $16                            ;83969D|8516    |00123E;
                        RTS                                  ;83969F|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $0B                            ;8396A0|A50B    |0012B3;
+                       LDA.B r_ev_proj_2b-$12A8             ;8396A0|A50B    |0012B3;
                        BNE CODE_8396B0                      ;8396A2|D00C    |8396B0;
                        LDA.B #$02                           ;8396A4|A902    |      ;
                        STA.B $01                            ;8396A6|8501    |001229;
@@ -3058,18 +3058,18 @@
                                                             ;      |        |      ;
           CODE_8396B0:
                        LDA.B #$02                           ;8396B0|A902    |      ;
-                       STA.B $01                            ;8396B2|8501    |0012A9;
+                       STA.B r_ev_proj_21-$12A8             ;8396B2|8501    |0012A9;
                        LDA.B #$04                           ;8396B4|A904    |      ;
-                       STA.B $02                            ;8396B6|8502    |0012AA;
+                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;8396B6|8502    |0012AA;
                                                             ;      |        |      ;
           CODE_8396B8:
                        LDX.B $02                            ;8396B8|A602    |00122A;
                        JSR.W (DATA8_8396CA,X)               ;8396BA|FCCA96  |8396CA;
-                       JSL.L CODE_8280B4                    ;8396BD|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;8396BD|22B48082|8280B4;
                        LDA.B $0E                            ;8396C1|A50E    |001236;
                        BNE CODE_8396C9                      ;8396C3|D004    |8396C9;
                        LDA.B #$0A                           ;8396C5|A90A    |      ;
-                       STA.B $01                            ;8396C7|8501    |0012A9;
+                       STA.B r_ev_proj_21-$12A8             ;8396C7|8501    |0012A9;
                                                             ;      |        |      ;
           CODE_8396C9:
                        RTS                                  ;8396C9|60      |      ;
@@ -3166,12 +3166,12 @@
                                                             ;      |        |      ;
           CODE_83975E:
                        JSL.L updateEv_13_14_17_0f           ;83975E|22EA8E84|848EEA;
-                       JSL.L CODE_8280B4                    ;839762|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;839762|22B48082|8280B4;
                        RTS                                  ;839766|60      |      ;
                                                             ;      |        |      ;
                        INC.B $30                            ;839767|E630    |001258;
                        DEC.W r_0bdd                         ;839769|CEDD0B  |860BDD;
-                       JSL.L CODE_8283A3                    ;83976C|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;83976C|22A38382|8283A3;
                        RTS                                  ;839770|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3334,7 +3334,7 @@
                        SEP #$20                             ;839884|E220    |      ;
                        LDA.B #$00                           ;839886|A900    |      ;
                        JSL.L CODE_848F07                    ;839888|22078F84|848F07;
-                       JML.L CODE_8280B4                    ;83988C|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83988C|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_839890:
@@ -3344,7 +3344,7 @@
                        ASL A                                ;839895|0A      |      ;
                        TAX                                  ;839896|AA      |      ;
                        REP #$20                             ;839897|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;839899|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;839899|BD37EE  |86EE37;
                        ASL A                                ;83989C|0A      |      ;
                        ASL A                                ;83989D|0A      |      ;
                        STA.B $1A                            ;83989E|851A    |001382;
@@ -3358,7 +3358,7 @@
                        LDA.B #$03                           ;8398AE|A903    |      ;
                        JSL.L CODE_848F07                    ;8398B0|22078F84|848F07;
                        INC.B $02                            ;8398B4|E602    |00136A;
-                       JML.L CODE_8280B4                    ;8398B6|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;8398B6|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8398BA:
@@ -3377,7 +3377,7 @@
                        JSL.L CODE_82820A                    ;8398D2|220A8282|82820A;
                                                             ;      |        |      ;
           CODE_8398D6:
-                       JSL.L CODE_8280B4                    ;8398D6|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;8398D6|22B48082|8280B4;
                        LDA.B $0E                            ;8398DA|A50E    |0012F6;
                        BEQ CODE_8398F0                      ;8398DC|F012    |8398F0;
                        RTL                                  ;8398DE|6B      |      ;
@@ -3387,7 +3387,7 @@
                        JSL.L CODE_84A524                    ;8398DF|2224A584|84A524;
                                                             ;      |        |      ;
           CODE_8398E3:
-                       LDA.B $0B                            ;8398E3|A50B    |0012B3;
+                       LDA.B r_ev_proj_2b-$12A8             ;8398E3|A50B    |0012B3;
                        BNE CODE_8398F0                      ;8398E5|D009    |8398F0;
                        JSR.W CODE_839924                    ;8398E7|202499  |839924;
                        LDA.B #$78                           ;8398EA|A978    |      ;
@@ -3395,7 +3395,7 @@
                                                             ;      |        |      ;
           CODE_8398F0:
                        DEC.W r_0bdd                         ;8398F0|CEDD0B  |860BDD;
-                       JML.L CODE_8283A3                    ;8398F3|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;8398F3|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8398F7:
@@ -3474,14 +3474,14 @@
                        AND.B #$70                           ;83997A|2970    |      ;
                        ORA.B #$06                           ;83997C|0906    |      ;
                        STA.B $11                            ;83997E|8511    |001279;
-                       STZ.B $30                            ;839980|6430    |001298;
+                       STZ.B r_ev_proj_10-$1268             ;839980|6430    |001298;
                        LDA.B #$01                           ;839982|A901    |      ;
-                       STA.B $38                            ;839984|8538    |0012A0;
+                       STA.B r_ev_proj_18_gfxSlot-$1268     ;839984|8538    |0012A0;
                        LDA.B #$FF                           ;839986|A9FF    |      ;
                        STA.B $10                            ;839988|8510    |001278;
                        LDA.B #$93                           ;83998A|A993    |      ;
                        STA.B $16                            ;83998C|8516    |00127E;
-                       LDX.B $3C                            ;83998E|A63C    |0012A4;
+                       LDX.B r_ev_proj_1c_ySpdSub-$1268     ;83998E|A63C    |0012A4;
                        LDA.W DATA8_86BE39,X                 ;839990|BD39BE  |86BE39;
                        STA.W r_0000                         ;839993|8D0000  |860000;
                        STZ.W r_0001                         ;839996|9C0100  |860001;
@@ -3516,12 +3516,12 @@
                        STA.B $1A                            ;8399CD|851A    |001282;
                        STZ.B $1C                            ;8399CF|641C    |001284;
                        LDA.W #$BFA4                         ;8399D1|A9A4BF  |      ;
-                       STA.B $20                            ;8399D4|8520    |001288;
+                       STA.B r_ev_projectile_00-$1268       ;8399D4|8520    |001288;
                        LDA.W #$ACA5                         ;8399D6|A9A5AC  |      ;
-                       STA.B $31                            ;8399D9|8531    |001299;
+                       STA.B r_ev_proj_11_sprAtri-$1268     ;8399D9|8531    |001299;
                        STZ.B $0C                            ;8399DB|640C    |001274;
                        LDA.W #$FFFF                         ;8399DD|A9FFFF  |      ;
-                       STA.B $39                            ;8399E0|8539    |0012A1;
+                       STA.B r_ev_proj_19-$1268             ;8399E0|8539    |0012A1;
                        STZ.B $1A                            ;8399E2|641A    |001282;
                        STZ.B $1C                            ;8399E4|641C    |001284;
                        SEP #$20                             ;8399E6|E220    |      ;
@@ -3532,8 +3532,8 @@
                        LDA.B #$01                           ;8399EE|A901    |      ;
                        STA.B $1B                            ;8399F0|851B    |001283;
                        LDA.B #$08                           ;8399F2|A908    |      ;
-                       STA.B $37                            ;8399F4|8537    |00129F;
-                       STA.B $3B                            ;8399F6|853B    |0012A3;
+                       STA.B r_ev_proj_17-$1268             ;8399F4|8537    |00129F;
+                       STA.B r_ev_proj_1b_xSpd-$1268        ;8399F6|853B    |0012A3;
                        LDA.B #$0C                           ;8399F8|A90C    |      ;
                        BRA CODE_839A08                      ;8399FA|800C    |839A08;
                                                             ;      |        |      ;
@@ -3547,15 +3547,15 @@
                        LDA.B #$04                           ;839A06|A904    |      ;
                                                             ;      |        |      ;
           CODE_839A08:
-                       STA.B $3D                            ;839A08|853D    |0012A5;
+                       STA.B r_ev_proj_1d_ySpd-$1268        ;839A08|853D    |0012A5;
                        JSL.L CODE_848F07                    ;839A0A|22078F84|848F07;
                        LDA.B #$40                           ;839A0E|A940    |      ;
                        TRB.B $11                            ;839A10|1411    |001279;
                        JSR.W CODE_839047                    ;839A12|204790  |839047;
                        LDA.B #$10                           ;839A15|A910    |      ;
-                       STA.B $38                            ;839A17|8538    |0012A0;
+                       STA.B r_ev_proj_18_gfxSlot-$1268     ;839A17|8538    |0012A0;
                        LDA.B #$05                           ;839A19|A905    |      ;
-                       STA.B $3E                            ;839A1B|853E    |0012A6;
+                       STA.B r_ev_proj_1e_weight-$1268      ;839A1B|853E    |0012A6;
                        STZ.B $1F                            ;839A1D|641F    |001287;
                        STZ.B $1E                            ;839A1F|641E    |001286;
                        LDA.B $0B                            ;839A21|A50B    |001273;
@@ -3563,28 +3563,28 @@
                        ASL A                                ;839A25|0A      |      ;
                        ASL A                                ;839A26|0A      |      ;
                        CLC                                  ;839A27|18      |      ;
-                       ADC.B $3B                            ;839A28|653B    |0012A3;
-                       STA.B $3B                            ;839A2A|853B    |0012A3;
+                       ADC.B r_ev_proj_1b_xSpd-$1268        ;839A28|653B    |0012A3;
+                       STA.B r_ev_proj_1b_xSpd-$1268        ;839A2A|853B    |0012A3;
                        ASL A                                ;839A2C|0A      |      ;
                        ASL A                                ;839A2D|0A      |      ;
                        TAX                                  ;839A2E|AA      |      ;
                        REP #$20                             ;839A2F|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;839A31|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;839A31|BD37EE  |86EE37;
                        STA.B $1A                            ;839A34|851A    |001282;
                        LDA.W DATA8_86EE39,X                 ;839A36|BD39EE  |86EE39;
                        STA.B $1C                            ;839A39|851C    |001284;
                        SEP #$20                             ;839A3B|E220    |      ;
                        LDA.B $0B                            ;839A3D|A50B    |001273;
                        CLC                                  ;839A3F|18      |      ;
-                       ADC.B $3E                            ;839A40|653E    |0012A6;
-                       STA.B $3E                            ;839A42|853E    |0012A6;
+                       ADC.B r_ev_proj_1e_weight-$1268      ;839A40|653E    |0012A6;
+                       STA.B r_ev_proj_1e_weight-$1268      ;839A42|853E    |0012A6;
                        LDA.B $0B                            ;839A44|A50B    |001273;
                        CLC                                  ;839A46|18      |      ;
-                       ADC.B $37                            ;839A47|6537    |00129F;
-                       STA.B $37                            ;839A49|8537    |00129F;
+                       ADC.B r_ev_proj_17-$1268             ;839A47|6537    |00129F;
+                       STA.B r_ev_proj_17-$1268             ;839A49|8537    |00129F;
                        TAX                                  ;839A4B|AA      |      ;
                        LDA.W UNREACH_86BF84,X               ;839A4C|BD84BF  |86BF84;
-                       STA.B $3D                            ;839A4F|853D    |0012A5;
+                       STA.B r_ev_proj_1d_ySpd-$1268        ;839A4F|853D    |0012A5;
                        JSL.L CODE_848F07                    ;839A51|22078F84|848F07;
                        JSL.L CODE_848FCA                    ;839A55|22CA8F84|848FCA;
                        BRA CODE_839A62                      ;839A59|8007    |839A62;
@@ -3598,7 +3598,7 @@
                        DEC.B $3E                            ;839A62|C63E    |0012E6;
                        BNE CODE_839A6D                      ;839A64|D007    |839A6D;
                        LDA.B #$03                           ;839A66|A903    |      ;
-                       STA.B $3E                            ;839A68|853E    |0012A6;
+                       STA.B r_ev_proj_1e_weight-$1268      ;839A68|853E    |0012A6;
                        JSR.W CODE_839133                    ;839A6A|203391  |839133;
                                                             ;      |        |      ;
           CODE_839A6D:
@@ -3606,7 +3606,7 @@
                        BNE CODE_839A85                      ;839A6F|D014    |839A85;
                        LDA.B #$01                           ;839A71|A901    |      ;
                        STA.B $38                            ;839A73|8538    |0012E0;
-                       LDA.B $0D                            ;839A75|A50D    |0012B5;
+                       LDA.B r_ev_proj_2d-$12A8             ;839A75|A50D    |0012B5;
                        BEQ CODE_839A82                      ;839A77|F009    |839A82;
                        JSR.W CODE_8390AF                    ;839A79|20AF90  |8390AF;
                        LDA.B $37                            ;839A7C|A537    |0012DF;
@@ -3623,7 +3623,7 @@
                        ASL A                                ;839A88|0A      |      ;
                        TAX                                  ;839A89|AA      |      ;
                        REP #$20                             ;839A8A|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;839A8C|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;839A8C|BD37EE  |86EE37;
                        ASL A                                ;839A8F|0A      |      ;
                        ASL A                                ;839A90|0A      |      ;
                        ASL A                                ;839A91|0A      |      ;
@@ -3636,7 +3636,7 @@
           CODE_839A9A:
                        SEP #$20                             ;839A9A|E220    |      ;
                        XBA                                  ;839A9C|EB      |      ;
-                       STA.B $1F                            ;839A9D|851F    |0012C7;
+                       STA.B r_ev_proj_3f-$12A8             ;839A9D|851F    |0012C7;
                        REP #$20                             ;839A9F|C220    |      ;
                        LDA.W DATA8_86EE39,X                 ;839AA1|BD39EE  |86EE39;
                        ASL A                                ;839AA4|0A      |      ;
@@ -3651,7 +3651,7 @@
           CODE_839AAF:
                        SEP #$20                             ;839AAF|E220    |      ;
                        XBA                                  ;839AB1|EB      |      ;
-                       STA.B $1E                            ;839AB2|851E    |0012C6;
+                       STA.B r_ev_proj_3e-$12A8             ;839AB2|851E    |0012C6;
                        LDA.B $37                            ;839AB4|A537    |0012DF;
                        BIT.B #$10                           ;839AB6|8910    |      ;
                        BEQ CODE_839AF8                      ;839AB8|F03E    |839AF8;
@@ -3663,7 +3663,7 @@
                        LDA.W r_0000                         ;839AC7|AD0000  |860000;
                        CMP.B $1A                            ;839ACA|C51A    |001302;
                        BMI CODE_839AD0                      ;839ACC|3002    |839AD0;
-                       STA.B $1A                            ;839ACE|851A    |0012C2;
+                       STA.B r_ev_proj_3a-$12A8             ;839ACE|851A    |0012C2;
                                                             ;      |        |      ;
           CODE_839AD0:
                        LDA.W r_0002                         ;839AD0|AD0200  |860002;
@@ -3678,13 +3678,13 @@
                        JSR.W CODE_839113                    ;839ADF|201391  |839113;
                        REP #$20                             ;839AE2|C220    |      ;
                        LDA.W r_0000                         ;839AE4|AD0000  |860000;
-                       CMP.B $1A                            ;839AE7|C51A    |0012C2;
+                       CMP.B r_ev_proj_3a-$12A8             ;839AE7|C51A    |0012C2;
                        BMI CODE_839AED                      ;839AE9|3002    |839AED;
                        STA.B $1A                            ;839AEB|851A    |001282;
                                                             ;      |        |      ;
           CODE_839AED:
                        LDA.W r_0002                         ;839AED|AD0200  |860002;
-                       CMP.B $1C                            ;839AF0|C51C    |0012C4;
+                       CMP.B r_ev_proj_3c-$12A8             ;839AF0|C51C    |0012C4;
                        BMI CODE_839B34                      ;839AF2|3040    |839B34;
                        STA.B $1C                            ;839AF4|851C    |001284;
                        BRA CODE_839B34                      ;839AF6|803C    |839B34;
@@ -3697,13 +3697,13 @@
                        JSR.W CODE_839113                    ;839B00|201391  |839113;
                        REP #$20                             ;839B03|C220    |      ;
                        LDA.W r_0000                         ;839B05|AD0000  |860000;
-                       CMP.B $1A                            ;839B08|C51A    |0012C2;
+                       CMP.B r_ev_proj_3a-$12A8             ;839B08|C51A    |0012C2;
                        BPL CODE_839B0E                      ;839B0A|1002    |839B0E;
-                       STA.B $1A                            ;839B0C|851A    |0012C2;
+                       STA.B r_ev_proj_3a-$12A8             ;839B0C|851A    |0012C2;
                                                             ;      |        |      ;
           CODE_839B0E:
                        LDA.W r_0002                         ;839B0E|AD0200  |860002;
-                       CMP.B $1C                            ;839B11|C51C    |0012C4;
+                       CMP.B r_ev_proj_3c-$12A8             ;839B11|C51C    |0012C4;
                        BMI CODE_839B34                      ;839B13|301F    |839B34;
                        STA.B $1C                            ;839B15|851C    |001284;
                        BRA CODE_839B34                      ;839B17|801B    |839B34;
@@ -3726,22 +3726,22 @@
                                                             ;      |        |      ;
           CODE_839B34:
                        SEP #$20                             ;839B34|E220    |      ;
-                       JSL.L CODE_8280B4                    ;839B36|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;839B36|22B48082|8280B4;
                        LDA.B $0E                            ;839B3A|A50E    |001276;
                        BEQ CODE_839B4F                      ;839B3C|F011    |839B4F;
                        RTL                                  ;839B3E|6B      |      ;
                                                             ;      |        |      ;
                        REP #$20                             ;839B3F|C220    |      ;
-                       LDA.B $33                            ;839B41|A533    |00129B;
+                       LDA.B r_ev_proj_13-$1268             ;839B41|A533    |00129B;
                        STA.B $05                            ;839B43|8505    |00126D;
-                       LDA.B $35                            ;839B45|A535    |00129D;
+                       LDA.B r_ev_proj_15-$1268             ;839B45|A535    |00129D;
                        STA.B $08                            ;839B47|8508    |001270;
                        SEP #$20                             ;839B49|E220    |      ;
                        JSL.L CODE_84A4B5                    ;839B4B|22B5A484|84A4B5;
                                                             ;      |        |      ;
           CODE_839B4F:
                        DEC.W r_0bdd                         ;839B4F|CEDD0B  |860BDD;
-                       JML.L CODE_8283A3                    ;839B52|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;839B52|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_839B56:
@@ -3816,7 +3816,7 @@
                        REP #$10                             ;839BD1|C210    |      ;
                        LDY.W #$0104                         ;839BD3|A00401  |      ;
                        JSL.L CODE_828011                    ;839BD6|22118082|828011;
-                       JML.L CODE_8283A3                    ;839BDA|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;839BDA|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_839BDE:
@@ -3990,7 +3990,7 @@
                        BCS CODE_839CF9                      ;839CF3|B004    |839CF9;
                                                             ;      |        |      ;
           CODE_839CF5:
-                       JSL.L CODE_8280B4                    ;839CF5|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;839CF5|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_839CF9:
                        JMP.W CODE_839DC5                    ;839CF9|4CC59D  |839DC5;
@@ -4048,7 +4048,7 @@
                        JSR.W (DATA8_839D5A,X)               ;839D4C|FC5A9D  |839D5A;
                        LDA.B $00                            ;839D4F|A500    |001228;
                        BEQ CODE_839D57                      ;839D51|F004    |839D57;
-                       JSL.L CODE_8280B4                    ;839D53|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;839D53|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_839D57:
                        JMP.W CODE_839DC5                    ;839D57|4CC59D  |839DC5;
@@ -4073,7 +4073,7 @@
                        DEC.W r_0bdd                         ;839D7B|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;839D7E|CE250C  |860C25;
                        STZ.W $0C30                          ;839D81|9C300C  |860C30;
-                       JSL.L CODE_8283A3                    ;839D84|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;839D84|22A38382|8283A3;
                        RTS                                  ;839D88|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4134,15 +4134,15 @@
                        INC.W $0C25                          ;839DE8|EE250C  |860C25;
                        LDA.B #$08                           ;839DEB|A908    |      ;
                        STA.B $18                            ;839DED|8518    |001280;
-                       STA.B $30                            ;839DEF|8530    |001298;
+                       STA.B r_ev_proj_10-$1268             ;839DEF|8530    |001298;
                        STZ.B $12                            ;839DF1|6412    |00127A;
-                       STZ.B $38                            ;839DF3|6438    |0012A0;
-                       STZ.B $39                            ;839DF5|6439    |0012A1;
+                       STZ.B r_ev_proj_18_gfxSlot-$1268     ;839DF3|6438    |0012A0;
+                       STZ.B r_ev_proj_19-$1268             ;839DF5|6439    |0012A1;
                        LDA.B $0B                            ;839DF7|A50B    |001273;
                        BPL CODE_839E05                      ;839DF9|100A    |839E05;
                        LDA.B #$02                           ;839DFB|A902    |      ;
                        STA.B $02                            ;839DFD|8502    |00126A;
-                       STA.B $38                            ;839DFF|8538    |0012A0;
+                       STA.B r_ev_proj_18_gfxSlot-$1268     ;839DFF|8538    |0012A0;
                        STZ.B $03                            ;839E01|6403    |00126B;
                        BRA CODE_839E1A                      ;839E03|8015    |839E1A;
                                                             ;      |        |      ;
@@ -4160,7 +4160,7 @@
                                                             ;      |        |      ;
           CODE_839E1A:
                        LDA.B #$F0                           ;839E1A|A9F0    |      ;
-                       STA.B $2A                            ;839E1C|852A    |001292;
+                       STA.B r_ev_proj_0a_ID-$1268          ;839E1C|852A    |001292;
                        JSR.W CODE_839F65                    ;839E1E|20659F  |839F65;
                        LDA.B #$8C                           ;839E21|A98C    |      ;
                        STA.B $16                            ;839E23|8516    |00127E;
@@ -4172,31 +4172,31 @@
                                                             ;      |        |      ;
                        LDA.B #$02                           ;839E2A|A902    |      ;
                        STA.B $01                            ;839E2C|8501    |001269;
-                       LDA.B $38                            ;839E2E|A538    |0012A0;
+                       LDA.B r_ev_proj_18_gfxSlot-$1268     ;839E2E|A538    |0012A0;
                        STA.B $02                            ;839E30|8502    |00126A;
-                       LDA.B $39                            ;839E32|A539    |0012A1;
+                       LDA.B r_ev_proj_19-$1268             ;839E32|A539    |0012A1;
                        STA.B $03                            ;839E34|8503    |00126B;
-                       STZ.B $30                            ;839E36|6430    |001298;
+                       STZ.B r_ev_proj_10-$1268             ;839E36|6430    |001298;
                        LDX.B $02                            ;839E38|A602    |00126A;
                        JSR.W (DATA8_839E62,X)               ;839E3A|FC629E  |839E62;
                        LDA.B $00                            ;839E3D|A500    |001268;
                        BEQ CODE_839E29                      ;839E3F|F0E8    |839E29;
                        LDA.B $02                            ;839E41|A502    |00126A;
-                       STA.B $38                            ;839E43|8538    |0012A0;
+                       STA.B r_ev_proj_18_gfxSlot-$1268     ;839E43|8538    |0012A0;
                        LDA.B $03                            ;839E45|A503    |00126B;
-                       STA.B $39                            ;839E47|8539    |0012A1;
+                       STA.B r_ev_proj_19-$1268             ;839E47|8539    |0012A1;
                        LDA.B $02                            ;839E49|A502    |00126A;
                        CMP.B #$06                           ;839E4B|C906    |      ;
                        BEQ CODE_839E29                      ;839E4D|F0DA    |839E29;
-                       JSL.L CODE_8280B4                    ;839E4F|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;839E4F|22B48082|8280B4;
                        LDA.B $0E                            ;839E53|A50E    |001276;
                        BNE CODE_839E5B                      ;839E55|D004    |839E5B;
                        db $A9,$04,$85,$02                   ;839E57|        |      ;
                                                             ;      |        |      ;
           CODE_839E5B:
-                       LDA.B $30                            ;839E5B|A530    |001298;
+                       LDA.B r_ev_proj_10-$1268             ;839E5B|A530    |001298;
                        EOR.B #$01                           ;839E5D|4901    |      ;
-                       STA.B $30                            ;839E5F|8530    |001298;
+                       STA.B r_ev_proj_10-$1268             ;839E5F|8530    |001298;
                        RTS                                  ;839E61|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4249,7 +4249,7 @@
                        LDX.B $03                            ;839EBA|A603    |00126B;
                        BNE CODE_839ED1                      ;839EBC|D013    |839ED1;
                        INC.B $03                            ;839EBE|E603    |00126B;
-                       STZ.B $30                            ;839EC0|6430    |001298;
+                       STZ.B r_ev_proj_10-$1268             ;839EC0|6430    |001298;
                        LDA.B #$61                           ;839EC2|A961    |      ;
                        JSL.L CODE_8088A2                    ;839EC4|22A28880|8088A2;
                        LDA.B #$00                           ;839EC8|A900    |      ;
@@ -4267,10 +4267,10 @@
                        JSL.L updateEv_13_14_17_0f           ;839ED9|22EA8E84|848EEA;
                        JMP.W CODE_839F2A                    ;839EDD|4C2A9F  |839F2A;
                                                             ;      |        |      ;
-                       INC.B $30                            ;839EE0|E630    |001298;
+                       INC.B r_ev_proj_10-$1268             ;839EE0|E630    |001298;
                        DEC.W r_0bdd                         ;839EE2|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;839EE5|CE250C  |860C25;
-                       JSL.L CODE_8283A3                    ;839EE8|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;839EE8|22A38382|8283A3;
                        RTS                                  ;839EEC|60      |      ;
                                                             ;      |        |      ;
                        LDX.B $03                            ;839EED|A603    |00122B;
@@ -4294,7 +4294,7 @@
           CODE_839F0D:
                        JSL.L CODE_82823E                    ;839F0D|223E8282|82823E;
                        JSL.L CODE_8491BE                    ;839F11|22BE9184|8491BE;
-                       JSL.L CODE_82806E                    ;839F15|226E8082|82806E;
+                       JSL.L initPosAllign                  ;839F15|226E8082|82806E;
                        BCS CODE_839F25                      ;839F19|B00A    |839F25;
                        LDA.B $2B                            ;839F1B|A52B    |001253;
                        BIT.B #$04                           ;839F1D|8904    |      ;
@@ -4317,7 +4317,7 @@
                        ASL A                                ;839F31|0A      |      ;
                        ASL A                                ;839F32|0A      |      ;
                        ADC.W #$BFB6                         ;839F33|69B6BF  |      ;
-                       STA.B $20                            ;839F36|8520    |001288;
+                       STA.B r_ev_projectile_00-$1268       ;839F36|8520    |001288;
                        SEP #$20                             ;839F38|E220    |      ;
                        RTS                                  ;839F3A|60      |      ;
                                                             ;      |        |      ;
@@ -4413,10 +4413,10 @@
                        STA.B $10                            ;839FC8|8510    |001278;
                        LDA.B #$02                           ;839FCA|A902    |      ;
                        STA.B $18                            ;839FCC|8518    |001280;
-                       STA.B $30                            ;839FCE|8530    |001298;
+                       STA.B r_ev_proj_10-$1268             ;839FCE|8530    |001298;
                        STZ.B $12                            ;839FD0|6412    |00127A;
-                       STZ.B $38                            ;839FD2|6438    |0012A0;
-                       STZ.B $39                            ;839FD4|6439    |0012A1;
+                       STZ.B r_ev_proj_18_gfxSlot-$1268     ;839FD2|6438    |0012A0;
+                       STZ.B r_ev_proj_19-$1268             ;839FD4|6439    |0012A1;
                        LDA.W r_0bb9                         ;839FD6|ADB90B  |860BB9;
                        AND.B #$70                           ;839FD9|2970    |      ;
                        ORA.B #$06                           ;839FDB|0906    |      ;
@@ -4433,7 +4433,7 @@
                        LDA.W r_0bad                         ;839FF0|ADAD0B  |860BAD;
                        STA.B $05                            ;839FF3|8505    |00126D;
                        LDA.W #$AECF                         ;839FF5|A9CFAE  |      ;
-                       STA.B $31                            ;839FF8|8531    |001299;
+                       STA.B r_ev_proj_11_sprAtri-$1268     ;839FF8|8531    |001299;
                        SEP #$20                             ;839FFA|E220    |      ;
                        LDA.B #$41                           ;839FFC|A941    |      ;
                        STA.B $16                            ;839FFE|8516    |00127E;
@@ -4452,11 +4452,11 @@
           CODE_83A00F:
                        LDA.B #$02                           ;83A00F|A902    |      ;
                        STA.B $01                            ;83A011|8501    |001269;
-                       LDA.B $38                            ;83A013|A538    |0012A0;
+                       LDA.B r_ev_proj_18_gfxSlot-$1268     ;83A013|A538    |0012A0;
                        STA.B $02                            ;83A015|8502    |00126A;
-                       LDA.B $39                            ;83A017|A539    |0012A1;
+                       LDA.B r_ev_proj_19-$1268             ;83A017|A539    |0012A1;
                        STA.B $03                            ;83A019|8503    |00126B;
-                       STZ.B $30                            ;83A01B|6430    |001298;
+                       STZ.B r_ev_proj_10-$1268             ;83A01B|6430    |001298;
                                                             ;      |        |      ;
           CODE_83A01D:
                        LDX.B $02                            ;83A01D|A602    |00126A;
@@ -4464,9 +4464,9 @@
                        LDA.B $00                            ;83A022|A500    |001268;
                        BEQ CODE_83A00E                      ;83A024|F0E8    |83A00E;
                        LDA.B $02                            ;83A026|A502    |00126A;
-                       STA.B $38                            ;83A028|8538    |0012A0;
+                       STA.B r_ev_proj_18_gfxSlot-$1268     ;83A028|8538    |0012A0;
                        LDA.B $03                            ;83A02A|A503    |00126B;
-                       STA.B $39                            ;83A02C|8539    |0012A1;
+                       STA.B r_ev_proj_19-$1268             ;83A02C|8539    |0012A1;
                        LDA.W $0B9C                          ;83A02E|AD9C0B  |860B9C;
                        LSR A                                ;83A031|4A      |      ;
                        BCS CODE_83A038                      ;83A032|B004    |83A038;
@@ -4481,7 +4481,7 @@
                        LDX.B $03                            ;83A043|A603    |00126B;
                        BNE CODE_83A057                      ;83A045|D010    |83A057;
                        INC.B $03                            ;83A047|E603    |00126B;
-                       STZ.B $30                            ;83A049|6430    |001298;
+                       STZ.B r_ev_proj_10-$1268             ;83A049|6430    |001298;
                        LDA.B #$01                           ;83A04B|A901    |      ;
                        LDX.B $0B                            ;83A04D|A60B    |001273;
                        BEQ CODE_83A053                      ;83A04F|F002    |83A053;
@@ -4505,12 +4505,12 @@
                        BNE CODE_83A076                      ;83A068|D00C    |83A076;
                        INC.B $03                            ;83A06A|E603    |00126B;
                        LDA.B #$1E                           ;83A06C|A91E    |      ;
-                       STA.B $37                            ;83A06E|8537    |00129F;
+                       STA.B r_ev_proj_17-$1268             ;83A06E|8537    |00129F;
                        LDA.B #$02                           ;83A070|A902    |      ;
                        JSL.L CODE_848F07                    ;83A072|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83A076:
-                       DEC.B $37                            ;83A076|C637    |00129F;
+                       DEC.B r_ev_proj_17-$1268             ;83A076|C637    |00129F;
                        BNE CODE_83A080                      ;83A078|D006    |83A080;
                        LDA.B #$04                           ;83A07A|A904    |      ;
                        STA.B $02                            ;83A07C|8502    |00126A;
@@ -4548,7 +4548,7 @@
                        DEC.W $0C25                          ;83A0AD|CE250C  |860C25;
                                                             ;      |        |      ;
           CODE_83A0B0:
-                       JSL.L CODE_8283A3                    ;83A0B0|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;83A0B0|22A38382|8283A3;
                        RTS                                  ;83A0B4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4572,7 +4572,7 @@
                        ASL A                                ;83A0D0|0A      |      ;
                        ASL A                                ;83A0D1|0A      |      ;
                        ADC.W #$BFD4                         ;83A0D2|69D4BF  |      ;
-                       STA.B $20                            ;83A0D5|8520    |001288;
+                       STA.B r_ev_projectile_00-$1268       ;83A0D5|8520    |001288;
                        SEP #$20                             ;83A0D7|E220    |      ;
                        RTS                                  ;83A0D9|60      |      ;
                                                             ;      |        |      ;
@@ -4589,12 +4589,12 @@
                        db $1B,$A1,$1B,$A1,$91,$A1           ;83A0E6|        |      ;
                        LDA.B #$02                           ;83A0EC|A902    |      ;
                        STA.B $01                            ;83A0EE|8501    |001269;
-                       STA.B $30                            ;83A0F0|8530    |001298;
+                       STA.B r_ev_proj_10-$1268             ;83A0F0|8530    |001298;
                        INC.W $0C25                          ;83A0F2|EE250C  |860C25;
                        STZ.B $18                            ;83A0F5|6418    |001280;
                        STZ.B $12                            ;83A0F7|6412    |00127A;
-                       STZ.B $38                            ;83A0F9|6438    |0012A0;
-                       STZ.B $39                            ;83A0FB|6439    |0012A1;
+                       STZ.B r_ev_proj_18_gfxSlot-$1268     ;83A0F9|6438    |0012A0;
+                       STZ.B r_ev_proj_19-$1268             ;83A0FB|6439    |0012A1;
                        LDA.B $0B                            ;83A0FD|A50B    |001273;
                        BNE CODE_83A10E                      ;83A0FF|D00D    |83A10E;
                        LDA.W r_0bb9                         ;83A101|ADB90B  |860BB9;
@@ -4623,7 +4623,7 @@
                        STZ.B $30                            ;83A127|6430    |001258;
                        LDX.B $02                            ;83A129|A602    |00122A;
                        JSR.W (DATA8_83A145,X)               ;83A12B|FC45A1  |83A145;
-                       JSL.L CODE_8280B4                    ;83A12E|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83A12E|22B48082|8280B4;
                        LDA.B $02                            ;83A132|A502    |00122A;
                        STA.B $38                            ;83A134|8538    |001260;
                        LDA.B $03                            ;83A136|A503    |00122B;
@@ -4662,7 +4662,7 @@
                        LDX.B $03                            ;83A169|A603    |00122B;
                        BNE CODE_83A188                      ;83A16B|D01B    |83A188;
                        INC.B $03                            ;83A16D|E603    |00126B;
-                       STZ.B $30                            ;83A16F|6430    |001298;
+                       STZ.B r_ev_proj_10-$1268             ;83A16F|6430    |001298;
                        REP #$21                             ;83A171|C221    |      ;
                        LDA.W #$0800                         ;83A173|A90008  |      ;
                        BIT.B $10                            ;83A176|2410    |001278;
@@ -4685,7 +4685,7 @@
                        INC.B $30                            ;83A191|E630    |001258;
                        DEC.W r_0bdd                         ;83A193|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;83A196|CE250C  |860C25;
-                       JSL.L CODE_8283A3                    ;83A199|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;83A199|22A38382|8283A3;
                        RTS                                  ;83A19D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4765,7 +4765,7 @@
                        ASL A                                ;83A220|0A      |      ;
                        TAX                                  ;83A221|AA      |      ;
                        REP #$20                             ;83A222|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;83A224|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;83A224|BD37EE  |86EE37;
                        ASL A                                ;83A227|0A      |      ;
                        ASL A                                ;83A228|0A      |      ;
                        STA.B $1A                            ;83A229|851A    |001302;
@@ -4837,9 +4837,9 @@
                                                             ;      |        |      ;
           CODE_83A2B5:
                        SEP #$30                             ;83A2B5|E230    |      ;
-                       JML.L CODE_8280B4                    ;83A2B7|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83A2B7|5CB48082|8280B4;
                                                             ;      |        |      ;
-                       STZ.B $30                            ;83A2BB|6430    |001298;
+                       STZ.B r_ev_proj_10-$1268             ;83A2BB|6430    |001298;
                        LDA.B #$02                           ;83A2BD|A902    |      ;
                        STA.B $01                            ;83A2BF|8501    |001269;
                        LDX.B $02                            ;83A2C1|A602    |0012EA;
@@ -4858,11 +4858,11 @@
                        LDA.B $24                            ;83A2DC|A524    |00130C;
                        STA.B $3A                            ;83A2DE|853A    |001322;
                        SEP #$20                             ;83A2E0|E220    |      ;
-                       JSL.L CODE_82806E                    ;83A2E2|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83A2E2|226E8082|82806E;
                        BCC CODE_83A2F2                      ;83A2E6|900A    |83A2F2;
                        DEC.W r_0bdd                         ;83A2E8|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;83A2EB|CE250C  |860C25;
-                       JML.L CODE_8283A3                    ;83A2EE|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;83A2EE|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83A2F2:
@@ -4889,7 +4889,7 @@
                        SEP #$20                             ;83A313|E220    |      ;
                        CPX.W #$1428                         ;83A315|E02814  |      ;
                        BCC CODE_83A2FB                      ;83A318|90E1    |83A2FB;
-                       STZ.B $0B                            ;83A31A|640B    |0012B3;
+                       STZ.B r_ev_proj_2b-$12A8             ;83A31A|640B    |0012B3;
                                                             ;      |        |      ;
           CODE_83A31C:
                        SEP #$30                             ;83A31C|E230    |      ;
@@ -4914,7 +4914,7 @@
                        STA.B $17                            ;83A341|8517    |0012FF;
                                                             ;      |        |      ;
           CODE_83A343:
-                       JML.L CODE_8280B4                    ;83A343|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83A343|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83A347:
@@ -4938,7 +4938,7 @@
                        ASL A                                ;83A366|0A      |      ;
                        TAX                                  ;83A367|AA      |      ;
                        REP #$20                             ;83A368|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;83A36A|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;83A36A|BD37EE  |86EE37;
                        ASL A                                ;83A36D|0A      |      ;
                        ASL A                                ;83A36E|0A      |      ;
                        STA.B $1A                            ;83A36F|851A    |001302;
@@ -4958,7 +4958,7 @@
                                                             ;      |        |      ;
                        DEC.W r_0bdd                         ;83A387|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;83A38A|CE250C  |860C25;
-                       JML.L CODE_8283A3                    ;83A38D|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;83A38D|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83A391:
@@ -5029,21 +5029,21 @@
                        LDA.B #$00                           ;83A415|A900    |      ;
                        JSL.L CODE_848F07                    ;83A417|22078F84|848F07;
                        JSL.L CODE_848FCA                    ;83A41B|22CA8F84|848FCA;
-                       JML.L CODE_8280B4                    ;83A41F|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83A41F|5CB48082|8280B4;
                                                             ;      |        |      ;
                        db $A9,$02,$85,$01,$64,$30           ;83A423|        |      ;
                        LDX.B $02                            ;83A429|A602    |00122A;
                        JSR.W (DATA8_83A446,X)               ;83A42B|FC46A4  |83A446;
                        JSL.L CODE_848FCA                    ;83A42E|22CA8F84|848FCA;
-                       JSL.L CODE_82806E                    ;83A432|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83A432|226E8082|82806E;
                        BCS CODE_83A43C                      ;83A436|B004    |83A43C;
-                       JML.L CODE_8280B4                    ;83A438|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83A438|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83A43C:
                        STZ.W $0C25                          ;83A43C|9C250C  |860C25;
                        DEC.W r_0bdd                         ;83A43F|CEDD0B  |860BDD;
-                       JML.L CODE_8283A3                    ;83A442|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;83A442|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          DATA8_83A446:
@@ -5141,7 +5141,7 @@
                        JSR.W CODE_83A55B                    ;83A4FB|205BA5  |83A55B;
                        STZ.W $0C25                          ;83A4FE|9C250C  |860C25;
                        DEC.W r_0bdd                         ;83A501|CEDD0B  |860BDD;
-                       JML.L CODE_8283A3                    ;83A504|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;83A504|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83A508:
@@ -5238,21 +5238,21 @@
                        STA.B $10                            ;83A5B0|8510    |001278;
                        LDA.B #$08                           ;83A5B2|A908    |      ;
                        STA.B $18                            ;83A5B4|8518    |001280;
-                       STZ.B $30                            ;83A5B6|6430    |001298;
+                       STZ.B r_ev_proj_10-$1268             ;83A5B6|6430    |001298;
                        LDX.W r_level_current                ;83A5B8|AE7A1F  |861F7A;
                        LDA.W r_0bb9                         ;83A5BB|ADB90B  |860BB9;
                        AND.B #$70                           ;83A5BE|2970    |      ;
                        ORA.B #$06                           ;83A5C0|0906    |      ;
                        STA.B $11                            ;83A5C2|8511    |001279;
                        LDA.B #$50                           ;83A5C4|A950    |      ;
-                       STA.B $31                            ;83A5C6|8531    |001299;
+                       STA.B r_ev_proj_11_sprAtri-$1268     ;83A5C6|8531    |001299;
                        LDA.B #$AB                           ;83A5C8|A9AB    |      ;
-                       STA.B $32                            ;83A5CA|8532    |00129A;
+                       STA.B r_ev_proj_12-$1268             ;83A5CA|8532    |00129A;
                        LDA.B #$54                           ;83A5CC|A954    |      ;
                        STA.B $16                            ;83A5CE|8516    |00127E;
                        LDA.B #$00                           ;83A5D0|A900    |      ;
                        JSL.L CODE_848F07                    ;83A5D2|22078F84|848F07;
-                       STZ.B $30                            ;83A5D6|6430    |001298;
+                       STZ.B r_ev_proj_10-$1268             ;83A5D6|6430    |001298;
                        REP #$20                             ;83A5D8|C220    |      ;
                        LDA.W r_0bad                         ;83A5DA|ADAD0B  |860BAD;
                        STA.B $05                            ;83A5DD|8505    |00126D;
@@ -5263,16 +5263,16 @@
                        AND.W #$007F                         ;83A5EA|297F00  |      ;
                        CLC                                  ;83A5ED|18      |      ;
                        ADC.W #$C04E                         ;83A5EE|694EC0  |      ;
-                       STA.B $20                            ;83A5F1|8520    |001288;
+                       STA.B r_ev_projectile_00-$1268       ;83A5F1|8520    |001288;
                        SEP #$20                             ;83A5F3|E220    |      ;
                        LDA.B $0F                            ;83A5F5|A50F    |001277;
                        BPL CODE_83A5FD                      ;83A5F7|1004    |83A5FD;
-                       JML.L CODE_8283A3                    ;83A5F9|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;83A5F9|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83A5FD:
                        JSL.L CODE_848FCA                    ;83A5FD|22CA8F84|848FCA;
-                       JML.L CODE_8280B4                    ;83A601|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83A601|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83A605:
@@ -5286,7 +5286,7 @@
                        ASL A                                ;83A612|0A      |      ;
                        TAX                                  ;83A613|AA      |      ;
                        REP #$20                             ;83A614|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;83A616|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;83A616|BD37EE  |86EE37;
                        STA.B $1A                            ;83A619|851A    |001442;
                        LDA.W DATA8_86EE39,X                 ;83A61B|BD39EE  |86EE39;
                        STA.B $1C                            ;83A61E|851C    |001444;
@@ -5305,7 +5305,7 @@
                        JSL.L CODE_82820A                    ;83A637|220A8282|82820A;
                        JSL.L CODE_849B03                    ;83A63B|22039B84|849B03;
                        BNE CODE_83A64E                      ;83A63F|D00D    |83A64E;
-                       JSL.L CODE_8280B4                    ;83A641|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83A641|22B48082|8280B4;
                        LDA.B $0E                            ;83A645|A50E    |001436;
                        BEQ CODE_83A64E                      ;83A647|F005    |83A64E;
                        DEC.B $37                            ;83A649|C637    |00145F;
@@ -5314,7 +5314,7 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83A64E:
-                       JML.L CODE_8283A3                    ;83A64E|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;83A64E|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83A652:
@@ -5334,7 +5334,7 @@
                        STA.B $26                            ;83A668|8526    |00148E;
                        LDA.B #$02                           ;83A66A|A902    |      ;
                        STA.B $12                            ;83A66C|8512    |00147A;
-                       JSL.L CODE_8280B4                    ;83A66E|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83A66E|22B48082|8280B4;
                        LDA.B #$60                           ;83A672|A960    |      ;
                        STA.B $39                            ;83A674|8539    |0014A1;
                        LDA.B $0B                            ;83A676|A50B    |001473;
@@ -5356,7 +5356,7 @@
                        BNE CODE_83A6A5                      ;83A690|D013    |83A6A5;
                        JSL.L CODE_82823E                    ;83A692|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;83A696|22EA8E84|848EEA;
-                       JSL.L CODE_8280B4                    ;83A69A|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83A69A|22B48082|8280B4;
                        LDA.B $0E                            ;83A69E|A50E    |001476;
                        BNE CODE_83A6B3                      ;83A6A0|D011    |83A6B3;
                        JMP.W CODE_83A6AF                    ;83A6A2|4CAFA6  |83A6AF;
@@ -5369,7 +5369,7 @@
                        JSL.L CODE_84A4B5                    ;83A6AB|22B5A484|84A4B5;
                                                             ;      |        |      ;
           CODE_83A6AF:
-                       JSL.L CODE_8283A3                    ;83A6AF|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;83A6AF|22A38382|8283A3;
                                                             ;      |        |      ;
           CODE_83A6B3:
                        RTS                                  ;83A6B3|60      |      ;
@@ -5403,7 +5403,7 @@
                        STA.B $16                            ;83A6E1|8516    |00143E;
                        LDA.B #$02                           ;83A6E3|A902    |      ;
                        JSL.L CODE_848F07                    ;83A6E5|22078F84|848F07;
-                       JSL.L CODE_8280B4                    ;83A6E9|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83A6E9|22B48082|8280B4;
                        RTS                                  ;83A6ED|60      |      ;
                                                             ;      |        |      ;
                        REP #$10                             ;83A6EE|C210    |      ;
@@ -5420,15 +5420,15 @@
                        BNE CODE_83A71E                      ;83A703|D019    |83A71E;
                        JSL.L CODE_8281E8                    ;83A705|22E88182|8281E8;
                        JSL.L updateEv_13_14_17_0f           ;83A709|22EA8E84|848EEA;
-                       JSL.L CODE_8280B4                    ;83A70D|22B48082|8280B4;
-                       JSL.L CODE_82806E                    ;83A711|226E8082|82806E;
+                       JSL.L eventID_vile_68_afterInit      ;83A70D|22B48082|8280B4;
+                       JSL.L initPosAllign                  ;83A711|226E8082|82806E;
                        BCC CODE_83A73B                      ;83A715|9024    |83A73B;
-                       JSL.L CODE_8283A3                    ;83A717|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;83A717|22A38382|8283A3;
                        JMP.W CODE_83A73B                    ;83A71B|4C3BA7  |83A73B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83A71E:
-                       JSL.L CODE_8283A3                    ;83A71E|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;83A71E|22A38382|8283A3;
                        LDA.B $37                            ;83A722|A537    |00149F;
                        BNE CODE_83A73B                      ;83A724|D015    |83A73B;
                        REP #$10                             ;83A726|C210    |      ;
@@ -5549,7 +5549,7 @@
                        LDA.L $7F835C                        ;83A921|AF5C837F|7F835C;
                        ORA.B #$30                           ;83A925|0930    |      ;
                        STA.B $11                            ;83A927|8511    |001439;
-                       JSL.L CODE_82806E                    ;83A929|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83A929|226E8082|82806E;
                        BCC CODE_83A934                      ;83A92D|9005    |83A934;
                        LDA.B #$04                           ;83A92F|A904    |      ;
                        STA.B $01                            ;83A931|8501    |001469;
@@ -5593,7 +5593,7 @@
           CODE_83A96A:
                        LSR A                                ;83A96A|4A      |      ;
                        BCS CODE_83A971                      ;83A96B|B004    |83A971;
-                       JSL.L CODE_8280B4                    ;83A96D|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83A96D|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_83A971:
                        JML.L CODE_8491BE                    ;83A971|5CBE9184|8491BE;
@@ -5840,7 +5840,7 @@
                        REP #$10                             ;83AB0F|C210    |      ;
                        LDX.B $0C                            ;83AB11|A60C    |001434;
                        DEC.W r_0037,X                       ;83AB13|DE3700  |860037;
-                       JML.L CODE_8283A3                    ;83AB16|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;83AB16|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AB1A:
@@ -5914,7 +5914,7 @@
                        ASL A                                ;83AB82|0A      |      ;
                        TAX                                  ;83AB83|AA      |      ;
                        REP #$20                             ;83AB84|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;83AB86|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;83AB86|BD37EE  |86EE37;
                        ASL A                                ;83AB89|0A      |      ;
                        STA.B $1A                            ;83AB8A|851A    |001442;
                        LDA.W DATA8_86EE39,X                 ;83AB8C|BD39EE  |86EE39;
@@ -5939,7 +5939,7 @@
                        STA.B $26                            ;83ABB9|8526    |00144E;
                        STA.B $27                            ;83ABBB|8527    |00144F;
                        JSL.L CODE_849B03                    ;83ABBD|22039B84|849B03;
-                       JML.L CODE_8280B4                    ;83ABC1|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83ABC1|5CB48082|8280B4;
                                                             ;      |        |      ;
                        JSL.L CODE_82820A                    ;83ABC5|220A8282|82820A;
                        DEC.B $38                            ;83ABC9|C638    |001460;
@@ -5950,7 +5950,7 @@
           CODE_83ABD1:
                        JSL.L updateEv_13_14_17_0f           ;83ABD1|22EA8E84|848EEA;
                        JSL.L CODE_849B03                    ;83ABD5|22039B84|849B03;
-                       JML.L CODE_8280B4                    ;83ABD9|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83ABD9|5CB48082|8280B4;
                                                             ;      |        |      ;
                        REP #$30                             ;83ABDD|C230    |      ;
                        LDX.B $0C                            ;83ABDF|A60C    |001434;
@@ -5986,7 +5986,7 @@
                        ASL A                                ;83AC17|0A      |      ;
                        TAX                                  ;83AC18|AA      |      ;
                        REP #$30                             ;83AC19|C230    |      ;
-                       LDA.W DATA8_86EE37,X                 ;83AC1B|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;83AC1B|BD37EE  |86EE37;
                        ASL A                                ;83AC1E|0A      |      ;
                        STA.B $1A                            ;83AC1F|851A    |001442;
                        LDA.W DATA8_86EE39,X                 ;83AC21|BD39EE  |86EE39;
@@ -6018,14 +6018,14 @@
                        BCS CODE_83AC5C                      ;83AC51|B009    |83AC5C;
                        SEP #$20                             ;83AC53|E220    |      ;
                        INC.W r_0037,X                       ;83AC55|FE3700  |860037;
-                       JML.L CODE_8283A3                    ;83AC58|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;83AC58|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AC5C:
                        SEP #$30                             ;83AC5C|E230    |      ;
                        JSL.L updateEv_13_14_17_0f           ;83AC5E|22EA8E84|848EEA;
                        JSL.L CODE_849B03                    ;83AC62|22039B84|849B03;
-                       JML.L CODE_8280B4                    ;83AC66|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83AC66|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AC6A:
@@ -6061,7 +6061,7 @@
                        ADC.W #$C31D                         ;83AC9E|691DC3  |      ;
                        STA.B $20                            ;83ACA1|8520    |001488;
                        SEP #$20                             ;83ACA3|E220    |      ;
-                       JSL.L CODE_8280B4                    ;83ACA5|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83ACA5|22B48082|8280B4;
                        LDA.B $0B                            ;83ACA9|A50B    |001473;
                        JSL.L CODE_848F07                    ;83ACAB|22078F84|848F07;
                        LDA.B $38                            ;83ACAF|A538    |0014A0;
@@ -6126,10 +6126,10 @@
           CODE_83AD22:
                        JSL.L CODE_82820A                    ;83AD22|220A8282|82820A;
                        JSL.L updateEv_13_14_17_0f           ;83AD26|22EA8E84|848EEA;
-                       JSL.L CODE_8280B4                    ;83AD2A|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83AD2A|22B48082|8280B4;
                        LDA.B $0E                            ;83AD2E|A50E    |001476;
                        BNE CODE_83AD36                      ;83AD30|D004    |83AD36;
-                       JSL.L CODE_8283A3                    ;83AD32|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;83AD32|22A38382|8283A3;
                                                             ;      |        |      ;
           CODE_83AD36:
                        RTS                                  ;83AD36|60      |      ;
@@ -6137,12 +6137,12 @@
                        LDA.B $0F                            ;83AD37|A50F    |001477;
                        BMI CODE_83AD46                      ;83AD39|300B    |83AD46;
                        JSL.L updateEv_13_14_17_0f           ;83AD3B|22EA8E84|848EEA;
-                       JSL.L CODE_8280B4                    ;83AD3F|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83AD3F|22B48082|8280B4;
                        JMP.W CODE_83AD4A                    ;83AD43|4C4AAD  |83AD4A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AD46:
-                       JSL.L CODE_8283A3                    ;83AD46|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;83AD46|22A38382|8283A3;
                                                             ;      |        |      ;
           CODE_83AD4A:
                        RTS                                  ;83AD4A|60      |      ;
@@ -6169,7 +6169,7 @@
                        LDA.B #$04                           ;83AD67|A904    |      ;
                        STA.B $01                            ;83AD69|8501    |001569;
                        STZ.B $02                            ;83AD6B|6402    |00156A;
-                       JML.L CODE_8280B4                    ;83AD6D|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83AD6D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AD71:
@@ -6177,14 +6177,14 @@
                        TRB.B $11                            ;83AD73|1411    |001479;
                                                             ;      |        |      ;
           CODE_83AD75:
-                       JSL.L CODE_8280B4                    ;83AD75|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83AD75|22B48082|8280B4;
                        LDA.B $0E                            ;83AD79|A50E    |001476;
                        BEQ CODE_83AD7E                      ;83AD7B|F001    |83AD7E;
                        RTL                                  ;83AD7D|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AD7E:
-                       JML.L CODE_8283A3                    ;83AD7E|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;83AD7E|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83AD82:
@@ -6281,7 +6281,7 @@
           CODE_83AE35:
                        RTS                                  ;83AE35|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_8283A3                    ;83AE36|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;83AE36|22A38382|8283A3;
                        JSL.L CODE_84A44A                    ;83AE3A|224AA484|84A44A;
                        RTS                                  ;83AE3E|60      |      ;
                                                             ;      |        |      ;
@@ -6313,79 +6313,79 @@
                        JSL.L CODE_82820A                    ;83AE69|220A8282|82820A;
                        JSL.L CODE_849B03                    ;83AE6D|22039B84|849B03;
                        BNE CODE_83AE7D                      ;83AE71|D00A    |83AE7D;
-                       JSL.L CODE_82806E                    ;83AE73|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83AE73|226E8082|82806E;
                        BCS CODE_83AE7D                      ;83AE77|B004    |83AE7D;
-                       JML.L CODE_8280B4                    ;83AE79|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83AE79|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AE7D:
-                       JML.L CODE_8283A3                    ;83AE7D|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;83AE7D|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
 eventID_hoganmer_01_main:
-                       LDX.B $01                            ;83AE81|A601    |000E69;
-                       JSR.W (hoganmer_state1,X)            ;83AE83|FC8FAE  |83AE8F;
-                       LDA.B $11                            ;83AE86|A511    |000E79;
+                       LDX.B r_ev_01_state-$E68             ;83AE81|A601    |000E69;
+                       JSR.W (hoganmer_state,X)             ;83AE83|FC8FAE  |83AE8F;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83AE86|A511    |000E79;
                        AND.B #$3F                           ;83AE88|293F    |      ;
-                       ORA.B $33                            ;83AE8A|0533    |000E9B;
-                       STA.B $11                            ;83AE8C|8511    |000E79;
+                       ORA.B r_ev_33-$E68                   ;83AE8A|0533    |000E9B;
+                       STA.B r_ev_11_sprAtri-$E68           ;83AE8C|8511    |000E79;
                        RTL                                  ;83AE8E|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-      hoganmer_state1:
+       hoganmer_state:
                        dw hoganmer_state1_00                ;83AE8F|        |83AE95;
                        dw hoganmer_state1_01                ;83AE91|        |83AED0;
                        dw hoganmer_state1_02                ;83AE93|        |83B0A9;
                                                             ;      |        |      ;
    hoganmer_state1_00:
-                       JSL.L CODE_82827D                    ;83AE95|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;83AE95|227D8282|82827D;
                        LDA.B #$08                           ;83AE99|A908    |      ;
-                       STA.B $27                            ;83AE9B|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;83AE9B|8527    |000E8F;
                        LDA.B #$03                           ;83AE9D|A903    |      ;
-                       STA.B $26                            ;83AE9F|8526    |000E8E;
-                       STA.B $38                            ;83AEA1|8538    |000EA0;
+                       STA.B r_ev_26-$E68                   ;83AE9F|8526    |000E8E;
+                       STA.B r_ev_38-$E68                   ;83AEA1|8538    |000EA0;
                        LDA.B #$02                           ;83AEA3|A902    |      ;
-                       STA.B $12                            ;83AEA5|8512    |000E7A;
-                       STA.B $02                            ;83AEA7|8502    |000E6A;
-                       STZ.B $37                            ;83AEA9|6437    |000E9F;
-                       STZ.B $2F                            ;83AEAB|642F    |000E97;
+                       STA.B r_ev_12-$E68                   ;83AEA5|8512    |000E7A;
+                       STA.B r_ev_02_action-$E68            ;83AEA7|8502    |000E6A;
+                       STZ.B r_ev_37-$E68                   ;83AEA9|6437    |000E9F;
+                       STZ.B r_ev_2f-$E68                   ;83AEAB|642F    |000E97;
                        REP #$20                             ;83AEAD|C220    |      ;
                        LDA.W #$C423                         ;83AEAF|A923C4  |      ;
-                       STA.B $20                            ;83AEB2|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83AEB2|8520    |000E88;
                        LDX.B #$00                           ;83AEB4|A200    |      ;
                        LDA.W r_0bad                         ;83AEB6|ADAD0B  |860BAD;
-                       CMP.B $05                            ;83AEB9|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;83AEB9|C505    |000E6D;
                        BCC CODE_83AEBF                      ;83AEBB|9002    |83AEBF;
                        LDX.B #$40                           ;83AEBD|A240    |      ;
                                                             ;      |        |      ;
           CODE_83AEBF:
-                       STX.B $33                            ;83AEBF|8633    |000E9B;
+                       STX.B r_ev_33-$E68                   ;83AEBF|8633    |000E9B;
                        SEP #$20                             ;83AEC1|E220    |      ;
                        LDA.B #$40                           ;83AEC3|A940    |      ;
-                       STA.B $1E                            ;83AEC5|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;83AEC5|851E    |000E86;
                        LDA.B #$00                           ;83AEC7|A900    |      ;
                        JSL.L CODE_848F07                    ;83AEC9|22078F84|848F07;
                        JMP.W CODE_83B0D9                    ;83AECD|4CD9B0  |83B0D9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    hoganmer_state1_01:
-                       LDX.B $02                            ;83AED0|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;83AED0|A602    |000E6A;
                        JSR.W (PTR16_83AEFA,X)               ;83AED2|FCFAAE  |83AEFA;
                        LDA.L $7F8300                        ;83AED5|AF00837F|7F8300;
-                       STA.B $11                            ;83AED9|8511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;83AED9|8511    |000E79;
                        JSL.L CODE_849B43                    ;83AEDB|22439B84|849B43;
                        BEQ CODE_83AEF1                      ;83AEDF|F010    |83AEF1;
                        LDA.B #$0E                           ;83AEE1|A90E    |      ;
-                       TRB.B $11                            ;83AEE3|1411    |000E79;
-                       LDA.B $27                            ;83AEE5|A527    |000E8F;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83AEE3|1411    |000E79;
+                       LDA.B r_ev_27-$E68                   ;83AEE5|A527    |000E8F;
                        AND.B #$7F                           ;83AEE7|297F    |      ;
                        BNE CODE_83AEF1                      ;83AEE9|D006    |83AEF1;
                        LDA.B #$04                           ;83AEEB|A904    |      ;
-                       STA.B $01                            ;83AEED|8501    |000E69;
-                       STA.B $0B                            ;83AEEF|850B    |000E73;
+                       STA.B r_ev_01_state-$E68             ;83AEED|8501    |000E69;
+                       STA.B r_ev_0b_subID-$E68             ;83AEEF|850B    |000E73;
                                                             ;      |        |      ;
           CODE_83AEF1:
-                       JSL.L CODE_8280B4                    ;83AEF1|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83AEF1|22B48082|8280B4;
                        JSL.L CODE_849B03                    ;83AEF5|22039B84|849B03;
                        RTS                                  ;83AEF9|60      |      ;
                                                             ;      |        |      ;
@@ -6398,46 +6398,46 @@ eventID_hoganmer_01_main:
                        dw UNREACH_83B075                    ;83AF02|        |83B075;
                                                             ;      |        |      ;
           CODE_83AF04:
-                       LDX.B $03                            ;83AF04|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83AF04|A603    |000E6B;
                        BNE CODE_83AF15                      ;83AF06|D00D    |83AF15;
-                       INC.B $03                            ;83AF08|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83AF08|E603    |000E6B;
                        LDA.B #$3C                           ;83AF0A|A93C    |      ;
-                       STA.B $36                            ;83AF0C|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;83AF0C|8536    |000E9E;
                        LDA.B #$00                           ;83AF0E|A900    |      ;
                        JSL.L CODE_848F07                    ;83AF10|22078F84|848F07;
                        RTS                                  ;83AF14|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AF15:
-                       JSL.L CODE_82806E                    ;83AF15|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83AF15|226E8082|82806E;
                        BCC CODE_83AF2E                      ;83AF19|9013    |83AF2E;
                        REP #$30                             ;83AF1B|C230    |      ;
-                       LDX.B $34                            ;83AF1D|A634    |000E9C;
+                       LDX.B r_ev_34-$E68                   ;83AF1D|A634    |000E9C;
                        BEQ CODE_83AF27                      ;83AF1F|F006    |83AF27;
                        STZ.W r_0000,X                       ;83AF21|9E0000  |860000;
                        STZ.W r_0002,X                       ;83AF24|9E0200  |860002;
                                                             ;      |        |      ;
           CODE_83AF27:
                        SEP #$30                             ;83AF27|E230    |      ;
-                       JSL.L CODE_828387                    ;83AF29|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;83AF29|22878382|828387;
                        RTS                                  ;83AF2D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AF2E:
-                       LDA.B $37                            ;83AF2E|A537    |000E9F;
+                       LDA.B r_ev_37-$E68                   ;83AF2E|A537    |000E9F;
                        BEQ CODE_83AF35                      ;83AF30|F003    |83AF35;
                        JMP.W CODE_83B0D2                    ;83AF32|4CD2B0  |83B0D2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AF35:
-                       DEC.B $38                            ;83AF35|C638    |000EA0;
+                       DEC.B r_ev_38-$E68                   ;83AF35|C638    |000EA0;
                        BNE CODE_83AF56                      ;83AF37|D01D    |83AF56;
-                       INC.B $38                            ;83AF39|E638    |000EA0;
+                       INC.B r_ev_38-$E68                   ;83AF39|E638    |000EA0;
                        REP #$10                             ;83AF3B|C210    |      ;
-                       LDX.B $20                            ;83AF3D|A620    |000E88;
+                       LDX.B r_ev_20_hitBoxAddr-$E68        ;83AF3D|A620    |000E88;
                        PHX                                  ;83AF3F|DA      |      ;
                        LDX.W #$C41B                         ;83AF40|A21BC4  |      ;
-                       STX.B $20                            ;83AF43|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;83AF43|8620    |000E88;
                        LDX.W #$0BA8                         ;83AF45|A2A80B  |      ;
                        JSL.L CODE_849C0E                    ;83AF48|220E9C84|849C0E;
                        BCC CODE_83AF51                      ;83AF4C|9003    |83AF51;
@@ -6445,23 +6445,23 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83AF51:
                        PLX                                  ;83AF51|FA      |      ;
-                       STX.B $20                            ;83AF52|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;83AF52|8620    |000E88;
                        SEP #$10                             ;83AF54|E210    |      ;
                                                             ;      |        |      ;
           CODE_83AF56:
-                       DEC.B $36                            ;83AF56|C636    |000E9E;
+                       DEC.B r_ev_36-$E68                   ;83AF56|C636    |000E9E;
                        BNE CODE_83AF6F                      ;83AF58|D015    |83AF6F;
                        LDA.B #$3C                           ;83AF5A|A93C    |      ;
-                       STA.B $36                            ;83AF5C|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;83AF5C|8536    |000E9E;
                        REP #$20                             ;83AF5E|C220    |      ;
                        LDX.B #$00                           ;83AF60|A200    |      ;
                        LDA.W r_0bad                         ;83AF62|ADAD0B  |860BAD;
-                       CMP.B $05                            ;83AF65|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;83AF65|C505    |000E6D;
                        BCC CODE_83AF6B                      ;83AF67|9002    |83AF6B;
                        LDX.B #$40                           ;83AF69|A240    |      ;
                                                             ;      |        |      ;
           CODE_83AF6B:
-                       STX.B $33                            ;83AF6B|8633    |000E9B;
+                       STX.B r_ev_33-$E68                   ;83AF6B|8633    |000E9B;
                        SEP #$20                             ;83AF6D|E220    |      ;
                                                             ;      |        |      ;
           CODE_83AF6F:
@@ -6469,7 +6469,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AF70:
-                       LDX.B $03                            ;83AF70|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83AF70|A603    |000E6B;
                        JSR.W (PTR16_83AF7A,X)               ;83AF72|FC7AAF  |83AF7A;
                        JSL.L CODE_8491BE                    ;83AF75|22BE9184|8491BE;
                        RTS                                  ;83AF79|60      |      ;
@@ -6481,16 +6481,16 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83AF7E:
                        LDA.B #$02                           ;83AF7E|A902    |      ;
-                       STA.B $03                            ;83AF80|8503    |000E6B;
-                       STZ.B $1C                            ;83AF82|641C    |000E84;
-                       STZ.B $1D                            ;83AF84|641D    |000E85;
+                       STA.B r_ev_03_do-$E68                ;83AF80|8503    |000E6B;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83AF82|641C    |000E84;
+                       STZ.B r_ev_1d_ySpd-$E68              ;83AF84|641D    |000E85;
                        LDA.B #$06                           ;83AF86|A906    |      ;
                        JSL.L CODE_848F07                    ;83AF88|22078F84|848F07;
                        RTS                                  ;83AF8C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AF8D:
-                       LDA.B $2B                            ;83AF8D|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83AF8D|A52B    |000E93;
                        BIT.B #$04                           ;83AF8F|8904    |      ;
                        BEQ CODE_83AF96                      ;83AF91|F003    |83AF96;
                        JMP.W CODE_83B0B8                    ;83AF93|4CB8B0  |83B0B8;
@@ -6502,7 +6502,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AF9B:
-                       LDX.B $03                            ;83AF9B|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83AF9B|A603    |000E6B;
                        JMP.W (PTR16_83AFA0,X)               ;83AF9D|7CA0AF  |83AFA0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6514,33 +6514,33 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83AFA8:
                        LDA.B #$02                           ;83AFA8|A902    |      ;
-                       STA.B $03                            ;83AFAA|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83AFAA|8503    |000E6B;
                        JSL.L CODE_84A081                    ;83AFAC|2281A084|84A081;
-                       STA.B $39                            ;83AFB0|8539    |000EA1;
+                       STA.B r_ev_39-$E68                   ;83AFB0|8539    |000EA1;
                        LDA.B #$02                           ;83AFB2|A902    |      ;
                        JSL.L CODE_848F07                    ;83AFB4|22078F84|848F07;
                        RTS                                  ;83AFB8|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AFB9:
-                       LDA.B $0F                            ;83AFB9|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83AFB9|A50F    |000E77;
                        BIT.B #$01                           ;83AFBB|8901    |      ;
                        BEQ CODE_83AFCC                      ;83AFBD|F00D    |83AFCC;
                        LDA.B #$04                           ;83AFBF|A904    |      ;
-                       STA.B $03                            ;83AFC1|8503    |000E6B;
-                       STZ.B $36                            ;83AFC3|6436    |000E9E;
+                       STA.B r_ev_03_do-$E68                ;83AFC1|8503    |000E6B;
+                       STZ.B r_ev_36-$E68                   ;83AFC3|6436    |000E9E;
                        JSR.W CODE_83B109                    ;83AFC5|2009B1  |83B109;
                        BEQ CODE_83AFCC                      ;83AFC8|F002    |83AFCC;
-                       INC.B $36                            ;83AFCA|E636    |000E9E;
+                       INC.B r_ev_36-$E68                   ;83AFCA|E636    |000E9E;
                                                             ;      |        |      ;
           CODE_83AFCC:
                        REP #$10                             ;83AFCC|C210    |      ;
                        LDX.W #$C41F                         ;83AFCE|A21FC4  |      ;
-                       STX.B $20                            ;83AFD1|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;83AFD1|8620    |000E88;
                        JSL.L CODE_849B03                    ;83AFD3|22039B84|849B03;
                        REP #$10                             ;83AFD7|C210    |      ;
                        LDX.W #$C423                         ;83AFD9|A223C4  |      ;
-                       STX.B $20                            ;83AFDC|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;83AFDC|8620    |000E88;
                        SEP #$10                             ;83AFDE|E210    |      ;
                                                             ;      |        |      ;
           CODE_83AFE0:
@@ -6549,20 +6549,20 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AFE5:
-                       LDA.B $36                            ;83AFE5|A536    |000E9E;
+                       LDA.B r_ev_36-$E68                   ;83AFE5|A536    |000E9E;
                        BEQ CODE_83AFE0                      ;83AFE7|F0F7    |83AFE0;
                        LDA.B #$06                           ;83AFE9|A906    |      ;
-                       STA.B $03                            ;83AFEB|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83AFEB|8503    |000E6B;
                        LDA.B #$04                           ;83AFED|A904    |      ;
                        JSL.L CODE_848F07                    ;83AFEF|22078F84|848F07;
                        RTS                                  ;83AFF3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AFF4:
-                       LDA.B $0F                            ;83AFF4|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83AFF4|A50F    |000E77;
                        BPL CODE_83AFFF                      ;83AFF6|1007    |83AFFF;
                        LDA.B #$3C                           ;83AFF8|A93C    |      ;
-                       STA.B $38                            ;83AFFA|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;83AFFA|8538    |000EA0;
                        JMP.W CODE_83B0B8                    ;83AFFC|4CB8B0  |83B0B8;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6571,12 +6571,12 @@ eventID_hoganmer_01_main:
                        BEQ CODE_83B019                      ;83B001|F016    |83B019;
                        REP #$20                             ;83B003|C220    |      ;
                        LDA.W #$C417                         ;83B005|A917C4  |      ;
-                       STA.B $20                            ;83B008|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83B008|8520    |000E88;
                        SEP #$20                             ;83B00A|E220    |      ;
                        JSL.L CODE_849B03                    ;83B00C|22039B84|849B03;
                        REP #$20                             ;83B010|C220    |      ;
                        LDA.W #$C423                         ;83B012|A923C4  |      ;
-                       STA.B $20                            ;83B015|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83B015|8520    |000E88;
                        SEP #$20                             ;83B017|E220    |      ;
                                                             ;      |        |      ;
           CODE_83B019:
@@ -6610,30 +6610,30 @@ eventID_hoganmer_01_main:
                        LDA.B #$00                           ;83B0A9|A900    |      ;
                        JSL.L CODE_84A384                    ;83B0AB|2284A384|84A384;
                        JSL.L CODE_84A4B5                    ;83B0AF|22B5A484|84A4B5;
-                       JSL.L CODE_828398                    ;83B0B3|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;83B0B3|22988382|828398;
                        RTS                                  ;83B0B7|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B0B8:
-                       STZ.B $02                            ;83B0B8|6402    |000E6A;
-                       STZ.B $03                            ;83B0BA|6403    |000E6B;
+                       STZ.B r_ev_02_action-$E68            ;83B0B8|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B0BA|6403    |000E6B;
                        RTS                                  ;83B0BC|60      |      ;
                                                             ;      |        |      ;
                        LDA.B #$02                           ;83B0BD|A902    |      ;
-                       STA.B $02                            ;83B0BF|8502    |000E6A;
-                       STZ.B $03                            ;83B0C1|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;83B0BF|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B0C1|6403    |000E6B;
                        RTS                                  ;83B0C3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B0C4:
                        LDA.B #$04                           ;83B0C4|A904    |      ;
-                       STA.B $02                            ;83B0C6|8502    |000E6A;
-                       STZ.B $03                            ;83B0C8|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;83B0C6|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B0C8|6403    |000E6B;
                        RTS                                  ;83B0CA|60      |      ;
                                                             ;      |        |      ;
                        LDA.B #$06                           ;83B0CB|A906    |      ;
-                       STA.B $02                            ;83B0CD|8502    |000E6A;
-                       STZ.B $03                            ;83B0CF|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;83B0CD|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B0CF|6403    |000E6B;
                        RTS                                  ;83B0D1|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6652,21 +6652,21 @@ eventID_hoganmer_01_main:
                        INC.W r_0000,X                       ;83B0E3|FE0000  |860000;
                        LDA.B #$03                           ;83B0E6|A903    |      ;
                        STA.W r_000a,X                       ;83B0E8|9D0A00  |86000A;
-                       LDA.B $18                            ;83B0EB|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;83B0EB|A518    |000E80;
                        STA.W r_0018,X                       ;83B0ED|9D1800  |860018;
                        REP #$20                             ;83B0F0|C220    |      ;
-                       LDA.B $05                            ;83B0F2|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83B0F2|A505    |000E6D;
                        STA.W r_0005,X                       ;83B0F4|9D0500  |860005;
-                       LDA.B $08                            ;83B0F7|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83B0F7|A508    |000E70;
                        STA.W r_0008,X                       ;83B0F9|9D0800  |860008;
                        TDC                                  ;83B0FC|7B      |      ;
                        STA.W r_0029,X                       ;83B0FD|9D2900  |860029;
-                       STX.B $34                            ;83B100|8634    |000E9C;
+                       STX.B r_ev_34-$E68                   ;83B100|8634    |000E9C;
                        BRA CODE_83B106                      ;83B102|8002    |83B106;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B104:
-                       STA.B $37                            ;83B104|8537    |000E9F;
+                       STA.B r_ev_37-$E68                   ;83B104|8537    |000E9F;
                                                             ;      |        |      ;
           CODE_83B106:
                        SEP #$30                             ;83B106|E230    |      ;
@@ -6679,22 +6679,22 @@ eventID_hoganmer_01_main:
                        INC.W r_0000,X                       ;83B10F|FE0000  |860000;
                        LDA.B #$01                           ;83B112|A901    |      ;
                        STA.W r_000a,X                       ;83B114|9D0A00  |86000A;
-                       LDA.B $18                            ;83B117|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;83B117|A518    |000E80;
                        STA.W r_0018,X                       ;83B119|9D1800  |860018;
-                       LDA.B $39                            ;83B11C|A539    |000EA1;
+                       LDA.B r_ev_39-$E68                   ;83B11C|A539    |000EA1;
                        STA.W r_0035,X                       ;83B11E|9D3500  |860035;
                        STZ.W r_0028,X                       ;83B121|9E2800  |860028;
                        REP #$20                             ;83B124|C220    |      ;
                        LDA.W #$0014                         ;83B126|A91400  |      ;
-                       BIT.B $32                            ;83B129|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;83B129|2432    |000E9A;
                        BVS CODE_83B130                      ;83B12B|7003    |83B130;
                        LDA.W #$FFEC                         ;83B12D|A9ECFF  |      ;
                                                             ;      |        |      ;
           CODE_83B130:
                        CLC                                  ;83B130|18      |      ;
-                       ADC.B $05                            ;83B131|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83B131|6505    |000E6D;
                        STA.W r_0005,X                       ;83B133|9D0500  |860005;
-                       LDA.B $08                            ;83B136|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83B136|A508    |000E70;
                        STA.W r_0008,X                       ;83B138|9D0800  |860008;
                        TDC                                  ;83B13B|7B      |      ;
                        STA.W r_0033,X                       ;83B13C|9D3300  |860033;
@@ -6705,24 +6705,30 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83B143|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83B144:
-                       LDX.B $01                            ;83B144|A601    |000E69;
-                       JMP.W (UNREACH_83B149,X)             ;83B146|7C49B1  |83B149;
+eventID_armadillo_14_main:
+                       LDX.B r_ev_01_state-$E68             ;83B144|A601    |000E69;
+                       JMP.W (armadillo_14_state,X)         ;83B146|7C49B1  |83B149;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_83B149:
-                       db $51,$B1,$FC,$B1,$E8,$B2,$08,$B9   ;83B149|        |0000B1;
-                       LDA.B $02                            ;83B151|A502    |000E6A;
+   armadillo_14_state:
+                       dw armadillo_14_state_00             ;83B149|        |83B151;
+                       dw CODE_83B1FC                       ;83B14B|        |83B1FC;
+                       dw CODE_83B2E8                       ;83B14D|        |83B2E8;
+                       dw CODE_83B908                       ;83B14F|        |83B908;
+                                                            ;      |        |      ;
+armadillo_14_state_00:
+                       LDA.B r_ev_02_action-$E68            ;83B151|A502    |000E6A;
                        BNE CODE_83B17A                      ;83B153|D025    |83B17A;
                        JSL.L CODE_84AADD                    ;83B155|22DDAA84|84AADD;
                        BEQ CODE_83B15F                      ;83B159|F004    |83B15F;
-                       db $5C,$98,$83,$82                   ;83B15B|        |828398;
+                       JML.L clearStates_00_02_0E           ;83B15B|5C988382|828398;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B15F:
-                       INC.B $02                            ;83B15F|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;83B15F|E602    |000E6A;
                        JSL.L CODE_849FEB                    ;83B161|22EB9F84|849FEB;
                        LDA.B #$3C                           ;83B165|A93C    |      ;
-                       STA.B $34                            ;83B167|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83B167|8534    |000E9C;
                        LDA.B #$3C                           ;83B169|A93C    |      ;
                        JSL.L CODE_84A338                    ;83B16B|2238A384|84A338;
                        LDA.W r_1f26                         ;83B16F|AD261F  |861F26;
@@ -6731,69 +6737,71 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_8087A2                    ;83B176|22A28780|8087A2;
                                                             ;      |        |      ;
           CODE_83B17A:
-                       DEC.B $34                            ;83B17A|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83B17A|C634    |000E9C;
                        BEQ CODE_83B17F                      ;83B17C|F001    |83B17F;
                        RTL                                  ;83B17E|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B17F:
-                       JSL.L CODE_82827D                    ;83B17F|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;83B17F|227D8282|82827D;
                        REP #$10                             ;83B183|C210    |      ;
                        LDY.W #$01F0                         ;83B185|A0F001  |      ;
                        JSL.L CODE_828011                    ;83B188|22118082|828011;
                        LDA.L $7F835D                        ;83B18C|AF5D837F|7F835D;
                        AND.B #$FE                           ;83B190|29FE    |      ;
-                       STA.B $11                            ;83B192|8511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;83B192|8511    |000E79;
                        AND.B #$0E                           ;83B194|290E    |      ;
-                       STA.B $35                            ;83B196|8535    |000E9D;
-                       STZ.B $33                            ;83B198|6433    |000E9B;
-                       STZ.B $37                            ;83B19A|6437    |000E9F;
-                       STZ.B $38                            ;83B19C|6438    |000EA0;
-                       STZ.B $3C                            ;83B19E|643C    |000EA4;
-                       STZ.B $02                            ;83B1A0|6402    |000E6A;
+                       STA.B r_ev_35-$E68                   ;83B196|8535    |000E9D;
+                       STZ.B r_ev_33-$E68                   ;83B198|6433    |000E9B;
+                       STZ.B r_ev_37-$E68                   ;83B19A|6437    |000E9F;
+                       STZ.B r_ev_38-$E68                   ;83B19C|6438    |000EA0;
+                       STZ.B r_ev_3c-$E68                   ;83B19E|643C    |000EA4;
+                       STZ.B r_ev_02_action-$E68            ;83B1A0|6402    |000E6A;
                        LDA.B #$0B                           ;83B1A2|A90B    |      ;
                        JSR.W CODE_83B9C8                    ;83B1A4|20C8B9  |83B9C8;
                        REP #$20                             ;83B1A7|C220    |      ;
-                       LDA.B $08                            ;83B1A9|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83B1A9|A508    |000E70;
                        STA.W r_0002                         ;83B1AB|8D0200  |860002;
-                       LDA.B $05                            ;83B1AE|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83B1AE|A505    |000E6D;
                        SEC                                  ;83B1B0|38      |      ;
                        SBC.W #$0008                         ;83B1B1|E90800  |      ;
                        STA.W r_0000                         ;83B1B4|8D0000  |860000;
                        JSR.W CODE_83BB38                    ;83B1B7|2038BB  |83BB38;
-                       LDA.B $05                            ;83B1BA|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83B1BA|A505    |000E6D;
                        CLC                                  ;83B1BC|18      |      ;
                        ADC.W #$0008                         ;83B1BD|690800  |      ;
                        STA.W r_0000                         ;83B1C0|8D0000  |860000;
                        JSR.W CODE_83BB38                    ;83B1C3|2038BB  |83BB38;
-                       LDA.B $08                            ;83B1C6|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83B1C6|A508    |000E70;
                        CLC                                  ;83B1C8|18      |      ;
                        ADC.W #$0008                         ;83B1C9|690800  |      ;
                        STA.W r_0002                         ;83B1CC|8D0200  |860002;
                        JSR.W CODE_83BB38                    ;83B1CF|2038BB  |83BB38;
-                       LDA.B $05                            ;83B1D2|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83B1D2|A505    |000E6D;
                        SEC                                  ;83B1D4|38      |      ;
                        SBC.W #$0008                         ;83B1D5|E90800  |      ;
                        STA.W r_0000                         ;83B1D8|8D0000  |860000;
                        JSR.W CODE_83BB38                    ;83B1DB|2038BB  |83BB38;
                        LDA.W #$C945                         ;83B1DE|A945C9  |      ;
-                       STA.B $20                            ;83B1E1|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83B1E1|8520    |000E88;
                        SEP #$20                             ;83B1E3|E220    |      ;
                        LDA.B #$40                           ;83B1E5|A940    |      ;
-                       STA.B $1E                            ;83B1E7|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;83B1E7|851E    |000E86;
                        LDA.B #$FF                           ;83B1E9|A9FF    |      ;
-                       STA.B $2F                            ;83B1EB|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;83B1EB|852F    |000E97;
                        LDA.B #$04                           ;83B1ED|A904    |      ;
-                       STA.B $12                            ;83B1EF|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;83B1EF|8512    |000E7A;
                        LDA.B #$06                           ;83B1F1|A906    |      ;
-                       STA.B $26                            ;83B1F3|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;83B1F3|8526    |000E8E;
                        LDA.B #$00                           ;83B1F5|A900    |      ;
                        JSL.L CODE_848000                    ;83B1F7|22008084|848000;
                        RTL                                  ;83B1FB|6B      |      ;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;83B1FC|A602    |000E6A;
+                                                            ;      |        |      ;
+          CODE_83B1FC:
+                       LDX.B r_ev_02_action-$E68            ;83B1FC|A602    |000E6A;
                        JSR.W (UNREACH_83B205,X)             ;83B1FE|FC05B2  |83B205;
-                       JML.L CODE_8280B4                    ;83B201|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83B201|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83B205:
@@ -6802,30 +6810,30 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83B20F|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;83B213|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;83B217|22BE9184|8491BE;
-                       LDA.B $2B                            ;83B21B|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83B21B|A52B    |000E93;
                        AND.B #$04                           ;83B21D|2904    |      ;
                        BEQ CODE_83B23C                      ;83B21F|F01B    |83B23C;
                        LDA.B #$02                           ;83B221|A902    |      ;
-                       STA.B $02                            ;83B223|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;83B223|8502    |000E6A;
                        LDA.B #$04                           ;83B225|A904    |      ;
                        JSR.W CODE_83B9C8                    ;83B227|20C8B9  |83B9C8;
                        REP #$20                             ;83B22A|C220    |      ;
                        LDA.W #$C94F                         ;83B22C|A94FC9  |      ;
-                       STA.B $20                            ;83B22F|8520    |000E88;
-                       LDA.B $1C                            ;83B231|A51C    |000E84;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83B22F|8520    |000E88;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;83B231|A51C    |000E84;
                        EOR.W #$FFFF                         ;83B233|49FFFF  |      ;
                        INC A                                ;83B236|1A      |      ;
                        LSR A                                ;83B237|4A      |      ;
-                       STA.B $1C                            ;83B238|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83B238|851C    |000E84;
                        SEP #$20                             ;83B23A|E220    |      ;
                                                             ;      |        |      ;
           CODE_83B23C:
                        RTS                                  ;83B23C|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $03                            ;83B23D|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;83B23D|A503    |000E6B;
                        BNE CODE_83B255                      ;83B23F|D014    |83B255;
                        JSL.L updateEv_13_14_17_0f           ;83B241|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83B245|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83B245|A50F    |000E77;
                        BPL CODE_83B255                      ;83B247|100C    |83B255;
                        db $A5,$1D,$10,$08,$A9,$02,$22,$07   ;83B249|        |00001D;
                        db $8F,$84,$E6,$03                   ;83B251|        |03E684;
@@ -6833,7 +6841,7 @@ eventID_hoganmer_01_main:
           CODE_83B255:
                        JSL.L CODE_8281E8                    ;83B255|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;83B259|22BE9184|8491BE;
-                       LDA.B $2B                            ;83B25D|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83B25D|A52B    |000E93;
                        AND.B #$04                           ;83B25F|2904    |      ;
                        BEQ CODE_83B276                      ;83B261|F013    |83B276;
                        LDA.B #$08                           ;83B263|A908    |      ;
@@ -6841,19 +6849,19 @@ eventID_hoganmer_01_main:
                        LDA.B #$05                           ;83B269|A905    |      ;
                        JSR.W CODE_83B9C8                    ;83B26B|20C8B9  |83B9C8;
                        LDA.B #$04                           ;83B26E|A904    |      ;
-                       STA.B $02                            ;83B270|8502    |000E6A;
-                       STZ.B $03                            ;83B272|6403    |000E6B;
-                       STZ.B $2F                            ;83B274|642F    |000E97;
+                       STA.B r_ev_02_action-$E68            ;83B270|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B272|6403    |000E6B;
+                       STZ.B r_ev_2f-$E68                   ;83B274|642F    |000E97;
                                                             ;      |        |      ;
           CODE_83B276:
                        RTS                                  ;83B276|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83B277|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83B27B|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83B27B|A50F    |000E77;
                        BPL CODE_83B293                      ;83B27D|1014    |83B293;
                        LDA.B #$06                           ;83B27F|A906    |      ;
-                       STA.B $02                            ;83B281|8502    |000E6A;
-                       STZ.B $27                            ;83B283|6427    |000E8F;
+                       STA.B r_ev_02_action-$E68            ;83B281|8502    |000E6A;
+                       STZ.B r_ev_27-$E68                   ;83B283|6427    |000E8F;
                        REP #$20                             ;83B285|C220    |      ;
                        TDC                                  ;83B287|7B      |      ;
                        STA.W r_1f0e                         ;83B288|8D0E1F  |861F0E;
@@ -6864,7 +6872,7 @@ eventID_hoganmer_01_main:
           CODE_83B293:
                        RTS                                  ;83B293|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $0F                            ;83B294|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83B294|A50F    |000E77;
                        BMI CODE_83B29D                      ;83B296|3005    |83B29D;
                        JSL.L updateEv_13_14_17_0f           ;83B298|22EA8E84|848EEA;
                        RTS                                  ;83B29C|60      |      ;
@@ -6876,32 +6884,32 @@ eventID_hoganmer_01_main:
                        BEQ CODE_83B2C5                      ;83B2A2|F021    |83B2C5;
                        LDA.B #$0C                           ;83B2A4|A90C    |      ;
                        JSL.L CODE_8088CD                    ;83B2A6|22CD8880|8088CD;
-                       INC.B $27                            ;83B2AA|E627    |000E8F;
+                       INC.B r_ev_27-$E68                   ;83B2AA|E627    |000E8F;
                        LDA.B #$80                           ;83B2AC|A980    |      ;
-                       ORA.B $27                            ;83B2AE|0527    |000E8F;
-                       STA.B $27                            ;83B2B0|8527    |000E8F;
+                       ORA.B r_ev_27-$E68                   ;83B2AE|0527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;83B2B0|8527    |000E8F;
                        AND.B #$7F                           ;83B2B2|297F    |      ;
                        CMP.B #$20                           ;83B2B4|C920    |      ;
                        BCC CODE_83B2C5                      ;83B2B6|900D    |83B2C5;
                        LDA.B #$08                           ;83B2B8|A908    |      ;
-                       STA.B $02                            ;83B2BA|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;83B2BA|8502    |000E6A;
                        LDA.B #$0A                           ;83B2BC|A90A    |      ;
-                       STA.B $34                            ;83B2BE|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83B2BE|8534    |000E9C;
                        LDA.B #$00                           ;83B2C0|A900    |      ;
                        JSR.W CODE_83B9C8                    ;83B2C2|20C8B9  |83B9C8;
                                                             ;      |        |      ;
           CODE_83B2C5:
                        RTS                                  ;83B2C5|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $34                            ;83B2C6|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83B2C6|C634    |000E9C;
                        BNE CODE_83B2E7                      ;83B2C8|D01D    |83B2E7;
                        LDA.B #$04                           ;83B2CA|A904    |      ;
-                       STA.B $01                            ;83B2CC|8501    |000E69;
-                       STZ.B $02                            ;83B2CE|6402    |000E6A;
-                       STZ.B $03                            ;83B2D0|6403    |000E6B;
-                       STZ.B $31                            ;83B2D2|6431    |000E99;
+                       STA.B r_ev_01_state-$E68             ;83B2CC|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;83B2CE|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B2D0|6403    |000E6B;
+                       STZ.B r_ev_31-$E68                   ;83B2D2|6431    |000E99;
                        LDA.B #$01                           ;83B2D4|A901    |      ;
-                       STA.B $32                            ;83B2D6|8532    |000E9A;
+                       STA.B r_ev_32-$E68                   ;83B2D6|8532    |000E9A;
                        JSL.L CODE_84A003                    ;83B2D8|2203A084|84A003;
                        LDA.W r_1f26                         ;83B2DC|AD261F  |861F26;
                        BEQ CODE_83B2E7                      ;83B2DF|F006    |83B2E7;
@@ -6911,13 +6919,15 @@ eventID_hoganmer_01_main:
           CODE_83B2E7:
                        RTS                                  ;83B2E7|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;83B2E8|A602    |000E6A;
+                                                            ;      |        |      ;
+          CODE_83B2E8:
+                       LDX.B r_ev_02_action-$E68            ;83B2E8|A602    |000E6A;
                        JSR.W (PTR16_83B3DA,X)               ;83B2EA|FCDAB3  |83B3DA;
-                       LDA.B $27                            ;83B2ED|A527    |000E8F;
-                       STA.B $39                            ;83B2EF|8539    |000EA1;
-                       LDA.B $35                            ;83B2F1|A535    |000E9D;
-                       TSB.B $11                            ;83B2F3|0411    |000E79;
-                       LDA.B $37                            ;83B2F5|A537    |000E9F;
+                       LDA.B r_ev_27-$E68                   ;83B2ED|A527    |000E8F;
+                       STA.B r_ev_39-$E68                   ;83B2EF|8539    |000EA1;
+                       LDA.B r_ev_35-$E68                   ;83B2F1|A535    |000E9D;
+                       TSB.B r_ev_11_sprAtri-$E68           ;83B2F3|0411    |000E79;
+                       LDA.B r_ev_37-$E68                   ;83B2F5|A537    |000E9F;
                        BMI CODE_83B301                      ;83B2F7|3008    |83B301;
                        AND.B #$01                           ;83B2F9|2901    |      ;
                        BEQ CODE_83B309                      ;83B2FB|F00C    |83B309;
@@ -6926,7 +6936,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B301:
-                       LDA.B $33                            ;83B301|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;83B301|A533    |000E9B;
                        BNE CODE_83B309                      ;83B303|D004    |83B309;
                        LDA.B #$00                           ;83B305|A900    |      ;
                        BRA CODE_83B30B                      ;83B307|8002    |83B30B;
@@ -6936,36 +6946,36 @@ eventID_hoganmer_01_main:
                        LDA.B #$0B                           ;83B309|A90B    |      ;
                                                             ;      |        |      ;
           CODE_83B30B:
-                       STA.B $28                            ;83B30B|8528    |000E90;
-                       LDA.B $38                            ;83B30D|A538    |000EA0;
+                       STA.B r_ev_28-$E68                   ;83B30B|8528    |000E90;
+                       LDA.B r_ev_38-$E68                   ;83B30D|A538    |000EA0;
                        BEQ CODE_83B32A                      ;83B30F|F019    |83B32A;
-                       DEC.B $38                            ;83B311|C638    |000EA0;
-                       LDA.B $02                            ;83B313|A502    |000E6A;
+                       DEC.B r_ev_38-$E68                   ;83B311|C638    |000EA0;
+                       LDA.B r_ev_02_action-$E68            ;83B313|A502    |000E6A;
                        CMP.B #$08                           ;83B315|C908    |      ;
                        BNE CODE_83B31F                      ;83B317|D006    |83B31F;
-                       LDA.B $03                            ;83B319|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;83B319|A503    |000E6B;
                        CMP.B #$08                           ;83B31B|C908    |      ;
                        BCS CODE_83B32A                      ;83B31D|B00B    |83B32A;
                                                             ;      |        |      ;
           CODE_83B31F:
-                       LDA.B $38                            ;83B31F|A538    |000EA0;
+                       LDA.B r_ev_38-$E68                   ;83B31F|A538    |000EA0;
                        LSR A                                ;83B321|4A      |      ;
                        LSR A                                ;83B322|4A      |      ;
                        LSR A                                ;83B323|4A      |      ;
                        BCC CODE_83B32A                      ;83B324|9004    |83B32A;
                        LDA.B #$0E                           ;83B326|A90E    |      ;
-                       TRB.B $11                            ;83B328|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83B328|1411    |000E79;
                                                             ;      |        |      ;
           CODE_83B32A:
                        JSL.L CODE_849B43                    ;83B32A|22439B84|849B43;
                        BVC CODE_83B35A                      ;83B32E|502A    |83B35A;
-                       LDA.B $3C                            ;83B330|A53C    |000EA4;
+                       LDA.B r_ev_3c-$E68                   ;83B330|A53C    |000EA4;
                        CLC                                  ;83B332|18      |      ;
                        ADC.B #$02                           ;83B333|6902    |      ;
-                       STA.B $3C                            ;83B335|853C    |000EA4;
+                       STA.B r_ev_3c-$E68                   ;83B335|853C    |000EA4;
                        LDA.B #$01                           ;83B337|A901    |      ;
-                       STA.B $3B                            ;83B339|853B    |000EA3;
-                       LDA.B $37                            ;83B33B|A537    |000E9F;
+                       STA.B r_ev_3b-$E68                   ;83B339|853B    |000EA3;
+                       LDA.B r_ev_37-$E68                   ;83B33B|A537    |000E9F;
                        LSR A                                ;83B33D|4A      |      ;
                        BCS CODE_83B343                      ;83B33E|B003    |83B343;
                        JMP.W CODE_83B3C7                    ;83B340|4CC7B3  |83B3C7;
@@ -6982,38 +6992,38 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83B352:
                        LDA.B #$06                           ;83B352|A906    |      ;
-                       STA.B $02                            ;83B354|8502    |000E6A;
-                       STZ.B $03                            ;83B356|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;83B354|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B356|6403    |000E6B;
                        BRA CODE_83B3C7                      ;83B358|806D    |83B3C7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B35A:
                        BEQ CODE_83B3C7                      ;83B35A|F06B    |83B3C7;
-                       LDA.B $38                            ;83B35C|A538    |000EA0;
+                       LDA.B r_ev_38-$E68                   ;83B35C|A538    |000EA0;
                        BEQ CODE_83B366                      ;83B35E|F006    |83B366;
-                       LDA.B $39                            ;83B360|A539    |000EA1;
-                       STA.B $27                            ;83B362|8527    |000E8F;
+                       LDA.B r_ev_39-$E68                   ;83B360|A539    |000EA1;
+                       STA.B r_ev_27-$E68                   ;83B362|8527    |000E8F;
                        BRA CODE_83B3C7                      ;83B364|8061    |83B3C7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B366:
                        LDA.B #$3C                           ;83B366|A93C    |      ;
-                       STA.B $38                            ;83B368|8538    |000EA0;
-                       LDA.B $02                            ;83B36A|A502    |000E6A;
+                       STA.B r_ev_38-$E68                   ;83B368|8538    |000EA0;
+                       LDA.B r_ev_02_action-$E68            ;83B36A|A502    |000E6A;
                        BNE CODE_83B374                      ;83B36C|D006    |83B374;
-                       LDA.B $03                            ;83B36E|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;83B36E|A503    |000E6B;
                        CMP.B #$0C                           ;83B370|C90C    |      ;
                        BCC CODE_83B39A                      ;83B372|9026    |83B39A;
                                                             ;      |        |      ;
           CODE_83B374:
                        LDA.B #$08                           ;83B374|A908    |      ;
-                       STA.B $02                            ;83B376|8502    |000E6A;
-                       STZ.B $03                            ;83B378|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;83B376|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B378|6403    |000E6B;
                        LDA.B #$40                           ;83B37A|A940    |      ;
-                       TRB.B $11                            ;83B37C|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83B37C|1411    |000E79;
                        LDA.W r_1f1b                         ;83B37E|AD1B1F  |861F1B;
-                       TSB.B $11                            ;83B381|0411    |000E79;
-                       LDA.B $33                            ;83B383|A533    |000E9B;
+                       TSB.B r_ev_11_sprAtri-$E68           ;83B381|0411    |000E79;
+                       LDA.B r_ev_33-$E68                   ;83B383|A533    |000E9B;
                        BNE CODE_83B39A                      ;83B385|D013    |83B39A;
                        LDA.W r_1f1d                         ;83B387|AD1D1F  |861F1D;
                        CMP.B #$0C                           ;83B38A|C90C    |      ;
@@ -7023,30 +7033,30 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83B392:
                        LDA.B #$02                           ;83B392|A902    |      ;
-                       STA.B $03                            ;83B394|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B394|8503    |000E6B;
                        LDA.B #$B4                           ;83B396|A9B4    |      ;
-                       STA.B $38                            ;83B398|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;83B398|8538    |000EA0;
                                                             ;      |        |      ;
           CODE_83B39A:
                        LDA.B #$13                           ;83B39A|A913    |      ;
                        JSL.L CODE_8088A2                    ;83B39C|22A28880|8088A2;
-                       LDA.B $27                            ;83B3A0|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;83B3A0|A527    |000E8F;
                        AND.B #$7F                           ;83B3A2|297F    |      ;
                        BNE CODE_83B3C7                      ;83B3A4|D021    |83B3C7;
                        LDA.B #$06                           ;83B3A6|A906    |      ;
-                       STA.B $01                            ;83B3A8|8501    |000E69;
-                       STZ.B $02                            ;83B3AA|6402    |000E6A;
-                       STZ.B $03                            ;83B3AC|6403    |000E6B;
+                       STA.B r_ev_01_state-$E68             ;83B3A8|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;83B3AA|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B3AC|6403    |000E6B;
                        LDA.B #$01                           ;83B3AE|A901    |      ;
                        STA.W r_0bd8                         ;83B3B0|8DD80B  |860BD8;
                        STA.W r_1f0c                         ;83B3B3|8D0C1F  |861F0C;
                        LDA.B #$07                           ;83B3B6|A907    |      ;
                        JSR.W CODE_83B9C8                    ;83B3B8|20C8B9  |83B9C8;
-                       LDA.B $11                            ;83B3BB|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83B3BB|A511    |000E79;
                        AND.B #$F1                           ;83B3BD|29F1    |      ;
                        ORA.B #$08                           ;83B3BF|0908    |      ;
-                       STA.B $11                            ;83B3C1|8511    |000E79;
-                       JML.L CODE_8280B4                    ;83B3C3|5CB48082|8280B4;
+                       STA.B r_ev_11_sprAtri-$E68           ;83B3C1|8511    |000E79;
+                       JML.L eventID_vile_68_afterInit      ;83B3C3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B3C7:
@@ -7055,10 +7065,10 @@ eventID_hoganmer_01_main:
                        AND.B #$7F                           ;83B3CE|297F    |      ;
                        BNE CODE_83B3D6                      ;83B3D0|D004    |83B3D6;
                        LDA.B #$01                           ;83B3D2|A901    |      ;
-                       STA.B $30                            ;83B3D4|8530    |000E98;
+                       STA.B r_ev_30-$E68                   ;83B3D4|8530    |000E98;
                                                             ;      |        |      ;
           CODE_83B3D6:
-                       JML.L CODE_8280B4                    ;83B3D6|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83B3D6|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_83B3DA:
@@ -7069,7 +7079,7 @@ eventID_hoganmer_01_main:
                        dw CODE_83B826                       ;83B3E2|        |83B826;
                                                             ;      |        |      ;
           CODE_83B3E4:
-                       LDX.B $03                            ;83B3E4|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83B3E4|A603    |000E6B;
                        JMP.W (PTR16_83B3E9,X)               ;83B3E6|7CE9B3  |83B3E9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7087,15 +7097,15 @@ eventID_hoganmer_01_main:
                        LDA.B #$03                           ;83B3F9|A903    |      ;
                        JSR.W CODE_83B9C8                    ;83B3FB|20C8B9  |83B9C8;
                        LDA.B #$02                           ;83B3FE|A902    |      ;
-                       STA.B $03                            ;83B400|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B400|8503    |000E6B;
                        JSL.L CODE_84ACA5                    ;83B402|22A5AC84|84ACA5;
                        REP #$20                             ;83B406|C220    |      ;
                        LDA.W #$0506                         ;83B408|A90605  |      ;
-                       STA.B $1C                            ;83B40B|851C    |000E84;
-                       STZ.B $1A                            ;83B40D|641A    |000E82;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83B40B|851C    |000E84;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;83B40D|641A    |000E82;
                        SEP #$20                             ;83B40F|E220    |      ;
                        LDA.B #$FF                           ;83B411|A9FF    |      ;
-                       STA.B $2F                            ;83B413|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;83B413|852F    |000E97;
                        RTS                                  ;83B415|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7104,17 +7114,17 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_8281E8                    ;83B41A|22E88182|8281E8;
                        JSL.L updateEv_13_14_17_0f           ;83B41E|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;83B422|22BE9184|8491BE;
-                       LDA.B $0F                            ;83B426|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83B426|A50F    |000E77;
                        BPL CODE_83B440                      ;83B428|1016    |83B440;
                        LDA.B #$04                           ;83B42A|A904    |      ;
-                       STA.B $03                            ;83B42C|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B42C|8503    |000E6B;
                        LDA.B #$0B                           ;83B42E|A90B    |      ;
                        JSR.W CODE_83B9C8                    ;83B430|20C8B9  |83B9C8;
                        LDA.B #$80                           ;83B433|A980    |      ;
-                       TSB.B $37                            ;83B435|0437    |000E9F;
+                       TSB.B r_ev_37-$E68                   ;83B435|0437    |000E9F;
                        REP #$20                             ;83B437|C220    |      ;
                        LDA.W #$C945                         ;83B439|A945C9  |      ;
-                       STA.B $20                            ;83B43C|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83B43C|8520    |000E88;
                        SEP #$20                             ;83B43E|E220    |      ;
                                                             ;      |        |      ;
           CODE_83B440:
@@ -7126,17 +7136,17 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_8281E8                    ;83B445|22E88182|8281E8;
                        JSL.L updateEv_13_14_17_0f           ;83B449|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;83B44D|22BE9184|8491BE;
-                       LDA.B $2B                            ;83B451|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83B451|A52B    |000E93;
                        AND.B #$04                           ;83B453|2904    |      ;
                        BEQ CODE_83B467                      ;83B455|F010    |83B467;
                        REP #$20                             ;83B457|C220    |      ;
-                       LDA.B $1C                            ;83B459|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;83B459|A51C    |000E84;
                        EOR.W #$FFFF                         ;83B45B|49FFFF  |      ;
                        INC A                                ;83B45E|1A      |      ;
-                       STA.B $1C                            ;83B45F|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83B45F|851C    |000E84;
                        SEP #$20                             ;83B461|E220    |      ;
                        LDA.B #$06                           ;83B463|A906    |      ;
-                       STA.B $03                            ;83B465|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B465|8503    |000E6B;
                                                             ;      |        |      ;
           CODE_83B467:
                        RTS                                  ;83B467|60      |      ;
@@ -7146,12 +7156,12 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_84ACA5                    ;83B468|22A5AC84|84ACA5;
                        JSL.L updateEv_13_14_17_0f           ;83B46C|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;83B470|22E88182|8281E8;
-                       LDA.B $2B                            ;83B474|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83B474|A52B    |000E93;
                        AND.B #$04                           ;83B476|2904    |      ;
                        BEQ CODE_83B492                      ;83B478|F018    |83B492;
                        LDA.B #$08                           ;83B47A|A908    |      ;
-                       STA.B $03                            ;83B47C|8503    |000E6B;
-                       LDA.B $11                            ;83B47E|A511    |000E79;
+                       STA.B r_ev_03_do-$E68                ;83B47C|8503    |000E6B;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83B47E|A511    |000E79;
                        ASL A                                ;83B480|0A      |      ;
                        ASL A                                ;83B481|0A      |      ;
                        REP #$20                             ;83B482|C220    |      ;
@@ -7160,8 +7170,8 @@ eventID_hoganmer_01_main:
                        LDA.W #$FA00                         ;83B489|A900FA  |      ;
                                                             ;      |        |      ;
           CODE_83B48C:
-                       STA.B $1A                            ;83B48C|851A    |000E82;
-                       STZ.B $1C                            ;83B48E|641C    |000E84;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83B48C|851A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83B48E|641C    |000E84;
                        SEP #$20                             ;83B490|E220    |      ;
                                                             ;      |        |      ;
           CODE_83B492:
@@ -7172,12 +7182,12 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_82823E                    ;83B493|223E8282|82823E;
                        JSL.L CODE_8491BE                    ;83B497|22BE9184|8491BE;
                        JSL.L updateEv_13_14_17_0f           ;83B49B|22EA8E84|848EEA;
-                       LDA.B $2B                            ;83B49F|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83B49F|A52B    |000E93;
                        AND.B #$03                           ;83B4A1|2903    |      ;
                        BEQ CODE_83B4FD                      ;83B4A3|F058    |83B4FD;
                        LDA.B #$48                           ;83B4A5|A948    |      ;
                        JSL.L CODE_8088A2                    ;83B4A7|22A28880|8088A2;
-                       LDA.B $11                            ;83B4AB|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83B4AB|A511    |000E79;
                        ASL A                                ;83B4AD|0A      |      ;
                        ASL A                                ;83B4AE|0A      |      ;
                        REP #$20                             ;83B4AF|C220    |      ;
@@ -7187,9 +7197,9 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83B4B9:
                        CLC                                  ;83B4B9|18      |      ;
-                       ADC.B $05                            ;83B4BA|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83B4BA|6505    |000E6D;
                        STA.W r_0000                         ;83B4BC|8D0000  |860000;
-                       LDA.B $08                            ;83B4BF|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83B4BF|A508    |000E70;
                        STA.W r_0002                         ;83B4C1|8D0200  |860002;
                        JSR.W CODE_83BB38                    ;83B4C4|2038BB  |83BB38;
                        SEP #$20                             ;83B4C7|E220    |      ;
@@ -7197,9 +7207,9 @@ eventID_hoganmer_01_main:
                        AND.B #$0F                           ;83B4CD|290F    |      ;
                        CMP.B #$06                           ;83B4CF|C906    |      ;
                        BCS CODE_83B4DC                      ;83B4D1|B009    |83B4DC;
-                       LDA.B $1B                            ;83B4D3|A51B    |000E83;
+                       LDA.B r_ev_1b_xSpd-$E68              ;83B4D3|A51B    |000E83;
                        EOR.B #$80                           ;83B4D5|4980    |      ;
-                       STA.B $1B                            ;83B4D7|851B    |000E83;
+                       STA.B r_ev_1b_xSpd-$E68              ;83B4D7|851B    |000E83;
                        JMP.W CODE_83B9FE                    ;83B4D9|4CFEB9  |83B9FE;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7210,17 +7220,17 @@ eventID_hoganmer_01_main:
                        LDA.W DATA8_86EE49                   ;83B4E4|AD49EE  |86EE49;
                        ASL A                                ;83B4E7|0A      |      ;
                        ADC.W DATA8_86EE49                   ;83B4E8|6D49EE  |86EE49;
-                       STA.B $1C                            ;83B4EB|851C    |000E84;
-                       LDX.B $1B                            ;83B4ED|A61B    |000E83;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83B4EB|851C    |000E84;
+                       LDX.B r_ev_1b_xSpd-$E68              ;83B4ED|A61B    |000E83;
                        BMI CODE_83B4F5                      ;83B4EF|3004    |83B4F5;
                        EOR.W #$FFFF                         ;83B4F1|49FFFF  |      ;
                        INC A                                ;83B4F4|1A      |      ;
                                                             ;      |        |      ;
           CODE_83B4F5:
-                       STA.B $1A                            ;83B4F5|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83B4F5|851A    |000E82;
                        SEP #$20                             ;83B4F7|E220    |      ;
                        LDA.B #$0A                           ;83B4F9|A90A    |      ;
-                       STA.B $03                            ;83B4FB|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B4FB|8503    |000E6B;
                                                             ;      |        |      ;
           CODE_83B4FD:
                        RTS                                  ;83B4FD|60      |      ;
@@ -7228,16 +7238,16 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83B4FE:
                        LDA.B #$40                           ;83B4FE|A940    |      ;
-                       TRB.B $11                            ;83B500|1411    |000E79;
-                       LDA.B $1B                            ;83B502|A51B    |000E83;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83B500|1411    |000E79;
+                       LDA.B r_ev_1b_xSpd-$E68              ;83B502|A51B    |000E83;
                        AND.B #$80                           ;83B504|2980    |      ;
                        LSR A                                ;83B506|4A      |      ;
                        EOR.B #$40                           ;83B507|4940    |      ;
-                       TSB.B $11                            ;83B509|0411    |000E79;
+                       TSB.B r_ev_11_sprAtri-$E68           ;83B509|0411    |000E79;
                        JSL.L CODE_82820A                    ;83B50B|220A8282|82820A;
                        JSL.L updateEv_13_14_17_0f           ;83B50F|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;83B513|22BE9184|8491BE;
-                       LDA.B $2B                            ;83B517|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83B517|A52B    |000E93;
                        BNE CODE_83B51C                      ;83B519|D001    |83B51C;
                        RTS                                  ;83B51B|60      |      ;
                                                             ;      |        |      ;
@@ -7252,9 +7262,9 @@ eventID_hoganmer_01_main:
                        REP #$20                             ;83B52A|C220    |      ;
                        LDA.W #$0010                         ;83B52C|A91000  |      ;
                        CLC                                  ;83B52F|18      |      ;
-                       ADC.B $08                            ;83B530|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;83B530|6508    |000E70;
                        STA.W r_0002                         ;83B532|8D0200  |860002;
-                       LDA.B $05                            ;83B535|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83B535|A505    |000E6D;
                        STA.W r_0000                         ;83B537|8D0000  |860000;
                        JSR.W CODE_83BB38                    ;83B53A|2038BB  |83BB38;
                        SEP #$20                             ;83B53D|E220    |      ;
@@ -7266,7 +7276,7 @@ eventID_hoganmer_01_main:
           CODE_83B548:
                        LDA.B #$48                           ;83B548|A948    |      ;
                        JSL.L CODE_8088A2                    ;83B54A|22A28880|8088A2;
-                       LDA.B $2B                            ;83B54E|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83B54E|A52B    |000E93;
                        BIT.B #$0C                           ;83B550|890C    |      ;
                        REP #$20                             ;83B552|C220    |      ;
                        BEQ CODE_83B581                      ;83B554|F02B    |83B581;
@@ -7279,15 +7289,15 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83B561:
                        CLC                                  ;83B561|18      |      ;
-                       ADC.B $08                            ;83B562|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;83B562|6508    |000E70;
                        STA.W r_0002                         ;83B564|8D0200  |860002;
-                       LDA.B $05                            ;83B567|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83B567|A505    |000E6D;
                        STA.W r_0000                         ;83B569|8D0000  |860000;
                        JSR.W CODE_83BB38                    ;83B56C|2038BB  |83BB38;
-                       LDA.B $1C                            ;83B56F|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;83B56F|A51C    |000E84;
                        EOR.W #$FFFF                         ;83B571|49FFFF  |      ;
                        INC A                                ;83B574|1A      |      ;
-                       STA.B $1C                            ;83B575|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83B575|851C    |000E84;
                        SEP #$20                             ;83B577|E220    |      ;
                        LDA.B #$08                           ;83B579|A908    |      ;
                        JSL.L CODE_84A338                    ;83B57B|2238A384|84A338;
@@ -7302,15 +7312,15 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83B58A:
                        CLC                                  ;83B58A|18      |      ;
-                       ADC.B $05                            ;83B58B|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83B58B|6505    |000E6D;
                        STA.W r_0000                         ;83B58D|8D0000  |860000;
-                       LDA.B $08                            ;83B590|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83B590|A508    |000E70;
                        STA.W r_0002                         ;83B592|8D0200  |860002;
                        JSR.W CODE_83BB38                    ;83B595|2038BB  |83BB38;
-                       LDA.B $1A                            ;83B598|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;83B598|A51A    |000E82;
                        EOR.W #$FFFF                         ;83B59A|49FFFF  |      ;
                        INC A                                ;83B59D|1A      |      ;
-                       STA.B $1A                            ;83B59E|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83B59E|851A    |000E82;
                        SEP #$20                             ;83B5A0|E220    |      ;
                        LDA.B #$08                           ;83B5A2|A908    |      ;
                        JSL.L CODE_84A316                    ;83B5A4|2216A384|84A316;
@@ -7322,24 +7332,24 @@ eventID_hoganmer_01_main:
           CODE_83B5A9:
                        REP #$20                             ;83B5A9|C220    |      ;
                        LDA.W #$C94F                         ;83B5AB|A94FC9  |      ;
-                       STA.B $20                            ;83B5AE|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83B5AE|8520    |000E88;
                        SEP #$20                             ;83B5B0|E220    |      ;
                        JSL.L CODE_8281E8                    ;83B5B2|22E88182|8281E8;
                        JSL.L updateEv_13_14_17_0f           ;83B5B6|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;83B5BA|22BE9184|8491BE;
-                       LDA.B $2B                            ;83B5BE|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83B5BE|A52B    |000E93;
                        AND.B #$03                           ;83B5C0|2903    |      ;
                        BEQ CODE_83B5D0                      ;83B5C2|F00C    |83B5D0;
                        db $C2,$20,$A5,$1A,$49,$FF,$FF,$1A   ;83B5C4|        |      ;
                        db $85,$1A,$E2,$20                   ;83B5CC|        |00001A;
                                                             ;      |        |      ;
           CODE_83B5D0:
-                       LDA.B $2B                            ;83B5D0|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83B5D0|A52B    |000E93;
                        AND.B #$04                           ;83B5D2|2904    |      ;
                        BEQ CODE_83B5E1                      ;83B5D4|F00B    |83B5E1;
                        LDA.B #$0E                           ;83B5D6|A90E    |      ;
-                       STA.B $03                            ;83B5D8|8503    |000E6B;
-                       STZ.B $2B                            ;83B5DA|642B    |000E93;
+                       STA.B r_ev_03_do-$E68                ;83B5D8|8503    |000E6B;
+                       STZ.B r_ev_2b-$E68                   ;83B5DA|642B    |000E93;
                        LDA.B #$05                           ;83B5DC|A905    |      ;
                        JSR.W CODE_83B9C8                    ;83B5DE|20C8B9  |83B9C8;
                                                             ;      |        |      ;
@@ -7350,27 +7360,27 @@ eventID_hoganmer_01_main:
           CODE_83B5E2:
                        JSL.L CODE_8491BE                    ;83B5E2|22BE9184|8491BE;
                        JSL.L updateEv_13_14_17_0f           ;83B5E6|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83B5EA|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83B5EA|A50F    |000E77;
                        BPL CODE_83B5F4                      ;83B5EC|1006    |83B5F4;
                        LDA.B #$04                           ;83B5EE|A904    |      ;
-                       STA.B $02                            ;83B5F0|8502    |000E6A;
-                       STZ.B $03                            ;83B5F2|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;83B5F0|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B5F2|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_83B5F4:
                        RTS                                  ;83B5F4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B5F5:
-                       LDX.B $03                            ;83B5F5|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83B5F5|A603    |000E6B;
                        JMP.W (UNREACH_83B5FA,X)             ;83B5F7|7CFAB5  |83B5FA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83B5FA:
                        db $00,$B6,$0E,$B6,$82,$B6           ;83B5FA|        |      ;
                        LDA.B #$02                           ;83B600|A902    |      ;
-                       STA.B $03                            ;83B602|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B602|8503    |000E6B;
                        LDA.B #$1E                           ;83B604|A91E    |      ;
-                       STA.B $34                            ;83B606|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83B606|8534    |000E9C;
                        LDA.B #$00                           ;83B608|A900    |      ;
                        JSR.W CODE_83B9C8                    ;83B60A|20C8B9  |83B9C8;
                        RTS                                  ;83B60D|60      |      ;
@@ -7379,31 +7389,31 @@ eventID_hoganmer_01_main:
                        JSR.W CODE_83BA20                    ;83B612|2020BA  |83BA20;
                        BEQ CODE_83B628                      ;83B615|F011    |83B628;
                        LDA.B #$04                           ;83B617|A904    |      ;
-                       STA.B $03                            ;83B619|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B619|8503    |000E6B;
                        LDA.B #$01                           ;83B61B|A901    |      ;
-                       TSB.B $37                            ;83B61D|0437    |000E9F;
+                       TSB.B r_ev_37-$E68                   ;83B61D|0437    |000E9F;
                        LDA.B #$1E                           ;83B61F|A91E    |      ;
-                       STA.B $3B                            ;83B621|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;83B621|853B    |000EA3;
                        LDA.B #$09                           ;83B623|A909    |      ;
                        JMP.W CODE_83B9C8                    ;83B625|4CC8B9  |83B9C8;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B628:
-                       LDA.B $34                            ;83B628|A534    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;83B628|A534    |000E9C;
                        BEQ CODE_83B630                      ;83B62A|F004    |83B630;
-                       DEC.B $34                            ;83B62C|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83B62C|C634    |000E9C;
                        BNE CODE_83B681                      ;83B62E|D051    |83B681;
                                                             ;      |        |      ;
           CODE_83B630:
-                       STZ.B $03                            ;83B630|6403    |000E6B;
-                       LDA.B $32                            ;83B632|A532    |000E9A;
+                       STZ.B r_ev_03_do-$E68                ;83B630|6403    |000E6B;
+                       LDA.B r_ev_32-$E68                   ;83B632|A532    |000E9A;
                        CMP.B #$02                           ;83B634|C902    |      ;
                        BCC CODE_83B643                      ;83B636|900B    |83B643;
-                       DEC.B $32                            ;83B638|C632    |000E9A;
-                       LDA.B $31                            ;83B63A|A531    |000E99;
+                       DEC.B r_ev_32-$E68                   ;83B638|C632    |000E9A;
+                       LDA.B r_ev_31-$E68                   ;83B63A|A531    |000E99;
                        EOR.B #$02                           ;83B63C|4902    |      ;
-                       STA.B $31                            ;83B63E|8531    |000E99;
-                       STA.B $02                            ;83B640|8502    |000E6A;
+                       STA.B r_ev_31-$E68                   ;83B63E|8531    |000E99;
+                       STA.B r_ev_02_action-$E68            ;83B640|8502    |000E6A;
                        RTS                                  ;83B642|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7412,7 +7422,7 @@ eventID_hoganmer_01_main:
                        AND.B #$0F                           ;83B647|290F    |      ;
                        TAX                                  ;83B649|AA      |      ;
                        REP #$20                             ;83B64A|C220    |      ;
-                       LDA.B $05                            ;83B64C|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83B64C|A505    |000E6D;
                        SEC                                  ;83B64E|38      |      ;
                        SBC.W r_0bad                         ;83B64F|EDAD0B  |860BAD;
                        BCS CODE_83B658                      ;83B652|B004    |83B658;
@@ -7438,34 +7448,34 @@ eventID_hoganmer_01_main:
                        LDA.W UNREACH_86C9A0,X               ;83B66D|BDA0C9  |86C9A0;
                                                             ;      |        |      ;
           CODE_83B670:
-                       CMP.B $31                            ;83B670|C531    |000E99;
+                       CMP.B r_ev_31-$E68                   ;83B670|C531    |000E99;
                        BEQ CODE_83B67D                      ;83B672|F009    |83B67D;
-                       STA.B $31                            ;83B674|8531    |000E99;
-                       STA.B $02                            ;83B676|8502    |000E6A;
+                       STA.B r_ev_31-$E68                   ;83B674|8531    |000E99;
+                       STA.B r_ev_02_action-$E68            ;83B676|8502    |000E6A;
                        LDA.B #$01                           ;83B678|A901    |      ;
-                       STA.B $32                            ;83B67A|8532    |000E9A;
+                       STA.B r_ev_32-$E68                   ;83B67A|8532    |000E9A;
                        RTS                                  ;83B67C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B67D:
-                       STA.B $02                            ;83B67D|8502    |000E6A;
-                       INC.B $32                            ;83B67F|E632    |000E9A;
+                       STA.B r_ev_02_action-$E68            ;83B67D|8502    |000E6A;
+                       INC.B r_ev_32-$E68                   ;83B67F|E632    |000E9A;
                                                             ;      |        |      ;
           CODE_83B681:
                        RTS                                  ;83B681|60      |      ;
                                                             ;      |        |      ;
                        JSR.W CODE_83BAAA                    ;83B682|20AABA  |83BAAA;
-                       LDA.B $34                            ;83B685|A534    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;83B685|A534    |000E9C;
                        BEQ CODE_83B68B                      ;83B687|F002    |83B68B;
-                       DEC.B $34                            ;83B689|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83B689|C634    |000E9C;
                                                             ;      |        |      ;
           CODE_83B68B:
-                       DEC.B $3B                            ;83B68B|C63B    |000EA3;
+                       DEC.B r_ev_3b-$E68                   ;83B68B|C63B    |000EA3;
                        BNE CODE_83B69C                      ;83B68D|D00D    |83B69C;
                        LDA.B #$02                           ;83B68F|A902    |      ;
-                       STA.B $03                            ;83B691|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B691|8503    |000E6B;
                        LDA.B #$01                           ;83B693|A901    |      ;
-                       TRB.B $37                            ;83B695|1437    |000E9F;
+                       TRB.B r_ev_37-$E68                   ;83B695|1437    |000E9F;
                        LDA.B #$00                           ;83B697|A900    |      ;
                        JMP.W CODE_83B9C8                    ;83B699|4CC8B9  |83B9C8;
                                                             ;      |        |      ;
@@ -7475,39 +7485,39 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B69D:
-                       LDX.B $03                            ;83B69D|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83B69D|A603    |000E6B;
                        JMP.W (UNREACH_83B6A2,X)             ;83B69F|7CA2B6  |83B6A2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83B6A2:
                        db $A8,$B6,$BE,$B6,$5C,$B7           ;83B6A2|        |      ;
                        LDA.B #$02                           ;83B6A8|A902    |      ;
-                       STA.B $03                            ;83B6AA|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B6AA|8503    |000E6B;
                        JSL.L CODE_849086                    ;83B6AC|22869084|849086;
                        AND.B #$0F                           ;83B6B0|290F    |      ;
                        TAX                                  ;83B6B2|AA      |      ;
                        LDA.W UNREACH_86C970,X               ;83B6B3|BD70C9  |86C970;
-                       STA.B $36                            ;83B6B6|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;83B6B6|8536    |000E9E;
                        LDA.B #$06                           ;83B6B8|A906    |      ;
                        JSR.W CODE_83B9C8                    ;83B6BA|20C8B9  |83B9C8;
                        RTS                                  ;83B6BD|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83B6BE|22EA8E84|848EEA;
-                       LDA.B $17                            ;83B6C2|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;83B6C2|A517    |000E7F;
                        BPL CODE_83B741                      ;83B6C4|107B    |83B741;
                        AND.B #$7F                           ;83B6C6|297F    |      ;
-                       STA.B $17                            ;83B6C8|8517    |000E7F;
-                       LDA.B $0F                            ;83B6CA|A50F    |000E77;
+                       STA.B r_ev_17-$E68                   ;83B6C8|8517    |000E7F;
+                       LDA.B r_ev_0f-$E68                   ;83B6CA|A50F    |000E77;
                        BMI CODE_83B733                      ;83B6CC|3065    |83B733;
                        BEQ CODE_83B741                      ;83B6CE|F071    |83B741;
-                       DEC.B $36                            ;83B6D0|C636    |000E9E;
+                       DEC.B r_ev_36-$E68                   ;83B6D0|C636    |000E9E;
                        JSL.L CODE_828358                    ;83B6D2|22588382|828358;
                        BNE CODE_83B729                      ;83B6D6|D051    |83B729;
                        INC.W r_0000,X                       ;83B6D8|FE0000  |860000;
                        LDA.B #$04                           ;83B6DB|A904    |      ;
                        STA.W r_000a,X                       ;83B6DD|9D0A00  |86000A;
                        STZ.W r_000b,X                       ;83B6E0|9E0B00  |86000B;
-                       LDA.B $11                            ;83B6E3|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83B6E3|A511    |000E79;
                        AND.B #$40                           ;83B6E5|2940    |      ;
                        STA.W r_0011,X                       ;83B6E7|9D1100  |860011;
                        ASL A                                ;83B6EA|0A      |      ;
@@ -7519,9 +7529,9 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83B6F6:
                        CLC                                  ;83B6F6|18      |      ;
-                       ADC.B $05                            ;83B6F7|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83B6F7|6505    |000E6D;
                        STA.W r_0005,X                       ;83B6F9|9D0500  |860005;
-                       LDA.B $08                            ;83B6FC|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83B6FC|A508    |000E70;
                        SEC                                  ;83B6FE|38      |      ;
                        SBC.W #$000E                         ;83B6FF|E90E00  |      ;
                        STA.W r_0008,X                       ;83B702|9D0800  |860008;
@@ -7532,12 +7542,12 @@ eventID_hoganmer_01_main:
                        STA.W r_000a,X                       ;83B710|9D0A00  |86000A;
                        LDA.B #$0F                           ;83B713|A90F    |      ;
                        STA.W r_000b,X                       ;83B715|9D0B00  |86000B;
-                       LDA.B $11                            ;83B718|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83B718|A511    |000E79;
                        STA.W r_0011,X                       ;83B71A|9D1100  |860011;
                        REP #$20                             ;83B71D|C220    |      ;
-                       LDA.B $05                            ;83B71F|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83B71F|A505    |000E6D;
                        STA.W r_0005,X                       ;83B721|9D0500  |860005;
-                       LDA.B $08                            ;83B724|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83B724|A508    |000E70;
                        STA.W r_0008,X                       ;83B726|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_83B729:
@@ -7549,43 +7559,43 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83B733:
                        JSL.L CODE_84ACA5                    ;83B733|22A5AC84|84ACA5;
-                       LDA.B $36                            ;83B737|A536    |000E9E;
+                       LDA.B r_ev_36-$E68                   ;83B737|A536    |000E9E;
                        BNE CODE_83B741                      ;83B739|D006    |83B741;
                        LDA.B #$04                           ;83B73B|A904    |      ;
-                       STA.B $02                            ;83B73D|8502    |000E6A;
-                       STZ.B $03                            ;83B73F|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;83B73D|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B73F|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_83B741:
                        JSR.W CODE_83BA20                    ;83B741|2020BA  |83BA20;
                        BEQ CODE_83B75B                      ;83B744|F015    |83B75B;
                        LDA.B #$02                           ;83B746|A902    |      ;
-                       STA.B $02                            ;83B748|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;83B748|8502    |000E6A;
                        LDA.B #$04                           ;83B74A|A904    |      ;
-                       STA.B $03                            ;83B74C|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B74C|8503    |000E6B;
                        LDA.B #$01                           ;83B74E|A901    |      ;
-                       TSB.B $37                            ;83B750|0437    |000E9F;
+                       TSB.B r_ev_37-$E68                   ;83B750|0437    |000E9F;
                        LDA.B #$09                           ;83B752|A909    |      ;
                        JSR.W CODE_83B9C8                    ;83B754|20C8B9  |83B9C8;
                        LDA.B #$1E                           ;83B757|A91E    |      ;
-                       STA.B $3B                            ;83B759|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;83B759|853B    |000EA3;
                                                             ;      |        |      ;
           CODE_83B75B:
                        RTS                                  ;83B75B|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_84ACA5                    ;83B75C|22A5AC84|84ACA5;
                        JSR.W CODE_83BAAA                    ;83B760|20AABA  |83BAAA;
-                       DEC.B $3B                            ;83B763|C63B    |000EA3;
+                       DEC.B r_ev_3b-$E68                   ;83B763|C63B    |000EA3;
                        BNE CODE_83B783                      ;83B765|D01C    |83B783;
                        LDA.B #$01                           ;83B767|A901    |      ;
-                       TRB.B $37                            ;83B769|1437    |000E9F;
-                       LDA.B $36                            ;83B76B|A536    |000E9E;
+                       TRB.B r_ev_37-$E68                   ;83B769|1437    |000E9F;
+                       LDA.B r_ev_36-$E68                   ;83B76B|A536    |000E9E;
                        BNE CODE_83B77A                      ;83B76D|D00B    |83B77A;
                        db $A9,$04,$85,$02,$64,$03,$A9,$00   ;83B76F|        |      ;
                        db $4C,$C8,$B9                       ;83B777|        |83B9C8;
                                                             ;      |        |      ;
           CODE_83B77A:
                        LDA.B #$02                           ;83B77A|A902    |      ;
-                       STA.B $03                            ;83B77C|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B77C|8503    |000E6B;
                        LDA.B #$06                           ;83B77E|A906    |      ;
                        JSR.W CODE_83B9C8                    ;83B780|20C8B9  |83B9C8;
                                                             ;      |        |      ;
@@ -7617,7 +7627,7 @@ eventID_hoganmer_01_main:
                        db $B9,$60                           ;83B824|        |00A660;
                                                             ;      |        |      ;
           CODE_83B826:
-                       LDX.B $03                            ;83B826|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83B826|A603    |000E6B;
                        JMP.W (UNREACH_83B82B,X)             ;83B828|7C2BB8  |83B82B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7627,20 +7637,20 @@ eventID_hoganmer_01_main:
                        LDA.B #$07                           ;83B839|A907    |      ;
                        JSR.W CODE_83B9C8                    ;83B83B|20C8B9  |83B9C8;
                        LDA.B #$04                           ;83B83E|A904    |      ;
-                       STA.B $03                            ;83B840|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B840|8503    |000E6B;
                        LDA.B #$14                           ;83B842|A914    |      ;
-                       STA.B $3A                            ;83B844|853A    |000EA2;
+                       STA.B r_ev_3a-$E68                   ;83B844|853A    |000EA2;
                        BRA CODE_83B855                      ;83B846|800D    |83B855;
                                                             ;      |        |      ;
                        LDA.B #$08                           ;83B848|A908    |      ;
                        JSR.W CODE_83B9C8                    ;83B84A|20C8B9  |83B9C8;
                        LDA.B #$08                           ;83B84D|A908    |      ;
-                       STA.B $03                            ;83B84F|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83B84F|8503    |000E6B;
                        LDA.B #$5A                           ;83B851|A95A    |      ;
-                       STA.B $3A                            ;83B853|853A    |000EA2;
+                       STA.B r_ev_3a-$E68                   ;83B853|853A    |000EA2;
                                                             ;      |        |      ;
           CODE_83B855:
-                       LDA.B $11                            ;83B855|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83B855|A511    |000E79;
                        ASL A                                ;83B857|0A      |      ;
                        ASL A                                ;83B858|0A      |      ;
                        REP #$20                             ;83B859|C220    |      ;
@@ -7649,31 +7659,31 @@ eventID_hoganmer_01_main:
                        LDA.W #$FF00                         ;83B860|A900FF  |      ;
                                                             ;      |        |      ;
           CODE_83B863:
-                       STA.B $1A                            ;83B863|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83B863|851A    |000E82;
                        LDA.W #$0100                         ;83B865|A90001  |      ;
-                       STA.B $1C                            ;83B868|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83B868|851C    |000E84;
                        LDA.W #$C94F                         ;83B86A|A94FC9  |      ;
-                       STA.B $20                            ;83B86D|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83B86D|8520    |000E88;
                        SEP #$20                             ;83B86F|E220    |      ;
                        LDA.B #$FF                           ;83B871|A9FF    |      ;
-                       STA.B $2F                            ;83B873|852F    |000E97;
-                       STZ.B $37                            ;83B875|6437    |000E9F;
+                       STA.B r_ev_2f-$E68                   ;83B873|852F    |000E97;
+                       STZ.B r_ev_37-$E68                   ;83B875|6437    |000E9F;
                        RTS                                  ;83B877|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_8281E8                    ;83B878|22E88182|8281E8;
                        JSL.L updateEv_13_14_17_0f           ;83B87C|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;83B880|22BE9184|8491BE;
-                       LDA.B $2B                            ;83B884|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83B884|A52B    |000E93;
                        AND.B #$04                           ;83B886|2904    |      ;
                        BEQ CODE_83B890                      ;83B888|F006    |83B890;
-                       INC.B $03                            ;83B88A|E603    |000E6B;
-                       INC.B $03                            ;83B88C|E603    |000E6B;
-                       STZ.B $2F                            ;83B88E|642F    |000E97;
+                       INC.B r_ev_03_do-$E68                ;83B88A|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83B88C|E603    |000E6B;
+                       STZ.B r_ev_2f-$E68                   ;83B88E|642F    |000E97;
                                                             ;      |        |      ;
           CODE_83B890:
-                       LDA.B $3A                            ;83B890|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;83B890|A53A    |000EA2;
                        BEQ CODE_83B896                      ;83B892|F002    |83B896;
-                       DEC.B $3A                            ;83B894|C63A    |000EA2;
+                       DEC.B r_ev_3a-$E68                   ;83B894|C63A    |000EA2;
                                                             ;      |        |      ;
           CODE_83B896:
                        RTS                                  ;83B896|60      |      ;
@@ -7681,68 +7691,70 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_82823E                    ;83B897|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;83B89B|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;83B89F|22BE9184|8491BE;
-                       LDA.B $3A                            ;83B8A3|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;83B8A3|A53A    |000EA2;
                        BNE CODE_83B8BD                      ;83B8A5|D016    |83B8BD;
-                       LDA.B $36                            ;83B8A7|A536    |000E9E;
+                       LDA.B r_ev_36-$E68                   ;83B8A7|A536    |000E9E;
                        BEQ CODE_83B8B6                      ;83B8A9|F00B    |83B8B6;
                        LDA.B #$02                           ;83B8AB|A902    |      ;
-                       STA.B $02                            ;83B8AD|8502    |000E6A;
-                       STA.B $03                            ;83B8AF|8503    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;83B8AD|8502    |000E6A;
+                       STA.B r_ev_03_do-$E68                ;83B8AF|8503    |000E6B;
                        LDA.B #$06                           ;83B8B1|A906    |      ;
                        JMP.W CODE_83B9C8                    ;83B8B3|4CC8B9  |83B9C8;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B8B6:
                        LDA.B #$04                           ;83B8B6|A904    |      ;
-                       STA.B $02                            ;83B8B8|8502    |000E6A;
-                       STZ.B $03                            ;83B8BA|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;83B8B8|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B8BA|6403    |000E6B;
                        RTS                                  ;83B8BC|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B8BD:
-                       DEC.B $3A                            ;83B8BD|C63A    |000EA2;
+                       DEC.B r_ev_3a-$E68                   ;83B8BD|C63A    |000EA2;
                        RTS                                  ;83B8BF|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_82823E                    ;83B8C0|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;83B8C4|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;83B8C8|22BE9184|8491BE;
-                       LDA.B $3A                            ;83B8CC|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;83B8CC|A53A    |000EA2;
                        BNE CODE_83B8E0                      ;83B8CE|D010    |83B8E0;
                        JSR.W CODE_83BACA                    ;83B8D0|20CABA  |83BACA;
-                       INC.B $33                            ;83B8D3|E633    |000E9B;
+                       INC.B r_ev_33-$E68                   ;83B8D3|E633    |000E9B;
                        LDA.B #$04                           ;83B8D5|A904    |      ;
-                       STA.B $02                            ;83B8D7|8502    |000E6A;
-                       STZ.B $03                            ;83B8D9|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;83B8D7|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;83B8D9|6403    |000E6B;
                        LDA.B #$00                           ;83B8DB|A900    |      ;
                        JMP.W CODE_83B9C8                    ;83B8DD|4CC8B9  |83B9C8;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B8E0:
-                       DEC.B $3A                            ;83B8E0|C63A    |000EA2;
+                       DEC.B r_ev_3a-$E68                   ;83B8E0|C63A    |000EA2;
                        RTS                                  ;83B8E2|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83B8E3|22EA8E84|848EEA;
-                       LDA.B $17                            ;83B8E7|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;83B8E7|A517    |000E7F;
                        BPL CODE_83B8F9                      ;83B8E9|100E    |83B8F9;
                        AND.B #$7F                           ;83B8EB|297F    |      ;
-                       STA.B $17                            ;83B8ED|8517    |000E7F;
-                       LDA.B $0F                            ;83B8EF|A50F    |000E77;
+                       STA.B r_ev_17-$E68                   ;83B8ED|8517    |000E7F;
+                       LDA.B r_ev_0f-$E68                   ;83B8EF|A50F    |000E77;
                        BPL CODE_83B8F9                      ;83B8F1|1006    |83B8F9;
                        LDA.B #$47                           ;83B8F3|A947    |      ;
                        JSL.L CODE_8088A2                    ;83B8F5|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83B8F9:
-                       LDA.B $3A                            ;83B8F9|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;83B8F9|A53A    |000EA2;
                        BNE CODE_83B905                      ;83B8FB|D008    |83B905;
-                       INC.B $03                            ;83B8FD|E603    |000E6B;
-                       INC.B $03                            ;83B8FF|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83B8FD|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83B8FF|E603    |000E6B;
                        LDA.B #$14                           ;83B901|A914    |      ;
-                       STA.B $3A                            ;83B903|853A    |000EA2;
+                       STA.B r_ev_3a-$E68                   ;83B903|853A    |000EA2;
                                                             ;      |        |      ;
           CODE_83B905:
-                       DEC.B $3A                            ;83B905|C63A    |000EA2;
+                       DEC.B r_ev_3a-$E68                   ;83B905|C63A    |000EA2;
                        RTS                                  ;83B907|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83B908:
                        JSL.L CODE_84A677                    ;83B908|2277A684|84A677;
                        BPL CODE_83B927                      ;83B90C|1019    |83B927;
                        LDA.W r_level_current                ;83B90E|AD7A1F  |861F7A;
@@ -7755,7 +7767,7 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_80887F                    ;83B91F|227F8880|80887F;
                                                             ;      |        |      ;
           CODE_83B923:
-                       JML.L CODE_828398                    ;83B923|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83B923|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B927:
@@ -7764,10 +7776,10 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83B92C|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_83B930:
-                       LDA.B $03                            ;83B930|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;83B930|A503    |000E6B;
                        CMP.B #$14                           ;83B932|C914    |      ;
                        BCS CODE_83B93A                      ;83B934|B004    |83B93A;
-                       JML.L CODE_8280B4                    ;83B936|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83B936|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B93A:
@@ -7824,14 +7836,14 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_82820A                    ;83B9B1|220A8282|82820A;
                        JSL.L CODE_849B03                    ;83B9B5|22039B84|849B03;
                        BNE CODE_83B9C4                      ;83B9B9|D009    |83B9C4;
-                       JSL.L CODE_8280B4                    ;83B9BB|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83B9BB|22B48082|8280B4;
                        LDA.B $0E                            ;83B9BF|A50E    |001476;
                        BEQ CODE_83B9C4                      ;83B9C1|F001    |83B9C4;
                        RTL                                  ;83B9C3|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B9C4:
-                       JML.L CODE_8283A3                    ;83B9C4|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;83B9C4|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B9C8:
@@ -7839,7 +7851,7 @@ eventID_hoganmer_01_main:
                        SEP #$30                             ;83B9C9|E230    |      ;
                        CMP.B #$0B                           ;83B9CB|C90B    |      ;
                        BEQ CODE_83B9EA                      ;83B9CD|F01B    |83B9EA;
-                       LDX.B $33                            ;83B9CF|A633    |000E9B;
+                       LDX.B r_ev_33-$E68                   ;83B9CF|A633    |000E9B;
                        BEQ CODE_83B9D6                      ;83B9D1|F003    |83B9D6;
                        CLC                                  ;83B9D3|18      |      ;
                        ADC.B #$0B                           ;83B9D4|690B    |      ;
@@ -7848,24 +7860,24 @@ eventID_hoganmer_01_main:
                        TAX                                  ;83B9D6|AA      |      ;
                        LDA.W UNREACH_86C95D,X               ;83B9D7|BD5DC9  |86C95D;
                        LDX.B #$62                           ;83B9DA|A262    |      ;
-                       STX.B $16                            ;83B9DC|8616    |000E7E;
+                       STX.B r_ev_16-$E68                   ;83B9DC|8616    |000E7E;
                        JSL.L CODE_848F07                    ;83B9DE|22078F84|848F07;
                        LDA.B #$01                           ;83B9E2|A901    |      ;
-                       TSB.B $11                            ;83B9E4|0411    |000E79;
-                       STZ.B $18                            ;83B9E6|6418    |000E80;
+                       TSB.B r_ev_11_sprAtri-$E68           ;83B9E4|0411    |000E79;
+                       STZ.B r_ev_18_gfxSlot-$E68           ;83B9E6|6418    |000E80;
                        PLP                                  ;83B9E8|28      |      ;
                        RTS                                  ;83B9E9|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B9EA:
                        LDX.B #$63                           ;83B9EA|A263    |      ;
-                       STX.B $16                            ;83B9EC|8616    |000E7E;
+                       STX.B r_ev_16-$E68                   ;83B9EC|8616    |000E7E;
                        LDA.B #$00                           ;83B9EE|A900    |      ;
                        JSL.L CODE_848F07                    ;83B9F0|22078F84|848F07;
                        LDA.B #$01                           ;83B9F4|A901    |      ;
-                       TRB.B $11                            ;83B9F6|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83B9F6|1411    |000E79;
                        LDA.B #$40                           ;83B9F8|A940    |      ;
-                       STA.B $18                            ;83B9FA|8518    |000E80;
+                       STA.B r_ev_18_gfxSlot-$E68           ;83B9FA|8518    |000E80;
                        PLP                                  ;83B9FC|28      |      ;
                        RTS                                  ;83B9FD|60      |      ;
                                                             ;      |        |      ;
@@ -7873,25 +7885,25 @@ eventID_hoganmer_01_main:
           CODE_83B9FE:
                        REP #$20                             ;83B9FE|C220    |      ;
                        LDA.W #$0100                         ;83BA00|A90001  |      ;
-                       LDX.B $1B                            ;83BA03|A61B    |000E83;
+                       LDX.B r_ev_1b_xSpd-$E68              ;83BA03|A61B    |000E83;
                        BPL CODE_83BA0A                      ;83BA05|1003    |83BA0A;
                        LDA.W #$FF00                         ;83BA07|A900FF  |      ;
                                                             ;      |        |      ;
           CODE_83BA0A:
-                       STA.B $1A                            ;83BA0A|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83BA0A|851A    |000E82;
                        LDA.W #$0506                         ;83BA0C|A90605  |      ;
-                       STA.B $1C                            ;83BA0F|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83BA0F|851C    |000E84;
                        SEP #$20                             ;83BA11|E220    |      ;
                        LDA.B #$0C                           ;83BA13|A90C    |      ;
-                       STA.B $03                            ;83BA15|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83BA15|8503    |000E6B;
                        LDA.B #$80                           ;83BA17|A980    |      ;
-                       TRB.B $37                            ;83BA19|1437    |000E9F;
+                       TRB.B r_ev_37-$E68                   ;83BA19|1437    |000E9F;
                        LDA.B #$04                           ;83BA1B|A904    |      ;
                        JMP.W CODE_83B9C8                    ;83BA1D|4CC8B9  |83B9C8;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BA20:
-                       LDA.B $33                            ;83BA20|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;83BA20|A533    |000E9B;
                        BEQ CODE_83BA27                      ;83BA22|F003    |83BA27;
                        LDA.B #$00                           ;83BA24|A900    |      ;
                        RTS                                  ;83BA26|60      |      ;
@@ -7933,7 +7945,7 @@ eventID_hoganmer_01_main:
                        CLC                                  ;83BA5F|18      |      ;
                        ADC.W r_0005,X                       ;83BA60|7D0500  |860005;
                        SEC                                  ;83BA63|38      |      ;
-                       SBC.B $05                            ;83BA64|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;83BA64|E505    |000E6D;
                        BCS CODE_83BA6C                      ;83BA66|B004    |83BA6C;
                        EOR.W #$FFFF                         ;83BA68|49FFFF  |      ;
                        INC A                                ;83BA6B|1A      |      ;
@@ -7941,7 +7953,7 @@ eventID_hoganmer_01_main:
           CODE_83BA6C:
                        CMP.W #$0050                         ;83BA6C|C95000  |      ;
                        BCS CODE_83BA87                      ;83BA6F|B016    |83BA87;
-                       LDA.B $08                            ;83BA71|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83BA71|A508    |000E70;
                        SEC                                  ;83BA73|38      |      ;
                        SBC.W r_0008,X                       ;83BA74|FD0800  |860008;
                        BCS CODE_83BA7D                      ;83BA77|B004    |83BA7D;
@@ -7976,16 +7988,16 @@ eventID_hoganmer_01_main:
                        AND.B #$0F                           ;83BA9F|290F    |      ;
                        CMP.B #$04                           ;83BAA1|C904    |      ;
                        BCC CODE_83BA94                      ;83BAA3|90EF    |83BA94;
-                       STZ.B $3C                            ;83BAA5|643C    |000EA4;
+                       STZ.B r_ev_3c-$E68                   ;83BAA5|643C    |000EA4;
                        LDA.B #$01                           ;83BAA7|A901    |      ;
                        RTS                                  ;83BAA9|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BAAA:
-                       LDA.B $3C                            ;83BAAA|A53C    |000EA4;
+                       LDA.B r_ev_3c-$E68                   ;83BAAA|A53C    |000EA4;
                        BEQ CODE_83BAC9                      ;83BAAC|F01B    |83BAC9;
-                       DEC.B $3C                            ;83BAAE|C63C    |000EA4;
-                       LDA.B $11                            ;83BAB0|A511    |000E79;
+                       DEC.B r_ev_3c-$E68                   ;83BAAE|C63C    |000EA4;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83BAB0|A511    |000E79;
                        ASL A                                ;83BAB2|0A      |      ;
                        ASL A                                ;83BAB3|0A      |      ;
                        REP #$20                             ;83BAB4|C220    |      ;
@@ -7995,8 +8007,8 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83BABE:
                        CLC                                  ;83BABE|18      |      ;
-                       ADC.B $05                            ;83BABF|6505    |000E6D;
-                       STA.B $05                            ;83BAC1|8505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83BABF|6505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;83BAC1|8505    |000E6D;
                        SEP #$20                             ;83BAC3|E220    |      ;
                        JSL.L CODE_8491BE                    ;83BAC5|22BE9184|8491BE;
                                                             ;      |        |      ;
@@ -8006,7 +8018,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83BACA:
                        LDA.B #$04                           ;83BACA|A904    |      ;
-                       STA.B $3D                            ;83BACC|853D    |000EA5;
+                       STA.B r_ev_3d-$E68                   ;83BACC|853D    |000EA5;
                                                             ;      |        |      ;
           CODE_83BACE:
                        JSL.L CODE_8282D3                    ;83BACE|22D38282|8282D3;
@@ -8014,16 +8026,16 @@ eventID_hoganmer_01_main:
                        INC.W r_0000,X                       ;83BAD4|FE0000  |860000;
                        LDA.B #$2B                           ;83BAD7|A92B    |      ;
                        STA.W r_000a,X                       ;83BAD9|9D0A00  |86000A;
-                       LDA.B $3D                            ;83BADC|A53D    |000EA5;
+                       LDA.B r_ev_3d-$E68                   ;83BADC|A53D    |000EA5;
                        CLC                                  ;83BADE|18      |      ;
                        ADC.B #$1E                           ;83BADF|691E    |      ;
                        STA.W r_000b,X                       ;83BAE1|9D0B00  |86000B;
                        LDA.B #$00                           ;83BAE4|A900    |      ;
                        XBA                                  ;83BAE6|EB      |      ;
-                       LDA.B $3D                            ;83BAE7|A53D    |000EA5;
+                       LDA.B r_ev_3d-$E68                   ;83BAE7|A53D    |000EA5;
                        ASL A                                ;83BAE9|0A      |      ;
                        TAY                                  ;83BAEA|A8      |      ;
-                       LDA.B $11                            ;83BAEB|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83BAEB|A511    |000E79;
                        AND.B #$70                           ;83BAED|2970    |      ;
                        STA.W r_0011,X                       ;83BAEF|9D1100  |860011;
                        ASL A                                ;83BAF2|0A      |      ;
@@ -8035,13 +8047,13 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83BAFF:
                        CLC                                  ;83BAFF|18      |      ;
-                       ADC.B $05                            ;83BB00|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83BB00|6505    |000E6D;
                        STA.W r_0005,X                       ;83BB02|9D0500  |860005;
                        LDA.W UNREACH_86C9BA,Y               ;83BB05|B9BAC9  |86C9BA;
                        CLC                                  ;83BB08|18      |      ;
-                       ADC.B $08                            ;83BB09|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;83BB09|6508    |000E70;
                        STA.W r_0008,X                       ;83BB0B|9D0800  |860008;
-                       LDA.B $10                            ;83BB0E|A510    |000E78;
+                       LDA.B r_ev_10-$E68                   ;83BB0E|A510    |000E78;
                        ASL A                                ;83BB10|0A      |      ;
                        ASL A                                ;83BB11|0A      |      ;
                        LDA.W UNREACH_86C9C4,Y               ;83BB12|B9C4C9  |86C9C4;
@@ -8057,7 +8069,7 @@ eventID_hoganmer_01_main:
                        STZ.W r_001f,X                       ;83BB29|9E1F00  |86001F;
                        LDA.B #$40                           ;83BB2C|A940    |      ;
                        STA.W r_001e,X                       ;83BB2E|9D1E00  |86001E;
-                       DEC.B $3D                            ;83BB31|C63D    |000EA5;
+                       DEC.B r_ev_3d-$E68                   ;83BB31|C63D    |000EA5;
                        BPL CODE_83BACE                      ;83BB33|1099    |83BACE;
                                                             ;      |        |      ;
           CODE_83BB35:
@@ -8069,7 +8081,7 @@ eventID_hoganmer_01_main:
                        PHP                                  ;83BB38|08      |      ;
                        SEP #$30                             ;83BB39|E230    |      ;
                        LDA.B #$03                           ;83BB3B|A903    |      ;
-                       STA.B $3D                            ;83BB3D|853D    |000EA5;
+                       STA.B r_ev_3d-$E68                   ;83BB3D|853D    |000EA5;
                        JSL.L CODE_849086                    ;83BB3F|22869084|849086;
                        AND.B #$0F                           ;83BB43|290F    |      ;
                        STA.W r_0004                         ;83BB45|8D0400  |860004;
@@ -8089,7 +8101,7 @@ eventID_hoganmer_01_main:
                        XBA                                  ;83BB5A|EB      |      ;
                        LDA.W r_0004                         ;83BB5B|AD0400  |860004;
                        CLC                                  ;83BB5E|18      |      ;
-                       ADC.B $3D                            ;83BB5F|653D    |000EA5;
+                       ADC.B r_ev_3d-$E68                   ;83BB5F|653D    |000EA5;
                        TAY                                  ;83BB61|A8      |      ;
                        LDA.W UNREACH_86C9D8,Y               ;83BB62|B9D8C9  |86C9D8;
                        STA.W r_000b,X                       ;83BB65|9D0B00  |86000B;
@@ -8099,7 +8111,7 @@ eventID_hoganmer_01_main:
                        AND.W #$000F                         ;83BB71|290F00  |      ;
                        ASL A                                ;83BB74|0A      |      ;
                        TAY                                  ;83BB75|A8      |      ;
-                       LDA.B $3D                            ;83BB76|A53D    |000EA5;
+                       LDA.B r_ev_3d-$E68                   ;83BB76|A53D    |000EA5;
                        LSR A                                ;83BB78|4A      |      ;
                        LDA.W UNREACH_86C9EB,Y               ;83BB79|B9EBC9  |86C9EB;
                        BCC CODE_83BB82                      ;83BB7C|9004    |83BB82;
@@ -8122,7 +8134,7 @@ eventID_hoganmer_01_main:
                        LDA.B #$40                           ;83BBA2|A940    |      ;
                        STA.W r_001e,X                       ;83BBA4|9D1E00  |86001E;
                        STZ.W r_001f,X                       ;83BBA7|9E1F00  |86001F;
-                       DEC.B $3D                            ;83BBAA|C63D    |000EA5;
+                       DEC.B r_ev_3d-$E68                   ;83BBAA|C63D    |000EA5;
                        BPL CODE_83BB48                      ;83BBAC|109A    |83BB48;
                        JSL.L CODE_8282D3                    ;83BBAE|22D38282|8282D3;
                        BNE CODE_83BBD0                      ;83BBB2|D01C    |83BBD0;
@@ -8142,15 +8154,20 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83BBD1|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83BBD2:
-                       LDX.B $01                            ;83BBD2|A601    |000E69;
-                       JMP.W (UNREACH_83BBD7,X)             ;83BBD4|7CD7BB  |83BBD7;
+eventID_fallingRocks_18_main:
+                       LDX.B r_ev_01_state-$E68             ;83BBD2|A601    |000E69;
+                       JMP.W (fallingRocks_18_state,X)      ;83BBD4|7CD7BB  |83BBD7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_83BBD7:
-                       db $DF,$BB,$A6,$BC,$BF,$BC,$6A,$BD   ;83BBD7|        |BCA6BB;
-                       JSL.L CODE_82827D                    ;83BBDF|227D8282|82827D;
-                       LDA.B $0B                            ;83BBE3|A50B    |000EB3;
+fallingRocks_18_state:
+                       dw fallingRocks_18_state_00          ;83BBD7|        |83BBDF;
+                       dw CODE_83BCA6                       ;83BBD9|        |83BCA6;
+                       dw CODE_83BCBF                       ;83BBDB|        |83BCBF;
+                       dw CODE_83BD6A                       ;83BBDD|        |83BD6A;
+                                                            ;      |        |      ;
+fallingRocks_18_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;83BBDF|227D8282|82827D;
+                       LDA.B r_ev_2_0b_subID-$EA8           ;83BBE3|A50B    |000EB3;
                        BEQ CODE_83BC26                      ;83BBE5|F03F    |83BC26;
                        REP #$10                             ;83BBE7|C210    |      ;
                        LDX.W #$0E68                         ;83BBE9|A2680E  |      ;
@@ -8169,7 +8186,7 @@ eventID_hoganmer_01_main:
                        STA.W r_0000                         ;83BC02|8D0000  |860000;
                        CPX.W r_0000                         ;83BC05|EC0000  |860000;
                        BEQ CODE_83BC0E                      ;83BC08|F004    |83BC0E;
-                       JML.L CODE_828387                    ;83BC0A|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83BC0A|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BC0E:
@@ -8180,32 +8197,32 @@ eventID_hoganmer_01_main:
                        CMP.W #$1228                         ;83BC15|C92812  |      ;
                        BCC CODE_83BBEC                      ;83BC18|90D2    |83BBEC;
                        LDA.W #$CAA6                         ;83BC1A|A9A6CA  |      ;
-                       STA.B $20                            ;83BC1D|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83BC1D|8520    |000E88;
                        SEP #$30                             ;83BC1F|E230    |      ;
                        LDA.B #$06                           ;83BC21|A906    |      ;
-                       STA.B $01                            ;83BC23|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;83BC23|8501    |000E69;
                        RTL                                  ;83BC25|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BC26:
                        LDA.B #$04                           ;83BC26|A904    |      ;
-                       STA.B $12                            ;83BC28|8512    |000EBA;
+                       STA.B r_ev_2_12-$EA8                 ;83BC28|8512    |000EBA;
                        LDA.B #$01                           ;83BC2A|A901    |      ;
-                       STA.B $27                            ;83BC2C|8527    |000ECF;
-                       STA.B $26                            ;83BC2E|8526    |000ECE;
+                       STA.B r_ev_2_27-$EA8                 ;83BC2C|8527    |000ECF;
+                       STA.B r_ev_2_26-$EA8                 ;83BC2E|8526    |000ECE;
                        LDA.B #$00                           ;83BC30|A900    |      ;
                        JSL.L CODE_848F07                    ;83BC32|22078F84|848F07;
                        REP #$20                             ;83BC36|C220    |      ;
                        LDA.W #$CA9C                         ;83BC38|A99CCA  |      ;
-                       STA.B $20                            ;83BC3B|8520    |000EC8;
-                       LDA.B $05                            ;83BC3D|A505    |000EAD;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;83BC3B|8520    |000EC8;
+                       LDA.B r_ev_2_05_xPos-$EA8            ;83BC3D|A505    |000EAD;
                        CMP.W #$0C20                         ;83BC3F|C9200C  |      ;
                        BCS CODE_83BC49                      ;83BC42|B005    |83BC49;
                        CMP.W #$05E0                         ;83BC44|C9E005  |      ;
                        BCS CODE_83BC4D                      ;83BC47|B004    |83BC4D;
                                                             ;      |        |      ;
           CODE_83BC49:
-                       JML.L CODE_828398                    ;83BC49|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83BC49|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BC4D:
@@ -8257,8 +8274,10 @@ eventID_hoganmer_01_main:
                        STA.B $1E                            ;83BC9C|851E    |000F46;
                        LDA.B #$FF                           ;83BC9E|A9FF    |      ;
                        STA.B $2F                            ;83BCA0|852F    |000F57;
-                       JML.L CODE_8280B4                    ;83BCA2|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83BCA2|5CB48082|8280B4;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83BCA6:
                        JSL.L updateEv_13_14_17_0f           ;83BCA6|22EA8E84|848EEA;
                        LDA.B $0F                            ;83BCAA|A50F    |000F37;
                        BEQ CODE_83BD0C                      ;83BCAC|F05E    |83BD0C;
@@ -8271,6 +8290,8 @@ eventID_hoganmer_01_main:
                        STZ.B $36                            ;83BCBB|6436    |000F5E;
                        BRA CODE_83BD0C                      ;83BCBD|804D    |83BD0C;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83BCBF:
                        JSL.L updateEv_13_14_17_0f           ;83BCBF|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;83BCC3|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;83BCC7|22BE9184|8491BE;
@@ -8306,7 +8327,7 @@ eventID_hoganmer_01_main:
                        SEP #$20                             ;83BCFE|E220    |      ;
                        JSL.L CODE_849111                    ;83BD00|22119184|849111;
                        JSL.L CODE_80B8C1                    ;83BD04|22C1B880|80B8C1;
-                       JML.L CODE_828398                    ;83BD08|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83BD08|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BD0C:
@@ -8320,7 +8341,7 @@ eventID_hoganmer_01_main:
                        BNE CODE_83BD57                      ;83BD1F|D036    |83BD57;
                        REP #$20                             ;83BD21|C220    |      ;
                        LDA.W r_0bb0                         ;83BD23|ADB00B  |860BB0;
-                       CMP.B $08                            ;83BD26|C508    |000EB0;
+                       CMP.B r_ev_2_08_yPos-$EA8            ;83BD26|C508    |000EB0;
                        SEP #$20                             ;83BD28|E220    |      ;
                        BCC CODE_83BD33                      ;83BD2A|9007    |83BD33;
                        LDA.W r_player_upgradeMask           ;83BD2C|AD991F  |861F99;
@@ -8339,13 +8360,13 @@ eventID_hoganmer_01_main:
                        BNE CODE_83BD57                      ;83BD42|D013    |83BD57;
                        JSR.W CODE_83BF21                    ;83BD44|2021BF  |83BF21;
                        BNE CODE_83BD57                      ;83BD47|D00E    |83BD57;
-                       JSL.L CODE_82806E                    ;83BD49|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83BD49|226E8082|82806E;
                        BCS CODE_83BD53                      ;83BD4D|B004    |83BD53;
-                       JML.L CODE_8280B4                    ;83BD4F|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83BD4F|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BD53:
-                       JML.L CODE_828398                    ;83BD53|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83BD53|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BD57:
@@ -8355,8 +8376,10 @@ eventID_hoganmer_01_main:
                        LDA.B $08                            ;83BD5E|A508    |000F30;
                        STA.W r_0002                         ;83BD60|8D0200  |860002;
                        JSR.W CODE_83BEC3                    ;83BD63|20C3BE  |83BEC3;
-                       JML.L CODE_828398                    ;83BD66|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83BD66|5C988382|828398;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83BD6A:
                        REP #$10                             ;83BD6A|C210    |      ;
                        LDX.W #$1228                         ;83BD6C|A22812  |      ;
                                                             ;      |        |      ;
@@ -8397,7 +8420,7 @@ eventID_hoganmer_01_main:
                        AND.W #$FFF0                         ;83BDA6|29F0FF  |      ;
                        SEC                                  ;83BDA9|38      |      ;
                        SBC.W #$0008                         ;83BDAA|E90800  |      ;
-                       STA.B $05                            ;83BDAD|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;83BDAD|8505    |000E6D;
                        LDA.W r_0001,Y                       ;83BDAF|B90100  |860001;
                        AND.W #$00FF                         ;83BDB2|29FF00  |      ;
                        BIT.W #$0080                         ;83BDB5|898000  |      ;
@@ -8410,47 +8433,47 @@ eventID_hoganmer_01_main:
                        AND.W #$FFF0                         ;83BDC1|29F0FF  |      ;
                        SEC                                  ;83BDC4|38      |      ;
                        SBC.W #$0008                         ;83BDC5|E90800  |      ;
-                       STA.B $08                            ;83BDC8|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;83BDC8|8508    |000E70;
                        JSR.W CODE_83BE4B                    ;83BDCA|204BBE  |83BE4B;
-                       LDA.B $05                            ;83BDCD|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83BDCD|A505    |000E6D;
                        CLC                                  ;83BDCF|18      |      ;
                        ADC.W #$0010                         ;83BDD0|691000  |      ;
-                       STA.B $05                            ;83BDD3|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;83BDD3|8505    |000E6D;
                        JSR.W CODE_83BE4B                    ;83BDD5|204BBE  |83BE4B;
-                       LDA.B $05                            ;83BDD8|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83BDD8|A505    |000E6D;
                        CLC                                  ;83BDDA|18      |      ;
                        ADC.W #$0010                         ;83BDDB|691000  |      ;
-                       STA.B $05                            ;83BDDE|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;83BDDE|8505    |000E6D;
                        JSR.W CODE_83BE4B                    ;83BDE0|204BBE  |83BE4B;
-                       LDA.B $08                            ;83BDE3|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83BDE3|A508    |000E70;
                        CLC                                  ;83BDE5|18      |      ;
                        ADC.W #$0010                         ;83BDE6|691000  |      ;
-                       STA.B $08                            ;83BDE9|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;83BDE9|8508    |000E70;
                        JSR.W CODE_83BE4B                    ;83BDEB|204BBE  |83BE4B;
-                       LDA.B $05                            ;83BDEE|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83BDEE|A505    |000E6D;
                        SEC                                  ;83BDF0|38      |      ;
                        SBC.W #$0010                         ;83BDF1|E91000  |      ;
-                       STA.B $05                            ;83BDF4|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;83BDF4|8505    |000E6D;
                        JSR.W CODE_83BE4B                    ;83BDF6|204BBE  |83BE4B;
-                       LDA.B $05                            ;83BDF9|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83BDF9|A505    |000E6D;
                        SEC                                  ;83BDFB|38      |      ;
                        SBC.W #$0010                         ;83BDFC|E91000  |      ;
-                       STA.B $05                            ;83BDFF|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;83BDFF|8505    |000E6D;
                        JSR.W CODE_83BE4B                    ;83BE01|204BBE  |83BE4B;
-                       LDA.B $08                            ;83BE04|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83BE04|A508    |000E70;
                        CLC                                  ;83BE06|18      |      ;
                        ADC.W #$0010                         ;83BE07|691000  |      ;
-                       STA.B $08                            ;83BE0A|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;83BE0A|8508    |000E70;
                        JSR.W CODE_83BE4B                    ;83BE0C|204BBE  |83BE4B;
-                       LDA.B $05                            ;83BE0F|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83BE0F|A505    |000E6D;
                        CLC                                  ;83BE11|18      |      ;
                        ADC.W #$0010                         ;83BE12|691000  |      ;
-                       STA.B $05                            ;83BE15|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;83BE15|8505    |000E6D;
                        JSR.W CODE_83BE4B                    ;83BE17|204BBE  |83BE4B;
-                       LDA.B $05                            ;83BE1A|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83BE1A|A505    |000E6D;
                        CLC                                  ;83BE1C|18      |      ;
                        ADC.W #$0010                         ;83BE1D|691000  |      ;
-                       STA.B $05                            ;83BE20|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;83BE20|8505    |000E6D;
                        JSR.W CODE_83BE4B                    ;83BE22|204BBE  |83BE4B;
                                                             ;      |        |      ;
           CODE_83BE25:
@@ -8476,13 +8499,13 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BE47:
-                       JML.L CODE_828387                    ;83BE47|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83BE47|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BE4B:
                        PHP                                  ;83BE4B|08      |      ;
                        REP #$30                             ;83BE4C|C230    |      ;
-                       STX.B $34                            ;83BE4E|8634    |000E9C;
+                       STX.B r_ev_34-$E68                   ;83BE4E|8634    |000E9C;
                        LDA.W r_0005,X                       ;83BE50|BD0500  |860005;
                        CMP.W #$0C50                         ;83BE53|C9500C  |      ;
                        BCS CODE_83BEBF                      ;83BE56|B067    |83BEBF;
@@ -8511,7 +8534,7 @@ eventID_hoganmer_01_main:
                        LDA.B [$10],Y                        ;83BE90|B710    |000010;
                        SEP #$20                             ;83BE92|E220    |      ;
                        PLD                                  ;83BE94|2B      |      ;
-                       LDX.B $34                            ;83BE95|A634    |000E9C;
+                       LDX.B r_ev_34-$E68                   ;83BE95|A634    |000E9C;
                        CMP.B #$34                           ;83BE97|C934    |      ;
                        BNE CODE_83BEBF                      ;83BE99|D024    |83BEBF;
                        LDA.B #$06                           ;83BE9B|A906    |      ;
@@ -8529,7 +8552,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83BEBF:
                        PLP                                  ;83BEBF|28      |      ;
-                       LDX.B $34                            ;83BEC0|A634    |000E9C;
+                       LDX.B r_ev_34-$E68                   ;83BEC0|A634    |000E9C;
                        RTS                                  ;83BEC2|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8541,7 +8564,7 @@ eventID_hoganmer_01_main:
                        AND.B #$03                           ;83BECC|2903    |      ;
                        ASL A                                ;83BECE|0A      |      ;
                        ASL A                                ;83BECF|0A      |      ;
-                       STA.B $33                            ;83BED0|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;83BED0|8533    |000E9B;
                                                             ;      |        |      ;
           CODE_83BED2:
                        JSL.L CODE_8282D3                    ;83BED2|22D38282|8282D3;
@@ -8552,11 +8575,11 @@ eventID_hoganmer_01_main:
                        PHY                                  ;83BEE0|5A      |      ;
                        TYA                                  ;83BEE1|98      |      ;
                        CLC                                  ;83BEE2|18      |      ;
-                       ADC.B $33                            ;83BEE3|6533    |000E9B;
+                       ADC.B r_ev_33-$E68                   ;83BEE3|6533    |000E9B;
                        TAY                                  ;83BEE5|A8      |      ;
                        LDA.W UNREACH_86CAEA,Y               ;83BEE6|B9EACA  |86CAEA;
                        STA.W r_000b,X                       ;83BEE9|9D0B00  |86000B;
-                       LDA.B $11                            ;83BEEC|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83BEEC|A511    |000E79;
                        STA.W r_0011,X                       ;83BEEE|9D1100  |860011;
                        LDA.B #$40                           ;83BEF1|A940    |      ;
                        STA.W r_001e,X                       ;83BEF3|9D1E00  |86001E;
@@ -8606,113 +8629,120 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83BF43|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83BF44:
+eventID_moleBorer_2c_main:
                        LDA.L $7F8348                        ;83BF44|AF48837F|7F8348;
-                       TSB.B $11                            ;83BF48|0411    |000E79;
-                       LDX.B $01                            ;83BF4A|A601    |000E69;
-                       JSR.W (DATA8_83BFCC,X)               ;83BF4C|FCCCBF  |83BFCC;
+                       TSB.B r_ev_11_sprAtri-$E68           ;83BF48|0411    |000E79;
+                       LDX.B r_ev_01_state-$E68             ;83BF4A|A601    |000E69;
+                       JSR.W (moleBorer_2c_state,X)         ;83BF4C|FCCCBF  |83BFCC;
                        LDA.B #$09                           ;83BF4F|A909    |      ;
-                       STA.B $28                            ;83BF51|8528    |000E90;
-                       LDA.B $27                            ;83BF53|A527    |000E8F;
-                       STA.B $0B                            ;83BF55|850B    |000E73;
+                       STA.B r_ev_28-$E68                   ;83BF51|8528    |000E90;
+                       LDA.B r_ev_27-$E68                   ;83BF53|A527    |000E8F;
+                       STA.B r_ev_0b_subID-$E68             ;83BF55|850B    |000E73;
                        JSL.L CODE_849B03                    ;83BF57|22039B84|849B03;
                        JSL.L CODE_849B43                    ;83BF5B|22439B84|849B43;
                        BEQ CODE_83BF7D                      ;83BF5F|F01C    |83BF7D;
                        LDA.B #$0E                           ;83BF61|A90E    |      ;
-                       TRB.B $11                            ;83BF63|1411    |000E79;
-                       LDA.B $2C                            ;83BF65|A52C    |000E94;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83BF63|1411    |000E79;
+                       LDA.B r_ev_2c-$E68                   ;83BF65|A52C    |000E94;
                        BEQ CODE_83BF6F                      ;83BF67|F006    |83BF6F;
-                       LDA.B $0B                            ;83BF69|A50B    |000E73;
-                       STA.B $27                            ;83BF6B|8527    |000E8F;
+                       LDA.B r_ev_0b_subID-$E68             ;83BF69|A50B    |000E73;
+                       STA.B r_ev_27-$E68                   ;83BF6B|8527    |000E8F;
                        BRA CODE_83BF81                      ;83BF6D|8012    |83BF81;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BF6F:
                        LDA.B #$06                           ;83BF6F|A906    |      ;
-                       STA.B $2C                            ;83BF71|852C    |000E94;
-                       LDA.B $01                            ;83BF73|A501    |000E69;
+                       STA.B r_ev_2c-$E68                   ;83BF71|852C    |000E94;
+                       LDA.B r_ev_01_state-$E68             ;83BF73|A501    |000E69;
                        BNE CODE_83BF7D                      ;83BF75|D006    |83BF7D;
-                       db $A9,$02,$85,$01,$64,$02           ;83BF77|        |      ;
+                       LDA.B #$02                           ;83BF77|A902    |      ;
+                       STA.B r_ev_01_state-$E68             ;83BF79|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;83BF7B|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_83BF7D:
-                       LDA.B $2C                            ;83BF7D|A52C    |000E94;
+                       LDA.B r_ev_2c-$E68                   ;83BF7D|A52C    |000E94;
                        BEQ CODE_83BF83                      ;83BF7F|F002    |83BF83;
                                                             ;      |        |      ;
           CODE_83BF81:
-                       DEC.B $2C                            ;83BF81|C62C    |000E94;
+                       DEC.B r_ev_2c-$E68                   ;83BF81|C62C    |000E94;
                                                             ;      |        |      ;
           CODE_83BF83:
                        REP #$20                             ;83BF83|C220    |      ;
-                       LDA.B $0F                            ;83BF85|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83BF85|A50F    |000E77;
                        AND.W #$007F                         ;83BF87|297F00  |      ;
                        ASL A                                ;83BF8A|0A      |      ;
                        ASL A                                ;83BF8B|0A      |      ;
                        ADC.W #$CE83                         ;83BF8C|6983CE  |      ;
-                       STA.B $20                            ;83BF8F|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83BF8F|8520    |000E88;
                        SEP #$20                             ;83BF91|E220    |      ;
-                       LDA.B $26                            ;83BF93|A526    |000E8E;
+                       LDA.B r_ev_26-$E68                   ;83BF93|A526    |000E8E;
                        PHA                                  ;83BF95|48      |      ;
                        LDA.B #$7F                           ;83BF96|A97F    |      ;
-                       STA.B $26                            ;83BF98|8526    |000E8E;
-                       STZ.B $28                            ;83BF9A|6428    |000E90;
+                       STA.B r_ev_26-$E68                   ;83BF98|8526    |000E8E;
+                       STZ.B r_ev_28-$E68                   ;83BF9A|6428    |000E90;
                        JSL.L CODE_849B03                    ;83BF9C|22039B84|849B03;
                        JSL.L CODE_849B43                    ;83BFA0|22439B84|849B43;
                        PLA                                  ;83BFA4|68      |      ;
-                       STA.B $26                            ;83BFA5|8526    |000E8E;
-                       LDA.B $3E                            ;83BFA7|A53E    |000EA6;
+                       STA.B r_ev_26-$E68                   ;83BFA5|8526    |000E8E;
+                       LDA.B r_ev_3e-$E68                   ;83BFA7|A53E    |000EA6;
                        BNE CODE_83BFC4                      ;83BFA9|D019    |83BFC4;
-                       LDA.B $27                            ;83BFAB|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;83BFAB|A527    |000E8F;
                        AND.B #$7F                           ;83BFAD|297F    |      ;
                        BNE CODE_83BFC4                      ;83BFAF|D013    |83BFC4;
-                       INC.B $3E                            ;83BFB1|E63E    |000EA6;
-                       LDA.B $01                            ;83BFB3|A501    |000E69;
+                       INC.B r_ev_3e-$E68                   ;83BFB1|E63E    |000EA6;
+                       LDA.B r_ev_01_state-$E68             ;83BFB3|A501    |000E69;
                        CLC                                  ;83BFB5|18      |      ;
                        ADC.B #$04                           ;83BFB6|6904    |      ;
-                       STA.B $01                            ;83BFB8|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;83BFB8|8501    |000E69;
                        LDA.B #$21                           ;83BFBA|A921    |      ;
                        JSL.L CODE_8088A2                    ;83BFBC|22A28880|8088A2;
                        LDA.B #$B4                           ;83BFC0|A9B4    |      ;
-                       STA.B $33                            ;83BFC2|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;83BFC2|8533    |000E9B;
                                                             ;      |        |      ;
           CODE_83BFC4:
                        REP #$20                             ;83BFC4|C220    |      ;
                        LDA.W #$CE79                         ;83BFC6|A979CE  |      ;
-                       STA.B $20                            ;83BFC9|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83BFC9|8520    |000E88;
                        RTL                                  ;83BFCB|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         DATA8_83BFCC:
-                       db $D6,$BF,$2E,$C0,$6A,$C0,$A4,$C0   ;83BFCC|        |      ;
-                       db $92,$C0                           ;83BFD4|        |0000C0;
-                       LDA.B $02                            ;83BFD6|A502    |000E6A;
+   moleBorer_2c_state:
+                       dw moleBorer_2c_state_00             ;83BFCC|        |83BFD6;
+                       dw CODE_83C02E                       ;83BFCE|        |83C02E;
+                       dw CODE_83C06A                       ;83BFD0|        |83C06A;
+                       dw CODE_83C0A4                       ;83BFD2|        |83C0A4;
+                       dw UNREACH_83C092                    ;83BFD4|        |83C092;
+                                                            ;      |        |      ;
+moleBorer_2c_state_00:
+                       LDA.B r_ev_02_action-$E68            ;83BFD6|A502    |000E6A;
                        BNE CODE_83C00E                      ;83BFD8|D034    |83C00E;
-                       JSL.L CODE_82827D                    ;83BFDA|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;83BFDA|227D8282|82827D;
                        LDA.B #$40                           ;83BFDE|A940    |      ;
-                       TSB.B $11                            ;83BFE0|0411    |000E79;
-                       STZ.B $3E                            ;83BFE2|643E    |000EA6;
+                       TSB.B r_ev_11_sprAtri-$E68           ;83BFE0|0411    |000E79;
+                       STZ.B r_ev_3e-$E68                   ;83BFE2|643E    |000EA6;
                        LDA.B #$00                           ;83BFE4|A900    |      ;
                        JSL.L CODE_848F07                    ;83BFE6|22078F84|848F07;
-                       STZ.B $28                            ;83BFEA|6428    |000E90;
+                       STZ.B r_ev_28-$E68                   ;83BFEA|6428    |000E90;
                        LDA.B #$3C                           ;83BFEC|A93C    |      ;
-                       STA.B $27                            ;83BFEE|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;83BFEE|8527    |000E8F;
                        LDA.B #$02                           ;83BFF0|A902    |      ;
-                       STA.B $26                            ;83BFF2|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;83BFF2|8526    |000E8E;
                        LDA.B #$04                           ;83BFF4|A904    |      ;
-                       STA.B $12                            ;83BFF6|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;83BFF6|8512    |000E7A;
                        REP #$20                             ;83BFF8|C220    |      ;
                        LDA.W #$CE79                         ;83BFFA|A979CE  |      ;
-                       STA.B $20                            ;83BFFD|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83BFFD|8520    |000E88;
                        LDA.W #$0140                         ;83BFFF|A94001  |      ;
-                       STA.B $1A                            ;83C002|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83C002|851A    |000E82;
                        SEP #$20                             ;83C004|E220    |      ;
                        LDA.B #$40                           ;83C006|A940    |      ;
-                       STA.B $1E                            ;83C008|851E    |000E86;
-                       INC.B $02                            ;83C00A|E602    |000E6A;
-                       STZ.B $01                            ;83C00C|6401    |000E69;
+                       STA.B r_ev_1e_weight-$E68            ;83C008|851E    |000E86;
+                       INC.B r_ev_02_action-$E68            ;83C00A|E602    |000E6A;
+                       STZ.B r_ev_01_state-$E68             ;83C00C|6401    |000E69;
                                                             ;      |        |      ;
           CODE_83C00E:
                        REP #$20                             ;83C00E|C220    |      ;
-                       LDA.B $08                            ;83C010|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83C010|A508    |000E70;
                        SEC                                  ;83C012|38      |      ;
                        SBC.W r_0bb0                         ;83C013|EDB00B  |860BB0;
                        BCS CODE_83C01C                      ;83C016|B004    |83C01C;
@@ -8723,21 +8753,23 @@ eventID_hoganmer_01_main:
                        SEP #$20                             ;83C01F|E220    |      ;
                        BCS CODE_83C029                      ;83C021|B006    |83C029;
                        LDA.B #$02                           ;83C023|A902    |      ;
-                       STA.B $01                            ;83C025|8501    |000E69;
-                       STZ.B $02                            ;83C027|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;83C025|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;83C027|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_83C029:
                        JSL.L CODE_82808F                    ;83C029|228F8082|82808F;
                        RTS                                  ;83C02D|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83C02E:
                        JSL.L updateEv_13_14_17_0f           ;83C02E|22EA8E84|848EEA;
                        JSL.L CODE_82808F                    ;83C032|228F8082|82808F;
-                       LDA.B $17                            ;83C036|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;83C036|A517    |000E7F;
                        BPL CODE_83C04D                      ;83C038|1013    |83C04D;
                        AND.B #$7F                           ;83C03A|297F    |      ;
-                       STA.B $17                            ;83C03C|8517    |000E7F;
+                       STA.B r_ev_17-$E68                   ;83C03C|8517    |000E7F;
                        JSR.W CODE_83C0D7                    ;83C03E|20D7C0  |83C0D7;
-                       LDA.B $17                            ;83C041|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;83C041|A517    |000E7F;
                        CMP.B #$03                           ;83C043|C903    |      ;
                        BNE CODE_83C04D                      ;83C045|D006    |83C04D;
                        LDA.B #$42                           ;83C047|A942    |      ;
@@ -8746,47 +8778,53 @@ eventID_hoganmer_01_main:
           CODE_83C04D:
                        JSL.L CODE_82823E                    ;83C04D|223E8282|82823E;
                        JSL.L CODE_8491BE                    ;83C051|22BE9184|8491BE;
-                       LDA.B $2B                            ;83C055|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83C055|A52B    |000E93;
                        BNE CODE_83C067                      ;83C057|D00E    |83C067;
                        LDA.B #$04                           ;83C059|A904    |      ;
-                       STA.B $01                            ;83C05B|8501    |000E69;
-                       STA.B $2F                            ;83C05D|852F    |000E97;
+                       STA.B r_ev_01_state-$E68             ;83C05B|8501    |000E69;
+                       STA.B r_ev_2f-$E68                   ;83C05D|852F    |000E97;
                        REP #$20                             ;83C05F|C220    |      ;
-                       STZ.B $1A                            ;83C061|641A    |000E82;
-                       STZ.B $1C                            ;83C063|641C    |000E84;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;83C061|641A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83C063|641C    |000E84;
                        SEP #$20                             ;83C065|E220    |      ;
                                                             ;      |        |      ;
           CODE_83C067:
                        JMP.W CODE_83C089                    ;83C067|4C89C0  |83C089;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83C06A:
                        JSL.L CODE_8281E8                    ;83C06A|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;83C06E|22BE9184|8491BE;
                        JSL.L CODE_82808F                    ;83C072|228F8082|82808F;
-                       LDA.B $2B                            ;83C076|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83C076|A52B    |000E93;
                        BEQ CODE_83C089                      ;83C078|F00F    |83C089;
                        LDA.B #$02                           ;83C07A|A902    |      ;
-                       STA.B $01                            ;83C07C|8501    |000E69;
-                       STZ.B $2F                            ;83C07E|642F    |000E97;
+                       STA.B r_ev_01_state-$E68             ;83C07C|8501    |000E69;
+                       STZ.B r_ev_2f-$E68                   ;83C07E|642F    |000E97;
                        REP #$20                             ;83C080|C220    |      ;
                        LDA.W #$0140                         ;83C082|A94001  |      ;
-                       STA.B $1A                            ;83C085|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83C085|851A    |000E82;
                        SEP #$20                             ;83C087|E220    |      ;
                                                             ;      |        |      ;
           CODE_83C089:
-                       LDA.B $2E                            ;83C089|A52E    |000E96;
+                       LDA.B r_ev_2e-$E68                   ;83C089|A52E    |000E96;
                        CMP.B #$3F                           ;83C08B|C93F    |      ;
                        BNE CODE_83C091                      ;83C08D|D002    |83C091;
-                       STZ.B $27                            ;83C08F|6427    |000E8F;
+                       STZ.B r_ev_27-$E68                   ;83C08F|6427    |000E8F;
                                                             ;      |        |      ;
           CODE_83C091:
                        RTS                                  ;83C091|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+       UNREACH_83C092:
                        db $22,$E8,$81,$82,$22,$BE,$91,$84   ;83C092|        |8281E8;
                        db $A5,$2B,$29,$04,$F0,$04,$A9,$06   ;83C09A|        |00002B;
                        db $85,$01                           ;83C0A2|        |000001;
-                       DEC.B $33                            ;83C0A4|C633    |000E9B;
+                                                            ;      |        |      ;
+          CODE_83C0A4:
+                       DEC.B r_ev_33-$E68                   ;83C0A4|C633    |000E9B;
                        BEQ CODE_83C0D2                      ;83C0A6|F02A    |83C0D2;
-                       LDA.B $33                            ;83C0A8|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;83C0A8|A533    |000E9B;
                        LSR A                                ;83C0AA|4A      |      ;
                        BCC CODE_83C0B1                      ;83C0AB|9004    |83C0B1;
                        JSL.L CODE_82808F                    ;83C0AD|228F8082|82808F;
@@ -8807,55 +8845,55 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C0D2:
-                       JSL.L CODE_828398                    ;83C0D2|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;83C0D2|22988382|828398;
                        RTS                                  ;83C0D6|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C0D7:
                        JSR.W CODE_83C2DD                    ;83C0D7|20DDC2  |83C2DD;
-                       LDA.B $0F                            ;83C0DA|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83C0DA|A50F    |000E77;
                        AND.B #$7F                           ;83C0DC|297F    |      ;
                        ASL A                                ;83C0DE|0A      |      ;
                        TAX                                  ;83C0DF|AA      |      ;
                        LDA.W DATA8_86CE93,X                 ;83C0E0|BD93CE  |86CE93;
-                       STA.B $35                            ;83C0E3|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;83C0E3|8535    |000E9D;
                        LDA.W DATA8_86CE94,X                 ;83C0E5|BD94CE  |86CE94;
-                       STA.B $36                            ;83C0E8|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;83C0E8|8536    |000E9E;
                        JSR.W CODE_83C132                    ;83C0EA|2032C1  |83C132;
                        LDA.B #$04                           ;83C0ED|A904    |      ;
-                       STA.B $32                            ;83C0EF|8532    |000E9A;
+                       STA.B r_ev_32-$E68                   ;83C0EF|8532    |000E9A;
                                                             ;      |        |      ;
           CODE_83C0F1:
                        LDA.B #$05                           ;83C0F1|A905    |      ;
-                       STA.B $31                            ;83C0F3|8531    |000E99;
+                       STA.B r_ev_31-$E68                   ;83C0F3|8531    |000E99;
                                                             ;      |        |      ;
           CODE_83C0F5:
-                       LDA.B $32                            ;83C0F5|A532    |000E9A;
+                       LDA.B r_ev_32-$E68                   ;83C0F5|A532    |000E9A;
                        ASL A                                ;83C0F7|0A      |      ;
                        ASL A                                ;83C0F8|0A      |      ;
                        ASL A                                ;83C0F9|0A      |      ;
-                       ADC.B $31                            ;83C0FA|6531    |000E99;
-                       STA.B $3A                            ;83C0FC|853A    |000EA2;
+                       ADC.B r_ev_31-$E68                   ;83C0FA|6531    |000E99;
+                       STA.B r_ev_3a-$E68                   ;83C0FC|853A    |000EA2;
                        TAX                                  ;83C0FE|AA      |      ;
                        LDA.L $7FF200,X                      ;83C0FF|BF00F27F|7FF200;
                        BIT.B #$40                           ;83C103|8940    |      ;
                        BEQ CODE_83C129                      ;83C105|F022    |83C129;
                        BIT.B #$80                           ;83C107|8980    |      ;
                        BNE CODE_83C122                      ;83C109|D017    |83C122;
-                       LDA.B $31                            ;83C10B|A531    |000E99;
+                       LDA.B r_ev_31-$E68                   ;83C10B|A531    |000E99;
                        ASL A                                ;83C10D|0A      |      ;
                        ASL A                                ;83C10E|0A      |      ;
                        ASL A                                ;83C10F|0A      |      ;
                        ASL A                                ;83C110|0A      |      ;
-                       ADC.B $35                            ;83C111|6535    |000E9D;
-                       STA.B $29                            ;83C113|8529    |000E91;
-                       LDA.B $32                            ;83C115|A532    |000E9A;
+                       ADC.B r_ev_35-$E68                   ;83C111|6535    |000E9D;
+                       STA.B r_ev_29-$E68                   ;83C113|8529    |000E91;
+                       LDA.B r_ev_32-$E68                   ;83C115|A532    |000E9A;
                        ASL A                                ;83C117|0A      |      ;
                        ASL A                                ;83C118|0A      |      ;
                        ASL A                                ;83C119|0A      |      ;
                        ASL A                                ;83C11A|0A      |      ;
-                       ADC.B $36                            ;83C11B|6536    |000E9E;
-                       STA.B $2A                            ;83C11D|852A    |000E92;
+                       ADC.B r_ev_36-$E68                   ;83C11B|6536    |000E9E;
+                       STA.B r_ev_2a-$E68                   ;83C11D|852A    |000E92;
                        JSR.W CODE_83C2F7                    ;83C11F|20F7C2  |83C2F7;
                                                             ;      |        |      ;
           CODE_83C122:
@@ -8864,44 +8902,44 @@ eventID_hoganmer_01_main:
                        JSR.W CODE_83C1D8                    ;83C126|20D8C1  |83C1D8;
                                                             ;      |        |      ;
           CODE_83C129:
-                       DEC.B $31                            ;83C129|C631    |000E99;
+                       DEC.B r_ev_31-$E68                   ;83C129|C631    |000E99;
                        BNE CODE_83C0F5                      ;83C12B|D0C8    |83C0F5;
-                       DEC.B $32                            ;83C12D|C632    |000E9A;
+                       DEC.B r_ev_32-$E68                   ;83C12D|C632    |000E9A;
                        BNE CODE_83C0F1                      ;83C12F|D0C0    |83C0F1;
                        RTS                                  ;83C131|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C132:
-                       STZ.B $3D                            ;83C132|643D    |000EA5;
+                       STZ.B r_ev_3d-$E68                   ;83C132|643D    |000EA5;
                        LDA.B #$02                           ;83C134|A902    |      ;
-                       STA.B $31                            ;83C136|8531    |000E99;
-                       STA.B $32                            ;83C138|8532    |000E9A;
-                       LDA.B $35                            ;83C13A|A535    |000E9D;
+                       STA.B r_ev_31-$E68                   ;83C136|8531    |000E99;
+                       STA.B r_ev_32-$E68                   ;83C138|8532    |000E9A;
+                       LDA.B r_ev_35-$E68                   ;83C13A|A535    |000E9D;
                        CLC                                  ;83C13C|18      |      ;
                        ADC.B #$20                           ;83C13D|6920    |      ;
-                       STA.B $29                            ;83C13F|8529    |000E91;
-                       LDA.B $36                            ;83C141|A536    |000E9E;
+                       STA.B r_ev_29-$E68                   ;83C13F|8529    |000E91;
+                       LDA.B r_ev_36-$E68                   ;83C141|A536    |000E9E;
                        CLC                                  ;83C143|18      |      ;
                        ADC.B #$20                           ;83C144|6920    |      ;
-                       STA.B $2A                            ;83C146|852A    |000E92;
+                       STA.B r_ev_2a-$E68                   ;83C146|852A    |000E92;
                        JSR.W CODE_83C17D                    ;83C148|207DC1  |83C17D;
                        JSR.W CODE_83C17D                    ;83C14B|207DC1  |83C17D;
                        JSR.W CODE_83C17D                    ;83C14E|207DC1  |83C17D;
                        LDA.B #$02                           ;83C151|A902    |      ;
-                       STA.B $31                            ;83C153|8531    |000E99;
-                       INC.B $32                            ;83C155|E632    |000E9A;
-                       LDA.B $35                            ;83C157|A535    |000E9D;
+                       STA.B r_ev_31-$E68                   ;83C153|8531    |000E99;
+                       INC.B r_ev_32-$E68                   ;83C155|E632    |000E9A;
+                       LDA.B r_ev_35-$E68                   ;83C157|A535    |000E9D;
                        CLC                                  ;83C159|18      |      ;
                        ADC.B #$20                           ;83C15A|6920    |      ;
-                       STA.B $29                            ;83C15C|8529    |000E91;
-                       LDA.B $2A                            ;83C15E|A52A    |000E92;
+                       STA.B r_ev_29-$E68                   ;83C15C|8529    |000E91;
+                       LDA.B r_ev_2a-$E68                   ;83C15E|A52A    |000E92;
                        CLC                                  ;83C160|18      |      ;
                        ADC.B #$10                           ;83C161|6910    |      ;
-                       STA.B $2A                            ;83C163|852A    |000E92;
+                       STA.B r_ev_2a-$E68                   ;83C163|852A    |000E92;
                        JSR.W CODE_83C17D                    ;83C165|207DC1  |83C17D;
                        JSR.W CODE_83C17D                    ;83C168|207DC1  |83C17D;
                        JSR.W CODE_83C17D                    ;83C16B|207DC1  |83C17D;
-                       LDA.B $3D                            ;83C16E|A53D    |000EA5;
+                       LDA.B r_ev_3d-$E68                   ;83C16E|A53D    |000EA5;
                        BEQ CODE_83C17C                      ;83C170|F00A    |83C17C;
                        LDA.B #$04                           ;83C172|A904    |      ;
                        LDX.B #$02                           ;83C174|A202    |      ;
@@ -8913,12 +8951,12 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C17D:
-                       LDA.B $32                            ;83C17D|A532    |000E9A;
+                       LDA.B r_ev_32-$E68                   ;83C17D|A532    |000E9A;
                        ASL A                                ;83C17F|0A      |      ;
                        ASL A                                ;83C180|0A      |      ;
                        ASL A                                ;83C181|0A      |      ;
-                       ADC.B $31                            ;83C182|6531    |000E99;
-                       STA.B $3A                            ;83C184|853A    |000EA2;
+                       ADC.B r_ev_31-$E68                   ;83C182|6531    |000E99;
+                       STA.B r_ev_3a-$E68                   ;83C184|853A    |000EA2;
                        TAX                                  ;83C186|AA      |      ;
                        LDA.L $7FF200,X                      ;83C187|BF00F27F|7FF200;
                        ORA.B #$80                           ;83C18B|0980    |      ;
@@ -8930,7 +8968,7 @@ eventID_hoganmer_01_main:
                        LDA.B #$7F                           ;83C19A|A97F    |      ;
                        PHA                                  ;83C19C|48      |      ;
                        PLB                                  ;83C19D|AB      |      ;
-                       LDX.B $3A                            ;83C19E|A63A    |000EA2;
+                       LDX.B r_ev_3a-$E68                   ;83C19E|A63A    |000EA2;
                        LDA.B #$40                           ;83C1A0|A940    |      ;
                        ORA.W $F200,X                        ;83C1A2|1D00F2  |7FF200;
                        STA.W $F200,X                        ;83C1A5|9D00F2  |7FF200;
@@ -8948,96 +8986,96 @@ eventID_hoganmer_01_main:
                        STA.W $F208,X                        ;83C1C5|9D08F2  |7FF208;
                        PLB                                  ;83C1C8|AB      |      ;
                        JSR.W CODE_83C316                    ;83C1C9|2016C3  |83C316;
-                       INC.B $3D                            ;83C1CC|E63D    |000EA5;
+                       INC.B r_ev_3d-$E68                   ;83C1CC|E63D    |000EA5;
                                                             ;      |        |      ;
           CODE_83C1CE:
-                       LDA.B $29                            ;83C1CE|A529    |000E91;
+                       LDA.B r_ev_29-$E68                   ;83C1CE|A529    |000E91;
                        CLC                                  ;83C1D0|18      |      ;
                        ADC.B #$10                           ;83C1D1|6910    |      ;
-                       STA.B $29                            ;83C1D3|8529    |000E91;
-                       INC.B $31                            ;83C1D5|E631    |000E99;
+                       STA.B r_ev_29-$E68                   ;83C1D3|8529    |000E91;
+                       INC.B r_ev_31-$E68                   ;83C1D5|E631    |000E99;
                        RTS                                  ;83C1D7|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C1D8:
-                       STZ.B $34                            ;83C1D8|6434    |000E9C;
-                       LDX.B $3A                            ;83C1DA|A63A    |000EA2;
+                       STZ.B r_ev_34-$E68                   ;83C1D8|6434    |000E9C;
+                       LDX.B r_ev_3a-$E68                   ;83C1DA|A63A    |000EA2;
                        LDA.L $7FF1FF,X                      ;83C1DC|BFFFF17F|7FF1FF;
                        BMI CODE_83C200                      ;83C1E0|301E    |83C200;
-                       LDA.B $31                            ;83C1E2|A531    |000E99;
+                       LDA.B r_ev_31-$E68                   ;83C1E2|A531    |000E99;
                        ASL A                                ;83C1E4|0A      |      ;
                        ASL A                                ;83C1E5|0A      |      ;
                        ASL A                                ;83C1E6|0A      |      ;
                        ASL A                                ;83C1E7|0A      |      ;
                        CLC                                  ;83C1E8|18      |      ;
-                       ADC.B $35                            ;83C1E9|6535    |000E9D;
+                       ADC.B r_ev_35-$E68                   ;83C1E9|6535    |000E9D;
                        SEC                                  ;83C1EB|38      |      ;
                        SBC.B #$10                           ;83C1EC|E910    |      ;
-                       STA.B $29                            ;83C1EE|8529    |000E91;
-                       LDA.B $32                            ;83C1F0|A532    |000E9A;
+                       STA.B r_ev_29-$E68                   ;83C1EE|8529    |000E91;
+                       LDA.B r_ev_32-$E68                   ;83C1F0|A532    |000E9A;
                        ASL A                                ;83C1F2|0A      |      ;
                        ASL A                                ;83C1F3|0A      |      ;
                        ASL A                                ;83C1F4|0A      |      ;
                        ASL A                                ;83C1F5|0A      |      ;
                        CLC                                  ;83C1F6|18      |      ;
-                       ADC.B $36                            ;83C1F7|6536    |000E9E;
-                       STA.B $2A                            ;83C1F9|852A    |000E92;
+                       ADC.B r_ev_36-$E68                   ;83C1F7|6536    |000E9E;
+                       STA.B r_ev_2a-$E68                   ;83C1F9|852A    |000E92;
                        DEX                                  ;83C1FB|CA      |      ;
                        JSR.W CODE_83C2F7                    ;83C1FC|20F7C2  |83C2F7;
                        INX                                  ;83C1FF|E8      |      ;
                                                             ;      |        |      ;
           CODE_83C200:
                        AND.B #$01                           ;83C200|2901    |      ;
-                       TSB.B $34                            ;83C202|0434    |000E9C;
-                       ASL.B $34                            ;83C204|0634    |000E9C;
+                       TSB.B r_ev_34-$E68                   ;83C202|0434    |000E9C;
+                       ASL.B r_ev_34-$E68                   ;83C204|0634    |000E9C;
                        LDA.L $7FF201,X                      ;83C206|BF01F27F|7FF201;
                        BMI CODE_83C22A                      ;83C20A|301E    |83C22A;
-                       LDA.B $31                            ;83C20C|A531    |000E99;
+                       LDA.B r_ev_31-$E68                   ;83C20C|A531    |000E99;
                        ASL A                                ;83C20E|0A      |      ;
                        ASL A                                ;83C20F|0A      |      ;
                        ASL A                                ;83C210|0A      |      ;
                        ASL A                                ;83C211|0A      |      ;
                        CLC                                  ;83C212|18      |      ;
-                       ADC.B $35                            ;83C213|6535    |000E9D;
+                       ADC.B r_ev_35-$E68                   ;83C213|6535    |000E9D;
                        CLC                                  ;83C215|18      |      ;
                        ADC.B #$10                           ;83C216|6910    |      ;
-                       STA.B $29                            ;83C218|8529    |000E91;
-                       LDA.B $32                            ;83C21A|A532    |000E9A;
+                       STA.B r_ev_29-$E68                   ;83C218|8529    |000E91;
+                       LDA.B r_ev_32-$E68                   ;83C21A|A532    |000E9A;
                        ASL A                                ;83C21C|0A      |      ;
                        ASL A                                ;83C21D|0A      |      ;
                        ASL A                                ;83C21E|0A      |      ;
                        ASL A                                ;83C21F|0A      |      ;
                        CLC                                  ;83C220|18      |      ;
-                       ADC.B $36                            ;83C221|6536    |000E9E;
-                       STA.B $2A                            ;83C223|852A    |000E92;
+                       ADC.B r_ev_36-$E68                   ;83C221|6536    |000E9E;
+                       STA.B r_ev_2a-$E68                   ;83C223|852A    |000E92;
                        INX                                  ;83C225|E8      |      ;
                        JSR.W CODE_83C2F7                    ;83C226|20F7C2  |83C2F7;
                        DEX                                  ;83C229|CA      |      ;
                                                             ;      |        |      ;
           CODE_83C22A:
                        AND.B #$01                           ;83C22A|2901    |      ;
-                       TSB.B $34                            ;83C22C|0434    |000E9C;
-                       ASL.B $34                            ;83C22E|0634    |000E9C;
+                       TSB.B r_ev_34-$E68                   ;83C22C|0434    |000E9C;
+                       ASL.B r_ev_34-$E68                   ;83C22E|0634    |000E9C;
                        LDA.L $7FF1F8,X                      ;83C230|BFF8F17F|7FF1F8;
                        BMI CODE_83C259                      ;83C234|3023    |83C259;
-                       LDA.B $31                            ;83C236|A531    |000E99;
+                       LDA.B r_ev_31-$E68                   ;83C236|A531    |000E99;
                        ASL A                                ;83C238|0A      |      ;
                        ASL A                                ;83C239|0A      |      ;
                        ASL A                                ;83C23A|0A      |      ;
                        ASL A                                ;83C23B|0A      |      ;
                        CLC                                  ;83C23C|18      |      ;
-                       ADC.B $35                            ;83C23D|6535    |000E9D;
-                       STA.B $29                            ;83C23F|8529    |000E91;
-                       LDA.B $32                            ;83C241|A532    |000E9A;
+                       ADC.B r_ev_35-$E68                   ;83C23D|6535    |000E9D;
+                       STA.B r_ev_29-$E68                   ;83C23F|8529    |000E91;
+                       LDA.B r_ev_32-$E68                   ;83C241|A532    |000E9A;
                        ASL A                                ;83C243|0A      |      ;
                        ASL A                                ;83C244|0A      |      ;
                        ASL A                                ;83C245|0A      |      ;
                        ASL A                                ;83C246|0A      |      ;
                        CLC                                  ;83C247|18      |      ;
-                       ADC.B $36                            ;83C248|6536    |000E9E;
+                       ADC.B r_ev_36-$E68                   ;83C248|6536    |000E9E;
                        SEC                                  ;83C24A|38      |      ;
                        SBC.B #$10                           ;83C24B|E910    |      ;
-                       STA.B $2A                            ;83C24D|852A    |000E92;
+                       STA.B r_ev_2a-$E68                   ;83C24D|852A    |000E92;
                        PHX                                  ;83C24F|DA      |      ;
                        TXA                                  ;83C250|8A      |      ;
                        SEC                                  ;83C251|38      |      ;
@@ -9048,28 +9086,28 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83C259:
                        AND.B #$01                           ;83C259|2901    |      ;
-                       TSB.B $34                            ;83C25B|0434    |000E9C;
-                       ASL.B $34                            ;83C25D|0634    |000E9C;
+                       TSB.B r_ev_34-$E68                   ;83C25B|0434    |000E9C;
+                       ASL.B r_ev_34-$E68                   ;83C25D|0634    |000E9C;
                        LDA.L $7FF208,X                      ;83C25F|BF08F27F|7FF208;
                        BMI CODE_83C286                      ;83C263|3021    |83C286;
-                       LDA.B $31                            ;83C265|A531    |000E99;
+                       LDA.B r_ev_31-$E68                   ;83C265|A531    |000E99;
                        ASL A                                ;83C267|0A      |      ;
                        ASL A                                ;83C268|0A      |      ;
                        ASL A                                ;83C269|0A      |      ;
                        ASL A                                ;83C26A|0A      |      ;
                        CLC                                  ;83C26B|18      |      ;
-                       ADC.B $35                            ;83C26C|6535    |000E9D;
-                       STA.B $29                            ;83C26E|8529    |000E91;
-                       LDA.B $32                            ;83C270|A532    |000E9A;
+                       ADC.B r_ev_35-$E68                   ;83C26C|6535    |000E9D;
+                       STA.B r_ev_29-$E68                   ;83C26E|8529    |000E91;
+                       LDA.B r_ev_32-$E68                   ;83C270|A532    |000E9A;
                        ASL A                                ;83C272|0A      |      ;
                        ASL A                                ;83C273|0A      |      ;
                        ASL A                                ;83C274|0A      |      ;
                        ASL A                                ;83C275|0A      |      ;
                        CLC                                  ;83C276|18      |      ;
-                       ADC.B $36                            ;83C277|6536    |000E9E;
+                       ADC.B r_ev_36-$E68                   ;83C277|6536    |000E9E;
                        CLC                                  ;83C279|18      |      ;
                        ADC.B #$10                           ;83C27A|6910    |      ;
-                       STA.B $2A                            ;83C27C|852A    |000E92;
+                       STA.B r_ev_2a-$E68                   ;83C27C|852A    |000E92;
                        TXA                                  ;83C27E|8A      |      ;
                        CLC                                  ;83C27F|18      |      ;
                        ADC.B #$08                           ;83C280|6908    |      ;
@@ -9078,30 +9116,30 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83C286:
                        AND.B #$01                           ;83C286|2901    |      ;
-                       ORA.B $34                            ;83C288|0534    |000E9C;
-                       STA.B $34                            ;83C28A|8534    |000E9C;
+                       ORA.B r_ev_34-$E68                   ;83C288|0534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83C28A|8534    |000E9C;
                        ASL A                                ;83C28C|0A      |      ;
                        TAX                                  ;83C28D|AA      |      ;
-                       LDA.B $31                            ;83C28E|A531    |000E99;
+                       LDA.B r_ev_31-$E68                   ;83C28E|A531    |000E99;
                        ASL A                                ;83C290|0A      |      ;
                        ASL A                                ;83C291|0A      |      ;
                        ASL A                                ;83C292|0A      |      ;
                        ASL A                                ;83C293|0A      |      ;
                        CLC                                  ;83C294|18      |      ;
-                       ADC.B $35                            ;83C295|6535    |000E9D;
-                       STA.B $29                            ;83C297|8529    |000E91;
-                       LDA.B $32                            ;83C299|A532    |000E9A;
+                       ADC.B r_ev_35-$E68                   ;83C295|6535    |000E9D;
+                       STA.B r_ev_29-$E68                   ;83C297|8529    |000E91;
+                       LDA.B r_ev_32-$E68                   ;83C299|A532    |000E9A;
                        ASL A                                ;83C29B|0A      |      ;
                        ASL A                                ;83C29C|0A      |      ;
                        ASL A                                ;83C29D|0A      |      ;
                        ASL A                                ;83C29E|0A      |      ;
                        CLC                                  ;83C29F|18      |      ;
-                       ADC.B $36                            ;83C2A0|6536    |000E9E;
-                       STA.B $2A                            ;83C2A2|852A    |000E92;
+                       ADC.B r_ev_36-$E68                   ;83C2A0|6536    |000E9E;
+                       STA.B r_ev_2a-$E68                   ;83C2A2|852A    |000E92;
                        REP #$20                             ;83C2A4|C220    |      ;
                        LDA.W DATA8_86CE9B,X                 ;83C2A6|BD9BCE  |86CE9B;
                        STA.W r_0008                         ;83C2A9|8D0800  |860008;
-                       LDA.B $29                            ;83C2AC|A529    |000E91;
+                       LDA.B r_ev_29-$E68                   ;83C2AC|A529    |000E91;
                        AND.W #$00FF                         ;83C2AE|29FF00  |      ;
                        BIT.W #$0080                         ;83C2B1|898000  |      ;
                        BEQ CODE_83C2B9                      ;83C2B4|F003    |83C2B9;
@@ -9109,9 +9147,9 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83C2B9:
                        CLC                                  ;83C2B9|18      |      ;
-                       ADC.B $05                            ;83C2BA|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83C2BA|6505    |000E6D;
                        STA.W r_0000                         ;83C2BC|8D0000  |860000;
-                       LDA.B $2A                            ;83C2BF|A52A    |000E92;
+                       LDA.B r_ev_2a-$E68                   ;83C2BF|A52A    |000E92;
                        AND.W #$00FF                         ;83C2C1|29FF00  |      ;
                        BIT.W #$0080                         ;83C2C4|898000  |      ;
                        BEQ CODE_83C2CC                      ;83C2C7|F003    |83C2CC;
@@ -9119,7 +9157,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83C2CC:
                        CLC                                  ;83C2CC|18      |      ;
-                       ADC.B $08                            ;83C2CD|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;83C2CD|6508    |000E70;
                        STA.W r_0002                         ;83C2CF|8D0200  |860002;
                        SEP #$20                             ;83C2D2|E220    |      ;
                        JSL.L CODE_849111                    ;83C2D4|22119184|849111;
@@ -9162,23 +9200,23 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83C316:
                        LDA.B #$03                           ;83C316|A903    |      ;
-                       STA.B $3B                            ;83C318|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;83C318|853B    |000EA3;
                        JSL.L CODE_849086                    ;83C31A|22869084|849086;
                        AND.B #$3C                           ;83C31E|293C    |      ;
-                       STA.B $3C                            ;83C320|853C    |000EA4;
+                       STA.B r_ev_3c-$E68                   ;83C320|853C    |000EA4;
                                                             ;      |        |      ;
           CODE_83C322:
                        JSL.L CODE_8282D3                    ;83C322|22D38282|8282D3;
                        BNE CODE_83C384                      ;83C326|D05C    |83C384;
                        INC.W r_0000,X                       ;83C328|FE0000  |860000;
-                       LDA.B $11                            ;83C32B|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83C32B|A511    |000E79;
                        STA.W r_0011,X                       ;83C32D|9D1100  |860011;
-                       LDA.B $18                            ;83C330|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;83C330|A518    |000E80;
                        STA.W r_0018,X                       ;83C332|9D1800  |860018;
                        LDA.B #$23                           ;83C335|A923    |      ;
                        STA.W r_000a,X                       ;83C337|9D0A00  |86000A;
                        REP #$20                             ;83C33A|C220    |      ;
-                       LDA.B $29                            ;83C33C|A529    |000E91;
+                       LDA.B r_ev_29-$E68                   ;83C33C|A529    |000E91;
                        AND.W #$00FF                         ;83C33E|29FF00  |      ;
                        BIT.W #$0080                         ;83C341|898000  |      ;
                        BEQ CODE_83C349                      ;83C344|F003    |83C349;
@@ -9186,12 +9224,12 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83C349:
                        CLC                                  ;83C349|18      |      ;
-                       ADC.B $05                            ;83C34A|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83C34A|6505    |000E6D;
                        AND.W #$FFF0                         ;83C34C|29F0FF  |      ;
                        CLC                                  ;83C34F|18      |      ;
                        ADC.W #$0008                         ;83C350|690800  |      ;
                        STA.W r_0005,X                       ;83C353|9D0500  |860005;
-                       LDA.B $2A                            ;83C356|A52A    |000E92;
+                       LDA.B r_ev_2a-$E68                   ;83C356|A52A    |000E92;
                        AND.W #$00FF                         ;83C358|29FF00  |      ;
                        BIT.W #$0080                         ;83C35B|898000  |      ;
                        BEQ CODE_83C363                      ;83C35E|F003    |83C363;
@@ -9199,19 +9237,19 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83C363:
                        CLC                                  ;83C363|18      |      ;
-                       ADC.B $08                            ;83C364|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;83C364|6508    |000E70;
                        AND.W #$FFF0                         ;83C366|29F0FF  |      ;
                        CLC                                  ;83C369|18      |      ;
                        ADC.W #$0008                         ;83C36A|690800  |      ;
                        STA.W r_0008,X                       ;83C36D|9D0800  |860008;
-                       LDA.B $3B                            ;83C370|A53B    |000EA3;
-                       ADC.B $3C                            ;83C372|653C    |000EA4;
+                       LDA.B r_ev_3b-$E68                   ;83C370|A53B    |000EA3;
+                       ADC.B r_ev_3c-$E68                   ;83C372|653C    |000EA4;
                        AND.W #$00FF                         ;83C374|29FF00  |      ;
                        TAY                                  ;83C377|A8      |      ;
                        SEP #$20                             ;83C378|E220    |      ;
                        LDA.W DATA8_86CEBB,Y                 ;83C37A|B9BBCE  |86CEBB;
                        STA.W r_000b,X                       ;83C37D|9D0B00  |86000B;
-                       DEC.B $3B                            ;83C380|C63B    |000EA3;
+                       DEC.B r_ev_3b-$E68                   ;83C380|C63B    |000EA3;
                        BPL CODE_83C322                      ;83C382|109E    |83C322;
                                                             ;      |        |      ;
           CODE_83C384:
@@ -9219,11 +9257,11 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83C386|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83C387:
+eventID_metC15_2e_main:
                        LDA.B $33                            ;83C387|A533    |000F1B;
                        TSB.B $11                            ;83C389|0411    |000EF9;
                        LDX.B $01                            ;83C38B|A601    |000EE9;
-                       JSR.W (DATA8_83C3C7,X)               ;83C38D|FCC7C3  |83C3C7;
+                       JSR.W (metC15_2e_state,X)            ;83C38D|FCC7C3  |83C3C7;
                        REP #$20                             ;83C390|C220    |      ;
                        LDA.B $0F                            ;83C392|A50F    |000EF7;
                        AND.W #$000F                         ;83C394|290F00  |      ;
@@ -9240,7 +9278,7 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_84A384                    ;83C3B1|2284A384|84A384;
                                                             ;      |        |      ;
           CODE_83C3B5:
-                       JML.L CODE_828387                    ;83C3B5|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83C3B5|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C3B9:
@@ -9248,14 +9286,19 @@ eventID_hoganmer_01_main:
                        TRB.B $11                            ;83C3BB|1411    |000EF9;
                                                             ;      |        |      ;
           CODE_83C3BD:
-                       JSL.L CODE_82806E                    ;83C3BD|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83C3BD|226E8082|82806E;
                        BCS CODE_83C3B5                      ;83C3C1|B0F2    |83C3B5;
-                       JML.L CODE_8280B4                    ;83C3C3|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83C3C3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         DATA8_83C3C7:
-                       db $CF,$C3,$EE,$C3,$41,$C4,$B1,$C4   ;83C3C7|        |      ;
-                       JSL.L CODE_82827D                    ;83C3CF|227D8282|82827D;
+      metC15_2e_state:
+                       dw metC15_2e_state_00                ;83C3C7|        |83C3CF;
+                       dw CODE_83C3EE                       ;83C3C9|        |83C3EE;
+                       dw CODE_83C441                       ;83C3CB|        |83C441;
+                       dw CODE_83C4B1                       ;83C3CD|        |83C4B1;
+                                                            ;      |        |      ;
+   metC15_2e_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;83C3CF|227D8282|82827D;
                        LDA.B $11                            ;83C3D3|A511    |000EF9;
                        AND.B #$0E                           ;83C3D5|290E    |      ;
                        STA.B $33                            ;83C3D7|8533    |000F1B;
@@ -9270,6 +9313,8 @@ eventID_hoganmer_01_main:
                        STA.B $34                            ;83C3EB|8534    |000F1C;
                        RTS                                  ;83C3ED|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83C3EE:
                        LDA.B $02                            ;83C3EE|A502    |000EEA;
                        BNE CODE_83C3FC                      ;83C3F0|D00A    |83C3FC;
                        INC.B $02                            ;83C3F2|E602    |000EEA;
@@ -9321,19 +9366,28 @@ eventID_hoganmer_01_main:
                        SEP #$20                             ;83C43E|E220    |      ;
                        RTS                                  ;83C440|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83C441:
                        JSL.L CODE_84ACA5                    ;83C441|22A5AC84|84ACA5;
                        LDX.B $02                            ;83C445|A602    |000FAA;
-                       JMP.W (DATA8_83C44A,X)               ;83C447|7C4AC4  |83C44A;
+                       JMP.W (PTR16_83C44A,X)               ;83C447|7C4AC4  |83C44A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         DATA8_83C44A:
-                       db $52,$C4,$60,$C4,$73,$C4,$A2,$C4   ;83C44A|        |      ;
+         PTR16_83C44A:
+                       dw CODE_83C452                       ;83C44A|        |83C452;
+                       dw CODE_83C460                       ;83C44C|        |83C460;
+                       dw CODE_83C473                       ;83C44E|        |83C473;
+                       dw CODE_83C4A2                       ;83C450|        |83C4A2;
+                                                            ;      |        |      ;
+          CODE_83C452:
                        LDA.B #$02                           ;83C452|A902    |      ;
                        STA.B $02                            ;83C454|8502    |00102A;
                        LDA.B #$01                           ;83C456|A901    |      ;
                        JSL.L CODE_848F07                    ;83C458|22078F84|848F07;
                        LDA.B #$03                           ;83C45C|A903    |      ;
                        STA.B $28                            ;83C45E|8528    |001050;
+                                                            ;      |        |      ;
+          CODE_83C460:
                        JSL.L updateEv_13_14_17_0f           ;83C460|22EA8E84|848EEA;
                        LDA.B $0F                            ;83C464|A50F    |000FB7;
                        BPL CODE_83C472                      ;83C466|100A    |83C472;
@@ -9345,6 +9399,8 @@ eventID_hoganmer_01_main:
           CODE_83C472:
                        RTS                                  ;83C472|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83C473:
                        LDA.B $11                            ;83C473|A511    |000FB9;
                        ASL A                                ;83C475|0A      |      ;
                        ASL A                                ;83C476|0A      |      ;
@@ -9371,6 +9427,8 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_8491BE                    ;83C49D|22BE9184|8491BE;
                        RTS                                  ;83C4A1|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83C4A2:
                        JSL.L updateEv_13_14_17_0f           ;83C4A2|22EA8E84|848EEA;
                        LDA.B $0F                            ;83C4A6|A50F    |000FB7;
                        BPL CODE_83C4B0                      ;83C4A8|1006    |83C4B0;
@@ -9381,6 +9439,8 @@ eventID_hoganmer_01_main:
           CODE_83C4B0:
                        RTS                                  ;83C4B0|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83C4B1:
                        JSL.L CODE_84ACA5                    ;83C4B1|22A5AC84|84ACA5;
                        LDX.B $02                            ;83C4B5|A602    |000EEA;
                        JMP.W (DATA8_83C4BA,X)               ;83C4B7|7CBAC4  |83C4BA;
@@ -9398,12 +9458,12 @@ eventID_hoganmer_01_main:
                        LDA.B $0F                            ;83C4D2|A50F    |000EF7;
                        BPL CODE_83C547                      ;83C4D4|1071    |83C547;
                        LDA.B #$04                           ;83C4D6|A904    |      ;
-                       STA.B $02                            ;83C4D8|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;83C4D8|8502    |000E6A;
                        LDA.B #$03                           ;83C4DA|A903    |      ;
                        JSL.L CODE_848F07                    ;83C4DC|22078F84|848F07;
                        JSL.L CODE_84A081                    ;83C4E0|2281A084|84A081;
                        TAY                                  ;83C4E4|A8      |      ;
-                       LDA.B $11                            ;83C4E5|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83C4E5|A511    |000E79;
                        BIT.B #$40                           ;83C4E7|8940    |      ;
                        BNE CODE_83C4FB                      ;83C4E9|D010    |83C4FB;
                        CPY.B #$1B                           ;83C4EB|C01B    |      ;
@@ -9433,13 +9493,13 @@ eventID_hoganmer_01_main:
                        INC.W r_0000,X                       ;83C50F|FE0000  |860000;
                        LDA.B #$10                           ;83C512|A910    |      ;
                        STA.W r_000a,X                       ;83C514|9D0A00  |86000A;
-                       LDA.B $18                            ;83C517|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;83C517|A518    |000E80;
                        STA.W r_0018,X                       ;83C519|9D1800  |860018;
-                       LDA.B $16                            ;83C51C|A516    |000E7E;
+                       LDA.B r_ev_16-$E68                   ;83C51C|A516    |000E7E;
                        STA.W r_0016,X                       ;83C51E|9D1600  |860016;
                        TYA                                  ;83C521|98      |      ;
                        STA.W r_000b,X                       ;83C522|9D0B00  |86000B;
-                       LDA.B $11                            ;83C525|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83C525|A511    |000E79;
                        STA.W r_0011,X                       ;83C527|9D1100  |860011;
                        ASL A                                ;83C52A|0A      |      ;
                        ASL A                                ;83C52B|0A      |      ;
@@ -9450,11 +9510,11 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83C536:
                        CLC                                  ;83C536|18      |      ;
-                       ADC.B $05                            ;83C537|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83C537|6505    |000E6D;
                        STA.W r_0005,X                       ;83C539|9D0500  |860005;
                        LDA.W #$0001                         ;83C53C|A90100  |      ;
                        CLC                                  ;83C53F|18      |      ;
-                       ADC.B $08                            ;83C540|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;83C540|6508    |000E70;
                        STA.W r_0008,X                       ;83C542|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_83C545:
@@ -9464,13 +9524,13 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83C547|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83C548|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83C54C|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83C54C|A50F    |000E77;
                        BPL CODE_83C55A                      ;83C54E|100A    |83C55A;
                        LDA.B #$02                           ;83C550|A902    |      ;
-                       STA.B $01                            ;83C552|8501    |000E69;
-                       STZ.B $02                            ;83C554|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;83C552|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;83C554|6402    |000E6A;
                        LDA.B #$78                           ;83C556|A978    |      ;
-                       STA.B $34                            ;83C558|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83C558|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_83C55A:
                        RTS                                  ;83C55A|60      |      ;
@@ -9527,47 +9587,51 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83C5AA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83C5AB:
-                       LDX.B $01                            ;83C5AB|A601    |000E69;
-                       JMP.W (UNREACH_83C5B0,X)             ;83C5AD|7CB0C5  |83C5B0;
+eventID_armorSoldir_2f_main:
+                       LDX.B r_ev_01_state-$E68             ;83C5AB|A601    |000E69;
+                       JMP.W (armorSoldir_2f_state,X)       ;83C5AD|7CB0C5  |83C5B0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_83C5B0:
-                       db $B6,$C5,$55,$C6,$AB,$CA           ;83C5B0|        |0000C5;
-                       LDA.B $0B                            ;83C5B6|A50B    |000EB3;
+ armorSoldir_2f_state:
+                       dw armorSoldir_2f_state_00           ;83C5B0|        |83C5B6;
+                       dw CODE_83C655                       ;83C5B2|        |83C655;
+                       dw CODE_83CAAB                       ;83C5B4|        |83CAAB;
+                                                            ;      |        |      ;
+armorSoldir_2f_state_00:
+                       LDA.B r_ev_2_0b_subID-$EA8           ;83C5B6|A50B    |000EB3;
                        CMP.B #$01                           ;83C5B8|C901    |      ;
                        BEQ CODE_83C5C7                      ;83C5BA|F00B    |83C5C7;
                        JSL.L CODE_84A1D5                    ;83C5BC|22D5A184|84A1D5;
                        TYA                                  ;83C5C0|98      |      ;
                        BEQ CODE_83C5C7                      ;83C5C1|F004    |83C5C7;
-                       JML.L CODE_828387                    ;83C5C3|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83C5C3|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C5C7:
-                       JSL.L CODE_82827D                    ;83C5C7|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;83C5C7|227D8282|82827D;
                        LDA.B #$04                           ;83C5CB|A904    |      ;
-                       STA.B $12                            ;83C5CD|8512    |000E7A;
-                       STZ.B $33                            ;83C5CF|6433    |000E9B;
-                       STZ.B $2F                            ;83C5D1|642F    |000E97;
+                       STA.B r_ev_12-$E68                   ;83C5CD|8512    |000E7A;
+                       STZ.B r_ev_33-$E68                   ;83C5CF|6433    |000E9B;
+                       STZ.B r_ev_2f-$E68                   ;83C5D1|642F    |000E97;
                        LDA.B #$02                           ;83C5D3|A902    |      ;
-                       STA.B $26                            ;83C5D5|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;83C5D5|8526    |000E8E;
                        LDA.B #$03                           ;83C5D7|A903    |      ;
-                       STA.B $27                            ;83C5D9|8527    |000E8F;
-                       STA.B $3B                            ;83C5DB|853B    |000EA3;
+                       STA.B r_ev_27-$E68                   ;83C5D9|8527    |000E8F;
+                       STA.B r_ev_3b-$E68                   ;83C5DB|853B    |000EA3;
                        LDA.B #$03                           ;83C5DD|A903    |      ;
-                       STA.B $28                            ;83C5DF|8528    |000E90;
-                       STZ.B $35                            ;83C5E1|6435    |000E9D;
-                       STZ.B $10                            ;83C5E3|6410    |000E78;
-                       STZ.B $32                            ;83C5E5|6432    |000E9A;
+                       STA.B r_ev_28-$E68                   ;83C5DF|8528    |000E90;
+                       STZ.B r_ev_35-$E68                   ;83C5E1|6435    |000E9D;
+                       STZ.B r_ev_10-$E68                   ;83C5E3|6410    |000E78;
+                       STZ.B r_ev_32-$E68                   ;83C5E5|6432    |000E9A;
                        REP #$20                             ;83C5E7|C220    |      ;
                        LDA.W #$CF31                         ;83C5E9|A931CF  |      ;
-                       STA.B $20                            ;83C5EC|8520    |000E88;
-                       STZ.B $36                            ;83C5EE|6436    |000E9E;
-                       STZ.B $38                            ;83C5F0|6438    |000EA0;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83C5EC|8520    |000E88;
+                       STZ.B r_ev_36-$E68                   ;83C5EE|6436    |000E9E;
+                       STZ.B r_ev_38-$E68                   ;83C5F0|6438    |000EA0;
                        LDA.W #$0040                         ;83C5F2|A94000  |      ;
-                       STA.B $1E                            ;83C5F5|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;83C5F5|851E    |000E86;
                        SEP #$20                             ;83C5F7|E220    |      ;
-                       LDA.B $0B                            ;83C5F9|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;83C5F9|A50B    |000E73;
                        BMI CODE_83C63B                      ;83C5FB|303E    |83C63B;
                        LDA.W r_donnoSlot                    ;83C5FD|AD180E  |860E18;
                        BNE CODE_83C63B                      ;83C600|D039    |83C63B;
@@ -9576,80 +9640,82 @@ eventID_hoganmer_01_main:
                        REP #$31                             ;83C608|C231    |      ;
                        LDA.W #$0020                         ;83C60A|A92000  |      ;
                        LDX.W r_0bad                         ;83C60D|AEAD0B  |860BAD;
-                       CPX.B $05                            ;83C610|E405    |000E6D;
+                       CPX.B r_ev_05_xPos-$E68              ;83C610|E405    |000E6D;
                        BCC CODE_83C61D                      ;83C612|9009    |83C61D;
                        LDA.W #$0040                         ;83C614|A94000  |      ;
                        TSB.W $0E4B                          ;83C617|0C4B0E  |860E4B;
                        LDA.W #$FFE0                         ;83C61A|A9E0FF  |      ;
                                                             ;      |        |      ;
           CODE_83C61D:
-                       ADC.B $05                            ;83C61D|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83C61D|6505    |000E6D;
                        STA.W $0E1D                          ;83C61F|8D1D0E  |860E1D;
-                       LDA.B $08                            ;83C622|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83C622|A508    |000E70;
                        CLC                                  ;83C624|18      |      ;
                        ADC.W #$FFF0                         ;83C625|69F0FF  |      ;
                        STA.W $0E20                          ;83C628|8D200E  |860E20;
                        STZ.W $0E19                          ;83C62B|9C190E  |860E19;
                        STZ.W $0E1B                          ;83C62E|9C1B0E  |860E1B;
                        SEP #$30                             ;83C631|E230    |      ;
-                       LDA.B $0B                            ;83C633|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;83C633|A50B    |000E73;
                        BEQ CODE_83C654                      ;83C635|F01D    |83C654;
                                                             ;      |        |      ;
           CODE_83C637:
-                       JML.L CODE_828387                    ;83C637|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83C637|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C63B:
-                       LDA.B $0B                            ;83C63B|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;83C63B|A50B    |000E73;
                        BMI CODE_83C641                      ;83C63D|3002    |83C641;
                        BNE CODE_83C637                      ;83C63F|D0F6    |83C637;
                                                             ;      |        |      ;
           CODE_83C641:
                        LDA.B #$06                           ;83C641|A906    |      ;
-                       STA.B $02                            ;83C643|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;83C643|8502    |000E6A;
                        LDA.B #$10                           ;83C645|A910    |      ;
-                       STA.B $27                            ;83C647|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;83C647|8527    |000E8F;
                        REP #$21                             ;83C649|C221    |      ;
-                       LDA.B $08                            ;83C64B|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83C64B|A508    |000E70;
                        ADC.W #$FFF0                         ;83C64D|69F0FF  |      ;
-                       STA.B $08                            ;83C650|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;83C650|8508    |000E70;
                        SEP #$20                             ;83C652|E220    |      ;
                                                             ;      |        |      ;
           CODE_83C654:
                        RTL                                  ;83C654|6B      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_82806E                    ;83C655|226E8082|82806E;
+                                                            ;      |        |      ;
+          CODE_83C655:
+                       JSL.L initPosAllign                  ;83C655|226E8082|82806E;
                        BCC CODE_83C65F                      ;83C659|9004    |83C65F;
-                       JML.L CODE_828387                    ;83C65B|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83C65B|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C65F:
                        LDA.L $7F8349                        ;83C65F|AF49837F|7F8349;
-                       ORA.B $33                            ;83C663|0533    |000E9B;
-                       STA.B $11                            ;83C665|8511    |000E79;
-                       LDX.B $02                            ;83C667|A602    |000E6A;
+                       ORA.B r_ev_33-$E68                   ;83C663|0533    |000E9B;
+                       STA.B r_ev_11_sprAtri-$E68           ;83C665|8511    |000E79;
+                       LDX.B r_ev_02_action-$E68            ;83C667|A602    |000E6A;
                        JSR.W (UNREACH_83C6D0,X)             ;83C669|FCD0C6  |83C6D0;
-                       JSL.L CODE_8280B4                    ;83C66C|22B48082|8280B4;
-                       LDA.B $27                            ;83C670|A527    |000E8F;
+                       JSL.L eventID_vile_68_afterInit      ;83C66C|22B48082|8280B4;
+                       LDA.B r_ev_27-$E68                   ;83C670|A527    |000E8F;
                        AND.B #$7F                           ;83C672|297F    |      ;
-                       STA.B $3B                            ;83C674|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;83C674|853B    |000EA3;
                        JSL.L CODE_849B43                    ;83C676|22439B84|849B43;
                        BEQ CODE_83C6BA                      ;83C67A|F03E    |83C6BA;
                        BPL CODE_83C685                      ;83C67C|1007    |83C685;
                        LDA.B #$04                           ;83C67E|A904    |      ;
-                       STA.B $01                            ;83C680|8501    |000E69;
-                       STZ.B $02                            ;83C682|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;83C680|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;83C682|6402    |000E6A;
                        RTL                                  ;83C684|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C685:
                        LDA.B #$0E                           ;83C685|A90E    |      ;
-                       TRB.B $11                            ;83C687|1411    |000E79;
-                       BIT.B $10                            ;83C689|2410    |000E78;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83C687|1411    |000E79;
+                       BIT.B r_ev_10-$E68                   ;83C689|2410    |000E78;
                        BVC CODE_83C6BA                      ;83C68B|502D    |83C6BA;
                        LDA.W r_1f1b                         ;83C68D|AD1B1F  |861F1B;
-                       STA.B $3A                            ;83C690|853A    |000EA2;
-                       STA.B $33                            ;83C692|8533    |000E9B;
+                       STA.B r_ev_3a-$E68                   ;83C690|853A    |000EA2;
+                       STA.B r_ev_33-$E68                   ;83C692|8533    |000E9B;
                        LDA.B #$0D                           ;83C694|A90D    |      ;
                        JSR.W CODE_83CD18                    ;83C696|2018CD  |83CD18;
                        LDA.W r_1f1d                         ;83C699|AD1D1F  |861F1D;
@@ -9669,19 +9735,19 @@ eventID_hoganmer_01_main:
           CODE_83C6AA:
                        JSL.L CODE_8088A2                    ;83C6AA|22A28880|8088A2;
                        LDA.B #$06                           ;83C6AE|A906    |      ;
-                       STA.B $35                            ;83C6B0|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;83C6B0|8535    |000E9D;
                        LDA.B #$05                           ;83C6B2|A905    |      ;
-                       STA.B $28                            ;83C6B4|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;83C6B4|8528    |000E90;
                        LDA.B #$02                           ;83C6B6|A902    |      ;
-                       STA.B $32                            ;83C6B8|8532    |000E9A;
+                       STA.B r_ev_32-$E68                   ;83C6B8|8532    |000E9A;
                                                             ;      |        |      ;
           CODE_83C6BA:
                        JSR.W CODE_83CBA5                    ;83C6BA|20A5CB  |83CBA5;
                        JSR.W CODE_83CBB2                    ;83C6BD|20B2CB  |83CBB2;
-                       LDA.B $11                            ;83C6C0|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83C6C0|A511    |000E79;
                        AND.B #$3F                           ;83C6C2|293F    |      ;
-                       ORA.B $33                            ;83C6C4|0533    |000E9B;
-                       STA.B $11                            ;83C6C6|8511    |000E79;
+                       ORA.B r_ev_33-$E68                   ;83C6C4|0533    |000E9B;
+                       STA.B r_ev_11_sprAtri-$E68           ;83C6C6|8511    |000E79;
                        JSL.L CODE_849B03                    ;83C6C8|22039B84|849B03;
                        JML.L CODE_8491BE                    ;83C6CC|5CBE9184|8491BE;
                                                             ;      |        |      ;
@@ -9691,7 +9757,7 @@ eventID_hoganmer_01_main:
                        db $10,$C8,$2D,$C8,$92,$C8,$F4,$C8   ;83C6D8|        |83C6A2;
                        db $30,$C9,$98,$C9,$E6,$C9,$4C,$CA   ;83C6E0|        |83C6AB;
                        db $79,$CA,$CC,$C9                   ;83C6E8|        |00CCCA;
-                       LDX.B $03                            ;83C6EC|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83C6EC|A603    |000E6B;
                        JSR.W (UNREACH_83C6F4,X)             ;83C6EE|FCF4C6  |83C6F4;
                        JMP.W CODE_83CAF8                    ;83C6F1|4CF8CA  |83CAF8;
                                                             ;      |        |      ;
@@ -9699,22 +9765,22 @@ eventID_hoganmer_01_main:
        UNREACH_83C6F4:
                        db $FA,$C6,$04,$C7,$27,$C7           ;83C6F4|        |      ;
                        LDA.B #$02                           ;83C6FA|A902    |      ;
-                       STA.B $03                            ;83C6FC|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83C6FC|8503    |000E6B;
                        LDA.B #$18                           ;83C6FE|A918    |      ;
                        JSL.L CODE_848F07                    ;83C700|22078F84|848F07;
                        REP #$20                             ;83C704|C220    |      ;
                        LDA.W r_0bad                         ;83C706|ADAD0B  |860BAD;
                        SEC                                  ;83C709|38      |      ;
-                       SBC.B $05                            ;83C70A|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;83C70A|E505    |000E6D;
                        CLC                                  ;83C70C|18      |      ;
                        ADC.W #$0060                         ;83C70D|696000  |      ;
                        CMP.W #$00C0                         ;83C710|C9C000  |      ;
                        SEP #$20                             ;83C713|E220    |      ;
                        BCS CODE_83C71F                      ;83C715|B008    |83C71F;
                        LDA.B #$04                           ;83C717|A904    |      ;
-                       STA.B $03                            ;83C719|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83C719|8503    |000E6B;
                        LDA.B #$3C                           ;83C71B|A93C    |      ;
-                       STA.B $34                            ;83C71D|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83C71D|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_83C71F:
                        JSR.W CODE_83C738                    ;83C71F|2038C7  |83C738;
@@ -9722,7 +9788,7 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83C726|60      |      ;
                                                             ;      |        |      ;
                        JSR.W CODE_83C738                    ;83C727|2038C7  |83C738;
-                       DEC.B $34                            ;83C72A|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83C72A|C634    |000E9C;
                        BNE CODE_83C733                      ;83C72C|D005    |83C733;
                        LDA.B #$02                           ;83C72E|A902    |      ;
                        JMP.W CODE_8386F1                    ;83C730|4CF186  |8386F1;
@@ -9734,7 +9800,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C738:
-                       LDA.B $27                            ;83C738|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;83C738|A527    |000E8F;
                        AND.B #$7F                           ;83C73A|297F    |      ;
                        CMP.B #$03                           ;83C73C|C903    |      ;
                        BEQ CODE_83C745                      ;83C73E|F005    |83C745;
@@ -9745,48 +9811,48 @@ eventID_hoganmer_01_main:
           CODE_83C745:
                        RTS                                  ;83C745|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83C746|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83C746|A603    |000E6B;
                        BNE CODE_83C777                      ;83C748|D02D    |83C777;
-                       INC.B $03                            ;83C74A|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83C74A|E603    |000E6B;
                        LDA.B #$40                           ;83C74C|A940    |      ;
-                       STA.B $33                            ;83C74E|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;83C74E|8533    |000E9B;
                        REP #$30                             ;83C750|C230    |      ;
                        LDA.W #$0100                         ;83C752|A90001  |      ;
                        LDX.W $0E1D                          ;83C755|AE1D0E  |860E1D;
-                       CPX.B $05                            ;83C758|E405    |000E6D;
+                       CPX.B r_ev_05_xPos-$E68              ;83C758|E405    |000E6D;
                        BCS CODE_83C764                      ;83C75A|B008    |83C764;
                        db $A9,$40,$00,$14,$33,$A9,$00,$FF   ;83C75C|        |      ;
                                                             ;      |        |      ;
           CODE_83C764:
-                       STA.B $1A                            ;83C764|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83C764|851A    |000E82;
                        LDA.W #$0500                         ;83C766|A90005  |      ;
-                       STA.B $1C                            ;83C769|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83C769|851C    |000E84;
                        SEP #$30                             ;83C76B|E230    |      ;
                        LDA.B #$04                           ;83C76D|A904    |      ;
-                       TRB.B $2B                            ;83C76F|142B    |000E93;
+                       TRB.B r_ev_2b-$E68                   ;83C76F|142B    |000E93;
                        LDA.B #$1A                           ;83C771|A91A    |      ;
                        JSL.L CODE_848F07                    ;83C773|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C777:
-                       LDA.B $2B                            ;83C777|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83C777|A52B    |000E93;
                        BIT.B #$04                           ;83C779|8904    |      ;
                        BEQ CODE_83C7AB                      ;83C77B|F02E    |83C7AB;
                        JSR.W CODE_83CAF8                    ;83C77D|20F8CA  |83CAF8;
                        BNE CODE_83C7AB                      ;83C780|D029    |83C7AB;
                        LDA.B #$40                           ;83C782|A940    |      ;
-                       TSB.B $10                            ;83C784|0410    |000E78;
+                       TSB.B r_ev_10-$E68                   ;83C784|0410    |000E78;
                        LDA.B #$10                           ;83C786|A910    |      ;
-                       STA.B $27                            ;83C788|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;83C788|8527    |000E8F;
                        STZ.W r_donnoSlot                    ;83C78A|9C180E  |860E18;
                        STZ.W $0E19                          ;83C78D|9C190E  |860E19;
                        STZ.W $0E1A                          ;83C790|9C1A0E  |860E1A;
                        STZ.W $0E1B                          ;83C793|9C1B0E  |860E1B;
                        REP #$21                             ;83C796|C221    |      ;
-                       LDA.B $08                            ;83C798|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83C798|A508    |000E70;
                        ADC.W #$FFF8                         ;83C79A|69F8FF  |      ;
-                       STA.B $08                            ;83C79D|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;83C79D|8508    |000E70;
                        LDA.W #$CF3B                         ;83C79F|A93BCF  |      ;
-                       STA.B $20                            ;83C7A2|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83C7A2|8520    |000E88;
                        SEP #$20                             ;83C7A4|E220    |      ;
                        LDA.B #$04                           ;83C7A6|A904    |      ;
                        JMP.W CODE_8386F1                    ;83C7A8|4CF186  |8386F1;
@@ -9796,17 +9862,17 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_828174                    ;83C7AB|22748182|828174;
                        RTS                                  ;83C7AF|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83C7B0|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83C7B0|A603    |000E6B;
                        BNE CODE_83C7C2                      ;83C7B2|D00E    |83C7C2;
-                       INC.B $03                            ;83C7B4|E603    |000E6B;
-                       LDA.B $33                            ;83C7B6|A533    |000E9B;
+                       INC.B r_ev_03_do-$E68                ;83C7B4|E603    |000E6B;
+                       LDA.B r_ev_33-$E68                   ;83C7B6|A533    |000E9B;
                        EOR.B #$40                           ;83C7B8|4940    |      ;
-                       STA.B $33                            ;83C7BA|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;83C7BA|8533    |000E9B;
                        LDA.B #$09                           ;83C7BC|A909    |      ;
                        JSL.L CODE_848F07                    ;83C7BE|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C7C2:
-                       LDA.B $0F                            ;83C7C2|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83C7C2|A50F    |000E77;
                        BPL CODE_83C7CB                      ;83C7C4|1005    |83C7CB;
                        LDA.B #$06                           ;83C7C6|A906    |      ;
                        JMP.W CODE_8386F1                    ;83C7C8|4CF186  |8386F1;
@@ -9821,34 +9887,34 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83C7D1|22EA8E84|848EEA;
                        RTS                                  ;83C7D5|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83C7D6|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83C7D6|A603    |000E6B;
                        BNE CODE_83C7F7                      ;83C7D8|D01D    |83C7F7;
-                       INC.B $03                            ;83C7DA|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83C7DA|E603    |000E6B;
                        LDA.B #$40                           ;83C7DC|A940    |      ;
-                       TSB.B $10                            ;83C7DE|0410    |000E78;
+                       TSB.B r_ev_10-$E68                   ;83C7DE|0410    |000E78;
                        REP #$20                             ;83C7E0|C220    |      ;
                        LDA.W #$CF3B                         ;83C7E2|A93BCF  |      ;
-                       STA.B $20                            ;83C7E5|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83C7E5|8520    |000E88;
                        SEP #$20                             ;83C7E7|E220    |      ;
                        JSL.L CODE_849086                    ;83C7E9|22869084|849086;
                        AND.B #$3F                           ;83C7ED|293F    |      ;
-                       STA.B $34                            ;83C7EF|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83C7EF|8534    |000E9C;
                        LDA.B #$00                           ;83C7F1|A900    |      ;
                        JSL.L CODE_848F07                    ;83C7F3|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C7F7:
-                       DEC.B $34                            ;83C7F7|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83C7F7|C634    |000E9C;
                        BNE CODE_83C800                      ;83C7F9|D005    |83C800;
                        LDA.B #$0A                           ;83C7FB|A90A    |      ;
                        JMP.W CODE_8386F1                    ;83C7FD|4CF186  |8386F1;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C800:
-                       LDA.B $2B                            ;83C800|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83C800|A52B    |000E93;
                        BIT.B #$04                           ;83C802|8904    |      ;
                        BNE CODE_83C80F                      ;83C804|D009    |83C80F;
-                       STZ.B $1C                            ;83C806|641C    |000E84;
-                       STZ.B $1D                            ;83C808|641D    |000E85;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83C806|641C    |000E84;
+                       STZ.B r_ev_1d_ySpd-$E68              ;83C808|641D    |000E85;
                        LDA.B #$16                           ;83C80A|A916    |      ;
                        JMP.W CODE_8386F1                    ;83C80C|4CF186  |8386F1;
                                                             ;      |        |      ;
@@ -9856,14 +9922,14 @@ eventID_hoganmer_01_main:
           CODE_83C80F:
                        RTS                                  ;83C80F|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83C810|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83C810|A603    |000E6B;
                        BNE CODE_83C81C                      ;83C812|D008    |83C81C;
-                       INC.B $03                            ;83C814|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83C814|E603    |000E6B;
                        LDA.B #$02                           ;83C816|A902    |      ;
                        JSL.L CODE_848F07                    ;83C818|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C81C:
-                       LDA.B $0F                            ;83C81C|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83C81C|A50F    |000E77;
                        BPL CODE_83C825                      ;83C81E|1005    |83C825;
                        LDA.B #$06                           ;83C820|A906    |      ;
                        JMP.W CODE_8386F1                    ;83C822|4CF186  |8386F1;
@@ -9874,18 +9940,18 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83C828|22EA8E84|848EEA;
                        RTS                                  ;83C82C|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83C82D|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83C82D|A603    |000E6B;
                        BNE CODE_83C839                      ;83C82F|D008    |83C839;
-                       INC.B $03                            ;83C831|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83C831|E603    |000E6B;
                        LDA.B #$01                           ;83C833|A901    |      ;
                        JSL.L CODE_848F07                    ;83C835|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C839:
-                       LDA.B $2B                            ;83C839|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83C839|A52B    |000E93;
                        BIT.B #$04                           ;83C83B|8904    |      ;
                        BNE CODE_83C848                      ;83C83D|D009    |83C848;
-                       STZ.B $1C                            ;83C83F|641C    |000E84;
-                       STZ.B $1D                            ;83C841|641D    |000E85;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83C83F|641C    |000E84;
+                       STZ.B r_ev_1d_ySpd-$E68              ;83C841|641D    |000E85;
                        LDA.B #$16                           ;83C843|A916    |      ;
                        JMP.W CODE_8386F1                    ;83C845|4CF186  |8386F1;
                                                             ;      |        |      ;
@@ -9905,11 +9971,11 @@ eventID_hoganmer_01_main:
           CODE_83C85E:
                        JSR.W CODE_83CB42                    ;83C85E|2042CB  |83CB42;
                        BCS CODE_83C86D                      ;83C861|B00A    |83C86D;
-                       LDA.B $2B                            ;83C863|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83C863|A52B    |000E93;
                        BIT.B #$03                           ;83C865|8903    |      ;
                        BEQ CODE_83C872                      ;83C867|F009    |83C872;
                        LDA.B #$80                           ;83C869|A980    |      ;
-                       TSB.B $10                            ;83C86B|0410    |000E78;
+                       TSB.B r_ev_10-$E68                   ;83C86B|0410    |000E78;
                                                             ;      |        |      ;
           CODE_83C86D:
                        LDA.B #$0C                           ;83C86D|A90C    |      ;
@@ -9928,7 +9994,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83C881:
                        JSL.L updateEv_13_14_17_0f           ;83C881|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83C885|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83C885|A50F    |000E77;
                        AND.B #$03                           ;83C887|2903    |      ;
                        BEQ CODE_83C891                      ;83C889|F006    |83C891;
                        ORA.B #$38                           ;83C88B|0938    |      ;
@@ -9937,41 +10003,41 @@ eventID_hoganmer_01_main:
           CODE_83C891:
                        RTS                                  ;83C891|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83C892|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83C892|A603    |000E6B;
                        BNE CODE_83C8D1                      ;83C894|D03B    |83C8D1;
-                       INC.B $03                            ;83C896|E603    |000E6B;
-                       LDA.B $10                            ;83C898|A510    |000E78;
+                       INC.B r_ev_03_do-$E68                ;83C896|E603    |000E6B;
+                       LDA.B r_ev_10-$E68                   ;83C898|A510    |000E78;
                        BMI CODE_83C8B0                      ;83C89A|3014    |83C8B0;
                        JSL.L CODE_849086                    ;83C89C|22869084|849086;
                        AND.B #$01                           ;83C8A0|2901    |      ;
                        BNE CODE_83C8B0                      ;83C8A2|D00C    |83C8B0;
                        REP #$20                             ;83C8A4|C220    |      ;
-                       LDA.B $1A                            ;83C8A6|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;83C8A6|A51A    |000E82;
                        EOR.W #$FFFF                         ;83C8A8|49FFFF  |      ;
                        INC A                                ;83C8AB|1A      |      ;
-                       STA.B $1A                            ;83C8AC|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83C8AC|851A    |000E82;
                        SEP #$20                             ;83C8AE|E220    |      ;
                                                             ;      |        |      ;
           CODE_83C8B0:
                        LDA.B #$80                           ;83C8B0|A980    |      ;
-                       TRB.B $10                            ;83C8B2|1410    |000E78;
+                       TRB.B r_ev_10-$E68                   ;83C8B2|1410    |000E78;
                        LDA.B #$53                           ;83C8B4|A953    |      ;
-                       STA.B $1C                            ;83C8B6|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83C8B6|851C    |000E84;
                        LDA.B #$05                           ;83C8B8|A905    |      ;
-                       STA.B $1D                            ;83C8BA|851D    |000E85;
+                       STA.B r_ev_1d_ySpd-$E68              ;83C8BA|851D    |000E85;
                        LDA.B #$38                           ;83C8BC|A938    |      ;
                        JSL.L CODE_8088A2                    ;83C8BE|22A28880|8088A2;
                        LDA.B #$08                           ;83C8C2|A908    |      ;
-                       STA.B $2F                            ;83C8C4|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;83C8C4|852F    |000E97;
                        LDA.B #$0C                           ;83C8C6|A90C    |      ;
                        JSR.W CODE_83CD18                    ;83C8C8|2018CD  |83CD18;
                        LDA.B #$03                           ;83C8CB|A903    |      ;
                        JSL.L CODE_848F07                    ;83C8CD|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C8D1:
-                       LDA.B $1D                            ;83C8D1|A51D    |000E85;
+                       LDA.B r_ev_1d_ySpd-$E68              ;83C8D1|A51D    |000E85;
                        BMI CODE_83C8DB                      ;83C8D3|3006    |83C8DB;
-                       LDA.B $2B                            ;83C8D5|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83C8D5|A52B    |000E93;
                        BIT.B #$08                           ;83C8D7|8908    |      ;
                        BEQ CODE_83C8E0                      ;83C8D9|F005    |83C8E0;
                                                             ;      |        |      ;
@@ -9994,18 +10060,18 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_828174                    ;83C8EF|22748182|828174;
                        RTS                                  ;83C8F3|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83C8F4|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83C8F4|A603    |000E6B;
                        BNE CODE_83C900                      ;83C8F6|D008    |83C900;
-                       INC.B $03                            ;83C8F8|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83C8F8|E603    |000E6B;
                        LDA.B #$05                           ;83C8FA|A905    |      ;
                        JSL.L CODE_848F07                    ;83C8FC|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C900:
-                       LDA.B $2B                            ;83C900|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83C900|A52B    |000E93;
                        BIT.B #$08                           ;83C902|8908    |      ;
                        BEQ CODE_83C90A                      ;83C904|F004    |83C90A;
-                       STZ.B $1C                            ;83C906|641C    |000E84;
-                       STZ.B $1D                            ;83C908|641D    |000E85;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83C906|641C    |000E84;
+                       STZ.B r_ev_1d_ySpd-$E68              ;83C908|641D    |000E85;
                                                             ;      |        |      ;
           CODE_83C90A:
                        BIT.B #$04                           ;83C90A|8904    |      ;
@@ -10015,9 +10081,9 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C913:
-                       LDA.B $0F                            ;83C913|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83C913|A50F    |000E77;
                        BPL CODE_83C924                      ;83C915|100D    |83C924;
-                       LDA.B $1D                            ;83C917|A51D    |000E85;
+                       LDA.B r_ev_1d_ySpd-$E68              ;83C917|A51D    |000E85;
                        BPL CODE_83C91F                      ;83C919|1004    |83C91F;
                        LDA.B #$0C                           ;83C91B|A90C    |      ;
                        BRA CODE_83C921                      ;83C91D|8002    |83C921;
@@ -10027,7 +10093,7 @@ eventID_hoganmer_01_main:
                        LDA.B #$16                           ;83C91F|A916    |      ;
                                                             ;      |        |      ;
           CODE_83C921:
-                       STA.B $02                            ;83C921|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;83C921|8502    |000E6A;
                        RTS                                  ;83C923|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10037,36 +10103,36 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83C92B|22EA8E84|848EEA;
                        RTS                                  ;83C92F|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83C930|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83C930|A603    |000E6B;
                        BNE CODE_83C958                      ;83C932|D024    |83C958;
-                       INC.B $03                            ;83C934|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83C934|E603    |000E6B;
                        REP #$20                             ;83C936|C220    |      ;
                        LDA.W #$0400                         ;83C938|A90004  |      ;
-                       BIT.B $32                            ;83C93B|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;83C93B|2432    |000E9A;
                        BVS CODE_83C942                      ;83C93D|7003    |83C942;
                        LDA.W #$FC00                         ;83C93F|A900FC  |      ;
                                                             ;      |        |      ;
           CODE_83C942:
-                       STA.B $1A                            ;83C942|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83C942|851A    |000E82;
                        SEP #$20                             ;83C944|E220    |      ;
-                       STZ.B $31                            ;83C946|6431    |000E99;
+                       STZ.B r_ev_31-$E68                   ;83C946|6431    |000E99;
                        LDA.B #$3B                           ;83C948|A93B    |      ;
                        JSL.L CODE_8088A2                    ;83C94A|22A28880|8088A2;
                        LDA.B #$40                           ;83C94E|A940    |      ;
-                       STA.B $34                            ;83C950|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83C950|8534    |000E9C;
                        LDA.B #$06                           ;83C952|A906    |      ;
                        JSL.L CODE_848F07                    ;83C954|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C958:
                        JSR.W CODE_83CDB3                    ;83C958|20B3CD  |83CDB3;
-                       DEC.B $34                            ;83C95B|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83C95B|C634    |000E9C;
                        BNE CODE_83C964                      ;83C95D|D005    |83C964;
                        LDA.B #$1A                           ;83C95F|A91A    |      ;
                        JMP.W CODE_8386F1                    ;83C961|4CF186  |8386F1;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C964:
-                       LDA.B $2B                            ;83C964|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83C964|A52B    |000E93;
                        BIT.B #$04                           ;83C966|8904    |      ;
                        BNE CODE_83C973                      ;83C968|D009    |83C973;
                        db $64,$1C,$64,$1D,$A9,$16,$4C,$F1   ;83C96A|        |00001C;
@@ -10093,20 +10159,20 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83C993|22EA8E84|848EEA;
                        RTS                                  ;83C997|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83C998|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83C998|A603    |000E6B;
                        BNE CODE_83C9A4                      ;83C99A|D008    |83C9A4;
-                       INC.B $03                            ;83C99C|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83C99C|E603    |000E6B;
                        LDA.B #$08                           ;83C99E|A908    |      ;
                        JSL.L CODE_848F07                    ;83C9A0|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C9A4:
-                       DEC.B $34                            ;83C9A4|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83C9A4|C634    |000E9C;
                        BEQ CODE_83C9BB                      ;83C9A6|F013    |83C9BB;
-                       LDA.B $2B                            ;83C9A8|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83C9A8|A52B    |000E93;
                        BIT.B #$04                           ;83C9AA|8904    |      ;
                        BNE CODE_83C9B7                      ;83C9AC|D009    |83C9B7;
-                       STZ.B $1C                            ;83C9AE|641C    |000E84;
-                       STZ.B $1D                            ;83C9B0|641D    |000E85;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83C9AE|641C    |000E84;
+                       STZ.B r_ev_1d_ySpd-$E68              ;83C9B0|641D    |000E85;
                        LDA.B #$16                           ;83C9B2|A916    |      ;
                        JMP.W CODE_8386F1                    ;83C9B4|4CF186  |8386F1;
                                                             ;      |        |      ;
@@ -10126,14 +10192,14 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83C9C7|22EA8E84|848EEA;
                        RTS                                  ;83C9CB|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83C9CC|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83C9CC|A603    |000E6B;
                        BNE CODE_83C9D8                      ;83C9CE|D008    |83C9D8;
-                       INC.B $03                            ;83C9D0|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83C9D0|E603    |000E6B;
                        LDA.B #$07                           ;83C9D2|A907    |      ;
                        JSL.L CODE_848F07                    ;83C9D4|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C9D8:
-                       LDA.B $0F                            ;83C9D8|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83C9D8|A50F    |000E77;
                        BPL CODE_83C9E1                      ;83C9DA|1005    |83C9E1;
                        LDA.B #$0A                           ;83C9DC|A90A    |      ;
                        JMP.W CODE_8386F1                    ;83C9DE|4CF186  |8386F1;
@@ -10156,16 +10222,16 @@ eventID_hoganmer_01_main:
                        db $0F,$10,$0E,$A9,$3C,$85,$34,$A9   ;83CA36|        |A90E10;
                        db $18,$22,$07,$8F,$84,$A9,$04,$85   ;83CA3E|        |      ;
                        db $03,$22,$EA,$8E,$84,$60           ;83CA46|        |000022;
-                       LDX.B $03                            ;83CA4C|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83CA4C|A603    |000E6B;
                        BNE CODE_83CA5C                      ;83CA4E|D00C    |83CA5C;
-                       INC.B $03                            ;83CA50|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83CA50|E603    |000E6B;
                        LDA.B #$08                           ;83CA52|A908    |      ;
-                       STA.B $2F                            ;83CA54|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;83CA54|852F    |000E97;
                        LDA.B #$03                           ;83CA56|A903    |      ;
                        JSL.L CODE_848F07                    ;83CA58|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83CA5C:
-                       LDA.B $2B                            ;83CA5C|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83CA5C|A52B    |000E93;
                        BIT.B #$04                           ;83CA5E|8904    |      ;
                        BEQ CODE_83CA67                      ;83CA60|F005    |83CA67;
                        LDA.B #$18                           ;83CA62|A918    |      ;
@@ -10175,7 +10241,7 @@ eventID_hoganmer_01_main:
           CODE_83CA67:
                        REP #$20                             ;83CA67|C220    |      ;
                        LDA.W #$FA80                         ;83CA69|A980FA  |      ;
-                       CMP.B $1C                            ;83CA6C|C51C    |000E84;
+                       CMP.B r_ev_1c_ySpdSub-$E68           ;83CA6C|C51C    |000E84;
                        BMI CODE_83CA72                      ;83CA6E|3002    |83CA72;
                        db $85,$1C                           ;83CA70|        |00001C;
                                                             ;      |        |      ;
@@ -10184,23 +10250,23 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_828174                    ;83CA74|22748182|828174;
                        RTS                                  ;83CA78|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83CA79|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83CA79|A603    |000E6B;
                        BNE CODE_83CA9D                      ;83CA7B|D020    |83CA9D;
-                       INC.B $03                            ;83CA7D|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83CA7D|E603    |000E6B;
                        LDX.B #$02                           ;83CA7F|A202    |      ;
                        LDY.B #$01                           ;83CA81|A001    |      ;
                        LDA.B #$0A                           ;83CA83|A90A    |      ;
                        JSL.L CODE_84A341                    ;83CA85|2241A384|84A341;
                        LDA.B #$39                           ;83CA89|A939    |      ;
                        JSL.L CODE_8088A2                    ;83CA8B|22A28880|8088A2;
-                       STZ.B $2F                            ;83CA8F|642F    |000E97;
+                       STZ.B r_ev_2f-$E68                   ;83CA8F|642F    |000E97;
                        JSR.W CODE_83CD41                    ;83CA91|2041CD  |83CD41;
                        JSR.W CODE_83CD6C                    ;83CA94|206CCD  |83CD6C;
                        LDA.B #$04                           ;83CA97|A904    |      ;
                        JSL.L CODE_848F07                    ;83CA99|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83CA9D:
-                       LDA.B $0F                            ;83CA9D|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83CA9D|A50F    |000E77;
                        BPL CODE_83CAA6                      ;83CA9F|1005    |83CAA6;
                        LDA.B #$0A                           ;83CAA1|A90A    |      ;
                        JMP.W CODE_8386F1                    ;83CAA3|4CF186  |8386F1;
@@ -10210,15 +10276,17 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83CAA6|22EA8E84|848EEA;
                        RTS                                  ;83CAAA|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;83CAAB|A602    |000E6A;
+                                                            ;      |        |      ;
+          CODE_83CAAB:
+                       LDX.B r_ev_02_action-$E68            ;83CAAB|A602    |000E6A;
                        BNE CODE_83CAC7                      ;83CAAD|D018    |83CAC7;
-                       INC.B $02                            ;83CAAF|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;83CAAF|E602    |000E6A;
                        LDA.B #$01                           ;83CAB1|A901    |      ;
-                       STA.B $34                            ;83CAB3|8534    |000E9C;
-                       BIT.B $10                            ;83CAB5|2410    |000E78;
+                       STA.B r_ev_34-$E68                   ;83CAB3|8534    |000E9C;
+                       BIT.B r_ev_10-$E68                   ;83CAB5|2410    |000E78;
                        BVC CODE_83CAC6                      ;83CAB7|500D    |83CAC6;
                        LDA.B #$1E                           ;83CAB9|A91E    |      ;
-                       STA.B $34                            ;83CABB|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83CABB|8534    |000E9C;
                        JSR.W CODE_83CC52                    ;83CABD|2052CC  |83CC52;
                        JSR.W CODE_83CC46                    ;83CAC0|2046CC  |83CC46;
                        JSR.W CODE_83CCBD                    ;83CAC3|20BDCC  |83CCBD;
@@ -10228,10 +10296,10 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83CAC7:
-                       DEC.B $34                            ;83CAC7|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83CAC7|C634    |000E9C;
                        BNE CODE_83CAD3                      ;83CAC9|D008    |83CAD3;
                        JSL.L CODE_84A4B5                    ;83CACB|22B5A484|84A4B5;
-                       JML.L CODE_828387                    ;83CACF|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83CACF|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83CAD3:
@@ -10264,12 +10332,12 @@ eventID_hoganmer_01_main:
                        REP #$20                             ;83CB05|C220    |      ;
                        LDX.B #$40                           ;83CB07|A240    |      ;
                        LDA.W r_0bad                         ;83CB09|ADAD0B  |860BAD;
-                       CMP.B $05                            ;83CB0C|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;83CB0C|C505    |000E6D;
                        BCS CODE_83CB12                      ;83CB0E|B002    |83CB12;
                        LDX.B #$00                           ;83CB10|A200    |      ;
                                                             ;      |        |      ;
           CODE_83CB12:
-                       STX.B $33                            ;83CB12|8633    |000E9B;
+                       STX.B r_ev_33-$E68                   ;83CB12|8633    |000E9B;
                        SEP #$20                             ;83CB14|E220    |      ;
                        RTS                                  ;83CB16|60      |      ;
                                                             ;      |        |      ;
@@ -10278,12 +10346,12 @@ eventID_hoganmer_01_main:
                        JSR.W CODE_83CB05                    ;83CB17|2005CB  |83CB05;
                        REP #$20                             ;83CB1A|C220    |      ;
                        LDA.W #$0178                         ;83CB1C|A97801  |      ;
-                       BIT.B $32                            ;83CB1F|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;83CB1F|2432    |000E9A;
                        BVS CODE_83CB26                      ;83CB21|7003    |83CB26;
                        LDA.W #$FE88                         ;83CB23|A988FE  |      ;
                                                             ;      |        |      ;
           CODE_83CB26:
-                       STA.B $1A                            ;83CB26|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83CB26|851A    |000E82;
                        SEP #$20                             ;83CB28|E220    |      ;
                        RTS                                  ;83CB2A|60      |      ;
                                                             ;      |        |      ;
@@ -10293,7 +10361,7 @@ eventID_hoganmer_01_main:
                        STA.W r_0000                         ;83CB2D|8D0000  |860000;
                        LDA.W r_0bad                         ;83CB30|ADAD0B  |860BAD;
                        SEC                                  ;83CB33|38      |      ;
-                       SBC.B $05                            ;83CB34|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;83CB34|E505    |000E6D;
                        BPL CODE_83CB3C                      ;83CB36|1004    |83CB3C;
                        EOR.W #$FFFF                         ;83CB38|49FFFF  |      ;
                        INC A                                ;83CB3B|1A      |      ;
@@ -10306,7 +10374,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83CB42:
                        REP #$20                             ;83CB42|C220    |      ;
-                       LDA.B $08                            ;83CB44|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83CB44|A508    |000E70;
                        SEC                                  ;83CB46|38      |      ;
                        SBC.W r_0bb0                         ;83CB47|EDB00B  |860BB0;
                        BCC CODE_83CB51                      ;83CB4A|9005    |83CB51;
@@ -10319,7 +10387,7 @@ eventID_hoganmer_01_main:
                        BEQ CODE_83CB63                      ;83CB56|F00B    |83CB63;
                        LDA.W r_0bb9                         ;83CB58|ADB90B  |860BB9;
                        AND.B #$40                           ;83CB5B|2940    |      ;
-                       CMP.B $33                            ;83CB5D|C533    |000E9B;
+                       CMP.B r_ev_33-$E68                   ;83CB5D|C533    |000E9B;
                        BEQ CODE_83CB63                      ;83CB5F|F002    |83CB63;
                        SEC                                  ;83CB61|38      |      ;
                        RTS                                  ;83CB62|60      |      ;
@@ -10333,29 +10401,29 @@ eventID_hoganmer_01_main:
           CODE_83CB65:
                        SEP #$20                             ;83CB65|E220    |      ;
                        LDA.B #$80                           ;83CB67|A980    |      ;
-                       TSB.B $10                            ;83CB69|0410    |000E78;
+                       TSB.B r_ev_10-$E68                   ;83CB69|0410    |000E78;
                        RTS                                  ;83CB6B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83CB6C:
-                       BIT.B $0F                            ;83CB6C|240F    |000E77;
+                       BIT.B r_ev_0f-$E68                   ;83CB6C|240F    |000E77;
                        BVC CODE_83CBA4                      ;83CB6E|5034    |83CBA4;
                        REP #$21                             ;83CB70|C221    |      ;
-                       LDA.B $0F                            ;83CB72|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83CB72|A50F    |000E77;
                        AND.W #$0030                         ;83CB74|293000  |      ;
                        LSR A                                ;83CB77|4A      |      ;
                        LSR A                                ;83CB78|4A      |      ;
                        ADC.W #$CF45                         ;83CB79|6945CF  |      ;
-                       STA.B $20                            ;83CB7C|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83CB7C|8520    |000E88;
                        SEP #$20                             ;83CB7E|E220    |      ;
                        LDA.B #$03                           ;83CB80|A903    |      ;
-                       LDX.B $0A                            ;83CB82|A60A    |000E72;
+                       LDX.B r_ev_0a_ID-$E68                ;83CB82|A60A    |000E72;
                        CPX.B #$67                           ;83CB84|E067    |      ;
                        BNE CODE_83CB8A                      ;83CB86|D002    |83CB8A;
                        LDA.B #$06                           ;83CB88|A906    |      ;
                                                             ;      |        |      ;
           CODE_83CB8A:
-                       STA.B $26                            ;83CB8A|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;83CB8A|8526    |000E8E;
                        JSL.L CODE_849B03                    ;83CB8C|22039B84|849B03;
                        BEQ CODE_83CB98                      ;83CB90|F006    |83CB98;
                        LDA.B #$3C                           ;83CB92|A93C    |      ;
@@ -10363,42 +10431,42 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83CB98:
                        LDA.B #$3B                           ;83CB98|A93B    |      ;
-                       STA.B $20                            ;83CB9A|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83CB9A|8520    |000E88;
                        LDA.B #$CF                           ;83CB9C|A9CF    |      ;
-                       STA.B $21                            ;83CB9E|8521    |000E89;
+                       STA.B r_ev_21-$E68                   ;83CB9E|8521    |000E89;
                        LDA.B #$01                           ;83CBA0|A901    |      ;
-                       STA.B $26                            ;83CBA2|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;83CBA2|8526    |000E8E;
                                                             ;      |        |      ;
           CODE_83CBA4:
                        RTS                                  ;83CBA4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83CBA5:
-                       LDA.B $35                            ;83CBA5|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;83CBA5|A535    |000E9D;
                        BEQ CODE_83CBB1                      ;83CBA7|F008    |83CBB1;
-                       DEC.B $35                            ;83CBA9|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;83CBA9|C635    |000E9D;
                        BNE CODE_83CBB1                      ;83CBAB|D004    |83CBB1;
                        LDA.B #$03                           ;83CBAD|A903    |      ;
-                       STA.B $28                            ;83CBAF|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;83CBAF|8528    |000E90;
                                                             ;      |        |      ;
           CODE_83CBB1:
                        RTS                                  ;83CBB1|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83CBB2:
-                       LDX.B $32                            ;83CBB2|A632    |000E9A;
+                       LDX.B r_ev_32-$E68                   ;83CBB2|A632    |000E9A;
                        JMP.W (UNREACH_83CBB7,X)             ;83CBB4|7CB7CB  |83CBB7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83CBB7:
                        db $EA,$CB,$BD,$CB,$EB,$CB           ;83CBB7|        |      ;
                        LDA.B #$04                           ;83CBBD|A904    |      ;
-                       STA.B $32                            ;83CBBF|8532    |000E9A;
-                       STZ.B $31                            ;83CBC1|6431    |000E99;
-                       LDA.B $27                            ;83CBC3|A527    |000E8F;
+                       STA.B r_ev_32-$E68                   ;83CBBF|8532    |000E9A;
+                       STZ.B r_ev_31-$E68                   ;83CBC1|6431    |000E99;
+                       LDA.B r_ev_27-$E68                   ;83CBC3|A527    |000E8F;
                        AND.B #$7F                           ;83CBC5|297F    |      ;
                        STA.W r_0000                         ;83CBC7|8D0000  |860000;
-                       LDA.B $3B                            ;83CBCA|A53B    |000EA3;
+                       LDA.B r_ev_3b-$E68                   ;83CBCA|A53B    |000EA3;
                        SEC                                  ;83CBCC|38      |      ;
                        SBC.W r_0000                         ;83CBCD|ED0000  |860000;
                        REP #$20                             ;83CBD0|C220    |      ;
@@ -10409,36 +10477,36 @@ eventID_hoganmer_01_main:
                        LDA.W #$0700                         ;83CBDB|A90007  |      ;
                                                             ;      |        |      ;
           CODE_83CBDE:
-                       BIT.B $39                            ;83CBDE|2439    |000EA1;
+                       BIT.B r_ev_39-$E68                   ;83CBDE|2439    |000EA1;
                        BVC CODE_83CBE6                      ;83CBE0|5004    |83CBE6;
                        EOR.W #$FFFF                         ;83CBE2|49FFFF  |      ;
                        INC A                                ;83CBE5|1A      |      ;
                                                             ;      |        |      ;
           CODE_83CBE6:
-                       STA.B $36                            ;83CBE6|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;83CBE6|8536    |000E9E;
                        SEP #$20                             ;83CBE8|E220    |      ;
                        RTS                                  ;83CBEA|60      |      ;
                                                             ;      |        |      ;
                        REP #$30                             ;83CBEB|C230    |      ;
-                       LDX.B $1A                            ;83CBED|A61A    |000E82;
-                       LDA.B $36                            ;83CBEF|A536    |000E9E;
-                       STA.B $1A                            ;83CBF1|851A    |000E82;
-                       STX.B $36                            ;83CBF3|8636    |000E9E;
-                       LDA.B $1C                            ;83CBF5|A51C    |000E84;
-                       STA.B $38                            ;83CBF7|8538    |000EA0;
-                       STZ.B $1C                            ;83CBF9|641C    |000E84;
+                       LDX.B r_ev_1a_xSpdSub-$E68           ;83CBED|A61A    |000E82;
+                       LDA.B r_ev_36-$E68                   ;83CBEF|A536    |000E9E;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83CBF1|851A    |000E82;
+                       STX.B r_ev_36-$E68                   ;83CBF3|8636    |000E9E;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;83CBF5|A51C    |000E84;
+                       STA.B r_ev_38-$E68                   ;83CBF7|8538    |000EA0;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83CBF9|641C    |000E84;
                        LDA.W #$4040                         ;83CBFB|A94040  |      ;
-                       STA.B $1E                            ;83CBFE|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;83CBFE|851E    |000E86;
                        SEP #$30                             ;83CC00|E230    |      ;
-                       LDA.B $2B                            ;83CC02|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83CC02|A52B    |000E93;
                        BIT.B #$04                           ;83CC04|8904    |      ;
                        BEQ CODE_83CC0B                      ;83CC06|F003    |83CC0B;
                        JSR.W CODE_83CDB3                    ;83CC08|20B3CD  |83CDB3;
                                                             ;      |        |      ;
           CODE_83CC0B:
-                       LDA.B $3A                            ;83CC0B|A53A    |000EA2;
-                       STA.B $33                            ;83CC0D|8533    |000E9B;
-                       BIT.B $3A                            ;83CC0F|243A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;83CC0B|A53A    |000EA2;
+                       STA.B r_ev_33-$E68                   ;83CC0D|8533    |000E9B;
+                       BIT.B r_ev_3a-$E68                   ;83CC0F|243A    |000EA2;
                        BVC CODE_83CC19                      ;83CC11|5006    |83CC19;
                        JSL.L CODE_828195                    ;83CC13|22958182|828195;
                        BRA CODE_83CC1D                      ;83CC17|8004    |83CC1D;
@@ -10449,7 +10517,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83CC1D:
                        REP #$20                             ;83CC1D|C220    |      ;
-                       LDA.B $1A                            ;83CC1F|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;83CC1F|A51A    |000E82;
                        BPL CODE_83CC27                      ;83CC21|1004    |83CC27;
                        EOR.W #$FFFF                         ;83CC23|49FFFF  |      ;
                        INC A                                ;83CC26|1A      |      ;
@@ -10458,18 +10526,18 @@ eventID_hoganmer_01_main:
                        CMP.W #$0040                         ;83CC27|C94000  |      ;
                        BCS CODE_83CC30                      ;83CC2A|B004    |83CC30;
                        LDX.B #$00                           ;83CC2C|A200    |      ;
-                       STX.B $32                            ;83CC2E|8632    |000E9A;
+                       STX.B r_ev_32-$E68                   ;83CC2E|8632    |000E9A;
                                                             ;      |        |      ;
           CODE_83CC30:
                        REP #$10                             ;83CC30|C210    |      ;
-                       LDX.B $36                            ;83CC32|A636    |000E9E;
-                       LDA.B $1A                            ;83CC34|A51A    |000E82;
-                       STA.B $36                            ;83CC36|8536    |000E9E;
-                       STX.B $1A                            ;83CC38|861A    |000E82;
-                       LDA.B $38                            ;83CC3A|A538    |000EA0;
-                       STA.B $1C                            ;83CC3C|851C    |000E84;
+                       LDX.B r_ev_36-$E68                   ;83CC32|A636    |000E9E;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;83CC34|A51A    |000E82;
+                       STA.B r_ev_36-$E68                   ;83CC36|8536    |000E9E;
+                       STX.B r_ev_1a_xSpdSub-$E68           ;83CC38|861A    |000E82;
+                       LDA.B r_ev_38-$E68                   ;83CC3A|A538    |000EA0;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83CC3C|851C    |000E84;
                        LDA.W #$0040                         ;83CC3E|A94000  |      ;
-                       STA.B $1E                            ;83CC41|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;83CC41|851E    |000E86;
                        SEP #$30                             ;83CC43|E230    |      ;
                        RTS                                  ;83CC45|60      |      ;
                                                             ;      |        |      ;
@@ -10499,7 +10567,7 @@ eventID_hoganmer_01_main:
                        LDA.W r_0000                         ;83CC70|AD0000  |860000;
                        STA.W r_000b,X                       ;83CC73|9D0B00  |86000B;
                        INC.W r_0000                         ;83CC76|EE0000  |860000;
-                       LDA.B $33                            ;83CC79|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;83CC79|A533    |000E9B;
                        ORA.B #$30                           ;83CC7B|0930    |      ;
                        STA.W r_0011,X                       ;83CC7D|9D1100  |860011;
                        STZ.W r_001f,X                       ;83CC80|9E1F00  |86001F;
@@ -10507,9 +10575,9 @@ eventID_hoganmer_01_main:
                        STA.W r_001e,X                       ;83CC85|9D1E00  |86001E;
                        REP #$20                             ;83CC88|C220    |      ;
                        STZ.W r_000c,X                       ;83CC8A|9E0C00  |86000C;
-                       LDA.B $05                            ;83CC8D|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83CC8D|A505    |000E6D;
                        STA.W r_0005,X                       ;83CC8F|9D0500  |860005;
-                       LDA.B $08                            ;83CC92|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83CC92|A508    |000E70;
                        STA.W r_0008,X                       ;83CC94|9D0800  |860008;
                        PHY                                  ;83CC97|5A      |      ;
                        JSL.L CODE_849086                    ;83CC98|22869084|849086;
@@ -10547,15 +10615,15 @@ eventID_hoganmer_01_main:
                        CLC                                  ;83CCD3|18      |      ;
                        ADC.B #$0E                           ;83CCD4|690E    |      ;
                        STA.W r_000b,X                       ;83CCD6|9D0B00  |86000B;
-                       LDA.B $11                            ;83CCD9|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83CCD9|A511    |000E79;
                        STA.W r_0011,X                       ;83CCDB|9D1100  |860011;
                        STZ.W r_001f,X                       ;83CCDE|9E1F00  |86001F;
                        LDA.B #$30                           ;83CCE1|A930    |      ;
                        STA.W r_001e,X                       ;83CCE3|9D1E00  |86001E;
                        REP #$20                             ;83CCE6|C220    |      ;
-                       LDA.B $05                            ;83CCE8|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83CCE8|A505    |000E6D;
                        STA.W r_0005,X                       ;83CCEA|9D0500  |860005;
-                       LDA.B $08                            ;83CCED|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83CCED|A508    |000E70;
                        STA.W r_0008,X                       ;83CCEF|9D0800  |860008;
                        PHY                                  ;83CCF2|5A      |      ;
                        JSL.L CODE_849086                    ;83CCF3|22869084|849086;
@@ -10587,8 +10655,8 @@ eventID_hoganmer_01_main:
                        STA.W r_000a,X                       ;83CD26|9D0A00  |86000A;
                        LDA.W r_0000                         ;83CD29|AD0000  |860000;
                        STA.W r_000b,X                       ;83CD2C|9D0B00  |86000B;
-                       LDA.B $11                            ;83CD2F|A511    |000E79;
-                       ORA.B $33                            ;83CD31|0533    |000E9B;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83CD2F|A511    |000E79;
+                       ORA.B r_ev_33-$E68                   ;83CD31|0533    |000E9B;
                        STA.W r_0011,X                       ;83CD33|9D1100  |860011;
                        REP #$20                             ;83CD36|C220    |      ;
                        TDC                                  ;83CD38|7B      |      ;
@@ -10606,15 +10674,15 @@ eventID_hoganmer_01_main:
                        INC.W r_0000,X                       ;83CD47|FE0000  |860000;
                        LDA.B #$10                           ;83CD4A|A910    |      ;
                        STA.W r_000a,X                       ;83CD4C|9D0A00  |86000A;
-                       LDA.B $11                            ;83CD4F|A511    |000E79;
-                       ORA.B $33                            ;83CD51|0533    |000E9B;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83CD4F|A511    |000E79;
+                       ORA.B r_ev_33-$E68                   ;83CD51|0533    |000E9B;
                        STA.W r_0011,X                       ;83CD53|9D1100  |860011;
                        LDA.B #$0B                           ;83CD56|A90B    |      ;
                        STA.W r_000b,X                       ;83CD58|9D0B00  |86000B;
                        REP #$20                             ;83CD5B|C220    |      ;
-                       LDA.B $05                            ;83CD5D|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83CD5D|A505    |000E6D;
                        STA.W r_0005,X                       ;83CD5F|9D0500  |860005;
-                       LDA.B $08                            ;83CD62|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83CD62|A508    |000E70;
                        STA.W r_0008,X                       ;83CD64|9D0800  |860008;
                        SEP #$20                             ;83CD67|E220    |      ;
                                                             ;      |        |      ;
@@ -10637,7 +10705,7 @@ eventID_hoganmer_01_main:
                        STA.W r_000a,X                       ;83CD81|9D0A00  |86000A;
                        STZ.W r_000b,X                       ;83CD84|9E0B00  |86000B;
                        REP #$21                             ;83CD87|C221    |      ;
-                       LDA.B $08                            ;83CD89|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83CD89|A508    |000E70;
                        ADC.W #$0020                         ;83CD8B|692000  |      ;
                        STA.W r_0008,X                       ;83CD8E|9D0800  |860008;
                        JSL.L CODE_849086                    ;83CD91|22869084|849086;
@@ -10651,7 +10719,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83CDA5:
                        CLC                                  ;83CDA5|18      |      ;
-                       ADC.B $05                            ;83CDA6|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83CDA6|6505    |000E6D;
                        STA.W r_0005,X                       ;83CDA8|9D0500  |860005;
                        SEP #$20                             ;83CDAB|E220    |      ;
                        DEY                                  ;83CDAD|88      |      ;
@@ -10667,7 +10735,7 @@ eventID_hoganmer_01_main:
           CODE_83CDB3:
                        JSR.W CODE_83CDEA                    ;83CDB3|20EACD  |83CDEA;
                        BEQ CODE_83CDE9                      ;83CDB6|F031    |83CDE9;
-                       LDA.B $31                            ;83CDB8|A531    |000E99;
+                       LDA.B r_ev_31-$E68                   ;83CDB8|A531    |000E99;
                        CMP.B #$04                           ;83CDBA|C904    |      ;
                        BCS CODE_83CDE7                      ;83CDBC|B029    |83CDE7;
                        LDA.W $0B9C                          ;83CDBE|AD9C0B  |860B9C;
@@ -10675,16 +10743,16 @@ eventID_hoganmer_01_main:
                        BNE CODE_83CDE7                      ;83CDC3|D022    |83CDE7;
                        JSL.L CODE_8282D3                    ;83CDC5|22D38282|8282D3;
                        BNE CODE_83CDE7                      ;83CDC9|D01C    |83CDE7;
-                       INC.B $31                            ;83CDCB|E631    |000E99;
+                       INC.B r_ev_31-$E68                   ;83CDCB|E631    |000E99;
                        INC.W r_0000,X                       ;83CDCD|FE0000  |860000;
                        LDA.B #$09                           ;83CDD0|A909    |      ;
                        STA.W r_000a,X                       ;83CDD2|9D0A00  |86000A;
                        STZ.W r_000b,X                       ;83CDD5|9E0B00  |86000B;
                        REP #$21                             ;83CDD8|C221    |      ;
-                       LDA.B $08                            ;83CDDA|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83CDDA|A508    |000E70;
                        ADC.W #$0020                         ;83CDDC|692000  |      ;
                        STA.W r_0008,X                       ;83CDDF|9D0800  |860008;
-                       LDA.B $05                            ;83CDE2|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83CDE2|A505    |000E6D;
                        STA.W r_0005,X                       ;83CDE4|9D0500  |860005;
                                                             ;      |        |      ;
           CODE_83CDE7:
@@ -10695,14 +10763,14 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83CDEA:
-                       STZ.B $29                            ;83CDEA|6429    |000E91;
+                       STZ.B r_ev_29-$E68                   ;83CDEA|6429    |000E91;
                        LDA.B #$22                           ;83CDEC|A922    |      ;
-                       STA.B $2A                            ;83CDEE|852A    |000E92;
+                       STA.B r_ev_2a-$E68                   ;83CDEE|852A    |000E92;
                        JSL.L CODE_8490A0                    ;83CDF0|22A09084|8490A0;
                        CMP.B #$11                           ;83CDF4|C911    |      ;
                        BEQ CODE_83CE02                      ;83CDF6|F00A    |83CE02;
                        LDA.B #$10                           ;83CDF8|A910    |      ;
-                       STA.B $2A                            ;83CDFA|852A    |000E92;
+                       STA.B r_ev_2a-$E68                   ;83CDFA|852A    |000E92;
                        JSL.L CODE_8490A0                    ;83CDFC|22A09084|8490A0;
                        CMP.B #$11                           ;83CE00|C911    |      ;
                                                             ;      |        |      ;
@@ -10710,19 +10778,19 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83CE02|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83CE03:
-                       LDX.B $01                            ;83CE03|A601    |000E69;
-                       JSR.W (DATA8_83CE65,X)               ;83CE05|FC65CE  |83CE65;
+eventID_digLouber_30_main:
+                       LDX.B r_ev_01_state-$E68             ;83CE03|A601    |000E69;
+                       JSR.W (digLouber_30_state,X)         ;83CE05|FC65CE  |83CE65;
                        JSL.L CODE_879ED4                    ;83CE08|22D49E87|879ED4;
-                       LDA.B $27                            ;83CE0C|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;83CE0C|A527    |000E8F;
                        BEQ CODE_83CE56                      ;83CE0E|F046    |83CE56;
                        JSL.L CODE_849B43                    ;83CE10|22439B84|849B43;
                        BEQ CODE_83CE36                      ;83CE14|F020    |83CE36;
-                       LDA.B $27                            ;83CE16|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;83CE16|A527    |000E8F;
                        AND.B #$7F                           ;83CE18|297F    |      ;
                        BNE CODE_83CE2E                      ;83CE1A|D012    |83CE2E;
                        JSL.L CODE_84A4B5                    ;83CE1C|22B5A484|84A4B5;
-                       JSL.L CODE_828387                    ;83CE20|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;83CE20|22878382|828387;
                        SEP #$10                             ;83CE24|E210    |      ;
                        LDA.B #$01                           ;83CE26|A901    |      ;
                        JSL.L CODE_84A384                    ;83CE28|2284A384|84A384;
@@ -10731,72 +10799,79 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83CE2E:
                        LDA.B #$F1                           ;83CE2E|A9F1    |      ;
-                       AND.B $11                            ;83CE30|2511    |000E79;
-                       STA.B $11                            ;83CE32|8511    |000E79;
+                       AND.B r_ev_11_sprAtri-$E68           ;83CE30|2511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;83CE32|8511    |000E79;
                        BRA CODE_83CE3C                      ;83CE34|8006    |83CE3C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83CE36:
-                       LDA.B $34                            ;83CE36|A534    |000E9C;
-                       ORA.B $11                            ;83CE38|0511    |000E79;
-                       STA.B $11                            ;83CE3A|8511    |000E79;
+                       LDA.B r_ev_34-$E68                   ;83CE36|A534    |000E9C;
+                       ORA.B r_ev_11_sprAtri-$E68           ;83CE38|0511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;83CE3A|8511    |000E79;
                                                             ;      |        |      ;
           CODE_83CE3C:
                        JSL.L CODE_849B03                    ;83CE3C|22039B84|849B03;
-                       LDA.B $0B                            ;83CE40|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;83CE40|A50B    |000E73;
                        CMP.B #$FF                           ;83CE42|C9FF    |      ;
                        BNE CODE_83CE56                      ;83CE44|D010    |83CE56;
-                       STZ.B $0B                            ;83CE46|640B    |000E73;
+                       STZ.B r_ev_0b_subID-$E68             ;83CE46|640B    |000E73;
                        LDA.B #$03                           ;83CE48|A903    |      ;
                        JSL.L CODE_848F07                    ;83CE4A|22078F84|848F07;
                        LDA.B #$02                           ;83CE4E|A902    |      ;
-                       STA.B $01                            ;83CE50|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;83CE50|8501    |000E69;
                        LDA.B #$50                           ;83CE52|A950    |      ;
-                       STA.B $33                            ;83CE54|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;83CE54|8533    |000E9B;
                                                             ;      |        |      ;
           CODE_83CE56:
-                       JSL.L CODE_8280B4                    ;83CE56|22B48082|8280B4;
-                       JSL.L CODE_82806E                    ;83CE5A|226E8082|82806E;
+                       JSL.L eventID_vile_68_afterInit      ;83CE56|22B48082|8280B4;
+                       JSL.L initPosAllign                  ;83CE5A|226E8082|82806E;
                        BCC CODE_83CE64                      ;83CE5E|9004    |83CE64;
-                       JSL.L CODE_828387                    ;83CE60|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;83CE60|22878382|828387;
                                                             ;      |        |      ;
           CODE_83CE64:
                        RTL                                  ;83CE64|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         DATA8_83CE65:
-                       db $6D,$CE,$9D,$CE,$B7,$CE,$CE,$CE   ;83CE65|        |      ;
-                       JSL.L CODE_82827D                    ;83CE6D|227D8282|82827D;
-                       LDA.B $11                            ;83CE71|A511    |000EB9;
+   digLouber_30_state:
+                       dw digLouber_30_state_00             ;83CE65|        |83CE6D;
+                       dw CODE_83CE9D                       ;83CE67|        |83CE9D;
+                       dw CODE_83CEB7                       ;83CE69|        |83CEB7;
+                       dw CODE_83CECE                       ;83CE6B|        |83CECE;
+                                                            ;      |        |      ;
+digLouber_30_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;83CE6D|227D8282|82827D;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;83CE71|A511    |000EB9;
                        AND.B #$0E                           ;83CE73|290E    |      ;
-                       STA.B $34                            ;83CE75|8534    |000EDC;
+                       STA.B r_ev_2_34-$EA8                 ;83CE75|8534    |000EDC;
                        LDA.B #$08                           ;83CE77|A908    |      ;
-                       STA.B $27                            ;83CE79|8527    |000ECF;
+                       STA.B r_ev_2_27-$EA8                 ;83CE79|8527    |000ECF;
                        LDA.B #$01                           ;83CE7B|A901    |      ;
-                       STA.B $28                            ;83CE7D|8528    |000ED0;
+                       STA.B r_ev_2_28-$EA8                 ;83CE7D|8528    |000ED0;
                        LDA.B #$03                           ;83CE7F|A903    |      ;
-                       STA.B $26                            ;83CE81|8526    |000ECE;
+                       STA.B r_ev_2_26-$EA8                 ;83CE81|8526    |000ECE;
                        LDA.B #$04                           ;83CE83|A904    |      ;
-                       STA.B $12                            ;83CE85|8512    |000EBA;
-                       STZ.B $0B                            ;83CE87|640B    |000EB3;
+                       STA.B r_ev_2_12-$EA8                 ;83CE85|8512    |000EBA;
+                       STZ.B r_ev_2_0b_subID-$EA8           ;83CE87|640B    |000EB3;
                        REP #$20                             ;83CE89|C220    |      ;
                        LDA.W #$CF71                         ;83CE8B|A971CF  |      ;
-                       STA.B $20                            ;83CE8E|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;83CE8E|8520    |000EC8;
                        SEP #$20                             ;83CE90|E220    |      ;
                        LDA.B #$01                           ;83CE92|A901    |      ;
-                       STA.B $33                            ;83CE94|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;83CE94|8533    |000EDB;
                        LDA.B #$00                           ;83CE96|A900    |      ;
                        JSL.L CODE_848F07                    ;83CE98|22078F84|848F07;
                        RTS                                  ;83CE9C|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $33                            ;83CE9D|C633    |000E9B;
+                                                            ;      |        |      ;
+          CODE_83CE9D:
+                       DEC.B r_ev_33-$E68                   ;83CE9D|C633    |000E9B;
                        BNE CODE_83CEB2                      ;83CE9F|D011    |83CEB2;
                        LDA.B #$04                           ;83CEA1|A904    |      ;
-                       STA.B $01                            ;83CEA3|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;83CEA3|8501    |000E69;
                        LDA.B #$01                           ;83CEA5|A901    |      ;
                        JSL.L CODE_848F07                    ;83CEA7|22078F84|848F07;
                        LDA.B #$40                           ;83CEAB|A940    |      ;
-                       STA.B $35                            ;83CEAD|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;83CEAD|8535    |000E9D;
                        JMP.W CODE_83CEB6                    ;83CEAF|4CB6CE  |83CEB6;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10806,13 +10881,15 @@ eventID_hoganmer_01_main:
           CODE_83CEB6:
                        RTS                                  ;83CEB6|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $35                            ;83CEB7|C635    |000E9D;
+                                                            ;      |        |      ;
+          CODE_83CEB7:
+                       DEC.B r_ev_35-$E68                   ;83CEB7|C635    |000E9D;
                        BNE CODE_83CEC9                      ;83CEB9|D00E    |83CEC9;
                        JSR.W CODE_83CEE4                    ;83CEBB|20E4CE  |83CEE4;
                        LDA.B #$12                           ;83CEBE|A912    |      ;
-                       STA.B $35                            ;83CEC0|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;83CEC0|8535    |000E9D;
                        LDA.B #$06                           ;83CEC2|A906    |      ;
-                       STA.B $01                            ;83CEC4|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;83CEC4|8501    |000E69;
                        JMP.W CODE_83CECD                    ;83CEC6|4CCDCE  |83CECD;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10822,12 +10899,14 @@ eventID_hoganmer_01_main:
           CODE_83CECD:
                        RTS                                  ;83CECD|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $35                            ;83CECE|C635    |000E9D;
+                                                            ;      |        |      ;
+          CODE_83CECE:
+                       DEC.B r_ev_35-$E68                   ;83CECE|C635    |000E9D;
                        BNE CODE_83CEDF                      ;83CED0|D00D    |83CEDF;
                        LDA.B #$00                           ;83CED2|A900    |      ;
                        JSL.L CODE_848F07                    ;83CED4|22078F84|848F07;
                        LDA.B #$02                           ;83CED8|A902    |      ;
-                       STA.B $01                            ;83CEDA|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;83CEDA|8501    |000E69;
                        JMP.W CODE_83CEE3                    ;83CEDC|4CE3CE  |83CEE3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10847,13 +10926,13 @@ eventID_hoganmer_01_main:
                        STA.W r_000a,X                       ;83CEF1|9D0A00  |86000A;
                        LDA.L $7F824E                        ;83CEF4|AF4E827F|7F824E;
                        STA.W r_0018,X                       ;83CEF8|9D1800  |860018;
-                       LDA.B $34                            ;83CEFB|A534    |000E9C;
-                       ORA.B $11                            ;83CEFD|0511    |000E79;
+                       LDA.B r_ev_34-$E68                   ;83CEFB|A534    |000E9C;
+                       ORA.B r_ev_11_sprAtri-$E68           ;83CEFD|0511    |000E79;
                        STA.W r_0011,X                       ;83CEFF|9D1100  |860011;
                        AND.B #$40                           ;83CF02|2940    |      ;
                        BNE CODE_83CF17                      ;83CF04|D011    |83CF17;
                        REP #$20                             ;83CF06|C220    |      ;
-                       LDA.B $05                            ;83CF08|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83CF08|A505    |000E6D;
                        SEC                                  ;83CF0A|38      |      ;
                        SBC.W #$0014                         ;83CF0B|E91400  |      ;
                        STA.W r_0005,X                       ;83CF0E|9D0500  |860005;
@@ -10871,7 +10950,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83CF25:
                        REP #$20                             ;83CF25|C220    |      ;
-                       LDA.B $08                            ;83CF27|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83CF27|A508    |000E70;
                        SEC                                  ;83CF29|38      |      ;
                        SBC.W #$000C                         ;83CF2A|E90C00  |      ;
                        STA.W r_0008,X                       ;83CF2D|9D0800  |860008;
@@ -10892,7 +10971,7 @@ eventID_hoganmer_01_main:
                        STA.W r_000c,X                       ;83CF4B|9D0C00  |86000C;
                        SEP #$30                             ;83CF4E|E230    |      ;
                        LDA.B #$28                           ;83CF50|A928    |      ;
-                       STA.B $33                            ;83CF52|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;83CF52|8533    |000E9B;
                        RTS                                  ;83CF54|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10909,46 +10988,52 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83CF6F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83CF70:
-                       LDX.B $01                            ;83CF70|A601    |000E69;
-                       JMP.W (UNREACH_83CF75,X)             ;83CF72|7C75CF  |83CF75;
+eventID_mechVile_32_main:
+                       LDX.B r_ev_01_state-$E68             ;83CF70|A601    |000E69;
+                       JMP.W (mechVile_32_state,X)          ;83CF72|7C75CF  |83CF75;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_83CF75:
-                       db $7B,$CF,$AC,$CF,$E3,$D6           ;83CF75|        |      ;
-                       JSL.L CODE_82827D                    ;83CF7B|227D8282|82827D;
+    mechVile_32_state:
+                       dw mechVile_32_state_00              ;83CF75|        |83CF7B;
+                       dw CODE_83CFAC                       ;83CF77|        |83CFAC;
+                       dw CODE_83D6E3                       ;83CF79|        |83D6E3;
+                                                            ;      |        |      ;
+ mechVile_32_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;83CF7B|227D8282|82827D;
                        LDA.B #$04                           ;83CF7F|A904    |      ;
-                       STA.B $12                            ;83CF81|8512    |000E7A;
-                       STZ.B $33                            ;83CF83|6433    |000E9B;
-                       STZ.B $2F                            ;83CF85|642F    |000E97;
+                       STA.B r_ev_12-$E68                   ;83CF81|8512    |000E7A;
+                       STZ.B r_ev_33-$E68                   ;83CF83|6433    |000E9B;
+                       STZ.B r_ev_2f-$E68                   ;83CF85|642F    |000E97;
                        LDA.B #$02                           ;83CF87|A902    |      ;
-                       STA.B $26                            ;83CF89|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;83CF89|8526    |000E8E;
                        LDA.B #$7F                           ;83CF8B|A97F    |      ;
-                       STA.B $27                            ;83CF8D|8527    |000E8F;
-                       STA.B $3B                            ;83CF8F|853B    |000EA3;
+                       STA.B r_ev_27-$E68                   ;83CF8D|8527    |000E8F;
+                       STA.B r_ev_3b-$E68                   ;83CF8F|853B    |000EA3;
                        LDA.B #$03                           ;83CF91|A903    |      ;
-                       STA.B $28                            ;83CF93|8528    |000E90;
-                       STZ.B $10                            ;83CF95|6410    |000E78;
-                       STZ.B $32                            ;83CF97|6432    |000E9A;
+                       STA.B r_ev_28-$E68                   ;83CF93|8528    |000E90;
+                       STZ.B r_ev_10-$E68                   ;83CF95|6410    |000E78;
+                       STZ.B r_ev_32-$E68                   ;83CF97|6432    |000E9A;
                        REP #$20                             ;83CF99|C220    |      ;
                        LDA.W #$CF3B                         ;83CF9B|A93BCF  |      ;
-                       STA.B $20                            ;83CF9E|8520    |000E88;
-                       STZ.B $36                            ;83CFA0|6436    |000E9E;
-                       STZ.B $38                            ;83CFA2|6438    |000EA0;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83CF9E|8520    |000E88;
+                       STZ.B r_ev_36-$E68                   ;83CFA0|6436    |000E9E;
+                       STZ.B r_ev_38-$E68                   ;83CFA2|6438    |000EA0;
                        LDA.W #$0040                         ;83CFA4|A94000  |      ;
-                       STA.B $1E                            ;83CFA7|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;83CFA7|851E    |000E86;
                        SEP #$20                             ;83CFA9|E220    |      ;
                        RTL                                  ;83CFAB|6B      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83CFAC:
                        LDA.L $7F8349                        ;83CFAC|AF49837F|7F8349;
-                       ORA.B $33                            ;83CFB0|0533    |000E9B;
-                       STA.B $11                            ;83CFB2|8511    |000E79;
-                       LDX.B $02                            ;83CFB4|A602    |000E6A;
+                       ORA.B r_ev_33-$E68                   ;83CFB0|0533    |000E9B;
+                       STA.B r_ev_11_sprAtri-$E68           ;83CFB2|8511    |000E79;
+                       LDX.B r_ev_02_action-$E68            ;83CFB4|A602    |000E6A;
                        JSR.W (UNREACH_83D03C,X)             ;83CFB6|FC3CD0  |83D03C;
-                       JSL.L CODE_8280B4                    ;83CFB9|22B48082|8280B4;
-                       LDA.B $27                            ;83CFBD|A527    |000E8F;
+                       JSL.L eventID_vile_68_afterInit      ;83CFB9|22B48082|8280B4;
+                       LDA.B r_ev_27-$E68                   ;83CFBD|A527    |000E8F;
                        AND.B #$7F                           ;83CFBF|297F    |      ;
-                       STA.B $3B                            ;83CFC1|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;83CFC1|853B    |000EA3;
                        JSL.L CODE_849B43                    ;83CFC3|22439B84|849B43;
                        BEQ CODE_83D01D                      ;83CFC7|F054    |83D01D;
                        BPL CODE_83CFD6                      ;83CFC9|100B    |83CFD6;
@@ -10959,10 +11044,10 @@ eventID_hoganmer_01_main:
                        LDA.W r_1f1d                         ;83CFD6|AD1D1F  |861F1D;
                        CMP.B #$1C                           ;83CFD9|C91C    |      ;
                        BNE CODE_83CFF7                      ;83CFDB|D01A    |83CFF7;
-                       BIT.B $10                            ;83CFDD|2410    |000E78;
+                       BIT.B r_ev_10-$E68                   ;83CFDD|2410    |000E78;
                        BVS CODE_83CFF7                      ;83CFDF|7016    |83CFF7;
                        LDA.B #$40                           ;83CFE1|A940    |      ;
-                       TSB.B $10                            ;83CFE3|0410    |000E78;
+                       TSB.B r_ev_10-$E68                   ;83CFE3|0410    |000E78;
                        JSR.W CODE_83D7AC                    ;83CFE5|20ACD7  |83D7AC;
                        JSR.W CODE_83D7ED                    ;83CFE8|20EDD7  |83D7ED;
                        LDA.B #$1C                           ;83CFEB|A91C    |      ;
@@ -10972,38 +11057,38 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83CFF7:
                        LDA.B #$0E                           ;83CFF7|A90E    |      ;
-                       TRB.B $11                            ;83CFF9|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83CFF9|1411    |000E79;
                        LDA.W r_1f1b                         ;83CFFB|AD1B1F  |861F1B;
-                       STA.B $3A                            ;83CFFE|853A    |000EA2;
-                       STA.B $33                            ;83D000|8533    |000E9B;
-                       LDA.B $3C                            ;83D002|A53C    |000EA4;
+                       STA.B r_ev_3a-$E68                   ;83CFFE|853A    |000EA2;
+                       STA.B r_ev_33-$E68                   ;83D000|8533    |000E9B;
+                       LDA.B r_ev_3c-$E68                   ;83D002|A53C    |000EA4;
                        BNE CODE_83D00F                      ;83D004|D009    |83D00F;
                        LDA.B #$05                           ;83D006|A905    |      ;
-                       STA.B $3C                            ;83D008|853C    |000EA4;
+                       STA.B r_ev_3c-$E68                   ;83D008|853C    |000EA4;
                        LDA.B #$0D                           ;83D00A|A90D    |      ;
                        JSR.W CODE_83CD18                    ;83D00C|2018CD  |83CD18;
                                                             ;      |        |      ;
           CODE_83D00F:
-                       BIT.B $10                            ;83D00F|2410    |000E78;
+                       BIT.B r_ev_10-$E68                   ;83D00F|2410    |000E78;
                        BVS CODE_83D019                      ;83D011|7006    |83D019;
                        LDA.B #$13                           ;83D013|A913    |      ;
                        JSL.L CODE_8088A2                    ;83D015|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83D019:
                        LDA.B #$02                           ;83D019|A902    |      ;
-                       STA.B $32                            ;83D01B|8532    |000E9A;
+                       STA.B r_ev_32-$E68                   ;83D01B|8532    |000E9A;
                                                             ;      |        |      ;
           CODE_83D01D:
-                       LDA.B $3C                            ;83D01D|A53C    |000EA4;
+                       LDA.B r_ev_3c-$E68                   ;83D01D|A53C    |000EA4;
                        BEQ CODE_83D023                      ;83D01F|F002    |83D023;
-                       DEC.B $3C                            ;83D021|C63C    |000EA4;
+                       DEC.B r_ev_3c-$E68                   ;83D021|C63C    |000EA4;
                                                             ;      |        |      ;
           CODE_83D023:
                        JSR.W CODE_83CBB2                    ;83D023|20B2CB  |83CBB2;
-                       LDA.B $11                            ;83D026|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83D026|A511    |000E79;
                        AND.B #$3F                           ;83D028|293F    |      ;
-                       ORA.B $33                            ;83D02A|0533    |000E9B;
-                       STA.B $11                            ;83D02C|8511    |000E79;
+                       ORA.B r_ev_33-$E68                   ;83D02A|0533    |000E9B;
+                       STA.B r_ev_11_sprAtri-$E68           ;83D02C|8511    |000E79;
                        LDA.W $0C2F                          ;83D02E|AD2F0C  |860C2F;
                        LSR A                                ;83D031|4A      |      ;
                        BCS CODE_83D038                      ;83D032|B004    |83D038;
@@ -11019,22 +11104,22 @@ eventID_hoganmer_01_main:
                        db $C0,$D2,$A6,$D2,$6C,$D3,$95,$D3   ;83D04C|        |      ;
                        db $C5,$D3,$26,$D4,$13,$D5,$65,$D5   ;83D054|        |0000D3;
                        db $9E,$D5,$15,$D6,$3B,$D6,$F6,$D2   ;83D05C|        |0015D5;
-                       LDX.B $03                            ;83D064|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D064|A603    |000E6B;
                        BNE CODE_83D082                      ;83D066|D01A    |83D082;
-                       INC.B $03                            ;83D068|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83D068|E603    |000E6B;
                        LDA.B #$02                           ;83D06A|A902    |      ;
                        JSL.L CODE_848F07                    ;83D06C|22078F84|848F07;
                        REP #$20                             ;83D070|C220    |      ;
                        LDA.W #$FF80                         ;83D072|A980FF  |      ;
-                       STA.B $1C                            ;83D075|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83D075|851C    |000E84;
                        LDA.W #$0040                         ;83D077|A94000  |      ;
-                       STA.B $1E                            ;83D07A|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;83D07A|851E    |000E86;
                        SEP #$20                             ;83D07C|E220    |      ;
                        LDA.B #$54                           ;83D07E|A954    |      ;
-                       STA.B $34                            ;83D080|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83D080|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_83D082:
-                       DEC.B $34                            ;83D082|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83D082|C634    |000E9C;
                        BNE CODE_83D08B                      ;83D084|D005    |83D08B;
                        LDA.B #$02                           ;83D086|A902    |      ;
                        JSR.W CODE_8386F1                    ;83D088|20F186  |8386F1;
@@ -11043,23 +11128,23 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_82825D                    ;83D08B|225D8282|82825D;
                        RTS                                  ;83D08F|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83D090|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D090|A603    |000E6B;
                        BNE CODE_83D09C                      ;83D092|D008    |83D09C;
-                       INC.B $03                            ;83D094|E603    |000E6B;
-                       STZ.B $34                            ;83D096|6434    |000E9C;
+                       INC.B r_ev_03_do-$E68                ;83D094|E603    |000E6B;
+                       STZ.B r_ev_34-$E68                   ;83D096|6434    |000E9C;
                        LDA.B #$07                           ;83D098|A907    |      ;
-                       STA.B $35                            ;83D09A|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;83D09A|8535    |000E9D;
                                                             ;      |        |      ;
           CODE_83D09C:
                        REP #$10                             ;83D09C|C210    |      ;
-                       LDX.B $0C                            ;83D09E|A60C    |000E74;
+                       LDX.B r_ev_0c-$E68                   ;83D09E|A60C    |000E74;
                        LDA.W r_0013,X                       ;83D0A0|BD1300  |860013;
                        CMP.B #$01                           ;83D0A3|C901    |      ;
                        SEP #$10                             ;83D0A5|E210    |      ;
                        BNE CODE_83D0D9                      ;83D0A7|D030    |83D0D9;
                        REP #$21                             ;83D0A9|C221    |      ;
                        STZ.W r_0000                         ;83D0AB|9C0000  |860000;
-                       LDX.B $34                            ;83D0AE|A634    |000E9C;
+                       LDX.B r_ev_34-$E68                   ;83D0AE|A634    |000E9C;
                        LDA.W UNREACH_86CFF3,X               ;83D0B0|BDF3CF  |86CFF3;
                        AND.W #$00FF                         ;83D0B3|29FF00  |      ;
                        BIT.W #$0080                         ;83D0B6|898000  |      ;
@@ -11068,14 +11153,14 @@ eventID_hoganmer_01_main:
                        ORA.W #$FF00                         ;83D0BE|0900FF  |      ;
                                                             ;      |        |      ;
           CODE_83D0C1:
-                       ADC.B $08                            ;83D0C1|6508    |000E70;
-                       STA.B $08                            ;83D0C3|8508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;83D0C1|6508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;83D0C3|8508    |000E70;
                        SEP #$20                             ;83D0C5|E220    |      ;
-                       LDA.B $08                            ;83D0C7|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83D0C7|A508    |000E70;
                        ADC.W r_0000                         ;83D0C9|6D0000  |860000;
-                       STA.B $08                            ;83D0CC|8508    |000E70;
-                       INC.B $34                            ;83D0CE|E634    |000E9C;
-                       DEC.B $35                            ;83D0D0|C635    |000E9D;
+                       STA.B r_ev_08_yPos-$E68              ;83D0CC|8508    |000E70;
+                       INC.B r_ev_34-$E68                   ;83D0CE|E634    |000E9C;
+                       DEC.B r_ev_35-$E68                   ;83D0D0|C635    |000E9D;
                        BNE CODE_83D0D9                      ;83D0D2|D005    |83D0D9;
                        LDA.B #$24                           ;83D0D4|A924    |      ;
                        JSR.W CODE_8386F1                    ;83D0D6|20F186  |8386F1;
@@ -11083,12 +11168,12 @@ eventID_hoganmer_01_main:
           CODE_83D0D9:
                        RTS                                  ;83D0D9|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83D0DA|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D0DA|A603    |000E6B;
                        BNE CODE_83D0EF                      ;83D0DC|D011    |83D0EF;
-                       INC.B $03                            ;83D0DE|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83D0DE|E603    |000E6B;
                        JSR.W CODE_83CB05                    ;83D0E0|2005CB  |83CB05;
                        LDA.B #$02                           ;83D0E3|A902    |      ;
-                       BIT.B $10                            ;83D0E5|2410    |000E78;
+                       BIT.B r_ev_10-$E68                   ;83D0E5|2410    |000E78;
                        BVC CODE_83D0EB                      ;83D0E7|5002    |83D0EB;
                        db $A9,$09                           ;83D0E9|        |      ;
                                                             ;      |        |      ;
@@ -11152,14 +11237,14 @@ eventID_hoganmer_01_main:
           CODE_83D158:
                        RTS                                  ;83D158|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83D159|A603    |000EAB;
+                       LDX.B r_ev_2_03_do-$EA8              ;83D159|A603    |000EAB;
                        BNE CODE_83D165                      ;83D15B|D008    |83D165;
-                       INC.B $03                            ;83D15D|E603    |000EAB;
+                       INC.B r_ev_2_03_do-$EA8              ;83D15D|E603    |000EAB;
                        LDA.B #$00                           ;83D15F|A900    |      ;
                        JSL.L CODE_848F07                    ;83D161|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83D165:
-                       LDA.B $2B                            ;83D165|A52B    |000ED3;
+                       LDA.B r_ev_2_2b-$EA8                 ;83D165|A52B    |000ED3;
                        BIT.B #$04                           ;83D167|8904    |      ;
                        BNE CODE_83D174                      ;83D169|D009    |83D174;
                        db $64,$1C,$64,$1D,$A9,$14,$4C,$F1   ;83D16B|        |00001C;
@@ -11174,7 +11259,7 @@ eventID_hoganmer_01_main:
                        CPX.W r_0000                         ;83D184|EC0000  |860000;
                        BEQ CODE_83D18D                      ;83D187|F004    |83D18D;
                        LDA.B #$04                           ;83D189|A904    |      ;
-                       STA.B $02                            ;83D18B|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;83D18B|8502    |000EAA;
                                                             ;      |        |      ;
           CODE_83D18D:
                        LDA.B #$00                           ;83D18D|A900    |      ;
@@ -11186,7 +11271,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83D19A:
                        JSL.L updateEv_13_14_17_0f           ;83D19A|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83D19E|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;83D19E|A50F    |000EB7;
                        AND.B #$03                           ;83D1A0|2903    |      ;
                        BEQ CODE_83D1AA                      ;83D1A2|F006    |83D1AA;
                        db $09,$38,$22,$A2,$88,$80           ;83D1A4|        |      ;
@@ -11194,32 +11279,32 @@ eventID_hoganmer_01_main:
           CODE_83D1AA:
                        JMP.W CODE_83D755                    ;83D1AA|4C55D7  |83D755;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83D1AD|A603    |000EAB;
+                       LDX.B r_ev_2_03_do-$EA8              ;83D1AD|A603    |000EAB;
                        JMP.W (UNREACH_83D1B2,X)             ;83D1AF|7CB2D1  |83D1B2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83D1B2:
                        db $B8,$D1,$CD,$D1,$DC,$D1           ;83D1B2|        |      ;
                        LDA.B #$02                           ;83D1B8|A902    |      ;
-                       STA.B $03                            ;83D1BA|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;83D1BA|8503    |000EAB;
                        JSL.L CODE_849086                    ;83D1BC|22869084|849086;
                        AND.B #$0F                           ;83D1C0|290F    |      ;
                        CLC                                  ;83D1C2|18      |      ;
                        ADC.B #$0F                           ;83D1C3|690F    |      ;
-                       STA.B $34                            ;83D1C5|8534    |000EDC;
+                       STA.B r_ev_2_34-$EA8                 ;83D1C5|8534    |000EDC;
                        LDA.B #$02                           ;83D1C7|A902    |      ;
                        JSL.L CODE_848F07                    ;83D1C9|22078F84|848F07;
-                       DEC.B $34                            ;83D1CD|C634    |000EDC;
+                       DEC.B r_ev_2_34-$EA8                 ;83D1CD|C634    |000EDC;
                        BNE CODE_83D1DB                      ;83D1CF|D00A    |83D1DB;
                        LDA.B #$01                           ;83D1D1|A901    |      ;
                        JSL.L CODE_848F07                    ;83D1D3|22078F84|848F07;
                        LDA.B #$04                           ;83D1D7|A904    |      ;
-                       STA.B $03                            ;83D1D9|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;83D1D9|8503    |000EAB;
                                                             ;      |        |      ;
           CODE_83D1DB:
                        RTS                                  ;83D1DB|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $0F                            ;83D1DC|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;83D1DC|A50F    |000EB7;
                        BPL CODE_83D1E5                      ;83D1DE|1005    |83D1E5;
                        LDA.B #$04                           ;83D1E0|A904    |      ;
                        JMP.W CODE_8386F1                    ;83D1E2|4CF186  |8386F1;
@@ -11239,36 +11324,36 @@ eventID_hoganmer_01_main:
                        db $A5,$1D,$30,$06,$A5,$2B,$89,$08   ;83D21F|        |00001D;
                        db $F0,$05,$A9,$14,$4C,$F1,$86,$22   ;83D227|        |83D22E;
                        db $74,$81,$82,$60                   ;83D22F|        |000081;
-                       LDX.B $03                            ;83D233|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D233|A603    |000E6B;
                        BNE CODE_83D25B                      ;83D235|D024    |83D25B;
-                       INC.B $03                            ;83D237|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83D237|E603    |000E6B;
                        REP #$20                             ;83D239|C220    |      ;
                        LDA.W #$0400                         ;83D23B|A90004  |      ;
-                       BIT.B $32                            ;83D23E|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;83D23E|2432    |000E9A;
                        BVS CODE_83D245                      ;83D240|7003    |83D245;
                        LDA.W #$FC00                         ;83D242|A900FC  |      ;
                                                             ;      |        |      ;
           CODE_83D245:
-                       STA.B $1A                            ;83D245|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83D245|851A    |000E82;
                        SEP #$20                             ;83D247|E220    |      ;
-                       STZ.B $31                            ;83D249|6431    |000E99;
+                       STZ.B r_ev_31-$E68                   ;83D249|6431    |000E99;
                        LDA.B #$3B                           ;83D24B|A93B    |      ;
                        JSL.L CODE_8088A2                    ;83D24D|22A28880|8088A2;
                        LDA.B #$40                           ;83D251|A940    |      ;
-                       STA.B $34                            ;83D253|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83D253|8534    |000E9C;
                        LDA.B #$06                           ;83D255|A906    |      ;
                        JSL.L CODE_848F07                    ;83D257|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83D25B:
                        JSR.W CODE_83CDB3                    ;83D25B|20B3CD  |83CDB3;
-                       DEC.B $34                            ;83D25E|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83D25E|C634    |000E9C;
                        BNE CODE_83D267                      ;83D260|D005    |83D267;
                        LDA.B #$12                           ;83D262|A912    |      ;
                        JMP.W CODE_8386F1                    ;83D264|4CF186  |8386F1;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83D267:
-                       LDA.B $2B                            ;83D267|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83D267|A52B    |000E93;
                        BIT.B #$04                           ;83D269|8904    |      ;
                        BNE CODE_83D276                      ;83D26B|D009    |83D276;
                        db $64,$1C,$64,$1D,$A9,$14,$4C,$F1   ;83D26D|        |00001C;
@@ -11302,14 +11387,14 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83D29F|22EA8E84|848EEA;
                        JMP.W CODE_83D755                    ;83D2A3|4C55D7  |83D755;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83D2A6|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D2A6|A603    |000E6B;
                        BNE CODE_83D2B2                      ;83D2A8|D008    |83D2B2;
-                       INC.B $03                            ;83D2AA|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83D2AA|E603    |000E6B;
                        LDA.B #$07                           ;83D2AC|A907    |      ;
                        JSL.L CODE_848F07                    ;83D2AE|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83D2B2:
-                       LDA.B $0F                            ;83D2B2|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83D2B2|A50F    |000E77;
                        BPL CODE_83D2BB                      ;83D2B4|1005    |83D2BB;
                        LDA.B #$04                           ;83D2B6|A904    |      ;
                        JMP.W CODE_8386F1                    ;83D2B8|4CF186  |8386F1;
@@ -11352,40 +11437,40 @@ eventID_hoganmer_01_main:
                        db $CD,$A9,$04,$22,$07,$8F,$84,$A5   ;83D3B0|        |0004A9;
                        db $0F,$10,$05,$A9,$04,$4C,$F1,$86   ;83D3B8|        |A90510;
                        db $22,$EA,$8E,$84,$60               ;83D3C0|        |848EEA;
-                       LDX.B $03                            ;83D3C5|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D3C5|A603    |000E6B;
                        JMP.W (UNREACH_83D3CA,X)             ;83D3C7|7CCAD3  |83D3CA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83D3CA:
                        db $D0,$D3,$FE,$D3,$15,$D4           ;83D3CA|        |83D39F;
                        LDA.B #$02                           ;83D3D0|A902    |      ;
-                       STA.B $03                            ;83D3D2|8503    |000E6B;
-                       STA.B $2F                            ;83D3D4|852F    |000E97;
+                       STA.B r_ev_03_do-$E68                ;83D3D2|8503    |000E6B;
+                       STA.B r_ev_2f-$E68                   ;83D3D4|852F    |000E97;
                        REP #$30                             ;83D3D6|C230    |      ;
                        LDX.W #$0000                         ;83D3D8|A20000  |      ;
                        JSL.L CODE_849086                    ;83D3DB|22869084|849086;
                        BIT.W #$0007                         ;83D3DF|890700  |      ;
                        BEQ CODE_83D3EE                      ;83D3E2|F00A    |83D3EE;
                        LDX.W #$0178                         ;83D3E4|A27801  |      ;
-                       BIT.B $32                            ;83D3E7|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;83D3E7|2432    |000E9A;
                        BVC CODE_83D3EE                      ;83D3E9|5003    |83D3EE;
                        LDX.W #$FE88                         ;83D3EB|A288FE  |      ;
                                                             ;      |        |      ;
           CODE_83D3EE:
-                       STX.B $1A                            ;83D3EE|861A    |000E82;
+                       STX.B r_ev_1a_xSpdSub-$E68           ;83D3EE|861A    |000E82;
                        LDA.W #$0553                         ;83D3F0|A95305  |      ;
-                       STA.B $1C                            ;83D3F3|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83D3F3|851C    |000E84;
                        SEP #$30                             ;83D3F5|E230    |      ;
                        LDA.B #$03                           ;83D3F7|A903    |      ;
                        JSL.L CODE_848F07                    ;83D3F9|22078F84|848F07;
                        RTS                                  ;83D3FD|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $2B                            ;83D3FE|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83D3FE|A52B    |000E93;
                        BIT.B #$04                           ;83D400|8904    |      ;
                        BEQ CODE_83D410                      ;83D402|F00C    |83D410;
                        LDA.B #$04                           ;83D404|A904    |      ;
-                       STA.B $03                            ;83D406|8503    |000E6B;
-                       STZ.B $2F                            ;83D408|642F    |000E97;
+                       STA.B r_ev_03_do-$E68                ;83D406|8503    |000E6B;
+                       STZ.B r_ev_2f-$E68                   ;83D408|642F    |000E97;
                        LDA.B #$0F                           ;83D40A|A90F    |      ;
                        JSL.L CODE_848F07                    ;83D40C|22078F84|848F07;
                                                             ;      |        |      ;
@@ -11393,7 +11478,7 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_828174                    ;83D410|22748182|828174;
                        RTS                                  ;83D414|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $0F                            ;83D415|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83D415|A50F    |000E77;
                        BPL CODE_83D421                      ;83D417|1008    |83D421;
                        JSR.W CODE_83D725                    ;83D419|2025D7  |83D725;
                        LDA.B #$04                           ;83D41C|A904    |      ;
@@ -11404,7 +11489,7 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83D421|22EA8E84|848EEA;
                        RTS                                  ;83D425|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83D426|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D426|A603    |000E6B;
                        JMP.W (UNREACH_83D42B,X)             ;83D428|7C2BD4  |83D42B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11412,7 +11497,7 @@ eventID_hoganmer_01_main:
                        db $37,$D4,$69,$D4,$8C,$D4,$C8,$D4   ;83D42B|        |0000D4;
                        db $06,$D5,$12,$D5                   ;83D433|        |0000D5;
                        LDA.B #$02                           ;83D437|A902    |      ;
-                       STA.B $03                            ;83D439|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D439|8503    |000E6B;
                        REP #$31                             ;83D43B|C231    |      ;
                        LDA.W r_0bad                         ;83D43D|ADAD0B  |860BAD;
                        ADC.W #$FF80                         ;83D440|6980FF  |      ;
@@ -11422,33 +11507,33 @@ eventID_hoganmer_01_main:
                        LDA.W r_0bad                         ;83D44C|ADAD0B  |860BAD;
                        CLC                                  ;83D44F|18      |      ;
                        ADC.W #$0020                         ;83D450|692000  |      ;
-                       CMP.B $05                            ;83D453|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;83D453|C505    |000E6D;
                        BCS CODE_83D45A                      ;83D455|B003    |83D45A;
                        LDX.W #$FE88                         ;83D457|A288FE  |      ;
                                                             ;      |        |      ;
           CODE_83D45A:
-                       STX.B $1A                            ;83D45A|861A    |000E82;
+                       STX.B r_ev_1a_xSpdSub-$E68           ;83D45A|861A    |000E82;
                        SEP #$30                             ;83D45C|E230    |      ;
                        LDA.B #$78                           ;83D45E|A978    |      ;
-                       STA.B $34                            ;83D460|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83D460|8534    |000E9C;
                        LDA.B #$02                           ;83D462|A902    |      ;
                        JSL.L CODE_848F07                    ;83D464|22078F84|848F07;
                        RTS                                  ;83D468|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $34                            ;83D469|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83D469|C634    |000E9C;
                        BNE CODE_83D48B                      ;83D46B|D01E    |83D48B;
                        LDA.B #$04                           ;83D46D|A904    |      ;
-                       STA.B $03                            ;83D46F|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D46F|8503    |000E6B;
                        REP #$21                             ;83D471|C221    |      ;
                        LDX.B #$40                           ;83D473|A240    |      ;
                        LDA.W r_0bad                         ;83D475|ADAD0B  |860BAD;
                        ADC.W #$0020                         ;83D478|692000  |      ;
-                       CMP.B $05                            ;83D47B|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;83D47B|C505    |000E6D;
                        BCS CODE_83D481                      ;83D47D|B002    |83D481;
                        LDX.B #$00                           ;83D47F|A200    |      ;
                                                             ;      |        |      ;
           CODE_83D481:
-                       STX.B $33                            ;83D481|8633    |000E9B;
+                       STX.B r_ev_33-$E68                   ;83D481|8633    |000E9B;
                        SEP #$20                             ;83D483|E220    |      ;
                        LDA.B #$00                           ;83D485|A900    |      ;
                        JSL.L CODE_848F07                    ;83D487|22078F84|848F07;
@@ -11460,17 +11545,17 @@ eventID_hoganmer_01_main:
                        LDA.W r_0bad                         ;83D48E|ADAD0B  |860BAD;
                        ADC.W #$0020                         ;83D491|692000  |      ;
                        SEC                                  ;83D494|38      |      ;
-                       SBC.B $05                            ;83D495|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;83D495|E505    |000E6D;
                        CLC                                  ;83D497|18      |      ;
                        ADC.W #$0008                         ;83D498|690800  |      ;
                        CMP.W #$0010                         ;83D49B|C91000  |      ;
                        SEP #$20                             ;83D49E|E220    |      ;
                        BCS CODE_83D4B3                      ;83D4A0|B011    |83D4B3;
-                       STZ.B $33                            ;83D4A2|6433    |000E9B;
+                       STZ.B r_ev_33-$E68                   ;83D4A2|6433    |000E9B;
                        LDA.B #$06                           ;83D4A4|A906    |      ;
-                       STA.B $03                            ;83D4A6|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D4A6|8503    |000E6B;
                        LDA.B #$02                           ;83D4A8|A902    |      ;
-                       STA.B $12                            ;83D4AA|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;83D4AA|8512    |000E7A;
                        LDA.B #$14                           ;83D4AC|A914    |      ;
                        JSL.L CODE_848F07                    ;83D4AE|22078F84|848F07;
                        RTS                                  ;83D4B2|60      |      ;
@@ -11479,7 +11564,7 @@ eventID_hoganmer_01_main:
           CODE_83D4B3:
                        JSL.L CODE_82823E                    ;83D4B3|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;83D4B7|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83D4BB|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83D4BB|A50F    |000E77;
                        AND.B #$03                           ;83D4BD|2903    |      ;
                        BEQ CODE_83D4C7                      ;83D4BF|F006    |83D4C7;
                        ORA.B #$38                           ;83D4C1|0938    |      ;
@@ -11489,10 +11574,10 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83D4C7|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83D4C8|22EA8E84|848EEA;
-                       BIT.B $0F                            ;83D4CC|240F    |000E77;
+                       BIT.B r_ev_0f-$E68                   ;83D4CC|240F    |000E77;
                        BPL CODE_83D4FC                      ;83D4CE|102C    |83D4FC;
                        LDA.B #$08                           ;83D4D0|A908    |      ;
-                       STA.B $03                            ;83D4D2|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D4D2|8503    |000E6B;
                        LDY.B #$02                           ;83D4D4|A002    |      ;
                        LDA.B #$F6                           ;83D4D6|A9F6    |      ;
                        JSL.L CODE_80887F                    ;83D4D8|227F8880|80887F;
@@ -11521,32 +11606,32 @@ eventID_hoganmer_01_main:
                        LDA.W r_1f2c                         ;83D506|AD2C1F  |861F2C;
                        BMI CODE_83D512                      ;83D509|3007    |83D512;
                        LDA.B #$0A                           ;83D50B|A90A    |      ;
-                       STA.B $03                            ;83D50D|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D50D|8503    |000E6B;
                        JSR.W CODE_83D78A                    ;83D50F|208AD7  |83D78A;
                                                             ;      |        |      ;
           CODE_83D512:
                        RTS                                  ;83D512|60      |      ;
                                                             ;      |        |      ;
                        JSR.W CODE_83D80D                    ;83D513|200DD8  |83D80D;
-                       LDX.B $03                            ;83D516|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D516|A603    |000E6B;
                        JMP.W (UNREACH_83D51B,X)             ;83D518|7C1BD5  |83D51B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83D51B:
                        db $21,$D5,$31,$D5,$46,$D5           ;83D51B|        |0000D5;
                        LDA.B #$02                           ;83D521|A902    |      ;
-                       STA.B $03                            ;83D523|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D523|8503    |000E6B;
                        LDA.B #$40                           ;83D525|A940    |      ;
                        STA.W r_blaster15_dir_mirror         ;83D527|8D110C  |860C11;
                        LDA.B #$0E                           ;83D52A|A90E    |      ;
                        JSL.L CODE_848F07                    ;83D52C|22078F84|848F07;
                        RTS                                  ;83D530|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $0F                            ;83D531|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83D531|A50F    |000E77;
                        BPL CODE_83D541                      ;83D533|100C    |83D541;
                        LDA.B #$04                           ;83D535|A904    |      ;
-                       STA.B $03                            ;83D537|8503    |000E6B;
-                       STA.B $30                            ;83D539|8530    |000E98;
+                       STA.B r_ev_03_do-$E68                ;83D537|8503    |000E6B;
+                       STA.B r_ev_30-$E68                   ;83D539|8530    |000E98;
                        LDA.B #$09                           ;83D53B|A909    |      ;
                        JSL.L CODE_848F07                    ;83D53D|22078F84|848F07;
                                                             ;      |        |      ;
@@ -11555,10 +11640,10 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83D545|60      |      ;
                                                             ;      |        |      ;
                        LDA.B #$33                           ;83D546|A933    |      ;
-                       STA.B $0A                            ;83D548|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;83D548|850A    |000E72;
                        JSL.L CODE_84A1D5                    ;83D54A|22D5A184|84A1D5;
                        LDA.B #$32                           ;83D54E|A932    |      ;
-                       STA.B $0A                            ;83D550|850A    |000E72;
+                       STA.B r_ev_0a_ID-$E68                ;83D550|850A    |000E72;
                        REP #$10                             ;83D552|C210    |      ;
                        LDX.W r_0000                         ;83D554|AE0000  |860000;
                        LDA.W r_003b,X                       ;83D557|BD3B00  |86003B;
@@ -11573,14 +11658,14 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83D564|60      |      ;
                                                             ;      |        |      ;
                        JSR.W CODE_83D80D                    ;83D565|200DD8  |83D80D;
-                       LDX.B $03                            ;83D568|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D568|A603    |000E6B;
                        BNE CODE_83D581                      ;83D56A|D015    |83D581;
-                       INC.B $03                            ;83D56C|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83D56C|E603    |000E6B;
                        REP #$20                             ;83D56E|C220    |      ;
                        LDA.W #$0500                         ;83D570|A90005  |      ;
-                       STA.B $1C                            ;83D573|851C    |000E84;
-                       STZ.B $1A                            ;83D575|641A    |000E82;
-                       STZ.B $1E                            ;83D577|641E    |000E86;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83D573|851C    |000E84;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;83D575|641A    |000E82;
+                       STZ.B r_ev_1e_weight-$E68            ;83D577|641E    |000E86;
                        SEP #$20                             ;83D579|E220    |      ;
                        LDA.B #$0A                           ;83D57B|A90A    |      ;
                        JSL.L CODE_848F07                    ;83D57D|22078F84|848F07;
@@ -11589,9 +11674,9 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_82825D                    ;83D581|225D8282|82825D;
                        REP #$20                             ;83D585|C220    |      ;
                        LDA.W #$0136                         ;83D587|A93601  |      ;
-                       CMP.B $08                            ;83D58A|C508    |000E70;
+                       CMP.B r_ev_08_yPos-$E68              ;83D58A|C508    |000E70;
                        BCC CODE_83D597                      ;83D58C|9009    |83D597;
-                       STA.B $08                            ;83D58E|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;83D58E|8508    |000E70;
                        SEP #$20                             ;83D590|E220    |      ;
                        LDA.B #$20                           ;83D592|A920    |      ;
                        JMP.W CODE_8386F1                    ;83D594|4CF186  |8386F1;
@@ -11603,21 +11688,21 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83D59D|60      |      ;
                                                             ;      |        |      ;
                        JSR.W CODE_83D80D                    ;83D59E|200DD8  |83D80D;
-                       LDX.B $03                            ;83D5A1|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D5A1|A603    |000E6B;
                        JMP.W (UNREACH_83D5A6,X)             ;83D5A3|7CA6D5  |83D5A6;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83D5A6:
                        db $AC,$D5,$C7,$D5,$D7,$D5           ;83D5A6|        |00C7D5;
                        REP #$10                             ;83D5AC|C210    |      ;
-                       LDX.B $0C                            ;83D5AE|A60C    |000E74;
+                       LDX.B r_ev_0c-$E68                   ;83D5AE|A60C    |000E74;
                        LDA.W r_0002,X                       ;83D5B0|BD0200  |860002;
                        CMP.B #$04                           ;83D5B3|C904    |      ;
                        BNE CODE_83D5C0                      ;83D5B5|D009    |83D5C0;
                        LDA.B #$01                           ;83D5B7|A901    |      ;
                        STA.W r_0010,X                       ;83D5B9|9D1000  |860010;
                        LDA.B #$02                           ;83D5BC|A902    |      ;
-                       STA.B $03                            ;83D5BE|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D5BE|8503    |000E6B;
                                                             ;      |        |      ;
           CODE_83D5C0:
                        SEP #$10                             ;83D5C0|E210    |      ;
@@ -11625,21 +11710,21 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83D5C6|60      |      ;
                                                             ;      |        |      ;
                        LDA.B #$04                           ;83D5C7|A904    |      ;
-                       STA.B $03                            ;83D5C9|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D5C9|8503    |000E6B;
                        LDA.B #$09                           ;83D5CB|A909    |      ;
                        JSL.L CODE_848F07                    ;83D5CD|22078F84|848F07;
-                       STZ.B $34                            ;83D5D1|6434    |000E9C;
+                       STZ.B r_ev_34-$E68                   ;83D5D1|6434    |000E9C;
                        LDA.B #$04                           ;83D5D3|A904    |      ;
-                       STA.B $35                            ;83D5D5|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;83D5D5|8535    |000E9D;
                        REP #$10                             ;83D5D7|C210    |      ;
-                       LDX.B $0C                            ;83D5D9|A60C    |000E74;
+                       LDX.B r_ev_0c-$E68                   ;83D5D9|A60C    |000E74;
                        LDA.W r_0013,X                       ;83D5DB|BD1300  |860013;
                        CMP.B #$01                           ;83D5DE|C901    |      ;
                        SEP #$10                             ;83D5E0|E210    |      ;
                        BNE CODE_83D614                      ;83D5E2|D030    |83D614;
                        REP #$21                             ;83D5E4|C221    |      ;
                        STZ.W r_0000                         ;83D5E6|9C0000  |860000;
-                       LDX.B $34                            ;83D5E9|A634    |000E9C;
+                       LDX.B r_ev_34-$E68                   ;83D5E9|A634    |000E9C;
                        LDA.W UNREACH_86CFFA,X               ;83D5EB|BDFACF  |86CFFA;
                        AND.W #$00FF                         ;83D5EE|29FF00  |      ;
                        BIT.W #$0080                         ;83D5F1|898000  |      ;
@@ -11648,14 +11733,14 @@ eventID_hoganmer_01_main:
                        ORA.W #$FF00                         ;83D5F9|0900FF  |      ;
                                                             ;      |        |      ;
           CODE_83D5FC:
-                       ADC.B $08                            ;83D5FC|6508    |000E70;
-                       STA.B $08                            ;83D5FE|8508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;83D5FC|6508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;83D5FE|8508    |000E70;
                        SEP #$20                             ;83D600|E220    |      ;
-                       LDA.B $08                            ;83D602|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83D602|A508    |000E70;
                        ADC.W r_0000                         ;83D604|6D0000  |860000;
-                       STA.B $08                            ;83D607|8508    |000E70;
-                       INC.B $34                            ;83D609|E634    |000E9C;
-                       DEC.B $35                            ;83D60B|C635    |000E9D;
+                       STA.B r_ev_08_yPos-$E68              ;83D607|8508    |000E70;
+                       INC.B r_ev_34-$E68                   ;83D609|E634    |000E9C;
+                       DEC.B r_ev_35-$E68                   ;83D60B|C635    |000E9D;
                        BNE CODE_83D614                      ;83D60D|D005    |83D614;
                        LDA.B #$22                           ;83D60F|A922    |      ;
                        JSR.W CODE_8386F1                    ;83D611|20F186  |8386F1;
@@ -11664,29 +11749,29 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83D614|60      |      ;
                                                             ;      |        |      ;
                        JSR.W CODE_83D80D                    ;83D615|200DD8  |83D80D;
-                       LDX.B $03                            ;83D618|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D618|A603    |000E6B;
                        BNE CODE_83D62A                      ;83D61A|D00E    |83D62A;
-                       INC.B $03                            ;83D61C|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83D61C|E603    |000E6B;
                        LDA.B #$00                           ;83D61E|A900    |      ;
-                       STA.B $1C                            ;83D620|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83D620|851C    |000E84;
                        LDA.B #$01                           ;83D622|A901    |      ;
-                       STA.B $1D                            ;83D624|851D    |000E85;
+                       STA.B r_ev_1d_ySpd-$E68              ;83D624|851D    |000E85;
                        LDA.B #$2A                           ;83D626|A92A    |      ;
-                       STA.B $34                            ;83D628|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83D628|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_83D62A:
-                       DEC.B $34                            ;83D62A|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83D62A|C634    |000E9C;
                        BNE CODE_83D636                      ;83D62C|D008    |83D636;
                        LDA.B #$02                           ;83D62E|A902    |      ;
-                       TSB.B $10                            ;83D630|0410    |000E78;
+                       TSB.B r_ev_10-$E68                   ;83D630|0410    |000E78;
                        LDA.B #$04                           ;83D632|A904    |      ;
-                       STA.B $01                            ;83D634|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;83D634|8501    |000E69;
                                                             ;      |        |      ;
           CODE_83D636:
                        JSL.L CODE_82825D                    ;83D636|225D8282|82825D;
                        RTS                                  ;83D63A|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83D63B|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83D63B|A603    |000E6B;
                        JMP.W (UNREACH_83D640,X)             ;83D63D|7C40D6  |83D640;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11694,22 +11779,22 @@ eventID_hoganmer_01_main:
                        db $4A,$D6,$67,$D6,$A0,$D6,$B1,$D6   ;83D640|        |      ;
                        db $C6,$D6                           ;83D648|        |0000D6;
                        LDA.B #$02                           ;83D64A|A902    |      ;
-                       STA.B $03                            ;83D64C|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D64C|8503    |000E6B;
                        LDA.B #$00                           ;83D64E|A900    |      ;
-                       STA.B $1C                            ;83D650|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83D650|851C    |000E84;
                        LDA.B #$05                           ;83D652|A905    |      ;
-                       STA.B $1D                            ;83D654|851D    |000E85;
+                       STA.B r_ev_1d_ySpd-$E68              ;83D654|851D    |000E85;
                        LDA.B #$38                           ;83D656|A938    |      ;
                        JSL.L CODE_8088A2                    ;83D658|22A28880|8088A2;
                        LDA.B #$0C                           ;83D65C|A90C    |      ;
                        JSR.W CODE_83CD18                    ;83D65E|2018CD  |83CD18;
                        LDA.B #$03                           ;83D661|A903    |      ;
                        JSL.L CODE_848F07                    ;83D663|22078F84|848F07;
-                       LDA.B $2B                            ;83D667|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83D667|A52B    |000E93;
                        BIT.B #$04                           ;83D669|8904    |      ;
                        BEQ CODE_83D68E                      ;83D66B|F021    |83D68E;
                        LDA.B #$04                           ;83D66D|A904    |      ;
-                       STA.B $03                            ;83D66F|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D66F|8503    |000E6B;
                        LDA.B #$39                           ;83D671|A939    |      ;
                        JSL.L CODE_8088A2                    ;83D673|22A28880|8088A2;
                        LDX.B #$02                           ;83D677|A202    |      ;
@@ -11727,31 +11812,31 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_828174                    ;83D68E|22748182|828174;
                        REP #$20                             ;83D692|C220    |      ;
                        LDA.W #$FA80                         ;83D694|A980FA  |      ;
-                       CMP.B $1C                            ;83D697|C51C    |000E84;
+                       CMP.B r_ev_1c_ySpdSub-$E68           ;83D697|C51C    |000E84;
                        BMI CODE_83D69D                      ;83D699|3002    |83D69D;
-                       STA.B $1C                            ;83D69B|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83D69B|851C    |000E84;
                                                             ;      |        |      ;
           CODE_83D69D:
                        SEP #$20                             ;83D69D|E220    |      ;
                        RTS                                  ;83D69F|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $0F                            ;83D6A0|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83D6A0|A50F    |000E77;
                        BPL CODE_83D6AC                      ;83D6A2|1008    |83D6AC;
                        LDA.B #$06                           ;83D6A4|A906    |      ;
-                       STA.B $03                            ;83D6A6|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D6A6|8503    |000E6B;
                        LDA.B #$B0                           ;83D6A8|A9B0    |      ;
-                       STA.B $34                            ;83D6AA|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83D6AA|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_83D6AC:
                        JSL.L updateEv_13_14_17_0f           ;83D6AC|22EA8E84|848EEA;
                        RTS                                  ;83D6B0|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $34                            ;83D6B1|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83D6B1|C634    |000E9C;
                        BNE CODE_83D6C5                      ;83D6B3|D010    |83D6C5;
                        LDA.B #$08                           ;83D6B5|A908    |      ;
-                       STA.B $03                            ;83D6B7|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83D6B7|8503    |000E6B;
                        LDA.B #$3C                           ;83D6B9|A93C    |      ;
-                       STA.B $34                            ;83D6BB|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83D6BB|8534    |000E9C;
                        LDY.B #$02                           ;83D6BD|A002    |      ;
                        LDA.B #$F6                           ;83D6BF|A9F6    |      ;
                        JSL.L CODE_80887F                    ;83D6C1|227F8880|80887F;
@@ -11759,7 +11844,7 @@ eventID_hoganmer_01_main:
           CODE_83D6C5:
                        RTS                                  ;83D6C5|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $34                            ;83D6C6|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83D6C6|C634    |000E9C;
                        BNE CODE_83D6E2                      ;83D6C8|D018    |83D6E2;
                        LDA.L $001F26                        ;83D6CA|AF261F00|001F26;
                        BEQ CODE_83D6D6                      ;83D6CE|F006    |83D6D6;
@@ -11776,12 +11861,14 @@ eventID_hoganmer_01_main:
           CODE_83D6E2:
                        RTS                                  ;83D6E2|60      |      ;
                                                             ;      |        |      ;
-                       JML.L CODE_828398                    ;83D6E3|5C988382|828398;
+                                                            ;      |        |      ;
+          CODE_83D6E3:
+                       JML.L clearStates_00_02_0E           ;83D6E3|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83D6E7:
                        REP #$20                             ;83D6E7|C220    |      ;
-                       LDA.B $05                            ;83D6E9|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83D6E9|A505    |000E6D;
                        SEC                                  ;83D6EB|38      |      ;
                        SBC.W r_0bad                         ;83D6EC|EDAD0B  |860BAD;
                        BPL CODE_83D6F5                      ;83D6EF|1004    |83D6F5;
@@ -11841,18 +11928,18 @@ eventID_hoganmer_01_main:
                        INC.W r_0000,X                       ;83D72B|FE0000  |860000;
                        LDA.B #$16                           ;83D72E|A916    |      ;
                        STA.W r_000a,X                       ;83D730|9D0A00  |86000A;
-                       LDA.B $33                            ;83D733|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;83D733|A533    |000E9B;
                        STA.W r_0011,X                       ;83D735|9D1100  |860011;
                        REP #$21                             ;83D738|C221    |      ;
                        LDA.W #$0016                         ;83D73A|A91600  |      ;
-                       BIT.B $32                            ;83D73D|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;83D73D|2432    |000E9A;
                        BVS CODE_83D744                      ;83D73F|7003    |83D744;
                        LDA.W #$FFEA                         ;83D741|A9EAFF  |      ;
                                                             ;      |        |      ;
           CODE_83D744:
-                       ADC.B $05                            ;83D744|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83D744|6505    |000E6D;
                        STA.W r_0005,X                       ;83D746|9D0500  |860005;
-                       LDA.B $08                            ;83D749|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83D749|A508    |000E70;
                        CLC                                  ;83D74B|18      |      ;
                        ADC.W #$FFE2                         ;83D74C|69E2FF  |      ;
                        STA.W r_0008,X                       ;83D74F|9D0800  |860008;
@@ -11875,23 +11962,23 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83D760:
                        REP #$21                             ;83D760|C221    |      ;
-                       LDA.B $0F                            ;83D762|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83D762|A50F    |000E77;
                        AND.W #$0003                         ;83D764|290300  |      ;
                        TAX                                  ;83D767|AA      |      ;
                        LDA.W UNREACH_86D016,X               ;83D768|BD16D0  |86D016;
                        AND.W #$00FF                         ;83D76B|29FF00  |      ;
-                       BIT.B $32                            ;83D76E|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;83D76E|2432    |000E9A;
                        BVS CODE_83D776                      ;83D770|7004    |83D776;
                        EOR.W #$FFFF                         ;83D772|49FFFF  |      ;
                        INC A                                ;83D775|1A      |      ;
                                                             ;      |        |      ;
           CODE_83D776:
-                       ADC.B $05                            ;83D776|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83D776|6505    |000E6D;
                        STA.W r_0bad                         ;83D778|8DAD0B  |860BAD;
                        LDA.W UNREACH_86D017,X               ;83D77B|BD17D0  |86D017;
                        AND.W #$00FF                         ;83D77E|29FF00  |      ;
                        CLC                                  ;83D781|18      |      ;
-                       ADC.B $08                            ;83D782|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;83D782|6508    |000E70;
                        STA.W r_0bb0                         ;83D784|8DB00B  |860BB0;
                        SEP #$20                             ;83D787|E220    |      ;
                        RTS                                  ;83D789|60      |      ;
@@ -11923,13 +12010,13 @@ eventID_hoganmer_01_main:
                        STA.W r_000a,X                       ;83D7B7|9D0A00  |86000A;
                        LDA.B #$14                           ;83D7BA|A914    |      ;
                        STA.W r_000b,X                       ;83D7BC|9D0B00  |86000B;
-                       LDA.B $33                            ;83D7BF|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;83D7BF|A533    |000E9B;
                        ORA.B #$30                           ;83D7C1|0930    |      ;
                        STA.W r_0011,X                       ;83D7C3|9D1100  |860011;
                        REP #$20                             ;83D7C6|C220    |      ;
-                       LDA.B $05                            ;83D7C8|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83D7C8|A505    |000E6D;
                        STA.W r_0005,X                       ;83D7CA|9D0500  |860005;
-                       LDA.B $08                            ;83D7CD|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83D7CD|A508    |000E70;
                        STA.W r_0008,X                       ;83D7CF|9D0800  |860008;
                        LDA.W #$FF00                         ;83D7D2|A900FF  |      ;
                        STA.W r_001a,X                       ;83D7D5|9D1A00  |86001A;
@@ -11947,10 +12034,10 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83D7ED:
                        REP #$21                             ;83D7ED|C221    |      ;
-                       LDA.B $05                            ;83D7EF|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83D7EF|A505    |000E6D;
                        ADC.W #$FFED                         ;83D7F1|69EDFF  |      ;
                        STA.W r_0000                         ;83D7F4|8D0000  |860000;
-                       LDA.B $08                            ;83D7F7|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83D7F7|A508    |000E70;
                        CLC                                  ;83D7F9|18      |      ;
                        ADC.W #$FFF4                         ;83D7FA|69F4FF  |      ;
                        STA.W r_0002                         ;83D7FD|8D0200  |860002;
@@ -11976,10 +12063,10 @@ eventID_hoganmer_01_main:
                        AND.B #$01                           ;83D82B|2901    |      ;
                        STA.W r_000c,X                       ;83D82D|9D0C00  |86000C;
                        REP #$21                             ;83D830|C221    |      ;
-                       LDA.B $05                            ;83D832|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83D832|A505    |000E6D;
                        ADC.W #$0011                         ;83D834|691100  |      ;
                        STA.W r_0005,X                       ;83D837|9D0500  |860005;
-                       LDA.B $08                            ;83D83A|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83D83A|A508    |000E70;
                        CLC                                  ;83D83C|18      |      ;
                        ADC.W #$FFF5                         ;83D83D|69F5FF  |      ;
                        STA.W r_0008,X                       ;83D840|9D0800  |860008;
@@ -12005,11 +12092,11 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83D85B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83D85C:
+eventID_cragMan_34_main:
                        LDA.B $33                            ;83D85C|A533    |000F1B;
                        TSB.B $11                            ;83D85E|0411    |000EF9;
                        LDX.B $01                            ;83D860|A601    |000EE9;
-                       JSR.W (PTR16_83D8B2,X)               ;83D862|FCB2D8  |83D8B2;
+                       JSR.W (cragMan_34_state,X)           ;83D862|FCB2D8  |83D8B2;
                        JSL.L CODE_849B03                    ;83D865|22039B84|849B03;
                        JSL.L CODE_849B43                    ;83D869|22439B84|849B43;
                        BEQ CODE_83D8A4                      ;83D86D|F035    |83D8A4;
@@ -12032,7 +12119,7 @@ eventID_hoganmer_01_main:
                        LDA.B #$08                           ;83D895|A908    |      ;
                        STA.B $34                            ;83D897|8534    |000F1C;
                        JSR.W CODE_83DB01                    ;83D899|2001DB  |83DB01;
-                       JML.L CODE_828387                    ;83D89C|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83D89C|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83D8A0:
@@ -12040,17 +12127,17 @@ eventID_hoganmer_01_main:
                        TRB.B $11                            ;83D8A2|1411    |000EF9;
                                                             ;      |        |      ;
           CODE_83D8A4:
-                       JSL.L CODE_82806E                    ;83D8A4|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83D8A4|226E8082|82806E;
                        BCS CODE_83D8AE                      ;83D8A8|B004    |83D8AE;
-                       JML.L CODE_8280B4                    ;83D8AA|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83D8AA|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83D8AE:
-                       JML.L CODE_828387                    ;83D8AE|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83D8AE|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_83D8B2:
-                       dw CODE_83D8C2                       ;83D8B2|        |83D8C2;
+     cragMan_34_state:
+                       dw cragMan_34_state_00               ;83D8B2|        |83D8C2;
                        dw CODE_83D8E6                       ;83D8B4|        |83D8E6;
                        dw CODE_83D90E                       ;83D8B6|        |83D90E;
                        dw CODE_83D94F                       ;83D8B8|        |83D94F;
@@ -12059,8 +12146,8 @@ eventID_hoganmer_01_main:
                        dw UNREACH_83DA0D                    ;83D8BE|        |83DA0D;
                        dw UNREACH_83DA2E                    ;83D8C0|        |83DA2E;
                                                             ;      |        |      ;
-          CODE_83D8C2:
-                       JSL.L CODE_82827D                    ;83D8C2|227D8282|82827D;
+  cragMan_34_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;83D8C2|227D8282|82827D;
                        STZ.B $28                            ;83D8C6|6428    |000F10;
                        LDA.B $11                            ;83D8C8|A511    |000EF9;
                        AND.B #$0E                           ;83D8CA|290E    |      ;
@@ -12212,7 +12299,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83DA06:
                        LDA.B #$1E                           ;83DA06|A91E    |      ;
-                       STA.B $35                            ;83DA08|8535    |000EDD;
+                       STA.B r_ev_2_35-$EA8                 ;83DA08|8535    |000EDD;
                                                             ;      |        |      ;
           CODE_83DA0A:
                        JMP.W CODE_83DB67                    ;83DA0A|4C67DB  |83DB67;
@@ -12358,9 +12445,17 @@ eventID_hoganmer_01_main:
                        LDA.B $2B                            ;83DB6F|A52B    |000F13;
                        AND.B #$04                           ;83DB71|2904    |      ;
                        BNE CODE_83DB9A                      ;83DB73|D025    |83DB9A;
-                       db $E6,$03,$C2,$20,$64,$1A,$64,$1C   ;83DB75|        |000003;
-                       db $E2,$20,$A9,$40,$85,$1E,$A9,$FF   ;83DB7D|        |      ;
-                       db $85,$2F,$60                       ;83DB85|        |00002F;
+                       INC.B $03                            ;83DB75|E603    |000EEB;
+                       REP #$20                             ;83DB77|C220    |      ;
+                       STZ.B $1A                            ;83DB79|641A    |000F02;
+                       STZ.B $1C                            ;83DB7B|641C    |000F04;
+                       SEP #$20                             ;83DB7D|E220    |      ;
+                       LDA.B #$40                           ;83DB7F|A940    |      ;
+                       STA.B $1E                            ;83DB81|851E    |000F06;
+                       LDA.B #$FF                           ;83DB83|A9FF    |      ;
+                       STA.B $2F                            ;83DB85|852F    |000F17;
+                       RTS                                  ;83DB87|60      |      ;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DB88:
                        JSL.L CODE_8281E8                    ;83DB88|22E88182|8281E8;
@@ -12375,83 +12470,83 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83DB9A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83DB9B:
+eventID_metalWing_35_main:
                        LDX.B $01                            ;83DB9B|A601    |000001;
-                       JMP.W (PTR16_83DBA0,X)               ;83DB9D|7CA0DB  |83DBA0;
+                       JMP.W (metalWing_35_state,X)         ;83DB9D|7CA0DB  |83DBA0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_83DBA0:
-                       dw CODE_83DBA6                       ;83DBA0|        |83DBA6;
+   metalWing_35_state:
+                       dw metalWing_35_state_00             ;83DBA0|        |83DBA6;
                        dw CODE_83DBEE                       ;83DBA2|        |83DBEE;
                        dw CODE_83DCD6                       ;83DBA4|        |83DCD6;
                                                             ;      |        |      ;
-          CODE_83DBA6:
+metalWing_35_state_00:
                        JSL.L CODE_84A1D5                    ;83DBA6|22D5A184|84A1D5;
                        CPY.B #$0A                           ;83DBAA|C00A    |      ;
                        BCS CODE_83DBD4                      ;83DBAC|B026    |83DBD4;
                        LDA.W $0C26                          ;83DBAE|AD260C  |860C26;
                        BIT.B #$20                           ;83DBB1|8920    |      ;
                        BEQ CODE_83DBD4                      ;83DBB3|F01F    |83DBD4;
-                       JSL.L CODE_82827D                    ;83DBB5|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;83DBB5|227D8282|82827D;
                        LDA.B #$04                           ;83DBB9|A904    |      ;
-                       STA.B $12                            ;83DBBB|8512    |000FBA;
-                       STZ.B $2F                            ;83DBBD|642F    |000FD7;
+                       STA.B r_ev_12-$E68                   ;83DBBB|8512    |000E7A;
+                       STZ.B r_ev_2f-$E68                   ;83DBBD|642F    |000E97;
                        LDA.B #$02                           ;83DBBF|A902    |      ;
-                       STA.B $27                            ;83DBC1|8527    |000FCF;
+                       STA.B r_ev_27-$E68                   ;83DBC1|8527    |000E8F;
                        LDA.B #$01                           ;83DBC3|A901    |      ;
-                       STA.B $28                            ;83DBC5|8528    |000FD0;
+                       STA.B r_ev_28-$E68                   ;83DBC5|8528    |000E90;
                        LDA.B #$03                           ;83DBC7|A903    |      ;
-                       STA.B $26                            ;83DBC9|8526    |000FCE;
+                       STA.B r_ev_26-$E68                   ;83DBC9|8526    |000E8E;
                        REP #$20                             ;83DBCB|C220    |      ;
                        LDA.W r_0bad                         ;83DBCD|ADAD0B  |860BAD;
-                       CMP.B $05                            ;83DBD0|C505    |000FAD;
+                       CMP.B r_ev_05_xPos-$E68              ;83DBD0|C505    |000E6D;
                        BCC CODE_83DBD8                      ;83DBD2|9004    |83DBD8;
                                                             ;      |        |      ;
           CODE_83DBD4:
-                       JML.L CODE_828387                    ;83DBD4|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83DBD4|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DBD8:
                        LDA.W #$D0BE                         ;83DBD8|A9BED0  |      ;
-                       STA.B $20                            ;83DBDB|8520    |000FC8;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83DBDB|8520    |000E88;
                        LDA.W #$0480                         ;83DBDD|A98004  |      ;
-                       STA.B $1A                            ;83DBE0|851A    |000FC2;
-                       STZ.B $1C                            ;83DBE2|641C    |000FC4;
-                       STZ.B $1E                            ;83DBE4|641E    |000FC6;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83DBE0|851A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83DBE2|641C    |000E84;
+                       STZ.B r_ev_1e_weight-$E68            ;83DBE4|641E    |000E86;
                        SEP #$20                             ;83DBE6|E220    |      ;
                        LDA.B #$02                           ;83DBE8|A902    |      ;
                        JML.L CODE_848F07                    ;83DBEA|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DBEE:
-                       JSL.L CODE_82806E                    ;83DBEE|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83DBEE|226E8082|82806E;
                        BCC CODE_83DBF8                      ;83DBF2|9004    |83DBF8;
-                       JML.L CODE_828387                    ;83DBF4|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83DBF4|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DBF8:
                        LDA.L $7F8356                        ;83DBF8|AF56837F|7F8356;
                        ORA.B #$40                           ;83DBFC|0940    |      ;
-                       STA.B $11                            ;83DBFE|8511    |000F79;
-                       LDX.B $02                            ;83DC00|A602    |000F6A;
+                       STA.B r_ev_11_sprAtri-$E68           ;83DBFE|8511    |000E79;
+                       LDX.B r_ev_02_action-$E68            ;83DC00|A602    |000E6A;
                        JSR.W (PTR16_83DC24,X)               ;83DC02|FC24DC  |83DC24;
                        JSL.L CODE_849B43                    ;83DC05|22439B84|849B43;
                        BEQ CODE_83DC1C                      ;83DC09|F011    |83DC1C;
                        BPL CODE_83DC18                      ;83DC0B|100B    |83DC18;
                        JSL.L CODE_84A4B5                    ;83DC0D|22B5A484|84A4B5;
                        LDA.B #$04                           ;83DC11|A904    |      ;
-                       STA.B $01                            ;83DC13|8501    |001029;
-                       STZ.B $02                            ;83DC15|6402    |00102A;
+                       STA.B r_ev_01_state-$E68             ;83DC13|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;83DC15|6402    |000E6A;
                        RTL                                  ;83DC17|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DC18:
                        LDA.B #$0E                           ;83DC18|A90E    |      ;
-                       TRB.B $11                            ;83DC1A|1411    |001039;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83DC1A|1411    |000E79;
                                                             ;      |        |      ;
           CODE_83DC1C:
                        JSL.L CODE_849B03                    ;83DC1C|22039B84|849B03;
-                       JML.L CODE_8280B4                    ;83DC20|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83DC20|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_83DC24:
@@ -12460,11 +12555,11 @@ eventID_hoganmer_01_main:
                        dw CODE_83DCA1                       ;83DC28|        |83DCA1;
                                                             ;      |        |      ;
           CODE_83DC2A:
-                       LDX.B $03                            ;83DC2A|A603    |000EAB;
+                       LDX.B r_ev_03_do-$E68                ;83DC2A|A603    |000E6B;
                        BNE CODE_83DC47                      ;83DC2C|D019    |83DC47;
-                       INC.B $03                            ;83DC2E|E603    |000EAB;
+                       INC.B r_ev_03_do-$E68                ;83DC2E|E603    |000E6B;
                        LDA.B #$01                           ;83DC30|A901    |      ;
-                       LDX.B $0B                            ;83DC32|A60B    |000EB3;
+                       LDX.B r_ev_0b_subID-$E68             ;83DC32|A60B    |000E73;
                        BMI CODE_83DC3F                      ;83DC34|3009    |83DC3F;
                        JSL.L CODE_849086                    ;83DC36|22869084|849086;
                        AND.B #$7E                           ;83DC3A|297E    |      ;
@@ -12472,12 +12567,12 @@ eventID_hoganmer_01_main:
                        ADC.B #$3C                           ;83DC3D|693C    |      ;
                                                             ;      |        |      ;
           CODE_83DC3F:
-                       STA.B $33                            ;83DC3F|8533    |000EDB;
+                       STA.B r_ev_33-$E68                   ;83DC3F|8533    |000E9B;
                        LDA.B #$00                           ;83DC41|A900    |      ;
                        JSL.L CODE_848F07                    ;83DC43|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83DC47:
-                       DEC.B $33                            ;83DC47|C633    |000EDB;
+                       DEC.B r_ev_33-$E68                   ;83DC47|C633    |000E9B;
                        BNE CODE_83DC50                      ;83DC49|D005    |83DC50;
                        LDA.B #$04                           ;83DC4B|A904    |      ;
                        JMP.W CODE_8386F1                    ;83DC4D|4CF186  |8386F1;
@@ -12490,7 +12585,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DC59:
-                       LDX.B $03                            ;83DC59|A603    |000EAB;
+                       LDX.B r_ev_03_do-$E68                ;83DC59|A603    |000E6B;
                        JMP.W (PTR16_83DC5E,X)               ;83DC5B|7C5EDC  |83DC5E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12501,17 +12596,17 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83DC64:
                        LDA.B #$02                           ;83DC64|A902    |      ;
-                       STA.B $03                            ;83DC66|8503    |000EAB;
+                       STA.B r_ev_03_do-$E68                ;83DC66|8503    |000E6B;
                        LDA.B #$40                           ;83DC68|A940    |      ;
-                       STA.B $1F                            ;83DC6A|851F    |000EC7;
+                       STA.B r_ev_1f-$E68                   ;83DC6A|851F    |000E87;
                        LDA.B #$02                           ;83DC6C|A902    |      ;
                        JSL.L CODE_848F07                    ;83DC6E|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83DC72:
-                       LDA.B $0F                            ;83DC72|A50F    |000EB7;
+                       LDA.B r_ev_0f-$E68                   ;83DC72|A50F    |000E77;
                        BPL CODE_83DC80                      ;83DC74|100A    |83DC80;
                        LDA.B #$04                           ;83DC76|A904    |      ;
-                       STA.B $03                            ;83DC78|8503    |000EAB;
+                       STA.B r_ev_03_do-$E68                ;83DC78|8503    |000E6B;
                        LDA.B #$00                           ;83DC7A|A900    |      ;
                        JSL.L CODE_848F07                    ;83DC7C|22078F84|848F07;
                                                             ;      |        |      ;
@@ -12525,10 +12620,10 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_828195                    ;83DC89|22958182|828195;
                        REP #$20                             ;83DC8D|C220    |      ;
                        LDA.W #$0680                         ;83DC8F|A98006  |      ;
-                       CMP.B $1A                            ;83DC92|C51A    |000EC2;
+                       CMP.B r_ev_1a_xSpdSub-$E68           ;83DC92|C51A    |000E82;
                        BCS CODE_83DC9A                      ;83DC94|B004    |83DC9A;
-                       STA.B $1A                            ;83DC96|851A    |000EC2;
-                       STZ.B $02                            ;83DC98|6402    |000EAA;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83DC96|851A    |000E82;
+                       STZ.B r_ev_02_action-$E68            ;83DC98|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_83DC9A:
                        SEP #$20                             ;83DC9A|E220    |      ;
@@ -12537,22 +12632,22 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DCA1:
-                       LDX.B $03                            ;83DCA1|A603    |000F6B;
+                       LDX.B r_ev_03_do-$E68                ;83DCA1|A603    |000E6B;
                        BNE CODE_83DCB1                      ;83DCA3|D00C    |83DCB1;
-                       INC.B $03                            ;83DCA5|E603    |000F2B;
+                       INC.B r_ev_03_do-$E68                ;83DCA5|E603    |000E6B;
                        LDA.B #$04                           ;83DCA7|A904    |      ;
-                       STA.B $1F                            ;83DCA9|851F    |000F47;
+                       STA.B r_ev_1f-$E68                   ;83DCA9|851F    |000E87;
                        LDA.B #$01                           ;83DCAB|A901    |      ;
                        JSL.L CODE_848F07                    ;83DCAD|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83DCB1:
                        JSL.L CODE_828174                    ;83DCB1|22748182|828174;
                        REP #$21                             ;83DCB5|C221    |      ;
-                       LDA.B $05                            ;83DCB7|A505    |000F6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83DCB7|A505    |000E6D;
                        ADC.W #$FFC0                         ;83DCB9|69C0FF  |      ;
                        CMP.W r_cam_BG0_xPos_target          ;83DCBC|CD4D1E  |861E4D;
                        BCC CODE_83DCC8                      ;83DCBF|9007    |83DCC8;
-                       LDA.B $1A                            ;83DCC1|A51A    |000F82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;83DCC1|A51A    |000E82;
                        CMP.W #$0200                         ;83DCC3|C90002  |      ;
                        BCS CODE_83DCCF                      ;83DCC6|B007    |83DCCF;
                                                             ;      |        |      ;
@@ -12569,30 +12664,30 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DCD6:
-                       JSL.L CODE_82806E                    ;83DCD6|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83DCD6|226E8082|82806E;
                        BCC CODE_83DCE0                      ;83DCDA|9004    |83DCE0;
-                       JML.L CODE_828398                    ;83DCDC|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83DCDC|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DCE0:
-                       LDX.B $02                            ;83DCE0|A602    |00102A;
+                       LDX.B r_ev_02_action-$E68            ;83DCE0|A602    |000E6A;
                        JSR.W (DATA8_83DCEA,X)               ;83DCE2|FCEADC  |83DCEA;
-                       JSL.L CODE_8280B4                    ;83DCE5|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;83DCE5|22B48082|8280B4;
                        RTL                                  ;83DCE9|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          DATA8_83DCEA:
                        db $F0,$DC,$0A,$DD,$2F,$DD           ;83DCEA|        |      ;
                        LDA.B #$02                           ;83DCF0|A902    |      ;
-                       STA.B $02                            ;83DCF2|8502    |00102A;
+                       STA.B r_ev_02_action-$E68            ;83DCF2|8502    |000E6A;
                        LDA.B #$10                           ;83DCF4|A910    |      ;
-                       STA.B $1F                            ;83DCF6|851F    |001047;
+                       STA.B r_ev_1f-$E68                   ;83DCF6|851F    |000E87;
                        LDA.B #$10                           ;83DCF8|A910    |      ;
-                       STA.B $1E                            ;83DCFA|851E    |001046;
+                       STA.B r_ev_1e_weight-$E68            ;83DCFA|851E    |000E86;
                        LDA.B #$10                           ;83DCFC|A910    |      ;
-                       STA.B $29                            ;83DCFE|8529    |001051;
+                       STA.B r_ev_29-$E68                   ;83DCFE|8529    |000E91;
                        LDA.B #$10                           ;83DD00|A910    |      ;
-                       STA.B $2A                            ;83DD02|852A    |001052;
+                       STA.B r_ev_2a-$E68                   ;83DD02|852A    |000E92;
                        LDA.B #$03                           ;83DD04|A903    |      ;
                        JSL.L CODE_848F07                    ;83DD06|22078F84|848F07;
                        JSR.W CODE_83DD38                    ;83DD0A|2038DD  |83DD38;
@@ -12600,15 +12695,15 @@ eventID_hoganmer_01_main:
                        CMP.B #$34                           ;83DD11|C934    |      ;
                        BCC CODE_83DD19                      ;83DD13|9004    |83DD19;
                        LDA.B #$04                           ;83DD15|A904    |      ;
-                       STA.B $02                            ;83DD17|8502    |00102A;
+                       STA.B r_ev_02_action-$E68            ;83DD17|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_83DD19:
                        JSL.L CODE_828174                    ;83DD19|22748182|828174;
                        REP #$20                             ;83DD1D|C220    |      ;
                        LDA.W #$0200                         ;83DD1F|A90002  |      ;
-                       CMP.B $1A                            ;83DD22|C51A    |001042;
+                       CMP.B r_ev_1a_xSpdSub-$E68           ;83DD22|C51A    |000E82;
                        BCC CODE_83DD28                      ;83DD24|9002    |83DD28;
-                       STA.B $1A                            ;83DD26|851A    |000FC2;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83DD26|851A    |000E82;
                                                             ;      |        |      ;
           CODE_83DD28:
                        SEP #$20                             ;83DD28|E220    |      ;
@@ -12616,7 +12711,7 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83DD2E|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_84A4B5                    ;83DD2F|22B5A484|84A4B5;
-                       JSL.L CODE_828387                    ;83DD33|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;83DD33|22878382|828387;
                        RTS                                  ;83DD37|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12634,9 +12729,9 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_849086                    ;83DD52|22869084|849086;
                        AND.W #$000F                         ;83DD56|290F00  |      ;
                        CLC                                  ;83DD59|18      |      ;
-                       ADC.B $05                            ;83DD5A|6505    |00102D;
+                       ADC.B r_ev_05_xPos-$E68              ;83DD5A|6505    |000E6D;
                        STA.W r_0005,X                       ;83DD5C|9D0500  |860005;
-                       LDA.B $08                            ;83DD5F|A508    |001030;
+                       LDA.B r_ev_08_yPos-$E68              ;83DD5F|A508    |000E70;
                        STA.W r_0008,X                       ;83DD61|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_83DD64:
@@ -12646,16 +12741,16 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83DD66|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83DD67:
-                       LDA.B $33                            ;83DD67|A533    |000F1B;
-                       TSB.B $11                            ;83DD69|0411    |000EF9;
-                       LDX.B $01                            ;83DD6B|A601    |000EE9;
-                       JSR.W (UNREACH_83DDA5,X)             ;83DD6D|FCA5DD  |83DDA5;
+eventID_jamminger_36_main:
+                       LDA.B r_ev_33-$E68                   ;83DD67|A533    |000E9B;
+                       TSB.B r_ev_11_sprAtri-$E68           ;83DD69|0411    |000E79;
+                       LDX.B r_ev_01_state-$E68             ;83DD6B|A601    |000E69;
+                       JSR.W (jamminger_36_state,X)         ;83DD6D|FCA5DD  |83DDA5;
                        JSL.L updateEv_13_14_17_0f           ;83DD70|22EA8E84|848EEA;
-                       STZ.B $35                            ;83DD74|6435    |000F1D;
+                       STZ.B r_ev_35-$E68                   ;83DD74|6435    |000E9D;
                        JSL.L CODE_849B03                    ;83DD76|22039B84|849B03;
                        BEQ CODE_83DD7E                      ;83DD7A|F002    |83DD7E;
-                       INC.B $35                            ;83DD7C|E635    |000E9D;
+                       INC.B r_ev_35-$E68                   ;83DD7C|E635    |000E9D;
                                                             ;      |        |      ;
           CODE_83DD7E:
                        JSL.L CODE_849B43                    ;83DD7E|22439B84|849B43;
@@ -12666,44 +12761,53 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_84A384                    ;83DD8C|2284A384|84A384;
                                                             ;      |        |      ;
           CODE_83DD90:
-                       JML.L CODE_828387                    ;83DD90|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83DD90|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DD94:
                        LDA.B #$0E                           ;83DD94|A90E    |      ;
-                       TRB.B $11                            ;83DD96|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83DD96|1411    |000E79;
                                                             ;      |        |      ;
           CODE_83DD98:
-                       JSL.L CODE_82806E                    ;83DD98|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83DD98|226E8082|82806E;
                        BCS CODE_83DD90                      ;83DD9C|B0F2    |83DD90;
                        JSR.W CODE_83DF5E                    ;83DD9E|205EDF  |83DF5E;
-                       JML.L CODE_8280B4                    ;83DDA1|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83DDA1|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_83DDA5:
-                       db $B3,$DD,$DF,$DD,$5C,$DE,$A6,$DE   ;83DDA5|        |0000DD;
-                       db $D6,$DE,$F3,$DE,$17,$DF           ;83DDAD|        |0000DE;
-                       JSL.L CODE_82827D                    ;83DDB3|227D8282|82827D;
-                       LDA.B $11                            ;83DDB7|A511    |000EF9;
+   jamminger_36_state:
+                       dw jamminger_36_state_00             ;83DDA5|        |83DDB3;
+                       dw CODE_83DDDF                       ;83DDA7|        |83DDDF;
+                       dw CODE_83DE5C                       ;83DDA9|        |83DE5C;
+                       dw CODE_83DEA6                       ;83DDAB|        |83DEA6;
+                       dw CODE_83DED6                       ;83DDAD|        |83DED6;
+                       dw CODE_83DEF3                       ;83DDAF|        |83DEF3;
+                       dw CODE_83DF17                       ;83DDB1|        |83DF17;
+                                                            ;      |        |      ;
+jamminger_36_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;83DDB3|227D8282|82827D;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83DDB7|A511    |000E79;
                        AND.B #$0E                           ;83DDB9|290E    |      ;
-                       STA.B $33                            ;83DDBB|8533    |000F1B;
+                       STA.B r_ev_33-$E68                   ;83DDBB|8533    |000E9B;
                        LDA.B #$02                           ;83DDBD|A902    |      ;
-                       STA.B $27                            ;83DDBF|8527    |000F0F;
+                       STA.B r_ev_27-$E68                   ;83DDBF|8527    |000E8F;
                        LDA.B #$01                           ;83DDC1|A901    |      ;
-                       STA.B $26                            ;83DDC3|8526    |000F0E;
+                       STA.B r_ev_26-$E68                   ;83DDC3|8526    |000E8E;
                        LDA.B #$04                           ;83DDC5|A904    |      ;
-                       STA.B $12                            ;83DDC7|8512    |000EFA;
-                       STZ.B $34                            ;83DDC9|6434    |000F1C;
+                       STA.B r_ev_12-$E68                   ;83DDC7|8512    |000E7A;
+                       STZ.B r_ev_34-$E68                   ;83DDC9|6434    |000E9C;
                        LDA.B #$00                           ;83DDCB|A900    |      ;
                        JSL.L CODE_848F07                    ;83DDCD|22078F84|848F07;
                        REP #$20                             ;83DDD1|C220    |      ;
                        LDA.W #$D0C2                         ;83DDD3|A9C2D0  |      ;
-                       STA.B $20                            ;83DDD6|8520    |000F08;
-                       LDA.B $05                            ;83DDD8|A505    |000EED;
-                       STA.B $37                            ;83DDDA|8537    |000F1F;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83DDD6|8520    |000E88;
+                       LDA.B r_ev_05_xPos-$E68              ;83DDD8|A505    |000E6D;
+                       STA.B r_ev_37-$E68                   ;83DDDA|8537    |000E9F;
                        SEP #$20                             ;83DDDC|E220    |      ;
                        RTS                                  ;83DDDE|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83DDDF:
                        JSL.L CODE_84A081                    ;83DDDF|2281A084|84A081;
                        ASL A                                ;83DDE3|0A      |      ;
                        ASL A                                ;83DDE4|0A      |      ;
@@ -12713,7 +12817,7 @@ eventID_hoganmer_01_main:
                        REP #$20                             ;83DDED|C220    |      ;
                        LDA.W r_0bad                         ;83DDEF|ADAD0B  |860BAD;
                        SEC                                  ;83DDF2|38      |      ;
-                       SBC.B $05                            ;83DDF3|E505    |000EED;
+                       SBC.B r_ev_05_xPos-$E68              ;83DDF3|E505    |000E6D;
                        BCS CODE_83DDFB                      ;83DDF5|B004    |83DDFB;
                        EOR.W #$FFFF                         ;83DDF7|49FFFF  |      ;
                        INC A                                ;83DDFA|1A      |      ;
@@ -12723,7 +12827,7 @@ eventID_hoganmer_01_main:
                        BCS CODE_83DE59                      ;83DDFE|B059    |83DE59;
                        LDA.W r_0bb0                         ;83DE00|ADB00B  |860BB0;
                        SEC                                  ;83DE03|38      |      ;
-                       SBC.B $08                            ;83DE04|E508    |000EF0;
+                       SBC.B r_ev_08_yPos-$E68              ;83DE04|E508    |000E70;
                        BCS CODE_83DE0C                      ;83DE06|B004    |83DE0C;
                        EOR.W #$FFFF                         ;83DE08|49FFFF  |      ;
                        INC A                                ;83DE0B|1A      |      ;
@@ -12738,7 +12842,7 @@ eventID_hoganmer_01_main:
                        ASL A                                ;83DE1B|0A      |      ;
                        TAX                                  ;83DE1C|AA      |      ;
                        REP #$20                             ;83DE1D|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;83DE1F|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;83DE1F|BD37EE  |86EE37;
                        LSR A                                ;83DE22|4A      |      ;
                        LSR A                                ;83DE23|4A      |      ;
                        LSR A                                ;83DE24|4A      |      ;
@@ -12750,7 +12854,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83DE2F:
                        TAY                                  ;83DE2F|A8      |      ;
-                       STY.B $1F                            ;83DE30|841F    |000F07;
+                       STY.B r_ev_1f-$E68                   ;83DE30|841F    |000E87;
                        LDA.W DATA8_86EE39,X                 ;83DE32|BD39EE  |86EE39;
                        LSR A                                ;83DE35|4A      |      ;
                        LSR A                                ;83DE36|4A      |      ;
@@ -12763,23 +12867,25 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83DE42:
                        TAY                                  ;83DE42|A8      |      ;
-                       STY.B $1E                            ;83DE43|841E    |000F06;
+                       STY.B r_ev_1e_weight-$E68            ;83DE43|841E    |000E86;
                        JSR.W CODE_83DF35                    ;83DE45|2035DF  |83DF35;
                        LDA.W r_0000                         ;83DE48|AD0000  |860000;
                        LSR A                                ;83DE4B|4A      |      ;
                        LSR A                                ;83DE4C|4A      |      ;
                        AND.B #$06                           ;83DE4D|2906    |      ;
-                       STA.B $36                            ;83DE4F|8536    |000F1E;
+                       STA.B r_ev_36-$E68                   ;83DE4F|8536    |000E9E;
                        LDA.B #$04                           ;83DE51|A904    |      ;
-                       STA.B $01                            ;83DE53|8501    |000EE9;
+                       STA.B r_ev_01_state-$E68             ;83DE53|8501    |000E69;
                        LDA.B #$20                           ;83DE55|A920    |      ;
-                       STA.B $34                            ;83DE57|8534    |000F1C;
+                       STA.B r_ev_34-$E68                   ;83DE57|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_83DE59:
                        SEP #$30                             ;83DE59|E230    |      ;
                        RTS                                  ;83DE5B|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $36                            ;83DE5C|A636    |000F1E;
+                                                            ;      |        |      ;
+          CODE_83DE5C:
+                       LDX.B r_ev_36-$E68                   ;83DE5C|A636    |000E9E;
                        JMP.W (UNREACH_83DE61,X)             ;83DE5E|7C61DE  |83DE61;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12797,47 +12903,49 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_828195                    ;83DE7B|22958182|828195;
                                                             ;      |        |      ;
           CODE_83DE7F:
-                       DEC.B $34                            ;83DE7F|C634    |000F1C;
+                       DEC.B r_ev_34-$E68                   ;83DE7F|C634    |000E9C;
                        BNE CODE_83DE8B                      ;83DE81|D008    |83DE8B;
                        LDA.B #$06                           ;83DE83|A906    |      ;
-                       STA.B $01                            ;83DE85|8501    |000EE9;
+                       STA.B r_ev_01_state-$E68             ;83DE85|8501    |000E69;
                        LDA.B #$1E                           ;83DE87|A91E    |      ;
-                       STA.B $34                            ;83DE89|8534    |000F1C;
+                       STA.B r_ev_34-$E68                   ;83DE89|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_83DE8B:
-                       LDA.B $35                            ;83DE8B|A535    |000F1D;
+                       LDA.B r_ev_35-$E68                   ;83DE8B|A535    |000E9D;
                        BEQ CODE_83DEA5                      ;83DE8D|F016    |83DEA5;
                        LDA.B #$01                           ;83DE8F|A901    |      ;
                        JSL.L CODE_848F07                    ;83DE91|22078F84|848F07;
                        LDA.B #$04                           ;83DE95|A904    |      ;
-                       STA.B $1D                            ;83DE97|851D    |000E85;
-                       STZ.B $1C                            ;83DE99|641C    |000E84;
+                       STA.B r_ev_1d_ySpd-$E68              ;83DE97|851D    |000E85;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83DE99|641C    |000E84;
                        LDA.B #$0C                           ;83DE9B|A90C    |      ;
-                       STA.B $34                            ;83DE9D|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83DE9D|8534    |000E9C;
                        LDA.B #$0A                           ;83DE9F|A90A    |      ;
-                       STA.B $01                            ;83DEA1|8501    |000E69;
-                       STZ.B $02                            ;83DEA3|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;83DEA1|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;83DEA3|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_83DEA5:
                        RTS                                  ;83DEA5|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $34                            ;83DEA6|C634    |000F1C;
+                                                            ;      |        |      ;
+          CODE_83DEA6:
+                       DEC.B r_ev_34-$E68                   ;83DEA6|C634    |000E9C;
                        BNE CODE_83DED5                      ;83DEA8|D02B    |83DED5;
                        LDA.B #$08                           ;83DEAA|A908    |      ;
-                       STA.B $01                            ;83DEAC|8501    |000EE9;
+                       STA.B r_ev_01_state-$E68             ;83DEAC|8501    |000E69;
                        JSL.L CODE_84A081                    ;83DEAE|2281A084|84A081;
                        ASL A                                ;83DEB2|0A      |      ;
                        ASL A                                ;83DEB3|0A      |      ;
                        TAX                                  ;83DEB4|AA      |      ;
                        REP #$20                             ;83DEB5|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;83DEB7|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;83DEB7|BD37EE  |86EE37;
                        LSR A                                ;83DEBA|4A      |      ;
                        BIT.W #$4000                         ;83DEBB|890040  |      ;
                        BEQ CODE_83DEC3                      ;83DEBE|F003    |83DEC3;
                        ORA.W #$8000                         ;83DEC0|090080  |      ;
                                                             ;      |        |      ;
           CODE_83DEC3:
-                       STA.B $1A                            ;83DEC3|851A    |000F02;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83DEC3|851A    |000E82;
                        LDA.W DATA8_86EE39,X                 ;83DEC5|BD39EE  |86EE39;
                        LSR A                                ;83DEC8|4A      |      ;
                        BIT.W #$4000                         ;83DEC9|890040  |      ;
@@ -12845,62 +12953,68 @@ eventID_hoganmer_01_main:
                        ORA.W #$8000                         ;83DECE|090080  |      ;
                                                             ;      |        |      ;
           CODE_83DED1:
-                       STA.B $1C                            ;83DED1|851C    |000F04;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83DED1|851C    |000E84;
                        SEP #$20                             ;83DED3|E220    |      ;
                                                             ;      |        |      ;
           CODE_83DED5:
                        RTS                                  ;83DED5|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83DED6:
                        JSL.L CODE_82820A                    ;83DED6|220A8282|82820A;
-                       LDA.B $35                            ;83DEDA|A535    |000F1D;
+                       LDA.B r_ev_35-$E68                   ;83DEDA|A535    |000E9D;
                        BEQ CODE_83DEF2                      ;83DEDC|F014    |83DEF2;
                        LDA.B #$01                           ;83DEDE|A901    |      ;
                        JSL.L CODE_848F07                    ;83DEE0|22078F84|848F07;
                        LDA.B #$04                           ;83DEE4|A904    |      ;
-                       STA.B $1D                            ;83DEE6|851D    |001085;
-                       STZ.B $1C                            ;83DEE8|641C    |001084;
+                       STA.B r_ev_1d_ySpd-$E68              ;83DEE6|851D    |000E85;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83DEE8|641C    |000E84;
                        LDA.B #$0C                           ;83DEEA|A90C    |      ;
-                       STA.B $34                            ;83DEEC|8534    |00109C;
+                       STA.B r_ev_34-$E68                   ;83DEEC|8534    |000E9C;
                        LDA.B #$0A                           ;83DEEE|A90A    |      ;
-                       STA.B $01                            ;83DEF0|8501    |001069;
+                       STA.B r_ev_01_state-$E68             ;83DEF0|8501    |000E69;
                                                             ;      |        |      ;
           CODE_83DEF2:
                        RTS                                  ;83DEF2|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $02                            ;83DEF3|A502    |000E6A;
+                                                            ;      |        |      ;
+          CODE_83DEF3:
+                       LDA.B r_ev_02_action-$E68            ;83DEF3|A502    |000E6A;
                        BNE CODE_83DF06                      ;83DEF5|D00F    |83DF06;
                        JSL.L CODE_82825D                    ;83DEF7|225D8282|82825D;
-                       DEC.B $34                            ;83DEFB|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83DEFB|C634    |000E9C;
                        BNE CODE_83DF05                      ;83DEFD|D006    |83DF05;
-                       INC.B $02                            ;83DEFF|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;83DEFF|E602    |000E6A;
                        LDA.B #$3C                           ;83DF01|A93C    |      ;
-                       STA.B $34                            ;83DF03|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83DF03|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_83DF05:
                        RTS                                  ;83DF05|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DF06:
-                       DEC.B $34                            ;83DF06|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83DF06|C634    |000E9C;
                        BNE CODE_83DF16                      ;83DF08|D00C    |83DF16;
                        LDA.B #$00                           ;83DF0A|A900    |      ;
                        JSL.L CODE_848F07                    ;83DF0C|22078F84|848F07;
                        LDA.B #$02                           ;83DF10|A902    |      ;
-                       STA.B $01                            ;83DF12|8501    |000E69;
-                       STZ.B $02                            ;83DF14|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;83DF12|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;83DF14|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_83DF16:
                        RTS                                  ;83DF16|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $02                            ;83DF17|A502    |000EEA;
+                                                            ;      |        |      ;
+          CODE_83DF17:
+                       LDA.B r_ev_02_action-$E68            ;83DF17|A502    |000E6A;
                        BNE CODE_83DF2C                      ;83DF19|D011    |83DF2C;
                        LDA.B #$00                           ;83DF1B|A900    |      ;
                        JSL.L CODE_848F07                    ;83DF1D|22078F84|848F07;
                        REP #$20                             ;83DF21|C220    |      ;
                        LDA.W #$0300                         ;83DF23|A90003  |      ;
-                       STA.B $1C                            ;83DF26|851C    |000F04;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83DF26|851C    |000E84;
                        SEP #$20                             ;83DF28|E220    |      ;
-                       INC.B $02                            ;83DF2A|E602    |000EEA;
+                       INC.B r_ev_02_action-$E68            ;83DF2A|E602    |000E6A;
                                                             ;      |        |      ;
           CODE_83DF2C:
                        JSL.L updateEv_13_14_17_0f           ;83DF2C|22EA8E84|848EEA;
@@ -12910,7 +13024,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83DF35:
                        REP #$20                             ;83DF35|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;83DF37|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;83DF37|BD37EE  |86EE37;
                        LSR A                                ;83DF3A|4A      |      ;
                        BIT.W #$4000                         ;83DF3B|890040  |      ;
                        BEQ CODE_83DF43                      ;83DF3E|F003    |83DF43;
@@ -12918,8 +13032,8 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83DF43:
                        CLC                                  ;83DF43|18      |      ;
-                       ADC.W DATA8_86EE37,X                 ;83DF44|7D37EE  |86EE37;
-                       STA.B $1A                            ;83DF47|851A    |000F02;
+                       ADC.W stormEagle_56_subID,X          ;83DF44|7D37EE  |86EE37;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83DF47|851A    |000E82;
                        LDA.W DATA8_86EE39,X                 ;83DF49|BD39EE  |86EE39;
                        LSR A                                ;83DF4C|4A      |      ;
                        BIT.W #$4000                         ;83DF4D|890040  |      ;
@@ -12929,19 +13043,19 @@ eventID_hoganmer_01_main:
           CODE_83DF55:
                        CLC                                  ;83DF55|18      |      ;
                        ADC.W DATA8_86EE39,X                 ;83DF56|7D39EE  |86EE39;
-                       STA.B $1C                            ;83DF59|851C    |000F04;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83DF59|851C    |000E84;
                        SEP #$20                             ;83DF5B|E220    |      ;
                        RTS                                  ;83DF5D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DF5E:
-                       LDA.B $01                            ;83DF5E|A501    |000EE9;
+                       LDA.B r_ev_01_state-$E68             ;83DF5E|A501    |000E69;
                        CMP.B #$0C                           ;83DF60|C90C    |      ;
                        BEQ CODE_83DF7E                      ;83DF62|F01A    |83DF7E;
                        REP #$20                             ;83DF64|C220    |      ;
-                       LDA.B $05                            ;83DF66|A505    |000EED;
+                       LDA.B r_ev_05_xPos-$E68              ;83DF66|A505    |000E6D;
                        SEC                                  ;83DF68|38      |      ;
-                       SBC.B $37                            ;83DF69|E537    |000F1F;
+                       SBC.B r_ev_37-$E68                   ;83DF69|E537    |000E9F;
                        BCS CODE_83DF71                      ;83DF6B|B004    |83DF71;
                        EOR.W #$FFFF                         ;83DF6D|49FFFF  |      ;
                        INC A                                ;83DF70|1A      |      ;
@@ -12951,106 +13065,114 @@ eventID_hoganmer_01_main:
                        SEP #$20                             ;83DF74|E220    |      ;
                        BCC CODE_83DF7E                      ;83DF76|9006    |83DF7E;
                        LDA.B #$0C                           ;83DF78|A90C    |      ;
-                       STA.B $01                            ;83DF7A|8501    |000EE9;
-                       STZ.B $02                            ;83DF7C|6402    |000EEA;
+                       STA.B r_ev_01_state-$E68             ;83DF7A|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;83DF7C|6402    |000E6A;
                                                             ;      |        |      ;
           CODE_83DF7E:
                        RTS                                  ;83DF7E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83DF7F:
-                       LDA.B $3E                            ;83DF7F|A53E    |000F26;
-                       TSB.B $11                            ;83DF81|0411    |000EF9;
-                       LDX.B $01                            ;83DF83|A601    |000EE9;
-                       JMP.W (UNREACH_83DF88,X)             ;83DF85|7C88DF  |83DF88;
+eventID_flamer_38_main:
+                       LDA.B r_ev_3e-$E68                   ;83DF7F|A53E    |000EA6;
+                       TSB.B r_ev_11_sprAtri-$E68           ;83DF81|0411    |000E79;
+                       LDX.B r_ev_01_state-$E68             ;83DF83|A601    |000E69;
+                       JMP.W (flamer_38_state,X)            ;83DF85|7C88DF  |83DF88;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_83DF88:
-                       db $94,$DF,$18,$E0,$76,$E0,$EA,$E0   ;83DF88|        |0000DF;
-                       db $34,$E1,$6B,$E1                   ;83DF90|        |0000E1;
-                       JSL.L CODE_82827D                    ;83DF94|227D8282|82827D;
-                       LDA.B $11                            ;83DF98|A511    |000FF9;
+      flamer_38_state:
+                       dw flamer_38_state_00                ;83DF88|        |83DF94;
+                       dw CODE_83E018                       ;83DF8A|        |83E018;
+                       dw CODE_83E076                       ;83DF8C|        |83E076;
+                       dw CODE_83E0EA                       ;83DF8E|        |83E0EA;
+                       dw CODE_83E134                       ;83DF90|        |83E134;
+                       dw CODE_83E16B                       ;83DF92|        |83E16B;
+                                                            ;      |        |      ;
+   flamer_38_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;83DF94|227D8282|82827D;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83DF98|A511    |000E79;
                        AND.B #$0E                           ;83DF9A|290E    |      ;
-                       STA.B $3E                            ;83DF9C|853E    |001026;
+                       STA.B r_ev_3e-$E68                   ;83DF9C|853E    |000EA6;
                        LDA.B #$04                           ;83DF9E|A904    |      ;
-                       STA.B $12                            ;83DFA0|8512    |000FFA;
-                       LDA.B $0B                            ;83DFA2|A50B    |000FF3;
+                       STA.B r_ev_12-$E68                   ;83DFA0|8512    |000E7A;
+                       LDA.B r_ev_0b_subID-$E68             ;83DFA2|A50B    |000E73;
                        AND.B #$7F                           ;83DFA4|297F    |      ;
                        BNE CODE_83DFCD                      ;83DFA6|D025    |83DFCD;
                        LDA.B #$03                           ;83DFA8|A903    |      ;
-                       STA.B $3B                            ;83DFAA|853B    |000F23;
+                       STA.B r_ev_3b-$E68                   ;83DFAA|853B    |000EA3;
                        REP #$20                             ;83DFAC|C220    |      ;
                        LDA.W #$D14E                         ;83DFAE|A94ED1  |      ;
-                       STA.B $20                            ;83DFB1|8520    |000F08;
-                       LDA.B $08                            ;83DFB3|A508    |000EF0;
-                       STA.B $33                            ;83DFB5|8533    |000F1B;
-                       STA.B $35                            ;83DFB7|8535    |000F1D;
-                       STA.B $37                            ;83DFB9|8537    |000F1F;
-                       STA.B $39                            ;83DFBB|8539    |000F21;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83DFB1|8520    |000E88;
+                       LDA.B r_ev_08_yPos-$E68              ;83DFB3|A508    |000E70;
+                       STA.B r_ev_33-$E68                   ;83DFB5|8533    |000E9B;
+                       STA.B r_ev_35-$E68                   ;83DFB7|8535    |000E9D;
+                       STA.B r_ev_37-$E68                   ;83DFB9|8537    |000E9F;
+                       STA.B r_ev_39-$E68                   ;83DFBB|8539    |000EA1;
                        SEP #$20                             ;83DFBD|E220    |      ;
                        LDA.B #$03                           ;83DFBF|A903    |      ;
-                       STA.B $26                            ;83DFC1|8526    |000F0E;
+                       STA.B r_ev_26-$E68                   ;83DFC1|8526    |000E8E;
                        LDA.B #$06                           ;83DFC3|A906    |      ;
-                       STA.B $27                            ;83DFC5|8527    |000F0F;
+                       STA.B r_ev_27-$E68                   ;83DFC5|8527    |000E8F;
                        LDA.B #$00                           ;83DFC7|A900    |      ;
                        JML.L CODE_848F07                    ;83DFC9|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DFCD:
-                       LDA.B ($0C)                          ;83DFCD|B20C    |000FF4;
+                       LDA.B ($0C)                          ;83DFCD|B20C    |000E74;
                        BEQ CODE_83DFDF                      ;83DFCF|F00E    |83DFDF;
                        LDY.B #$01                           ;83DFD1|A001    |      ;
-                       LDA.B ($0C),Y                        ;83DFD3|B10C    |000FF4;
+                       LDA.B ($0C),Y                        ;83DFD3|B10C    |000E74;
                        BEQ CODE_83DFDF                      ;83DFD5|F008    |83DFDF;
                        LDY.B #$0B                           ;83DFD7|A00B    |      ;
-                       LDA.B ($0C),Y                        ;83DFD9|B10C    |000FF4;
+                       LDA.B ($0C),Y                        ;83DFD9|B10C    |000E74;
                        AND.B #$7F                           ;83DFDB|297F    |      ;
                        BEQ CODE_83DFE3                      ;83DFDD|F004    |83DFE3;
                                                             ;      |        |      ;
           CODE_83DFDF:
-                       JML.L CODE_828398                    ;83DFDF|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83DFDF|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DFE3:
                        LDA.B #$01                           ;83DFE3|A901    |      ;
-                       STA.B $27                            ;83DFE5|8527    |00100F;
-                       STA.B $30                            ;83DFE7|8530    |001018;
+                       STA.B r_ev_27-$E68                   ;83DFE5|8527    |000E8F;
+                       STA.B r_ev_30-$E68                   ;83DFE7|8530    |000E98;
                        LDA.B #$02                           ;83DFE9|A902    |      ;
-                       STA.B $26                            ;83DFEB|8526    |00100E;
+                       STA.B r_ev_26-$E68                   ;83DFEB|8526    |000E8E;
                        LDA.B #$10                           ;83DFED|A910    |      ;
-                       STA.B $3B                            ;83DFEF|853B    |001023;
+                       STA.B r_ev_3b-$E68                   ;83DFEF|853B    |000EA3;
                        LDA.B #$02                           ;83DFF1|A902    |      ;
                        JSL.L CODE_848F07                    ;83DFF3|22078F84|848F07;
                        LDA.B #$06                           ;83DFF7|A906    |      ;
-                       STA.B $01                            ;83DFF9|8501    |000FE9;
+                       STA.B r_ev_01_state-$E68             ;83DFF9|8501    |000E69;
                        LDY.B #$11                           ;83DFFB|A011    |      ;
-                       LDA.B ($0C),Y                        ;83DFFD|B10C    |000FF4;
+                       LDA.B ($0C),Y                        ;83DFFD|B10C    |000E74;
                        AND.B #$40                           ;83DFFF|2940    |      ;
-                       TSB.B $11                            ;83E001|0411    |000FF9;
-                       LDA.B $0B                            ;83E003|A50B    |000FF3;
+                       TSB.B r_ev_11_sprAtri-$E68           ;83E001|0411    |000E79;
+                       LDA.B r_ev_0b_subID-$E68             ;83E003|A50B    |000E73;
                        DEC A                                ;83E005|3A      |      ;
                        BNE CODE_83E010                      ;83E006|D008    |83E010;
                        LDA.B #$01                           ;83E008|A901    |      ;
-                       STA.B $3B                            ;83E00A|853B    |000F63;
+                       STA.B r_ev_3b-$E68                   ;83E00A|853B    |000EA3;
                        LDA.B #$0F                           ;83E00C|A90F    |      ;
-                       STA.B $3C                            ;83E00E|853C    |000F64;
+                       STA.B r_ev_3c-$E68                   ;83E00E|853C    |000EA4;
                                                             ;      |        |      ;
           CODE_83E010:
                        REP #$20                             ;83E010|C220    |      ;
                        LDA.W #$D152                         ;83E012|A952D1  |      ;
-                       STA.B $20                            ;83E015|8520    |001008;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83E015|8520    |000E88;
                        RTL                                  ;83E017|6B      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83E018:
                        JSL.L CODE_84ACA5                    ;83E018|22A5AC84|84ACA5;
-                       LDA.B $3B                            ;83E01C|A53B    |000F23;
+                       LDA.B r_ev_3b-$E68                   ;83E01C|A53B    |000EA3;
                        BEQ CODE_83E025                      ;83E01E|F005    |83E025;
-                       DEC.B $3B                            ;83E020|C63B    |000F23;
+                       DEC.B r_ev_3b-$E68                   ;83E020|C63B    |000EA3;
                        JMP.W CODE_83E088                    ;83E022|4C88E0  |83E088;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E025:
                        REP #$20                             ;83E025|C220    |      ;
-                       LDA.B $05                            ;83E027|A505    |000EED;
+                       LDA.B r_ev_05_xPos-$E68              ;83E027|A505    |000E6D;
                        SEC                                  ;83E029|38      |      ;
                        SBC.W r_0bad                         ;83E02A|EDAD0B  |860BAD;
                        BCS CODE_83E033                      ;83E02D|B004    |83E033;
@@ -13060,7 +13182,7 @@ eventID_hoganmer_01_main:
           CODE_83E033:
                        CMP.W #$0060                         ;83E033|C96000  |      ;
                        BCS CODE_83E072                      ;83E036|B03A    |83E072;
-                       LDA.B $08                            ;83E038|A508    |000EF0;
+                       LDA.B r_ev_08_yPos-$E68              ;83E038|A508    |000E70;
                        SEC                                  ;83E03A|38      |      ;
                        SBC.W r_0bb0                         ;83E03B|EDB00B  |860BB0;
                        BCS CODE_83E044                      ;83E03E|B004    |83E044;
@@ -13078,9 +13200,9 @@ eventID_hoganmer_01_main:
                        LDA.B #$01                           ;83E057|A901    |      ;
                        STA.W r_000b,X                       ;83E059|9D0B00  |86000B;
                        LDA.B #$04                           ;83E05C|A904    |      ;
-                       STA.B $01                            ;83E05E|8501    |000EE9;
+                       STA.B r_ev_01_state-$E68             ;83E05E|8501    |000E69;
                        LDA.B #$50                           ;83E060|A950    |      ;
-                       STA.B $3B                            ;83E062|853B    |000F23;
+                       STA.B r_ev_3b-$E68                   ;83E062|853B    |000EA3;
                        REP #$20                             ;83E064|C220    |      ;
                        TDC                                  ;83E066|7B      |      ;
                        STA.W r_000c,X                       ;83E067|9D0C00  |86000C;
@@ -13092,43 +13214,45 @@ eventID_hoganmer_01_main:
                        SEP #$30                             ;83E072|E230    |      ;
                        BRA CODE_83E088                      ;83E074|8012    |83E088;
                                                             ;      |        |      ;
-                       DEC.B $3B                            ;83E076|C63B    |000F23;
+                                                            ;      |        |      ;
+          CODE_83E076:
+                       DEC.B r_ev_3b-$E68                   ;83E076|C63B    |000EA3;
                        BNE CODE_83E088                      ;83E078|D00E    |83E088;
                        LDA.B #$02                           ;83E07A|A902    |      ;
-                       STA.B $01                            ;83E07C|8501    |000EE9;
+                       STA.B r_ev_01_state-$E68             ;83E07C|8501    |000E69;
                        LDA.B #$00                           ;83E07E|A900    |      ;
                        JSL.L CODE_848F07                    ;83E080|22078F84|848F07;
                        LDA.B #$3C                           ;83E084|A93C    |      ;
-                       STA.B $3B                            ;83E086|853B    |000F23;
+                       STA.B r_ev_3b-$E68                   ;83E086|853B    |000EA3;
                                                             ;      |        |      ;
           CODE_83E088:
-                       LDA.B $0B                            ;83E088|A50B    |000EF3;
+                       LDA.B r_ev_0b_subID-$E68             ;83E088|A50B    |000E73;
                        BPL CODE_83E09E                      ;83E08A|1012    |83E09E;
                        REP #$30                             ;83E08C|C230    |      ;
-                       LDX.B $0C                            ;83E08E|A60C    |000EF4;
+                       LDX.B r_ev_0c-$E68                   ;83E08E|A60C    |000E74;
                        LDA.W r_0005,X                       ;83E090|BD0500  |860005;
-                       STA.B $05                            ;83E093|8505    |000EED;
+                       STA.B r_ev_05_xPos-$E68              ;83E093|8505    |000E6D;
                        LDA.W r_0008,X                       ;83E095|BD0800  |860008;
                        SEC                                  ;83E098|38      |      ;
                        SBC.W #$0013                         ;83E099|E91300  |      ;
-                       STA.B $08                            ;83E09C|8508    |000EF0;
+                       STA.B r_ev_08_yPos-$E68              ;83E09C|8508    |000E70;
                                                             ;      |        |      ;
           CODE_83E09E:
                        REP #$20                             ;83E09E|C220    |      ;
-                       LDA.B $37                            ;83E0A0|A537    |000F1F;
-                       STA.B $39                            ;83E0A2|8539    |000F21;
-                       LDA.B $35                            ;83E0A4|A535    |000F1D;
-                       STA.B $37                            ;83E0A6|8537    |000F1F;
-                       LDA.B $33                            ;83E0A8|A533    |000F1B;
-                       STA.B $35                            ;83E0AA|8535    |000F1D;
-                       LDA.B $08                            ;83E0AC|A508    |000EF0;
-                       STA.B $33                            ;83E0AE|8533    |000F1B;
+                       LDA.B r_ev_37-$E68                   ;83E0A0|A537    |000E9F;
+                       STA.B r_ev_39-$E68                   ;83E0A2|8539    |000EA1;
+                       LDA.B r_ev_35-$E68                   ;83E0A4|A535    |000E9D;
+                       STA.B r_ev_37-$E68                   ;83E0A6|8537    |000E9F;
+                       LDA.B r_ev_33-$E68                   ;83E0A8|A533    |000E9B;
+                       STA.B r_ev_35-$E68                   ;83E0AA|8535    |000E9D;
+                       LDA.B r_ev_08_yPos-$E68              ;83E0AC|A508    |000E70;
+                       STA.B r_ev_33-$E68                   ;83E0AE|8533    |000E9B;
                        SEP #$30                             ;83E0B0|E230    |      ;
                        JSL.L CODE_849B03                    ;83E0B2|22039B84|849B03;
                        JSL.L CODE_849B43                    ;83E0B6|22439B84|849B43;
                        BEQ CODE_83E0DC                      ;83E0BA|F020    |83E0DC;
                        BPL CODE_83E0D8                      ;83E0BC|101A    |83E0D8;
-                       LDA.B $0B                            ;83E0BE|A50B    |000EF3;
+                       LDA.B r_ev_0b_subID-$E68             ;83E0BE|A50B    |000E73;
                        BMI CODE_83E0C8                      ;83E0C0|3006    |83E0C8;
                        db $A9,$00,$22,$84,$A3,$84           ;83E0C2|        |      ;
                                                             ;      |        |      ;
@@ -13136,29 +13260,31 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_84A4B5                    ;83E0C8|22B5A484|84A4B5;
                                                             ;      |        |      ;
           CODE_83E0CC:
-                       LDA.B $0B                            ;83E0CC|A50B    |000EF3;
+                       LDA.B r_ev_0b_subID-$E68             ;83E0CC|A50B    |000E73;
                        BMI CODE_83E0D4                      ;83E0CE|3004    |83E0D4;
                        db $5C,$87,$83,$82                   ;83E0D0|        |828387;
                                                             ;      |        |      ;
           CODE_83E0D4:
-                       JML.L CODE_828398                    ;83E0D4|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83E0D4|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E0D8:
                        LDA.B #$0E                           ;83E0D8|A90E    |      ;
-                       TRB.B $11                            ;83E0DA|1411    |000EF9;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83E0DA|1411    |000E79;
                                                             ;      |        |      ;
           CODE_83E0DC:
-                       JSL.L CODE_82806E                    ;83E0DC|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83E0DC|226E8082|82806E;
                        BCS CODE_83E0CC                      ;83E0E0|B0EA    |83E0CC;
                        JSL.L updateEv_13_14_17_0f           ;83E0E2|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;83E0E6|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83E0E6|5CB48082|8280B4;
                                                             ;      |        |      ;
-                       INC.B $3C                            ;83E0EA|E63C    |001024;
+                                                            ;      |        |      ;
+          CODE_83E0EA:
+                       INC.B r_ev_3c-$E68                   ;83E0EA|E63C    |000EA4;
                        JSR.W CODE_83E17B                    ;83E0EC|207BE1  |83E17B;
-                       DEC.B $3B                            ;83E0EF|C63B    |001023;
+                       DEC.B r_ev_3b-$E68                   ;83E0EF|C63B    |000EA3;
                        BNE CODE_83E13B                      ;83E0F1|D048    |83E13B;
-                       LDA.B $0B                            ;83E0F3|A50B    |000FF3;
+                       LDA.B r_ev_0b_subID-$E68             ;83E0F3|A50B    |000E73;
                        CMP.B #$04                           ;83E0F5|C904    |      ;
                        BEQ CODE_83E11C                      ;83E0F7|F023    |83E11C;
                        JSL.L loadEnitySlotBase              ;83E0F9|22218382|828321;
@@ -13166,85 +13292,89 @@ eventID_hoganmer_01_main:
                        INC.W r_0000,X                       ;83E0FF|FE0000  |860000;
                        LDA.B #$38                           ;83E102|A938    |      ;
                        STA.W r_000a,X                       ;83E104|9D0A00  |86000A;
-                       LDA.B $0B                            ;83E107|A50B    |000FB3;
+                       LDA.B r_ev_0b_subID-$E68             ;83E107|A50B    |000E73;
                        INC A                                ;83E109|1A      |      ;
                        STA.W r_000b,X                       ;83E10A|9D0B00  |86000B;
-                       LDA.B $0C                            ;83E10D|A50C    |000FB4;
+                       LDA.B r_ev_0c-$E68                   ;83E10D|A50C    |000E74;
                        STA.W r_000c,X                       ;83E10F|9D0C00  |86000C;
-                       LDA.B $0D                            ;83E112|A50D    |000FB5;
+                       LDA.B r_ev_0d-$E68                   ;83E112|A50D    |000E75;
                        STA.W r_000d,X                       ;83E114|9D0D00  |86000D;
-                       LDA.B $3C                            ;83E117|A53C    |000FE4;
+                       LDA.B r_ev_3c-$E68                   ;83E117|A53C    |000EA4;
                        STA.W r_003c,X                       ;83E119|9D3C00  |86003C;
                                                             ;      |        |      ;
           CODE_83E11C:
                        SEP #$30                             ;83E11C|E230    |      ;
-                       LDA.B $3B                            ;83E11E|A53B    |001023;
+                       LDA.B r_ev_3b-$E68                   ;83E11E|A53B    |000EA3;
                        LDA.B #$04                           ;83E120|A904    |      ;
                        SEC                                  ;83E122|38      |      ;
-                       SBC.B $0B                            ;83E123|E50B    |000FF3;
+                       SBC.B r_ev_0b_subID-$E68             ;83E123|E50B    |000E73;
                        ASL A                                ;83E125|0A      |      ;
                        ASL A                                ;83E126|0A      |      ;
                        ASL A                                ;83E127|0A      |      ;
                        ASL A                                ;83E128|0A      |      ;
                        CLC                                  ;83E129|18      |      ;
                        ADC.B #$1E                           ;83E12A|691E    |      ;
-                       STA.B $3B                            ;83E12C|853B    |001023;
+                       STA.B r_ev_3b-$E68                   ;83E12C|853B    |000EA3;
                        LDA.B #$08                           ;83E12E|A908    |      ;
-                       STA.B $01                            ;83E130|8501    |000FE9;
+                       STA.B r_ev_01_state-$E68             ;83E130|8501    |000E69;
                        BRA CODE_83E13B                      ;83E132|8007    |83E13B;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83E134:
                        JSR.W CODE_83E17B                    ;83E134|207BE1  |83E17B;
-                       DEC.B $3B                            ;83E137|C63B    |001023;
+                       DEC.B r_ev_3b-$E68                   ;83E137|C63B    |000EA3;
                        BEQ CODE_83E155                      ;83E139|F01A    |83E155;
                                                             ;      |        |      ;
           CODE_83E13B:
-                       LDA.B ($0C)                          ;83E13B|B20C    |000FF4;
+                       LDA.B ($0C)                          ;83E13B|B20C    |000E74;
                        BEQ CODE_83E155                      ;83E13D|F016    |83E155;
                        LDY.B #$0A                           ;83E13F|A00A    |      ;
-                       LDA.B ($0C),Y                        ;83E141|B10C    |000FF4;
+                       LDA.B ($0C),Y                        ;83E141|B10C    |000E74;
                        CMP.B #$38                           ;83E143|C938    |      ;
                        BNE CODE_83E155                      ;83E145|D00E    |83E155;
                        LDY.B #$01                           ;83E147|A001    |      ;
-                       LDA.B ($0C),Y                        ;83E149|B10C    |000FF4;
+                       LDA.B ($0C),Y                        ;83E149|B10C    |000E74;
                        BEQ CODE_83E155                      ;83E14B|F008    |83E155;
                        LDY.B #$0B                           ;83E14D|A00B    |      ;
-                       LDA.B ($0C),Y                        ;83E14F|B10C    |000FF4;
+                       LDA.B ($0C),Y                        ;83E14F|B10C    |000E74;
                        AND.B #$7F                           ;83E151|297F    |      ;
                        BEQ CODE_83E15F                      ;83E153|F00A    |83E15F;
                                                             ;      |        |      ;
           CODE_83E155:
                        LDA.B #$0A                           ;83E155|A90A    |      ;
-                       STA.B $01                            ;83E157|8501    |000FE9;
+                       STA.B r_ev_01_state-$E68             ;83E157|8501    |000E69;
                        LDA.B #$03                           ;83E159|A903    |      ;
                        JSL.L CODE_848F07                    ;83E15B|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83E15F:
                        JSL.L CODE_849B03                    ;83E15F|22039B84|849B03;
                        JSL.L updateEv_13_14_17_0f           ;83E163|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;83E167|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83E167|5CB48082|8280B4;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83E16B:
                        JSL.L updateEv_13_14_17_0f           ;83E16B|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83E16F|A50F    |000FF7;
+                       LDA.B r_ev_0f-$E68                   ;83E16F|A50F    |000E77;
                        BPL CODE_83E177                      ;83E171|1004    |83E177;
-                       JML.L CODE_828398                    ;83E173|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83E173|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E177:
-                       JML.L CODE_8280B4                    ;83E177|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83E177|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E17B:
                        PHP                                  ;83E17B|08      |      ;
                        SEP #$30                             ;83E17C|E230    |      ;
                        LDY.B #$05                           ;83E17E|A005    |      ;
-                       LDA.B $3C                            ;83E180|A53C    |001024;
+                       LDA.B r_ev_3c-$E68                   ;83E180|A53C    |000EA4;
                        STA.W r_0000                         ;83E182|8D0000  |860000;
                        STZ.W r_0001                         ;83E185|9C0100  |860001;
-                       LDA.B $11                            ;83E188|A511    |000FF9;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83E188|A511    |000E79;
                        ASL A                                ;83E18A|0A      |      ;
                        ASL A                                ;83E18B|0A      |      ;
                        REP #$20                             ;83E18C|C220    |      ;
-                       LDA.B ($0C),Y                        ;83E18E|B10C    |000FF4;
+                       LDA.B ($0C),Y                        ;83E18E|B10C    |000E74;
                        BCC CODE_83E19C                      ;83E190|900A    |83E19C;
                        CLC                                  ;83E192|18      |      ;
                        ADC.W r_0000                         ;83E193|6D0000  |860000;
@@ -13260,96 +13390,103 @@ eventID_hoganmer_01_main:
                        SBC.W #$0008                         ;83E1A1|E90800  |      ;
                                                             ;      |        |      ;
           CODE_83E1A4:
-                       STA.B $05                            ;83E1A4|8505    |000FED;
-                       LDA.B $0B                            ;83E1A6|A50B    |000FF3;
+                       STA.B r_ev_05_xPos-$E68              ;83E1A4|8505    |000E6D;
+                       LDA.B r_ev_0b_subID-$E68             ;83E1A6|A50B    |000E73;
                        AND.W #$000F                         ;83E1A8|290F00  |      ;
                        DEC A                                ;83E1AB|3A      |      ;
                        ASL A                                ;83E1AC|0A      |      ;
                        CLC                                  ;83E1AD|18      |      ;
                        ADC.W #$0033                         ;83E1AE|693300  |      ;
                        TAY                                  ;83E1B1|A8      |      ;
-                       LDA.B ($0C),Y                        ;83E1B2|B10C    |000FF4;
+                       LDA.B ($0C),Y                        ;83E1B2|B10C    |000E74;
                        SEC                                  ;83E1B4|38      |      ;
                        SBC.W #$0003                         ;83E1B5|E90300  |      ;
-                       STA.B $08                            ;83E1B8|8508    |000FF0;
+                       STA.B r_ev_08_yPos-$E68              ;83E1B8|8508    |000E70;
                        PLP                                  ;83E1BA|28      |      ;
                        RTS                                  ;83E1BB|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83E1BC:
-                       LDX.B $01                            ;83E1BC|A601    |000EA9;
-                       JSR.W (UNREACH_83E205,X)             ;83E1BE|FC05E2  |83E205;
+eventID_conveyor_39_main:
+                       LDX.B r_ev_01_state-$E68             ;83E1BC|A601    |000E69;
+                       JSR.W (conveyor_39_state,X)          ;83E1BE|FC05E2  |83E205;
                        REP #$20                             ;83E1C1|C220    |      ;
                        LDA.W #$D160                         ;83E1C3|A960D1  |      ;
-                       STA.B $20                            ;83E1C6|8520    |000EC8;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83E1C6|8520    |000E88;
                        SEP #$20                             ;83E1C8|E220    |      ;
                        JSL.L CODE_849B43                    ;83E1CA|22439B84|849B43;
                        REP #$20                             ;83E1CE|C220    |      ;
                        LDA.W #$D156                         ;83E1D0|A956D1  |      ;
-                       STA.B $20                            ;83E1D3|8520    |000EC8;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83E1D3|8520    |000E88;
                        SEP #$20                             ;83E1D5|E220    |      ;
                        JSL.L CODE_849B43                    ;83E1D7|22439B84|849B43;
                        REP #$20                             ;83E1DB|C220    |      ;
-                       LDA.B $08                            ;83E1DD|A508    |000EB0;
+                       LDA.B r_ev_08_yPos-$E68              ;83E1DD|A508    |000E70;
                        CLC                                  ;83E1DF|18      |      ;
                        ADC.W #$0030                         ;83E1E0|693000  |      ;
-                       STA.B $08                            ;83E1E3|8508    |000EB0;
+                       STA.B r_ev_08_yPos-$E68              ;83E1E3|8508    |000E70;
                        SEP #$20                             ;83E1E5|E220    |      ;
-                       JSL.L CODE_8280B4                    ;83E1E7|22B48082|8280B4;
-                       JSL.L CODE_82806E                    ;83E1EB|226E8082|82806E;
+                       JSL.L eventID_vile_68_afterInit      ;83E1E7|22B48082|8280B4;
+                       JSL.L initPosAllign                  ;83E1EB|226E8082|82806E;
                        BCC CODE_83E1F8                      ;83E1EF|9007    |83E1F8;
-                       JSL.L CODE_828387                    ;83E1F1|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;83E1F1|22878382|828387;
                        JMP.W CODE_83E204                    ;83E1F5|4C04E2  |83E204;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E1F8:
                        REP #$20                             ;83E1F8|C220    |      ;
-                       LDA.B $08                            ;83E1FA|A508    |000EB0;
+                       LDA.B r_ev_08_yPos-$E68              ;83E1FA|A508    |000E70;
                        SEC                                  ;83E1FC|38      |      ;
                        SBC.W #$0030                         ;83E1FD|E93000  |      ;
-                       STA.B $08                            ;83E200|8508    |000EB0;
+                       STA.B r_ev_08_yPos-$E68              ;83E200|8508    |000E70;
                        SEP #$20                             ;83E202|E220    |      ;
                                                             ;      |        |      ;
           CODE_83E204:
                        RTL                                  ;83E204|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_83E205:
-                       db $0F,$E2,$4B,$E2,$CB,$E2,$F9,$E2   ;83E205|        |E24BE2;
-                       db $A8,$E3                           ;83E20D|        |      ;
-                       JSL.L CODE_82827D                    ;83E20F|227D8282|82827D;
+    conveyor_39_state:
+                       dw CODE_83E20F                       ;83E205|        |83E20F;
+                       dw CODE_83E24B                       ;83E207|        |83E24B;
+                       dw CODE_83E2CB                       ;83E209|        |83E2CB;
+                       dw CODE_83E2F9                       ;83E20B|        |83E2F9;
+                       dw CODE_83E3A8                       ;83E20D|        |83E3A8;
+                                                            ;      |        |      ;
+          CODE_83E20F:
+                       JSL.L enemy_initiate_jumpPhysic      ;83E20F|227D8282|82827D;
                        LDA.B #$01                           ;83E213|A901    |      ;
-                       STA.B $27                            ;83E215|8527    |000ECF;
-                       STZ.B $28                            ;83E217|6428    |000ED0;
+                       STA.B r_ev_27-$E68                   ;83E215|8527    |000E8F;
+                       STZ.B r_ev_28-$E68                   ;83E217|6428    |000E90;
                        LDA.B #$04                           ;83E219|A904    |      ;
-                       STA.B $26                            ;83E21B|8526    |000ECE;
+                       STA.B r_ev_26-$E68                   ;83E21B|8526    |000E8E;
                        LDA.B #$04                           ;83E21D|A904    |      ;
-                       STA.B $12                            ;83E21F|8512    |000EBA;
+                       STA.B r_ev_12-$E68                   ;83E21F|8512    |000E7A;
                        LDA.B #$01                           ;83E221|A901    |      ;
-                       STA.B $35                            ;83E223|8535    |000EDD;
+                       STA.B r_ev_35-$E68                   ;83E223|8535    |000E9D;
                        LDA.B #$14                           ;83E225|A914    |      ;
-                       STA.B $38                            ;83E227|8538    |000EE0;
+                       STA.B r_ev_38-$E68                   ;83E227|8538    |000EA0;
                        REP #$20                             ;83E229|C220    |      ;
                        LDA.W #$FE00                         ;83E22B|A900FE  |      ;
-                       STA.B $1C                            ;83E22E|851C    |000EC4;
-                       LDA.B $08                            ;83E230|A508    |000EB0;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83E22E|851C    |000E84;
+                       LDA.B r_ev_08_yPos-$E68              ;83E230|A508    |000E70;
                        SEC                                  ;83E232|38      |      ;
                        SBC.W #$0011                         ;83E233|E91100  |      ;
-                       STA.B $33                            ;83E236|8533    |000EDB;
-                       STA.B $08                            ;83E238|8508    |000EB0;
-                       LDA.B $05                            ;83E23A|A505    |000EAD;
-                       STA.B $36                            ;83E23C|8536    |000EDE;
+                       STA.B r_ev_33-$E68                   ;83E236|8533    |000E9B;
+                       STA.B r_ev_08_yPos-$E68              ;83E238|8508    |000E70;
+                       LDA.B r_ev_05_xPos-$E68              ;83E23A|A505    |000E6D;
+                       STA.B r_ev_36-$E68                   ;83E23C|8536    |000E9E;
                        SEP #$20                             ;83E23E|E220    |      ;
                        LDA.B #$50                           ;83E240|A950    |      ;
-                       STA.B $1E                            ;83E242|851E    |000EC6;
+                       STA.B r_ev_1e_weight-$E68            ;83E242|851E    |000E86;
                        LDA.B #$00                           ;83E244|A900    |      ;
                        JSL.L CODE_848F07                    ;83E246|22078F84|848F07;
                        RTS                                  ;83E24A|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83E24B:
                        REP #$20                             ;83E24B|C220    |      ;
-                       LDA.B $05                            ;83E24D|A505    |000EAD;
+                       LDA.B r_ev_05_xPos-$E68              ;83E24D|A505    |000E6D;
                        STA.W r_0000                         ;83E24F|8D0000  |860000;
-                       LDA.B $08                            ;83E252|A508    |000EB0;
+                       LDA.B r_ev_08_yPos-$E68              ;83E252|A508    |000E70;
                        STA.W r_0004                         ;83E254|8D0400  |860004;
                        TDC                                  ;83E257|7B      |      ;
                        STA.W r_0002                         ;83E258|8D0200  |860002;
@@ -13358,17 +13495,17 @@ eventID_hoganmer_01_main:
           CODE_83E25E:
                        TCD                                  ;83E25E|5B      |      ;
                        SEP #$20                             ;83E25F|E220    |      ;
-                       LDA.B $00                            ;83E261|A500    |0011E8;
+                       LDA.B r_event_active_00-$E68         ;83E261|A500    |000E68;
                        BEQ CODE_83E293                      ;83E263|F02E    |83E293;
-                       LDA.B $0A                            ;83E265|A50A    |000EB2;
+                       LDA.B r_ev_0a_ID-$E68                ;83E265|A50A    |000E72;
                        CMP.B #$2A                           ;83E267|C92A    |      ;
                        BNE CODE_83E293                      ;83E269|D028    |83E293;
-                       LDA.B $0F                            ;83E26B|A50F    |000EF7;
+                       LDA.B r_ev_0f-$E68                   ;83E26B|A50F    |000E77;
                        AND.B #$02                           ;83E26D|2902    |      ;
                        CMP.B #$02                           ;83E26F|C902    |      ;
                        BEQ CODE_83E293                      ;83E271|F020    |83E293;
                        REP #$20                             ;83E273|C220    |      ;
-                       LDA.B $05                            ;83E275|A505    |000EED;
+                       LDA.B r_ev_05_xPos-$E68              ;83E275|A505    |000E6D;
                        SEC                                  ;83E277|38      |      ;
                        SBC.W r_0000                         ;83E278|ED0000  |860000;
                        BCS CODE_83E281                      ;83E27B|B004    |83E281;
@@ -13379,7 +13516,7 @@ eventID_hoganmer_01_main:
                        CMP.W #$0028                         ;83E281|C92800  |      ;
                        BCS CODE_83E293                      ;83E284|B00D    |83E293;
                        db $AD,$02,$00,$5B,$E2,$20,$A9,$04   ;83E286|        |000002;
-                       db $85,$01,$4C,$C5,$E2               ;83E28E|        |000001;
+                       db $85,$01,$4C,$C5,$E2               ;83E28E|        |000E69;
                                                             ;      |        |      ;
           CODE_83E293:
                        REP #$21                             ;83E293|C221    |      ;
@@ -13406,16 +13543,18 @@ eventID_hoganmer_01_main:
                        BCC CODE_83E2C5                      ;83E2BD|9006    |83E2C5;
                        SEP #$20                             ;83E2BF|E220    |      ;
                        LDA.B #$04                           ;83E2C1|A904    |      ;
-                       STA.B $01                            ;83E2C3|8501    |000EA9;
+                       STA.B r_ev_01_state-$E68             ;83E2C3|8501    |000E69;
                                                             ;      |        |      ;
           CODE_83E2C5:
                        SEP #$20                             ;83E2C5|E220    |      ;
                        JSR.W CODE_83E3E1                    ;83E2C7|20E1E3  |83E3E1;
                        RTS                                  ;83E2CA|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $38                            ;83E2CB|C638    |000EE0;
+                                                            ;      |        |      ;
+          CODE_83E2CB:
+                       DEC.B r_ev_38-$E68                   ;83E2CB|C638    |000EA0;
                        BEQ CODE_83E2ED                      ;83E2CD|F01E    |83E2ED;
-                       LDA.B $38                            ;83E2CF|A538    |000EE0;
+                       LDA.B r_ev_38-$E68                   ;83E2CF|A538    |000EA0;
                        AND.B #$01                           ;83E2D1|2901    |      ;
                        BEQ CODE_83E2DD                      ;83E2D3|F008    |83E2DD;
                        LDA.B #$02                           ;83E2D5|A902    |      ;
@@ -13428,23 +13567,25 @@ eventID_hoganmer_01_main:
                        STA.W r_0000                         ;83E2DF|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_83E2E2:
-                       LDA.B $05                            ;83E2E2|A505    |000EAD;
+                       LDA.B r_ev_05_xPos-$E68              ;83E2E2|A505    |000E6D;
                        SEC                                  ;83E2E4|38      |      ;
                        SBC.W r_0000                         ;83E2E5|ED0000  |860000;
-                       STA.B $05                            ;83E2E8|8505    |000EAD;
+                       STA.B r_ev_05_xPos-$E68              ;83E2E8|8505    |000E6D;
                        JMP.W CODE_83E2F5                    ;83E2EA|4CF5E2  |83E2F5;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E2ED:
                        LDA.B #$06                           ;83E2ED|A906    |      ;
-                       STA.B $01                            ;83E2EF|8501    |000EA9;
+                       STA.B r_ev_01_state-$E68             ;83E2EF|8501    |000E69;
                        LDA.B #$14                           ;83E2F1|A914    |      ;
-                       STA.B $38                            ;83E2F3|8538    |000EE0;
+                       STA.B r_ev_38-$E68                   ;83E2F3|8538    |000EA0;
                                                             ;      |        |      ;
           CODE_83E2F5:
                        JSR.W CODE_83E3E1                    ;83E2F5|20E1E3  |83E3E1;
                        RTS                                  ;83E2F8|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83E2F9:
                        JSR.W CODE_83E3E1                    ;83E2F9|20E1E3  |83E3E1;
                        REP #$20                             ;83E2FC|C220    |      ;
                        LDA.W r_0006                         ;83E2FE|AD0600  |860006;
@@ -13478,19 +13619,19 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83E33F:
                        SEP #$20                             ;83E33F|E220    |      ;
-                       DEC.B $35                            ;83E341|C635    |000EDD;
+                       DEC.B r_ev_35-$E68                   ;83E341|C635    |000E9D;
                        BNE CODE_83E39B                      ;83E343|D056    |83E39B;
                        LDA.B #$01                           ;83E345|A901    |      ;
-                       STA.B $35                            ;83E347|8535    |000EDD;
+                       STA.B r_ev_35-$E68                   ;83E347|8535    |000E9D;
                        JSL.L CODE_8281E8                    ;83E349|22E88182|8281E8;
-                       LDA.B $2C                            ;83E34D|A52C    |000ED4;
+                       LDA.B r_ev_2c-$E68                   ;83E34D|A52C    |000E94;
                        AND.B #$7F                           ;83E34F|297F    |      ;
                        BEQ CODE_83E357                      ;83E351|F004    |83E357;
                        db $22,$15,$C7,$82                   ;83E353|        |82C715;
                                                             ;      |        |      ;
           CODE_83E357:
                        JSL.L CODE_8491BE                    ;83E357|22BE9184|8491BE;
-                       LDA.B $2E                            ;83E35B|A52E    |000ED6;
+                       LDA.B r_ev_2e-$E68                   ;83E35B|A52E    |000E96;
                        CMP.B #$00                           ;83E35D|C900    |      ;
                        BEQ CODE_83E39B                      ;83E35F|F03A    |83E39B;
                        LDA.B #$10                           ;83E361|A910    |      ;
@@ -13498,9 +13639,9 @@ eventID_hoganmer_01_main:
                        LDA.B #$3D                           ;83E367|A93D    |      ;
                        JSL.L CODE_8088A2                    ;83E369|22A28880|8088A2;
                        LDA.B #$08                           ;83E36D|A908    |      ;
-                       STA.B $01                            ;83E36F|8501    |000EA9;
+                       STA.B r_ev_01_state-$E68             ;83E36F|8501    |000E69;
                        LDA.B #$2C                           ;83E371|A92C    |      ;
-                       STA.B $35                            ;83E373|8535    |000EDD;
+                       STA.B r_ev_35-$E68                   ;83E373|8535    |000E9D;
                        LDA.B #$01                           ;83E375|A901    |      ;
                        JSL.L CODE_848F07                    ;83E377|22078F84|848F07;
                        JSL.L CODE_849B7E                    ;83E37B|227E9B84|849B7E;
@@ -13511,43 +13652,45 @@ eventID_hoganmer_01_main:
           CODE_83E38F:
                        REP #$20                             ;83E38F|C220    |      ;
                        LDA.W #$0180                         ;83E391|A98001  |      ;
-                       STA.B $1C                            ;83E394|851C    |000EC4;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83E394|851C    |000E84;
                        SEP #$20                             ;83E396|E220    |      ;
                        JMP.W CODE_83E39B                    ;83E398|4C9BE3  |83E39B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E39B:
                        REP #$20                             ;83E39B|C220    |      ;
-                       LDA.B $36                            ;83E39D|A536    |000EDE;
-                       STA.B $05                            ;83E39F|8505    |000EAD;
+                       LDA.B r_ev_36-$E68                   ;83E39D|A536    |000E9E;
+                       STA.B r_ev_05_xPos-$E68              ;83E39F|8505    |000E6D;
                        SEP #$20                             ;83E3A1|E220    |      ;
                        JSL.L updateEv_13_14_17_0f           ;83E3A3|22EA8E84|848EEA;
                        RTS                                  ;83E3A7|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_83E3A8:
                        JSR.W CODE_83E3E1                    ;83E3A8|20E1E3  |83E3E1;
-                       DEC.B $35                            ;83E3AB|C635    |000EDD;
+                       DEC.B r_ev_35-$E68                   ;83E3AB|C635    |000E9D;
                        BNE CODE_83E3D4                      ;83E3AD|D025    |83E3D4;
                        LDA.B #$01                           ;83E3AF|A901    |      ;
-                       STA.B $35                            ;83E3B1|8535    |000EDD;
+                       STA.B r_ev_35-$E68                   ;83E3B1|8535    |000E9D;
                        LDA.B #$00                           ;83E3B3|A900    |      ;
                        JSL.L CODE_848F07                    ;83E3B5|22078F84|848F07;
                        JSL.L CODE_82825D                    ;83E3B9|225D8282|82825D;
                        REP #$20                             ;83E3BD|C220    |      ;
-                       LDA.B $08                            ;83E3BF|A508    |000EB0;
-                       CMP.B $33                            ;83E3C1|C533    |000EDB;
+                       LDA.B r_ev_08_yPos-$E68              ;83E3BF|A508    |000E70;
+                       CMP.B r_ev_33-$E68                   ;83E3C1|C533    |000E9B;
                        BPL CODE_83E3D4                      ;83E3C3|100F    |83E3D4;
                        LDA.W #$FE00                         ;83E3C5|A900FE  |      ;
-                       STA.B $1C                            ;83E3C8|851C    |000EC4;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83E3C8|851C    |000E84;
                        SEP #$20                             ;83E3CA|E220    |      ;
                        LDA.B #$02                           ;83E3CC|A902    |      ;
-                       STA.B $01                            ;83E3CE|8501    |000EA9;
+                       STA.B r_ev_01_state-$E68             ;83E3CE|8501    |000E69;
                        LDA.B #$20                           ;83E3D0|A920    |      ;
-                       STA.B $35                            ;83E3D2|8535    |000EDD;
+                       STA.B r_ev_35-$E68                   ;83E3D2|8535    |000E9D;
                                                             ;      |        |      ;
           CODE_83E3D4:
                        REP #$20                             ;83E3D4|C220    |      ;
-                       LDA.B $36                            ;83E3D6|A536    |000EDE;
-                       STA.B $05                            ;83E3D8|8505    |000EAD;
+                       LDA.B r_ev_36-$E68                   ;83E3D6|A536    |000E9E;
+                       STA.B r_ev_05_xPos-$E68              ;83E3D8|8505    |000E6D;
                        SEP #$20                             ;83E3DA|E220    |      ;
                        JSL.L updateEv_13_14_17_0f           ;83E3DC|22EA8E84|848EEA;
                        RTS                                  ;83E3E0|60      |      ;
@@ -13556,29 +13699,29 @@ eventID_hoganmer_01_main:
           CODE_83E3E1:
                        REP #$20                             ;83E3E1|C220    |      ;
                        LDA.W #$D160                         ;83E3E3|A960D1  |      ;
-                       STA.B $20                            ;83E3E6|8520    |000EC8;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83E3E6|8520    |000E88;
                        SEP #$20                             ;83E3E8|E220    |      ;
                        LDA.B #$80                           ;83E3EA|A980    |      ;
-                       STA.B $2C                            ;83E3EC|852C    |000ED4;
+                       STA.B r_ev_2c-$E68                   ;83E3EC|852C    |000E94;
                        JSL.L CODE_82D7D7                    ;83E3EE|22D7D782|82D7D7;
                        REP #$20                             ;83E3F2|C220    |      ;
                        LDA.W #$D156                         ;83E3F4|A956D1  |      ;
-                       STA.B $20                            ;83E3F7|8520    |000EC8;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83E3F7|8520    |000E88;
                        SEP #$20                             ;83E3F9|E220    |      ;
                        LDA.B #$80                           ;83E3FB|A980    |      ;
-                       STA.B $2C                            ;83E3FD|852C    |000ED4;
+                       STA.B r_ev_2c-$E68                   ;83E3FD|852C    |000E94;
                        JSL.L CODE_82D7D7                    ;83E3FF|22D7D782|82D7D7;
                        RTS                                  ;83E403|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83E404:
-                       LDX.B $01                            ;83E404|A601    |000E69;
-                       JSR.W (PTR16_83E444,X)               ;83E406|FC44E4  |83E444;
-                       LDA.B $27                            ;83E409|A527    |000E8F;
+eventID_tomBot_3a_main:
+                       LDX.B r_ev_01_state-$E68             ;83E404|A601    |000E69;
+                       JSR.W (tomBot_3a_state,X)            ;83E406|FC44E4  |83E444;
+                       LDA.B r_ev_27-$E68                   ;83E409|A527    |000E8F;
                        BEQ CODE_83E433                      ;83E40B|F026    |83E433;
                        JSL.L CODE_849B43                    ;83E40D|22439B84|849B43;
                        BEQ CODE_83E42D                      ;83E411|F01A    |83E42D;
-                       LDA.B $27                            ;83E413|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;83E413|A527    |000E8F;
                        AND.B #$7F                           ;83E415|297F    |      ;
                        BNE CODE_83E425                      ;83E417|D00C    |83E425;
                        JSL.L CODE_84A4B5                    ;83E419|22B5A484|84A4B5;
@@ -13589,128 +13732,128 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83E425:
                        LDA.B #$F1                           ;83E425|A9F1    |      ;
-                       AND.B $11                            ;83E427|2511    |000E79;
-                       STA.B $11                            ;83E429|8511    |000E79;
+                       AND.B r_ev_11_sprAtri-$E68           ;83E427|2511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;83E429|8511    |000E79;
                        BRA CODE_83E433                      ;83E42B|8006    |83E433;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E42D:
-                       LDA.B $33                            ;83E42D|A533    |000E9B;
-                       ORA.B $11                            ;83E42F|0511    |000E79;
-                       STA.B $11                            ;83E431|8511    |000E79;
+                       LDA.B r_ev_33-$E68                   ;83E42D|A533    |000E9B;
+                       ORA.B r_ev_11_sprAtri-$E68           ;83E42F|0511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;83E431|8511    |000E79;
                                                             ;      |        |      ;
           CODE_83E433:
                        JSL.L CODE_849B03                    ;83E433|22039B84|849B03;
-                       JSL.L CODE_8280B4                    ;83E437|22B48082|8280B4;
-                       LDA.B $0E                            ;83E43B|A50E    |000E76;
+                       JSL.L eventID_vile_68_afterInit      ;83E437|22B48082|8280B4;
+                       LDA.B r_ev_0e-$E68                   ;83E43B|A50E    |000E76;
                        BNE CODE_83E443                      ;83E43D|D004    |83E443;
                                                             ;      |        |      ;
           CODE_83E43F:
-                       JSL.L CODE_828398                    ;83E43F|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;83E43F|22988382|828398;
                                                             ;      |        |      ;
           CODE_83E443:
                        RTL                                  ;83E443|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_83E444:
-                       dw CODE_83E450                       ;83E444|        |83E450;
+      tomBot_3a_state:
+                       dw tomBot_3a_state_00                ;83E444|        |83E450;
                        dw CODE_83E4F0                       ;83E446|        |83E4F0;
                        dw CODE_83E514                       ;83E448|        |83E514;
                        dw CODE_83E601                       ;83E44A|        |83E601;
                        dw CODE_83E631                       ;83E44C|        |83E631;
                        dw UNREACH_83E663                    ;83E44E|        |83E663;
                                                             ;      |        |      ;
-          CODE_83E450:
-                       JSL.L CODE_82827D                    ;83E450|227D8282|82827D;
-                       LDA.B $0B                            ;83E454|A50B    |000E73;
+   tomBot_3a_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;83E450|227D8282|82827D;
+                       LDA.B r_ev_0b_subID-$E68             ;83E454|A50B    |000E73;
                        CMP.B #$80                           ;83E456|C980    |      ;
                        BNE CODE_83E45C                      ;83E458|D002    |83E45C;
                        STZ.B $09                            ;83E45A|6409    |000E71;
                                                             ;      |        |      ;
           CODE_83E45C:
-                       LDA.B $0B                            ;83E45C|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;83E45C|A50B    |000E73;
                        AND.B #$02                           ;83E45E|2902    |      ;
                        CMP.B #$02                           ;83E460|C902    |      ;
                        BEQ CODE_83E471                      ;83E462|F00D    |83E471;
-                       LDA.B $11                            ;83E464|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83E464|A511    |000E79;
                        ORA.B #$10                           ;83E466|0910    |      ;
-                       STA.B $11                            ;83E468|8511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;83E468|8511    |000E79;
                        AND.B #$0E                           ;83E46A|290E    |      ;
-                       STA.B $33                            ;83E46C|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;83E46C|8533    |000E9B;
                        JMP.W CODE_83E477                    ;83E46E|4C77E4  |83E477;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E471:
-                       LDA.B $11                            ;83E471|A511    |000EB9;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83E471|A511    |000E79;
                        AND.B #$0E                           ;83E473|290E    |      ;
-                       STA.B $33                            ;83E475|8533    |000EDB;
+                       STA.B r_ev_33-$E68                   ;83E475|8533    |000E9B;
                                                             ;      |        |      ;
           CODE_83E477:
-                       LDA.B $0B                            ;83E477|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;83E477|A50B    |000E73;
                        AND.B #$10                           ;83E479|2910    |      ;
                        BEQ CODE_83E49A                      ;83E47B|F01D    |83E49A;
                        REP #$20                             ;83E47D|C220    |      ;
                        LDA.W r_0bad                         ;83E47F|ADAD0B  |860BAD;
                        SEC                                  ;83E482|38      |      ;
-                       SBC.B $05                            ;83E483|E505    |000EAD;
+                       SBC.B r_ev_05_xPos-$E68              ;83E483|E505    |000E6D;
                        BCC CODE_83E492                      ;83E485|900B    |83E492;
                        SEP #$20                             ;83E487|E220    |      ;
-                       LDA.B $0B                            ;83E489|A50B    |000F73;
+                       LDA.B r_ev_0b_subID-$E68             ;83E489|A50B    |000E73;
                        ORA.B #$01                           ;83E48B|0901    |      ;
-                       STA.B $0B                            ;83E48D|850B    |000F73;
+                       STA.B r_ev_0b_subID-$E68             ;83E48D|850B    |000E73;
                        JMP.W CODE_83E49A                    ;83E48F|4C9AE4  |83E49A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E492:
                        SEP #$20                             ;83E492|E220    |      ;
-                       LDA.B $0B                            ;83E494|A50B    |000EB3;
+                       LDA.B r_ev_0b_subID-$E68             ;83E494|A50B    |000E73;
                        ORA.B #$00                           ;83E496|0900    |      ;
-                       STA.B $0B                            ;83E498|850B    |000EB3;
+                       STA.B r_ev_0b_subID-$E68             ;83E498|850B    |000E73;
                                                             ;      |        |      ;
           CODE_83E49A:
-                       LDA.B $0B                            ;83E49A|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;83E49A|A50B    |000E73;
                        AND.B #$01                           ;83E49C|2901    |      ;
                        BEQ CODE_83E4A6                      ;83E49E|F006    |83E4A6;
                        LDA.B #$40                           ;83E4A0|A940    |      ;
-                       ORA.B $11                            ;83E4A2|0511    |000F79;
-                       STA.B $11                            ;83E4A4|8511    |000F79;
+                       ORA.B r_ev_11_sprAtri-$E68           ;83E4A2|0511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;83E4A4|8511    |000E79;
                                                             ;      |        |      ;
           CODE_83E4A6:
                        LDA.B #$01                           ;83E4A6|A901    |      ;
-                       STA.B $27                            ;83E4A8|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;83E4A8|8527    |000E8F;
                        LDA.B #$01                           ;83E4AA|A901    |      ;
-                       STA.B $28                            ;83E4AC|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;83E4AC|8528    |000E90;
                        LDA.B #$02                           ;83E4AE|A902    |      ;
-                       STA.B $26                            ;83E4B0|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;83E4B0|8526    |000E8E;
                        LDA.B #$06                           ;83E4B2|A906    |      ;
-                       STA.B $12                            ;83E4B4|8512    |000E7A;
-                       STZ.B $35                            ;83E4B6|6435    |000E9D;
-                       STZ.B $37                            ;83E4B8|6437    |000E9F;
-                       STZ.B $3B                            ;83E4BA|643B    |000EA3;
-                       STZ.B $39                            ;83E4BC|6439    |000EA1;
+                       STA.B r_ev_12-$E68                   ;83E4B4|8512    |000E7A;
+                       STZ.B r_ev_35-$E68                   ;83E4B6|6435    |000E9D;
+                       STZ.B r_ev_37-$E68                   ;83E4B8|6437    |000E9F;
+                       STZ.B r_ev_3b-$E68                   ;83E4BA|643B    |000EA3;
+                       STZ.B r_ev_39-$E68                   ;83E4BC|6439    |000EA1;
                        REP #$20                             ;83E4BE|C220    |      ;
                        LDA.W #$D16A                         ;83E4C0|A96AD1  |      ;
-                       STA.B $20                            ;83E4C3|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83E4C3|8520    |000E88;
                        LDA.W #$0180                         ;83E4C5|A98001  |      ;
-                       STA.B $1C                            ;83E4C8|851C    |000E84;
-                       LDA.B $05                            ;83E4CA|A505    |000E6D;
-                       STA.B $3C                            ;83E4CC|853C    |000EA4;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83E4C8|851C    |000E84;
+                       LDA.B r_ev_05_xPos-$E68              ;83E4CA|A505    |000E6D;
+                       STA.B r_ev_3c-$E68                   ;83E4CC|853C    |000EA4;
                        SEP #$20                             ;83E4CE|E220    |      ;
-                       LDA.B $0B                            ;83E4D0|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;83E4D0|A50B    |000E73;
                        AND.B #$10                           ;83E4D2|2910    |      ;
                        BEQ CODE_83E4E5                      ;83E4D4|F00F    |83E4E5;
                        LDA.B #$02                           ;83E4D6|A902    |      ;
-                       STA.B $34                            ;83E4D8|8534    |000EDC;
+                       STA.B r_ev_34-$E68                   ;83E4D8|8534    |000E9C;
                        LDA.B #$04                           ;83E4DA|A904    |      ;
-                       STA.B $01                            ;83E4DC|8501    |000EA9;
-                       STZ.B $1A                            ;83E4DE|641A    |000EC2;
-                       STZ.B $1C                            ;83E4E0|641C    |000EC4;
+                       STA.B r_ev_01_state-$E68             ;83E4DC|8501    |000E69;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;83E4DE|641A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83E4E0|641C    |000E84;
                        JMP.W CODE_83E4E9                    ;83E4E2|4CE9E4  |83E4E9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E4E5:
                        LDA.B #$10                           ;83E4E5|A910    |      ;
-                       STA.B $34                            ;83E4E7|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83E4E7|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_83E4E9:
                        LDA.B #$00                           ;83E4E9|A900    |      ;
@@ -13719,7 +13862,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E4F0:
-                       DEC.B $34                            ;83E4F0|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83E4F0|C634    |000E9C;
                        BEQ CODE_83E4FB                      ;83E4F2|F007    |83E4FB;
                        JSL.L CODE_82825D                    ;83E4F4|225D8282|82825D;
                        JMP.W CODE_83E50F                    ;83E4F8|4C0FE5  |83E50F;
@@ -13727,15 +13870,15 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83E4FB:
                        LDA.B #$04                           ;83E4FB|A904    |      ;
-                       STA.B $01                            ;83E4FD|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;83E4FD|8501    |000E69;
                        LDA.B #$00                           ;83E4FF|A900    |      ;
-                       STA.B $02                            ;83E501|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;83E501|8502    |000E6A;
                        REP #$20                             ;83E503|C220    |      ;
-                       STZ.B $1A                            ;83E505|641A    |000E82;
-                       STZ.B $1C                            ;83E507|641C    |000E84;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;83E505|641A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;83E507|641C    |000E84;
                        SEP #$20                             ;83E509|E220    |      ;
                        LDA.B #$02                           ;83E50B|A902    |      ;
-                       STA.B $34                            ;83E50D|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83E50D|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_83E50F:
                        JSL.L updateEv_13_14_17_0f           ;83E50F|22EA8E84|848EEA;
@@ -13743,60 +13886,60 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E514:
-                       LDX.B $02                            ;83E514|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;83E514|A602    |000E6A;
                        JSR.W (UNREACH_83E51A,X)             ;83E516|FC1AE5  |83E51A;
                        RTS                                  ;83E519|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83E51A:
                        db $20,$E5,$3B,$E5,$C0,$E5           ;83E51A|        |833BE5;
-                       DEC.B $34                            ;83E520|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83E520|C634    |000E9C;
                        BNE CODE_83E53A                      ;83E522|D016    |83E53A;
                        LDA.B #$02                           ;83E524|A902    |      ;
-                       STA.B $02                            ;83E526|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;83E526|8502    |000E6A;
                        LDA.B #$10                           ;83E528|A910    |      ;
-                       STA.B $34                            ;83E52A|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83E52A|8534    |000E9C;
                        LDA.B #$10                           ;83E52C|A910    |      ;
-                       STA.B $1F                            ;83E52E|851F    |000E87;
+                       STA.B r_ev_1f-$E68                   ;83E52E|851F    |000E87;
                        LDA.B #$2C                           ;83E530|A92C    |      ;
-                       STA.B $35                            ;83E532|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;83E532|8535    |000E9D;
                        LDA.B #$01                           ;83E534|A901    |      ;
                        JSL.L CODE_848F07                    ;83E536|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83E53A:
                        RTS                                  ;83E53A|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $35                            ;83E53B|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;83E53B|C635    |000E9D;
                        BNE CODE_83E554                      ;83E53D|D015    |83E554;
                        SEP #$20                             ;83E53F|E220    |      ;
                        LDA.B #$04                           ;83E541|A904    |      ;
-                       STA.B $02                            ;83E543|8502    |000F6A;
+                       STA.B r_ev_02_action-$E68            ;83E543|8502    |000E6A;
                        LDA.B #$10                           ;83E545|A910    |      ;
-                       STA.B $34                            ;83E547|8534    |000F9C;
+                       STA.B r_ev_34-$E68                   ;83E547|8534    |000E9C;
                        LDA.B #$18                           ;83E549|A918    |      ;
-                       STA.B $1F                            ;83E54B|851F    |000F87;
+                       STA.B r_ev_1f-$E68                   ;83E54B|851F    |000E87;
                        LDA.B #$10                           ;83E54D|A910    |      ;
-                       STA.B $1E                            ;83E54F|851E    |000F86;
+                       STA.B r_ev_1e_weight-$E68            ;83E54F|851E    |000E86;
                        JMP.W CODE_83E5BB                    ;83E551|4CBBE5  |83E5BB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E554:
                        SEP #$20                             ;83E554|E220    |      ;
-                       DEC.B $34                            ;83E556|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83E556|C634    |000E9C;
                        BNE CODE_83E56F                      ;83E558|D015    |83E56F;
                        LDA.B #$01                           ;83E55A|A901    |      ;
-                       STA.B $34                            ;83E55C|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83E55C|8534    |000E9C;
                        LDA.B #$08                           ;83E55E|A908    |      ;
-                       STA.B $1E                            ;83E560|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;83E560|851E    |000E86;
                        REP #$20                             ;83E562|C220    |      ;
-                       LDA.B $1C                            ;83E564|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;83E564|A51C    |000E84;
                        CMP.W #$FF00                         ;83E566|C900FF  |      ;
                        BNE CODE_83E56F                      ;83E569|D004    |83E56F;
                        db $E2,$20,$64,$1E                   ;83E56B|        |      ;
                                                             ;      |        |      ;
           CODE_83E56F:
                        SEP #$20                             ;83E56F|E220    |      ;
-                       LDA.B $34                            ;83E571|A534    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;83E571|A534    |000E9C;
                        CMP.B #$01                           ;83E573|C901    |      ;
                        BEQ CODE_83E57E                      ;83E575|F007    |83E57E;
                        AND.B #$05                           ;83E577|2905    |      ;
@@ -13805,7 +13948,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83E57E:
                        SEP #$20                             ;83E57E|E220    |      ;
-                       LDA.B $0B                            ;83E580|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;83E580|A50B    |000E73;
                        AND.B #$01                           ;83E582|2901    |      ;
                        BEQ CODE_83E591                      ;83E584|F00B    |83E591;
                        REP #$20                             ;83E586|C220    |      ;
@@ -13821,15 +13964,15 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83E599:
                        REP #$20                             ;83E599|C220    |      ;
-                       LDA.B $1A                            ;83E59B|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;83E59B|A51A    |000E82;
                        CMP.W r_0000                         ;83E59D|CD0000  |860000;
                        BNE CODE_83E5A6                      ;83E5A0|D004    |83E5A6;
                        SEP #$20                             ;83E5A2|E220    |      ;
-                       STZ.B $1F                            ;83E5A4|641F    |000F87;
+                       STZ.B r_ev_1f-$E68                   ;83E5A4|641F    |000E87;
                                                             ;      |        |      ;
           CODE_83E5A6:
                        SEP #$20                             ;83E5A6|E220    |      ;
-                       LDA.B $0B                            ;83E5A8|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;83E5A8|A50B    |000E73;
                        AND.B #$01                           ;83E5AA|2901    |      ;
                        BNE CODE_83E5B5                      ;83E5AC|D007    |83E5B5;
                        JSL.L CODE_8281B2                    ;83E5AE|22B28182|8281B2;
@@ -13846,9 +13989,9 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83E5BB|22EA8E84|848EEA;
                        RTS                                  ;83E5BF|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $34                            ;83E5C0|C634    |000F9C;
+                       DEC.B r_ev_34-$E68                   ;83E5C0|C634    |000E9C;
                        BEQ CODE_83E5D8                      ;83E5C2|F014    |83E5D8;
-                       LDA.B $0B                            ;83E5C4|A50B    |000F73;
+                       LDA.B r_ev_0b_subID-$E68             ;83E5C4|A50B    |000E73;
                        AND.B #$01                           ;83E5C6|2901    |      ;
                        BNE CODE_83E5D1                      ;83E5C8|D007    |83E5D1;
                        JSL.L CODE_828195                    ;83E5CA|22958182|828195;
@@ -13864,41 +14007,41 @@ eventID_hoganmer_01_main:
                        LDA.B #$03                           ;83E5D8|A903    |      ;
                        JSL.L CODE_848F07                    ;83E5DA|22078F84|848F07;
                        LDA.B #$06                           ;83E5DE|A906    |      ;
-                       STA.B $01                            ;83E5E0|8501    |000F69;
+                       STA.B r_ev_01_state-$E68             ;83E5E0|8501    |000E69;
                        LDA.B #$00                           ;83E5E2|A900    |      ;
-                       STA.B $12                            ;83E5E4|8512    |000F7A;
+                       STA.B r_ev_12-$E68                   ;83E5E4|8512    |000E7A;
                        LDA.B #$10                           ;83E5E6|A910    |      ;
-                       ORA.B $11                            ;83E5E8|0511    |000F79;
-                       STA.B $11                            ;83E5EA|8511    |000F79;
+                       ORA.B r_ev_11_sprAtri-$E68           ;83E5E8|0511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;83E5EA|8511    |000E79;
                        LDA.B #$01                           ;83E5EC|A901    |      ;
-                       STA.B $39                            ;83E5EE|8539    |000FA1;
+                       STA.B r_ev_39-$E68                   ;83E5EE|8539    |000EA1;
                        JSR.W CODE_83E6C4                    ;83E5F0|20C4E6  |83E6C4;
                        JSR.W CODE_83E68F                    ;83E5F3|208FE6  |83E68F;
                        JSR.W CODE_83E66C                    ;83E5F6|206CE6  |83E66C;
                        JSR.W CODE_83E7C9                    ;83E5F9|20C9E7  |83E7C9;
                        LDA.B #$07                           ;83E5FC|A907    |      ;
-                       STA.B $2C                            ;83E5FE|852C    |000F94;
+                       STA.B r_ev_2c-$E68                   ;83E5FE|852C    |000E94;
                                                             ;      |        |      ;
           CODE_83E600:
                        RTS                                  ;83E600|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E601:
-                       LDA.B $37                            ;83E601|A537    |000F9F;
+                       LDA.B r_ev_37-$E68                   ;83E601|A537    |000E9F;
                        BEQ CODE_83E614                      ;83E603|F00F    |83E614;
                        LDA.B #$08                           ;83E605|A908    |      ;
-                       STA.B $01                            ;83E607|8501    |000F29;
+                       STA.B r_ev_01_state-$E68             ;83E607|8501    |000E69;
                        LDA.B #$02                           ;83E609|A902    |      ;
                        JSL.L CODE_848F07                    ;83E60B|22078F84|848F07;
-                       STZ.B $37                            ;83E60F|6437    |000F5F;
+                       STZ.B r_ev_37-$E68                   ;83E60F|6437    |000E9F;
                        JMP.W CODE_83E630                    ;83E611|4C30E6  |83E630;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E614:
-                       DEC.B $34                            ;83E614|C634    |000F9C;
+                       DEC.B r_ev_34-$E68                   ;83E614|C634    |000E9C;
                        BNE CODE_83E625                      ;83E616|D00D    |83E625;
                        JSR.W CODE_83E68F                    ;83E618|208FE6  |83E68F;
-                       LDA.B $37                            ;83E61B|A537    |000F9F;
+                       LDA.B r_ev_37-$E68                   ;83E61B|A537    |000E9F;
                        BNE CODE_83E622                      ;83E61D|D003    |83E622;
                        JSR.W CODE_83E66C                    ;83E61F|206CE6  |83E66C;
                                                             ;      |        |      ;
@@ -13916,30 +14059,30 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83E631:
                        JSL.L updateEv_13_14_17_0f           ;83E631|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83E635|A50F    |000F37;
+                       LDA.B r_ev_0f-$E68                   ;83E635|A50F    |000E77;
                        CMP.B #$81                           ;83E637|C981    |      ;
                        BNE CODE_83E65E                      ;83E639|D023    |83E65E;
-                       LDA.B $11                            ;83E63B|A511    |000F39;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83E63B|A511    |000E79;
                        AND.B #$40                           ;83E63D|2940    |      ;
                        BEQ CODE_83E64A                      ;83E63F|F009    |83E64A;
-                       LDA.B $11                            ;83E641|A511    |000F39;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83E641|A511    |000E79;
                        AND.B #$BF                           ;83E643|29BF    |      ;
-                       STA.B $11                            ;83E645|8511    |000F39;
+                       STA.B r_ev_11_sprAtri-$E68           ;83E645|8511    |000E79;
                        JMP.W CODE_83E650                    ;83E647|4C50E6  |83E650;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E64A:
-                       LDA.B $11                            ;83E64A|A511    |000F39;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83E64A|A511    |000E79;
                        ORA.B #$40                           ;83E64C|0940    |      ;
-                       STA.B $11                            ;83E64E|8511    |000F39;
+                       STA.B r_ev_11_sprAtri-$E68           ;83E64E|8511    |000E79;
                                                             ;      |        |      ;
           CODE_83E650:
                        LDA.B #$03                           ;83E650|A903    |      ;
                        JSL.L CODE_848F07                    ;83E652|22078F84|848F07;
                        LDA.B #$06                           ;83E656|A906    |      ;
-                       STA.B $01                            ;83E658|8501    |000F29;
+                       STA.B r_ev_01_state-$E68             ;83E658|8501    |000E69;
                        LDA.B #$01                           ;83E65A|A901    |      ;
-                       STA.B $34                            ;83E65C|8534    |000F5C;
+                       STA.B r_ev_34-$E68                   ;83E65C|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_83E65E:
                        JSL.L CODE_82820A                    ;83E65E|220A8282|82820A;
@@ -13952,7 +14095,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83E66C:
                        REP #$20                             ;83E66C|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;83E66E|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;83E66E|BD37EE  |86EE37;
                        BPL CODE_83E67A                      ;83E671|1007    |83E67A;
                        LSR A                                ;83E673|4A      |      ;
                        ORA.W #$F000                         ;83E674|0900F0  |      ;
@@ -13963,7 +14106,7 @@ eventID_hoganmer_01_main:
                        LSR A                                ;83E67A|4A      |      ;
                                                             ;      |        |      ;
           CODE_83E67B:
-                       STA.B $1A                            ;83E67B|851A    |000F82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83E67B|851A    |000E82;
                        LDA.W DATA8_86EE39,X                 ;83E67D|BD39EE  |86EE39;
                        BPL CODE_83E689                      ;83E680|1007    |83E689;
                        LSR A                                ;83E682|4A      |      ;
@@ -13975,39 +14118,39 @@ eventID_hoganmer_01_main:
                        LSR A                                ;83E689|4A      |      ;
                                                             ;      |        |      ;
           CODE_83E68A:
-                       STA.B $1C                            ;83E68A|851C    |000F84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83E68A|851C    |000E84;
                        SEP #$20                             ;83E68C|E220    |      ;
                        RTS                                  ;83E68E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E68F:
                        JSL.L CODE_84A081                    ;83E68F|2281A084|84A081;
-                       STA.B $36                            ;83E693|8536    |000F9E;
-                       LDA.B $36                            ;83E695|A536    |000F9E;
-                       STA.B $38                            ;83E697|8538    |000FA0;
+                       STA.B r_ev_36-$E68                   ;83E693|8536    |000E9E;
+                       LDA.B r_ev_36-$E68                   ;83E695|A536    |000E9E;
+                       STA.B r_ev_38-$E68                   ;83E697|8538    |000EA0;
                        ASL A                                ;83E699|0A      |      ;
                        ASL A                                ;83E69A|0A      |      ;
                        TAX                                  ;83E69B|AA      |      ;
                        CMP.B #$40                           ;83E69C|C940    |      ;
                        BMI CODE_83E6B3                      ;83E69E|3013    |83E6B3;
-                       LDA.B $11                            ;83E6A0|A511    |000F79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83E6A0|A511    |000E79;
                        AND.B #$40                           ;83E6A2|2940    |      ;
                        BEQ CODE_83E6C3                      ;83E6A4|F01D    |83E6C3;
                        LDA.B #$02                           ;83E6A6|A902    |      ;
                        JSL.L CODE_848F07                    ;83E6A8|22078F84|848F07;
                        LDA.B #$01                           ;83E6AC|A901    |      ;
-                       STA.B $37                            ;83E6AE|8537    |000F5F;
+                       STA.B r_ev_37-$E68                   ;83E6AE|8537    |000E9F;
                        JMP.W CODE_83E6C3                    ;83E6B0|4CC3E6  |83E6C3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E6B3:
-                       LDA.B $11                            ;83E6B3|A511    |000F39;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83E6B3|A511    |000E79;
                        AND.B #$40                           ;83E6B5|2940    |      ;
                        BNE CODE_83E6C3                      ;83E6B7|D00A    |83E6C3;
                        LDA.B #$02                           ;83E6B9|A902    |      ;
                        JSL.L CODE_848F07                    ;83E6BB|22078F84|848F07;
                        LDA.B #$01                           ;83E6BF|A901    |      ;
-                       STA.B $37                            ;83E6C1|8537    |000F5F;
+                       STA.B r_ev_37-$E68                   ;83E6C1|8537    |000E9F;
                                                             ;      |        |      ;
           CODE_83E6C3:
                        RTS                                  ;83E6C3|60      |      ;
@@ -14025,15 +14168,15 @@ eventID_hoganmer_01_main:
                        INC.W r_0000,X                       ;83E6CF|FE0000  |860000;
                        LDA.B #$30                           ;83E6D2|A930    |      ;
                        STA.W r_000a,X                       ;83E6D4|9D0A00  |86000A;
-                       LDA.B $33                            ;83E6D7|A533    |000F9B;
-                       ORA.B $11                            ;83E6D9|0511    |000F79;
+                       LDA.B r_ev_33-$E68                   ;83E6D7|A533    |000E9B;
+                       ORA.B r_ev_11_sprAtri-$E68           ;83E6D9|0511    |000E79;
                        STA.W r_0011,X                       ;83E6DB|9D1100  |860011;
-                       LDA.B $18                            ;83E6DE|A518    |000F80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;83E6DE|A518    |000E80;
                        STA.W r_0018,X                       ;83E6E0|9D1800  |860018;
-                       LDA.B $16                            ;83E6E3|A516    |000F7E;
+                       LDA.B r_ev_16-$E68                   ;83E6E3|A516    |000E7E;
                        STA.W r_0016,X                       ;83E6E5|9D1600  |860016;
                        STZ.W r_0002,X                       ;83E6E8|9E0200  |860002;
-                       LDA.B $11                            ;83E6EB|A511    |000F79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83E6EB|A511    |000E79;
                        AND.B #$40                           ;83E6ED|2940    |      ;
                        BEQ CODE_83E708                      ;83E6EF|F017    |83E708;
                        REP #$20                             ;83E6F1|C220    |      ;
@@ -14057,10 +14200,10 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83E71C:
                        SEP #$20                             ;83E71C|E220    |      ;
-                       LDA.B $39                            ;83E71E|A539    |000FA1;
+                       LDA.B r_ev_39-$E68                   ;83E71E|A539    |000EA1;
                        BNE CODE_83E730                      ;83E720|D00E    |83E730;
                        REP #$20                             ;83E722|C220    |      ;
-                       LDA.B $05                            ;83E724|A505    |000F6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83E724|A505    |000E6D;
                        SEC                                  ;83E726|38      |      ;
                        SBC.W r_0000                         ;83E727|ED0000  |860000;
                        STA.W r_0005,X                       ;83E72A|9D0500  |860005;
@@ -14069,13 +14212,13 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83E730:
                        REP #$20                             ;83E730|C220    |      ;
-                       LDA.B $05                            ;83E732|A505    |000F6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83E732|A505    |000E6D;
                        SEC                                  ;83E734|38      |      ;
                        SBC.W r_0002                         ;83E735|ED0200  |860002;
                        STA.W r_0005,X                       ;83E738|9D0500  |860005;
                                                             ;      |        |      ;
           CODE_83E73B:
-                       LDA.B $08                            ;83E73B|A508    |000F70;
+                       LDA.B r_ev_08_yPos-$E68              ;83E73B|A508    |000E70;
                        CLC                                  ;83E73D|18      |      ;
                        ADC.W #$0009                         ;83E73E|690900  |      ;
                        STA.W r_0008,X                       ;83E741|9D0800  |860008;
@@ -14083,7 +14226,7 @@ eventID_hoganmer_01_main:
                        SEP #$20                             ;83E747|E220    |      ;
                        LDA.B #$30                           ;83E749|A930    |      ;
                        STA.W r_001e,X                       ;83E74B|9D1E00  |86001E;
-                       LDA.B $39                            ;83E74E|A539    |000FA1;
+                       LDA.B r_ev_39-$E68                   ;83E74E|A539    |000EA1;
                        BEQ CODE_83E75F                      ;83E750|F00D    |83E75F;
                        LDA.B #$06                           ;83E752|A906    |      ;
                        STA.W r_000b,X                       ;83E754|9D0B00  |86000B;
@@ -14099,13 +14242,13 @@ eventID_hoganmer_01_main:
                        STA.W r_0012,X                       ;83E766|9D1200  |860012;
                                                             ;      |        |      ;
           CODE_83E769:
-                       DEC.B $39                            ;83E769|C639    |000FA1;
+                       DEC.B r_ev_39-$E68                   ;83E769|C639    |000EA1;
                        BMI CODE_83E770                      ;83E76B|3003    |83E770;
                        JMP.W CODE_83E6C6                    ;83E76D|4CC6E6  |83E6C6;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E770:
-                       STZ.B $39                            ;83E770|6439    |000FA1;
+                       STZ.B r_ev_39-$E68                   ;83E770|6439    |000EA1;
                        SEP #$10                             ;83E772|E210    |      ;
                        RTS                                  ;83E774|60      |      ;
                                                             ;      |        |      ;
@@ -14117,16 +14260,16 @@ eventID_hoganmer_01_main:
                        INC.W r_0000,X                       ;83E77D|FE0000  |860000;
                        LDA.B #$31                           ;83E780|A931    |      ;
                        STA.W r_000a,X                       ;83E782|9D0A00  |86000A;
-                       LDA.B $33                            ;83E785|A533    |000E9B;
-                       ORA.B $11                            ;83E787|0511    |000E79;
+                       LDA.B r_ev_33-$E68                   ;83E785|A533    |000E9B;
+                       ORA.B r_ev_11_sprAtri-$E68           ;83E787|0511    |000E79;
                        STA.W r_0011,X                       ;83E789|9D1100  |860011;
                        STZ.W r_000b,X                       ;83E78C|9E0B00  |86000B;
                        REP #$20                             ;83E78F|C220    |      ;
-                       LDA.B $08                            ;83E791|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83E791|A508    |000E70;
                        CLC                                  ;83E793|18      |      ;
                        ADC.W #$000B                         ;83E794|690B00  |      ;
                        STA.W r_0008,X                       ;83E797|9D0800  |860008;
-                       LDA.B $05                            ;83E79A|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83E79A|A505    |000E6D;
                        STA.W r_0005,X                       ;83E79C|9D0500  |860005;
                        SEP #$20                             ;83E79F|E220    |      ;
                                                             ;      |        |      ;
@@ -14139,7 +14282,7 @@ eventID_hoganmer_01_main:
                        REP #$20                             ;83E7A4|C220    |      ;
                        LDA.W #$0128                         ;83E7A6|A92801  |      ;
                        STA.W r_0000                         ;83E7A9|8D0000  |860000;
-                       LDA.B $3C                            ;83E7AC|A53C    |000FA4;
+                       LDA.B r_ev_3c-$E68                   ;83E7AC|A53C    |000EA4;
                        STA.W r_0002                         ;83E7AE|8D0200  |860002;
                        SEP #$20                             ;83E7B1|E220    |      ;
                        JSL.L CODE_87A3EC                    ;83E7B3|22ECA387|87A3EC;
@@ -14165,21 +14308,21 @@ eventID_hoganmer_01_main:
                        CLC                                  ;83E7D8|18      |      ;
                        ADC.W #$0020                         ;83E7D9|692000  |      ;
                        SEP #$20                             ;83E7DC|E220    |      ;
-                       STA.B $34                            ;83E7DE|8534    |000F9C;
+                       STA.B r_ev_34-$E68                   ;83E7DE|8534    |000E9C;
                        RTS                                  ;83E7E0|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_83E7E1:
-                       LDX.B $01                            ;83E7E1|A601    |000E69;
-                       JMP.W (PTR16_83E7E6,X)               ;83E7E3|7CE6E7  |83E7E6;
+eventID_creeperHole_67_main:
+                       LDX.B r_ev_01_state-$E68             ;83E7E1|A601    |000E69;
+                       JMP.W (creeperHole_67_state,X)       ;83E7E3|7CE6E7  |83E7E6;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_83E7E6:
-                       dw CODE_83E7EC                       ;83E7E6|        |83E7EC;
+ creeperHole_67_state:
+                       dw creeperHole_67_state_00           ;83E7E6|        |83E7EC;
                        dw CODE_83E85E                       ;83E7E8|        |83E85E;
                        dw CODE_83EE51                       ;83E7EA|        |83EE51;
                                                             ;      |        |      ;
-          CODE_83E7EC:
+creeperHole_67_state_00:
                        LDA.W r_1f7d                         ;83E7EC|AD7D1F  |861F7D;
                        CMP.B #$03                           ;83E7EF|C903    |      ;
                        BEQ CODE_83E80B                      ;83E7F1|F018    |83E80B;
@@ -14194,39 +14337,39 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_88D80F                    ;83E807|220FD888|88D80F;
                                                             ;      |        |      ;
           CODE_83E80B:
-                       JML.L CODE_828398                    ;83E80B|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83E80B|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E80F:
-                       JSL.L CODE_82827D                    ;83E80F|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;83E80F|227D8282|82827D;
                        LDA.B #$04                           ;83E813|A904    |      ;
-                       STA.B $12                            ;83E815|8512    |000E7A;
-                       STA.B $30                            ;83E817|8530    |000E98;
-                       STZ.B $33                            ;83E819|6433    |000E9B;
-                       STZ.B $2F                            ;83E81B|642F    |000E97;
+                       STA.B r_ev_12-$E68                   ;83E815|8512    |000E7A;
+                       STA.B r_ev_30-$E68                   ;83E817|8530    |000E98;
+                       STZ.B r_ev_33-$E68                   ;83E819|6433    |000E9B;
+                       STZ.B r_ev_2f-$E68                   ;83E81B|642F    |000E97;
                        LDA.B #$06                           ;83E81D|A906    |      ;
-                       STA.B $26                            ;83E81F|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;83E81F|8526    |000E8E;
                        LDA.B #$7F                           ;83E821|A97F    |      ;
-                       STA.B $27                            ;83E823|8527    |000E8F;
-                       STA.B $3B                            ;83E825|853B    |000EA3;
+                       STA.B r_ev_27-$E68                   ;83E823|8527    |000E8F;
+                       STA.B r_ev_3b-$E68                   ;83E825|853B    |000EA3;
                        LDA.B #$03                           ;83E827|A903    |      ;
-                       STA.B $28                            ;83E829|8528    |000E90;
-                       STZ.B $10                            ;83E82B|6410    |000E78;
-                       STZ.B $32                            ;83E82D|6432    |000E9A;
+                       STA.B r_ev_28-$E68                   ;83E829|8528    |000E90;
+                       STZ.B r_ev_10-$E68                   ;83E82B|6410    |000E78;
+                       STZ.B r_ev_32-$E68                   ;83E82D|6432    |000E9A;
                        REP #$20                             ;83E82F|C220    |      ;
                        LDA.W #$CF3B                         ;83E831|A93BCF  |      ;
-                       STA.B $20                            ;83E834|8520    |000E88;
-                       STZ.B $36                            ;83E836|6436    |000E9E;
-                       STZ.B $38                            ;83E838|6438    |000EA0;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;83E834|8520    |000E88;
+                       STZ.B r_ev_36-$E68                   ;83E836|6436    |000E9E;
+                       STZ.B r_ev_38-$E68                   ;83E838|6438    |000EA0;
                        LDA.W #$0040                         ;83E83A|A94000  |      ;
-                       STA.B $1E                            ;83E83D|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;83E83D|851E    |000E86;
                        LDA.W #$0A80                         ;83E83F|A9800A  |      ;
                        STA.W r_1e5e                         ;83E842|8D5E1E  |861E5E;
                        STA.W r_cam_BG0_xPos_lock            ;83E845|8D601E  |861E60;
                        SEP #$20                             ;83E848|E220    |      ;
                        JSL.L CODE_849FEB                    ;83E84A|22EB9F84|849FEB;
                        LDA.B #$1A                           ;83E84E|A91A    |      ;
-                       STA.B $02                            ;83E850|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;83E850|8502    |000E6A;
                        STA.W r_1f49                         ;83E852|8D491F  |861F49;
                        JSR.W CODE_83EF1F                    ;83E855|201FEF  |83EF1F;
                        LDA.B #$02                           ;83E858|A902    |      ;
@@ -14235,55 +14378,55 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83E85E:
                        LDA.L $7F8349                        ;83E85E|AF49837F|7F8349;
-                       ORA.B $33                            ;83E862|0533    |000E9B;
-                       STA.B $11                            ;83E864|8511    |000E79;
-                       LDX.B $02                            ;83E866|A602    |000E6A;
+                       ORA.B r_ev_33-$E68                   ;83E862|0533    |000E9B;
+                       STA.B r_ev_11_sprAtri-$E68           ;83E864|8511    |000E79;
+                       LDX.B r_ev_02_action-$E68            ;83E866|A602    |000E6A;
                        JSR.W (UNREACH_83E8C6,X)             ;83E868|FCC6E8  |83E8C6;
-                       JSL.L CODE_8280B4                    ;83E86B|22B48082|8280B4;
-                       LDA.B $27                            ;83E86F|A527    |000E8F;
+                       JSL.L eventID_vile_68_afterInit      ;83E86B|22B48082|8280B4;
+                       LDA.B r_ev_27-$E68                   ;83E86F|A527    |000E8F;
                        AND.B #$7F                           ;83E871|297F    |      ;
-                       STA.B $3B                            ;83E873|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;83E873|853B    |000EA3;
                        JSL.L CODE_849B43                    ;83E875|22439B84|849B43;
                        BEQ CODE_83E8A7                      ;83E879|F02C    |83E8A7;
                        BPL CODE_83E888                      ;83E87B|100B    |83E888;
                        LDA.B #$30                           ;83E87D|A930    |      ;
-                       STA.B $27                            ;83E87F|8527    |000E8F;
-                       LDA.B $3B                            ;83E881|A53B    |000EA3;
+                       STA.B r_ev_27-$E68                   ;83E87F|8527    |000E8F;
+                       LDA.B r_ev_3b-$E68                   ;83E881|A53B    |000EA3;
                        CLC                                  ;83E883|18      |      ;
                        ADC.B #$30                           ;83E884|6930    |      ;
-                       STA.B $3B                            ;83E886|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;83E886|853B    |000EA3;
                                                             ;      |        |      ;
           CODE_83E888:
                        LDA.B #$0E                           ;83E888|A90E    |      ;
-                       TRB.B $11                            ;83E88A|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;83E88A|1411    |000E79;
                        LDA.W r_1f1b                         ;83E88C|AD1B1F  |861F1B;
-                       STA.B $3A                            ;83E88F|853A    |000EA2;
-                       LDA.B $3C                            ;83E891|A53C    |000EA4;
+                       STA.B r_ev_3a-$E68                   ;83E88F|853A    |000EA2;
+                       LDA.B r_ev_3c-$E68                   ;83E891|A53C    |000EA4;
                        BNE CODE_83E899                      ;83E893|D004    |83E899;
                        LDA.B #$05                           ;83E895|A905    |      ;
-                       STA.B $3C                            ;83E897|853C    |000EA4;
+                       STA.B r_ev_3c-$E68                   ;83E897|853C    |000EA4;
                                                             ;      |        |      ;
           CODE_83E899:
-                       BIT.B $10                            ;83E899|2410    |000E78;
+                       BIT.B r_ev_10-$E68                   ;83E899|2410    |000E78;
                        BVS CODE_83E8A3                      ;83E89B|7006    |83E8A3;
                        LDA.B #$13                           ;83E89D|A913    |      ;
                        JSL.L CODE_8088A2                    ;83E89F|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83E8A3:
                        LDA.B #$02                           ;83E8A3|A902    |      ;
-                       STA.B $32                            ;83E8A5|8532    |000E9A;
+                       STA.B r_ev_32-$E68                   ;83E8A5|8532    |000E9A;
                                                             ;      |        |      ;
           CODE_83E8A7:
-                       LDA.B $3C                            ;83E8A7|A53C    |000EA4;
+                       LDA.B r_ev_3c-$E68                   ;83E8A7|A53C    |000EA4;
                        BEQ CODE_83E8AD                      ;83E8A9|F002    |83E8AD;
-                       DEC.B $3C                            ;83E8AB|C63C    |000EA4;
+                       DEC.B r_ev_3c-$E68                   ;83E8AB|C63C    |000EA4;
                                                             ;      |        |      ;
           CODE_83E8AD:
                        JSR.W CODE_83CBB2                    ;83E8AD|20B2CB  |83CBB2;
-                       LDA.B $11                            ;83E8B0|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;83E8B0|A511    |000E79;
                        AND.B #$3F                           ;83E8B2|293F    |      ;
-                       ORA.B $33                            ;83E8B4|0533    |000E9B;
-                       STA.B $11                            ;83E8B6|8511    |000E79;
+                       ORA.B r_ev_33-$E68                   ;83E8B4|0533    |000E9B;
+                       STA.B r_ev_11_sprAtri-$E68           ;83E8B6|8511    |000E79;
                        LDA.W $0C2F                          ;83E8B8|AD2F0C  |860C2F;
                        LSR A                                ;83E8BB|4A      |      ;
                        BCS CODE_83E8C2                      ;83E8BC|B004    |83E8C2;
@@ -14296,9 +14439,9 @@ eventID_hoganmer_01_main:
        UNREACH_83E8C6:
                        db $4B,$E9,$C4,$E9,$18,$EA,$5A,$EA   ;83E8C6|        |      ;
                        db $9E,$EA,$9E,$EA,$2B,$EB,$11,$EB   ;83E8CE|        |009EEA;
-                       db $D7,$EB,$00,$EC,$30,$EC,$91,$EC   ;83E8D6|        |0000EB;
-                       db $61,$EB,$E2,$E8                   ;83E8DE|        |0000EB;
-                       LDX.B $03                            ;83E8E2|A603    |000E6B;
+                       db $D7,$EB,$00,$EC,$30,$EC,$91,$EC   ;83E8D6|        |000F53;
+                       db $61,$EB,$E2,$E8                   ;83E8DE|        |000F53;
+                       LDX.B r_ev_03_do-$E68                ;83E8E2|A603    |000E6B;
                        BNE CODE_83E92C                      ;83E8E4|D046    |83E92C;
                        REP #$20                             ;83E8E6|C220    |      ;
                        LDA.W r_cam_BG0_xPos_target          ;83E8E8|AD4D1E  |861E4D;
@@ -14306,7 +14449,7 @@ eventID_hoganmer_01_main:
                        SEP #$20                             ;83E8EE|E220    |      ;
                        BNE CODE_83E92B                      ;83E8F0|D039    |83E92B;
                        LDA.B #$02                           ;83E8F2|A902    |      ;
-                       STA.B $03                            ;83E8F4|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83E8F4|8503    |000E6B;
                        STZ.W r_1f49                         ;83E8F6|9C491F  |861F49;
                        LDA.W r_1f7d                         ;83E8F9|AD7D1F  |861F7D;
                        CMP.B #$01                           ;83E8FC|C901    |      ;
@@ -14338,7 +14481,7 @@ eventID_hoganmer_01_main:
                        LDA.B #$01                           ;83E931|A901    |      ;
                        STA.W r_1f7d                         ;83E933|8D7D1F  |861F7D;
                        STA.W r_1f81                         ;83E936|8D811F  |861F81;
-                       STZ.B $30                            ;83E939|6430    |000E98;
+                       STZ.B r_ev_30-$E68                   ;83E939|6430    |000E98;
                        JSL.L CODE_84A003                    ;83E93B|2203A084|84A003;
                        LDA.B #$1E                           ;83E93F|A91E    |      ;
                        JSL.L CODE_8087A2                    ;83E941|22A28780|8087A2;
@@ -14349,9 +14492,9 @@ eventID_hoganmer_01_main:
           CODE_83E94A:
                        RTS                                  ;83E94A|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83E94B|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83E94B|A603    |000E6B;
                        BNE CODE_83E95A                      ;83E94D|D00B    |83E95A;
-                       INC.B $03                            ;83E94F|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83E94F|E603    |000E6B;
                        JSR.W CODE_83CB05                    ;83E951|2005CB  |83CB05;
                        LDA.B #$02                           ;83E954|A902    |      ;
                        JSL.L CODE_848F07                    ;83E956|22078F84|848F07;
@@ -14371,7 +14514,7 @@ eventID_hoganmer_01_main:
                        LDA.W UNREACH_86D7DC,X               ;83E973|BDDCD7  |86D7DC;
                        BEQ CODE_83E981                      ;83E976|F009    |83E981;
                        LDA.B #$80                           ;83E978|A980    |      ;
-                       TSB.B $10                            ;83E97A|0410    |000E78;
+                       TSB.B r_ev_10-$E68                   ;83E97A|0410    |000E78;
                        LDA.B #$06                           ;83E97C|A906    |      ;
                        JMP.W CODE_8386F1                    ;83E97E|4CF186  |8386F1;
                                                             ;      |        |      ;
@@ -14416,18 +14559,18 @@ eventID_hoganmer_01_main:
           CODE_83E9C3:
                        RTS                                  ;83E9C3|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83E9C4|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83E9C4|A603    |000E6B;
                        BNE CODE_83E9D0                      ;83E9C6|D008    |83E9D0;
-                       INC.B $03                            ;83E9C8|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83E9C8|E603    |000E6B;
                        LDA.B #$00                           ;83E9CA|A900    |      ;
                        JSL.L CODE_848F07                    ;83E9CC|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83E9D0:
-                       LDA.B $2B                            ;83E9D0|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83E9D0|A52B    |000E93;
                        BIT.B #$04                           ;83E9D2|8904    |      ;
                        BNE CODE_83E9DF                      ;83E9D4|D009    |83E9DF;
-                       db $64,$1C,$64,$1D,$A9,$10,$4C,$F1   ;83E9D6|        |00001C;
-                       db $86                               ;83E9DE|        |000020;
+                       db $64,$1C,$64,$1D,$A9,$10,$4C,$F1   ;83E9D6|        |000E84;
+                       db $86                               ;83E9DE|        |000E88;
                                                             ;      |        |      ;
           CODE_83E9DF:
                        JSR.W CODE_83CB17                    ;83E9DF|2017CB  |83CB17;
@@ -14438,7 +14581,7 @@ eventID_hoganmer_01_main:
                        CPX.W r_0000                         ;83E9EF|EC0000  |860000;
                        BEQ CODE_83E9F8                      ;83E9F2|F004    |83E9F8;
                        LDA.B #$00                           ;83E9F4|A900    |      ;
-                       STA.B $02                            ;83E9F6|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;83E9F6|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_83E9F8:
                        LDA.B #$00                           ;83E9F8|A900    |      ;
@@ -14451,7 +14594,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83EA05:
                        JSL.L updateEv_13_14_17_0f           ;83EA05|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83EA09|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83EA09|A50F    |000E77;
                        AND.B #$03                           ;83EA0B|2903    |      ;
                        BEQ CODE_83EA15                      ;83EA0D|F006    |83EA15;
                        ORA.B #$38                           ;83EA0F|0938    |      ;
@@ -14460,32 +14603,32 @@ eventID_hoganmer_01_main:
           CODE_83EA15:
                        JMP.W CODE_83EEC3                    ;83EA15|4CC3EE  |83EEC3;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83EA18|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83EA18|A603    |000E6B;
                        JMP.W (UNREACH_83EA1D,X)             ;83EA1A|7C1DEA  |83EA1D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83EA1D:
                        db $23,$EA,$38,$EA,$47,$EA           ;83EA1D|        |0000EA;
                        LDA.B #$02                           ;83EA23|A902    |      ;
-                       STA.B $03                            ;83EA25|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83EA25|8503    |000E6B;
                        JSL.L CODE_849086                    ;83EA27|22869084|849086;
                        AND.B #$0F                           ;83EA2B|290F    |      ;
                        CLC                                  ;83EA2D|18      |      ;
                        ADC.B #$0F                           ;83EA2E|690F    |      ;
-                       STA.B $34                            ;83EA30|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83EA30|8534    |000E9C;
                        LDA.B #$02                           ;83EA32|A902    |      ;
                        JSL.L CODE_848F07                    ;83EA34|22078F84|848F07;
-                       DEC.B $34                            ;83EA38|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83EA38|C634    |000E9C;
                        BNE CODE_83EA46                      ;83EA3A|D00A    |83EA46;
                        LDA.B #$01                           ;83EA3C|A901    |      ;
                        JSL.L CODE_848F07                    ;83EA3E|22078F84|848F07;
                        LDA.B #$04                           ;83EA42|A904    |      ;
-                       STA.B $03                            ;83EA44|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83EA44|8503    |000E6B;
                                                             ;      |        |      ;
           CODE_83EA46:
                        RTS                                  ;83EA46|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $0F                            ;83EA47|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83EA47|A50F    |000E77;
                        BPL CODE_83EA50                      ;83EA49|1005    |83EA50;
                        LDA.B #$00                           ;83EA4B|A900    |      ;
                        JMP.W CODE_8386F1                    ;83EA4D|4CF186  |8386F1;
@@ -14496,23 +14639,23 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83EA53|22EA8E84|848EEA;
                        JMP.W CODE_83EEC3                    ;83EA57|4CC3EE  |83EEC3;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83EA5A|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83EA5A|A603    |000E6B;
                        BNE CODE_83EA8A                      ;83EA5C|D02C    |83EA8A;
-                       INC.B $03                            ;83EA5E|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83EA5E|E603    |000E6B;
                        REP #$20                             ;83EA60|C220    |      ;
-                       LDA.B $1A                            ;83EA62|A51A    |000E82;
-                       BIT.B $0F                            ;83EA64|240F    |000E77;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;83EA62|A51A    |000E82;
+                       BIT.B r_ev_0f-$E68                   ;83EA64|240F    |000E77;
                        BPL CODE_83EA6C                      ;83EA66|1004    |83EA6C;
                        EOR.W #$FFFF                         ;83EA68|49FFFF  |      ;
                        INC A                                ;83EA6B|1A      |      ;
                                                             ;      |        |      ;
           CODE_83EA6C:
-                       STA.B $1A                            ;83EA6C|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83EA6C|851A    |000E82;
                        LDA.W #$0553                         ;83EA6E|A95305  |      ;
-                       STA.B $1C                            ;83EA71|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83EA71|851C    |000E84;
                        SEP #$20                             ;83EA73|E220    |      ;
                        LDA.B #$80                           ;83EA75|A980    |      ;
-                       TRB.B $10                            ;83EA77|1410    |000E78;
+                       TRB.B r_ev_10-$E68                   ;83EA77|1410    |000E78;
                        LDA.B #$38                           ;83EA79|A938    |      ;
                        JSL.L CODE_8088A2                    ;83EA7B|22A28880|8088A2;
                        LDA.B #$0C                           ;83EA7F|A90C    |      ;
@@ -14521,9 +14664,9 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_848F07                    ;83EA86|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EA8A:
-                       LDA.B $1D                            ;83EA8A|A51D    |000E85;
+                       LDA.B r_ev_1d_ySpd-$E68              ;83EA8A|A51D    |000E85;
                        BMI CODE_83EA94                      ;83EA8C|3006    |83EA94;
-                       LDA.B $2B                            ;83EA8E|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83EA8E|A52B    |000E93;
                        BIT.B #$08                           ;83EA90|8908    |      ;
                        BEQ CODE_83EA99                      ;83EA92|F005    |83EA99;
                                                             ;      |        |      ;
@@ -14536,38 +14679,38 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_828174                    ;83EA99|22748182|828174;
                        RTS                                  ;83EA9D|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83EA9E|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83EA9E|A603    |000E6B;
                        BNE CODE_83EAC6                      ;83EAA0|D024    |83EAC6;
-                       INC.B $03                            ;83EAA2|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83EAA2|E603    |000E6B;
                        REP #$20                             ;83EAA4|C220    |      ;
                        LDA.W #$0400                         ;83EAA6|A90004  |      ;
-                       BIT.B $32                            ;83EAA9|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;83EAA9|2432    |000E9A;
                        BVS CODE_83EAB0                      ;83EAAB|7003    |83EAB0;
                        LDA.W #$FC00                         ;83EAAD|A900FC  |      ;
                                                             ;      |        |      ;
           CODE_83EAB0:
-                       STA.B $1A                            ;83EAB0|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83EAB0|851A    |000E82;
                        SEP #$20                             ;83EAB2|E220    |      ;
-                       STZ.B $31                            ;83EAB4|6431    |000E99;
+                       STZ.B r_ev_31-$E68                   ;83EAB4|6431    |000E99;
                        LDA.B #$3B                           ;83EAB6|A93B    |      ;
                        JSL.L CODE_8088A2                    ;83EAB8|22A28880|8088A2;
                        LDA.B #$40                           ;83EABC|A940    |      ;
-                       STA.B $34                            ;83EABE|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83EABE|8534    |000E9C;
                        LDA.B #$06                           ;83EAC0|A906    |      ;
                        JSL.L CODE_848F07                    ;83EAC2|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EAC6:
                        JSR.W CODE_83CDB3                    ;83EAC6|20B3CD  |83CDB3;
-                       DEC.B $34                            ;83EAC9|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83EAC9|C634    |000E9C;
                        BNE CODE_83EAD2                      ;83EACB|D005    |83EAD2;
                        db $A9,$0E,$4C,$F1,$86               ;83EACD|        |      ;
                                                             ;      |        |      ;
           CODE_83EAD2:
-                       LDA.B $2B                            ;83EAD2|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83EAD2|A52B    |000E93;
                        BIT.B #$04                           ;83EAD4|8904    |      ;
                        BNE CODE_83EAE1                      ;83EAD6|D009    |83EAE1;
-                       db $64,$1C,$64,$1D,$A9,$10,$4C,$F1   ;83EAD8|        |00001C;
-                       db $86                               ;83EAE0|        |000089;
+                       db $64,$1C,$64,$1D,$A9,$10,$4C,$F1   ;83EAD8|        |000E84;
+                       db $86                               ;83EAE0|        |000EF1;
                                                             ;      |        |      ;
           CODE_83EAE1:
                        BIT.B #$03                           ;83EAE1|8903    |      ;
@@ -14597,14 +14740,14 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83EB0A|22EA8E84|848EEA;
                        JMP.W CODE_83EEC3                    ;83EB0E|4CC3EE  |83EEC3;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83EB11|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83EB11|A603    |000E6B;
                        BNE CODE_83EB1D                      ;83EB13|D008    |83EB1D;
-                       INC.B $03                            ;83EB15|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83EB15|E603    |000E6B;
                        LDA.B #$07                           ;83EB17|A907    |      ;
                        JSL.L CODE_848F07                    ;83EB19|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EB1D:
-                       LDA.B $0F                            ;83EB1D|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83EB1D|A50F    |000E77;
                        BPL CODE_83EB26                      ;83EB1F|1005    |83EB26;
                        LDA.B #$00                           ;83EB21|A900    |      ;
                        JMP.W CODE_8386F1                    ;83EB23|4CF186  |8386F1;
@@ -14614,20 +14757,20 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83EB26|22EA8E84|848EEA;
                        RTS                                  ;83EB2A|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83EB2B|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83EB2B|A603    |000E6B;
                        BNE CODE_83EB37                      ;83EB2D|D008    |83EB37;
-                       INC.B $03                            ;83EB2F|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83EB2F|E603    |000E6B;
                        LDA.B #$08                           ;83EB31|A908    |      ;
                        JSL.L CODE_848F07                    ;83EB33|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EB37:
-                       DEC.B $34                            ;83EB37|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83EB37|C634    |000E9C;
                        BEQ CODE_83EB4E                      ;83EB39|F013    |83EB4E;
-                       LDA.B $2B                            ;83EB3B|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83EB3B|A52B    |000E93;
                        BIT.B #$04                           ;83EB3D|8904    |      ;
                        BNE CODE_83EB4A                      ;83EB3F|D009    |83EB4A;
-                       db $64,$1C,$64,$1D,$A9,$10,$4C,$F1   ;83EB41|        |00001C;
-                       db $86                               ;83EB49|        |000089;
+                       db $64,$1C,$64,$1D,$A9,$10,$4C,$F1   ;83EB41|        |000E84;
+                       db $86                               ;83EB49|        |000EF1;
                                                             ;      |        |      ;
           CODE_83EB4A:
                        BIT.B #$03                           ;83EB4A|8903    |      ;
@@ -14644,12 +14787,12 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83EB5A|22EA8E84|848EEA;
                        JMP.W CODE_83EEC3                    ;83EB5E|4CC3EE  |83EEC3;
                                                             ;      |        |      ;
-                       db $A6,$03,$7C,$66,$EB,$6C,$EB,$7B   ;83EB61|        |000003;
+                       db $A6,$03,$7C,$66,$EB,$6C,$EB,$7B   ;83EB61|        |000E6B;
                        db $EB,$AA,$EB,$A9,$02,$85,$03,$A9   ;83EB69|        |      ;
                        db $3C,$85,$34,$A9,$16,$22,$07,$8F   ;83EB71|        |003485;
-                       db $84,$60,$C6,$34,$D0,$26,$A9,$04   ;83EB79|        |000060;
-                       db $85,$03,$C2,$20,$A9,$00,$04,$24   ;83EB81|        |000003;
-                       db $32,$70,$03,$A9,$00,$FC,$85,$1A   ;83EB89|        |000070;
+                       db $84,$60,$C6,$34,$D0,$26,$A9,$04   ;83EB79|        |000EC8;
+                       db $85,$03,$C2,$20,$A9,$00,$04,$24   ;83EB81|        |000E6B;
+                       db $32,$70,$03,$A9,$00,$FC,$85,$1A   ;83EB89|        |000ED8;
                        db $E2,$20,$64,$31,$A9,$3B,$22,$A2   ;83EB91|        |      ;
                        db $88,$80,$A9,$40,$85,$34,$A9,$15   ;83EB99|        |      ;
                        db $22,$07,$8F,$84,$22,$EA,$8E,$84   ;83EBA1|        |848F07;
@@ -14659,14 +14802,14 @@ eventID_hoganmer_01_main:
                        db $03,$F0,$05,$A9,$0E,$4C,$F1,$86   ;83EBC1|        |0000F0;
                        db $20,$6C,$CB,$22,$3E,$82,$82,$22   ;83EBC9|        |83CB6C;
                        db $EA,$8E,$84,$4C,$C3,$EE           ;83EBD1|        |      ;
-                       LDX.B $03                            ;83EBD7|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83EBD7|A603    |000E6B;
                        BNE CODE_83EBE3                      ;83EBD9|D008    |83EBE3;
-                       INC.B $03                            ;83EBDB|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83EBDB|E603    |000E6B;
                        LDA.B #$03                           ;83EBDD|A903    |      ;
                        JSL.L CODE_848F07                    ;83EBDF|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EBE3:
-                       LDA.B $2B                            ;83EBE3|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83EBE3|A52B    |000E93;
                        BIT.B #$04                           ;83EBE5|8904    |      ;
                        BEQ CODE_83EBEE                      ;83EBE7|F005    |83EBEE;
                        LDA.B #$12                           ;83EBE9|A912    |      ;
@@ -14676,7 +14819,7 @@ eventID_hoganmer_01_main:
           CODE_83EBEE:
                        REP #$20                             ;83EBEE|C220    |      ;
                        LDA.W #$FA80                         ;83EBF0|A980FA  |      ;
-                       CMP.B $1C                            ;83EBF3|C51C    |000E84;
+                       CMP.B r_ev_1c_ySpdSub-$E68           ;83EBF3|C51C    |000E84;
                        BMI CODE_83EBF9                      ;83EBF5|3002    |83EBF9;
                        db $85,$1C                           ;83EBF7|        |00001C;
                                                             ;      |        |      ;
@@ -14685,9 +14828,9 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_828174                    ;83EBFB|22748182|828174;
                        RTS                                  ;83EBFF|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83EC00|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83EC00|A603    |000E6B;
                        BNE CODE_83EC22                      ;83EC02|D01E    |83EC22;
-                       INC.B $03                            ;83EC04|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;83EC04|E603    |000E6B;
                        LDX.B #$02                           ;83EC06|A202    |      ;
                        LDY.B #$01                           ;83EC08|A001    |      ;
                        LDA.B #$0A                           ;83EC0A|A90A    |      ;
@@ -14700,7 +14843,7 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_848F07                    ;83EC1E|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EC22:
-                       LDA.B $0F                            ;83EC22|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83EC22|A50F    |000E77;
                        BPL CODE_83EC2B                      ;83EC24|1005    |83EC2B;
                        LDA.B #$00                           ;83EC26|A900    |      ;
                        JMP.W CODE_8386F1                    ;83EC28|4CF186  |8386F1;
@@ -14710,40 +14853,40 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83EC2B|22EA8E84|848EEA;
                        RTS                                  ;83EC2F|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83EC30|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83EC30|A603    |000E6B;
                        JMP.W (UNREACH_83EC35,X)             ;83EC32|7C35EC  |83EC35;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83EC35:
                        db $3B,$EC,$69,$EC,$80,$EC           ;83EC35|        |      ;
                        LDA.B #$02                           ;83EC3B|A902    |      ;
-                       STA.B $03                            ;83EC3D|8503    |000E6B;
-                       STA.B $2F                            ;83EC3F|852F    |000E97;
+                       STA.B r_ev_03_do-$E68                ;83EC3D|8503    |000E6B;
+                       STA.B r_ev_2f-$E68                   ;83EC3F|852F    |000E97;
                        REP #$30                             ;83EC41|C230    |      ;
                        LDX.W #$0000                         ;83EC43|A20000  |      ;
                        JSL.L CODE_849086                    ;83EC46|22869084|849086;
                        BIT.W #$0007                         ;83EC4A|890700  |      ;
                        BEQ CODE_83EC59                      ;83EC4D|F00A    |83EC59;
                        LDX.W #$0178                         ;83EC4F|A27801  |      ;
-                       BIT.B $32                            ;83EC52|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;83EC52|2432    |000E9A;
                        BVC CODE_83EC59                      ;83EC54|5003    |83EC59;
                        LDX.W #$FE88                         ;83EC56|A288FE  |      ;
                                                             ;      |        |      ;
           CODE_83EC59:
-                       STX.B $1A                            ;83EC59|861A    |000E82;
+                       STX.B r_ev_1a_xSpdSub-$E68           ;83EC59|861A    |000E82;
                        LDA.W #$0553                         ;83EC5B|A95305  |      ;
-                       STA.B $1C                            ;83EC5E|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;83EC5E|851C    |000E84;
                        SEP #$30                             ;83EC60|E230    |      ;
                        LDA.B #$03                           ;83EC62|A903    |      ;
                        JSL.L CODE_848F07                    ;83EC64|22078F84|848F07;
                        RTS                                  ;83EC68|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $2B                            ;83EC69|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;83EC69|A52B    |000E93;
                        BIT.B #$04                           ;83EC6B|8904    |      ;
                        BEQ CODE_83EC7B                      ;83EC6D|F00C    |83EC7B;
                        LDA.B #$04                           ;83EC6F|A904    |      ;
-                       STA.B $03                            ;83EC71|8503    |000E6B;
-                       STZ.B $2F                            ;83EC73|642F    |000E97;
+                       STA.B r_ev_03_do-$E68                ;83EC71|8503    |000E6B;
+                       STZ.B r_ev_2f-$E68                   ;83EC73|642F    |000E97;
                        LDA.B #$0F                           ;83EC75|A90F    |      ;
                        JSL.L CODE_848F07                    ;83EC77|22078F84|848F07;
                                                             ;      |        |      ;
@@ -14751,7 +14894,7 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_828174                    ;83EC7B|22748182|828174;
                        RTS                                  ;83EC7F|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $0F                            ;83EC80|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83EC80|A50F    |000E77;
                        BPL CODE_83EC8C                      ;83EC82|1008    |83EC8C;
                        JSR.W CODE_83EE93                    ;83EC84|2093EE  |83EE93;
                        LDA.B #$00                           ;83EC87|A900    |      ;
@@ -14762,7 +14905,7 @@ eventID_hoganmer_01_main:
                        JSL.L updateEv_13_14_17_0f           ;83EC8C|22EA8E84|848EEA;
                        RTS                                  ;83EC90|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;83EC91|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;83EC91|A603    |000E6B;
                        JMP.W (UNREACH_83EC96,X)             ;83EC93|7C96EC  |83EC96;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14776,19 +14919,19 @@ eventID_hoganmer_01_main:
                        SEP #$20                             ;83ECB0|E220    |      ;
                        BCS CODE_83ECDA                      ;83ECB2|B026    |83ECDA;
                        LDA.B #$0C                           ;83ECB4|A90C    |      ;
-                       STA.B $03                            ;83ECB6|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83ECB6|8503    |000E6B;
                        REP #$30                             ;83ECB8|C230    |      ;
                        LDY.W #$0040                         ;83ECBA|A04000  |      ;
                        LDX.W #$0178                         ;83ECBD|A27801  |      ;
-                       LDA.B $05                            ;83ECC0|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83ECC0|A505    |000E6D;
                        CMP.W #$0B30                         ;83ECC2|C9300B  |      ;
                        BCC CODE_83ECCD                      ;83ECC5|9006    |83ECCD;
                        db $A0,$00,$00,$A2,$88,$FE           ;83ECC7|        |      ;
                                                             ;      |        |      ;
           CODE_83ECCD:
-                       STX.B $1A                            ;83ECCD|861A    |000E82;
+                       STX.B r_ev_1a_xSpdSub-$E68           ;83ECCD|861A    |000E82;
                        SEP #$30                             ;83ECCF|E230    |      ;
-                       STY.B $33                            ;83ECD1|8433    |000E9B;
+                       STY.B r_ev_33-$E68                   ;83ECD1|8433    |000E9B;
                        LDA.B #$00                           ;83ECD3|A900    |      ;
                        JSL.L CODE_848F07                    ;83ECD5|22078F84|848F07;
                        RTS                                  ;83ECD9|60      |      ;
@@ -14796,42 +14939,42 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83ECDA:
                        LDA.B #$02                           ;83ECDA|A902    |      ;
-                       STA.B $03                            ;83ECDC|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83ECDC|8503    |000E6B;
                        REP #$31                             ;83ECDE|C231    |      ;
                        LDX.W #$0178                         ;83ECE0|A27801  |      ;
                        LDA.W r_0bad                         ;83ECE3|ADAD0B  |860BAD;
                        CLC                                  ;83ECE6|18      |      ;
                        ADC.W #$0020                         ;83ECE7|692000  |      ;
-                       CMP.B $05                            ;83ECEA|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;83ECEA|C505    |000E6D;
                        BCS CODE_83ECF1                      ;83ECEC|B003    |83ECF1;
                        LDX.W #$FE88                         ;83ECEE|A288FE  |      ;
                                                             ;      |        |      ;
           CODE_83ECF1:
-                       STX.B $1A                            ;83ECF1|861A    |000E82;
+                       STX.B r_ev_1a_xSpdSub-$E68           ;83ECF1|861A    |000E82;
                        SEP #$30                             ;83ECF3|E230    |      ;
                        LDY.B #$03                           ;83ECF5|A003    |      ;
                        LDA.B #$F6                           ;83ECF7|A9F6    |      ;
                        JSL.L CODE_80887F                    ;83ECF9|227F8880|80887F;
                        LDA.B #$78                           ;83ECFD|A978    |      ;
-                       STA.B $34                            ;83ECFF|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;83ECFF|8534    |000E9C;
                        LDA.B #$02                           ;83ED01|A902    |      ;
                        JSL.L CODE_848F07                    ;83ED03|22078F84|848F07;
                        RTS                                  ;83ED07|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $34                            ;83ED08|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83ED08|C634    |000E9C;
                        BNE CODE_83ED2A                      ;83ED0A|D01E    |83ED2A;
                        LDA.B #$04                           ;83ED0C|A904    |      ;
-                       STA.B $03                            ;83ED0E|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83ED0E|8503    |000E6B;
                        REP #$21                             ;83ED10|C221    |      ;
                        LDX.B #$40                           ;83ED12|A240    |      ;
                        LDA.W r_0bad                         ;83ED14|ADAD0B  |860BAD;
                        ADC.W #$0020                         ;83ED17|692000  |      ;
-                       CMP.B $05                            ;83ED1A|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;83ED1A|C505    |000E6D;
                        BCS CODE_83ED20                      ;83ED1C|B002    |83ED20;
                        LDX.B #$00                           ;83ED1E|A200    |      ;
                                                             ;      |        |      ;
           CODE_83ED20:
-                       STX.B $33                            ;83ED20|8633    |000E9B;
+                       STX.B r_ev_33-$E68                   ;83ED20|8633    |000E9B;
                        SEP #$20                             ;83ED22|E220    |      ;
                        LDA.B #$00                           ;83ED24|A900    |      ;
                        JSL.L CODE_848F07                    ;83ED26|22078F84|848F07;
@@ -14843,18 +14986,18 @@ eventID_hoganmer_01_main:
                        LDA.W r_0bad                         ;83ED2D|ADAD0B  |860BAD;
                        ADC.W #$0020                         ;83ED30|692000  |      ;
                        SEC                                  ;83ED33|38      |      ;
-                       SBC.B $05                            ;83ED34|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;83ED34|E505    |000E6D;
                        CLC                                  ;83ED36|18      |      ;
                        ADC.W #$0008                         ;83ED37|690800  |      ;
                        CMP.W #$0010                         ;83ED3A|C91000  |      ;
                        SEP #$20                             ;83ED3D|E220    |      ;
                        BCS CODE_83ED54                      ;83ED3F|B013    |83ED54;
-                       STZ.B $33                            ;83ED41|6433    |000E9B;
+                       STZ.B r_ev_33-$E68                   ;83ED41|6433    |000E9B;
                        LDA.B #$06                           ;83ED43|A906    |      ;
-                       STA.B $03                            ;83ED45|8503    |000E6B;
-                       STA.B $30                            ;83ED47|8530    |000E98;
+                       STA.B r_ev_03_do-$E68                ;83ED45|8503    |000E6B;
+                       STA.B r_ev_30-$E68                   ;83ED47|8530    |000E98;
                        LDA.B #$02                           ;83ED49|A902    |      ;
-                       STA.B $12                            ;83ED4B|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;83ED4B|8512    |000E7A;
                        LDA.B #$14                           ;83ED4D|A914    |      ;
                        JSL.L CODE_848F07                    ;83ED4F|22078F84|848F07;
                        RTS                                  ;83ED53|60      |      ;
@@ -14863,7 +15006,7 @@ eventID_hoganmer_01_main:
           CODE_83ED54:
                        JSL.L CODE_82823E                    ;83ED54|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;83ED58|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83ED5C|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83ED5C|A50F    |000E77;
                        AND.B #$03                           ;83ED5E|2903    |      ;
                        BEQ CODE_83ED68                      ;83ED60|F006    |83ED68;
                        ORA.B #$38                           ;83ED62|0938    |      ;
@@ -14873,14 +15016,14 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83ED68|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83ED69|22EA8E84|848EEA;
-                       BIT.B $0F                            ;83ED6D|240F    |000E77;
+                       BIT.B r_ev_0f-$E68                   ;83ED6D|240F    |000E77;
                        BPL CODE_83ED86                      ;83ED6F|1015    |83ED86;
                        LDA.B #$08                           ;83ED71|A908    |      ;
-                       STA.B $03                            ;83ED73|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83ED73|8503    |000E6B;
                        LDA.B #$88                           ;83ED75|A988    |      ;
-                       STA.B $1A                            ;83ED77|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83ED77|851A    |000E82;
                        LDA.B #$FE                           ;83ED79|A9FE    |      ;
-                       STA.B $1B                            ;83ED7B|851B    |000E83;
+                       STA.B r_ev_1b_xSpd-$E68              ;83ED7B|851B    |000E83;
                        LDA.B #$17                           ;83ED7D|A917    |      ;
                        JSL.L CODE_848F07                    ;83ED7F|22078F84|848F07;
                        JMP.W CODE_83EECE                    ;83ED83|4CCEEE  |83EECE;
@@ -14898,19 +15041,19 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83ED95|22EA8E84|848EEA;
                        REP #$20                             ;83ED99|C220    |      ;
-                       LDA.B $05                            ;83ED9B|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83ED9B|A505    |000E6D;
                        CMP.W #$0AD0                         ;83ED9D|C9D00A  |      ;
                        SEP #$20                             ;83EDA0|E220    |      ;
                        BCS CODE_83EDB0                      ;83EDA2|B00C    |83EDB0;
                        LDA.B #$0A                           ;83EDA4|A90A    |      ;
-                       STA.B $03                            ;83EDA6|8503    |000E6B;
-                       STZ.B $33                            ;83EDA8|6433    |000E9B;
+                       STA.B r_ev_03_do-$E68                ;83EDA6|8503    |000E6B;
+                       STZ.B r_ev_33-$E68                   ;83EDA8|6433    |000E9B;
                        LDA.B #$18                           ;83EDAA|A918    |      ;
                        JSL.L CODE_848F07                    ;83EDAC|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EDB0:
                        JSL.L CODE_82823E                    ;83EDB0|223E8282|82823E;
-                       LDA.B $0F                            ;83EDB4|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83EDB4|A50F    |000E77;
                        AND.B #$30                           ;83EDB6|2930    |      ;
                        BEQ CODE_83EDC4                      ;83EDB8|F00A    |83EDC4;
                        LSR A                                ;83EDBA|4A      |      ;
@@ -14924,16 +15067,16 @@ eventID_hoganmer_01_main:
                        JMP.W CODE_83EECE                    ;83EDC4|4CCEEE  |83EECE;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83EDC7|22EA8E84|848EEA;
-                       BIT.B $0F                            ;83EDCB|240F    |000E77;
+                       BIT.B r_ev_0f-$E68                   ;83EDCB|240F    |000E77;
                        BPL CODE_83EDE6                      ;83EDCD|1017    |83EDE6;
                        LDA.B #$0C                           ;83EDCF|A90C    |      ;
-                       STA.B $03                            ;83EDD1|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83EDD1|8503    |000E6B;
                        LDA.B #$40                           ;83EDD3|A940    |      ;
-                       STA.B $33                            ;83EDD5|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;83EDD5|8533    |000E9B;
                        LDA.B #$78                           ;83EDD7|A978    |      ;
-                       STA.B $1A                            ;83EDD9|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;83EDD9|851A    |000E82;
                        LDA.B #$01                           ;83EDDB|A901    |      ;
-                       STA.B $1B                            ;83EDDD|851B    |000E83;
+                       STA.B r_ev_1b_xSpd-$E68              ;83EDDD|851B    |000E83;
                        LDA.B #$00                           ;83EDDF|A900    |      ;
                        JSL.L CODE_848F07                    ;83EDE1|22078F84|848F07;
                        RTS                                  ;83EDE5|60      |      ;
@@ -14941,7 +15084,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83EDE6:
                        BVC CODE_83EDF5                      ;83EDE6|500D    |83EDF5;
-                       LDA.B $0F                            ;83EDE8|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83EDE8|A50F    |000E77;
                        CMP.B #$50                           ;83EDEA|C950    |      ;
                        BNE CODE_83EDF2                      ;83EDEC|D004    |83EDF2;
                        JSL.L CODE_84A02B                    ;83EDEE|222BA084|84A02B;
@@ -14954,7 +15097,7 @@ eventID_hoganmer_01_main:
                        RTS                                  ;83EDF5|60      |      ;
                                                             ;      |        |      ;
                        REP #$20                             ;83EDF6|C220    |      ;
-                       LDA.B $05                            ;83EDF8|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83EDF8|A505    |000E6D;
                        SEC                                  ;83EDFA|38      |      ;
                        SBC.W #$0B30                         ;83EDFB|E9300B  |      ;
                        BPL CODE_83EE04                      ;83EDFE|1004    |83EE04;
@@ -14965,13 +15108,13 @@ eventID_hoganmer_01_main:
                        CMP.W #$0002                         ;83EE04|C90200  |      ;
                        BCS CODE_83EE20                      ;83EE07|B017    |83EE20;
                        LDA.W #$0B30                         ;83EE09|A9300B  |      ;
-                       STA.B $05                            ;83EE0C|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;83EE0C|8505    |000E6D;
                        SEP #$20                             ;83EE0E|E220    |      ;
                        LDA.B #$3C                           ;83EE10|A93C    |      ;
-                       STA.B $34                            ;83EE12|8534    |000E9C;
-                       STZ.B $33                            ;83EE14|6433    |000E9B;
+                       STA.B r_ev_34-$E68                   ;83EE12|8534    |000E9C;
+                       STZ.B r_ev_33-$E68                   ;83EE14|6433    |000E9B;
                        LDA.B #$0E                           ;83EE16|A90E    |      ;
-                       STA.B $03                            ;83EE18|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83EE18|8503    |000E6B;
                        LDA.B #$16                           ;83EE1A|A916    |      ;
                        JSL.L CODE_848F07                    ;83EE1C|22078F84|848F07;
                                                             ;      |        |      ;
@@ -14979,7 +15122,7 @@ eventID_hoganmer_01_main:
                        SEP #$20                             ;83EE20|E220    |      ;
                        JSL.L CODE_82823E                    ;83EE22|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;83EE26|22EA8E84|848EEA;
-                       LDA.B $0F                            ;83EE2A|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83EE2A|A50F    |000E77;
                        AND.B #$03                           ;83EE2C|2903    |      ;
                        BEQ CODE_83EE36                      ;83EE2E|F006    |83EE36;
                        ORA.B #$38                           ;83EE30|0938    |      ;
@@ -14988,10 +15131,10 @@ eventID_hoganmer_01_main:
           CODE_83EE36:
                        RTS                                  ;83EE36|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $34                            ;83EE37|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;83EE37|C634    |000E9C;
                        BNE CODE_83EE42                      ;83EE39|D007    |83EE42;
                        LDA.B #$10                           ;83EE3B|A910    |      ;
-                       STA.B $03                            ;83EE3D|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;83EE3D|8503    |000E6B;
                        STA.W r_1f40                         ;83EE3F|8D401F  |861F40;
                                                             ;      |        |      ;
           CODE_83EE42:
@@ -15001,19 +15144,19 @@ eventID_hoganmer_01_main:
                        LDA.W r_1f42                         ;83EE47|AD421F  |861F42;
                        BEQ CODE_83EE50                      ;83EE4A|F004    |83EE50;
                        LDA.B #$04                           ;83EE4C|A904    |      ;
-                       STA.B $01                            ;83EE4E|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;83EE4E|8501    |000E69;
                                                             ;      |        |      ;
           CODE_83EE50:
                        RTS                                  ;83EE50|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83EE51:
-                       JML.L CODE_828398                    ;83EE51|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83EE51|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83EE55:
                        REP #$20                             ;83EE55|C220    |      ;
-                       LDA.B $05                            ;83EE57|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;83EE57|A505    |000E6D;
                        SEC                                  ;83EE59|38      |      ;
                        SBC.W r_0bad                         ;83EE5A|EDAD0B  |860BAD;
                        BPL CODE_83EE63                      ;83EE5D|1004    |83EE63;
@@ -15073,18 +15216,18 @@ eventID_hoganmer_01_main:
                        INC.W r_0000,X                       ;83EE99|FE0000  |860000;
                        LDA.B #$16                           ;83EE9C|A916    |      ;
                        STA.W r_000a,X                       ;83EE9E|9D0A00  |86000A;
-                       LDA.B $33                            ;83EEA1|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;83EEA1|A533    |000E9B;
                        STA.W r_0011,X                       ;83EEA3|9D1100  |860011;
                        REP #$21                             ;83EEA6|C221    |      ;
                        LDA.W #$0016                         ;83EEA8|A91600  |      ;
-                       BIT.B $32                            ;83EEAB|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;83EEAB|2432    |000E9A;
                        BVS CODE_83EEB2                      ;83EEAD|7003    |83EEB2;
                        LDA.W #$FFEA                         ;83EEAF|A9EAFF  |      ;
                                                             ;      |        |      ;
           CODE_83EEB2:
-                       ADC.B $05                            ;83EEB2|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83EEB2|6505    |000E6D;
                        STA.W r_0005,X                       ;83EEB4|9D0500  |860005;
-                       LDA.B $08                            ;83EEB7|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;83EEB7|A508    |000E70;
                        CLC                                  ;83EEB9|18      |      ;
                        ADC.W #$FFE2                         ;83EEBA|69E2FF  |      ;
                        STA.W r_0008,X                       ;83EEBD|9D0800  |860008;
@@ -15107,18 +15250,18 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83EECE:
                        REP #$21                             ;83EECE|C221    |      ;
-                       LDA.B $0F                            ;83EED0|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;83EED0|A50F    |000E77;
                        AND.W #$000F                         ;83EED2|290F00  |      ;
                        TAX                                  ;83EED5|AA      |      ;
                        LDA.W UNREACH_86D7F4,X               ;83EED6|BDF4D7  |86D7F4;
                        AND.W #$00FF                         ;83EED9|29FF00  |      ;
-                       BIT.B $32                            ;83EEDC|2432    |000E9A;
+                       BIT.B r_ev_32-$E68                   ;83EEDC|2432    |000E9A;
                        BVS CODE_83EEE4                      ;83EEDE|7004    |83EEE4;
                        EOR.W #$FFFF                         ;83EEE0|49FFFF  |      ;
                        INC A                                ;83EEE3|1A      |      ;
                                                             ;      |        |      ;
           CODE_83EEE4:
-                       ADC.B $05                            ;83EEE4|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;83EEE4|6505    |000E6D;
                        STA.W r_0bad                         ;83EEE6|8DAD0B  |860BAD;
                        LDA.W UNREACH_86D7F5,X               ;83EEE9|BDF5D7  |86D7F5;
                        AND.W #$00FF                         ;83EEEC|29FF00  |      ;
@@ -15128,7 +15271,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83EEF7:
                        CLC                                  ;83EEF7|18      |      ;
-                       ADC.B $08                            ;83EEF8|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;83EEF8|6508    |000E70;
                        STA.W r_0bb0                         ;83EEFA|8DB00B  |860BB0;
                        SEP #$20                             ;83EEFD|E220    |      ;
                        RTS                                  ;83EEFF|60      |      ;
@@ -15190,11 +15333,11 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83EF61:
-                       JML.L CODE_828387                    ;83EF61|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83EF61|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83EF65:
-                       JML.L CODE_828398                    ;83EF65|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83EF65|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_83EF69:
@@ -15223,7 +15366,7 @@ eventID_hoganmer_01_main:
                        STA.W r_0000                         ;83EF91|8D0000  |860000;
                        CPX.W r_0000                         ;83EF94|EC0000  |860000;
                        BEQ CODE_83EF9D                      ;83EF97|F004    |83EF9D;
-                       JML.L CODE_828387                    ;83EF99|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83EF99|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83EF9D:
@@ -15440,7 +15583,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
           CODE_83F110:
                        SEP #$30                             ;83F110|E230    |      ;
-                       JSL.L CODE_82806E                    ;83F112|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83F112|226E8082|82806E;
                        BCC CODE_83F119                      ;83F116|9001    |83F119;
                        RTL                                  ;83F118|6B      |      ;
                                                             ;      |        |      ;
@@ -15455,14 +15598,14 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_84AB56                    ;83F129|2256AB84|84AB56;
                        SEP #$20                             ;83F12D|E220    |      ;
                        JSL.L updateEv_13_14_17_0f           ;83F12F|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;83F133|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83F133|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F137:
                        LDX.B $01                            ;83F137|A601    |001839;
                        JSR.W (UNREACH_83F19E,X)             ;83F139|FC9EF1  |83F19E;
                        JSL.L updateEv_13_14_17_0f           ;83F13C|22EA8E84|848EEA;
-                       JSL.L CODE_82806E                    ;83F140|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83F140|226E8082|82806E;
                        BCC CODE_83F14F                      ;83F144|9009    |83F14F;
                        INC.B $1F                            ;83F146|E61F    |001857;
                        BPL CODE_83F14E                      ;83F148|1004    |83F14E;
@@ -15509,7 +15652,7 @@ eventID_hoganmer_01_main:
                        STA.B $20                            ;83F192|8520    |001678;
                        JSL.L CODE_84AB56                    ;83F194|2256AB84|84AB56;
                        SEP #$20                             ;83F198|E220    |      ;
-                       JML.L CODE_8280B4                    ;83F19A|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83F19A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83F19E:
@@ -15638,7 +15781,7 @@ eventID_hoganmer_01_main:
           CODE_83F27D:
                        LDX.B $01                            ;83F27D|A601    |0016E9;
                        JSR.W (UNREACH_83F286,X)             ;83F27F|FC86F2  |83F286;
-                       JML.L CODE_8280B4                    ;83F282|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83F282|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83F286:
@@ -15847,7 +15990,7 @@ eventID_hoganmer_01_main:
                        STA.B $20                            ;83F403|8520    |0016A8;
                        JSL.L CODE_84AB56                    ;83F405|2256AB84|84AB56;
                        SEP #$20                             ;83F409|E220    |      ;
-                       JML.L CODE_8280B4                    ;83F40B|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83F40B|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F40F:
@@ -15918,17 +16061,17 @@ eventID_hoganmer_01_main:
           CODE_83F47E:
                        JSL.L updateEv_13_14_17_0f           ;83F47E|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;83F482|22E88182|8281E8;
-                       JSL.L CODE_82806E                    ;83F486|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83F486|226E8082|82806E;
                        BCS CODE_83F498                      ;83F48A|B00C    |83F498;
                        LDA.W $0B9C                          ;83F48C|AD9C0B  |860B9C;
                        EOR.B $0B                            ;83F48F|450B    |001953;
                        LSR A                                ;83F491|4A      |      ;
                        BCC CODE_83F49C                      ;83F492|9008    |83F49C;
-                       JML.L CODE_8280B4                    ;83F494|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83F494|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F498:
-                       JML.L CODE_828398                    ;83F498|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83F498|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F49C:
@@ -15984,12 +16127,12 @@ eventID_hoganmer_01_main:
                        STA.B $1F                            ;83F4F0|851F    |001A47;
                        LDA.B #$10                           ;83F4F2|A910    |      ;
                        STA.B $1E                            ;83F4F4|851E    |001A46;
-                       JML.L CODE_8280B4                    ;83F4F6|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83F4F6|5CB48082|8280B4;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83F4FA|22EA8E84|848EEA;
                        LDA.B $0F                            ;83F4FE|A50F    |001A37;
                        BPL CODE_83F506                      ;83F500|1004    |83F506;
-                       JML.L CODE_828398                    ;83F502|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83F502|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F506:
@@ -16005,7 +16148,7 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_8281B2                    ;83F512|22B28182|8281B2;
                                                             ;      |        |      ;
           CODE_83F516:
-                       JML.L CODE_8280B4                    ;83F516|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83F516|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F51A:
@@ -16198,7 +16341,7 @@ eventID_hoganmer_01_main:
                        TAY                                  ;83F671|A8      |      ;
                        JSL.L CODE_828011                    ;83F672|22118082|828011;
                        JSL.L CODE_80B4DD                    ;83F676|22DDB480|80B4DD;
-                       JML.L CODE_828398                    ;83F67A|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83F67A|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F67E:
@@ -16665,9 +16808,9 @@ eventID_hoganmer_01_main:
           CODE_83F9CC:
                        SEP #$20                             ;83F9CC|E220    |      ;
                        INC.B $10                            ;83F9CE|E610    |001938;
-                       JSL.L CODE_82806E                    ;83F9D0|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83F9D0|226E8082|82806E;
                        BCC CODE_83F9DA                      ;83F9D4|9004    |83F9DA;
-                       JML.L CODE_828398                    ;83F9D6|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83F9D6|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F9DA:
@@ -16685,7 +16828,7 @@ eventID_hoganmer_01_main:
                        BCC CODE_83F9F3                      ;83F9ED|9004    |83F9F3;
                                                             ;      |        |      ;
           CODE_83F9EF:
-                       JML.L CODE_8280B4                    ;83F9EF|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83F9EF|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F9F3:
@@ -16719,12 +16862,12 @@ eventID_hoganmer_01_main:
                        SEP #$30                             ;83FA24|E230    |      ;
                        LDA.B $0F                            ;83FA26|A50F    |001977;
                        BPL CODE_83FA2E                      ;83FA28|1004    |83FA2E;
-                       JML.L CODE_828398                    ;83FA2A|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83FA2A|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FA2E:
                        JSL.L updateEv_13_14_17_0f           ;83FA2E|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;83FA32|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83FA32|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FA36:
@@ -16755,7 +16898,7 @@ eventID_hoganmer_01_main:
           CODE_83FA69:
                        LDX.B $02                            ;83FA69|A602    |0019AA;
                        JSR.W (UNREACH_83FA72,X)             ;83FA6B|FC72FA  |83FA72;
-                       JML.L CODE_8280B4                    ;83FA6E|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;83FA6E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83FA72:
@@ -16808,7 +16951,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                        DEC.B $10                            ;83FAC2|C610    |0019B8;
                        BNE CODE_83FACA                      ;83FAC4|D004    |83FACA;
-                       JSL.L CODE_828398                    ;83FAC6|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;83FAC6|22988382|828398;
                                                             ;      |        |      ;
           CODE_83FACA:
                        JSL.L CODE_82825D                    ;83FACA|225D8282|82825D;
@@ -16821,7 +16964,7 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_84A23F                    ;83FAD3|223FA284|84A23F;
                        TYA                                  ;83FAD7|98      |      ;
                        BEQ CODE_83FADE                      ;83FAD8|F004    |83FADE;
-                       JML.L CODE_828387                    ;83FADA|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83FADA|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FADE:
@@ -16855,7 +16998,7 @@ eventID_hoganmer_01_main:
                        CMP.W #$049F                         ;83FB1A|C99F04  |      ;
                        BCC CODE_83FB26                      ;83FB1D|9007    |83FB26;
                        STZ.W r_0abd                         ;83FB1F|9CBD0A  |860ABD;
-                       JML.L CODE_828387                    ;83FB22|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83FB22|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FB26:
@@ -17219,9 +17362,9 @@ eventID_hoganmer_01_main:
                        SEP #$10                             ;83FD7E|E210    |      ;
                        LDX.B $01                            ;83FD80|A601    |001D19;
                        JSR.W (DATA8_83FD91,X)               ;83FD82|FC91FD  |83FD91;
-                       JSL.L CODE_82806E                    ;83FD85|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83FD85|226E8082|82806E;
                        BCC CODE_83FD8F                      ;83FD89|9004    |83FD8F;
-                       JSL.L CODE_828387                    ;83FD8B|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;83FD8B|22878382|828387;
                                                             ;      |        |      ;
           CODE_83FD8F:
                        PLP                                  ;83FD8F|28      |      ;
@@ -17351,7 +17494,7 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_848011                    ;83FE58|22118084|848011;
                        LDA.B $01                            ;83FE5C|A501    |001D39;
                        BEQ CODE_83FE72                      ;83FE5E|F012    |83FE72;
-                       JML.L CODE_828398                    ;83FE60|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83FE60|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FE64:
@@ -17359,7 +17502,7 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_848000                    ;83FE66|22008084|848000;
                        LDA.B $01                            ;83FE6A|A501    |001D39;
                        BEQ CODE_83FE72                      ;83FE6C|F004    |83FE72;
-                       JML.L CODE_828398                    ;83FE6E|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;83FE6E|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FE72:
@@ -17509,9 +17652,9 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FF64:
-                       JSL.L CODE_82806E                    ;83FF64|226E8082|82806E;
+                       JSL.L initPosAllign                  ;83FF64|226E8082|82806E;
                        BCC CODE_83FF6E                      ;83FF68|9004    |83FF6E;
-                       JML.L CODE_828387                    ;83FF6A|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;83FF6A|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FF6E:

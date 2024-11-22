@@ -4,20 +4,20 @@
                                                             ;      |        |      ;
           CODE_818000:
                        PHD                                  ;818000|0B      |      ;
-                       PEA.W r_ev_active_00                 ;818001|F4680E  |860E68;
+                       PEA.W $0E68                          ;818001|F4680E  |860E68;
                        PLD                                  ;818004|2B      |      ;
-                       LDX.B $01                            ;818005|A601    |000E69;
+                       LDX.B r_ev_01_state-$E68             ;818005|A601    |000E69;
                        JSR.W (UNREACH_81801D,X)             ;818007|FC1D80  |81801D;
                        LDA.W r_1e5d                         ;81800A|AD5D1E  |861E5D;
                        BEQ CODE_818013                      ;81800D|F004    |818013;
-                       LDA.B $0F                            ;81800F|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81800F|A50F    |000E77;
                        BMI CODE_818017                      ;818011|3004    |818017;
                                                             ;      |        |      ;
           CODE_818013:
                        JSL.L updateEv_13_14_17_0f           ;818013|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_818017:
-                       JSL.L CODE_8280B4                    ;818017|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;818017|22B48082|8280B4;
                        PLD                                  ;81801B|2B      |      ;
                        RTL                                  ;81801C|6B      |      ;
                                                             ;      |        |      ;
@@ -25,15 +25,15 @@
        UNREACH_81801D:
                        db $21,$80,$3D,$80                   ;81801D|        |000080;
                        LDA.B #$02                           ;818021|A902    |      ;
-                       STA.B $01                            ;818023|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;818023|8501    |000E69;
                        LDA.B #$38                           ;818025|A938    |      ;
-                       STA.B $11                            ;818027|8511    |000E79;
-                       STZ.B $18                            ;818029|6418    |000E80;
-                       STZ.B $12                            ;81802B|6412    |000E7A;
+                       STA.B r_ev_11_sprAtri-$E68           ;818027|8511    |000E79;
+                       STZ.B r_ev_18_gfxSlot-$E68           ;818029|6418    |000E80;
+                       STZ.B r_ev_12-$E68                   ;81802B|6412    |000E7A;
                        STZ.B $06                            ;81802D|6406    |000E6E;
                        STZ.B $09                            ;81802F|6409    |000E71;
                        LDA.B #$40                           ;818031|A940    |      ;
-                       STA.B $16                            ;818033|8516    |000E7E;
+                       STA.B r_ev_16-$E68                   ;818033|8516    |000E7E;
                        LDA.B #$00                           ;818035|A900    |      ;
                        JSL.L CODE_848F07                    ;818037|22078F84|848F07;
                        BRA CODE_81804D                      ;81803B|8010    |81804D;
@@ -48,13 +48,13 @@
           CODE_81804D:
                        LDX.W r_1e4c                         ;81804D|AE4C1E  |861E4C;
                        LDA.W UNREACH_86A6B6,X               ;818050|BDB6A6  |86A6B6;
-                       STA.B $05                            ;818053|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;818053|8505    |000E6D;
                        LDX.W r_1e4f                         ;818055|AE4F1E  |861E4F;
                        LDA.W UNREACH_86A6BA,X               ;818058|BDBAA6  |86A6BA;
-                       STA.B $08                            ;81805B|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;81805B|8508    |000E70;
                        LDA.B #$80                           ;81805D|A980    |      ;
                        SEC                                  ;81805F|38      |      ;
-                       SBC.B $05                            ;818060|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;818060|E505    |000E6D;
                        BCS CODE_818067                      ;818062|B003    |818067;
                        EOR.B #$FF                           ;818064|49FF    |      ;
                        INC A                                ;818066|1A      |      ;
@@ -64,7 +64,7 @@
                        BCS CODE_818088                      ;818069|B01D    |818088;
                        LDA.B #$70                           ;81806B|A970    |      ;
                        SEC                                  ;81806D|38      |      ;
-                       SBC.B $08                            ;81806E|E508    |000E70;
+                       SBC.B r_ev_08_yPos-$E68              ;81806E|E508    |000E70;
                        BCS CODE_818075                      ;818070|B003    |818075;
                        EOR.B #$FF                           ;818072|49FF    |      ;
                        INC A                                ;818074|1A      |      ;
@@ -73,9 +73,9 @@
                        CMP.B #$20                           ;818075|C920    |      ;
                        BCS CODE_818088                      ;818077|B00F    |818088;
                        LDA.B #$80                           ;818079|A980    |      ;
-                       STA.B $05                            ;81807B|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;81807B|8505    |000E6D;
                        LDA.B #$70                           ;81807D|A970    |      ;
-                       STA.B $08                            ;81807F|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;81807F|8508    |000E70;
                        LDA.B #$01                           ;818081|A901    |      ;
                        JSL.L CODE_848F07                    ;818083|22078F84|848F07;
                        RTS                                  ;818087|60      |      ;
@@ -123,7 +123,7 @@
                        STA.B $05                            ;8180C9|8505    |00142D;
                        LDA.W UNREACH_86A6D6,X               ;8180CB|BDD6A6  |86A6D6;
                        STA.B $08                            ;8180CE|8508    |001430;
-                       JSL.L CODE_8280B4                    ;8180D0|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;8180D0|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_8180D4:
                        LDA.W r_1e5d                         ;8180D4|AD5D1E  |861E5D;
@@ -1918,7 +1918,7 @@
                        RTS                                  ;818D20|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_82820A                    ;818D21|220A8282|82820A;
-                       JSL.L CODE_82806E                    ;818D25|226E8082|82806E;
+                       JSL.L initPosAllign                  ;818D25|226E8082|82806E;
                        BCC CODE_818D20                      ;818D29|90F5    |818D20;
                        LDA.B #$FF                           ;818D2B|A9FF    |      ;
                        STA.W r_1f23                         ;818D2D|8D231F  |861F23;
@@ -2607,7 +2607,7 @@
                        RTS                                  ;819236|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_82825D                    ;819237|225D8282|82825D;
-                       JSL.L CODE_82806E                    ;81923B|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81923B|226E8082|82806E;
                        BCC CODE_819236                      ;81923F|90F5    |819236;
                        LDA.B #$FF                           ;819241|A9FF    |      ;
                        STA.W r_1f23                         ;819243|8D231F  |861F23;
@@ -4986,7 +4986,7 @@
                        SEP #$10                             ;81A19B|E210    |      ;
                        LDA.B [$1A],Y                        ;81A19D|B71A    |000DF2;
                        BPL CODE_81A1A5                      ;81A19F|1004    |81A1A5;
-                       JML.L CODE_828398                    ;81A1A1|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81A1A1|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81A1A5:
@@ -5003,7 +5003,7 @@
                        INY                                  ;81A1B6|C8      |      ;
                        LDA.B [$1A],Y                        ;81A1B7|B71A    |000DD2;
                        STA.B $08                            ;81A1B9|8508    |000DC0;
-                       JML.L CODE_8280B4                    ;81A1BB|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81A1BB|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81A1BF:
@@ -5023,7 +5023,7 @@
           CODE_81A1D9:
                        LDA.W r_blaster04                    ;81A1D9|AD000C  |860C00;
                        BNE CODE_81A1E2                      ;81A1DC|D004    |81A1E2;
-                       JML.L CODE_828398                    ;81A1DE|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81A1DE|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81A1E2:
@@ -5061,7 +5061,7 @@
                        ORA.B $10                            ;81A21C|0510    |000CA8;
                        STA.B $11                            ;81A21E|8511    |000CA9;
                        JSL.L updateEv_13_14_17_0f           ;81A220|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;81A224|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81A224|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81A228:
@@ -5091,7 +5091,7 @@
                        LDA.B #$40                           ;81A254|A940    |      ;
                        STA.B $1F                            ;81A256|851F    |001247;
                        STZ.B $1E                            ;81A258|641E    |001246;
-                       JSL.L CODE_8280B4                    ;81A25A|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A25A|22B48082|8280B4;
                        LDA.B #$08                           ;81A25E|A908    |      ;
                        STA.B $16                            ;81A260|8516    |00123E;
                        LDA.B #$04                           ;81A262|A904    |      ;
@@ -5124,7 +5124,7 @@
                        SEP #$20                             ;81A28F|E220    |      ;
                                                             ;      |        |      ;
           CODE_81A291:
-                       JSL.L CODE_8280B4                    ;81A291|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A291|22B48082|8280B4;
                        LDA.B $0E                            ;81A295|A50E    |001236;
                        BEQ CODE_81A2CA                      ;81A297|F031    |81A2CA;
                        JSL.L updateEv_13_14_17_0f           ;81A299|22EA8E84|848EEA;
@@ -5139,13 +5139,13 @@
                        STA.B $1C                            ;81A2AB|851C    |001284;
                        STZ.B $1E                            ;81A2AD|641E    |001286;
                        SEP #$20                             ;81A2AF|E220    |      ;
-                       JSL.L CODE_8280B4                    ;81A2B1|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A2B1|22B48082|8280B4;
                        LDA.W r_1f9d                         ;81A2B5|AD9D1F  |861F9D;
                        BPL CODE_81A2BD                      ;81A2B8|1003    |81A2BD;
                        db $8D,$23,$1F                       ;81A2BA|        |001F23;
                                                             ;      |        |      ;
           CODE_81A2BD:
-                       INC.B $30                            ;81A2BD|E630    |001298;
+                       INC.B r_ev_proj_10-$1268             ;81A2BD|E630    |001298;
                        LDA.B #$02                           ;81A2BF|A902    |      ;
                        STA.B $01                            ;81A2C1|8501    |001269;
                        RTS                                  ;81A2C3|60      |      ;
@@ -5155,7 +5155,7 @@
                                                             ;      |        |      ;
           CODE_81A2CA:
                        DEC.W r_0bdd                         ;81A2CA|CEDD0B  |860BDD;
-                       JSL.L CODE_8283A3                    ;81A2CD|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;81A2CD|22A38382|8283A3;
                        RTS                                  ;81A2D1|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5196,7 +5196,7 @@
                                                             ;      |        |      ;
           CODE_81A319:
                        SEP #$20                             ;81A319|E220    |      ;
-                       JSL.L CODE_8280B4                    ;81A31B|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A31B|22B48082|8280B4;
                        LDA.B #$0E                           ;81A31F|A90E    |      ;
                        STA.B $16                            ;81A321|8516    |00123E;
                        LDA.B #$00                           ;81A323|A900    |      ;
@@ -5207,7 +5207,7 @@
                        STA.B $01                            ;81A32C|8501    |001229;
                        LDX.B $02                            ;81A32E|A602    |00122A;
                        JSR.W (DATA8_81A346,X)               ;81A330|FC46A3  |81A346;
-                       JSL.L CODE_8280B4                    ;81A333|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A333|22B48082|8280B4;
                        LDA.B $0E                            ;81A337|A50E    |001236;
                        BNE CODE_81A345                      ;81A339|D00A    |81A345;
                        LDA.B #$08                           ;81A33B|A908    |      ;
@@ -5264,7 +5264,7 @@
                                                             ;      |        |      ;
                        LDX.B $02                            ;81A395|A602    |00122A;
                        JSR.W (UNREACH_81A39F,X)             ;81A397|FC9FA3  |81A39F;
-                       JSL.L CODE_8280B4                    ;81A39A|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A39A|22B48082|8280B4;
                        RTS                                  ;81A39E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5311,7 +5311,7 @@
                        INC.B $30                            ;81A3E5|E630    |001258;
                        LDA.B #$02                           ;81A3E7|A902    |      ;
                        STA.B $02                            ;81A3E9|8502    |00122A;
-                       JSL.L CODE_8280B4                    ;81A3EB|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A3EB|22B48082|8280B4;
                        LDA.B #$02                           ;81A3EF|A902    |      ;
                        JSL.L CODE_848F07                    ;81A3F1|22078F84|848F07;
                        RTS                                  ;81A3F5|60      |      ;
@@ -5322,13 +5322,13 @@
                        STA.B $02                            ;81A3FC|8502    |00122A;
                                                             ;      |        |      ;
           CODE_81A3FE:
-                       JSL.L CODE_8280B4                    ;81A3FE|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A3FE|22B48082|8280B4;
                        JSL.L updateEv_13_14_17_0f           ;81A402|22EA8E84|848EEA;
                        RTS                                  ;81A406|60      |      ;
                                                             ;      |        |      ;
                        DEC.W r_0bdd                         ;81A407|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;81A40A|CE250C  |860C25;
-                       JSL.L CODE_8283A3                    ;81A40D|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;81A40D|22A38382|8283A3;
                        RTS                                  ;81A411|60      |      ;
                                                             ;      |        |      ;
                        db $A6,$01,$FC,$18,$A4,$6B,$22,$A4   ;81A412|        |000001;
@@ -5387,7 +5387,7 @@
           CODE_81A501:
                        STZ.B $1F                            ;81A501|641F    |001247;
                        STZ.B $1E                            ;81A503|641E    |001246;
-                       JSL.L CODE_8280B4                    ;81A505|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A505|22B48082|8280B4;
                        LDA.B #$08                           ;81A509|A908    |      ;
                        STA.B $16                            ;81A50B|8516    |00123E;
                        LDA.B #$04                           ;81A50D|A904    |      ;
@@ -5395,7 +5395,7 @@
                        RTS                                  ;81A513|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_828174                    ;81A514|22748182|828174;
-                       JSL.L CODE_8280B4                    ;81A518|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A518|22B48082|8280B4;
                        LDA.B $0E                            ;81A51C|A50E    |001236;
                        BEQ CODE_81A54B                      ;81A51E|F02B    |81A54B;
                        JSL.L updateEv_13_14_17_0f           ;81A520|22EA8E84|848EEA;
@@ -5411,7 +5411,7 @@
           CODE_81A54B:
                        DEC.W r_0bdd                         ;81A54B|CEDD0B  |860BDD;
                        DEC.W r_blaster0f                    ;81A54E|CE0B0C  |860C0B;
-                       JSL.L CODE_8283A3                    ;81A551|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;81A551|22A38382|8283A3;
                        RTS                                  ;81A555|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5509,7 +5509,7 @@
                        STA.B $1A                            ;81A5FF|851A    |001242;
                        STZ.B $1C                            ;81A601|641C    |001244;
                        SEP #$20                             ;81A603|E220    |      ;
-                       JSL.L CODE_8280B4                    ;81A605|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A605|22B48082|8280B4;
                        LDA.B #$0E                           ;81A609|A90E    |      ;
                        STA.B $16                            ;81A60B|8516    |00123E;
                        LDA.B #$00                           ;81A60D|A900    |      ;
@@ -5519,7 +5519,7 @@
                        db $A9,$02,$85,$01                   ;81A614|        |      ;
                        LDX.B $02                            ;81A618|A602    |00122A;
                        JSR.W (UNREACH_81A62E,X)             ;81A61A|FC2EA6  |81A62E;
-                       JSL.L CODE_8280B4                    ;81A61D|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A61D|22B48082|8280B4;
                        LDA.B $0E                            ;81A621|A50E    |001236;
                        BNE CODE_81A62D                      ;81A623|D008    |81A62D;
                        LDA.B #$08                           ;81A625|A908    |      ;
@@ -5596,7 +5596,7 @@
                        INC.B $30                            ;81A6CC|E630    |001258;
                        LDA.B #$02                           ;81A6CE|A902    |      ;
                        STA.B $02                            ;81A6D0|8502    |00122A;
-                       JSL.L CODE_8280B4                    ;81A6D2|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A6D2|22B48082|8280B4;
                        LDA.B #$02                           ;81A6D6|A902    |      ;
                        JSL.L CODE_848F07                    ;81A6D8|22078F84|848F07;
                        RTS                                  ;81A6DC|60      |      ;
@@ -5607,7 +5607,7 @@
                        ORA.B #$80                           ;81A6E4|0980    |      ;
                        STA.W r_003b,X                       ;81A6E6|9D3B00  |86003B;
                        SEP #$10                             ;81A6E9|E210    |      ;
-                       JSL.L CODE_8280B4                    ;81A6EB|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A6EB|22B48082|8280B4;
                        LDA.B #$04                           ;81A6EF|A904    |      ;
                        STA.B $02                            ;81A6F1|8502    |00122A;
                        RTS                                  ;81A6F3|60      |      ;
@@ -5618,11 +5618,11 @@
                        STA.B $02                            ;81A6FA|8502    |00122A;
                                                             ;      |        |      ;
           CODE_81A6FC:
-                       JSL.L CODE_8280B4                    ;81A6FC|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A6FC|22B48082|8280B4;
                        JSL.L updateEv_13_14_17_0f           ;81A700|22EA8E84|848EEA;
                        RTS                                  ;81A704|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_8283A3                    ;81A705|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;81A705|22A38382|8283A3;
                        RTS                                  ;81A709|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5646,7 +5646,7 @@
                        BNE CODE_81A731                      ;81A72B|D004    |81A731;
                                                             ;      |        |      ;
           CODE_81A72D:
-                       JML.L CODE_8283A3                    ;81A72D|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;81A72D|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81A731:
@@ -5708,7 +5708,7 @@
                        BNE CODE_81A7A2                      ;81A79C|D004    |81A7A2;
                                                             ;      |        |      ;
           CODE_81A79E:
-                       JML.L CODE_8283A3                    ;81A79E|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;81A79E|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81A7A2:
@@ -5737,7 +5737,7 @@
                        LDX.W #$C06A                         ;81A7C6|A26AC0  |      ;
                        STX.B $20                            ;81A7C9|8620    |001448;
                        SEP #$10                             ;81A7CB|E210    |      ;
-                       JSL.L CODE_8280B4                    ;81A7CD|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A7CD|22B48082|8280B4;
                        LDA.B #$02                           ;81A7D1|A902    |      ;
                        STA.B $16                            ;81A7D3|8516    |00143E;
                        LDA.B #$09                           ;81A7D5|A909    |      ;
@@ -5746,7 +5746,7 @@
                                                             ;      |        |      ;
                        LDX.B $02                            ;81A7DC|A602    |00142A;
                        JSR.W (UNREACH_81A80E,X)             ;81A7DE|FC0EA8  |81A80E;
-                       JSL.L CODE_8280B4                    ;81A7E1|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A7E1|22B48082|8280B4;
                        REP #$10                             ;81A7E5|C210    |      ;
                        LDX.B $33                            ;81A7E7|A633    |00145B;
                        LDA.W r_0011,X                       ;81A7E9|BD1100  |860011;
@@ -5954,16 +5954,16 @@
                        DEY                                  ;81A93D|88      |      ;
                        BPL CODE_81A92E                      ;81A93E|10EE    |81A92E;
                        SEP #$10                             ;81A940|E210    |      ;
-                       JSL.L CODE_8280B4                    ;81A942|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A942|22B48082|8280B4;
                        RTS                                  ;81A946|60      |      ;
                                                             ;      |        |      ;
                        LDA.W $0B9C                          ;81A947|AD9C0B  |860B9C;
                        LSR A                                ;81A94A|4A      |      ;
                        BCC CODE_81A95A                      ;81A94B|900D    |81A95A;
-                       JSL.L CODE_8280B4                    ;81A94D|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81A94D|22B48082|8280B4;
                        LDA.B $0E                            ;81A951|A50E    |001436;
                        BNE CODE_81A95A                      ;81A953|D005    |81A95A;
-                       JSL.L CODE_8283A3                    ;81A955|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;81A955|22A38382|8283A3;
                        RTS                                  ;81A959|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5985,7 +5985,7 @@
                        DEY                                  ;81A96F|88      |      ;
                        BPL CODE_81A964                      ;81A970|10F2    |81A964;
                        SEP #$10                             ;81A972|E210    |      ;
-                       JSL.L CODE_8283A3                    ;81A974|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;81A974|22A38382|8283A3;
                        RTS                                  ;81A978|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6245,7 +6245,7 @@
                        LDX.W #$C06E                         ;81AB52|A26EC0  |      ;
                        STX.B $20                            ;81AB55|8620    |001448;
                        SEP #$10                             ;81AB57|E210    |      ;
-                       JSL.L CODE_8280B4                    ;81AB59|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81AB59|22B48082|8280B4;
                        LDA.B #$09                           ;81AB5D|A909    |      ;
                        STA.B $16                            ;81AB5F|8516    |00143E;
                        LDA.B #$00                           ;81AB61|A900    |      ;
@@ -6271,7 +6271,7 @@
                        db $A9,$04,$85,$01,$64,$02,$60       ;81AB88|        |      ;
                                                             ;      |        |      ;
           CODE_81AB8F:
-                       JSL.L CODE_8280B4                    ;81AB8F|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81AB8F|22B48082|8280B4;
                        JSL.L CODE_849B03                    ;81AB93|22039B84|849B03;
                        BEQ CODE_81ABA9                      ;81AB97|F010    |81ABA9;
                                                             ;      |        |      ;
@@ -6328,7 +6328,7 @@
                        STA.B $1C                            ;81ABE8|851C    |001444;
                        SEP #$20                             ;81ABEA|E220    |      ;
                        JSL.L CODE_82820A                    ;81ABEC|220A8282|82820A;
-                       JSL.L CODE_82806E                    ;81ABF0|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81ABF0|226E8082|82806E;
                        BCC CODE_81ABFC                      ;81ABF4|9006    |81ABFC;
                        LDA.B #$04                           ;81ABF6|A904    |      ;
                        STA.B $01                            ;81ABF8|8501    |001429;
@@ -6338,7 +6338,7 @@
                        JSL.L updateEv_13_14_17_0f           ;81ABFC|22EA8E84|848EEA;
                        RTS                                  ;81AC00|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_8283A3                    ;81AC01|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;81AC01|22A38382|8283A3;
                        RTS                                  ;81AC05|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6381,7 +6381,7 @@
                        db $A9,$03,$85,$38                   ;81AC4E|        |      ;
                                                             ;      |        |      ;
           CODE_81AC52:
-                       JSL.L CODE_8280B4                    ;81AC52|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81AC52|22B48082|8280B4;
                        LDA.B #$0B                           ;81AC56|A90B    |      ;
                        STA.B $16                            ;81AC58|8516    |00143E;
                        LDA.B #$02                           ;81AC5A|A902    |      ;
@@ -6390,7 +6390,7 @@
                        JSL.L CODE_848F07                    ;81AC5F|22078F84|848F07;
                        RTS                                  ;81AC63|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_82806E                    ;81AC64|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81AC64|226E8082|82806E;
                        BCC CODE_81AC71                      ;81AC68|9007    |81AC71;
                        LDA.B #$04                           ;81AC6A|A904    |      ;
                        STA.B $01                            ;81AC6C|8501    |001469;
@@ -6401,7 +6401,7 @@
           CODE_81AC71:
                        LDX.B $02                            ;81AC71|A602    |00142A;
                        JSR.W (UNREACH_81ACB5,X)             ;81AC73|FCB5AC  |81ACB5;
-                       JSL.L CODE_8280B4                    ;81AC76|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81AC76|22B48082|8280B4;
                        LDA.B $11                            ;81AC7A|A511    |001439;
                        AND.B #$C0                           ;81AC7C|29C0    |      ;
                        ORA.L $7F8304                        ;81AC7E|0F04837F|7F8304;
@@ -6647,7 +6647,7 @@
                        JSL.L updateEv_13_14_17_0f           ;81AE1E|22EA8E84|848EEA;
                        RTS                                  ;81AE22|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_8283A3                    ;81AE23|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;81AE23|22A38382|8283A3;
                        RTS                                  ;81AE27|60      |      ;
                                                             ;      |        |      ;
                        db $A0,$11,$B1,$0C,$85,$11,$A6,$01   ;81AE28|        |      ;
@@ -6777,8 +6777,8 @@
                        TSB.B $11                            ;81B1A6|0411    |0014F9;
                        LDX.B $01                            ;81B1A8|A601    |0014E9;
                        JSR.W (UNREACH_81B1D1,X)             ;81B1AA|FCD1B1  |81B1D1;
-                       JSL.L CODE_8280B4                    ;81B1AD|22B48082|8280B4;
-                       JSL.L CODE_82806E                    ;81B1B1|226E8082|82806E;
+                       JSL.L eventID_vile_68_afterInit      ;81B1AD|22B48082|8280B4;
+                       JSL.L initPosAllign                  ;81B1B1|226E8082|82806E;
                        BCS CODE_81B1CB                      ;81B1B5|B014    |81B1CB;
                        JSL.L CODE_849B43                    ;81B1B7|22439B84|849B43;
                        BEQ CODE_81B1C1                      ;81B1BB|F004    |81B1C1;
@@ -6804,7 +6804,7 @@
                        db $90,$B2                           ;81B1D9|        |81B18D;
                        LDA.B #$0B                           ;81B1DB|A90B    |      ;
                        STA.B $0A                            ;81B1DD|850A    |001472;
-                       JSL.L CODE_82827D                    ;81B1DF|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;81B1DF|227D8282|82827D;
                        LDA.B #$01                           ;81B1E3|A901    |      ;
                        STA.B $3D                            ;81B1E5|853D    |0014A5;
                        LDA.B #$08                           ;81B1E7|A908    |      ;
@@ -7053,7 +7053,7 @@
                        STZ.W r_0039,X                       ;81B37A|9E3900  |860039;
                                                             ;      |        |      ;
           CODE_81B37D:
-                       JSL.L CODE_8283A3                    ;81B37D|22A38382|8283A3;
+                       JSL.L clearStates_01_00_02_0E_2C     ;81B37D|22A38382|8283A3;
                        PLP                                  ;81B381|28      |      ;
                        RTS                                  ;81B382|60      |      ;
                                                             ;      |        |      ;
@@ -7127,15 +7127,15 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B44E:
-                       JSL.L CODE_82806E                    ;81B44E|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81B44E|226E8082|82806E;
                        BCC CODE_81B458                      ;81B452|9004    |81B458;
-                       JML.L CODE_8283A3                    ;81B454|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;81B454|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B458:
                        LDX.B $02                            ;81B458|A602    |00142A;
                        JSR.W (UNREACH_81B461,X)             ;81B45A|FC61B4  |81B461;
-                       JML.L CODE_8280B4                    ;81B45D|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81B45D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_81B461:
@@ -7202,7 +7202,7 @@
                        JSL.L updateEv_13_14_17_0f           ;81B4DD|22EA8E84|848EEA;
                        LDA.B $0F                            ;81B4E1|A50F    |001437;
                        BPL CODE_81B4E9                      ;81B4E3|1004    |81B4E9;
-                       JML.L CODE_8283A3                    ;81B4E5|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;81B4E5|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B4E9:
@@ -7225,12 +7225,12 @@
                        ADC.W #$C2D9                         ;81B507|69D9C2  |      ;
                        STA.B $20                            ;81B50A|8520    |001448;
                        SEP #$20                             ;81B50C|E220    |      ;
-                       JSL.L CODE_8280B4                    ;81B50E|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81B50E|22B48082|8280B4;
                        JML.L CODE_849B03                    ;81B512|5C039B84|849B03;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
 eventID_chillPingu_01_main:
-                       LDX.B $01                            ;81B516|A601    |000E69;
+                       LDX.B r_ev_01_state-$E68             ;81B516|A601    |000E69;
                        JMP.W (chillPingu_state1,X)          ;81B518|7C1BB5  |81B51B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7241,61 +7241,61 @@ eventID_chillPingu_01_main:
                        dw CODE_81BB57                       ;81B521|        |81BB57;
                                                             ;      |        |      ;
  chillPingu_state1_00:
-                       LDA.B $02                            ;81B523|A502    |000E6A;
+                       LDA.B r_ev_02_action-$E68            ;81B523|A502    |000E6A;
                        BNE CODE_81B546                      ;81B525|D01F    |81B546;
                        JSL.L CODE_84AADD                    ;81B527|22DDAA84|84AADD;
                        BEQ CODE_81B531                      ;81B52B|F004    |81B531;
-                       JML.L CODE_828398                    ;81B52D|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81B52D|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B531:
                        JSL.L CODE_849FEB                    ;81B531|22EB9F84|849FEB;
-                       INC.B $02                            ;81B535|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;81B535|E602    |000E6A;
                        LDA.B #$3C                           ;81B537|A93C    |      ;
-                       STA.B $34                            ;81B539|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81B539|8534    |000E9C;
                        LDA.W r_1f26                         ;81B53B|AD261F  |861F26;
                        BEQ CODE_81B546                      ;81B53E|F006    |81B546;
                        LDA.B #$2E                           ;81B540|A92E    |      ;
                        JSL.L CODE_8087A2                    ;81B542|22A28780|8087A2;
                                                             ;      |        |      ;
           CODE_81B546:
-                       DEC.B $34                            ;81B546|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81B546|C634    |000E9C;
                        BEQ CODE_81B54B                      ;81B548|F001    |81B54B;
                        RTL                                  ;81B54A|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B54B:
-                       JSL.L CODE_82827D                    ;81B54B|227D8282|82827D;
-                       LDA.B $11                            ;81B54F|A511    |000E79;
+                       JSL.L enemy_initiate_jumpPhysic      ;81B54B|227D8282|82827D;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81B54F|A511    |000E79;
                        AND.B #$0E                           ;81B551|290E    |      ;
-                       STA.B $33                            ;81B553|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;81B553|8533    |000E9B;
                        LDA.B #$04                           ;81B555|A904    |      ;
-                       STA.B $12                            ;81B557|8512    |000E7A;
-                       STZ.B $35                            ;81B559|6435    |000E9D;
-                       STZ.B $30                            ;81B55B|6430    |000E98;
-                       STZ.B $39                            ;81B55D|6439    |000EA1;
+                       STA.B r_ev_12-$E68                   ;81B557|8512    |000E7A;
+                       STZ.B r_ev_35-$E68                   ;81B559|6435    |000E9D;
+                       STZ.B r_ev_30-$E68                   ;81B55B|6430    |000E98;
+                       STZ.B r_ev_39-$E68                   ;81B55D|6439    |000EA1;
                        LDA.B #$06                           ;81B55F|A906    |      ;
-                       STA.B $26                            ;81B561|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;81B561|8526    |000E8E;
                        REP #$20                             ;81B563|C220    |      ;
                        LDA.W #$C42D                         ;81B565|A92DC4  |      ;
-                       STA.B $20                            ;81B568|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81B568|8520    |000E88;
                        SEP #$20                             ;81B56A|E220    |      ;
                        LDA.B #$40                           ;81B56C|A940    |      ;
-                       STA.B $1E                            ;81B56E|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;81B56E|851E    |000E86;
                        LDA.B #$FF                           ;81B570|A9FF    |      ;
-                       STA.B $2F                            ;81B572|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;81B572|852F    |000E97;
                        LDA.B #$07                           ;81B574|A907    |      ;
                        JSL.L CODE_848F07                    ;81B576|22078F84|848F07;
                        LDA.B #$02                           ;81B57A|A902    |      ;
-                       STA.B $01                            ;81B57C|8501    |000E69;
-                       STZ.B $02                            ;81B57E|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;81B57C|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;81B57E|6402    |000E6A;
                        RTL                                  ;81B580|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
  chillPingu_state1_01:
-                       LDX.B $02                            ;81B581|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;81B581|A602    |000E6A;
                        JSR.W (PTR16_81B58A,X)               ;81B583|FC8AB5  |81B58A;
-                       JML.L CODE_8280B4                    ;81B586|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81B586|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_81B58A:
@@ -7308,11 +7308,11 @@ eventID_chillPingu_01_main:
           CODE_81B594:
                        JSL.L CODE_8281E8                    ;81B594|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;81B598|22BE9184|8491BE;
-                       LDA.B $2B                            ;81B59C|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81B59C|A52B    |000E93;
                        AND.B #$04                           ;81B59E|2904    |      ;
                        BEQ CODE_81B5AC                      ;81B5A0|F00A    |81B5AC;
                        LDA.B #$02                           ;81B5A2|A902    |      ;
-                       STA.B $02                            ;81B5A4|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81B5A4|8502    |000E6A;
                        LDA.B #$08                           ;81B5A6|A908    |      ;
                        JSL.L CODE_848F07                    ;81B5A8|22078F84|848F07;
                                                             ;      |        |      ;
@@ -7322,17 +7322,17 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B5AD:
                        JSL.L updateEv_13_14_17_0f           ;81B5AD|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81B5B1|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81B5B1|A50F    |000E77;
                        BPL CODE_81B5C9                      ;81B5B3|1014    |81B5C9;
                        LDA.B #$04                           ;81B5B5|A904    |      ;
-                       STA.B $02                            ;81B5B7|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81B5B7|8502    |000E6A;
                        LDA.B #$10                           ;81B5B9|A910    |      ;
                        JSL.L CODE_848F07                    ;81B5BB|22078F84|848F07;
                        REP #$20                             ;81B5BF|C220    |      ;
                        TDC                                  ;81B5C1|7B      |      ;
                        STA.W r_1f0e                         ;81B5C2|8D0E1F  |861F0E;
                        SEP #$20                             ;81B5C5|E220    |      ;
-                       STZ.B $27                            ;81B5C7|6427    |000E8F;
+                       STZ.B r_ev_27-$E68                   ;81B5C7|6427    |000E8F;
                                                             ;      |        |      ;
           CODE_81B5C9:
                        RTS                                  ;81B5C9|60      |      ;
@@ -7340,10 +7340,10 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B5CA:
                        JSL.L updateEv_13_14_17_0f           ;81B5CA|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81B5CE|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81B5CE|A50F    |000E77;
                        BPL CODE_81B5EE                      ;81B5D0|101C    |81B5EE;
                        LDA.B #$06                           ;81B5D2|A906    |      ;
-                       STA.B $02                            ;81B5D4|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81B5D4|8502    |000E6A;
                        JSL.L CODE_8282B9                    ;81B5D6|22B98282|8282B9;
                        BNE CODE_81B5EC                      ;81B5DA|D010    |81B5EC;
                        INC.W r_0000,X                       ;81B5DC|FE0000  |860000;
@@ -7352,7 +7352,7 @@ eventID_chillPingu_01_main:
                        REP #$20                             ;81B5E4|C220    |      ;
                        TDC                                  ;81B5E6|7B      |      ;
                        STA.W r_000c,X                       ;81B5E7|9D0C00  |86000C;
-                       STX.B $0C                            ;81B5EA|860C    |000E74;
+                       STX.B r_ev_0c-$E68                   ;81B5EA|860C    |000E74;
                                                             ;      |        |      ;
           CODE_81B5EC:
                        SEP #$30                             ;81B5EC|E230    |      ;
@@ -7367,17 +7367,17 @@ eventID_chillPingu_01_main:
                        BCC CODE_81B61D                      ;81B5F3|9028    |81B61D;
                        LDA.B #$0C                           ;81B5F5|A90C    |      ;
                        JSL.L CODE_8088CD                    ;81B5F7|22CD8880|8088CD;
-                       LDA.B $27                            ;81B5FB|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;81B5FB|A527    |000E8F;
                        INC A                                ;81B5FD|1A      |      ;
                        ORA.B #$80                           ;81B5FE|0980    |      ;
-                       STA.B $27                            ;81B600|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;81B600|8527    |000E8F;
                        AND.B #$7F                           ;81B602|297F    |      ;
                        CMP.B #$20                           ;81B604|C920    |      ;
                        BCC CODE_81B61D                      ;81B606|9015    |81B61D;
                        LDA.B #$00                           ;81B608|A900    |      ;
                        JSL.L CODE_848F07                    ;81B60A|22078F84|848F07;
                        LDA.B #$08                           ;81B60E|A908    |      ;
-                       STA.B $02                            ;81B610|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81B610|8502    |000E6A;
                        LDA.W r_1f26                         ;81B612|AD261F  |861F26;
                        BEQ CODE_81B61D                      ;81B615|F006    |81B61D;
                        LDA.B #$1E                           ;81B617|A91E    |      ;
@@ -7389,34 +7389,34 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B61E:
                        LDA.B #$04                           ;81B61E|A904    |      ;
-                       STA.B $01                            ;81B620|8501    |000E69;
-                       STZ.B $02                            ;81B622|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;81B620|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;81B622|6402    |000E6A;
                        JSL.L CODE_84A003                    ;81B624|2203A084|84A003;
                        RTS                                  ;81B628|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B629:
-                       LDA.B $33                            ;81B629|A533    |000E9B;
-                       TSB.B $11                            ;81B62B|0411    |000E79;
+                       LDA.B r_ev_33-$E68                   ;81B629|A533    |000E9B;
+                       TSB.B r_ev_11_sprAtri-$E68           ;81B62B|0411    |000E79;
                        REP #$20                             ;81B62D|C220    |      ;
                        LDA.W #$C42D                         ;81B62F|A92DC4  |      ;
-                       STA.B $20                            ;81B632|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81B632|8520    |000E88;
                        SEP #$20                             ;81B634|E220    |      ;
-                       LDX.B $02                            ;81B636|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;81B636|A602    |000E6A;
                        JSR.W (PTR16_81B6F3,X)               ;81B638|FCF3B6  |81B6F3;
                        LDA.B #$09                           ;81B63B|A909    |      ;
-                       LDX.B $35                            ;81B63D|A635    |000E9D;
+                       LDX.B r_ev_35-$E68                   ;81B63D|A635    |000E9D;
                        BEQ CODE_81B643                      ;81B63F|F002    |81B643;
                        LDA.B #$05                           ;81B641|A905    |      ;
                                                             ;      |        |      ;
           CODE_81B643:
-                       STA.B $28                            ;81B643|8528    |000E90;
-                       LDA.B $39                            ;81B645|A539    |000EA1;
+                       STA.B r_ev_28-$E68                   ;81B643|8528    |000E90;
+                       LDA.B r_ev_39-$E68                   ;81B645|A539    |000EA1;
                        BEQ CODE_81B64B                      ;81B647|F002    |81B64B;
-                       STZ.B $28                            ;81B649|6428    |000E90;
+                       STZ.B r_ev_28-$E68                   ;81B649|6428    |000E90;
                                                             ;      |        |      ;
           CODE_81B64B:
-                       LDA.B $17                            ;81B64B|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;81B64B|A517    |000E7F;
                        AND.B #$7F                           ;81B64D|297F    |      ;
                        TAX                                  ;81B64F|AA      |      ;
                        LDA.W UNREACH_86C4AB,X               ;81B650|BDABC4  |86C4AB;
@@ -7426,23 +7426,23 @@ eventID_chillPingu_01_main:
                        AND.W #$00FF                         ;81B657|29FF00  |      ;
                        CLC                                  ;81B65A|18      |      ;
                        ADC.W #$C437                         ;81B65B|6937C4  |      ;
-                       STA.B $20                            ;81B65E|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81B65E|8520    |000E88;
                        SEP #$20                             ;81B660|E220    |      ;
                        JSL.L CODE_849B43                    ;81B662|22439B84|849B43;
                        BEQ CODE_81B6C4                      ;81B666|F05C    |81B6C4;
-                       LDA.B $35                            ;81B668|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;81B668|A535    |000E9D;
                        BNE CODE_81B6C4                      ;81B66A|D058    |81B6C4;
                        LDA.B #$46                           ;81B66C|A946    |      ;
-                       STA.B $35                            ;81B66E|8535    |000E9D;
-                       LDA.B $38                            ;81B670|A538    |000EA0;
+                       STA.B r_ev_35-$E68                   ;81B66E|8535    |000E9D;
+                       LDA.B r_ev_38-$E68                   ;81B670|A538    |000EA0;
                        BEQ CODE_81B683                      ;81B672|F00F    |81B683;
                        LDA.B #$40                           ;81B674|A940    |      ;
-                       TRB.B $11                            ;81B676|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;81B676|1411    |000E79;
                        LDA.W r_1f1b                         ;81B678|AD1B1F  |861F1B;
-                       TSB.B $11                            ;81B67B|0411    |000E79;
+                       TSB.B r_ev_11_sprAtri-$E68           ;81B67B|0411    |000E79;
                        LDA.B #$0A                           ;81B67D|A90A    |      ;
-                       STA.B $02                            ;81B67F|8502    |000E6A;
-                       STZ.B $03                            ;81B681|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;81B67F|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81B681|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_81B683:
                        LDA.W r_1f1d                         ;81B683|AD1D1F  |861F1D;
@@ -7453,9 +7453,9 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B68E:
                        LDA.B #$0A                           ;81B68E|A90A    |      ;
-                       STA.B $02                            ;81B690|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81B690|8502    |000E6A;
                        LDA.B #$02                           ;81B692|A902    |      ;
-                       STA.B $03                            ;81B694|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B694|8503    |000E6B;
                        LDA.B #$4A                           ;81B696|A94A    |      ;
                        JSL.L CODE_8088A2                    ;81B698|22A28880|8088A2;
                        BRA CODE_81B6A4                      ;81B69C|8006    |81B6A4;
@@ -7466,39 +7466,39 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_8088A2                    ;81B6A0|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_81B6A4:
-                       LDA.B $27                            ;81B6A4|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;81B6A4|A527    |000E8F;
                        AND.B #$7F                           ;81B6A6|297F    |      ;
                        BNE CODE_81B6C4                      ;81B6A8|D01A    |81B6C4;
                        LDA.B #$06                           ;81B6AA|A906    |      ;
-                       STA.B $01                            ;81B6AC|8501    |000E69;
-                       STZ.B $02                            ;81B6AE|6402    |000E6A;
-                       STZ.B $03                            ;81B6B0|6403    |000E6B;
+                       STA.B r_ev_01_state-$E68             ;81B6AC|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;81B6AE|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81B6B0|6403    |000E6B;
                        LDA.B #$01                           ;81B6B2|A901    |      ;
                        STA.W r_0bd8                         ;81B6B4|8DD80B  |860BD8;
                        STA.W r_1f0c                         ;81B6B7|8D0C1F  |861F0C;
                        LDA.B #$04                           ;81B6BA|A904    |      ;
                        JSL.L CODE_848F07                    ;81B6BC|22078F84|848F07;
-                       JML.L CODE_8280B4                    ;81B6C0|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81B6C0|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B6C4:
-                       LDA.B $35                            ;81B6C4|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;81B6C4|A535    |000E9D;
                        BEQ CODE_81B6E0                      ;81B6C6|F018    |81B6E0;
-                       DEC.B $35                            ;81B6C8|C635    |000E9D;
-                       LDA.B $02                            ;81B6CA|A502    |000E6A;
+                       DEC.B r_ev_35-$E68                   ;81B6C8|C635    |000E9D;
+                       LDA.B r_ev_02_action-$E68            ;81B6CA|A502    |000E6A;
                        CMP.B #$0A                           ;81B6CC|C90A    |      ;
                        BNE CODE_81B6D6                      ;81B6CE|D006    |81B6D6;
-                       LDA.B $03                            ;81B6D0|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;81B6D0|A503    |000E6B;
                        CMP.B #$08                           ;81B6D2|C908    |      ;
                        BCS CODE_81B6E0                      ;81B6D4|B00A    |81B6E0;
                                                             ;      |        |      ;
           CODE_81B6D6:
-                       LDA.B $35                            ;81B6D6|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;81B6D6|A535    |000E9D;
                        LSR A                                ;81B6D8|4A      |      ;
                        LSR A                                ;81B6D9|4A      |      ;
                        BCC CODE_81B6E0                      ;81B6DA|9004    |81B6E0;
                        LDA.B #$0E                           ;81B6DC|A90E    |      ;
-                       TRB.B $11                            ;81B6DE|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;81B6DE|1411    |000E79;
                                                             ;      |        |      ;
           CODE_81B6E0:
                        JSL.L CODE_849B03                    ;81B6E0|22039B84|849B03;
@@ -7506,10 +7506,10 @@ eventID_chillPingu_01_main:
                        AND.B #$7F                           ;81B6E7|297F    |      ;
                        BNE CODE_81B6EF                      ;81B6E9|D004    |81B6EF;
                        LDA.B #$01                           ;81B6EB|A901    |      ;
-                       STA.B $30                            ;81B6ED|8530    |000E98;
+                       STA.B r_ev_30-$E68                   ;81B6ED|8530    |000E98;
                                                             ;      |        |      ;
           CODE_81B6EF:
-                       JML.L CODE_8280B4                    ;81B6EF|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81B6EF|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_81B6F3:
@@ -7521,7 +7521,7 @@ eventID_chillPingu_01_main:
                        dw CODE_81BABF                       ;81B6FD|        |81BABF;
                                                             ;      |        |      ;
           CODE_81B6FF:
-                       LDX.B $03                            ;81B6FF|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81B6FF|A603    |000E6B;
                        JMP.W (PTR16_81B704,X)               ;81B701|7C04B7  |81B704;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7532,24 +7532,24 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B70A:
                        LDA.B #$02                           ;81B70A|A902    |      ;
-                       STA.B $03                            ;81B70C|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B70C|8503    |000E6B;
                        LDA.B #$01                           ;81B70E|A901    |      ;
                        JSL.L CODE_848F07                    ;81B710|22078F84|848F07;
                        LDA.B #$04                           ;81B714|A904    |      ;
-                       STA.B $36                            ;81B716|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;81B716|8536    |000E9E;
                        JSL.L CODE_84ACA5                    ;81B718|22A5AC84|84ACA5;
                        LDA.B #$01                           ;81B71C|A901    |      ;
-                       STA.B $38                            ;81B71E|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;81B71E|8538    |000EA0;
                        RTS                                  ;81B720|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B721:
                        JSL.L updateEv_13_14_17_0f           ;81B721|22EA8E84|848EEA;
-                       LDA.B $17                            ;81B725|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;81B725|A517    |000E7F;
                        BPL CODE_81B76B                      ;81B727|1042    |81B76B;
                        AND.B #$7F                           ;81B729|297F    |      ;
-                       STA.B $17                            ;81B72B|8517    |000E7F;
-                       LDA.B $0F                            ;81B72D|A50F    |000E77;
+                       STA.B r_ev_17-$E68                   ;81B72B|8517    |000E7F;
+                       LDA.B r_ev_0f-$E68                   ;81B72D|A50F    |000E77;
                        AND.B #$7F                           ;81B72F|297F    |      ;
                        BEQ CODE_81B76B                      ;81B731|F038    |81B76B;
                        JSL.L CODE_828358                    ;81B733|22588382|828358;
@@ -7557,7 +7557,7 @@ eventID_chillPingu_01_main:
                        INC.W r_0000,X                       ;81B739|FE0000  |860000;
                        LDA.B #$06                           ;81B73C|A906    |      ;
                        STA.W r_000a,X                       ;81B73E|9D0A00  |86000A;
-                       LDA.B $11                            ;81B741|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81B741|A511    |000E79;
                        AND.B #$40                           ;81B743|2940    |      ;
                        STA.W r_0011,X                       ;81B745|9D1100  |860011;
                        ASL A                                ;81B748|0A      |      ;
@@ -7569,9 +7569,9 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B754:
                        CLC                                  ;81B754|18      |      ;
-                       ADC.B $05                            ;81B755|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;81B755|6505    |000E6D;
                        STA.W r_0005,X                       ;81B757|9D0500  |860005;
-                       LDA.B $08                            ;81B75A|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81B75A|A508    |000E70;
                        SEC                                  ;81B75C|38      |      ;
                        SBC.W #$0002                         ;81B75D|E90200  |      ;
                        STA.W r_0008,X                       ;81B760|9D0800  |860008;
@@ -7580,20 +7580,20 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B767:
                        SEP #$30                             ;81B767|E230    |      ;
-                       DEC.B $36                            ;81B769|C636    |000E9E;
+                       DEC.B r_ev_36-$E68                   ;81B769|C636    |000E9E;
                                                             ;      |        |      ;
           CODE_81B76B:
-                       LDA.B $0F                            ;81B76B|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81B76B|A50F    |000E77;
                        BPL CODE_81B785                      ;81B76D|1016    |81B785;
                        JSL.L CODE_84ACA5                    ;81B76F|22A5AC84|84ACA5;
-                       LDA.B $36                            ;81B773|A536    |000E9E;
+                       LDA.B r_ev_36-$E68                   ;81B773|A536    |000E9E;
                        BNE CODE_81B785                      ;81B775|D00E    |81B785;
                        LDA.B #$04                           ;81B777|A904    |      ;
-                       STA.B $03                            ;81B779|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B779|8503    |000E6B;
                        LDA.B #$00                           ;81B77B|A900    |      ;
                        JSL.L CODE_848F07                    ;81B77D|22078F84|848F07;
                        LDA.B #$78                           ;81B781|A978    |      ;
-                       STA.B $34                            ;81B783|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81B783|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_81B785:
                        RTS                                  ;81B785|60      |      ;
@@ -7602,7 +7602,7 @@ eventID_chillPingu_01_main:
           CODE_81B786:
                        JSL.L updateEv_13_14_17_0f           ;81B786|22EA8E84|848EEA;
                        JSL.L CODE_84ACA5                    ;81B78A|22A5AC84|84ACA5;
-                       DEC.B $34                            ;81B78E|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81B78E|C634    |000E9C;
                        BNE CODE_81B795                      ;81B790|D003    |81B795;
                        JSR.W CODE_81C019                    ;81B792|2019C0  |81C019;
                                                             ;      |        |      ;
@@ -7611,7 +7611,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B796:
-                       LDX.B $03                            ;81B796|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81B796|A603    |000E6B;
                        JMP.W (PTR16_81B79B,X)               ;81B798|7C9BB7  |81B79B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7625,18 +7625,18 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B7A7:
                        LDA.B #$02                           ;81B7A7|A902    |      ;
-                       STA.B $03                            ;81B7A9|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B7A9|8503    |000E6B;
                        LDA.B #$05                           ;81B7AB|A905    |      ;
                        JSL.L CODE_848F07                    ;81B7AD|22078F84|848F07;
                        LDA.B #$40                           ;81B7B1|A940    |      ;
-                       STA.B $1E                            ;81B7B3|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;81B7B3|851E    |000E86;
                        REP #$20                             ;81B7B5|C220    |      ;
                        LDA.W #$07DE                         ;81B7B7|A9DE07  |      ;
-                       STA.B $1C                            ;81B7BA|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;81B7BA|851C    |000E84;
                        LDA.W r_cam_BG0_xPos_lock            ;81B7BC|AD601E  |861E60;
                        CLC                                  ;81B7BF|18      |      ;
                        ADC.W #$0080                         ;81B7C0|698000  |      ;
-                       CMP.B $05                            ;81B7C3|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;81B7C3|C505    |000E6D;
                        BCC CODE_81B7CF                      ;81B7C5|9008    |81B7CF;
                        LDX.B #$40                           ;81B7C7|A240    |      ;
                        SEC                                  ;81B7C9|38      |      ;
@@ -7651,33 +7651,33 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B7D5:
                        SEC                                  ;81B7D5|38      |      ;
-                       SBC.B $05                            ;81B7D6|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;81B7D6|E505    |000E6D;
                        ASL A                                ;81B7D8|0A      |      ;
                        ASL A                                ;81B7D9|0A      |      ;
                        ASL A                                ;81B7DA|0A      |      ;
-                       STA.B $1A                            ;81B7DB|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81B7DB|851A    |000E82;
                        SEP #$20                             ;81B7DD|E220    |      ;
                        LDA.B #$40                           ;81B7DF|A940    |      ;
-                       TRB.B $11                            ;81B7E1|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;81B7E1|1411    |000E79;
                        TXA                                  ;81B7E3|8A      |      ;
-                       TSB.B $11                            ;81B7E4|0411    |000E79;
+                       TSB.B r_ev_11_sprAtri-$E68           ;81B7E4|0411    |000E79;
                        LDA.B #$FF                           ;81B7E6|A9FF    |      ;
-                       STA.B $2F                            ;81B7E8|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;81B7E8|852F    |000E97;
                        RTS                                  ;81B7EA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B7EB:
                        JSL.L updateEv_13_14_17_0f           ;81B7EB|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81B7EF|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81B7EF|A50F    |000E77;
                        BEQ CODE_81B825                      ;81B7F1|F032    |81B825;
                        JSL.L CODE_8281E8                    ;81B7F3|22E88182|8281E8;
-                       LDA.B $1D                            ;81B7F7|A51D    |000E85;
+                       LDA.B r_ev_1d_ySpd-$E68              ;81B7F7|A51D    |000E85;
                        BPL CODE_81B825                      ;81B7F9|102A    |81B825;
                        LDA.B #$04                           ;81B7FB|A904    |      ;
-                       STA.B $03                            ;81B7FD|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B7FD|8503    |000E6B;
                        LDA.B #$09                           ;81B7FF|A909    |      ;
                        JSL.L CODE_848F07                    ;81B801|22078F84|848F07;
-                       LDA.B $11                            ;81B805|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81B805|A511    |000E79;
                        ASL A                                ;81B807|0A      |      ;
                        ASL A                                ;81B808|0A      |      ;
                        REP #$20                             ;81B809|C220    |      ;
@@ -7690,23 +7690,23 @@ eventID_chillPingu_01_main:
                        ADC.W #$0080                         ;81B814|698000  |      ;
                        CLC                                  ;81B817|18      |      ;
                        ADC.W r_cam_BG0_xPos_lock            ;81B818|6D601E  |861E60;
-                       STA.B $05                            ;81B81B|8505    |000E6D;
-                       STZ.B $1C                            ;81B81D|641C    |000E84;
-                       STZ.B $1A                            ;81B81F|641A    |000E82;
+                       STA.B r_ev_05_xPos-$E68              ;81B81B|8505    |000E6D;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;81B81D|641C    |000E84;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;81B81F|641A    |000E82;
                        SEP #$20                             ;81B821|E220    |      ;
-                       STZ.B $34                            ;81B823|6434    |000E9C;
+                       STZ.B r_ev_34-$E68                   ;81B823|6434    |000E9C;
                                                             ;      |        |      ;
           CODE_81B825:
                        RTS                                  ;81B825|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B826:
-                       LDA.B $34                            ;81B826|A534    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;81B826|A534    |000E9C;
                        BEQ CODE_81B839                      ;81B828|F00F    |81B839;
-                       DEC.B $34                            ;81B82A|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81B82A|C634    |000E9C;
                        BNE CODE_81B84B                      ;81B82C|D01D    |81B84B;
                        LDA.B #$06                           ;81B82E|A906    |      ;
-                       STA.B $03                            ;81B830|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B830|8503    |000E6B;
                        LDA.B #$07                           ;81B832|A907    |      ;
                        JSL.L CODE_848F07                    ;81B834|22078F84|848F07;
                        RTS                                  ;81B838|60      |      ;
@@ -7714,10 +7714,10 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B839:
                        JSL.L updateEv_13_14_17_0f           ;81B839|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81B83D|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81B83D|A50F    |000E77;
                        BPL CODE_81B84B                      ;81B83F|100A    |81B84B;
                        LDA.B #$1E                           ;81B841|A91E    |      ;
-                       STA.B $34                            ;81B843|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81B843|8534    |000E9C;
                        LDY.B #$1B                           ;81B845|A01B    |      ;
                        LDA.B #$01                           ;81B847|A901    |      ;
                        STA.B ($0C),Y                        ;81B849|910C    |000E74;
@@ -7730,14 +7730,14 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81B84C|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;81B850|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;81B854|22BE9184|8491BE;
-                       LDA.B $2B                            ;81B858|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81B858|A52B    |000E93;
                        AND.B #$04                           ;81B85A|2904    |      ;
                        BEQ CODE_81B86A                      ;81B85C|F00C    |81B86A;
                        LDA.B #$08                           ;81B85E|A908    |      ;
-                       STA.B $03                            ;81B860|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B860|8503    |000E6B;
                        LDA.B #$08                           ;81B862|A908    |      ;
                        JSL.L CODE_848F07                    ;81B864|22078F84|848F07;
-                       STZ.B $2F                            ;81B868|642F    |000E97;
+                       STZ.B r_ev_2f-$E68                   ;81B868|642F    |000E97;
                                                             ;      |        |      ;
           CODE_81B86A:
                        RTS                                  ;81B86A|60      |      ;
@@ -7745,14 +7745,14 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B86B:
                        JSL.L updateEv_13_14_17_0f           ;81B86B|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81B86F|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81B86F|A50F    |000E77;
                        BPL CODE_81B881                      ;81B871|100E    |81B881;
                        LDA.B #$0A                           ;81B873|A90A    |      ;
-                       STA.B $03                            ;81B875|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B875|8503    |000E6B;
                        LDA.B #$00                           ;81B877|A900    |      ;
                        JSL.L CODE_848F07                    ;81B879|22078F84|848F07;
                        LDA.B #$1E                           ;81B87D|A91E    |      ;
-                       STA.B $34                            ;81B87F|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81B87F|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_81B881:
                        RTS                                  ;81B881|60      |      ;
@@ -7760,7 +7760,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B882:
                        JSL.L updateEv_13_14_17_0f           ;81B882|22EA8E84|848EEA;
-                       DEC.B $34                            ;81B886|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81B886|C634    |000E9C;
                        BNE CODE_81B88D                      ;81B888|D003    |81B88D;
                        JSR.W CODE_81C019                    ;81B88A|2019C0  |81C019;
                                                             ;      |        |      ;
@@ -7769,7 +7769,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B88E:
-                       LDX.B $03                            ;81B88E|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81B88E|A603    |000E6B;
                        JMP.W (PTR16_81B893,X)               ;81B890|7C93B8  |81B893;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7781,16 +7781,16 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B89B:
                        LDA.B #$02                           ;81B89B|A902    |      ;
-                       STA.B $03                            ;81B89D|8503    |000E6B;
-                       STZ.B $38                            ;81B89F|6438    |000EA0;
+                       STA.B r_ev_03_do-$E68                ;81B89D|8503    |000E6B;
+                       STZ.B r_ev_38-$E68                   ;81B89F|6438    |000EA0;
                        JSL.L CODE_84ACA5                    ;81B8A1|22A5AC84|84ACA5;
                        LDA.B #$02                           ;81B8A5|A902    |      ;
                        JSL.L CODE_848F07                    ;81B8A7|22078F84|848F07;
-                       STZ.B $2F                            ;81B8AB|642F    |000E97;
+                       STZ.B r_ev_2f-$E68                   ;81B8AB|642F    |000E97;
                        LDA.B #$10                           ;81B8AD|A910    |      ;
-                       STA.B $1F                            ;81B8AF|851F    |000E87;
-                       STZ.B $1E                            ;81B8B1|641E    |000E86;
-                       LDA.B $11                            ;81B8B3|A511    |000E79;
+                       STA.B r_ev_1f-$E68                   ;81B8AF|851F    |000E87;
+                       STZ.B r_ev_1e_weight-$E68            ;81B8B1|641E    |000E86;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81B8B3|A511    |000E79;
                        ASL A                                ;81B8B5|0A      |      ;
                        ASL A                                ;81B8B6|0A      |      ;
                        REP #$20                             ;81B8B7|C220    |      ;
@@ -7799,21 +7799,21 @@ eventID_chillPingu_01_main:
                        LDA.W #$FA00                         ;81B8BE|A900FA  |      ;
                                                             ;      |        |      ;
           CODE_81B8C1:
-                       STA.B $1A                            ;81B8C1|851A    |000E82;
-                       STZ.B $1C                            ;81B8C3|641C    |000E84;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81B8C1|851A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;81B8C3|641C    |000E84;
                        SEP #$20                             ;81B8C5|E220    |      ;
                        LDA.B #$01                           ;81B8C7|A901    |      ;
-                       STA.B $39                            ;81B8C9|8539    |000EA1;
+                       STA.B r_ev_39-$E68                   ;81B8C9|8539    |000EA1;
                        RTS                                  ;81B8CB|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B8CC:
                        JSL.L updateEv_13_14_17_0f           ;81B8CC|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81B8D0|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81B8D0|A50F    |000E77;
                        AND.B #$7F                           ;81B8D2|297F    |      ;
                        BEQ CODE_81B8E0                      ;81B8D4|F00A    |81B8E0;
                        LDA.B #$04                           ;81B8D6|A904    |      ;
-                       STA.B $03                            ;81B8D8|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B8D8|8503    |000E6B;
                        LDA.B #$49                           ;81B8DA|A949    |      ;
                        JSL.L CODE_8088A2                    ;81B8DC|22A28880|8088A2;
                                                             ;      |        |      ;
@@ -7823,7 +7823,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B8E1:
                        JSL.L updateEv_13_14_17_0f           ;81B8E1|22EA8E84|848EEA;
-                       LDA.B $11                            ;81B8E5|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81B8E5|A511    |000E79;
                        ASL A                                ;81B8E7|0A      |      ;
                        ASL A                                ;81B8E8|0A      |      ;
                        BCS CODE_81B8F1                      ;81B8E9|B006    |81B8F1;
@@ -7837,34 +7837,34 @@ eventID_chillPingu_01_main:
           CODE_81B8F5:
                        JSL.L CODE_8491BE                    ;81B8F5|22BE9184|8491BE;
                        REP #$20                             ;81B8F9|C220    |      ;
-                       LDA.B $1A                            ;81B8FB|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;81B8FB|A51A    |000E82;
                        SEP #$20                             ;81B8FD|E220    |      ;
                        BEQ CODE_81B91A                      ;81B8FF|F019    |81B91A;
-                       LDA.B $2B                            ;81B901|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81B901|A52B    |000E93;
                        AND.B #$03                           ;81B903|2903    |      ;
                        BEQ CODE_81B92E                      ;81B905|F027    |81B92E;
                        REP #$20                             ;81B907|C220    |      ;
-                       LDA.B $1A                            ;81B909|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;81B909|A51A    |000E82;
                        EOR.W #$FFFF                         ;81B90B|49FFFF  |      ;
                        INC A                                ;81B90E|1A      |      ;
-                       STA.B $1A                            ;81B90F|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81B90F|851A    |000E82;
                        SEP #$20                             ;81B911|E220    |      ;
-                       LDA.B $11                            ;81B913|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81B913|A511    |000E79;
                        EOR.B #$40                           ;81B915|4940    |      ;
-                       STA.B $11                            ;81B917|8511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;81B917|8511    |000E79;
                        RTS                                  ;81B919|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B91A:
                        LDA.B #$06                           ;81B91A|A906    |      ;
-                       STA.B $03                            ;81B91C|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B91C|8503    |000E6B;
                        LDA.B #$00                           ;81B91E|A900    |      ;
                        JSL.L CODE_848F07                    ;81B920|22078F84|848F07;
                        LDA.B #$01                           ;81B924|A901    |      ;
-                       STA.B $38                            ;81B926|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;81B926|8538    |000EA0;
                        LDA.B #$1E                           ;81B928|A91E    |      ;
-                       STA.B $34                            ;81B92A|8534    |000E9C;
-                       STZ.B $39                            ;81B92C|6439    |000EA1;
+                       STA.B r_ev_34-$E68                   ;81B92A|8534    |000E9C;
+                       STZ.B r_ev_39-$E68                   ;81B92C|6439    |000EA1;
                                                             ;      |        |      ;
           CODE_81B92E:
                        RTS                                  ;81B92E|60      |      ;
@@ -7872,7 +7872,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B92F:
                        JSL.L updateEv_13_14_17_0f           ;81B92F|22EA8E84|848EEA;
-                       DEC.B $34                            ;81B933|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81B933|C634    |000E9C;
                        BEQ CODE_81B93A                      ;81B935|F003    |81B93A;
                        JSR.W CODE_81C019                    ;81B937|2019C0  |81C019;
                                                             ;      |        |      ;
@@ -7881,7 +7881,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B93B:
-                       LDX.B $03                            ;81B93B|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81B93B|A603    |000E6B;
                        JMP.W (PTR16_81B940,X)               ;81B93D|7C40B9  |81B940;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7896,22 +7896,22 @@ eventID_chillPingu_01_main:
           CODE_81B94C:
                        JSL.L CODE_84ACA5                    ;81B94C|22A5AC84|84ACA5;
                        LDA.B #$02                           ;81B950|A902    |      ;
-                       STA.B $03                            ;81B952|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B952|8503    |000E6B;
                        LDA.B #$01                           ;81B954|A901    |      ;
-                       STA.B $38                            ;81B956|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;81B956|8538    |000EA0;
                        LDA.B #$40                           ;81B958|A940    |      ;
-                       STA.B $1E                            ;81B95A|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;81B95A|851E    |000E86;
                        LDA.B #$FF                           ;81B95C|A9FF    |      ;
-                       STA.B $2F                            ;81B95E|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;81B95E|852F    |000E97;
                        REP #$20                             ;81B960|C220    |      ;
                        LDA.W r_0bad                         ;81B962|ADAD0B  |860BAD;
                        SEC                                  ;81B965|38      |      ;
-                       SBC.B $05                            ;81B966|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;81B966|E505    |000E6D;
                        ASL A                                ;81B968|0A      |      ;
                        ASL A                                ;81B969|0A      |      ;
-                       STA.B $1A                            ;81B96A|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81B96A|851A    |000E82;
                        LDA.W #$087E                         ;81B96C|A97E08  |      ;
-                       STA.B $1C                            ;81B96F|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;81B96F|851C    |000E84;
                        SEP #$20                             ;81B971|E220    |      ;
                        LDA.B #$05                           ;81B973|A905    |      ;
                        JSL.L CODE_848F07                    ;81B975|22078F84|848F07;
@@ -7920,11 +7920,11 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B97A:
                        JSL.L updateEv_13_14_17_0f           ;81B97A|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81B97E|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81B97E|A50F    |000E77;
                        AND.B #$7F                           ;81B980|297F    |      ;
                        BEQ CODE_81B988                      ;81B982|F004    |81B988;
                        LDA.B #$04                           ;81B984|A904    |      ;
-                       STA.B $03                            ;81B986|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B986|8503    |000E6B;
                                                             ;      |        |      ;
           CODE_81B988:
                        RTS                                  ;81B988|60      |      ;
@@ -7935,11 +7935,11 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_8491BE                    ;81B98D|22BE9184|8491BE;
                        JSL.L updateEv_13_14_17_0f           ;81B991|22EA8E84|848EEA;
                        REP #$20                             ;81B995|C220    |      ;
-                       LDA.B $1C                            ;81B997|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;81B997|A51C    |000E84;
                        SEP #$20                             ;81B999|E220    |      ;
                        BPL CODE_81B9A7                      ;81B99B|100A    |81B9A7;
                        LDA.B #$06                           ;81B99D|A906    |      ;
-                       STA.B $03                            ;81B99F|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B99F|8503    |000E6B;
                        LDA.B #$07                           ;81B9A1|A907    |      ;
                        JSL.L CODE_848F07                    ;81B9A3|22078F84|848F07;
                                                             ;      |        |      ;
@@ -7952,21 +7952,21 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_8491BE                    ;81B9AC|22BE9184|8491BE;
                        JSL.L updateEv_13_14_17_0f           ;81B9B0|22EA8E84|848EEA;
                        REP #$20                             ;81B9B4|C220    |      ;
-                       LDA.B $1C                            ;81B9B6|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;81B9B6|A51C    |000E84;
                        CMP.W #$F900                         ;81B9B8|C900F9  |      ;
                        BPL CODE_81B9C6                      ;81B9BB|1009    |81B9C6;
                        LDA.W #$F900                         ;81B9BD|A900F9  |      ;
-                       STA.B $1C                            ;81B9C0|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;81B9C0|851C    |000E84;
                        SEP #$20                             ;81B9C2|E220    |      ;
-                       STZ.B $1E                            ;81B9C4|641E    |000E86;
+                       STZ.B r_ev_1e_weight-$E68            ;81B9C4|641E    |000E86;
                                                             ;      |        |      ;
           CODE_81B9C6:
                        SEP #$20                             ;81B9C6|E220    |      ;
-                       LDA.B $2B                            ;81B9C8|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81B9C8|A52B    |000E93;
                        AND.B #$04                           ;81B9CA|2904    |      ;
                        BEQ CODE_81B9D8                      ;81B9CC|F00A    |81B9D8;
                        LDA.B #$08                           ;81B9CE|A908    |      ;
-                       STA.B $03                            ;81B9D0|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B9D0|8503    |000E6B;
                        LDA.B #$08                           ;81B9D2|A908    |      ;
                        JSL.L CODE_848F07                    ;81B9D4|22078F84|848F07;
                                                             ;      |        |      ;
@@ -7976,14 +7976,14 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B9D9:
                        JSL.L updateEv_13_14_17_0f           ;81B9D9|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81B9DD|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81B9DD|A50F    |000E77;
                        BPL CODE_81B9EF                      ;81B9DF|100E    |81B9EF;
                        LDA.B #$0A                           ;81B9E1|A90A    |      ;
-                       STA.B $03                            ;81B9E3|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81B9E3|8503    |000E6B;
                        LDA.B #$00                           ;81B9E5|A900    |      ;
                        JSL.L CODE_848F07                    ;81B9E7|22078F84|848F07;
                        LDA.B #$1E                           ;81B9EB|A91E    |      ;
-                       STA.B $34                            ;81B9ED|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81B9ED|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_81B9EF:
                        RTS                                  ;81B9EF|60      |      ;
@@ -7991,7 +7991,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81B9F0:
                        JSL.L updateEv_13_14_17_0f           ;81B9F0|22EA8E84|848EEA;
-                       DEC.B $34                            ;81B9F4|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81B9F4|C634    |000E9C;
                        BNE CODE_81B9FB                      ;81B9F6|D003    |81B9FB;
                        JSR.W CODE_81C019                    ;81B9F8|2019C0  |81C019;
                                                             ;      |        |      ;
@@ -8000,7 +8000,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81B9FC:
-                       LDX.B $03                            ;81B9FC|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81B9FC|A603    |000E6B;
                        JMP.W (UNREACH_81BA01,X)             ;81B9FE|7C01BA  |81BA01;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8008,7 +8008,7 @@ eventID_chillPingu_01_main:
                        db $0B,$BA,$4E,$BA,$6B,$BA,$95,$BA   ;81BA01|        |      ;
                        db $B3,$BA                           ;81BA09|        |0000BA;
                        JSL.L CODE_84ACA5                    ;81BA0B|22A5AC84|84ACA5;
-                       STZ.B $38                            ;81BA0F|6438    |000EA0;
+                       STZ.B r_ev_38-$E68                   ;81BA0F|6438    |000EA0;
                        REP #$30                             ;81BA11|C230    |      ;
                        LDX.W #$1428                         ;81BA13|A22814  |      ;
                                                             ;      |        |      ;
@@ -8032,18 +8032,18 @@ eventID_chillPingu_01_main:
                        LDA.B #$01                           ;81BA43|A901    |      ;
                        JSL.L CODE_848F07                    ;81BA45|22078F84|848F07;
                        LDA.B #$02                           ;81BA49|A902    |      ;
-                       STA.B $03                            ;81BA4B|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81BA4B|8503    |000E6B;
                        RTS                                  ;81BA4D|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81BA4E|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81BA52|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81BA52|A50F    |000E77;
                        BEQ CODE_81BA6A                      ;81BA54|F014    |81BA6A;
                        LDA.B #$04                           ;81BA56|A904    |      ;
-                       STA.B $03                            ;81BA58|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81BA58|8503    |000E6B;
                        LDA.B #$0E                           ;81BA5A|A90E    |      ;
                        JSL.L CODE_848F07                    ;81BA5C|22078F84|848F07;
                        LDA.B #$3C                           ;81BA60|A93C    |      ;
-                       STA.B $34                            ;81BA62|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81BA62|8534    |000E9C;
                        LDA.B #$72                           ;81BA64|A972    |      ;
                        JSL.L CODE_8088A2                    ;81BA66|22A28880|8088A2;
                                                             ;      |        |      ;
@@ -8052,7 +8052,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81BA6B|22EA8E84|848EEA;
                        JSR.W CODE_81BF16                    ;81BA6F|2016BF  |81BF16;
-                       DEC.B $34                            ;81BA72|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81BA72|C634    |000E9C;
                        BNE CODE_81BA94                      ;81BA74|D01E    |81BA94;
                        LDA.B #$30                           ;81BA76|A930    |      ;
                        STA.W r_0000                         ;81BA78|8D0000  |860000;
@@ -8063,31 +8063,31 @@ eventID_chillPingu_01_main:
                        STZ.W r_0001                         ;81BA86|9C0100  |860001;
                        JSR.W CODE_81BF5C                    ;81BA89|205CBF  |81BF5C;
                        LDA.B #$06                           ;81BA8C|A906    |      ;
-                       STA.B $03                            ;81BA8E|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81BA8E|8503    |000E6B;
                        LDA.B #$3C                           ;81BA90|A93C    |      ;
-                       STA.B $34                            ;81BA92|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81BA92|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_81BA94:
                        RTS                                  ;81BA94|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81BA95|22EA8E84|848EEA;
                        JSR.W CODE_81BF16                    ;81BA99|2016BF  |81BF16;
-                       DEC.B $34                            ;81BA9C|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81BA9C|C634    |000E9C;
                        BNE CODE_81BAB2                      ;81BA9E|D012    |81BAB2;
                        LDA.B #$08                           ;81BAA0|A908    |      ;
-                       STA.B $03                            ;81BAA2|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81BAA2|8503    |000E6B;
                        LDA.B #$1E                           ;81BAA4|A91E    |      ;
-                       STA.B $34                            ;81BAA6|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81BAA6|8534    |000E9C;
                        LDA.B #$00                           ;81BAA8|A900    |      ;
                        JSL.L CODE_848F07                    ;81BAAA|22078F84|848F07;
                        LDA.B #$01                           ;81BAAE|A901    |      ;
-                       STA.B $38                            ;81BAB0|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;81BAB0|8538    |000EA0;
                                                             ;      |        |      ;
           CODE_81BAB2:
                        RTS                                  ;81BAB2|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81BAB3|22EA8E84|848EEA;
-                       DEC.B $34                            ;81BAB7|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81BAB7|C634    |000E9C;
                        BNE CODE_81BABE                      ;81BAB9|D003    |81BABE;
                        JSR.W CODE_81C019                    ;81BABB|2019C0  |81C019;
                                                             ;      |        |      ;
@@ -8096,7 +8096,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BABF:
-                       LDX.B $03                            ;81BABF|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81BABF|A603    |000E6B;
                        JMP.W (UNREACH_81BAC4,X)             ;81BAC1|7CC4BA  |81BAC4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8104,21 +8104,21 @@ eventID_chillPingu_01_main:
                        db $D0,$BA,$DC,$BA,$0A,$BB,$34,$BB   ;81BAC4|        |81BA80;
                        db $0A,$BB,$34,$BB                   ;81BACC|        |      ;
                        LDA.B #$04                           ;81BAD0|A904    |      ;
-                       STA.B $03                            ;81BAD2|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81BAD2|8503    |000E6B;
                        LDA.B #$14                           ;81BAD4|A914    |      ;
-                       STA.B $37                            ;81BAD6|8537    |000E9F;
+                       STA.B r_ev_37-$E68                   ;81BAD6|8537    |000E9F;
                        LDA.B #$04                           ;81BAD8|A904    |      ;
                        BRA CODE_81BAE6                      ;81BADA|800A    |81BAE6;
                                                             ;      |        |      ;
                        LDA.B #$08                           ;81BADC|A908    |      ;
-                       STA.B $03                            ;81BADE|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81BADE|8503    |000E6B;
                        LDA.B #$3C                           ;81BAE0|A93C    |      ;
-                       STA.B $37                            ;81BAE2|8537    |000E9F;
+                       STA.B r_ev_37-$E68                   ;81BAE2|8537    |000E9F;
                        LDA.B #$0D                           ;81BAE4|A90D    |      ;
                                                             ;      |        |      ;
           CODE_81BAE6:
                        JSL.L CODE_848F07                    ;81BAE6|22078F84|848F07;
-                       LDA.B $11                            ;81BAEA|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81BAEA|A511    |000E79;
                        ASL A                                ;81BAEC|0A      |      ;
                        ASL A                                ;81BAED|0A      |      ;
                        REP #$20                             ;81BAEE|C220    |      ;
@@ -8127,35 +8127,35 @@ eventID_chillPingu_01_main:
                        LDA.W #$FF00                         ;81BAF5|A900FF  |      ;
                                                             ;      |        |      ;
           CODE_81BAF8:
-                       STA.B $1A                            ;81BAF8|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81BAF8|851A    |000E82;
                        LDA.W #$0221                         ;81BAFA|A92102  |      ;
-                       STA.B $1C                            ;81BAFD|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;81BAFD|851C    |000E84;
                        SEP #$20                             ;81BAFF|E220    |      ;
                        LDA.B #$40                           ;81BB01|A940    |      ;
-                       STA.B $1E                            ;81BB03|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;81BB03|851E    |000E86;
                        LDA.B #$FF                           ;81BB05|A9FF    |      ;
-                       STA.B $2F                            ;81BB07|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;81BB07|852F    |000E97;
                        RTS                                  ;81BB09|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_8281E8                    ;81BB0A|22E88182|8281E8;
                        JSL.L updateEv_13_14_17_0f           ;81BB0E|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;81BB12|22BE9184|8491BE;
-                       LDA.B $2B                            ;81BB16|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81BB16|A52B    |000E93;
                        AND.B #$04                           ;81BB18|2904    |      ;
                        BEQ CODE_81BB2D                      ;81BB1A|F011    |81BB2D;
-                       INC.B $03                            ;81BB1C|E603    |000E6B;
-                       INC.B $03                            ;81BB1E|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;81BB1C|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;81BB1E|E603    |000E6B;
                        REP #$20                             ;81BB20|C220    |      ;
-                       LDA.B $1A                            ;81BB22|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;81BB22|A51A    |000E82;
                        AND.W #$8000                         ;81BB24|290080  |      ;
-                       LSR.B $1A                            ;81BB27|461A    |000E82;
-                       TSB.B $1A                            ;81BB29|041A    |000E82;
+                       LSR.B r_ev_1a_xSpdSub-$E68           ;81BB27|461A    |000E82;
+                       TSB.B r_ev_1a_xSpdSub-$E68           ;81BB29|041A    |000E82;
                        SEP #$20                             ;81BB2B|E220    |      ;
                                                             ;      |        |      ;
           CODE_81BB2D:
-                       LDA.B $37                            ;81BB2D|A537    |000E9F;
+                       LDA.B r_ev_37-$E68                   ;81BB2D|A537    |000E9F;
                        BEQ CODE_81BB33                      ;81BB2F|F002    |81BB33;
-                       DEC.B $37                            ;81BB31|C637    |000E9F;
+                       DEC.B r_ev_37-$E68                   ;81BB31|C637    |000E9F;
                                                             ;      |        |      ;
           CODE_81BB33:
                        RTS                                  ;81BB33|60      |      ;
@@ -8163,9 +8163,9 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_82823E                    ;81BB34|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;81BB38|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;81BB3C|22BE9184|8491BE;
-                       LDA.B $37                            ;81BB40|A537    |000E9F;
+                       LDA.B r_ev_37-$E68                   ;81BB40|A537    |000E9F;
                        BNE CODE_81BB54                      ;81BB42|D010    |81BB54;
-                       STZ.B $02                            ;81BB44|6402    |000E6A;
+                       STZ.B r_ev_02_action-$E68            ;81BB44|6402    |000E6A;
                        JSR.W CODE_81C019                    ;81BB46|2019C0  |81C019;
                        LDA.B #$00                           ;81BB49|A900    |      ;
                        JSL.L CODE_848F07                    ;81BB4B|22078F84|848F07;
@@ -8174,7 +8174,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BB54:
-                       DEC.B $37                            ;81BB54|C637    |000E9F;
+                       DEC.B r_ev_37-$E68                   ;81BB54|C637    |000E9F;
                        RTS                                  ;81BB56|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8191,14 +8191,14 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_80887F                    ;81BB6E|227F8880|80887F;
                                                             ;      |        |      ;
           CODE_81BB72:
-                       JML.L CODE_828398                    ;81BB72|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81BB72|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BB76:
-                       LDA.B $03                            ;81BB76|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;81BB76|A503    |000E6B;
                        CMP.B #$14                           ;81BB78|C914    |      ;
                        BCS CODE_81BB80                      ;81BB7A|B004    |81BB80;
-                       JML.L CODE_8280B4                    ;81BB7C|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81BB7C|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BB80:
@@ -8210,7 +8210,7 @@ eventID_chillPingu_01_main:
                        LDA.B ($0C),Y                        ;81BB83|B10C    |001434;
                        AND.B #$7F                           ;81BB85|297F    |      ;
                        BNE CODE_81BB8D                      ;81BB87|D004    |81BB8D;
-                       JML.L CODE_8283A3                    ;81BB89|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;81BB89|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BB8D:
@@ -8224,7 +8224,7 @@ eventID_chillPingu_01_main:
                        LDA.B #$78                           ;81BB98|A978    |      ;
                        JSL.L CODE_8088A2                    ;81BB9A|22A28880|8088A2;
                        JSR.W CODE_81BF99                    ;81BB9E|2099BF  |81BF99;
-                       JML.L CODE_8283A3                    ;81BBA1|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;81BBA1|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BBA5:
@@ -8261,7 +8261,7 @@ eventID_chillPingu_01_main:
                        SEP #$20                             ;81BBDB|E220    |      ;
                        CPX.W #$1628                         ;81BBDD|E02816  |      ;
                        BCC CODE_81BBB8                      ;81BBE0|90D6    |81BBB8;
-                       JML.L CODE_8280B4                    ;81BBE2|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81BBE2|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_81BBE6:
@@ -8389,7 +8389,7 @@ eventID_chillPingu_01_main:
                        SEP #$20                             ;81BCD7|E220    |      ;
                        LDA.B #$28                           ;81BCD9|A928    |      ;
                        STA.B $34                            ;81BCDB|8534    |00145C;
-                       JML.L CODE_8280B4                    ;81BCDD|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81BCDD|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BCE1:
@@ -8414,13 +8414,13 @@ eventID_chillPingu_01_main:
                        LDA.B #$04                           ;81BD0C|A904    |      ;
                        STA.B $26                            ;81BD0E|8526    |00160E;
                        STZ.B $30                            ;81BD10|6430    |001618;
-                       JML.L CODE_8280B4                    ;81BD12|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81BD12|5CB48082|8280B4;
                                                             ;      |        |      ;
                        JSL.L CODE_82823E                    ;81BD16|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;81BD1A|22EA8E84|848EEA;
                        DEC.B $34                            ;81BD1E|C634    |00145C;
                        BNE CODE_81BD26                      ;81BD20|D004    |81BD26;
-                       JML.L CODE_8283A3                    ;81BD22|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;81BD22|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BD26:
@@ -8444,7 +8444,7 @@ eventID_chillPingu_01_main:
                        SEP #$30                             ;81BD4E|E230    |      ;
                                                             ;      |        |      ;
           CODE_81BD50:
-                       JML.L CODE_8280B4                    ;81BD50|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81BD50|5CB48082|8280B4;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81BD54|22EA8E84|848EEA;
                        LDA.B $0F                            ;81BD58|A50F    |0015F7;
@@ -8467,7 +8467,7 @@ eventID_chillPingu_01_main:
                        STA.B $2F                            ;81BD7D|852F    |001617;
                                                             ;      |        |      ;
           CODE_81BD7F:
-                       JML.L CODE_8280B4                    ;81BD7F|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81BD7F|5CB48082|8280B4;
                                                             ;      |        |      ;
                        JSL.L CODE_8281E8                    ;81BD83|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;81BD87|22BE9184|8491BE;
@@ -8476,7 +8476,7 @@ eventID_chillPingu_01_main:
                        BEQ CODE_81BD9E                      ;81BD93|F009    |81BD9E;
                        BPL CODE_81BD9E                      ;81BD95|1007    |81BD9E;
                        JSR.W CODE_81BF99                    ;81BD97|2099BF  |81BF99;
-                       JML.L CODE_8283A3                    ;81BD9A|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;81BD9A|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BD9E:
@@ -8497,7 +8497,7 @@ eventID_chillPingu_01_main:
                        db $BF,$5C,$A3,$83,$82               ;81BDBC|        |83A35C;
                                                             ;      |        |      ;
           CODE_81BDC1:
-                       JML.L CODE_8280B4                    ;81BDC1|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81BDC1|5CB48082|8280B4;
                                                             ;      |        |      ;
                        LDA.W r_1f3f                         ;81BDC5|AD3F1F  |861F3F;
                        BEQ CODE_81BDE1                      ;81BDC8|F017    |81BDE1;
@@ -8516,7 +8516,7 @@ eventID_chillPingu_01_main:
                        LDA.B #$4C                           ;81BDF1|A94C    |      ;
                        JSL.L CODE_8088A2                    ;81BDF3|22A28880|8088A2;
                        JSR.W CODE_81BF99                    ;81BDF7|2099BF  |81BF99;
-                       JML.L CODE_8283A3                    ;81BDFA|5CA38382|8283A3;
+                       JML.L clearStates_01_00_02_0E_2C     ;81BDFA|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BDFE:
@@ -8531,7 +8531,7 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_849C0E                    ;81BE0F|220E9C84|849C0E;
                        SEP #$10                             ;81BE13|E210    |      ;
                        BCS CODE_81BDF1                      ;81BE15|B0DA    |81BDF1;
-                       JML.L CODE_8280B4                    ;81BE17|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81BE17|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BE1B:
@@ -8569,7 +8569,7 @@ eventID_chillPingu_01_main:
                        BEQ CODE_81BE64                      ;81BE5E|F004    |81BE64;
                                                             ;      |        |      ;
           CODE_81BE60:
-                       JML.L CODE_828398                    ;81BE60|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81BE60|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BE64:
@@ -8598,7 +8598,7 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_848F07                    ;81BE91|22078F84|848F07;
                        LDA.B #$40                           ;81BE95|A940    |      ;
                        STA.B $1E                            ;81BE97|851E    |0019E6;
-                       JML.L CODE_8280B4                    ;81BE99|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81BE99|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BE9D:
@@ -8623,7 +8623,7 @@ eventID_chillPingu_01_main:
                        LDA.B #$4C                           ;81BEC2|A94C    |      ;
                        JSL.L CODE_8088A2                    ;81BEC4|22A28880|8088A2;
                        JSR.W CODE_81BF99                    ;81BEC8|2099BF  |81BF99;
-                       JML.L CODE_828398                    ;81BECB|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81BECB|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BECF:
@@ -8654,17 +8654,17 @@ eventID_chillPingu_01_main:
                        LDA.B #$4C                           ;81BEF4|A94C    |      ;
                        JSL.L CODE_8088A2                    ;81BEF6|22A28880|8088A2;
                        JSR.W CODE_81BF99                    ;81BEFA|2099BF  |81BF99;
-                       JML.L CODE_828398                    ;81BEFD|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81BEFD|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BF01:
-                       JML.L CODE_8280B4                    ;81BF01|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81BF01|5CB48082|8280B4;
                                                             ;      |        |      ;
                        JSL.L CODE_8281E8                    ;81BF05|22E88182|8281E8;
-                       JSL.L CODE_8280B4                    ;81BF09|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81BF09|22B48082|8280B4;
                        LDA.B $0E                            ;81BF0D|A50E    |001996;
                        BNE CODE_81BF15                      ;81BF0F|D004    |81BF15;
-                       JML.L CODE_828398                    ;81BF11|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81BF11|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BF15:
@@ -8672,11 +8672,11 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81BF16:
-                       LDA.B $17                            ;81BF16|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;81BF16|A517    |000E7F;
                        BPL CODE_81BF5B                      ;81BF18|1041    |81BF5B;
                        AND.B #$7F                           ;81BF1A|297F    |      ;
-                       STA.B $17                            ;81BF1C|8517    |000E7F;
-                       LDA.B $0F                            ;81BF1E|A50F    |000E77;
+                       STA.B r_ev_17-$E68                   ;81BF1C|8517    |000E7F;
+                       LDA.B r_ev_0f-$E68                   ;81BF1E|A50F    |000E77;
                        BPL CODE_81BF5B                      ;81BF20|1039    |81BF5B;
                        JSL.L CODE_828358                    ;81BF22|22588382|828358;
                        BNE CODE_81BF59                      ;81BF26|D031    |81BF59;
@@ -8684,7 +8684,7 @@ eventID_chillPingu_01_main:
                        LDA.B #$1A                           ;81BF2B|A91A    |      ;
                        STA.W r_000a,X                       ;81BF2D|9D0A00  |86000A;
                        STZ.W r_000b,X                       ;81BF30|9E0B00  |86000B;
-                       LDA.B $11                            ;81BF33|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81BF33|A511    |000E79;
                        AND.B #$40                           ;81BF35|2940    |      ;
                        STA.W r_0011,X                       ;81BF37|9D1100  |860011;
                        ASL A                                ;81BF3A|0A      |      ;
@@ -8696,9 +8696,9 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81BF46:
                        CLC                                  ;81BF46|18      |      ;
-                       ADC.B $05                            ;81BF47|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;81BF47|6505    |000E6D;
                        STA.W r_0005,X                       ;81BF49|9D0500  |860005;
-                       LDA.B $08                            ;81BF4C|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81BF4C|A508    |000E70;
                        SEC                                  ;81BF4E|38      |      ;
                        SBC.W #$0002                         ;81BF4F|E90200  |      ;
                        STA.W r_0008,X                       ;81BF52|9D0800  |860008;
@@ -8720,7 +8720,7 @@ eventID_chillPingu_01_main:
                        STA.W r_000a,X                       ;81BF67|9D0A00  |86000A;
                        LDA.B #$01                           ;81BF6A|A901    |      ;
                        STA.W r_000b,X                       ;81BF6C|9D0B00  |86000B;
-                       LDA.B $11                            ;81BF6F|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81BF6F|A511    |000E79;
                        AND.B #$40                           ;81BF71|2940    |      ;
                        STA.W r_0011,X                       ;81BF73|9D1100  |860011;
                        ASL A                                ;81BF76|0A      |      ;
@@ -8733,9 +8733,9 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81BF83:
                        CLC                                  ;81BF83|18      |      ;
-                       ADC.B $05                            ;81BF84|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;81BF84|6505    |000E6D;
                        STA.W r_0005,X                       ;81BF86|9D0500  |860005;
-                       LDA.B $08                            ;81BF89|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81BF89|A508    |000E70;
                        SEC                                  ;81BF8B|38      |      ;
                        SBC.W #$0010                         ;81BF8C|E91000  |      ;
                        STA.W r_0008,X                       ;81BF8F|9D0800  |860008;
@@ -8822,7 +8822,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C019:
-                       LDA.B $02                            ;81C019|A502    |000E6A;
+                       LDA.B r_ev_02_action-$E68            ;81C019|A502    |000E6A;
                        ASL A                                ;81C01B|0A      |      ;
                        ASL A                                ;81C01C|0A      |      ;
                        ASL A                                ;81C01D|0A      |      ;
@@ -8833,58 +8833,64 @@ eventID_chillPingu_01_main:
                        ADC.W r_0000                         ;81C028|6D0000  |860000;
                        TAX                                  ;81C02B|AA      |      ;
                        LDA.W UNREACH_86C45B,X               ;81C02C|BD5BC4  |86C45B;
-                       STA.B $02                            ;81C02F|8502    |000E6A;
-                       STZ.B $03                            ;81C031|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;81C02F|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81C031|6403    |000E6B;
                        RTS                                  ;81C033|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_81C034:
-                       LDX.B $01                            ;81C034|A601    |000EA9;
-                       JSR.W (DATA8_81C03A,X)               ;81C036|FC3AC0  |81C03A;
+eventID_flamingle_03_main:
+                       LDX.B r_ev_2_01_state-$EA8           ;81C034|A601    |000EA9;
+                       JSR.W (flamingle_state,X)            ;81C036|FC3AC0  |81C03A;
                        RTL                                  ;81C039|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         DATA8_81C03A:
-                       db $40,$C0,$6D,$C0,$AE,$C1           ;81C03A|        |      ;
-                       JSL.L CODE_82827D                    ;81C040|227D8282|82827D;
+      flamingle_state:
+                       dw flamingle_state_00                ;81C03A|        |81C040;
+                       dw flamingle_state_01                ;81C03C|        |81C06D;
+                       dw flamingle_state_02                ;81C03E|        |81C1AE;
+                                                            ;      |        |      ;
+   flamingle_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;81C040|227D8282|82827D;
                        LDA.B #$08                           ;81C044|A908    |      ;
-                       STA.B $27                            ;81C046|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;81C046|8527    |000E8F;
                        LDA.B #$03                           ;81C048|A903    |      ;
-                       STA.B $26                            ;81C04A|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;81C04A|8526    |000E8E;
                        LDA.B #$02                           ;81C04C|A902    |      ;
-                       STA.B $12                            ;81C04E|8512    |000E7A;
-                       STZ.B $2F                            ;81C050|642F    |000E97;
-                       STZ.B $35                            ;81C052|6435    |000E9D;
+                       STA.B r_ev_12-$E68                   ;81C04E|8512    |000E7A;
+                       STZ.B r_ev_2f-$E68                   ;81C050|642F    |000E97;
+                       STZ.B r_ev_35-$E68                   ;81C052|6435    |000E9D;
                        LDA.L $7F8302                        ;81C054|AF02837F|7F8302;
-                       STA.B $11                            ;81C058|8511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;81C058|8511    |000E79;
                        REP #$20                             ;81C05A|C220    |      ;
                        LDX.B #$00                           ;81C05C|A200    |      ;
-                       STX.B $33                            ;81C05E|8633    |000E9B;
-                       JSL.L CODE_8280B4                    ;81C060|22B48082|8280B4;
+                       STX.B r_ev_33-$E68                   ;81C05E|8633    |000E9B;
+                       JSL.L eventID_vile_68_afterInit      ;81C060|22B48082|8280B4;
                        SEP #$20                             ;81C064|E220    |      ;
                        LDA.B #$01                           ;81C066|A901    |      ;
                        JSL.L CODE_848F07                    ;81C068|22078F84|848F07;
                        RTS                                  ;81C06C|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;81C06D|A602    |000EAA;
-                       JSR.W (DATA8_81C0D2,X)               ;81C06F|FCD2C0  |81C0D2;
-                       JSL.L CODE_8280B4                    ;81C072|22B48082|8280B4;
+                                                            ;      |        |      ;
+   flamingle_state_01:
+                       LDX.B r_ev_2_02_action-$EA8          ;81C06D|A602    |000EAA;
+                       JSR.W (PTR16_81C0D2,X)               ;81C06F|FCD2C0  |81C0D2;
+                       JSL.L eventID_vile_68_afterInit      ;81C072|22B48082|8280B4;
                        LDA.L $7F8302                        ;81C076|AF02837F|7F8302;
-                       STA.B $11                            ;81C07A|8511    |000EB9;
-                       LDA.B $11                            ;81C07C|A511    |000EB9;
+                       STA.B r_ev_2_11_sprAtri-$EA8         ;81C07A|8511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;81C07C|A511    |000EB9;
                        AND.B #$3F                           ;81C07E|293F    |      ;
-                       ORA.B $33                            ;81C080|0533    |000EDB;
-                       STA.B $11                            ;81C082|8511    |000EB9;
+                       ORA.B r_ev_2_33-$EA8                 ;81C080|0533    |000EDB;
+                       STA.B r_ev_2_11_sprAtri-$EA8         ;81C082|8511    |000EB9;
                        REP #$20                             ;81C084|C220    |      ;
-                       LDA.B $0F                            ;81C086|A50F    |000EB7;
+                       LDA.B r_ev_2_0f-$EA8                 ;81C086|A50F    |000EB7;
                        AND.W #$003F                         ;81C088|293F00  |      ;
                        ASL A                                ;81C08B|0A      |      ;
                        CLC                                  ;81C08C|18      |      ;
                        ADC.W #$C559                         ;81C08D|6959C5  |      ;
-                       STA.B $20                            ;81C090|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;81C090|8520    |000EC8;
                        SEP #$20                             ;81C092|E220    |      ;
                        JSL.L CODE_849B03                    ;81C094|22039B84|849B03;
-                       STZ.B $30                            ;81C098|6430    |000ED8;
+                       STZ.B r_ev_2_30-$EA8                 ;81C098|6430    |000ED8;
                        JSL.L CODE_849B43                    ;81C09A|22439B84|849B43;
                        BEQ CODE_81C0B0                      ;81C09E|F010    |81C0B0;
                        LDA.B #$0E                           ;81C0A0|A90E    |      ;
@@ -8899,31 +8905,35 @@ eventID_chillPingu_01_main:
           CODE_81C0B0:
                        REP #$20                             ;81C0B0|C220    |      ;
                        LDA.W #$C555                         ;81C0B2|A955C5  |      ;
-                       STA.B $20                            ;81C0B5|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;81C0B5|8520    |000EC8;
                        SEP #$20                             ;81C0B7|E220    |      ;
                        JSL.L CODE_849B43                    ;81C0B9|22439B84|849B43;
                        BEQ CODE_81C0CD                      ;81C0BD|F00E    |81C0CD;
                        LDA.B #$0E                           ;81C0BF|A90E    |      ;
-                       TRB.B $11                            ;81C0C1|1411    |000E79;
-                       LDA.B $27                            ;81C0C3|A527    |000E8F;
+                       TRB.B r_ev_11_sprAtri-$E68           ;81C0C1|1411    |000E79;
+                       LDA.B r_ev_27-$E68                   ;81C0C3|A527    |000E8F;
                        AND.B #$7F                           ;81C0C5|297F    |      ;
                        BNE CODE_81C0CD                      ;81C0C7|D004    |81C0CD;
                        LDA.B #$04                           ;81C0C9|A904    |      ;
-                       STA.B $01                            ;81C0CB|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;81C0CB|8501    |000E69;
                                                             ;      |        |      ;
           CODE_81C0CD:
                        JSL.L CODE_849B03                    ;81C0CD|22039B84|849B03;
                        RTS                                  ;81C0D1|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         DATA8_81C0D2:
-                       db $DA,$C0,$39,$C1                   ;81C0D2|        |      ;
-                       db $5A,$C1,$7A,$C1                   ;81C0D6|        |      ;
-                       LDX.B $03                            ;81C0DA|A603    |000EAB;
+         PTR16_81C0D2:
+                       dw CODE_81C0DA                       ;81C0D2|        |81C0DA;
+                       dw CODE_81C139                       ;81C0D4|        |81C139;
+                       dw CODE_81C15A                       ;81C0D6|        |81C15A;
+                       dw CODE_81C17A                       ;81C0D8|        |81C17A;
+                                                            ;      |        |      ;
+          CODE_81C0DA:
+                       LDX.B r_ev_2_03_do-$EA8              ;81C0DA|A603    |000EAB;
                        BNE CODE_81C0EB                      ;81C0DC|D00D    |81C0EB;
-                       INC.B $03                            ;81C0DE|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;81C0DE|E603    |000E6B;
                        LDA.B #$78                           ;81C0E0|A978    |      ;
-                       STA.B $34                            ;81C0E2|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81C0E2|8534    |000E9C;
                        LDA.B #$01                           ;81C0E4|A901    |      ;
                        JSL.L CODE_848F07                    ;81C0E6|22078F84|848F07;
                        RTS                                  ;81C0EA|60      |      ;
@@ -8933,103 +8943,149 @@ eventID_chillPingu_01_main:
                        REP #$10                             ;81C0EB|C210    |      ;
                        LDA.B #$00                           ;81C0ED|A900    |      ;
                        LDX.W r_0bad                         ;81C0EF|AEAD0B  |860BAD;
-                       CPX.B $05                            ;81C0F2|E405    |000EAD;
+                       CPX.B r_ev_2_05_xPos-$EA8            ;81C0F2|E405    |000EAD;
                        BCC CODE_81C0F8                      ;81C0F4|9002    |81C0F8;
                        LDA.B #$40                           ;81C0F6|A940    |      ;
                                                             ;      |        |      ;
           CODE_81C0F8:
-                       CMP.B $33                            ;81C0F8|C533    |000EDB;
+                       CMP.B r_ev_2_33-$EA8                 ;81C0F8|C533    |000EDB;
                        BRA CODE_81C103                      ;81C0FA|8007    |81C103;
                                                             ;      |        |      ;
-                       db $A9,$04,$85,$02,$64,$03,$60       ;81C0FC|        |      ;
+                       LDA.B #$04                           ;81C0FC|A904    |      ;
+                       STA.B r_ev_2_02_action-$EA8          ;81C0FE|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;81C100|6403    |000EAB;
+                       RTS                                  ;81C102|60      |      ;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C103:
-                       LDA.B $34                            ;81C103|A534    |000EDC;
+                       LDA.B r_ev_2_34-$EA8                 ;81C103|A534    |000EDC;
                        BEQ CODE_81C118                      ;81C105|F011    |81C118;
-                       LDA.B $35                            ;81C107|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;81C107|A535    |000E9D;
                        BEQ CODE_81C114                      ;81C109|F009    |81C114;
-                       STZ.B $35                            ;81C10B|6435    |000EDD;
+                       STZ.B r_ev_2_35-$EA8                 ;81C10B|6435    |000EDD;
                        LDA.B #$06                           ;81C10D|A906    |      ;
-                       STA.B $02                            ;81C10F|8502    |000EAA;
-                       STZ.B $03                            ;81C111|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;81C10F|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;81C111|6403    |000EAB;
                        RTS                                  ;81C113|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C114:
-                       DEC.B $34                            ;81C114|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81C114|C634    |000E9C;
                        BRA CODE_81C134                      ;81C116|801C    |81C134;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C118:
-                       LDX.B $20                            ;81C118|A620    |000EC8;
+                       LDX.B r_ev_2_20_hitBoxAddr-$EA8      ;81C118|A620    |000EC8;
                        PHX                                  ;81C11A|DA      |      ;
                        LDX.W #$C551                         ;81C11B|A251C5  |      ;
-                       STX.B $20                            ;81C11E|8620    |000EC8;
+                       STX.B r_ev_2_20_hitBoxAddr-$EA8      ;81C11E|8620    |000EC8;
                        LDX.W #$0BA8                         ;81C120|A2A80B  |      ;
                        JSL.L CODE_849C0E                    ;81C123|220E9C84|849C0E;
                        BCC CODE_81C12F                      ;81C127|9006    |81C12F;
                        LDA.B #$02                           ;81C129|A902    |      ;
-                       STA.B $02                            ;81C12B|8502    |000E6A;
-                       STZ.B $03                            ;81C12D|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;81C12B|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81C12D|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_81C12F:
                        PLX                                  ;81C12F|FA      |      ;
-                       STX.B $20                            ;81C130|8620    |000EC8;
+                       STX.B r_ev_2_20_hitBoxAddr-$EA8      ;81C130|8620    |000EC8;
                        SEP #$10                             ;81C132|E210    |      ;
                                                             ;      |        |      ;
           CODE_81C134:
                        JSL.L updateEv_13_14_17_0f           ;81C134|22EA8E84|848EEA;
                        RTS                                  ;81C138|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;81C139|A603    |000E6B;
+                                                            ;      |        |      ;
+          CODE_81C139:
+                       LDX.B r_ev_03_do-$E68                ;81C139|A603    |000E6B;
                        BNE CODE_81C146                      ;81C13B|D009    |81C146;
-                       INC.B $03                            ;81C13D|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;81C13D|E603    |000E6B;
                        LDA.B #$02                           ;81C13F|A902    |      ;
                        JSL.L CODE_848F07                    ;81C141|22078F84|848F07;
                        RTS                                  ;81C145|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C146:
-                       BIT.B $0F                            ;81C146|240F    |000E77;
+                       BIT.B r_ev_0f-$E68                   ;81C146|240F    |000E77;
                        BVC CODE_81C14D                      ;81C148|5003    |81C14D;
                        JSR.W CODE_81C20A                    ;81C14A|200AC2  |81C20A;
                                                             ;      |        |      ;
           CODE_81C14D:
-                       LDA.B $0F                            ;81C14D|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81C14D|A50F    |000E77;
                        BPL CODE_81C155                      ;81C14F|1004    |81C155;
-                       STZ.B $02                            ;81C151|6402    |000E6A;
-                       STZ.B $03                            ;81C153|6403    |000E6B;
+                       STZ.B r_ev_02_action-$E68            ;81C151|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81C153|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_81C155:
                        JSL.L updateEv_13_14_17_0f           ;81C155|22EA8E84|848EEA;
                        RTS                                  ;81C159|60      |      ;
                                                             ;      |        |      ;
-                       db $A6,$03,$D0,$09,$E6,$03,$A9,$03   ;81C15A|        |000003;
-                       db $22,$07,$8F,$84,$60,$A5,$0F,$10   ;81C162|        |848F07;
-                       db $0A,$A5,$33,$49,$40,$85,$33,$64   ;81C16A|        |      ;
-                       db $02,$64,$03,$22,$EA,$8E,$84,$60   ;81C172|        |      ;
-                       LDX.B $03                            ;81C17A|A603    |000EAB;
-                       JMP.W (UNREACH_81C17F,X)             ;81C17C|7C7FC1  |81C17F;
+                                                            ;      |        |      ;
+          CODE_81C15A:
+                       LDX.B r_ev_03_do-$E68                ;81C15A|A603    |000E6B;
+                       BNE CODE_81C167                      ;81C15C|D009    |81C167;
+                       INC.B r_ev_03_do-$E68                ;81C15E|E603    |000E6B;
+                       LDA.B #$03                           ;81C160|A903    |      ;
+                       JSL.L CODE_848F07                    ;81C162|22078F84|848F07;
+                       RTS                                  ;81C166|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_81C17F:
-                       db $85,$C1,$8E,$C1,$A1,$C1           ;81C17F|        |0000C1;
+          CODE_81C167:
+                       LDA.B r_ev_0f-$E68                   ;81C167|A50F    |000E77;
+                       BPL CODE_81C175                      ;81C169|100A    |81C175;
+                       LDA.B r_ev_33-$E68                   ;81C16B|A533    |000E9B;
+                       EOR.B #$40                           ;81C16D|4940    |      ;
+                       STA.B r_ev_33-$E68                   ;81C16F|8533    |000E9B;
+                       STZ.B r_ev_02_action-$E68            ;81C171|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81C173|6403    |000E6B;
+                                                            ;      |        |      ;
+          CODE_81C175:
+                       JSL.L updateEv_13_14_17_0f           ;81C175|22EA8E84|848EEA;
+                       RTS                                  ;81C179|60      |      ;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81C17A:
+                       LDX.B r_ev_2_03_do-$EA8              ;81C17A|A603    |000EAB;
+                       JMP.W (PTR16_81C17F,X)               ;81C17C|7C7FC1  |81C17F;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+         PTR16_81C17F:
+                       dw CODE_81C185                       ;81C17F|        |81C185;
+                       dw CODE_81C18E                       ;81C181|        |81C18E;
+                       dw CODE_81C1A1                       ;81C183|        |81C1A1;
+                                                            ;      |        |      ;
+          CODE_81C185:
                        LDA.B #$02                           ;81C185|A902    |      ;
-                       STA.B $03                            ;81C187|8503    |000EAB;
+                       STA.B r_ev_2_03_do-$EA8              ;81C187|8503    |000EAB;
                        JSL.L CODE_848F07                    ;81C189|22078F84|848F07;
                        RTS                                  ;81C18D|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $0F                            ;81C18E|A50F    |000EB7;
+                                                            ;      |        |      ;
+          CODE_81C18E:
+                       LDA.B r_ev_2_0f-$EA8                 ;81C18E|A50F    |000EB7;
                        BPL CODE_81C19C                      ;81C190|100A    |81C19C;
-                       db $A9,$04,$85,$03,$A9,$02,$22,$07   ;81C192|        |      ;
-                       db $8F,$84                           ;81C19A|        |EA2284;
+                       LDA.B #$04                           ;81C192|A904    |      ;
+                       STA.B r_ev_2_03_do-$EA8              ;81C194|8503    |000EAB;
+                       LDA.B #$02                           ;81C196|A902    |      ;
+                       JSL.L CODE_848F07                    ;81C198|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_81C19C:
                        JSL.L updateEv_13_14_17_0f           ;81C19C|22EA8E84|848EEA;
                        RTS                                  ;81C1A0|60      |      ;
                                                             ;      |        |      ;
-                       db $A5,$0F,$10,$04,$64,$02,$64,$03   ;81C1A1|        |00000F;
-                       db $22,$EA,$8E,$84,$60               ;81C1A9|        |848EEA;
+                                                            ;      |        |      ;
+          CODE_81C1A1:
+                       LDA.B r_ev_2_0f-$EA8                 ;81C1A1|A50F    |000EB7;
+                       BPL CODE_81C1A9                      ;81C1A3|1004    |81C1A9;
+                       STZ.B r_ev_2_02_action-$EA8          ;81C1A5|6402    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;81C1A7|6403    |000EAB;
+                                                            ;      |        |      ;
+          CODE_81C1A9:
+                       JSL.L updateEv_13_14_17_0f           ;81C1A9|22EA8E84|848EEA;
+                       RTS                                  ;81C1AD|60      |      ;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+   flamingle_state_02:
                        LDA.B #$00                           ;81C1AE|A900    |      ;
                        JSL.L CODE_84A384                    ;81C1B0|2284A384|84A384;
                        JSL.L CODE_84A4B5                    ;81C1B4|22B5A484|84A4B5;
@@ -9042,10 +9098,10 @@ eventID_chillPingu_01_main:
                        AND.W #$0003                         ;81C1C7|290300  |      ;
                        ASL A                                ;81C1CA|0A      |      ;
                        TAY                                  ;81C1CB|A8      |      ;
-                       LDA.B $05                            ;81C1CC|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;81C1CC|A505    |000E6D;
                        ADC.W DATA8_86C57D,X                 ;81C1CE|7D7DC5  |86C57D;
                        STA.W r_0000                         ;81C1D1|8D0000  |860000;
-                       LDA.B $08                            ;81C1D4|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81C1D4|A508    |000E70;
                        SEC                                  ;81C1D6|38      |      ;
                        SBC.W DATA8_86C585,Y                 ;81C1D7|F985C5  |86C585;
                        STA.W r_0002                         ;81C1DA|8D0200  |860002;
@@ -9056,18 +9112,18 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_84A467                    ;81C1E5|2267A484|84A467;
                        PLX                                  ;81C1E9|FA      |      ;
                        PLY                                  ;81C1EA|7A      |      ;
-                       LDA.B $05                            ;81C1EB|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;81C1EB|A505    |000E6D;
                        CLC                                  ;81C1ED|18      |      ;
                        ADC.W DATA8_86C57D,X                 ;81C1EE|7D7DC5  |86C57D;
                        STA.W r_0000                         ;81C1F1|8D0000  |860000;
-                       LDA.B $08                            ;81C1F4|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81C1F4|A508    |000E70;
                        CLC                                  ;81C1F6|18      |      ;
                        ADC.W DATA8_86C585,Y                 ;81C1F7|7985C5  |86C585;
                        STA.W r_0002                         ;81C1FA|8D0200  |860002;
                        JSL.L CODE_84A467                    ;81C1FD|2267A484|84A467;
                        SEP #$20                             ;81C201|E220    |      ;
-                       JSL.L CODE_828387                    ;81C203|22878382|828387;
-                       STZ.B $30                            ;81C207|6430    |000E98;
+                       JSL.L clearStateIf_0cEqual           ;81C203|22878382|828387;
+                       STZ.B r_ev_30-$E68                   ;81C207|6430    |000E98;
                        RTS                                  ;81C209|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9077,22 +9133,22 @@ eventID_chillPingu_01_main:
                        INC.W r_0000,X                       ;81C210|FE0000  |860000;
                        LDA.B #$03                           ;81C213|A903    |      ;
                        STA.W r_000a,X                       ;81C215|9D0A00  |86000A;
-                       LDA.B $18                            ;81C218|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;81C218|A518    |000E80;
                        STA.W r_0018,X                       ;81C21A|9D1800  |860018;
-                       LDA.B $11                            ;81C21D|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81C21D|A511    |000E79;
                        AND.B #$F0                           ;81C21F|29F0    |      ;
                        ORA.L $7F8302                        ;81C221|0F02837F|7F8302;
                        STA.W r_0011,X                       ;81C225|9D1100  |860011;
                        REP #$21                             ;81C228|C221    |      ;
                        LDA.W #$0010                         ;81C22A|A91000  |      ;
-                       BIT.B $10                            ;81C22D|2410    |000E78;
+                       BIT.B r_ev_10-$E68                   ;81C22D|2410    |000E78;
                        BVS CODE_81C234                      ;81C22F|7003    |81C234;
                        LDA.W #$FFF0                         ;81C231|A9F0FF  |      ;
                                                             ;      |        |      ;
           CODE_81C234:
-                       ADC.B $05                            ;81C234|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;81C234|6505    |000E6D;
                        STA.W r_0005,X                       ;81C236|9D0500  |860005;
-                       LDA.B $08                            ;81C239|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81C239|A508    |000E70;
                        SEC                                  ;81C23B|38      |      ;
                        SBC.W #$0010                         ;81C23C|E91000  |      ;
                        STA.W r_0008,X                       ;81C23F|9D0800  |860008;
@@ -9105,63 +9161,69 @@ eventID_chillPingu_01_main:
                        RTS                                  ;81C24A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_81C24B:
-                       LDX.B $01                            ;81C24B|A601    |000E69;
-                       JSR.W (UNREACH_81C259,X)             ;81C24D|FC59C2  |81C259;
-                       LDA.B $11                            ;81C250|A511    |000E79;
+eventID_boomerKuwanger_05_main:
+                       LDX.B r_ev_01_state-$E68             ;81C24B|A601    |000E69;
+                       JSR.W (PTR16_81C259,X)               ;81C24D|FC59C2  |81C259;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81C250|A511    |000E79;
                        AND.B #$3F                           ;81C252|293F    |      ;
-                       ORA.B $33                            ;81C254|0533    |000E9B;
-                       STA.B $11                            ;81C256|8511    |000E79;
+                       ORA.B r_ev_33-$E68                   ;81C254|0533    |000E9B;
+                       STA.B r_ev_11_sprAtri-$E68           ;81C256|8511    |000E79;
                        RTL                                  ;81C258|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_81C259:
-                       db $5F,$C2,$8D,$C2,$9A,$C3           ;81C259|        |C28DC2;
-                       JSL.L CODE_82827D                    ;81C25F|227D8282|82827D;
+         PTR16_81C259:
+                       dw CODE_81C25F                       ;81C259|        |81C25F;
+                       dw CODE_81C28D                       ;81C25B|        |81C28D;
+                       dw CODE_81C39A                       ;81C25D|        |81C39A;
+                                                            ;      |        |      ;
+          CODE_81C25F:
+                       JSL.L enemy_initiate_jumpPhysic      ;81C25F|227D8282|82827D;
                        LDA.B #$02                           ;81C263|A902    |      ;
-                       STA.B $27                            ;81C265|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;81C265|8527    |000E8F;
                        LDA.B #$03                           ;81C267|A903    |      ;
-                       STA.B $26                            ;81C269|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;81C269|8526    |000E8E;
                        LDA.B #$04                           ;81C26B|A904    |      ;
-                       STA.B $12                            ;81C26D|8512    |000E7A;
-                       STZ.B $2F                            ;81C26F|642F    |000E97;
+                       STA.B r_ev_12-$E68                   ;81C26D|8512    |000E7A;
+                       STZ.B r_ev_2f-$E68                   ;81C26F|642F    |000E97;
                        REP #$20                             ;81C271|C220    |      ;
                        LDX.B #$00                           ;81C273|A200    |      ;
                        LDA.W r_0bad                         ;81C275|ADAD0B  |860BAD;
-                       CMP.B $05                            ;81C278|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;81C278|C505    |000E6D;
                        BCC CODE_81C27E                      ;81C27A|9002    |81C27E;
                        LDX.B #$40                           ;81C27C|A240    |      ;
                                                             ;      |        |      ;
           CODE_81C27E:
-                       STX.B $33                            ;81C27E|8633    |000E9B;
-                       JSL.L CODE_8280B4                    ;81C280|22B48082|8280B4;
+                       STX.B r_ev_33-$E68                   ;81C27E|8633    |000E9B;
+                       JSL.L eventID_vile_68_afterInit      ;81C280|22B48082|8280B4;
                        SEP #$20                             ;81C284|E220    |      ;
                        LDA.B #$00                           ;81C286|A900    |      ;
                        JSL.L CODE_848F07                    ;81C288|22078F84|848F07;
                        RTS                                  ;81C28C|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_82806E                    ;81C28D|226E8082|82806E;
+                                                            ;      |        |      ;
+          CODE_81C28D:
+                       JSL.L initPosAllign                  ;81C28D|226E8082|82806E;
                        BCC CODE_81C298                      ;81C291|9005    |81C298;
                        LDA.B #$04                           ;81C293|A904    |      ;
-                       STA.B $01                            ;81C295|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;81C295|8501    |000E69;
                        RTS                                  ;81C297|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C298:
-                       LDX.B $02                            ;81C298|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;81C298|A602    |000E6A;
                        JSR.W (UNREACH_81C2D3,X)             ;81C29A|FCD3C2  |81C2D3;
-                       JSL.L CODE_8280B4                    ;81C29D|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81C29D|22B48082|8280B4;
                        LDA.L $7F8304                        ;81C2A1|AF04837F|7F8304;
-                       STA.B $11                            ;81C2A5|8511    |000E79;
+                       STA.B r_ev_11_sprAtri-$E68           ;81C2A5|8511    |000E79;
                        JSL.L CODE_849B43                    ;81C2A7|22439B84|849B43;
                        BEQ CODE_81C2CE                      ;81C2AB|F021    |81C2CE;
                        LDA.B #$0E                           ;81C2AD|A90E    |      ;
-                       TRB.B $11                            ;81C2AF|1411    |000E79;
-                       LDA.B $27                            ;81C2B1|A527    |000E8F;
+                       TRB.B r_ev_11_sprAtri-$E68           ;81C2AF|1411    |000E79;
+                       LDA.B r_ev_27-$E68                   ;81C2B1|A527    |000E8F;
                        AND.B #$7F                           ;81C2B3|297F    |      ;
                        BNE CODE_81C2CE                      ;81C2B5|D017    |81C2CE;
                        LDA.B #$04                           ;81C2B7|A904    |      ;
-                       STA.B $01                            ;81C2B9|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;81C2B9|8501    |000E69;
                        LDA.B #$00                           ;81C2BB|A900    |      ;
                        JSL.L CODE_84A384                    ;81C2BD|2284A384|84A384;
                        JSL.L CODE_84A4B5                    ;81C2C1|22B5A484|84A4B5;
@@ -9177,12 +9239,12 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
        UNREACH_81C2D3:
                        db $DB,$C2,$FC,$C2,$37,$C3,$72,$C3   ;81C2D3|        |      ;
-                       LDX.B $03                            ;81C2DB|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81C2DB|A603    |000E6B;
                        BNE CODE_81C2EE                      ;81C2DD|D00F    |81C2EE;
-                       INC.B $03                            ;81C2DF|E603    |000E6B;
-                       STZ.B $20                            ;81C2E1|6420    |000E88;
-                       STZ.B $21                            ;81C2E3|6421    |000E89;
-                       INC.B $30                            ;81C2E5|E630    |000E98;
+                       INC.B r_ev_03_do-$E68                ;81C2DF|E603    |000E6B;
+                       STZ.B r_ev_20_hitBoxAddr-$E68        ;81C2E1|6420    |000E88;
+                       STZ.B r_ev_21-$E68                   ;81C2E3|6421    |000E89;
+                       INC.B r_ev_30-$E68                   ;81C2E5|E630    |000E98;
                        LDA.B #$00                           ;81C2E7|A900    |      ;
                        JSL.L CODE_848F07                    ;81C2E9|22078F84|848F07;
                        RTS                                  ;81C2ED|60      |      ;
@@ -9191,28 +9253,28 @@ eventID_chillPingu_01_main:
           CODE_81C2EE:
                        JSR.W CODE_81C411                    ;81C2EE|2011C4  |81C411;
                        BEQ CODE_81C2FB                      ;81C2F1|F008    |81C2FB;
-                       STZ.B $30                            ;81C2F3|6430    |000E98;
+                       STZ.B r_ev_30-$E68                   ;81C2F3|6430    |000E98;
                        LDA.B #$02                           ;81C2F5|A902    |      ;
-                       STA.B $02                            ;81C2F7|8502    |000E6A;
-                       STZ.B $03                            ;81C2F9|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;81C2F7|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81C2F9|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_81C2FB:
                        RTS                                  ;81C2FB|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;81C2FC|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81C2FC|A603    |000E6B;
                        BNE CODE_81C309                      ;81C2FE|D009    |81C309;
-                       INC.B $03                            ;81C300|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;81C300|E603    |000E6B;
                        LDA.B #$00                           ;81C302|A900    |      ;
                        JSL.L CODE_848F07                    ;81C304|22078F84|848F07;
                        RTS                                  ;81C308|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C309:
-                       LDA.B $0F                            ;81C309|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81C309|A50F    |000E77;
                        BPL CODE_81C314                      ;81C30B|1007    |81C314;
                        LDA.B #$04                           ;81C30D|A904    |      ;
-                       STA.B $02                            ;81C30F|8502    |000E6A;
-                       STZ.B $03                            ;81C311|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;81C30F|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81C311|6403    |000E6B;
                        RTS                                  ;81C313|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9221,7 +9283,7 @@ eventID_chillPingu_01_main:
                        BEQ CODE_81C332                      ;81C316|F01A    |81C332;
                        REP #$20                             ;81C318|C220    |      ;
                        LDA.W #$C5E3                         ;81C31A|A9E3C5  |      ;
-                       STA.B $20                            ;81C31D|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81C31D|8520    |000E88;
                        SEP #$20                             ;81C31F|E220    |      ;
                        LDA.B #$2F                           ;81C321|A92F    |      ;
                        JSL.L CODE_8088A2                    ;81C323|22A28880|8088A2;
@@ -9234,9 +9296,9 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81C332|22EA8E84|848EEA;
                        RTS                                  ;81C336|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;81C337|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81C337|A603    |000E6B;
                        BNE CODE_81C344                      ;81C339|D009    |81C344;
-                       INC.B $03                            ;81C33B|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;81C33B|E603    |000E6B;
                        LDA.B #$01                           ;81C33D|A901    |      ;
                        JSL.L CODE_848F07                    ;81C33F|22078F84|848F07;
                        RTS                                  ;81C343|60      |      ;
@@ -9246,44 +9308,44 @@ eventID_chillPingu_01_main:
                        REP #$20                             ;81C344|C220    |      ;
                        LDX.B #$00                           ;81C346|A200    |      ;
                        LDA.W r_0bad                         ;81C348|ADAD0B  |860BAD;
-                       CMP.B $05                            ;81C34B|C505    |000E6D;
+                       CMP.B r_ev_05_xPos-$E68              ;81C34B|C505    |000E6D;
                        BCC CODE_81C351                      ;81C34D|9002    |81C351;
                        LDX.B #$40                           ;81C34F|A240    |      ;
                                                             ;      |        |      ;
           CODE_81C351:
-                       STX.B $33                            ;81C351|8633    |000E9B;
+                       STX.B r_ev_33-$E68                   ;81C351|8633    |000E9B;
                        SEP #$20                             ;81C353|E220    |      ;
-                       LDA.B $0F                            ;81C355|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81C355|A50F    |000E77;
                        BIT.B #$01                           ;81C357|8901    |      ;
                        BEQ CODE_81C35E                      ;81C359|F003    |81C35E;
                        JSR.W CODE_81C39F                    ;81C35B|209FC3  |81C39F;
                                                             ;      |        |      ;
           CODE_81C35E:
-                       LDA.B $0F                            ;81C35E|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81C35E|A50F    |000E77;
                        BPL CODE_81C36D                      ;81C360|100B    |81C36D;
                        JSR.W CODE_81C411                    ;81C362|2011C4  |81C411;
                        BNE CODE_81C36D                      ;81C365|D006    |81C36D;
                        LDA.B #$06                           ;81C367|A906    |      ;
-                       STA.B $02                            ;81C369|8502    |000E6A;
-                       STZ.B $03                            ;81C36B|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;81C369|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81C36B|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_81C36D:
                        JSL.L updateEv_13_14_17_0f           ;81C36D|22EA8E84|848EEA;
                        RTS                                  ;81C371|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;81C372|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81C372|A603    |000E6B;
                        BNE CODE_81C37F                      ;81C374|D009    |81C37F;
-                       INC.B $03                            ;81C376|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;81C376|E603    |000E6B;
                        LDA.B #$04                           ;81C378|A904    |      ;
                        JSL.L CODE_848F07                    ;81C37A|22078F84|848F07;
                        RTS                                  ;81C37E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C37F:
-                       LDA.B $0F                            ;81C37F|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81C37F|A50F    |000E77;
                        BPL CODE_81C388                      ;81C381|1005    |81C388;
-                       STZ.B $02                            ;81C383|6402    |000E6A;
-                       STZ.B $03                            ;81C385|6403    |000E6B;
+                       STZ.B r_ev_02_action-$E68            ;81C383|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81C385|6403    |000E6B;
                        RTS                                  ;81C387|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9298,7 +9360,9 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81C395|22EA8E84|848EEA;
                        RTS                                  ;81C399|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_828387                    ;81C39A|22878382|828387;
+                                                            ;      |        |      ;
+          CODE_81C39A:
+                       JSL.L clearStateIf_0cEqual           ;81C39A|22878382|828387;
                        RTS                                  ;81C39E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9308,12 +9372,12 @@ eventID_chillPingu_01_main:
                        INC.W r_0000,X                       ;81C3A5|FE0000  |860000;
                        LDA.B #$05                           ;81C3A8|A905    |      ;
                        STA.W r_000a,X                       ;81C3AA|9D0A00  |86000A;
-                       LDA.B $18                            ;81C3AD|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;81C3AD|A518    |000E80;
                        STA.W r_0018,X                       ;81C3AF|9D1800  |860018;
                        REP #$20                             ;81C3B2|C220    |      ;
-                       LDA.B $05                            ;81C3B4|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;81C3B4|A505    |000E6D;
                        STA.W r_0005,X                       ;81C3B6|9D0500  |860005;
-                       LDA.B $08                            ;81C3B9|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81C3B9|A508    |000E70;
                        SEC                                  ;81C3BB|38      |      ;
                        SBC.W #$0006                         ;81C3BC|E90600  |      ;
                        STA.W r_0008,X                       ;81C3BF|9D0800  |860008;
@@ -9336,13 +9400,13 @@ eventID_chillPingu_01_main:
                        INC.W r_0000,X                       ;81C3D6|FE0000  |860000;
                        LDA.B #$01                           ;81C3D9|A901    |      ;
                        STA.W r_000a,X                       ;81C3DB|9D0A00  |86000A;
-                       LDA.B $18                            ;81C3DE|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;81C3DE|A518    |000E80;
                        STA.W r_0018,X                       ;81C3E0|9D1800  |860018;
                        REP #$21                             ;81C3E3|C221    |      ;
-                       LDA.B $05                            ;81C3E5|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;81C3E5|A505    |000E6D;
                        ADC.W UNREACH_86C5EF,Y               ;81C3E7|79EFC5  |86C5EF;
                        STA.W r_0005,X                       ;81C3EA|9D0500  |860005;
-                       LDA.B $08                            ;81C3ED|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81C3ED|A508    |000E70;
                        CLC                                  ;81C3EF|18      |      ;
                        ADC.W UNREACH_86C5F1,Y               ;81C3F0|79F1C5  |86C5F1;
                        SEC                                  ;81C3F3|38      |      ;
@@ -9366,10 +9430,10 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81C411:
                        REP #$10                             ;81C411|C210    |      ;
-                       LDX.B $20                            ;81C413|A620    |000E88;
+                       LDX.B r_ev_20_hitBoxAddr-$E68        ;81C413|A620    |000E88;
                        PHX                                  ;81C415|DA      |      ;
                        LDX.W #$C5E7                         ;81C416|A2E7C5  |      ;
-                       STX.B $20                            ;81C419|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;81C419|8620    |000E88;
                        LDX.W #$0BA8                         ;81C41B|A2A80B  |      ;
                        JSL.L CODE_849C0E                    ;81C41E|220E9C84|849C0E;
                        BCC CODE_81C429                      ;81C422|9005    |81C429;
@@ -9382,29 +9446,35 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81C42C:
                        PLX                                  ;81C42C|FA      |      ;
-                       STX.B $20                            ;81C42D|8620    |000E88;
+                       STX.B r_ev_20_hitBoxAddr-$E68        ;81C42D|8620    |000E88;
                        SEP #$10                             ;81C42F|E210    |      ;
                        TYA                                  ;81C431|98      |      ;
                        RTS                                  ;81C432|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_81C433:
-                       LDX.B $01                            ;81C433|A601    |000E69;
-                       JMP.W (UNREACH_81C438,X)             ;81C435|7C38C4  |81C438;
+eventID_planty_06_main:
+                       LDX.B r_ev_01_state-$E68             ;81C433|A601    |000E69;
+                       JMP.W (PTR16_81C438,X)               ;81C435|7C38C4  |81C438;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_81C438:
-                       db $40,$C4,$98,$C4,$3A,$C5,$D4,$C9   ;81C438|        |      ;
-                       LDA.B $02                            ;81C440|A502    |000E6A;
+         PTR16_81C438:
+                       dw CODE_81C440                       ;81C438|        |81C440;
+                       dw CODE_81C498                       ;81C43A|        |81C498;
+                       dw CODE_81C53A                       ;81C43C|        |81C53A;
+                       dw CODE_81C9D4                       ;81C43E|        |81C9D4;
+                                                            ;      |        |      ;
+          CODE_81C440:
+                       LDA.B r_ev_02_action-$E68            ;81C440|A502    |000E6A;
                        BNE CODE_81C463                      ;81C442|D01F    |81C463;
                        JSL.L CODE_84AADD                    ;81C444|22DDAA84|84AADD;
                        BEQ CODE_81C44E                      ;81C448|F004    |81C44E;
-                       db $5C,$98,$83,$82                   ;81C44A|        |828398;
+                       JML.L clearStates_00_02_0E           ;81C44A|5C988382|828398;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C44E:
                        LDA.B #$3C                           ;81C44E|A93C    |      ;
-                       STA.B $34                            ;81C450|8534    |000E9C;
-                       INC.B $02                            ;81C452|E602    |000E6A;
+                       STA.B r_ev_34-$E68                   ;81C450|8534    |000E9C;
+                       INC.B r_ev_02_action-$E68            ;81C452|E602    |000E6A;
                        JSL.L CODE_849FEB                    ;81C454|22EB9F84|849FEB;
                        LDA.W r_1f26                         ;81C458|AD261F  |861F26;
                        BEQ CODE_81C463                      ;81C45B|F006    |81C463;
@@ -9412,73 +9482,75 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_8087A2                    ;81C45F|22A28780|8087A2;
                                                             ;      |        |      ;
           CODE_81C463:
-                       DEC.B $34                            ;81C463|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81C463|C634    |000E9C;
                        BEQ CODE_81C468                      ;81C465|F001    |81C468;
                        RTL                                  ;81C467|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C468:
-                       JSL.L CODE_82827D                    ;81C468|227D8282|82827D;
-                       LDA.B $11                            ;81C46C|A511    |000E79;
+                       JSL.L enemy_initiate_jumpPhysic      ;81C468|227D8282|82827D;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81C46C|A511    |000E79;
                        AND.B #$0E                           ;81C46E|290E    |      ;
-                       STA.B $33                            ;81C470|8533    |000E9B;
+                       STA.B r_ev_33-$E68                   ;81C470|8533    |000E9B;
                        LDA.B #$04                           ;81C472|A904    |      ;
-                       STA.B $12                            ;81C474|8512    |000E7A;
-                       STZ.B $02                            ;81C476|6402    |000E6A;
-                       STZ.B $36                            ;81C478|6436    |000E9E;
+                       STA.B r_ev_12-$E68                   ;81C474|8512    |000E7A;
+                       STZ.B r_ev_02_action-$E68            ;81C476|6402    |000E6A;
+                       STZ.B r_ev_36-$E68                   ;81C478|6436    |000E9E;
                        LDA.B #$FF                           ;81C47A|A9FF    |      ;
-                       STA.B $2F                            ;81C47C|852F    |000E97;
-                       STZ.B $39                            ;81C47E|6439    |000EA1;
-                       STZ.B $3A                            ;81C480|643A    |000EA2;
-                       STZ.B $3C                            ;81C482|643C    |000EA4;
+                       STA.B r_ev_2f-$E68                   ;81C47C|852F    |000E97;
+                       STZ.B r_ev_39-$E68                   ;81C47E|6439    |000EA1;
+                       STZ.B r_ev_3a-$E68                   ;81C480|643A    |000EA2;
+                       STZ.B r_ev_3c-$E68                   ;81C482|643C    |000EA4;
                        LDA.B #$03                           ;81C484|A903    |      ;
-                       STA.B $0C                            ;81C486|850C    |000E74;
-                       STZ.B $3B                            ;81C488|643B    |000EA3;
+                       STA.B r_ev_0c-$E68                   ;81C486|850C    |000E74;
+                       STZ.B r_ev_3b-$E68                   ;81C488|643B    |000EA3;
                        LDA.B #$04                           ;81C48A|A904    |      ;
-                       STA.B $26                            ;81C48C|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;81C48C|8526    |000E8E;
                        REP #$20                             ;81C48E|C220    |      ;
                        LDA.W #$C607                         ;81C490|A907C6  |      ;
-                       STA.B $20                            ;81C493|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81C493|8520    |000E88;
                        SEP #$20                             ;81C495|E220    |      ;
                        RTL                                  ;81C497|6B      |      ;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;81C498|A602    |000E6A;
+                                                            ;      |        |      ;
+          CODE_81C498:
+                       LDX.B r_ev_02_action-$E68            ;81C498|A602    |000E6A;
                        JSR.W (UNREACH_81C4A1,X)             ;81C49A|FCA1C4  |81C4A1;
-                       JML.L CODE_8280B4                    ;81C49D|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81C49D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_81C4A1:
                        db $A9,$C4,$C8,$C4,$F5,$C4,$1A,$C5   ;81C4A1|        |      ;
                        LDA.B #$02                           ;81C4A9|A902    |      ;
-                       STA.B $02                            ;81C4AB|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81C4AB|8502    |000E6A;
                        LDA.B #$01                           ;81C4AD|A901    |      ;
                        JSR.W CODE_81CA45                    ;81C4AF|2045CA  |81CA45;
                        REP #$20                             ;81C4B2|C220    |      ;
-                       LDA.B $08                            ;81C4B4|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81C4B4|A508    |000E70;
                        SEC                                  ;81C4B6|38      |      ;
                        SBC.W #$0010                         ;81C4B7|E91000  |      ;
-                       STA.B $08                            ;81C4BA|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;81C4BA|8508    |000E70;
                        LDA.W #$FF00                         ;81C4BC|A900FF  |      ;
-                       STA.B $1C                            ;81C4BF|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;81C4BF|851C    |000E84;
                        SEP #$20                             ;81C4C1|E220    |      ;
                        LDA.B #$28                           ;81C4C3|A928    |      ;
-                       STA.B $34                            ;81C4C5|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81C4C5|8534    |000E9C;
                        RTS                                  ;81C4C7|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_82825D                    ;81C4C8|225D8282|82825D;
                        JSL.L updateEv_13_14_17_0f           ;81C4CC|22EA8E84|848EEA;
-                       LDA.B $34                            ;81C4D0|A534    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;81C4D0|A534    |000E9C;
                        BEQ CODE_81C4D8                      ;81C4D2|F004    |81C4D8;
-                       DEC.B $34                            ;81C4D4|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81C4D4|C634    |000E9C;
                        BNE CODE_81C4F4                      ;81C4D6|D01C    |81C4F4;
                                                             ;      |        |      ;
           CODE_81C4D8:
                        JSL.L CODE_8491BE                    ;81C4D8|22BE9184|8491BE;
-                       LDA.B $2B                            ;81C4DC|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81C4DC|A52B    |000E93;
                        AND.B #$04                           ;81C4DE|2904    |      ;
                        BEQ CODE_81C4F4                      ;81C4E0|F012    |81C4F4;
                        LDA.B #$04                           ;81C4E2|A904    |      ;
-                       STA.B $02                            ;81C4E4|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81C4E4|8502    |000E6A;
                        LDA.B #$02                           ;81C4E6|A902    |      ;
                        JSL.L CODE_848F07                    ;81C4E8|22078F84|848F07;
                        REP #$20                             ;81C4EC|C220    |      ;
@@ -9490,34 +9562,34 @@ eventID_chillPingu_01_main:
                        RTS                                  ;81C4F4|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81C4F5|22EA8E84|848EEA;
-                       INC.B $34                            ;81C4F9|E634    |000E9C;
-                       LDA.B $34                            ;81C4FB|A534    |000E9C;
+                       INC.B r_ev_34-$E68                   ;81C4F9|E634    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;81C4FB|A534    |000E9C;
                        LSR A                                ;81C4FD|4A      |      ;
                        BCC CODE_81C515                      ;81C4FE|9015    |81C515;
                        LDA.B #$0C                           ;81C500|A90C    |      ;
                        JSL.L CODE_8088CD                    ;81C502|22CD8880|8088CD;
-                       LDA.B $27                            ;81C506|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;81C506|A527    |000E8F;
                        AND.B #$7F                           ;81C508|297F    |      ;
                        INC A                                ;81C50A|1A      |      ;
-                       STA.B $27                            ;81C50B|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;81C50B|8527    |000E8F;
                        CMP.B #$20                           ;81C50D|C920    |      ;
                        BCC CODE_81C515                      ;81C50F|9004    |81C515;
                        LDA.B #$06                           ;81C511|A906    |      ;
-                       STA.B $02                            ;81C513|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81C513|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_81C515:
                        LDA.B #$80                           ;81C515|A980    |      ;
-                       TSB.B $27                            ;81C517|0427    |000E8F;
+                       TSB.B r_ev_27-$E68                   ;81C517|0427    |000E8F;
                        RTS                                  ;81C519|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81C51A|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81C51E|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81C51E|A50F    |000E77;
                        BPL CODE_81C539                      ;81C520|1017    |81C539;
                        JSL.L CODE_84A003                    ;81C522|2203A084|84A003;
                        LDA.B #$04                           ;81C526|A904    |      ;
-                       STA.B $01                            ;81C528|8501    |000E69;
-                       STZ.B $02                            ;81C52A|6402    |000E6A;
-                       STZ.B $03                            ;81C52C|6403    |000E6B;
+                       STA.B r_ev_01_state-$E68             ;81C528|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;81C52A|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81C52C|6403    |000E6B;
                        LDA.W r_1f26                         ;81C52E|AD261F  |861F26;
                        BEQ CODE_81C539                      ;81C531|F006    |81C539;
                        LDA.B #$1E                           ;81C533|A91E    |      ;
@@ -9526,43 +9598,45 @@ eventID_chillPingu_01_main:
           CODE_81C539:
                        RTS                                  ;81C539|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $33                            ;81C53A|A533    |000E9B;
-                       TSB.B $11                            ;81C53C|0411    |000E79;
-                       LDX.B $02                            ;81C53E|A602    |000E6A;
+                                                            ;      |        |      ;
+          CODE_81C53A:
+                       LDA.B r_ev_33-$E68                   ;81C53A|A533    |000E9B;
+                       TSB.B r_ev_11_sprAtri-$E68           ;81C53C|0411    |000E79;
+                       LDX.B r_ev_02_action-$E68            ;81C53E|A602    |000E6A;
                        JSR.W (UNREACH_81C5E1,X)             ;81C540|FCE1C5  |81C5E1;
                        LDA.B #$0C                           ;81C543|A90C    |      ;
-                       LDX.B $3C                            ;81C545|A63C    |000EA4;
+                       LDX.B r_ev_3c-$E68                   ;81C545|A63C    |000EA4;
                        BEQ CODE_81C54B                      ;81C547|F002    |81C54B;
                        LDA.B #$05                           ;81C549|A905    |      ;
                                                             ;      |        |      ;
           CODE_81C54B:
-                       LDX.B $3A                            ;81C54B|A63A    |000EA2;
+                       LDX.B r_ev_3a-$E68                   ;81C54B|A63A    |000EA2;
                        BEQ CODE_81C551                      ;81C54D|F002    |81C551;
                        LDA.B #$00                           ;81C54F|A900    |      ;
                                                             ;      |        |      ;
           CODE_81C551:
-                       STA.B $28                            ;81C551|8528    |000E90;
+                       STA.B r_ev_28-$E68                   ;81C551|8528    |000E90;
                        JSL.L CODE_849B43                    ;81C553|22439B84|849B43;
                        BEQ CODE_81C598                      ;81C557|F03F    |81C598;
                        BMI CODE_81C5C2                      ;81C559|3067    |81C5C2;
-                       LDA.B $3C                            ;81C55B|A53C    |000EA4;
+                       LDA.B r_ev_3c-$E68                   ;81C55B|A53C    |000EA4;
                        BNE CODE_81C598                      ;81C55D|D039    |81C598;
                        LDA.B #$3C                           ;81C55F|A93C    |      ;
-                       STA.B $3C                            ;81C561|853C    |000EA4;
-                       LDA.B $02                            ;81C563|A502    |000E6A;
-                       STA.B $3D                            ;81C565|853D    |000EA5;
+                       STA.B r_ev_3c-$E68                   ;81C561|853C    |000EA4;
+                       LDA.B r_ev_02_action-$E68            ;81C563|A502    |000E6A;
+                       STA.B r_ev_3d-$E68                   ;81C565|853D    |000EA5;
                        LDA.B #$08                           ;81C567|A908    |      ;
-                       STA.B $02                            ;81C569|8502    |000E6A;
-                       LDA.B $17                            ;81C56B|A517    |000E7F;
-                       STA.B $2C                            ;81C56D|852C    |000E94;
-                       LDA.B $0F                            ;81C56F|A50F    |000E77;
-                       STA.B $10                            ;81C571|8510    |000E78;
-                       LDA.B $13                            ;81C573|A513    |000E7B;
-                       STA.B $3E                            ;81C575|853E    |000EA6;
-                       LDA.B $14                            ;81C577|A514    |000E7C;
-                       STA.B $31                            ;81C579|8531    |000E99;
-                       LDA.B $15                            ;81C57B|A515    |000E7D;
-                       STA.B $32                            ;81C57D|8532    |000E9A;
+                       STA.B r_ev_02_action-$E68            ;81C569|8502    |000E6A;
+                       LDA.B r_ev_17-$E68                   ;81C56B|A517    |000E7F;
+                       STA.B r_ev_2c-$E68                   ;81C56D|852C    |000E94;
+                       LDA.B r_ev_0f-$E68                   ;81C56F|A50F    |000E77;
+                       STA.B r_ev_10-$E68                   ;81C571|8510    |000E78;
+                       LDA.B r_ev_13-$E68                   ;81C573|A513    |000E7B;
+                       STA.B r_ev_3e-$E68                   ;81C575|853E    |000EA6;
+                       LDA.B r_ev_14-$E68                   ;81C577|A514    |000E7C;
+                       STA.B r_ev_31-$E68                   ;81C579|8531    |000E99;
+                       LDA.B r_ev_15-$E68                   ;81C57B|A515    |000E7D;
+                       STA.B r_ev_32-$E68                   ;81C57D|8532    |000E9A;
                        LDA.B #$04                           ;81C57F|A904    |      ;
                        JSR.W CODE_81CA45                    ;81C581|2045CA  |81CA45;
                        LDA.B #$13                           ;81C584|A913    |      ;
@@ -9577,19 +9651,19 @@ eventID_chillPingu_01_main:
                        JSR.W CODE_81CAB7                    ;81C595|20B7CA  |81CAB7;
                                                             ;      |        |      ;
           CODE_81C598:
-                       LDA.B $3C                            ;81C598|A53C    |000EA4;
+                       LDA.B r_ev_3c-$E68                   ;81C598|A53C    |000EA4;
                        BEQ CODE_81C5A7                      ;81C59A|F00B    |81C5A7;
                        DEC A                                ;81C59C|3A      |      ;
-                       STA.B $3C                            ;81C59D|853C    |000EA4;
+                       STA.B r_ev_3c-$E68                   ;81C59D|853C    |000EA4;
                        AND.B #$03                           ;81C59F|2903    |      ;
                        BNE CODE_81C5A7                      ;81C5A1|D004    |81C5A7;
                        LDA.B #$0E                           ;81C5A3|A90E    |      ;
-                       TRB.B $11                            ;81C5A5|1411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;81C5A5|1411    |000E79;
                                                             ;      |        |      ;
           CODE_81C5A7:
                        LDA.B #$80                           ;81C5A7|A980    |      ;
-                       TSB.B $27                            ;81C5A9|0427    |000E8F;
-                       LDA.B $3B                            ;81C5AB|A53B    |000EA3;
+                       TSB.B r_ev_27-$E68                   ;81C5A9|0427    |000E8F;
+                       LDA.B r_ev_3b-$E68                   ;81C5AB|A53B    |000EA3;
                        BNE CODE_81C5B3                      ;81C5AD|D004    |81C5B3;
                        JSL.L CODE_849B03                    ;81C5AF|22039B84|849B03;
                                                             ;      |        |      ;
@@ -9598,17 +9672,17 @@ eventID_chillPingu_01_main:
                        AND.B #$7F                           ;81C5B6|297F    |      ;
                        BNE CODE_81C5BE                      ;81C5B8|D004    |81C5BE;
                        LDA.B #$01                           ;81C5BA|A901    |      ;
-                       STA.B $30                            ;81C5BC|8530    |000E98;
+                       STA.B r_ev_30-$E68                   ;81C5BC|8530    |000E98;
                                                             ;      |        |      ;
           CODE_81C5BE:
-                       JML.L CODE_8280B4                    ;81C5BE|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81C5BE|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C5C2:
                        LDA.B #$06                           ;81C5C2|A906    |      ;
-                       STA.B $01                            ;81C5C4|8501    |000E69;
-                       STZ.B $02                            ;81C5C6|6402    |000E6A;
-                       STZ.B $03                            ;81C5C8|6403    |000E6B;
+                       STA.B r_ev_01_state-$E68             ;81C5C4|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;81C5C6|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81C5C8|6403    |000E6B;
                        LDA.B #$01                           ;81C5CA|A901    |      ;
                        TSB.W r_0bd8                         ;81C5CC|0CD80B  |860BD8;
                        TSB.W r_1f0c                         ;81C5CF|0C0C1F  |861F0C;
@@ -9616,13 +9690,13 @@ eventID_chillPingu_01_main:
                        JSR.W CODE_81CA45                    ;81C5D4|2045CA  |81CA45;
                        LDA.B #$13                           ;81C5D7|A913    |      ;
                        JSL.L CODE_8088A2                    ;81C5D9|22A28880|8088A2;
-                       JML.L CODE_8280B4                    ;81C5DD|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81C5DD|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_81C5E1:
                        db $ED,$C5,$9E,$C6,$C6,$C8,$3E,$C9   ;81C5E1|        |009EC5;
                        db $86,$C9,$A7,$C9                   ;81C5E9|        |0000C9;
-                       LDX.B $03                            ;81C5ED|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81C5ED|A603    |000E6B;
                        JMP.W (UNREACH_81C5F2,X)             ;81C5EF|7CF2C5  |81C5F2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9630,12 +9704,12 @@ eventID_chillPingu_01_main:
                        db $FC,$C5,$29,$C6,$43,$C6,$6E,$C6   ;81C5F2|        |8129C5;
                        db $8E,$C6                           ;81C5FA|        |00A9C6;
                        LDA.B #$02                           ;81C5FC|A902    |      ;
-                       STA.B $03                            ;81C5FE|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C5FE|8503    |000E6B;
                        JSL.L CODE_849086                    ;81C600|22869084|849086;
                        AND.B #$03                           ;81C604|2903    |      ;
                        ASL A                                ;81C606|0A      |      ;
                        TAX                                  ;81C607|AA      |      ;
-                       LDA.B $11                            ;81C608|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81C608|A511    |000E79;
                        ASL A                                ;81C60A|0A      |      ;
                        ASL A                                ;81C60B|0A      |      ;
                        REP #$20                             ;81C60C|C220    |      ;
@@ -9644,26 +9718,26 @@ eventID_chillPingu_01_main:
                        LDA.W #$FE80                         ;81C613|A980FE  |      ;
                                                             ;      |        |      ;
           CODE_81C616:
-                       STA.B $1A                            ;81C616|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81C616|851A    |000E82;
                        LDA.W UNREACH_86C6F5,X               ;81C618|BDF5C6  |86C6F5;
-                       STA.B $1C                            ;81C61B|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;81C61B|851C    |000E84;
                        SEP #$20                             ;81C61D|E220    |      ;
                        LDA.B #$2C                           ;81C61F|A92C    |      ;
-                       STA.B $1E                            ;81C621|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;81C621|851E    |000E86;
                        LDA.B #$02                           ;81C623|A902    |      ;
                        JSR.W CODE_81CA45                    ;81C625|2045CA  |81CA45;
                        RTS                                  ;81C628|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_84ACA5                    ;81C629|22A5AC84|84ACA5;
                        JSL.L updateEv_13_14_17_0f           ;81C62D|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81C631|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81C631|A50F    |000E77;
                        BEQ CODE_81C642                      ;81C633|F00D    |81C642;
                        JSR.W CODE_81CA55                    ;81C635|2055CA  |81CA55;
                        LDA.B #$04                           ;81C638|A904    |      ;
-                       STA.B $03                            ;81C63A|8503    |000E6B;
-                       LDA.B $17                            ;81C63C|A517    |000E7F;
+                       STA.B r_ev_03_do-$E68                ;81C63A|8503    |000E6B;
+                       LDA.B r_ev_17-$E68                   ;81C63C|A517    |000E7F;
                        AND.B #$7F                           ;81C63E|297F    |      ;
-                       STA.B $17                            ;81C640|8517    |000E7F;
+                       STA.B r_ev_17-$E68                   ;81C640|8517    |000E7F;
                                                             ;      |        |      ;
           CODE_81C642:
                        RTS                                  ;81C642|60      |      ;
@@ -9672,11 +9746,11 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_8281E8                    ;81C647|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;81C64B|22BE9184|8491BE;
                        JSL.L updateEv_13_14_17_0f           ;81C64F|22EA8E84|848EEA;
-                       LDA.B $17                            ;81C653|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;81C653|A517    |000E7F;
                        BPL CODE_81C66D                      ;81C655|1016    |81C66D;
                        AND.B #$7F                           ;81C657|297F    |      ;
-                       STA.B $17                            ;81C659|8517    |000E7F;
-                       LDA.B $0F                            ;81C65B|A50F    |000E77;
+                       STA.B r_ev_17-$E68                   ;81C659|8517    |000E7F;
+                       LDA.B r_ev_0f-$E68                   ;81C65B|A50F    |000E77;
                        BEQ CODE_81C66D                      ;81C65D|F00E    |81C66D;
                        BMI CODE_81C664                      ;81C65F|3003    |81C664;
                        JMP.W CODE_81CA55                    ;81C661|4C55CA  |81CA55;
@@ -9684,7 +9758,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81C664:
                        LDA.B #$06                           ;81C664|A906    |      ;
-                       STA.B $03                            ;81C666|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C666|8503    |000E6B;
                        LDA.B #$01                           ;81C668|A901    |      ;
                        JSR.W CODE_81CA45                    ;81C66A|2045CA  |81CA45;
                                                             ;      |        |      ;
@@ -9694,22 +9768,22 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_84ACA5                    ;81C66E|22A5AC84|84ACA5;
                        JSL.L CODE_8281E8                    ;81C672|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;81C676|22BE9184|8491BE;
-                       LDA.B $2B                            ;81C67A|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81C67A|A52B    |000E93;
                        AND.B #$04                           ;81C67C|2904    |      ;
                        BEQ CODE_81C68D                      ;81C67E|F00D    |81C68D;
                        LDA.B #$08                           ;81C680|A908    |      ;
-                       STA.B $03                            ;81C682|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C682|8503    |000E6B;
                        LDA.B #$00                           ;81C684|A900    |      ;
                        JSR.W CODE_81CA45                    ;81C686|2045CA  |81CA45;
                        LDA.B #$1E                           ;81C689|A91E    |      ;
-                       STA.B $34                            ;81C68B|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81C68B|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_81C68D:
                        RTS                                  ;81C68D|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_84ACA5                    ;81C68E|22A5AC84|84ACA5;
                        JSL.L updateEv_13_14_17_0f           ;81C692|22EA8E84|848EEA;
-                       DEC.B $34                            ;81C696|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81C696|C634    |000E9C;
                        BNE CODE_81C69D                      ;81C698|D003    |81C69D;
                        JMP.W CODE_81CA07                    ;81C69A|4C07CA  |81CA07;
                                                             ;      |        |      ;
@@ -9717,7 +9791,7 @@ eventID_chillPingu_01_main:
           CODE_81C69D:
                        RTS                                  ;81C69D|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;81C69E|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81C69E|A603    |000E6B;
                        JMP.W (UNREACH_81C6A3,X)             ;81C6A0|7CA3C6  |81C6A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9725,14 +9799,14 @@ eventID_chillPingu_01_main:
                        db $AF,$C6,$F3,$C6,$50,$C7,$BB,$C7   ;81C6A3|        |C6F3C6;
                        db $7B,$C8,$AC,$C8                   ;81C6AB|        |      ;
                        LDA.B #$02                           ;81C6AF|A902    |      ;
-                       STA.B $03                            ;81C6B1|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C6B1|8503    |000E6B;
                        JSL.L CODE_84ACA5                    ;81C6B3|22A5AC84|84ACA5;
                        LDA.B #$01                           ;81C6B7|A901    |      ;
                        JSR.W CODE_81CA45                    ;81C6B9|2045CA  |81CA45;
                        REP #$20                             ;81C6BC|C220    |      ;
                        LDA.W r_0bad                         ;81C6BE|ADAD0B  |860BAD;
                        SEC                                  ;81C6C1|38      |      ;
-                       SBC.B $05                            ;81C6C2|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;81C6C2|E505    |000E6D;
                        BCS CODE_81C6CA                      ;81C6C4|B004    |81C6CA;
                        EOR.W #$FFFF                         ;81C6C6|49FFFF  |      ;
                        INC A                                ;81C6C9|1A      |      ;
@@ -9744,11 +9818,11 @@ eventID_chillPingu_01_main:
                        LDA.W #$002A                         ;81C6D1|A92A00  |      ;
                        STA.W $4206                          ;81C6D4|8D0642  |864206;
                        LDA.W #$0720                         ;81C6D7|A92007  |      ;
-                       STA.B $1C                            ;81C6DA|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;81C6DA|851C    |000E84;
                        LDX.B #$2C                           ;81C6DC|A22C    |      ;
-                       STX.B $1E                            ;81C6DE|861E    |000E86;
+                       STX.B r_ev_1e_weight-$E68            ;81C6DE|861E    |000E86;
                        NOP                                  ;81C6E0|EA      |      ;
-                       LDA.B $10                            ;81C6E1|A510    |000E78;
+                       LDA.B r_ev_10-$E68                   ;81C6E1|A510    |000E78;
                        ASL A                                ;81C6E3|0A      |      ;
                        ASL A                                ;81C6E4|0A      |      ;
                        LDA.W $4214                          ;81C6E5|AD1442  |864214;
@@ -9757,41 +9831,41 @@ eventID_chillPingu_01_main:
                        INC A                                ;81C6ED|1A      |      ;
                                                             ;      |        |      ;
           CODE_81C6EE:
-                       STA.B $1A                            ;81C6EE|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81C6EE|851A    |000E82;
                        SEP #$20                             ;81C6F0|E220    |      ;
                        RTS                                  ;81C6F2|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81C6F3|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;81C6F7|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;81C6FB|22BE9184|8491BE;
-                       LDA.B $1D                            ;81C6FF|A51D    |000E85;
+                       LDA.B r_ev_1d_ySpd-$E68              ;81C6FF|A51D    |000E85;
                        BPL CODE_81C74F                      ;81C701|104C    |81C74F;
                        LDA.B #$04                           ;81C703|A904    |      ;
-                       STA.B $03                            ;81C705|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C705|8503    |000E6B;
                        LDA.B #$07                           ;81C707|A907    |      ;
                        JSL.L CODE_848F07                    ;81C709|22078F84|848F07;
                        LDA.B #$48                           ;81C70D|A948    |      ;
-                       STA.B $34                            ;81C70F|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81C70F|8534    |000E9C;
                        REP #$20                             ;81C711|C220    |      ;
                        LDA.W #$FF00                         ;81C713|A900FF  |      ;
-                       STA.B $1C                            ;81C716|851C    |000E84;
-                       STZ.B $1A                            ;81C718|641A    |000E82;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;81C716|851C    |000E84;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;81C718|641A    |000E82;
                        LDA.W #$C611                         ;81C71A|A911C6  |      ;
-                       STA.B $20                            ;81C71D|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81C71D|8520    |000E88;
                        SEP #$20                             ;81C71F|E220    |      ;
                        LDA.B #$01                           ;81C721|A901    |      ;
-                       STA.B $39                            ;81C723|8539    |000EA1;
-                       STA.B $3A                            ;81C725|853A    |000EA2;
+                       STA.B r_ev_39-$E68                   ;81C723|8539    |000EA1;
+                       STA.B r_ev_3a-$E68                   ;81C725|853A    |000EA2;
                        JSL.L CODE_828358                    ;81C727|22588382|828358;
                        BNE CODE_81C74A                      ;81C72B|D01D    |81C74A;
                        INC.W r_0000,X                       ;81C72D|FE0000  |860000;
                        LDA.B #$1D                           ;81C730|A91D    |      ;
                        STA.W r_000a,X                       ;81C732|9D0A00  |86000A;
-                       LDA.B $11                            ;81C735|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81C735|A511    |000E79;
                        AND.B #$40                           ;81C737|2940    |      ;
                        STA.W r_0011,X                       ;81C739|9D1100  |860011;
                        REP #$20                             ;81C73C|C220    |      ;
-                       LDA.B $05                            ;81C73E|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;81C73E|A505    |000E6D;
                        STA.W r_0005,X                       ;81C740|9D0500  |860005;
                        TDC                                  ;81C743|7B      |      ;
                        STA.W r_000c,X                       ;81C744|9D0C00  |86000C;
@@ -9810,15 +9884,15 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81C750|22EA8E84|848EEA;
                        JSL.L CODE_82825D                    ;81C754|225D8282|82825D;
                        JSL.L CODE_8491BE                    ;81C758|22BE9184|8491BE;
-                       LDA.B $2B                            ;81C75C|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81C75C|A52B    |000E93;
                        AND.B #$04                           ;81C75E|2904    |      ;
                        BEQ CODE_81C776                      ;81C760|F014    |81C776;
                        REP #$20                             ;81C762|C220    |      ;
                        LDA.W #$0200                         ;81C764|A90002  |      ;
-                       STA.B $1C                            ;81C767|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;81C767|851C    |000E84;
                        SEP #$20                             ;81C769|E220    |      ;
                        LDA.B #$08                           ;81C76B|A908    |      ;
-                       STA.B $03                            ;81C76D|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C76D|8503    |000E6B;
                        LDA.B #$08                           ;81C76F|A908    |      ;
                        JSL.L CODE_848F07                    ;81C771|22078F84|848F07;
                        RTS                                  ;81C775|60      |      ;
@@ -9838,29 +9912,29 @@ eventID_chillPingu_01_main:
                        BCC CODE_81C7BA                      ;81C790|9028    |81C7BA;
                        REP #$20                             ;81C792|C220    |      ;
                        LDA.W r_0bb0                         ;81C794|ADB00B  |860BB0;
-                       CMP.B $08                            ;81C797|C508    |000E70;
+                       CMP.B r_ev_08_yPos-$E68              ;81C797|C508    |000E70;
                        SEP #$20                             ;81C799|E220    |      ;
                        BCC CODE_81C7BA                      ;81C79B|901D    |81C7BA;
                        LDA.B #$06                           ;81C79D|A906    |      ;
-                       STA.B $03                            ;81C79F|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C79F|8503    |000E6B;
                        JSL.L CODE_849F19                    ;81C7A1|22199F84|849F19;
                        LDA.B #$09                           ;81C7A5|A909    |      ;
                        JSL.L CODE_848F07                    ;81C7A7|22078F84|848F07;
                        REP #$20                             ;81C7AB|C220    |      ;
                        LDA.W #$01E1                         ;81C7AD|A9E101  |      ;
-                       STA.B $34                            ;81C7B0|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81C7B0|8534    |000E9C;
                        SEP #$20                             ;81C7B2|E220    |      ;
                        LDA.B #$20                           ;81C7B4|A920    |      ;
-                       STA.B $3B                            ;81C7B6|853B    |000EA3;
-                       STZ.B $39                            ;81C7B8|6439    |000EA1;
+                       STA.B r_ev_3b-$E68                   ;81C7B6|853B    |000EA3;
+                       STZ.B r_ev_39-$E68                   ;81C7B8|6439    |000EA1;
                                                             ;      |        |      ;
           CODE_81C7BA:
                        RTS                                  ;81C7BA|60      |      ;
                                                             ;      |        |      ;
                        REP #$20                             ;81C7BB|C220    |      ;
-                       LDA.B $05                            ;81C7BD|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;81C7BD|A505    |000E6D;
                        STA.W r_0bad                         ;81C7BF|8DAD0B  |860BAD;
-                       LDA.B $08                            ;81C7C2|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81C7C2|A508    |000E70;
                        CLC                                  ;81C7C4|18      |      ;
                        ADC.W #$0020                         ;81C7C5|692000  |      ;
                        STA.W r_0bb0                         ;81C7C8|8DB00B  |860BB0;
@@ -9871,20 +9945,20 @@ eventID_chillPingu_01_main:
                        ORA.W r_joy1_buttonPressedLo         ;81C7D6|0DE20B  |860BE2;
                        REP #$20                             ;81C7D9|C220    |      ;
                        BEQ CODE_81C7EA                      ;81C7DB|F00D    |81C7EA;
-                       LDA.B $34                            ;81C7DD|A534    |000E9C;
+                       LDA.B r_ev_34-$E68                   ;81C7DD|A534    |000E9C;
                        SEC                                  ;81C7DF|38      |      ;
                        SBC.W #$0010                         ;81C7E0|E91000  |      ;
                        BCS CODE_81C7E8                      ;81C7E3|B003    |81C7E8;
                        LDA.W #$0001                         ;81C7E5|A90100  |      ;
                                                             ;      |        |      ;
           CODE_81C7E8:
-                       STA.B $34                            ;81C7E8|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81C7E8|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_81C7EA:
-                       DEC.B $34                            ;81C7EA|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81C7EA|C634    |000E9C;
                        SEP #$20                             ;81C7EC|E220    |      ;
                        BEQ CODE_81C847                      ;81C7EE|F057    |81C847;
-                       DEC.B $3B                            ;81C7F0|C63B    |000EA3;
+                       DEC.B r_ev_3b-$E68                   ;81C7F0|C63B    |000EA3;
                        BNE CODE_81C828                      ;81C7F2|D034    |81C828;
                        LDA.W r_0bcf                         ;81C7F4|ADCF0B  |860BCF;
                        AND.B #$7F                           ;81C7F7|297F    |      ;
@@ -9900,7 +9974,7 @@ eventID_chillPingu_01_main:
                        ORA.B #$80                           ;81C807|0980    |      ;
                        STA.W r_0bcf                         ;81C809|8DCF0B  |860BCF;
                        JSL.L CODE_849F19                    ;81C80C|22199F84|849F19;
-                       LDA.B $27                            ;81C810|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;81C810|A527    |000E8F;
                        AND.B #$7F                           ;81C812|297F    |      ;
                        INC A                                ;81C814|1A      |      ;
                        CMP.B #$21                           ;81C815|C921    |      ;
@@ -9909,18 +9983,18 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81C81A:
                        ORA.B #$80                           ;81C81A|0980    |      ;
-                       STA.B $27                            ;81C81C|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;81C81C|8527    |000E8F;
                        LDA.B #$4F                           ;81C81E|A94F    |      ;
                        JSL.L CODE_8088CD                    ;81C820|22CD8880|8088CD;
                        LDA.B #$20                           ;81C824|A920    |      ;
-                       STA.B $3B                            ;81C826|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;81C826|853B    |000EA3;
                                                             ;      |        |      ;
           CODE_81C828:
-                       LDA.B $17                            ;81C828|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;81C828|A517    |000E7F;
                        BPL CODE_81C846                      ;81C82A|101A    |81C846;
                        AND.B #$7F                           ;81C82C|297F    |      ;
-                       STA.B $17                            ;81C82E|8517    |000E7F;
-                       LDA.B $0F                            ;81C830|A50F    |000E77;
+                       STA.B r_ev_17-$E68                   ;81C82E|8517    |000E7F;
+                       LDA.B r_ev_0f-$E68                   ;81C830|A50F    |000E77;
                        REP #$30                             ;81C832|C230    |      ;
                        AND.W #$007F                         ;81C834|297F00  |      ;
                        CLC                                  ;81C837|18      |      ;
@@ -9938,22 +10012,22 @@ eventID_chillPingu_01_main:
           CODE_81C847:
                        JSL.L CODE_849F7E                    ;81C847|227E9F84|849F7E;
                        REP #$20                             ;81C84B|C220    |      ;
-                       LDA.B $08                            ;81C84D|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81C84D|A508    |000E70;
                        SEC                                  ;81C84F|38      |      ;
                        SBC.W #$0008                         ;81C850|E90800  |      ;
-                       STA.B $08                            ;81C853|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;81C853|8508    |000E70;
                        SEP #$20                             ;81C855|E220    |      ;
                                                             ;      |        |      ;
           CODE_81C857:
                        LDA.B #$08                           ;81C857|A908    |      ;
                        JSL.L CODE_848F07                    ;81C859|22078F84|848F07;
-                       STZ.B $3B                            ;81C85D|643B    |000EA3;
+                       STZ.B r_ev_3b-$E68                   ;81C85D|643B    |000EA3;
                        REP #$20                             ;81C85F|C220    |      ;
                        LDA.W #$0200                         ;81C861|A90002  |      ;
-                       STA.B $1C                            ;81C864|851C    |000E84;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;81C864|851C    |000E84;
                        SEP #$20                             ;81C866|E220    |      ;
                        LDA.B #$08                           ;81C868|A908    |      ;
-                       STA.B $03                            ;81C86A|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C86A|8503    |000E6B;
                        REP #$10                             ;81C86C|C210    |      ;
                        LDY.W #$013E                         ;81C86E|A03E01  |      ;
                        LDX.W #$0040                         ;81C871|A24000  |      ;
@@ -9964,24 +10038,24 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_82825D                    ;81C87B|225D8282|82825D;
                        JSL.L updateEv_13_14_17_0f           ;81C87F|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;81C883|22BE9184|8491BE;
-                       LDA.B $2B                            ;81C887|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81C887|A52B    |000E93;
                        AND.B #$08                           ;81C889|2908    |      ;
                        BEQ CODE_81C8AB                      ;81C88B|F01E    |81C8AB;
                                                             ;      |        |      ;
           CODE_81C88D:
                        LDA.B #$0A                           ;81C88D|A90A    |      ;
-                       STA.B $03                            ;81C88F|8503    |000E6B;
-                       STZ.B $39                            ;81C891|6439    |000EA1;
-                       STZ.B $3A                            ;81C893|643A    |000EA2;
+                       STA.B r_ev_03_do-$E68                ;81C88F|8503    |000E6B;
+                       STZ.B r_ev_39-$E68                   ;81C891|6439    |000EA1;
+                       STZ.B r_ev_3a-$E68                   ;81C893|643A    |000EA2;
                        LDA.B #$01                           ;81C895|A901    |      ;
                        JSR.W CODE_81CA45                    ;81C897|2045CA  |81CA45;
-                       STZ.B $1C                            ;81C89A|641C    |000E84;
-                       STZ.B $1D                            ;81C89C|641D    |000E85;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;81C89A|641C    |000E84;
+                       STZ.B r_ev_1d_ySpd-$E68              ;81C89C|641D    |000E85;
                        LDA.B #$2C                           ;81C89E|A92C    |      ;
-                       STA.B $1E                            ;81C8A0|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;81C8A0|851E    |000E86;
                        REP #$20                             ;81C8A2|C220    |      ;
                        LDA.W #$C607                         ;81C8A4|A907C6  |      ;
-                       STA.B $20                            ;81C8A7|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81C8A7|8520    |000E88;
                        SEP #$20                             ;81C8A9|E220    |      ;
                                                             ;      |        |      ;
           CODE_81C8AB:
@@ -9991,7 +10065,7 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81C8B0|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;81C8B4|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;81C8B8|22BE9184|8491BE;
-                       LDA.B $2B                            ;81C8BC|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81C8BC|A52B    |000E93;
                        AND.B #$04                           ;81C8BE|2904    |      ;
                        BEQ CODE_81C8C5                      ;81C8C0|F003    |81C8C5;
                        JMP.W CODE_81CA07                    ;81C8C2|4C07CA  |81CA07;
@@ -10000,26 +10074,26 @@ eventID_chillPingu_01_main:
           CODE_81C8C5:
                        RTS                                  ;81C8C5|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;81C8C6|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81C8C6|A603    |000E6B;
                        JMP.W (UNREACH_81C8CB,X)             ;81C8C8|7CCBC8  |81C8CB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_81C8CB:
                        db $D1,$C8,$DC,$C8,$32,$C9           ;81C8CB|        |0000C8;
                        LDA.B #$02                           ;81C8D1|A902    |      ;
-                       STA.B $03                            ;81C8D3|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C8D3|8503    |000E6B;
                        LDA.B #$03                           ;81C8D5|A903    |      ;
                        JSL.L CODE_848F07                    ;81C8D7|22078F84|848F07;
                        RTS                                  ;81C8DB|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_84ACA5                    ;81C8DC|22A5AC84|84ACA5;
                        JSL.L updateEv_13_14_17_0f           ;81C8E0|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81C8E4|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81C8E4|A50F    |000E77;
                        BEQ CODE_81C931                      ;81C8E6|F049    |81C931;
                        LDA.B #$03                           ;81C8E8|A903    |      ;
-                       STA.B $0B                            ;81C8EA|850B    |000E73;
+                       STA.B r_ev_0b_subID-$E68             ;81C8EA|850B    |000E73;
                        LDA.B #$04                           ;81C8EC|A904    |      ;
-                       STA.B $03                            ;81C8EE|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C8EE|8503    |000E6B;
                        LDA.B #$1E                           ;81C8F0|A91E    |      ;
                        JSL.L CODE_8088A2                    ;81C8F2|22A28880|8088A2;
                                                             ;      |        |      ;
@@ -10029,26 +10103,26 @@ eventID_chillPingu_01_main:
                        INC.W r_0000,X                       ;81C8FC|FE0000  |860000;
                        LDA.B #$08                           ;81C8FF|A908    |      ;
                        STA.W r_000a,X                       ;81C901|9D0A00  |86000A;
-                       LDA.B $0B                            ;81C904|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;81C904|A50B    |000E73;
                        STA.W r_000b,X                       ;81C906|9D0B00  |86000B;
                        REP #$20                             ;81C909|C220    |      ;
                        TDC                                  ;81C90B|7B      |      ;
                        STA.W r_000c,X                       ;81C90C|9D0C00  |86000C;
-                       LDA.B $0B                            ;81C90F|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;81C90F|A50B    |000E73;
                        AND.W #$0003                         ;81C911|290300  |      ;
                        ASL A                                ;81C914|0A      |      ;
                        ASL A                                ;81C915|0A      |      ;
                        TAY                                  ;81C916|A8      |      ;
                        LDA.W UNREACH_86C6E5,Y               ;81C917|B9E5C6  |86C6E5;
                        CLC                                  ;81C91A|18      |      ;
-                       ADC.B $05                            ;81C91B|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;81C91B|6505    |000E6D;
                        STA.W r_0005,X                       ;81C91D|9D0500  |860005;
                        LDA.W UNREACH_86C6E7,Y               ;81C920|B9E7C6  |86C6E7;
                        CLC                                  ;81C923|18      |      ;
-                       ADC.B $08                            ;81C924|6508    |000E70;
+                       ADC.B r_ev_08_yPos-$E68              ;81C924|6508    |000E70;
                        STA.W r_0008,X                       ;81C926|9D0800  |860008;
                        SEP #$20                             ;81C929|E220    |      ;
-                       DEC.B $0B                            ;81C92B|C60B    |000E73;
+                       DEC.B r_ev_0b_subID-$E68             ;81C92B|C60B    |000E73;
                        BPL CODE_81C8F6                      ;81C92D|10C7    |81C8F6;
                                                             ;      |        |      ;
           CODE_81C92F:
@@ -10058,7 +10132,7 @@ eventID_chillPingu_01_main:
                        RTS                                  ;81C931|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81C932|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81C936|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81C936|A50F    |000E77;
                        BPL CODE_81C93D                      ;81C938|1003    |81C93D;
                        JMP.W CODE_81CA07                    ;81C93A|4C07CA  |81CA07;
                                                             ;      |        |      ;
@@ -10066,7 +10140,7 @@ eventID_chillPingu_01_main:
           CODE_81C93D:
                        RTS                                  ;81C93D|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;81C93E|A603    |000E6B;
+                       LDX.B r_ev_03_do-$E68                ;81C93E|A603    |000E6B;
                        JMP.W (UNREACH_81C943,X)             ;81C940|7C43C9  |81C943;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10074,17 +10148,17 @@ eventID_chillPingu_01_main:
                        db $49,$C9,$57,$C9,$7A,$C9           ;81C943|        |      ;
                        JSL.L CODE_84ACA5                    ;81C949|22A5AC84|84ACA5;
                        LDA.B #$02                           ;81C94D|A902    |      ;
-                       STA.B $03                            ;81C94F|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C94F|8503    |000E6B;
                        LDA.B #$03                           ;81C951|A903    |      ;
                        JSR.W CODE_81CA45                    ;81C953|2045CA  |81CA45;
                        RTS                                  ;81C956|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81C957|22EA8E84|848EEA;
-                       LDA.B $17                            ;81C95B|A517    |000E7F;
+                       LDA.B r_ev_17-$E68                   ;81C95B|A517    |000E7F;
                        BPL CODE_81C979                      ;81C95D|101A    |81C979;
                        AND.B #$7F                           ;81C95F|297F    |      ;
-                       STA.B $17                            ;81C961|8517    |000E7F;
-                       LDA.B $0F                            ;81C963|A50F    |000E77;
+                       STA.B r_ev_17-$E68                   ;81C961|8517    |000E7F;
+                       LDA.B r_ev_0f-$E68                   ;81C963|A50F    |000E77;
                        BEQ CODE_81C979                      ;81C965|F012    |81C979;
                        BMI CODE_81C96C                      ;81C967|3003    |81C96C;
                        JMP.W CODE_81CA55                    ;81C969|4C55CA  |81CA55;
@@ -10092,17 +10166,17 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81C96C:
                        LDA.B #$04                           ;81C96C|A904    |      ;
-                       STA.B $03                            ;81C96E|8503    |000E6B;
+                       STA.B r_ev_03_do-$E68                ;81C96E|8503    |000E6B;
                        LDA.B #$00                           ;81C970|A900    |      ;
                        JSR.W CODE_81CA45                    ;81C972|2045CA  |81CA45;
                        LDA.B #$1E                           ;81C975|A91E    |      ;
-                       STA.B $34                            ;81C977|8534    |000E9C;
+                       STA.B r_ev_34-$E68                   ;81C977|8534    |000E9C;
                                                             ;      |        |      ;
           CODE_81C979:
                        RTS                                  ;81C979|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81C97A|22EA8E84|848EEA;
-                       DEC.B $34                            ;81C97E|C634    |000E9C;
+                       DEC.B r_ev_34-$E68                   ;81C97E|C634    |000E9C;
                        BNE CODE_81C985                      ;81C980|D003    |81C985;
                        JMP.W CODE_81CA07                    ;81C982|4C07CA  |81CA07;
                                                             ;      |        |      ;
@@ -10111,41 +10185,41 @@ eventID_chillPingu_01_main:
                        RTS                                  ;81C985|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81C986|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81C98A|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81C98A|A50F    |000E77;
                        BPL CODE_81C9A6                      ;81C98C|1018    |81C9A6;
-                       LDA.B $3D                            ;81C98E|A53D    |000EA5;
-                       STA.B $02                            ;81C990|8502    |000E6A;
-                       LDA.B $2C                            ;81C992|A52C    |000E94;
-                       STA.B $17                            ;81C994|8517    |000E7F;
-                       LDA.B $31                            ;81C996|A531    |000E99;
-                       STA.B $14                            ;81C998|8514    |000E7C;
-                       LDA.B $32                            ;81C99A|A532    |000E9A;
-                       STA.B $15                            ;81C99C|8515    |000E7D;
-                       LDA.B $3E                            ;81C99E|A53E    |000EA6;
-                       STA.B $13                            ;81C9A0|8513    |000E7B;
-                       LDA.B $10                            ;81C9A2|A510    |000E78;
-                       STA.B $0F                            ;81C9A4|850F    |000E77;
+                       LDA.B r_ev_3d-$E68                   ;81C98E|A53D    |000EA5;
+                       STA.B r_ev_02_action-$E68            ;81C990|8502    |000E6A;
+                       LDA.B r_ev_2c-$E68                   ;81C992|A52C    |000E94;
+                       STA.B r_ev_17-$E68                   ;81C994|8517    |000E7F;
+                       LDA.B r_ev_31-$E68                   ;81C996|A531    |000E99;
+                       STA.B r_ev_14-$E68                   ;81C998|8514    |000E7C;
+                       LDA.B r_ev_32-$E68                   ;81C99A|A532    |000E9A;
+                       STA.B r_ev_15-$E68                   ;81C99C|8515    |000E7D;
+                       LDA.B r_ev_3e-$E68                   ;81C99E|A53E    |000EA6;
+                       STA.B r_ev_13-$E68                   ;81C9A0|8513    |000E7B;
+                       LDA.B r_ev_10-$E68                   ;81C9A2|A510    |000E78;
+                       STA.B r_ev_0f-$E68                   ;81C9A4|850F    |000E77;
                                                             ;      |        |      ;
           CODE_81C9A6:
                        RTS                                  ;81C9A6|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $03                            ;81C9A7|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;81C9A7|A503    |000E6B;
                        BNE CODE_81C9BE                      ;81C9A9|D013    |81C9BE;
                        LDA.B #$01                           ;81C9AB|A901    |      ;
                        JSR.W CODE_81CA45                    ;81C9AD|2045CA  |81CA45;
                        REP #$20                             ;81C9B0|C220    |      ;
-                       STZ.B $1C                            ;81C9B2|641C    |000E84;
-                       STZ.B $1A                            ;81C9B4|641A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;81C9B2|641C    |000E84;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;81C9B4|641A    |000E82;
                        SEP #$20                             ;81C9B6|E220    |      ;
                        LDA.B #$2C                           ;81C9B8|A92C    |      ;
-                       STA.B $1E                            ;81C9BA|851E    |000E86;
-                       INC.B $03                            ;81C9BC|E603    |000E6B;
+                       STA.B r_ev_1e_weight-$E68            ;81C9BA|851E    |000E86;
+                       INC.B r_ev_03_do-$E68                ;81C9BC|E603    |000E6B;
                                                             ;      |        |      ;
           CODE_81C9BE:
                        JSL.L updateEv_13_14_17_0f           ;81C9BE|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;81C9C2|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;81C9C6|22BE9184|8491BE;
-                       LDA.B $2B                            ;81C9CA|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81C9CA|A52B    |000E93;
                        AND.B #$04                           ;81C9CC|2904    |      ;
                        BEQ CODE_81C9D3                      ;81C9CE|F003    |81C9D3;
                        JMP.W CODE_81CA07                    ;81C9D0|4C07CA  |81CA07;
@@ -10154,6 +10228,8 @@ eventID_chillPingu_01_main:
           CODE_81C9D3:
                        RTS                                  ;81C9D3|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81C9D4:
                        JSL.L CODE_84A677                    ;81C9D4|2277A684|84A677;
                        BPL CODE_81C9F3                      ;81C9D8|1019    |81C9F3;
                        LDA.W r_level_current                ;81C9DA|AD7A1F  |861F7A;
@@ -10166,7 +10242,7 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_80887F                    ;81C9EB|227F8880|80887F;
                                                             ;      |        |      ;
           CODE_81C9EF:
-                       JML.L CODE_828398                    ;81C9EF|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81C9EF|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81C9F3:
@@ -10175,10 +10251,10 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81C9F8|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_81C9FC:
-                       LDA.B $03                            ;81C9FC|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;81C9FC|A503    |000E6B;
                        CMP.B #$14                           ;81C9FE|C914    |      ;
                        BCS CODE_81CA06                      ;81CA00|B004    |81CA06;
-                       JML.L CODE_8280B4                    ;81CA02|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81CA02|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81CA06:
@@ -10187,7 +10263,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81CA07:
                        REP #$20                             ;81CA07|C220    |      ;
-                       LDA.B $05                            ;81CA09|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;81CA09|A505    |000E6D;
                        SEC                                  ;81CA0B|38      |      ;
                        SBC.W r_0bad                         ;81CA0C|EDAD0B  |860BAD;
                        BCS CODE_81CA15                      ;81CA0F|B004    |81CA15;
@@ -10213,26 +10289,26 @@ eventID_chillPingu_01_main:
                        LDA.B #$40                           ;81CA28|A940    |      ;
                                                             ;      |        |      ;
           CODE_81CA2A:
-                       LDX.B $36                            ;81CA2A|A636    |000E9E;
+                       LDX.B r_ev_36-$E68                   ;81CA2A|A636    |000E9E;
                        BEQ CODE_81CA31                      ;81CA2C|F003    |81CA31;
                        CLC                                  ;81CA2E|18      |      ;
                        ADC.B #$60                           ;81CA2F|6960    |      ;
                                                             ;      |        |      ;
           CODE_81CA31:
-                       STA.B $37                            ;81CA31|8537    |000E9F;
+                       STA.B r_ev_37-$E68                   ;81CA31|8537    |000E9F;
                        JSL.L CODE_849086                    ;81CA33|22869084|849086;
                        AND.B #$1F                           ;81CA37|291F    |      ;
                        CLC                                  ;81CA39|18      |      ;
-                       ADC.B $37                            ;81CA3A|6537    |000E9F;
+                       ADC.B r_ev_37-$E68                   ;81CA3A|6537    |000E9F;
                        TAX                                  ;81CA3C|AA      |      ;
                        LDA.W UNREACH_86C625,X               ;81CA3D|BD25C6  |86C625;
-                       STA.B $02                            ;81CA40|8502    |000E6A;
-                       STZ.B $03                            ;81CA42|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;81CA40|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81CA42|6403    |000E6B;
                        RTS                                  ;81CA44|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81CA45:
-                       LDX.B $36                            ;81CA45|A636    |000E9E;
+                       LDX.B r_ev_36-$E68                   ;81CA45|A636    |000E9E;
                        BEQ CODE_81CA4C                      ;81CA47|F003    |81CA4C;
                        CLC                                  ;81CA49|18      |      ;
                        ADC.B #$05                           ;81CA4A|6905    |      ;
@@ -10248,7 +10324,7 @@ eventID_chillPingu_01_main:
                        LDA.B #$02                           ;81CA55|A902    |      ;
                        STA.W r_0000                         ;81CA57|8D0000  |860000;
                        STZ.W r_0001                         ;81CA5A|9C0100  |860001;
-                       LDA.B $0F                            ;81CA5D|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81CA5D|A50F    |000E77;
                        LSR A                                ;81CA5F|4A      |      ;
                        REP #$20                             ;81CA60|C220    |      ;
                        LDA.W #$FFF5                         ;81CA62|A9F5FF  |      ;
@@ -10256,7 +10332,7 @@ eventID_chillPingu_01_main:
                        LDA.W #$0006                         ;81CA67|A90600  |      ;
                                                             ;      |        |      ;
           CODE_81CA6A:
-                       STA.B $37                            ;81CA6A|8537    |000E9F;
+                       STA.B r_ev_37-$E68                   ;81CA6A|8537    |000E9F;
                                                             ;      |        |      ;
           CODE_81CA6C:
                        JSL.L CODE_828358                    ;81CA6C|22588382|828358;
@@ -10266,22 +10342,22 @@ eventID_chillPingu_01_main:
                        STA.W r_000a,X                       ;81CA77|9D0A00  |86000A;
                        LDA.W r_0000                         ;81CA7A|AD0000  |860000;
                        STA.W r_000b,X                       ;81CA7D|9D0B00  |86000B;
-                       LDA.B $11                            ;81CA80|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81CA80|A511    |000E79;
                        AND.B #$40                           ;81CA82|2940    |      ;
                        STA.W r_0011,X                       ;81CA84|9D1100  |860011;
                        ASL A                                ;81CA87|0A      |      ;
                        ASL A                                ;81CA88|0A      |      ;
                        REP #$20                             ;81CA89|C220    |      ;
-                       LDA.B $37                            ;81CA8B|A537    |000E9F;
+                       LDA.B r_ev_37-$E68                   ;81CA8B|A537    |000E9F;
                        BCC CODE_81CA93                      ;81CA8D|9004    |81CA93;
                        EOR.W #$FFFF                         ;81CA8F|49FFFF  |      ;
                        INC A                                ;81CA92|1A      |      ;
                                                             ;      |        |      ;
           CODE_81CA93:
                        CLC                                  ;81CA93|18      |      ;
-                       ADC.B $05                            ;81CA94|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;81CA94|6505    |000E6D;
                        STA.W r_0005,X                       ;81CA96|9D0500  |860005;
-                       LDA.B $08                            ;81CA99|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81CA99|A508    |000E70;
                        SEC                                  ;81CA9B|38      |      ;
                        SBC.W #$0007                         ;81CA9C|E90700  |      ;
                        STA.W r_0008,X                       ;81CA9F|9D0800  |860008;
@@ -10301,26 +10377,26 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81CAB7:
-                       LDA.B $0C                            ;81CAB7|A50C    |000E74;
+                       LDA.B r_ev_0c-$E68                   ;81CAB7|A50C    |000E74;
                        BEQ CODE_81CB05                      ;81CAB9|F04A    |81CB05;
-                       DEC.B $0C                            ;81CABB|C60C    |000E74;
+                       DEC.B r_ev_0c-$E68                   ;81CABB|C60C    |000E74;
                        BNE CODE_81CB05                      ;81CABD|D046    |81CB05;
-                       INC.B $36                            ;81CABF|E636    |000E9E;
+                       INC.B r_ev_36-$E68                   ;81CABF|E636    |000E9E;
                        LDA.B #$04                           ;81CAC1|A904    |      ;
                        JSR.W CODE_81CA45                    ;81CAC3|2045CA  |81CA45;
-                       LDA.B $17                            ;81CAC6|A517    |000E7F;
-                       STA.B $2C                            ;81CAC8|852C    |000E94;
-                       LDA.B $0F                            ;81CACA|A50F    |000E77;
-                       STA.B $10                            ;81CACC|8510    |000E78;
-                       LDA.B $13                            ;81CACE|A513    |000E7B;
-                       STA.B $3E                            ;81CAD0|853E    |000EA6;
-                       LDA.B $14                            ;81CAD2|A514    |000E7C;
-                       STA.B $31                            ;81CAD4|8531    |000E99;
-                       LDA.B $15                            ;81CAD6|A515    |000E7D;
-                       STA.B $32                            ;81CAD8|8532    |000E9A;
+                       LDA.B r_ev_17-$E68                   ;81CAC6|A517    |000E7F;
+                       STA.B r_ev_2c-$E68                   ;81CAC8|852C    |000E94;
+                       LDA.B r_ev_0f-$E68                   ;81CACA|A50F    |000E77;
+                       STA.B r_ev_10-$E68                   ;81CACC|8510    |000E78;
+                       LDA.B r_ev_13-$E68                   ;81CACE|A513    |000E7B;
+                       STA.B r_ev_3e-$E68                   ;81CAD0|853E    |000EA6;
+                       LDA.B r_ev_14-$E68                   ;81CAD2|A514    |000E7C;
+                       STA.B r_ev_31-$E68                   ;81CAD4|8531    |000E99;
+                       LDA.B r_ev_15-$E68                   ;81CAD6|A515    |000E7D;
+                       STA.B r_ev_32-$E68                   ;81CAD8|8532    |000E9A;
                        LDA.B #$0A                           ;81CADA|A90A    |      ;
-                       STA.B $3D                            ;81CADC|853D    |000EA5;
-                       STZ.B $03                            ;81CADE|6403    |000E6B;
+                       STA.B r_ev_3d-$E68                   ;81CADC|853D    |000EA5;
+                       STZ.B r_ev_03_do-$E68                ;81CADE|6403    |000E6B;
                        LDY.B #$03                           ;81CAE0|A003    |      ;
                                                             ;      |        |      ;
           CODE_81CAE2:
@@ -10332,9 +10408,9 @@ eventID_chillPingu_01_main:
                        TYA                                  ;81CAF0|98      |      ;
                        STA.W r_000b,X                       ;81CAF1|9D0B00  |86000B;
                        REP #$20                             ;81CAF4|C220    |      ;
-                       LDA.B $05                            ;81CAF6|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;81CAF6|A505    |000E6D;
                        STA.W r_0005,X                       ;81CAF8|9D0500  |860005;
-                       LDA.B $08                            ;81CAFB|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81CAFB|A508    |000E70;
                        STA.W r_0008,X                       ;81CAFD|9D0800  |860008;
                        DEY                                  ;81CB00|88      |      ;
                        BPL CODE_81CAE2                      ;81CB01|10DF    |81CAE2;
@@ -10346,23 +10422,29 @@ eventID_chillPingu_01_main:
                        RTS                                  ;81CB05|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_81CB06:
+eventID_lunchOctopus_07_main:
                        LDY.B #$27                           ;81CB06|A027    |      ;
                        LDA.B ($0C),Y                        ;81CB08|B10C    |000EB4;
                        AND.B #$7F                           ;81CB0A|297F    |      ;
                        BNE CODE_81CB12                      ;81CB0C|D004    |81CB12;
-                       JML.L CODE_828398                    ;81CB0E|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81CB0E|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81CB12:
-                       LDX.B $01                            ;81CB12|A601    |000EA9;
-                       JMP.W (UNREACH_81CB17,X)             ;81CB14|7C17CB  |81CB17;
+                       LDX.B r_ev_2_01_state-$EA8           ;81CB12|A601    |000EA9;
+                       JMP.W (PTR16_81CB17,X)               ;81CB14|7C17CB  |81CB17;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_81CB17:
-                       db $23,$CB,$6D,$CB,$E0,$CB,$E6,$CB   ;81CB17|        |0000CB;
-                       db $EC,$CB,$F2,$CB                   ;81CB1F|        |00F2CB;
-                       JSL.L CODE_82827D                    ;81CB23|227D8282|82827D;
+         PTR16_81CB17:
+                       dw CODE_81CB23                       ;81CB17|        |81CB23;
+                       dw CODE_81CB6D                       ;81CB19|        |81CB6D;
+                       dw CODE_81CBE0                       ;81CB1B|        |81CBE0;
+                       dw CODE_81CBE6                       ;81CB1D|        |81CBE6;
+                       dw CODE_81CBEC                       ;81CB1F|        |81CBEC;
+                       dw CODE_81CBF2                       ;81CB21|        |81CBF2;
+                                                            ;      |        |      ;
+          CODE_81CB23:
+                       JSL.L enemy_initiate_jumpPhysic      ;81CB23|227D8282|82827D;
                        LDA.B #$01                           ;81CB27|A901    |      ;
                        STA.B $27                            ;81CB29|8527    |000F8F;
                        LDA.B #$02                           ;81CB2B|A902    |      ;
@@ -10393,27 +10475,29 @@ eventID_chillPingu_01_main:
                        ASL A                                ;81CB54|0A      |      ;
                        TAX                                  ;81CB55|AA      |      ;
                        REP #$20                             ;81CB56|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;81CB58|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;81CB58|BD37EE  |86EE37;
                        STA.B $1A                            ;81CB5B|851A    |000F82;
                        LDA.W DATA8_86EE39,X                 ;81CB5D|BD39EE  |86EE39;
                        STA.B $1C                            ;81CB60|851C    |000F84;
                        LDA.W #$C6FD                         ;81CB62|A9FDC6  |      ;
                        STA.B $20                            ;81CB65|8520    |000F88;
                        SEP #$20                             ;81CB67|E220    |      ;
-                       JML.L CODE_8280B4                    ;81CB69|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81CB69|5CB48082|8280B4;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81CB6D:
                        JSL.L CODE_82820A                    ;81CB6D|220A8282|82820A;
-                       LDA.B $0B                            ;81CB71|A50B    |000EB3;
+                       LDA.B r_ev_2_0b_subID-$EA8           ;81CB71|A50B    |000EB3;
                        EOR.W $0B9C                          ;81CB73|4D9C0B  |860B9C;
                        LSR A                                ;81CB76|4A      |      ;
                        BCC CODE_81CBDE                      ;81CB77|9065    |81CBDE;
                        JSL.L CODE_84A081                    ;81CB79|2281A084|84A081;
                        SEC                                  ;81CB7D|38      |      ;
-                       SBC.B $33                            ;81CB7E|E533    |000EDB;
+                       SBC.B r_ev_2_33-$EA8                 ;81CB7E|E533    |000EDB;
                        BEQ CODE_81CBB2                      ;81CB80|F030    |81CBB2;
                        AND.B #$10                           ;81CB82|2910    |      ;
                        BEQ CODE_81CB8A                      ;81CB84|F004    |81CB8A;
-                       DEC.B $33                            ;81CB86|C633    |000EDB;
+                       DEC.B r_ev_2_33-$EA8                 ;81CB86|C633    |000EDB;
                        BRA CODE_81CB8C                      ;81CB88|8002    |81CB8C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10421,19 +10505,19 @@ eventID_chillPingu_01_main:
                        INC.B $33                            ;81CB8A|E633    |000F5B;
                                                             ;      |        |      ;
           CODE_81CB8C:
-                       LDA.B $33                            ;81CB8C|A533    |000EDB;
+                       LDA.B r_ev_2_33-$EA8                 ;81CB8C|A533    |000EDB;
                        AND.B #$1F                           ;81CB8E|291F    |      ;
-                       STA.B $33                            ;81CB90|8533    |000EDB;
+                       STA.B r_ev_2_33-$EA8                 ;81CB90|8533    |000EDB;
                        ASL A                                ;81CB92|0A      |      ;
                        ASL A                                ;81CB93|0A      |      ;
                        TAX                                  ;81CB94|AA      |      ;
                        REP #$20                             ;81CB95|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;81CB97|BD37EE  |86EE37;
-                       STA.B $1A                            ;81CB9A|851A    |000EC2;
+                       LDA.W stormEagle_56_subID,X          ;81CB97|BD37EE  |86EE37;
+                       STA.B r_ev_2_1a_xSpdSub-$EA8         ;81CB9A|851A    |000EC2;
                        LDA.W DATA8_86EE39,X                 ;81CB9C|BD39EE  |86EE39;
-                       STA.B $1C                            ;81CB9F|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;81CB9F|851C    |000EC4;
                        SEP #$20                             ;81CBA1|E220    |      ;
-                       LDA.B $33                            ;81CBA3|A533    |000EDB;
+                       LDA.B r_ev_2_33-$EA8                 ;81CBA3|A533    |000EDB;
                        EOR.B #$1F                           ;81CBA5|491F    |      ;
                        LSR A                                ;81CBA7|4A      |      ;
                        CLC                                  ;81CBA8|18      |      ;
@@ -10444,7 +10528,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81CBB2:
                        REP #$20                             ;81CBB2|C220    |      ;
-                       LDA.B $1A                            ;81CBB4|A51A    |000EC2;
+                       LDA.B r_ev_2_1a_xSpdSub-$EA8         ;81CBB4|A51A    |000EC2;
                        BPL CODE_81CBBC                      ;81CBB6|1004    |81CBBC;
                        EOR.W #$FFFF                         ;81CBB8|49FFFF  |      ;
                        INC A                                ;81CBBB|1A      |      ;
@@ -10455,8 +10539,8 @@ eventID_chillPingu_01_main:
                        LSR A                                ;81CBBE|4A      |      ;
                        LSR A                                ;81CBBF|4A      |      ;
                        TAX                                  ;81CBC0|AA      |      ;
-                       STX.B $1F                            ;81CBC1|861F    |000EC7;
-                       LDA.B $1C                            ;81CBC3|A51C    |000EC4;
+                       STX.B r_ev_2_1f-$EA8                 ;81CBC1|861F    |000EC7;
+                       LDA.B r_ev_2_1c_ySpdSub-$EA8         ;81CBC3|A51C    |000EC4;
                        BPL CODE_81CBCB                      ;81CBC5|1004    |81CBCB;
                        EOR.W #$FFFF                         ;81CBC7|49FFFF  |      ;
                        INC A                                ;81CBCA|1A      |      ;
@@ -10467,27 +10551,35 @@ eventID_chillPingu_01_main:
                        LSR A                                ;81CBCD|4A      |      ;
                        LSR A                                ;81CBCE|4A      |      ;
                        SEP #$20                             ;81CBCF|E220    |      ;
-                       STA.B $1E                            ;81CBD1|851E    |000EC6;
-                       LDA.B $33                            ;81CBD3|A533    |000EDB;
+                       STA.B r_ev_2_1e_weight-$EA8          ;81CBD1|851E    |000EC6;
+                       LDA.B r_ev_2_33-$EA8                 ;81CBD3|A533    |000EDB;
                        LSR A                                ;81CBD5|4A      |      ;
                        LSR A                                ;81CBD6|4A      |      ;
                        AND.B #$06                           ;81CBD7|2906    |      ;
                        CLC                                  ;81CBD9|18      |      ;
                        ADC.B #$04                           ;81CBDA|6904    |      ;
-                       STA.B $01                            ;81CBDC|8501    |000EA9;
+                       STA.B r_ev_2_01_state-$EA8           ;81CBDC|8501    |000EA9;
                                                             ;      |        |      ;
           CODE_81CBDE:
                        BRA CODE_81CBF6                      ;81CBDE|8016    |81CBF6;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81CBE0:
                        JSL.L CODE_8281CF                    ;81CBE0|22CF8182|8281CF;
                        BRA CODE_81CBF6                      ;81CBE4|8010    |81CBF6;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81CBE6:
                        JSL.L CODE_828195                    ;81CBE6|22958182|828195;
                        BRA CODE_81CBF6                      ;81CBEA|800A    |81CBF6;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81CBEC:
                        JSL.L CODE_828174                    ;81CBEC|22748182|828174;
                        BRA CODE_81CBF6                      ;81CBF0|8004    |81CBF6;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81CBF2:
                        JSL.L CODE_8281B2                    ;81CBF2|22B28182|8281B2;
                                                             ;      |        |      ;
           CODE_81CBF6:
@@ -10495,8 +10587,8 @@ eventID_chillPingu_01_main:
                        BNE CODE_81CC0B                      ;81CBFA|D00F    |81CC0B;
                        JSL.L CODE_849B03                    ;81CBFC|22039B84|849B03;
                        BNE CODE_81CC0F                      ;81CC00|D00D    |81CC0F;
-                       JSL.L CODE_8280B4                    ;81CC02|22B48082|8280B4;
-                       LDA.B $0E                            ;81CC06|A50E    |000EB6;
+                       JSL.L eventID_vile_68_afterInit      ;81CC02|22B48082|8280B4;
+                       LDA.B r_ev_2_0e-$EA8                 ;81CC06|A50E    |000EB6;
                        BEQ CODE_81CC0F                      ;81CC08|F005    |81CC0F;
                        RTL                                  ;81CC0A|6B      |      ;
                                                             ;      |        |      ;
@@ -10505,55 +10597,72 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_84A4B5                    ;81CC0B|22B5A484|84A4B5;
                                                             ;      |        |      ;
           CODE_81CC0F:
-                       JML.L CODE_828398                    ;81CC0F|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81CC0F|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_81CC13:
-                       LDA.B $33                            ;81CC13|A533    |000EDB;
-                       TSB.B $11                            ;81CC15|0411    |000EB9;
-                       LDX.B $01                            ;81CC17|A601    |000EA9;
-                       JSR.W (PTR16_81CC77,X)               ;81CC19|FC77CC  |81CC77;
-                       LDA.B $39                            ;81CC1C|A539    |000EE1;
+eventID_RT55J_09_main:
+                       LDA.B r_ev_2_33-$EA8                 ;81CC13|A533    |000EDB;
+                       TSB.B r_ev_2_11_sprAtri-$EA8         ;81CC15|0411    |000EB9;
+                       LDX.B r_ev_2_01_state-$EA8           ;81CC17|A601    |000EA9;
+                       JSR.W (RT55J_state,X)                ;81CC19|FC77CC  |81CC77;
+                       LDA.B r_ev_2_39-$EA8                 ;81CC1C|A539    |000EE1;
                        BNE CODE_81CC3C                      ;81CC1E|D01C    |81CC3C;
-                       STZ.B $28                            ;81CC20|6428    |000ED0;
+                       STZ.B r_ev_2_28-$EA8                 ;81CC20|6428    |000ED0;
                        REP #$20                             ;81CC22|C220    |      ;
                        LDA.W #$C70B                         ;81CC24|A90BC7  |      ;
-                       STA.B $20                            ;81CC27|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;81CC27|8520    |000EC8;
                        SEP #$20                             ;81CC29|E220    |      ;
                        JSL.L CODE_849B03                    ;81CC2B|22039B84|849B03;
                        JSL.L CODE_849B43                    ;81CC2F|22439B84|849B43;
                        REP #$20                             ;81CC33|C220    |      ;
                        LDA.W #$C701                         ;81CC35|A901C7  |      ;
-                       STA.B $20                            ;81CC38|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;81CC38|8520    |000EC8;
                        SEP #$20                             ;81CC3A|E220    |      ;
                                                             ;      |        |      ;
           CODE_81CC3C:
                        LDA.B #$06                           ;81CC3C|A906    |      ;
-                       LDX.B $3A                            ;81CC3E|A63A    |000EE2;
+                       LDX.B r_ev_2_3a-$EA8                 ;81CC3E|A63A    |000EE2;
                        BEQ CODE_81CC46                      ;81CC40|F004    |81CC46;
-                       DEC.B $3A                            ;81CC42|C63A    |000EE2;
+                       DEC.B r_ev_2_3a-$EA8                 ;81CC42|C63A    |000EE2;
                        LDA.B #$05                           ;81CC44|A905    |      ;
                                                             ;      |        |      ;
           CODE_81CC46:
-                       STA.B $28                            ;81CC46|8528    |000ED0;
+                       STA.B r_ev_2_28-$EA8                 ;81CC46|8528    |000ED0;
                        JSL.L CODE_849B03                    ;81CC48|22039B84|849B03;
                        JSL.L CODE_849B43                    ;81CC4C|22439B84|849B43;
-                       db $F0,$1E,$10,$10,$E6,$37,$A9,$0A   ;81CC50|        |81CC70;
-                       db $85,$01,$64,$02,$A5,$38,$F0,$04   ;81CC58|        |000001;
-                       db $22,$7E,$9F,$84,$A5,$3A,$D0,$08   ;81CC60|        |849F7E;
-                       db $A9,$0E,$14,$11,$A9,$1E,$85,$3A   ;81CC68|        |      ;
-                       db $20,$AB,$CF,$5C,$B4,$80,$82       ;81CC70|        |81CFAB;
+                       BEQ CODE_81CC70                      ;81CC50|F01E    |81CC70;
+                       BPL CODE_81CC64                      ;81CC52|1010    |81CC64;
+                       INC.B r_ev_2_37-$EA8                 ;81CC54|E637    |000EDF;
+                       LDA.B #$0A                           ;81CC56|A90A    |      ;
+                       STA.B r_ev_2_01_state-$EA8           ;81CC58|8501    |000EA9;
+                       STZ.B r_ev_2_02_action-$EA8          ;81CC5A|6402    |000EAA;
+                       LDA.B r_ev_2_38-$EA8                 ;81CC5C|A538    |000EE0;
+                       BEQ CODE_81CC64                      ;81CC5E|F004    |81CC64;
+                       JSL.L CODE_849F7E                    ;81CC60|227E9F84|849F7E;
                                                             ;      |        |      ;
-         PTR16_81CC77:
-                       dw CODE_81CC83                       ;81CC77|        |81CC83;
+          CODE_81CC64:
+                       LDA.B r_ev_2_3a-$EA8                 ;81CC64|A53A    |000EE2;
+                       BNE CODE_81CC70                      ;81CC66|D008    |81CC70;
+                       LDA.B #$0E                           ;81CC68|A90E    |      ;
+                       TRB.B r_ev_2_11_sprAtri-$EA8         ;81CC6A|1411    |000EB9;
+                       LDA.B #$1E                           ;81CC6C|A91E    |      ;
+                       STA.B r_ev_2_3a-$EA8                 ;81CC6E|853A    |000EE2;
+                                                            ;      |        |      ;
+          CODE_81CC70:
+                       JSR.W UNREACH_81CFAB                 ;81CC70|20ABCF  |81CFAB;
+                       JML.L eventID_vile_68_afterInit      ;81CC73|5CB48082|8280B4;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+          RT55J_state:
+                       dw RT55J_state_00                    ;81CC77|        |81CC83;
                        dw UNREACH_81CCB9                    ;81CC79|        |81CCB9;
                        dw UNREACH_81CD11                    ;81CC7B|        |81CD11;
                        dw UNREACH_81CD6C                    ;81CC7D|        |81CD6C;
                        dw UNREACH_81CDC4                    ;81CC7F|        |81CDC4;
                        dw UNREACH_81CED6                    ;81CC81|        |81CED6;
                                                             ;      |        |      ;
-          CODE_81CC83:
-                       JSL.L CODE_82827D                    ;81CC83|227D8282|82827D;
+       RT55J_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;81CC83|227D8282|82827D;
                        LDA.B $11                            ;81CC87|A511    |000011;
                        AND.B #$0E                           ;81CC89|290E    |      ;
                        STA.B $33                            ;81CC8B|8533    |000033;
@@ -10684,31 +10793,33 @@ eventID_chillPingu_01_main:
                        db $C2,$20,$BD,$0F,$C7,$90,$04,$49   ;81CF8E|        |      ;
                        db $FF,$FF,$1A,$18,$65,$05,$8D,$AD   ;81CF96|        |181AFF;
                        db $0B,$BD,$17,$C7,$18,$65,$08,$8D   ;81CF9E|        |      ;
-                       db $B0,$0B,$E2,$20,$60,$A5,$27,$29   ;81CFA6|        |81CFB3;
-                       db $7F,$C9,$20,$B0,$7F,$E6,$35,$A5   ;81CFAE|        |B020C9;
-                       db $27,$29,$7F,$38,$E9,$10,$B0,$02   ;81CFB6|        |000029;
-                       db $A9,$00,$0A,$18,$69,$0C,$C5,$35   ;81CFBE|        |      ;
-                       db $B0,$6A,$22,$D3,$82,$82,$D0,$60   ;81CFC6|        |81D032;
-                       db $FE,$00,$00,$A9,$09,$9D,$0A,$00   ;81CFCE|        |000000;
-                       db $A9,$80,$9D,$0B,$00,$9C,$01,$00   ;81CFD6|        |      ;
-                       db $9C,$03,$00,$22,$86,$90,$84,$29   ;81CFDE|        |000003;
-                       db $0F,$8D,$00,$00,$22,$86,$90,$84   ;81CFE6|        |00008D;
-                       db $8D,$02,$00,$8D,$04,$00,$C9,$00   ;81CFEE|        |000002;
-                       db $C2,$20,$10,$0E,$A9,$F0,$FF,$1C   ;81CFF6|        |      ;
-                       db $02,$00,$A5,$05,$38,$ED,$02,$00   ;81CFFE|        |      ;
-                       db $80,$09,$AD,$02,$00,$29,$0F,$00   ;81D006|        |81D011;
-                       db $18,$65,$05,$9D,$05,$00,$A5,$08   ;81D00E|        |      ;
-                       db $38,$ED,$00,$00,$38,$E9,$06,$00   ;81D016|        |      ;
-                       db $9D,$08,$00,$7B,$9D,$1A,$00,$AD   ;81D01E|        |000008;
-                       db $04,$00,$29,$80,$00,$9D,$0C,$00   ;81D026|        |000000;
-                       db $E2,$30,$64,$35,$60               ;81D02E|        |      ;
+                       db $B0,$0B,$E2,$20,$60               ;81CFA6|        |81CFB3;
                                                             ;      |        |      ;
-          CODE_81D033:
-                       LDA.B $3C                            ;81D033|A53C    |000EA4;
-                       TSB.B $11                            ;81D035|0411    |000E79;
-                       LDX.B $01                            ;81D037|A601    |000E69;
-                       JSR.W (UNREACH_81D078,X)             ;81D039|FC78D0  |81D078;
-                       LDA.B $27                            ;81D03C|A527    |000E8F;
+       UNREACH_81CFAB:
+                       db $A5,$27,$29,$7F,$C9,$20,$B0,$7F   ;81CFAB|        |000027;
+                       db $E6,$35,$A5,$27,$29,$7F,$38,$E9   ;81CFB3|        |000035;
+                       db $10,$B0,$02,$A9,$00,$0A,$18,$69   ;81CFBB|        |81CF6D;
+                       db $0C,$C5,$35,$B0,$6A,$22,$D3,$82   ;81CFC3|        |0035C5;
+                       db $82,$D0,$60,$FE,$00,$00,$A9,$09   ;81CFCB|        |81309E;
+                       db $9D,$0A,$00,$A9,$80,$9D,$0B,$00   ;81CFD3|        |00000A;
+                       db $9C,$01,$00,$9C,$03,$00,$22,$86   ;81CFDB|        |000001;
+                       db $90,$84,$29,$0F,$8D,$00,$00,$22   ;81CFE3|        |81CF69;
+                       db $86,$90,$84,$8D,$02,$00,$8D,$04   ;81CFEB|        |000090;
+                       db $00,$C9,$00,$C2,$20,$10,$0E,$A9   ;81CFF3|        |      ;
+                       db $F0,$FF,$1C,$02,$00,$A5,$05,$38   ;81CFFB|        |81CFFC;
+                       db $ED,$02,$00,$80,$09,$AD,$02,$00   ;81D003|        |000002;
+                       db $29,$0F,$00,$18,$65,$05,$9D,$05   ;81D00B|        |      ;
+                       db $00,$A5,$08,$38,$ED,$00,$00,$38   ;81D013|        |      ;
+                       db $E9,$06,$00,$9D,$08,$00,$7B,$9D   ;81D01B|        |      ;
+                       db $1A,$00,$AD,$04,$00,$29,$80,$00   ;81D023|        |      ;
+                       db $9D,$0C,$00,$E2,$30,$64,$35,$60   ;81D02B|        |00000C;
+                                                            ;      |        |      ;
+eventID_axeMax_0b_main:
+                       LDA.B r_ev_3c-$E68                   ;81D033|A53C    |000EA4;
+                       TSB.B r_ev_11_sprAtri-$E68           ;81D035|0411    |000E79;
+                       LDX.B r_ev_01_state-$E68             ;81D037|A601    |000E69;
+                       JSR.W (axeMax_0b_state,X)            ;81D039|FC78D0  |81D078;
+                       LDA.B r_ev_27-$E68                   ;81D03C|A527    |000E8F;
                        AND.B #$7F                           ;81D03E|297F    |      ;
                        BEQ CODE_81D046                      ;81D040|F004    |81D046;
                        JSL.L CODE_849B03                    ;81D042|22039B84|849B03;
@@ -10717,51 +10828,56 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_849B43                    ;81D046|22439B84|849B43;
                        BEQ CODE_81D06A                      ;81D04A|F01E    |81D06A;
                        LDA.B #$0E                           ;81D04C|A90E    |      ;
-                       TRB.B $11                            ;81D04E|1411    |000E79;
-                       LDA.B $27                            ;81D050|A527    |000E8F;
+                       TRB.B r_ev_11_sprAtri-$E68           ;81D04E|1411    |000E79;
+                       LDA.B r_ev_27-$E68                   ;81D050|A527    |000E8F;
                        AND.B #$7F                           ;81D052|297F    |      ;
                        BNE CODE_81D06A                      ;81D054|D014    |81D06A;
                        LDA.B #$06                           ;81D056|A906    |      ;
-                       STA.B $01                            ;81D058|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;81D058|8501    |000E69;
                        JSL.L CODE_84A4B5                    ;81D05A|22B5A484|84A4B5;
                        REP #$20                             ;81D05E|C220    |      ;
-                       LDA.B $33                            ;81D060|A533    |000E9B;
-                       STA.B $05                            ;81D062|8505    |000E6D;
-                       LDA.B $35                            ;81D064|A535    |000E9D;
-                       STA.B $08                            ;81D066|8508    |000E70;
+                       LDA.B r_ev_33-$E68                   ;81D060|A533    |000E9B;
+                       STA.B r_ev_05_xPos-$E68              ;81D062|8505    |000E6D;
+                       LDA.B r_ev_35-$E68                   ;81D064|A535    |000E9D;
+                       STA.B r_ev_08_yPos-$E68              ;81D066|8508    |000E70;
                        SEP #$20                             ;81D068|E220    |      ;
                                                             ;      |        |      ;
           CODE_81D06A:
                        JSR.W CODE_81D2BE                    ;81D06A|20BED2  |81D2BE;
-                       LDA.B $27                            ;81D06D|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;81D06D|A527    |000E8F;
                        AND.B #$7F                           ;81D06F|297F    |      ;
                        BNE CODE_81D074                      ;81D071|D001    |81D074;
                        RTL                                  ;81D073|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D074:
-                       JML.L CODE_8280B4                    ;81D074|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81D074|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_81D078:
-                       db $80,$D0,$16,$D1,$78,$D1,$FA,$D1   ;81D078|        |81D04A;
-                       JSL.L CODE_82827D                    ;81D080|227D8282|82827D;
-                       LDA.B $11                            ;81D084|A511    |000E79;
+      axeMax_0b_state:
+                       dw axeMax_0b_state_00                ;81D078|        |81D080;
+                       dw CODE_81D116                       ;81D07A|        |81D116;
+                       dw CODE_81D178                       ;81D07C|        |81D178;
+                       dw CODE_81D1FA                       ;81D07E|        |81D1FA;
+                                                            ;      |        |      ;
+   axeMax_0b_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;81D080|227D8282|82827D;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81D084|A511    |000E79;
                        AND.B #$0E                           ;81D086|290E    |      ;
-                       STA.B $3C                            ;81D088|853C    |000EA4;
+                       STA.B r_ev_3c-$E68                   ;81D088|853C    |000EA4;
                        LDA.B #$03                           ;81D08A|A903    |      ;
-                       STA.B $26                            ;81D08C|8526    |000E8E;
+                       STA.B r_ev_26-$E68                   ;81D08C|8526    |000E8E;
                        LDA.B #$08                           ;81D08E|A908    |      ;
-                       STA.B $27                            ;81D090|8527    |000E8F;
-                       STZ.B $3D                            ;81D092|643D    |000EA5;
+                       STA.B r_ev_27-$E68                   ;81D090|8527    |000E8F;
+                       STZ.B r_ev_3d-$E68                   ;81D092|643D    |000EA5;
                        REP #$20                             ;81D094|C220    |      ;
                        LDA.W #$C82F                         ;81D096|A92FC8  |      ;
-                       STA.B $20                            ;81D099|8520    |000E88;
-                       LDA.B $05                            ;81D09B|A505    |000E6D;
-                       STA.B $33                            ;81D09D|8533    |000E9B;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81D099|8520    |000E88;
+                       LDA.B r_ev_05_xPos-$E68              ;81D09B|A505    |000E6D;
+                       STA.B r_ev_33-$E68                   ;81D09D|8533    |000E9B;
                        STA.W r_0000                         ;81D09F|8D0000  |860000;
-                       LDA.B $08                            ;81D0A2|A508    |000E70;
-                       STA.B $35                            ;81D0A4|8535    |000E9D;
+                       LDA.B r_ev_08_yPos-$E68              ;81D0A2|A508    |000E70;
+                       STA.B r_ev_35-$E68                   ;81D0A4|8535    |000E9D;
                        STA.W r_0002                         ;81D0A6|8D0200  |860002;
                        LDA.W #$0402                         ;81D0A9|A90204  |      ;
                        STA.W r_0004                         ;81D0AC|8D0400  |860004;
@@ -10771,49 +10887,51 @@ eventID_chillPingu_01_main:
                        db $68,$5C,$87,$83,$82               ;81D0B7|        |      ;
                                                             ;      |        |      ;
           CODE_81D0BC:
-                       LDA.B $05                            ;81D0BC|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;81D0BC|A505    |000E6D;
                        STA.W r_0000                         ;81D0BE|8D0000  |860000;
-                       LDA.B $08                            ;81D0C1|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81D0C1|A508    |000E70;
                        SEC                                  ;81D0C3|38      |      ;
                        SBC.W #$0010                         ;81D0C4|E91000  |      ;
                        STA.W r_0002                         ;81D0C7|8D0200  |860002;
                        LDA.W #$0403                         ;81D0CA|A90304  |      ;
                        STA.W r_0004                         ;81D0CD|8D0400  |860004;
                        JSR.W CODE_81D200                    ;81D0D0|2000D2  |81D200;
-                       STA.B $37                            ;81D0D3|8537    |000E9F;
-                       LDA.B $05                            ;81D0D5|A505    |000E6D;
+                       STA.B r_ev_37-$E68                   ;81D0D3|8537    |000E9F;
+                       LDA.B r_ev_05_xPos-$E68              ;81D0D5|A505    |000E6D;
                        STA.W r_0000                         ;81D0D7|8D0000  |860000;
-                       LDA.B $08                            ;81D0DA|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81D0DA|A508    |000E70;
                        SEC                                  ;81D0DC|38      |      ;
                        SBC.W #$0020                         ;81D0DD|E92000  |      ;
                        STA.W r_0002                         ;81D0E0|8D0200  |860002;
                        LDA.W #$0403                         ;81D0E3|A90304  |      ;
                        JSR.W CODE_81D200                    ;81D0E6|2000D2  |81D200;
-                       STA.B $39                            ;81D0E9|8539    |000EA1;
+                       STA.B r_ev_39-$E68                   ;81D0E9|8539    |000EA1;
                        SEP #$20                             ;81D0EB|E220    |      ;
                        LDA.B #$04                           ;81D0ED|A904    |      ;
-                       STA.B $12                            ;81D0EF|8512    |000E7A;
+                       STA.B r_ev_12-$E68                   ;81D0EF|8512    |000E7A;
                        REP #$20                             ;81D0F1|C220    |      ;
                        LDA.W #$0020                         ;81D0F3|A92000  |      ;
                        CLC                                  ;81D0F6|18      |      ;
-                       ADC.B $05                            ;81D0F7|6505    |000E6D;
-                       STA.B $05                            ;81D0F9|8505    |000E6D;
-                       LDA.B $08                            ;81D0FB|A508    |000E70;
+                       ADC.B r_ev_05_xPos-$E68              ;81D0F7|6505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;81D0F9|8505    |000E6D;
+                       LDA.B r_ev_08_yPos-$E68              ;81D0FB|A508    |000E70;
                        SEC                                  ;81D0FD|38      |      ;
                        SBC.W #$000E                         ;81D0FE|E90E00  |      ;
-                       STA.B $08                            ;81D101|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;81D101|8508    |000E70;
                        SEP #$20                             ;81D103|E220    |      ;
-                       STZ.B $0B                            ;81D105|640B    |000E73;
+                       STZ.B r_ev_0b_subID-$E68             ;81D105|640B    |000E73;
                        LDA.B #$40                           ;81D107|A940    |      ;
-                       STA.B $1E                            ;81D109|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;81D109|851E    |000E86;
                        LDA.B #$1E                           ;81D10B|A91E    |      ;
-                       STA.B $3B                            ;81D10D|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;81D10D|853B    |000EA3;
                        LDA.B #$05                           ;81D10F|A905    |      ;
                        JSL.L CODE_848F07                    ;81D111|22078F84|848F07;
                        RTS                                  ;81D115|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81D116:
                        JSR.W CODE_81D23A                    ;81D116|203AD2  |81D23A;
-                       LDX.B $02                            ;81D119|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;81D119|A602    |000E6A;
                        JSR.W (UNREACH_81D121,X)             ;81D11B|FC21D1  |81D121;
                        JMP.W CODE_81D282                    ;81D11E|4C82D2  |81D282;
                                                             ;      |        |      ;
@@ -10821,125 +10939,129 @@ eventID_chillPingu_01_main:
        UNREACH_81D121:
                        db $27,$D1,$27,$D1,$61,$D1           ;81D121|        |0000D1;
                        JSL.L updateEv_13_14_17_0f           ;81D127|22EA8E84|848EEA;
-                       LDA.B $3D                            ;81D12B|A53D    |000EA5;
+                       LDA.B r_ev_3d-$E68                   ;81D12B|A53D    |000EA5;
                        BEQ CODE_81D140                      ;81D12D|F011    |81D140;
                        LDA.B #$78                           ;81D12F|A978    |      ;
-                       STA.B $3B                            ;81D131|853B    |000EE3;
+                       STA.B r_ev_2_3b-$EA8                 ;81D131|853B    |000EE3;
                        LDA.B #$00                           ;81D133|A900    |      ;
                        JSL.L CODE_848F07                    ;81D135|22078F84|848F07;
                        LDA.B #$04                           ;81D139|A904    |      ;
-                       STA.B $02                            ;81D13B|8502    |000EAA;
-                       STZ.B $3D                            ;81D13D|643D    |000EE5;
+                       STA.B r_ev_2_02_action-$EA8          ;81D13B|8502    |000EAA;
+                       STZ.B r_ev_2_3d-$EA8                 ;81D13D|643D    |000EE5;
                        RTS                                  ;81D13F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D140:
-                       DEC.B $3B                            ;81D140|C63B    |000EA3;
+                       DEC.B r_ev_3b-$E68                   ;81D140|C63B    |000EA3;
                        BNE CODE_81D160                      ;81D142|D01C    |81D160;
                        REP #$10                             ;81D144|C210    |      ;
-                       LDX.B $39                            ;81D146|A639    |000EA1;
+                       LDX.B r_ev_39-$E68                   ;81D146|A639    |000EA1;
                        BEQ CODE_81D15A                      ;81D148|F010    |81D15A;
                        LDA.W r_0001,X                       ;81D14A|BD0100  |860001;
                        CMP.B #$04                           ;81D14D|C904    |      ;
                        BNE CODE_81D15A                      ;81D14F|D009    |81D15A;
                        SEP #$10                             ;81D151|E210    |      ;
                        LDA.B #$04                           ;81D153|A904    |      ;
-                       STA.B $01                            ;81D155|8501    |000E69;
-                       STZ.B $02                            ;81D157|6402    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;81D155|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;81D157|6402    |000E6A;
                        RTS                                  ;81D159|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D15A:
                        SEP #$10                             ;81D15A|E210    |      ;
                        LDA.B #$01                           ;81D15C|A901    |      ;
-                       STA.B $3B                            ;81D15E|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;81D15E|853B    |000EA3;
                                                             ;      |        |      ;
           CODE_81D160:
                        RTS                                  ;81D160|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81D161|22EA8E84|848EEA;
-                       DEC.B $3B                            ;81D165|C63B    |000EE3;
+                       DEC.B r_ev_2_3b-$EA8                 ;81D165|C63B    |000EE3;
                        BNE CODE_81D177                      ;81D167|D00E    |81D177;
                        LDA.B #$05                           ;81D169|A905    |      ;
                        JSL.L CODE_848F07                    ;81D16B|22078F84|848F07;
                        LDA.B #$20                           ;81D16F|A920    |      ;
-                       STA.B $3B                            ;81D171|853B    |000EE3;
+                       STA.B r_ev_2_3b-$EA8                 ;81D171|853B    |000EE3;
                        LDA.B #$02                           ;81D173|A902    |      ;
-                       STA.B $02                            ;81D175|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;81D175|8502    |000EAA;
                                                             ;      |        |      ;
           CODE_81D177:
                        RTS                                  ;81D177|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81D178:
                        JSR.W CODE_81D23A                    ;81D178|203AD2  |81D23A;
-                       LDX.B $02                            ;81D17B|A602    |000E6A;
+                       LDX.B r_ev_02_action-$E68            ;81D17B|A602    |000E6A;
                        JMP.W (UNREACH_81D180,X)             ;81D17D|7C80D1  |81D180;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_81D180:
                        db $8E,$D1,$9C,$D1,$C4,$D1,$8E,$D1   ;81D180|        |009CD1;
                        db $9C,$D1,$C4,$D1,$D7,$D1           ;81D188|        |00C4D1;
-                       INC.B $02                            ;81D18E|E602    |000E6A;
-                       INC.B $02                            ;81D190|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;81D18E|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;81D190|E602    |000E6A;
                        LDA.B #$01                           ;81D192|A901    |      ;
                        JSL.L CODE_848F07                    ;81D194|22078F84|848F07;
                        LDA.B #$24                           ;81D198|A924    |      ;
-                       STA.B $3B                            ;81D19A|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;81D19A|853B    |000EA3;
                        JSL.L updateEv_13_14_17_0f           ;81D19C|22EA8E84|848EEA;
-                       DEC.B $3B                            ;81D1A0|C63B    |000EA3;
+                       DEC.B r_ev_3b-$E68                   ;81D1A0|C63B    |000EA3;
                        BNE CODE_81D1C3                      ;81D1A2|D01F    |81D1C3;
                        REP #$10                             ;81D1A4|C210    |      ;
-                       LDX.B $37                            ;81D1A6|A637    |000E9F;
+                       LDX.B r_ev_37-$E68                   ;81D1A6|A637    |000E9F;
                        BEQ CODE_81D1BD                      ;81D1A8|F013    |81D1BD;
                        LDA.B #$06                           ;81D1AA|A906    |      ;
                        STA.W r_0001,X                       ;81D1AC|9D0100  |860001;
                        STZ.W r_0002,X                       ;81D1AF|9E0200  |860002;
                        SEP #$10                             ;81D1B2|E210    |      ;
-                       INC.B $02                            ;81D1B4|E602    |000E6A;
-                       INC.B $02                            ;81D1B6|E602    |000E6A;
-                       STZ.B $37                            ;81D1B8|6437    |000E9F;
-                       STZ.B $38                            ;81D1BA|6438    |000EA0;
+                       INC.B r_ev_02_action-$E68            ;81D1B4|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;81D1B6|E602    |000E6A;
+                       STZ.B r_ev_37-$E68                   ;81D1B8|6437    |000E9F;
+                       STZ.B r_ev_38-$E68                   ;81D1BA|6438    |000EA0;
                        RTS                                  ;81D1BC|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D1BD:
                        SEP #$10                             ;81D1BD|E210    |      ;
                        LDA.B #$0C                           ;81D1BF|A90C    |      ;
-                       STA.B $02                            ;81D1C1|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81D1C1|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_81D1C3:
                        RTS                                  ;81D1C3|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81D1C4|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81D1C8|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81D1C8|A50F    |000E77;
                        BPL CODE_81D1D6                      ;81D1CA|100A    |81D1D6;
-                       LDA.B $13                            ;81D1CC|A513    |000E7B;
+                       LDA.B r_ev_13-$E68                   ;81D1CC|A513    |000E7B;
                        CMP.B #$02                           ;81D1CE|C902    |      ;
                        BNE CODE_81D1D6                      ;81D1D0|D004    |81D1D6;
-                       INC.B $02                            ;81D1D2|E602    |000E6A;
-                       INC.B $02                            ;81D1D4|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;81D1D2|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;81D1D4|E602    |000E6A;
                                                             ;      |        |      ;
           CODE_81D1D6:
                        RTS                                  ;81D1D6|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81D1D7|22EA8E84|848EEA;
-                       LDA.B $0F                            ;81D1DB|A50F    |000E77;
+                       LDA.B r_ev_0f-$E68                   ;81D1DB|A50F    |000E77;
                        BPL CODE_81D1F9                      ;81D1DD|101A    |81D1F9;
-                       LDA.B $13                            ;81D1DF|A513    |000E7B;
+                       LDA.B r_ev_13-$E68                   ;81D1DF|A513    |000E7B;
                        CMP.B #$01                           ;81D1E1|C901    |      ;
                        BNE CODE_81D1F9                      ;81D1E3|D014    |81D1F9;
                        LDA.B #$05                           ;81D1E5|A905    |      ;
                        JSL.L CODE_848F07                    ;81D1E7|22078F84|848F07;
                        LDA.B #$02                           ;81D1EB|A902    |      ;
-                       STA.B $01                            ;81D1ED|8501    |000E69;
-                       STA.B $02                            ;81D1EF|8502    |000E6A;
+                       STA.B r_ev_01_state-$E68             ;81D1ED|8501    |000E69;
+                       STA.B r_ev_02_action-$E68            ;81D1EF|8502    |000E6A;
                        LDA.B #$20                           ;81D1F1|A920    |      ;
-                       STA.B $3B                            ;81D1F3|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;81D1F3|853B    |000EA3;
                        LDA.B #$28                           ;81D1F5|A928    |      ;
-                       STA.B $0B                            ;81D1F7|850B    |000E73;
+                       STA.B r_ev_0b_subID-$E68             ;81D1F7|850B    |000E73;
                                                             ;      |        |      ;
           CODE_81D1F9:
                        RTS                                  ;81D1F9|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81D1FA:
                        JSR.W CODE_81D23A                    ;81D1FA|203AD2  |81D23A;
                        JMP.W CODE_81D282                    ;81D1FD|4C82D2  |81D282;
                                                             ;      |        |      ;
@@ -10958,7 +11080,7 @@ eventID_chillPingu_01_main:
                        STA.W r_0008,X                       ;81D21A|9D0800  |860008;
                        LDA.W r_0004                         ;81D21D|AD0400  |860004;
                        STA.W r_000c,X                       ;81D220|9D0C00  |86000C;
-                       LDA.B $35                            ;81D223|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;81D223|A535    |000E9D;
                        SEC                                  ;81D225|38      |      ;
                        SBC.W #$0010                         ;81D226|E91000  |      ;
                        STA.W r_003a,X                       ;81D229|9D3A00  |86003A;
@@ -10977,39 +11099,39 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D23A:
-                       LDA.B $0B                            ;81D23A|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;81D23A|A50B    |000E73;
                        BNE CODE_81D242                      ;81D23C|D004    |81D242;
                        LDA.B #$10                           ;81D23E|A910    |      ;
-                       STA.B $0B                            ;81D240|850B    |000E73;
+                       STA.B r_ev_0b_subID-$E68             ;81D240|850B    |000E73;
                                                             ;      |        |      ;
           CODE_81D242:
                        REP #$10                             ;81D242|C210    |      ;
-                       LDX.B $37                            ;81D244|A637    |000E9F;
+                       LDX.B r_ev_37-$E68                   ;81D244|A637    |000E9F;
                        BEQ CODE_81D262                      ;81D246|F01A    |81D262;
                        LDA.W r_0000,X                       ;81D248|BD0000  |860000;
                        BEQ CODE_81D262                      ;81D24B|F015    |81D262;
-                       LDX.B $39                            ;81D24D|A639    |000EA1;
+                       LDX.B r_ev_39-$E68                   ;81D24D|A639    |000EA1;
                        BEQ CODE_81D25B                      ;81D24F|F00A    |81D25B;
                        LDA.W r_0000,X                       ;81D251|BD0000  |860000;
                        BEQ CODE_81D25B                      ;81D254|F005    |81D25B;
                        REP #$10                             ;81D256|C210    |      ;
-                       STZ.B $0B                            ;81D258|640B    |000E73;
+                       STZ.B r_ev_0b_subID-$E68             ;81D258|640B    |000E73;
                        RTS                                  ;81D25A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D25B:
-                       STZ.B $39                            ;81D25B|6439    |000EA1;
-                       STZ.B $3A                            ;81D25D|643A    |000EA2;
+                       STZ.B r_ev_39-$E68                   ;81D25B|6439    |000EA1;
+                       STZ.B r_ev_3a-$E68                   ;81D25D|643A    |000EA2;
                        SEP #$10                             ;81D25F|E210    |      ;
                        RTS                                  ;81D261|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D262:
-                       LDX.B $39                            ;81D262|A639    |000EA1;
+                       LDX.B r_ev_39-$E68                   ;81D262|A639    |000EA1;
                        BEQ CODE_81D277                      ;81D264|F011    |81D277;
                        LDA.W r_0000,X                       ;81D266|BD0000  |860000;
                        BEQ CODE_81D277                      ;81D269|F00C    |81D277;
-                       STX.B $37                            ;81D26B|8637    |000E9F;
+                       STX.B r_ev_37-$E68                   ;81D26B|8637    |000E9F;
                        LDA.B #$08                           ;81D26D|A908    |      ;
                        STA.W r_0001,X                       ;81D26F|9D0100  |860001;
                        STZ.W r_0002,X                       ;81D272|9E0200  |860002;
@@ -11017,45 +11139,45 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D277:
-                       STZ.B $37                            ;81D277|6437    |000E9F;
-                       STZ.B $38                            ;81D279|6438    |000EA0;
+                       STZ.B r_ev_37-$E68                   ;81D277|6437    |000E9F;
+                       STZ.B r_ev_38-$E68                   ;81D279|6438    |000EA0;
                                                             ;      |        |      ;
           CODE_81D27B:
-                       STZ.B $39                            ;81D27B|6439    |000EA1;
-                       STZ.B $3A                            ;81D27D|643A    |000EA2;
+                       STZ.B r_ev_39-$E68                   ;81D27B|6439    |000EA1;
+                       STZ.B r_ev_3a-$E68                   ;81D27D|643A    |000EA2;
                        SEP #$10                             ;81D27F|E210    |      ;
                        RTS                                  ;81D281|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D282:
-                       LDA.B $0B                            ;81D282|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;81D282|A50B    |000E73;
                        BEQ CODE_81D2BD                      ;81D284|F037    |81D2BD;
-                       DEC.B $0B                            ;81D286|C60B    |000E73;
+                       DEC.B r_ev_0b_subID-$E68             ;81D286|C60B    |000E73;
                        BNE CODE_81D2BD                      ;81D288|D033    |81D2BD;
                        REP #$30                             ;81D28A|C230    |      ;
-                       LDA.B $33                            ;81D28C|A533    |000E9B;
+                       LDA.B r_ev_33-$E68                   ;81D28C|A533    |000E9B;
                        STA.W r_0000                         ;81D28E|8D0000  |860000;
                        LDA.W #$0203                         ;81D291|A90302  |      ;
                        STA.W r_0004                         ;81D294|8D0400  |860004;
-                       LDX.B $37                            ;81D297|A637    |000E9F;
+                       LDX.B r_ev_37-$E68                   ;81D297|A637    |000E9F;
                        BEQ CODE_81D2AB                      ;81D299|F010    |81D2AB;
-                       LDA.B $35                            ;81D29B|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;81D29B|A535    |000E9D;
                        SEC                                  ;81D29D|38      |      ;
                        SBC.W #$0010                         ;81D29E|E91000  |      ;
                        STA.W r_0002                         ;81D2A1|8D0200  |860002;
                        JSR.W CODE_81D200                    ;81D2A4|2000D2  |81D200;
-                       STA.B $39                            ;81D2A7|8539    |000EA1;
+                       STA.B r_ev_39-$E68                   ;81D2A7|8539    |000EA1;
                        BRA CODE_81D2BB                      ;81D2A9|8010    |81D2BB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D2AB:
-                       LDA.B $35                            ;81D2AB|A535    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;81D2AB|A535    |000E9D;
                        STA.W r_0002                         ;81D2AD|8D0200  |860002;
                        JSR.W CODE_81D200                    ;81D2B0|2000D2  |81D200;
-                       STA.B $37                            ;81D2B3|8537    |000E9F;
+                       STA.B r_ev_37-$E68                   ;81D2B3|8537    |000E9F;
                        SEP #$20                             ;81D2B5|E220    |      ;
                        LDA.B #$10                           ;81D2B7|A910    |      ;
-                       STA.B $0B                            ;81D2B9|850B    |000E73;
+                       STA.B r_ev_0b_subID-$E68             ;81D2B9|850B    |000E73;
                                                             ;      |        |      ;
           CODE_81D2BB:
                        SEP #$30                             ;81D2BB|E230    |      ;
@@ -11066,31 +11188,31 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81D2BE:
                        REP #$10                             ;81D2BE|C210    |      ;
-                       LDX.B $05                            ;81D2C0|A605    |000E6D;
+                       LDX.B r_ev_05_xPos-$E68              ;81D2C0|A605    |000E6D;
                        PHX                                  ;81D2C2|DA      |      ;
-                       LDX.B $08                            ;81D2C3|A608    |000E70;
+                       LDX.B r_ev_08_yPos-$E68              ;81D2C3|A608    |000E70;
                        PHX                                  ;81D2C5|DA      |      ;
-                       LDX.B $33                            ;81D2C6|A633    |000E9B;
-                       STX.B $05                            ;81D2C8|8605    |000E6D;
-                       LDX.B $35                            ;81D2CA|A635    |000E9D;
-                       STX.B $08                            ;81D2CC|8608    |000E70;
-                       JSL.L CODE_82806E                    ;81D2CE|226E8082|82806E;
+                       LDX.B r_ev_33-$E68                   ;81D2C6|A633    |000E9B;
+                       STX.B r_ev_05_xPos-$E68              ;81D2C8|8605    |000E6D;
+                       LDX.B r_ev_35-$E68                   ;81D2CA|A635    |000E9D;
+                       STX.B r_ev_08_yPos-$E68              ;81D2CC|8608    |000E70;
+                       JSL.L initPosAllign                  ;81D2CE|226E8082|82806E;
                        PLX                                  ;81D2D2|FA      |      ;
-                       STX.B $08                            ;81D2D3|8608    |000E70;
+                       STX.B r_ev_08_yPos-$E68              ;81D2D3|8608    |000E70;
                        PLX                                  ;81D2D5|FA      |      ;
-                       STX.B $05                            ;81D2D6|8605    |000E6D;
+                       STX.B r_ev_05_xPos-$E68              ;81D2D6|8605    |000E6D;
                        BCC CODE_81D2DE                      ;81D2D8|9004    |81D2DE;
-                       JSL.L CODE_828387                    ;81D2DA|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;81D2DA|22878382|828387;
                                                             ;      |        |      ;
           CODE_81D2DE:
                        RTS                                  ;81D2DE|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_81D2DF:
+eventID_sineFaller_10_main:
                        LDA.B $36                            ;81D2DF|A536    |00105E;
                        TSB.B $11                            ;81D2E1|0411    |001039;
                        LDX.B $01                            ;81D2E3|A601    |001029;
-                       JSR.W (UNREACH_81D31F,X)             ;81D2E5|FC1FD3  |81D31F;
+                       JSR.W (sineFaller_10_state,X)        ;81D2E5|FC1FD3  |81D31F;
                        JSL.L CODE_849B03                    ;81D2E8|22039B84|849B03;
                        BEQ CODE_81D2F0                      ;81D2EC|F002    |81D2F0;
                        INC.B $3B                            ;81D2EE|E63B    |000FA3;
@@ -11110,13 +11232,13 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_84A4B5                    ;81D30A|22B5A484|84A4B5;
                                                             ;      |        |      ;
           CODE_81D30E:
-                       JML.L CODE_828398                    ;81D30E|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81D30E|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D312:
                        LDA.B $00                            ;81D312|A500    |001028;
                        BEQ CODE_81D31E                      ;81D314|F008    |81D31E;
-                       JSL.L CODE_8280B4                    ;81D316|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81D316|22B48082|8280B4;
                        LDA.B $0E                            ;81D31A|A50E    |001036;
                        BEQ CODE_81D30E                      ;81D31C|F0F0    |81D30E;
                                                             ;      |        |      ;
@@ -11124,18 +11246,24 @@ eventID_chillPingu_01_main:
                        RTL                                  ;81D31E|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_81D31F:
-                       db $2B,$D3,$8A,$D3,$B0,$D3,$57,$D4   ;81D31F|        |      ;
-                       db $86,$D4,$B5,$D4                   ;81D327|        |0000D4;
+  sineFaller_10_state:
+                       dw sineFaller_10_state_00            ;81D31F|        |81D32B;
+                       dw CODE_81D38A                       ;81D321|        |81D38A;
+                       dw CODE_81D3B0                       ;81D323|        |81D3B0;
+                       dw CODE_81D457                       ;81D325|        |81D457;
+                       dw UNREACH_81D486                    ;81D327|        |81D486;
+                       dw UNREACH_81D4B5                    ;81D329|        |81D4B5;
+                                                            ;      |        |      ;
+sineFaller_10_state_00:
                        JSL.L CODE_84A1D5                    ;81D32B|22D5A184|84A1D5;
                        CPY.B #$03                           ;81D32F|C003    |      ;
                        BCC CODE_81D338                      ;81D331|9005    |81D338;
-                       JSL.L CODE_828398                    ;81D333|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81D333|22988382|828398;
                        RTS                                  ;81D337|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D338:
-                       JSL.L CODE_82827D                    ;81D338|227D8282|82827D;
+                       JSL.L enemy_initiate_jumpPhysic      ;81D338|227D8282|82827D;
                        LDA.B $11                            ;81D33C|A511    |001039;
                        AND.B #$0E                           ;81D33E|290E    |      ;
                        STA.B $36                            ;81D340|8536    |00105E;
@@ -11167,6 +11295,8 @@ eventID_chillPingu_01_main:
                        TSB.B $11                            ;81D387|0411    |001039;
                        RTS                                  ;81D389|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81D38A:
                        JSL.L updateEv_13_14_17_0f           ;81D38A|22EA8E84|848EEA;
                        JSL.L CODE_82820A                    ;81D38E|220A8282|82820A;
                        REP #$20                             ;81D392|C220    |      ;
@@ -11186,6 +11316,8 @@ eventID_chillPingu_01_main:
                        SEP #$20                             ;81D3AB|E220    |      ;
                        JMP.W CODE_81D508                    ;81D3AD|4C08D5  |81D508;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81D3B0:
                        LDA.B $3B                            ;81D3B0|A53B    |001063;
                        BEQ CODE_81D3BB                      ;81D3B2|F007    |81D3BB;
                        LDA.B #$06                           ;81D3B4|A906    |      ;
@@ -11288,6 +11420,8 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_8281CF                    ;81D450|22CF8182|8281CF;
                        JMP.W CODE_81D508                    ;81D454|4C08D5  |81D508;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81D457:
                        LDA.B $02                            ;81D457|A502    |000F6A;
                        BNE CODE_81D476                      ;81D459|D01B    |81D476;
                        INC.B $02                            ;81D45B|E602    |000F6A;
@@ -11313,23 +11447,27 @@ eventID_chillPingu_01_main:
           CODE_81D485:
                        RTS                                  ;81D485|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+       UNREACH_81D486:
                        db $A5,$02,$D0,$14,$E6,$02,$C2,$20   ;81D486|        |000002;
                        db $64,$1A,$64,$1C,$E2,$20,$A9,$40   ;81D48E|        |00001A;
                        db $85,$1E,$A9,$01,$22,$07,$8F,$84   ;81D496|        |00001E;
                        db $22,$E8,$81,$82,$22,$BE,$91,$84   ;81D49E|        |8281E8;
                        db $A5,$2B,$29,$04,$F0,$08,$A9,$0A   ;81D4A6|        |00002B;
-                       db $85,$01,$A9,$02,$85,$02,$60,$A6   ;81D4AE|        |000001;
-                       db $02,$7C,$BA,$D4,$C2,$D4,$CC,$D4   ;81D4B6|        |      ;
-                       db $EC,$D4,$03,$D5,$A9,$02,$85,$02   ;81D4BE|        |0003D4;
-                       db $A9,$01,$22,$07,$8F,$84,$22,$EA   ;81D4C6|        |      ;
-                       db $8E,$84,$A5,$0F,$10,$17,$A9,$04   ;81D4CE|        |00A584;
-                       db $85,$02,$A9,$02,$22,$07,$8F,$84   ;81D4D6|        |000002;
-                       db $A9,$30,$85,$35,$C2,$20,$A9,$C0   ;81D4DE|        |      ;
-                       db $FF,$85,$1C,$E2,$20,$60,$22,$EA   ;81D4E6|        |E21C85;
-                       db $8E,$84,$22,$5D,$82,$82,$C6,$35   ;81D4EE|        |002284;
-                       db $D0,$0A,$A9,$06,$85,$02,$A9,$03   ;81D4F6|        |81D502;
-                       db $22,$07,$8F,$84,$60,$22,$EA,$8E   ;81D4FE|        |848F07;
-                       db $84,$60                           ;81D506|        |000060;
+                       db $85,$01,$A9,$02,$85,$02,$60       ;81D4AE|        |000001;
+                                                            ;      |        |      ;
+       UNREACH_81D4B5:
+                       db $A6,$02,$7C,$BA,$D4,$C2,$D4,$CC   ;81D4B5|        |000002;
+                       db $D4,$EC,$D4,$03,$D5,$A9,$02,$85   ;81D4BD|        |0000EC;
+                       db $02,$A9,$01,$22,$07,$8F,$84,$22   ;81D4C5|        |      ;
+                       db $EA,$8E,$84,$A5,$0F,$10,$17,$A9   ;81D4CD|        |      ;
+                       db $04,$85,$02,$A9,$02,$22,$07,$8F   ;81D4D5|        |000085;
+                       db $84,$A9,$30,$85,$35,$C2,$20,$A9   ;81D4DD|        |0000A9;
+                       db $C0,$FF,$85,$1C,$E2,$20,$60,$22   ;81D4E5|        |      ;
+                       db $EA,$8E,$84,$22,$5D,$82,$82,$C6   ;81D4ED|        |      ;
+                       db $35,$D0,$0A,$A9,$06,$85,$02,$A9   ;81D4F5|        |0000D0;
+                       db $03,$22,$07,$8F,$84,$60,$22,$EA   ;81D4FD|        |000022;
+                       db $8E,$84,$60                       ;81D505|        |006084;
                                                             ;      |        |      ;
           CODE_81D508:
                        LDA.B $00                            ;81D508|A500    |001028;
@@ -11368,48 +11506,60 @@ eventID_chillPingu_01_main:
                        STZ.B $02                            ;81D539|6402    |000FAA;
                        RTS                                  ;81D53B|60      |      ;
                                                             ;      |        |      ;
-                       db $22,$BE,$91,$84,$A5,$2B,$F0,$0C   ;81D53C|        |8491BE;
-                       db $64,$02,$A2,$08,$29,$04,$F0,$02   ;81D544|        |000002;
-                       db $A2,$0A,$86,$01,$60               ;81D54C|        |      ;
+                       JSL.L CODE_8491BE                    ;81D53C|22BE9184|8491BE;
+                       LDA.B $2B                            ;81D540|A52B    |000FD3;
+                       BEQ CODE_81D550                      ;81D542|F00C    |81D550;
+                       STZ.B $02                            ;81D544|6402    |000FAA;
+                       LDX.B #$08                           ;81D546|A208    |      ;
+                       AND.B #$04                           ;81D548|2904    |      ;
+                       BEQ CODE_81D54E                      ;81D54A|F002    |81D54E;
+                       LDX.B #$0A                           ;81D54C|A20A    |      ;
                                                             ;      |        |      ;
-          CODE_81D551:
-                       LDA.B $3D                            ;81D551|A53D    |000EA5;
-                       TSB.B $11                            ;81D553|0411    |000E79;
-                       LDX.B $01                            ;81D555|A601    |000E69;
-                       JSR.W (UNREACH_81D5D1,X)             ;81D557|FCD1D5  |81D5D1;
-                       LDA.B $00                            ;81D55A|A500    |000E68;
+          CODE_81D54E:
+                       STX.B $01                            ;81D54E|8601    |000FA9;
+                                                            ;      |        |      ;
+          CODE_81D550:
+                       RTS                                  ;81D550|60      |      ;
+                                                            ;      |        |      ;
+                                                            ;      |        |      ;
+eventID_roadAttacker_11_main:
+                       LDA.B r_ev_3d-$E68                   ;81D551|A53D    |000EA5;
+                       TSB.B r_ev_11_sprAtri-$E68           ;81D553|0411    |000E79;
+                       LDX.B r_ev_01_state-$E68             ;81D555|A601    |000E69;
+                       JSR.W (roadAttacker_11_state,X)      ;81D557|FCD1D5  |81D5D1;
+                       LDA.B r_event_active_00-$E68         ;81D55A|A500    |000E68;
                        BNE CODE_81D55F                      ;81D55C|D001    |81D55F;
                        RTL                                  ;81D55E|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D55F:
                        REP #$20                             ;81D55F|C220    |      ;
-                       LDA.B $38                            ;81D561|A538    |000EA0;
-                       STA.B $20                            ;81D563|8520    |000E88;
+                       LDA.B r_ev_38-$E68                   ;81D561|A538    |000EA0;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81D563|8520    |000E88;
                        SEP #$20                             ;81D565|E220    |      ;
-                       STZ.B $31                            ;81D567|6431    |000E99;
+                       STZ.B r_ev_31-$E68                   ;81D567|6431    |000E99;
                        JSL.L CODE_849B43                    ;81D569|22439B84|849B43;
                        BEQ CODE_81D599                      ;81D56D|F02A    |81D599;
-                       INC.B $31                            ;81D56F|E631    |000E99;
+                       INC.B r_ev_31-$E68                   ;81D56F|E631    |000E99;
                        LDA.B #$0E                           ;81D571|A90E    |      ;
-                       TRB.B $11                            ;81D573|1411    |000E79;
-                       LDA.B $27                            ;81D575|A527    |000E8F;
+                       TRB.B r_ev_11_sprAtri-$E68           ;81D573|1411    |000E79;
+                       LDA.B r_ev_27-$E68                   ;81D575|A527    |000E8F;
                        AND.B #$7F                           ;81D577|297F    |      ;
                        BEQ CODE_81D58F                      ;81D579|F014    |81D58F;
                        LDA.B #$04                           ;81D57B|A904    |      ;
-                       STA.B $3B                            ;81D57D|853B    |000EA3;
+                       STA.B r_ev_3b-$E68                   ;81D57D|853B    |000EA3;
                        LDA.B #$0A                           ;81D57F|A90A    |      ;
-                       CMP.B $01                            ;81D581|C501    |000E69;
+                       CMP.B r_ev_01_state-$E68             ;81D581|C501    |000E69;
                        BEQ CODE_81D599                      ;81D583|F014    |81D599;
-                       LDA.B $01                            ;81D585|A501    |000E69;
-                       STA.B $3C                            ;81D587|853C    |000EA4;
+                       LDA.B r_ev_01_state-$E68             ;81D585|A501    |000E69;
+                       STA.B r_ev_3c-$E68                   ;81D587|853C    |000EA4;
                        LDA.B #$0A                           ;81D589|A90A    |      ;
-                       STA.B $01                            ;81D58B|8501    |000E69;
+                       STA.B r_ev_01_state-$E68             ;81D58B|8501    |000E69;
                        BRA CODE_81D599                      ;81D58D|800A    |81D599;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D58F:
-                       LDA.B $3B                            ;81D58F|A53B    |000EA3;
+                       LDA.B r_ev_3b-$E68                   ;81D58F|A53B    |000EA3;
                        BEQ CODE_81D599                      ;81D591|F006    |81D599;
                        LDA.B $3C                            ;81D593|A53C    |000F64;
                        STA.B $01                            ;81D595|8501    |000F29;
@@ -11418,14 +11568,14 @@ eventID_chillPingu_01_main:
           CODE_81D599:
                        REP #$20                             ;81D599|C220    |      ;
                        LDA.W #$C8DF                         ;81D59B|A9DFC8  |      ;
-                       STA.B $20                            ;81D59E|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81D59E|8520    |000E88;
                        SEP #$20                             ;81D5A0|E220    |      ;
-                       LDA.B $00                            ;81D5A2|A500    |000E68;
+                       LDA.B r_event_active_00-$E68         ;81D5A2|A500    |000E68;
                        BEQ CODE_81D5D0                      ;81D5A4|F02A    |81D5D0;
                        REP #$20                             ;81D5A6|C220    |      ;
                        LDA.W r_0bad                         ;81D5A8|ADAD0B  |860BAD;
                        SEC                                  ;81D5AB|38      |      ;
-                       SBC.B $05                            ;81D5AC|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;81D5AC|E505    |000E6D;
                        BCS CODE_81D5B4                      ;81D5AE|B004    |81D5B4;
                        EOR.W #$FFFF                         ;81D5B0|49FFFF  |      ;
                        INC A                                ;81D5B3|1A      |      ;
@@ -11433,43 +11583,51 @@ eventID_chillPingu_01_main:
           CODE_81D5B4:
                        CMP.W #$0180                         ;81D5B4|C98001  |      ;
                        BCS CODE_81D5C0                      ;81D5B7|B007    |81D5C0;
-                       LDA.B $08                            ;81D5B9|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81D5B9|A508    |000E70;
                        CMP.W #$0300                         ;81D5BB|C90003  |      ;
                        BCC CODE_81D5CC                      ;81D5BE|900C    |81D5CC;
                                                             ;      |        |      ;
           CODE_81D5C0:
-                       LDX.B $0B                            ;81D5C0|A60B    |000E73;
+                       LDX.B r_ev_0b_subID-$E68             ;81D5C0|A60B    |000E73;
                        BMI CODE_81D5C8                      ;81D5C2|3004    |81D5C8;
-                       JML.L CODE_828387                    ;81D5C4|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;81D5C4|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D5C8:
-                       JML.L CODE_828398                    ;81D5C8|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81D5C8|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D5CC:
-                       JML.L CODE_8280B4                    ;81D5CC|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81D5CC|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D5D0:
                        RTL                                  ;81D5D0|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_81D5D1:
-                       db $E1,$D5,$F1,$D6,$15,$D8,$A2,$D9   ;81D5D1|        |0000D5;
-                       db $27,$DA,$5B,$DC,$96,$DA,$C8,$DA   ;81D5D9|        |0000DA;
-                       STZ.B $3B                            ;81D5E1|643B    |000EA3;
-                       LDA.B $0B                            ;81D5E3|A50B    |000E73;
+roadAttacker_11_state:
+                       dw roadAttacker_11_state_00          ;81D5D1|        |81D5E1;
+                       dw CODE_81D6F1                       ;81D5D3|        |81D6F1;
+                       dw CODE_81D815                       ;81D5D5|        |81D815;
+                       dw CODE_81D9A2                       ;81D5D7|        |81D9A2;
+                       dw CODE_81DA27                       ;81D5D9|        |81DA27;
+                       dw CODE_81DC5B                       ;81D5DB|        |81DC5B;
+                       dw CODE_81DA96                       ;81D5DD|        |81DA96;
+                       dw CODE_81DAC8                       ;81D5DF|        |81DAC8;
+                                                            ;      |        |      ;
+roadAttacker_11_state_00:
+                       STZ.B r_ev_3b-$E68                   ;81D5E1|643B    |000EA3;
+                       LDA.B r_ev_0b_subID-$E68             ;81D5E3|A50B    |000E73;
                        BMI CODE_81D601                      ;81D5E5|301A    |81D601;
                        REP #$20                             ;81D5E7|C220    |      ;
-                       LDA.B $05                            ;81D5E9|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;81D5E9|A505    |000E6D;
                        SEC                                  ;81D5EB|38      |      ;
                        SBC.W r_0bad                         ;81D5EC|EDAD0B  |860BAD;
                        SEP #$20                             ;81D5EF|E220    |      ;
                        BCC CODE_81D623                      ;81D5F1|9030    |81D623;
                        LDA.B #$10                           ;81D5F3|A910    |      ;
-                       STA.B $2A                            ;81D5F5|852A    |000E92;
-                       STZ.B $29                            ;81D5F7|6429    |000E91;
+                       STA.B r_ev_2a-$E68                   ;81D5F5|852A    |000E92;
+                       STZ.B r_ev_29-$E68                   ;81D5F7|6429    |000E91;
                        JSL.L CODE_8490A0                    ;81D5F9|22A09084|8490A0;
                        CMP.B #$34                           ;81D5FD|C934    |      ;
                        BCC CODE_81D623                      ;81D5FF|9022    |81D623;
@@ -11496,42 +11654,42 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D623:
-                       LDA.B $0B                            ;81D623|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;81D623|A50B    |000E73;
                        BMI CODE_81D62C                      ;81D625|3005    |81D62C;
-                       JSL.L CODE_828387                    ;81D627|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;81D627|22878382|828387;
                        RTS                                  ;81D62B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D62C:
-                       JSL.L CODE_828398                    ;81D62C|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81D62C|22988382|828398;
                        RTS                                  ;81D630|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D631:
-                       STA.B $12                            ;81D631|8512    |000E7A;
-                       JSL.L CODE_82827D                    ;81D633|227D8282|82827D;
-                       LDA.B $0B                            ;81D637|A50B    |000E73;
+                       STA.B r_ev_12-$E68                   ;81D631|8512    |000E7A;
+                       JSL.L enemy_initiate_jumpPhysic      ;81D633|227D8282|82827D;
+                       LDA.B r_ev_0b_subID-$E68             ;81D637|A50B    |000E73;
                        BPL CODE_81D641                      ;81D639|1006    |81D641;
                        LDA.B #$0C                           ;81D63B|A90C    |      ;
-                       STA.B $01                            ;81D63D|8501    |000E69;
-                       STZ.B $35                            ;81D63F|6435    |000E9D;
+                       STA.B r_ev_01_state-$E68             ;81D63D|8501    |000E69;
+                       STZ.B r_ev_35-$E68                   ;81D63F|6435    |000E9D;
                                                             ;      |        |      ;
           CODE_81D641:
-                       LDA.B $11                            ;81D641|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81D641|A511    |000E79;
                        AND.B #$0E                           ;81D643|290E    |      ;
-                       STA.B $3D                            ;81D645|853D    |000EA5;
+                       STA.B r_ev_3d-$E68                   ;81D645|853D    |000EA5;
                        LDA.B #$FF                           ;81D647|A9FF    |      ;
-                       STA.B $2F                            ;81D649|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;81D649|852F    |000E97;
                        LDA.B #$64                           ;81D64B|A964    |      ;
-                       STA.B $36                            ;81D64D|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;81D64D|8536    |000E9E;
                        LDA.B #$06                           ;81D64F|A906    |      ;
                        JSL.L CODE_848F07                    ;81D651|22078F84|848F07;
-                       STZ.B $37                            ;81D655|6437    |000E9F;
+                       STZ.B r_ev_37-$E68                   ;81D655|6437    |000E9F;
                        LDA.B #$05                           ;81D657|A905    |      ;
-                       STA.B $27                            ;81D659|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;81D659|8527    |000E8F;
                        LDA.B #$02                           ;81D65B|A902    |      ;
-                       STA.B $26                            ;81D65D|8526    |000E8E;
-                       STZ.B $3A                            ;81D65F|643A    |000EA2;
+                       STA.B r_ev_26-$E68                   ;81D65D|8526    |000E8E;
+                       STZ.B r_ev_3a-$E68                   ;81D65F|643A    |000EA2;
                        JSL.L loadEnitySlotBase              ;81D661|22218382|828321;
                        BEQ CODE_81D675                      ;81D665|F00E    |81D675;
                        db $A5,$0B,$30,$05,$22,$87,$83,$82   ;81D667|        |00000B;
@@ -11550,19 +11708,19 @@ eventID_chillPingu_01_main:
           CODE_81D698:
                        TDC                                  ;81D698|7B      |      ;
                        STA.W r_0033,X                       ;81D699|9D3300  |860033;
-                       STX.B $33                            ;81D69C|8633    |000E9B;
+                       STX.B r_ev_33-$E68                   ;81D69C|8633    |000E9B;
                        LDA.W #$C8DF                         ;81D69E|A9DFC8  |      ;
-                       STA.B $20                            ;81D6A1|8520    |000E88;
-                       STA.B $38                            ;81D6A3|8538    |000EA0;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81D6A1|8520    |000E88;
+                       STA.B r_ev_38-$E68                   ;81D6A3|8538    |000EA0;
                        SEP #$20                             ;81D6A5|E220    |      ;
                        INC.W r_0000,X                       ;81D6A7|FE0000  |860000;
                        LDA.B #$12                           ;81D6AA|A912    |      ;
                        STA.W r_000a,X                       ;81D6AC|9D0A00  |86000A;
-                       LDA.B $12                            ;81D6AF|A512    |000E7A;
+                       LDA.B r_ev_12-$E68                   ;81D6AF|A512    |000E7A;
                        DEC A                                ;81D6B1|3A      |      ;
                        DEC A                                ;81D6B2|3A      |      ;
                        STA.W r_0012,X                       ;81D6B3|9D1200  |860012;
-                       LDA.B $0B                            ;81D6B6|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;81D6B6|A50B    |000E73;
                        BPL CODE_81D6EE                      ;81D6B8|1034    |81D6EE;
                        JSL.L loadEnitySlotBase              ;81D6BA|22218382|828321;
                        BEQ CODE_81D6D1                      ;81D6BE|F011    |81D6D1;
@@ -11575,20 +11733,22 @@ eventID_chillPingu_01_main:
                        LDA.B #$1B                           ;81D6D4|A91B    |      ;
                        STA.W r_000a,X                       ;81D6D6|9D0A00  |86000A;
                        REP #$20                             ;81D6D9|C220    |      ;
-                       LDA.B $05                            ;81D6DB|A505    |000E6D;
+                       LDA.B r_ev_05_xPos-$E68              ;81D6DB|A505    |000E6D;
                        STA.W r_0005,X                       ;81D6DD|9D0500  |860005;
-                       LDA.B $08                            ;81D6E0|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81D6E0|A508    |000E70;
                        STA.W r_0008,X                       ;81D6E2|9D0800  |860008;
                        TDC                                  ;81D6E5|7B      |      ;
                        STA.W r_0020,X                       ;81D6E6|9D2000  |860020;
-                       LDA.B $0C                            ;81D6E9|A50C    |000E74;
+                       LDA.B r_ev_0c-$E68                   ;81D6E9|A50C    |000E74;
                        STA.W r_000c,X                       ;81D6EB|9D0C00  |86000C;
                                                             ;      |        |      ;
           CODE_81D6EE:
                        SEP #$30                             ;81D6EE|E230    |      ;
                        RTS                                  ;81D6F0|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;81D6F1|A602    |000E6A;
+                                                            ;      |        |      ;
+          CODE_81D6F1:
+                       LDX.B r_ev_02_action-$E68            ;81D6F1|A602    |000E6A;
                        JSR.W (UNREACH_81D6FB,X)             ;81D6F3|FCFBD6  |81D6FB;
                        JSL.L CODE_849B03                    ;81D6F6|22039B84|849B03;
                        RTS                                  ;81D6FA|60      |      ;
@@ -11596,36 +11756,36 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
        UNREACH_81D6FB:
                        db $03,$D7,$4C,$D7,$9F,$D7,$DA,$D7   ;81D6FB|        |0000D7;
-                       LDA.B $03                            ;81D703|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;81D703|A503    |000E6B;
                        BNE CODE_81D70F                      ;81D705|D008    |81D70F;
                        LDA.B #$30                           ;81D707|A930    |      ;
-                       STA.B $1E                            ;81D709|851E    |000E86;
-                       STZ.B $1F                            ;81D70B|641F    |000E87;
-                       INC.B $03                            ;81D70D|E603    |000E6B;
+                       STA.B r_ev_1e_weight-$E68            ;81D709|851E    |000E86;
+                       STZ.B r_ev_1f-$E68                   ;81D70B|641F    |000E87;
+                       INC.B r_ev_03_do-$E68                ;81D70D|E603    |000E6B;
                                                             ;      |        |      ;
           CODE_81D70F:
                        JSL.L CODE_8281E8                    ;81D70F|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;81D713|22BE9184|8491BE;
                        REP #$20                             ;81D717|C220    |      ;
-                       LDA.B $1C                            ;81D719|A51C    |000E84;
+                       LDA.B r_ev_1c_ySpdSub-$E68           ;81D719|A51C    |000E84;
                        CMP.W #$F800                         ;81D71B|C900F8  |      ;
                        BPL CODE_81D725                      ;81D71E|1005    |81D725;
                        LDA.W #$F800                         ;81D720|A900F8  |      ;
-                       STA.B $1C                            ;81D723|851C    |000EC4;
+                       STA.B r_ev_2_1c_ySpdSub-$EA8         ;81D723|851C    |000EC4;
                                                             ;      |        |      ;
           CODE_81D725:
                        SEP #$20                             ;81D725|E220    |      ;
-                       LDA.B $2B                            ;81D727|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81D727|A52B    |000E93;
                        AND.B #$04                           ;81D729|2904    |      ;
                        BEQ CODE_81D744                      ;81D72B|F017    |81D744;
                        LDA.B #$02                           ;81D72D|A902    |      ;
-                       STA.B $02                            ;81D72F|8502    |000E6A;
-                       STZ.B $03                            ;81D731|6403    |000E6B;
-                       STZ.B $1C                            ;81D733|641C    |000E84;
-                       STZ.B $1D                            ;81D735|641D    |000E85;
-                       STZ.B $2F                            ;81D737|642F    |000E97;
+                       STA.B r_ev_02_action-$E68            ;81D72F|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81D731|6403    |000E6B;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;81D733|641C    |000E84;
+                       STZ.B r_ev_1d_ySpd-$E68              ;81D735|641D    |000E85;
+                       STZ.B r_ev_2f-$E68                   ;81D737|642F    |000E97;
                        REP #$10                             ;81D739|C210    |      ;
-                       LDX.B $33                            ;81D73B|A633    |000E9B;
+                       LDX.B r_ev_33-$E68                   ;81D73B|A633    |000E9B;
                        LDA.B #$04                           ;81D73D|A904    |      ;
                        STA.W r_0037,X                       ;81D73F|9D3700  |860037;
                        SEP #$10                             ;81D742|E210    |      ;
@@ -11635,80 +11795,80 @@ eventID_chillPingu_01_main:
                        JSR.W CODE_81DB4A                    ;81D748|204ADB  |81DB4A;
                        RTS                                  ;81D74B|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $03                            ;81D74C|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;81D74C|A503    |000E6B;
                        BNE CODE_81D76A                      ;81D74E|D01A    |81D76A;
-                       INC.B $03                            ;81D750|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;81D750|E603    |000E6B;
                        LDA.B #$40                           ;81D752|A940    |      ;
-                       TRB.B $11                            ;81D754|1411    |000E79;
-                       LDA.B $37                            ;81D756|A537    |000E9F;
-                       TSB.B $11                            ;81D758|0411    |000E79;
+                       TRB.B r_ev_11_sprAtri-$E68           ;81D754|1411    |000E79;
+                       LDA.B r_ev_37-$E68                   ;81D756|A537    |000E9F;
+                       TSB.B r_ev_11_sprAtri-$E68           ;81D758|0411    |000E79;
                        LDA.B #$07                           ;81D75A|A907    |      ;
                        JSL.L CODE_848F07                    ;81D75C|22078F84|848F07;
-                       STZ.B $1C                            ;81D760|641C    |000E84;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;81D760|641C    |000E84;
                        SEP #$20                             ;81D762|E220    |      ;
                        LDA.B #$10                           ;81D764|A910    |      ;
-                       STA.B $1F                            ;81D766|851F    |000E87;
-                       STZ.B $1E                            ;81D768|641E    |000E86;
+                       STA.B r_ev_1f-$E68                   ;81D766|851F    |000E87;
+                       STZ.B r_ev_1e_weight-$E68            ;81D768|641E    |000E86;
                                                             ;      |        |      ;
           CODE_81D76A:
                        JSR.W CODE_81DB15                    ;81D76A|2015DB  |81DB15;
                        JSL.L CODE_8491BE                    ;81D76D|22BE9184|8491BE;
-                       LDA.B $3A                            ;81D771|A53A    |000EA2;
+                       LDA.B r_ev_3a-$E68                   ;81D771|A53A    |000EA2;
                        BEQ CODE_81D779                      ;81D773|F004    |81D779;
-                       DEC.B $3A                            ;81D775|C63A    |000EE2;
+                       DEC.B r_ev_2_3a-$EA8                 ;81D775|C63A    |000EE2;
                        BNE CODE_81D784                      ;81D777|D00B    |81D784;
                                                             ;      |        |      ;
           CODE_81D779:
                        JSR.W CODE_81DB02                    ;81D779|2002DB  |81DB02;
                        BEQ CODE_81D784                      ;81D77C|F006    |81D784;
                        LDA.B #$04                           ;81D77E|A904    |      ;
-                       STA.B $02                            ;81D780|8502    |000E6A;
-                       STZ.B $03                            ;81D782|6403    |000E6B;
+                       STA.B r_ev_02_action-$E68            ;81D780|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81D782|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_81D784:
                        JSR.W CODE_81DC05                    ;81D784|2005DC  |81DC05;
-                       LDA.B $2B                            ;81D787|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81D787|A52B    |000E93;
                        AND.B #$04                           ;81D789|2904    |      ;
                        BNE CODE_81D795                      ;81D78B|D008    |81D795;
                        LDA.B #$FF                           ;81D78D|A9FF    |      ;
-                       STA.B $2F                            ;81D78F|852F    |000ED7;
-                       STZ.B $02                            ;81D791|6402    |000EAA;
-                       STZ.B $03                            ;81D793|6403    |000EAB;
+                       STA.B r_ev_2_2f-$EA8                 ;81D78F|852F    |000ED7;
+                       STZ.B r_ev_2_02_action-$EA8          ;81D791|6402    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;81D793|6403    |000EAB;
                                                             ;      |        |      ;
           CODE_81D795:
                        JSL.L updateEv_13_14_17_0f           ;81D795|22EA8E84|848EEA;
                        JSR.W CODE_81DB4A                    ;81D799|204ADB  |81DB4A;
                        JMP.W CODE_81DC7E                    ;81D79C|4C7EDC  |81DC7E;
                                                             ;      |        |      ;
-                       LDA.B $03                            ;81D79F|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;81D79F|A503    |000E6B;
                        BNE CODE_81D7A9                      ;81D7A1|D006    |81D7A9;
-                       INC.B $03                            ;81D7A3|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;81D7A3|E603    |000E6B;
                        LDA.B #$20                           ;81D7A5|A920    |      ;
-                       STA.B $35                            ;81D7A7|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;81D7A7|8535    |000E9D;
                                                             ;      |        |      ;
           CODE_81D7A9:
-                       DEC.B $35                            ;81D7A9|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;81D7A9|C635    |000E9D;
                        BNE CODE_81D7BE                      ;81D7AB|D011    |81D7BE;
                        JSR.W CODE_81DB02                    ;81D7AD|2002DB  |81DB02;
                        BEQ CODE_81D7B8                      ;81D7B0|F006    |81D7B8;
                        LDA.B #$06                           ;81D7B2|A906    |      ;
-                       STA.B $02                            ;81D7B4|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81D7B4|8502    |000E6A;
                        BRA CODE_81D7BC                      ;81D7B6|8004    |81D7BC;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D7B8:
                        LDA.B #$02                           ;81D7B8|A902    |      ;
-                       STA.B $02                            ;81D7BA|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81D7BA|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_81D7BC:
-                       STZ.B $03                            ;81D7BC|6403    |000E6B;
+                       STZ.B r_ev_03_do-$E68                ;81D7BC|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_81D7BE:
                        JSR.W CODE_81DC05                    ;81D7BE|2005DC  |81DC05;
                        JSR.W CODE_81DB15                    ;81D7C1|2015DB  |81DB15;
                        JSL.L updateEv_13_14_17_0f           ;81D7C4|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;81D7C8|22BE9184|8491BE;
-                       LDA.B $2B                            ;81D7CC|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81D7CC|A52B    |000E93;
                        AND.B #$04                           ;81D7CE|2904    |      ;
                        BNE CODE_81D7D6                      ;81D7D0|D004    |81D7D6;
                        db $64,$02,$64,$03                   ;81D7D2|        |000002;
@@ -11717,18 +11877,18 @@ eventID_chillPingu_01_main:
                        JSR.W CODE_81DB4A                    ;81D7D6|204ADB  |81DB4A;
                        RTS                                  ;81D7D9|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $03                            ;81D7DA|A503    |000E6B;
+                       LDA.B r_ev_03_do-$E68                ;81D7DA|A503    |000E6B;
                        BNE CODE_81D7EE                      ;81D7DC|D010    |81D7EE;
-                       INC.B $03                            ;81D7DE|E603    |000E6B;
+                       INC.B r_ev_03_do-$E68                ;81D7DE|E603    |000E6B;
                        LDA.B #$10                           ;81D7E0|A910    |      ;
-                       STA.B $1F                            ;81D7E2|851F    |000E87;
+                       STA.B r_ev_1f-$E68                   ;81D7E2|851F    |000E87;
                        LDA.B #$14                           ;81D7E4|A914    |      ;
-                       STA.B $35                            ;81D7E6|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;81D7E6|8535    |000E9D;
                        LDA.B #$11                           ;81D7E8|A911    |      ;
                        JSL.L CODE_848F07                    ;81D7EA|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_81D7EE:
-                       LDA.B $11                            ;81D7EE|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81D7EE|A511    |000E79;
                        AND.B #$40                           ;81D7F0|2940    |      ;
                        BEQ CODE_81D7FA                      ;81D7F2|F006    |81D7FA;
                        JSL.L CODE_828174                    ;81D7F4|22748182|828174;
@@ -11740,44 +11900,46 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81D7FE:
                        JSL.L CODE_8491BE                    ;81D7FE|22BE9184|8491BE;
-                       DEC.B $35                            ;81D802|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;81D802|C635    |000E9D;
                        BNE CODE_81D814                      ;81D804|D00E    |81D814;
                        LDA.B #$02                           ;81D806|A902    |      ;
-                       STA.B $02                            ;81D808|8502    |000E6A;
-                       STZ.B $03                            ;81D80A|6403    |000E6B;
-                       LDA.B $11                            ;81D80C|A511    |000E79;
+                       STA.B r_ev_02_action-$E68            ;81D808|8502    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81D80A|6403    |000E6B;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81D80C|A511    |000E79;
                        AND.B #$40                           ;81D80E|2940    |      ;
                        EOR.B #$40                           ;81D810|4940    |      ;
-                       STA.B $37                            ;81D812|8537    |000E9F;
+                       STA.B r_ev_37-$E68                   ;81D812|8537    |000E9F;
                                                             ;      |        |      ;
           CODE_81D814:
                        RTS                                  ;81D814|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;81D815|A602    |000E6A;
+                                                            ;      |        |      ;
+          CODE_81D815:
+                       LDX.B r_ev_02_action-$E68            ;81D815|A602    |000E6A;
                        JSR.W (UNREACH_81D84A,X)             ;81D817|FC4AD8  |81D84A;
                        REP #$20                             ;81D81A|C220    |      ;
                        LDA.W #$C8F1                         ;81D81C|A9F1C8  |      ;
-                       STA.B $20                            ;81D81F|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81D81F|8520    |000E88;
                        SEP #$20                             ;81D821|E220    |      ;
                        JSL.L CODE_849B03                    ;81D823|22039B84|849B03;
                        REP #$20                             ;81D827|C220    |      ;
                        LDA.W #$C8DF                         ;81D829|A9DFC8  |      ;
-                       STA.B $20                            ;81D82C|8520    |000E88;
+                       STA.B r_ev_20_hitBoxAddr-$E68        ;81D82C|8520    |000E88;
                        SEP #$20                             ;81D82E|E220    |      ;
                        REP #$10                             ;81D830|C210    |      ;
-                       LDX.B $33                            ;81D832|A633    |000E9B;
+                       LDX.B r_ev_33-$E68                   ;81D832|A633    |000E9B;
                        LDA.W r_002c,X                       ;81D834|BD2C00  |86002C;
                        SEP #$10                             ;81D837|E210    |      ;
                        BEQ CODE_81D841                      ;81D839|F006    |81D841;
                        LDA.B #$FF                           ;81D83B|A9FF    |      ;
-                       STA.B $35                            ;81D83D|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;81D83D|8535    |000E9D;
                        BRA CODE_81D847                      ;81D83F|8006    |81D847;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D841:
-                       DEC.B $35                            ;81D841|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;81D841|C635    |000E9D;
                        BNE CODE_81D847                      ;81D843|D002    |81D847;
-                       STZ.B $27                            ;81D845|6427    |000E8F;
+                       STZ.B r_ev_27-$E68                   ;81D845|6427    |000E8F;
                                                             ;      |        |      ;
           CODE_81D847:
                        JMP.W CODE_81DB4A                    ;81D847|4C4ADB  |81DB4A;
@@ -11787,16 +11949,16 @@ eventID_chillPingu_01_main:
                        db $54,$D8,$8F,$D8,$E7,$D8,$3F,$D9   ;81D84A|        |      ;
                        db $66,$D9                           ;81D852|        |0000D9;
                        LDA.B #$04                           ;81D854|A904    |      ;
-                       STA.B $27                            ;81D856|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;81D856|8527    |000E8F;
                        LDA.B #$FF                           ;81D858|A9FF    |      ;
-                       STA.B $35                            ;81D85A|8535    |000E9D;
-                       STZ.B $2F                            ;81D85C|642F    |000E97;
+                       STA.B r_ev_35-$E68                   ;81D85A|8535    |000E9D;
+                       STZ.B r_ev_2f-$E68                   ;81D85C|642F    |000E97;
                        LDA.B #$07                           ;81D85E|A907    |      ;
                        JSL.L CODE_848F07                    ;81D860|22078F84|848F07;
                        REP #$20                             ;81D864|C220    |      ;
                        LDA.W #$C8E9                         ;81D866|A9E9C8  |      ;
-                       STA.B $38                            ;81D869|8538    |000EA0;
-                       LDA.B $1A                            ;81D86B|A51A    |000E82;
+                       STA.B r_ev_38-$E68                   ;81D869|8538    |000EA0;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;81D86B|A51A    |000E82;
                        BPL CODE_81D873                      ;81D86D|1004    |81D873;
                        EOR.W #$FFFF                         ;81D86F|49FFFF  |      ;
                        INC A                                ;81D872|1A      |      ;
@@ -11819,13 +11981,13 @@ eventID_chillPingu_01_main:
                        LDA.B #$02                           ;81D884|A902    |      ;
                                                             ;      |        |      ;
           CODE_81D886:
-                       STA.B $02                            ;81D886|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81D886|8502    |000E6A;
                        LDA.B #$10                           ;81D888|A910    |      ;
-                       STA.B $1F                            ;81D88A|851F    |000E87;
-                       STZ.B $1E                            ;81D88C|641E    |000E86;
+                       STA.B r_ev_1f-$E68                   ;81D88A|851F    |000E87;
+                       STZ.B r_ev_1e_weight-$E68            ;81D88C|641E    |000E86;
                        RTS                                  ;81D88E|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $11                            ;81D88F|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81D88F|A511    |000E79;
                        AND.B #$40                           ;81D891|2940    |      ;
                        BEQ CODE_81D89B                      ;81D893|F006    |81D89B;
                        JSL.L CODE_828195                    ;81D895|22958182|828195;
@@ -11838,7 +12000,7 @@ eventID_chillPingu_01_main:
           CODE_81D89F:
                        JSL.L CODE_8491BE                    ;81D89F|22BE9184|8491BE;
                        REP #$20                             ;81D8A3|C220    |      ;
-                       LDA.B $1A                            ;81D8A5|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;81D8A5|A51A    |000E82;
                        BPL CODE_81D8AD                      ;81D8A7|1004    |81D8AD;
                        EOR.W #$FFFF                         ;81D8A9|49FFFF  |      ;
                        INC A                                ;81D8AC|1A      |      ;
@@ -11863,7 +12025,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81D8C6:
                        SEP #$20                             ;81D8C6|E220    |      ;
-                       LDA.B $2B                            ;81D8C8|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81D8C8|A52B    |000E93;
                        AND.B #$04                           ;81D8CA|2904    |      ;
                        BNE CODE_81D8DA                      ;81D8CC|D00C    |81D8DA;
                        db $A9,$08,$85,$02,$A9,$30,$85,$1E   ;81D8CE|        |      ;
@@ -11871,7 +12033,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81D8DA:
                        JSL.L updateEv_13_14_17_0f           ;81D8DA|22EA8E84|848EEA;
-                       LDA.B $2B                            ;81D8DE|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81D8DE|A52B    |000E93;
                        AND.B #$03                           ;81D8E0|2903    |      ;
                        BEQ CODE_81D8E6                      ;81D8E2|F002    |81D8E6;
                        db $64,$27                           ;81D8E4|        |000027;
@@ -11879,7 +12041,7 @@ eventID_chillPingu_01_main:
           CODE_81D8E6:
                        RTS                                  ;81D8E6|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $11                            ;81D8E7|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81D8E7|A511    |000E79;
                        AND.B #$40                           ;81D8E9|2940    |      ;
                        BEQ CODE_81D8F3                      ;81D8EB|F006    |81D8F3;
                        JSL.L CODE_828174                    ;81D8ED|22748182|828174;
@@ -11892,7 +12054,7 @@ eventID_chillPingu_01_main:
           CODE_81D8F7:
                        JSL.L CODE_8491BE                    ;81D8F7|22BE9184|8491BE;
                        REP #$20                             ;81D8FB|C220    |      ;
-                       LDA.B $1A                            ;81D8FD|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;81D8FD|A51A    |000E82;
                        BPL CODE_81D905                      ;81D8FF|1004    |81D905;
                        EOR.W #$FFFF                         ;81D901|49FFFF  |      ;
                        INC A                                ;81D904|1A      |      ;
@@ -11900,7 +12062,7 @@ eventID_chillPingu_01_main:
           CODE_81D905:
                        CMP.W #$0180                         ;81D905|C98001  |      ;
                        BCS CODE_81D91E                      ;81D908|B014    |81D91E;
-                       LDA.B $1A                            ;81D90A|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;81D90A|A51A    |000E82;
                        BMI CODE_81D913                      ;81D90C|3005    |81D913;
                        LDA.W #$0180                         ;81D90E|A98001  |      ;
                        BRA CODE_81D916                      ;81D911|8003    |81D916;
@@ -11910,26 +12072,26 @@ eventID_chillPingu_01_main:
                        LDA.W #$FE80                         ;81D913|A980FE  |      ;
                                                             ;      |        |      ;
           CODE_81D916:
-                       STA.B $1A                            ;81D916|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81D916|851A    |000E82;
                        SEP #$20                             ;81D918|E220    |      ;
                        LDA.B #$06                           ;81D91A|A906    |      ;
-                       STA.B $02                            ;81D91C|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81D91C|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_81D91E:
                        SEP #$20                             ;81D91E|E220    |      ;
-                       LDA.B $2B                            ;81D920|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81D920|A52B    |000E93;
                        AND.B #$04                           ;81D922|2904    |      ;
                        BNE CODE_81D932                      ;81D924|D00C    |81D932;
                        LDA.B #$08                           ;81D926|A908    |      ;
-                       STA.B $02                            ;81D928|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81D928|8502    |000E6A;
                        LDA.B #$30                           ;81D92A|A930    |      ;
-                       STA.B $1E                            ;81D92C|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;81D92C|851E    |000E86;
                        LDA.B #$FF                           ;81D92E|A9FF    |      ;
-                       STA.B $2F                            ;81D930|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;81D930|852F    |000E97;
                                                             ;      |        |      ;
           CODE_81D932:
                        JSL.L updateEv_13_14_17_0f           ;81D932|22EA8E84|848EEA;
-                       LDA.B $2B                            ;81D936|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81D936|A52B    |000E93;
                        AND.B #$03                           ;81D938|2903    |      ;
                        BEQ CODE_81D93E                      ;81D93A|F002    |81D93E;
                        db $64,$27                           ;81D93C|        |000027;
@@ -11939,19 +12101,19 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                        JSL.L CODE_82823E                    ;81D93F|223E8282|82823E;
                        JSL.L CODE_8491BE                    ;81D943|22BE9184|8491BE;
-                       LDA.B $2B                            ;81D947|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81D947|A52B    |000E93;
                        AND.B #$04                           ;81D949|2904    |      ;
                        BNE CODE_81D959                      ;81D94B|D00C    |81D959;
                        LDA.B #$08                           ;81D94D|A908    |      ;
-                       STA.B $02                            ;81D94F|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81D94F|8502    |000E6A;
                        LDA.B #$30                           ;81D951|A930    |      ;
-                       STA.B $1E                            ;81D953|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;81D953|851E    |000E86;
                        LDA.B #$FF                           ;81D955|A9FF    |      ;
-                       STA.B $2F                            ;81D957|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;81D957|852F    |000E97;
                                                             ;      |        |      ;
           CODE_81D959:
                        JSL.L updateEv_13_14_17_0f           ;81D959|22EA8E84|848EEA;
-                       LDA.B $2B                            ;81D95D|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81D95D|A52B    |000E93;
                        AND.B #$03                           ;81D95F|2903    |      ;
                        BEQ CODE_81D965                      ;81D961|F002    |81D965;
                        db $64,$27                           ;81D963|        |000027;
@@ -11961,16 +12123,16 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                        JSL.L CODE_8281E8                    ;81D966|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;81D96A|22BE9184|8491BE;
-                       LDA.B $2B                            ;81D96E|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81D96E|A52B    |000E93;
                        AND.B #$04                           ;81D970|2904    |      ;
                        BEQ CODE_81D99D                      ;81D972|F029    |81D99D;
-                       STZ.B $2F                            ;81D974|642F    |000E97;
+                       STZ.B r_ev_2f-$E68                   ;81D974|642F    |000E97;
                        REP #$10                             ;81D976|C210    |      ;
-                       LDX.B $33                            ;81D978|A633    |000E9B;
+                       LDX.B r_ev_33-$E68                   ;81D978|A633    |000E9B;
                        LDA.B #$04                           ;81D97A|A904    |      ;
                        STA.W r_0037,X                       ;81D97C|9D3700  |860037;
                        SEP #$10                             ;81D97F|E210    |      ;
-                       LDA.B $11                            ;81D981|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81D981|A511    |000E79;
                        AND.B #$40                           ;81D983|2940    |      ;
                        REP #$20                             ;81D985|C220    |      ;
                        BEQ CODE_81D98E                      ;81D987|F005    |81D98E;
@@ -11978,21 +12140,23 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81D98E:
                        LDA.W #$FF00                         ;81D98E|A900FF  |      ;
-                       STA.B $1A                            ;81D991|851A    |000E82;
-                       STZ.B $1C                            ;81D993|641C    |000E84;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81D991|851A    |000E82;
+                       STZ.B r_ev_1c_ySpdSub-$E68           ;81D993|641C    |000E84;
                        SEP #$20                             ;81D995|E220    |      ;
-                       STZ.B $1E                            ;81D997|641E    |000E86;
+                       STZ.B r_ev_1e_weight-$E68            ;81D997|641E    |000E86;
                        LDA.B #$06                           ;81D999|A906    |      ;
-                       STA.B $02                            ;81D99B|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81D99B|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_81D99D:
                        JSL.L updateEv_13_14_17_0f           ;81D99D|22EA8E84|848EEA;
                        RTS                                  ;81D9A1|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;81D9A2|A602    |000E6A;
+                                                            ;      |        |      ;
+          CODE_81D9A2:
+                       LDX.B r_ev_02_action-$E68            ;81D9A2|A602    |000E6A;
                        JSR.W (PTR16_81D9C1,X)               ;81D9A4|FCC1D9  |81D9C1;
                        REP #$10                             ;81D9A7|C210    |      ;
-                       LDX.B $33                            ;81D9A9|A633    |000E9B;
+                       LDX.B r_ev_33-$E68                   ;81D9A9|A633    |000E9B;
                        LDA.W r_002c,X                       ;81D9AB|BD2C00  |86002C;
                        SEP #$10                             ;81D9AE|E210    |      ;
                        BEQ CODE_81D9B8                      ;81D9B0|F006    |81D9B8;
@@ -12002,7 +12166,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D9B8:
-                       DEC.B $35                            ;81D9B8|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;81D9B8|C635    |000E9D;
                        BNE CODE_81D9BE                      ;81D9BA|D002    |81D9BE;
                        STZ.B $27                            ;81D9BC|6427    |000F4F;
                                                             ;      |        |      ;
@@ -12015,41 +12179,41 @@ eventID_chillPingu_01_main:
                        dw CODE_80DA03                       ;81D9C3|        |80DA03;
                        dw LOOSE_OP_80DA12                   ;81D9C5|        |80DA12;
                        LDA.B #$02                           ;81D9C7|A902    |      ;
-                       STA.B $02                            ;81D9C9|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81D9C9|8502    |000E6A;
                        LDA.B #$03                           ;81D9CB|A903    |      ;
-                       STA.B $27                            ;81D9CD|8527    |000E8F;
+                       STA.B r_ev_27-$E68                   ;81D9CD|8527    |000E8F;
                        LDA.B #$FF                           ;81D9CF|A9FF    |      ;
-                       STA.B $35                            ;81D9D1|8535    |000E9D;
-                       STZ.B $1A                            ;81D9D3|641A    |000E82;
-                       STZ.B $1B                            ;81D9D5|641B    |000E83;
-                       STZ.B $1F                            ;81D9D7|641F    |000E87;
+                       STA.B r_ev_35-$E68                   ;81D9D1|8535    |000E9D;
+                       STZ.B r_ev_1a_xSpdSub-$E68           ;81D9D3|641A    |000E82;
+                       STZ.B r_ev_1b_xSpd-$E68              ;81D9D5|641B    |000E83;
+                       STZ.B r_ev_1f-$E68                   ;81D9D7|641F    |000E87;
                        LDA.B #$30                           ;81D9D9|A930    |      ;
-                       STA.B $1E                            ;81D9DB|851E    |000E86;
+                       STA.B r_ev_1e_weight-$E68            ;81D9DB|851E    |000E86;
                        JSL.L CODE_8491BE                    ;81D9DD|22BE9184|8491BE;
-                       LDA.B $2B                            ;81D9E1|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81D9E1|A52B    |000E93;
                        BEQ CODE_81D9EB                      ;81D9E3|F006    |81D9EB;
-                       STZ.B $2F                            ;81D9E5|642F    |000E97;
+                       STZ.B r_ev_2f-$E68                   ;81D9E5|642F    |000E97;
                        LDA.B #$02                           ;81D9E7|A902    |      ;
                        BRA CODE_81D9F1                      ;81D9E9|8006    |81D9F1;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81D9EB:
                        LDA.B #$FF                           ;81D9EB|A9FF    |      ;
-                       STA.B $2F                            ;81D9ED|852F    |000E97;
+                       STA.B r_ev_2f-$E68                   ;81D9ED|852F    |000E97;
                        LDA.B #$04                           ;81D9EF|A904    |      ;
                                                             ;      |        |      ;
           CODE_81D9F1:
-                       STA.B $02                            ;81D9F1|8502    |000E6A;
+                       STA.B r_ev_02_action-$E68            ;81D9F1|8502    |000E6A;
                        LDA.B #$06                           ;81D9F3|A906    |      ;
                        JSL.L CODE_848F07                    ;81D9F5|22078F84|848F07;
                        REP #$20                             ;81D9F9|C220    |      ;
                        LDA.W #$C8E9                         ;81D9FB|A9E9C8  |      ;
-                       STA.B $38                            ;81D9FE|8538    |000EA0;
+                       STA.B r_ev_38-$E68                   ;81D9FE|8538    |000EA0;
                        SEP #$20                             ;81DA00|E220    |      ;
                        RTS                                  ;81DA02|60      |      ;
                                                             ;      |        |      ;
                        JSL.L CODE_8491BE                    ;81DA03|22BE9184|8491BE;
-                       LDA.B $2B                            ;81DA07|A52B    |000E93;
+                       LDA.B r_ev_2b-$E68                   ;81DA07|A52B    |000E93;
                        AND.B #$04                           ;81DA09|2904    |      ;
                        BNE CODE_81DA11                      ;81DA0B|D004    |81DA11;
                        db $A9,$04,$85,$02                   ;81DA0D|        |      ;
@@ -12060,24 +12224,26 @@ eventID_chillPingu_01_main:
                        db $22,$E8,$81,$82,$22,$BE,$91,$84   ;81DA12|        |8281E8;
                        db $A5,$2B,$29,$04,$F0,$06,$A9,$02   ;81DA1A|        |00002B;
                        db $85,$02,$64,$2F,$60               ;81DA22|        |000002;
-                       LDA.B $02                            ;81DA27|A502    |000E6A;
+                                                            ;      |        |      ;
+          CODE_81DA27:
+                       LDA.B r_ev_02_action-$E68            ;81DA27|A502    |000E6A;
                        BNE CODE_81DA3F                      ;81DA29|D014    |81DA3F;
-                       INC.B $02                            ;81DA2B|E602    |000E6A;
+                       INC.B r_ev_02_action-$E68            ;81DA2B|E602    |000E6A;
                        LDA.B #$11                           ;81DA2D|A911    |      ;
                        JSL.L CODE_848F07                    ;81DA2F|22078F84|848F07;
                        JSL.L CODE_84A4B5                    ;81DA33|22B5A484|84A4B5;
                        LDA.B #$05                           ;81DA37|A905    |      ;
-                       STA.B $35                            ;81DA39|8535    |000E9D;
+                       STA.B r_ev_35-$E68                   ;81DA39|8535    |000E9D;
                        LDA.B #$03                           ;81DA3B|A903    |      ;
-                       STA.B $36                            ;81DA3D|8536    |000E9E;
+                       STA.B r_ev_36-$E68                   ;81DA3D|8536    |000E9E;
                                                             ;      |        |      ;
           CODE_81DA3F:
-                       DEC.B $35                            ;81DA3F|C635    |000E9D;
+                       DEC.B r_ev_35-$E68                   ;81DA3F|C635    |000E9D;
                        BNE CODE_81DA93                      ;81DA41|D050    |81DA93;
-                       DEC.B $36                            ;81DA43|C636    |000E9E;
+                       DEC.B r_ev_36-$E68                   ;81DA43|C636    |000E9E;
                        LDA.B #$05                           ;81DA45|A905    |      ;
-                       STA.B $35                            ;81DA47|8535    |000E9D;
-                       LDA.B $36                            ;81DA49|A536    |000E9E;
+                       STA.B r_ev_35-$E68                   ;81DA47|8535    |000E9D;
+                       LDA.B r_ev_36-$E68                   ;81DA49|A536    |000E9E;
                        ASL A                                ;81DA4B|0A      |      ;
                        TAX                                  ;81DA4C|AA      |      ;
                        REP #$20                             ;81DA4D|C220    |      ;
@@ -12085,88 +12251,92 @@ eventID_chillPingu_01_main:
                        STA.W r_0004                         ;81DA52|8D0400  |860004;
                        LDA.W UNREACH_86C90D,X               ;81DA55|BD0DC9  |86C90D;
                        CLC                                  ;81DA58|18      |      ;
-                       ADC.B $05                            ;81DA59|6505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;81DA59|6505    |000E6D;
                        STA.W r_0000                         ;81DA5B|8D0000  |860000;
-                       LDA.B $08                            ;81DA5E|A508    |000E70;
+                       LDA.B r_ev_08_yPos-$E68              ;81DA5E|A508    |000E70;
                        STA.W r_0002                         ;81DA60|8D0200  |860002;
                        SEP #$20                             ;81DA63|E220    |      ;
                        JSL.L CODE_84A467                    ;81DA65|2267A484|84A467;
                        LDA.B #$23                           ;81DA69|A923    |      ;
                        JSL.L CODE_8088A2                    ;81DA6B|22A28880|8088A2;
-                       LDA.B $36                            ;81DA6F|A536    |000E9E;
+                       LDA.B r_ev_36-$E68                   ;81DA6F|A536    |000E9E;
                        BNE CODE_81DA93                      ;81DA71|D020    |81DA93;
                        LDA.B #$01                           ;81DA73|A901    |      ;
                        JSL.L CODE_84A384                    ;81DA75|2284A384|84A384;
-                       LDA.B $0B                            ;81DA79|A50B    |000E73;
+                       LDA.B r_ev_0b_subID-$E68             ;81DA79|A50B    |000E73;
                        BMI CODE_81DA84                      ;81DA7B|3007    |81DA84;
-                       JSL.L CODE_828387                    ;81DA7D|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;81DA7D|22878382|828387;
                        SEP #$10                             ;81DA81|E210    |      ;
                        RTS                                  ;81DA83|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DA84:
-                       JSL.L CODE_828398                    ;81DA84|22988382|828398;
-                       LDA.B $32                            ;81DA88|A532    |000E9A;
+                       JSL.L clearStates_00_02_0E           ;81DA84|22988382|828398;
+                       LDA.B r_ev_32-$E68                   ;81DA88|A532    |000E9A;
                        BEQ CODE_81DA93                      ;81DA8A|F007    |81DA93;
                        REP #$10                             ;81DA8C|C210    |      ;
-                       LDX.B $0C                            ;81DA8E|A60C    |000E74;
+                       LDX.B r_ev_0c-$E68                   ;81DA8E|A60C    |000E74;
                        INC.W r_000e,X                       ;81DA90|FE0E00  |86000E;
                                                             ;      |        |      ;
           CODE_81DA93:
                        SEP #$10                             ;81DA93|E210    |      ;
                        RTS                                  ;81DA95|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $35                            ;81DA96|A535    |000E9D;
+                                                            ;      |        |      ;
+          CODE_81DA96:
+                       LDA.B r_ev_35-$E68                   ;81DA96|A535    |000E9D;
                        ASL A                                ;81DA98|0A      |      ;
                        TAX                                  ;81DA99|AA      |      ;
                        REP #$30                             ;81DA9A|C230    |      ;
                        LDA.L UNREACH_8581F6,X               ;81DA9C|BFF68185|8581F6;
                        SEC                                  ;81DAA0|38      |      ;
                        SBC.W #$0014                         ;81DAA1|E91400  |      ;
-                       LDX.B $0C                            ;81DAA4|A60C    |000E74;
+                       LDX.B r_ev_0c-$E68                   ;81DAA4|A60C    |000E74;
                        CLC                                  ;81DAA6|18      |      ;
                        ADC.W r_0008,X                       ;81DAA7|7D0800  |860008;
-                       STA.B $08                            ;81DAAA|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;81DAAA|8508    |000E70;
                        LDA.W r_0005,X                       ;81DAAC|BD0500  |860005;
-                       STA.B $05                            ;81DAAF|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;81DAAF|8505    |000E6D;
                        SEP #$30                             ;81DAB1|E230    |      ;
-                       INC.B $35                            ;81DAB3|E635    |000E9D;
-                       LDA.B $35                            ;81DAB5|A535    |000E9D;
+                       INC.B r_ev_35-$E68                   ;81DAB3|E635    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;81DAB5|A535    |000E9D;
                        CMP.B #$44                           ;81DAB7|C944    |      ;
                        BCC CODE_81DAC7                      ;81DAB9|900C    |81DAC7;
                        LDA.B #$0E                           ;81DABB|A90E    |      ;
-                       STA.B $01                            ;81DABD|8501    |000E69;
-                       STZ.B $35                            ;81DABF|6435    |000E9D;
+                       STA.B r_ev_01_state-$E68             ;81DABD|8501    |000E69;
+                       STZ.B r_ev_35-$E68                   ;81DABF|6435    |000E9D;
                        LDA.B #$07                           ;81DAC1|A907    |      ;
                        JSL.L CODE_848F07                    ;81DAC3|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_81DAC7:
                        RTS                                  ;81DAC7|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $35                            ;81DAC8|A535    |000E9D;
+                                                            ;      |        |      ;
+          CODE_81DAC8:
+                       LDA.B r_ev_35-$E68                   ;81DAC8|A535    |000E9D;
                        ASL A                                ;81DACA|0A      |      ;
                        TAX                                  ;81DACB|AA      |      ;
                        REP #$31                             ;81DACC|C231    |      ;
                        LDA.L UNREACH_85827E,X               ;81DACE|BF7E8285|85827E;
-                       LDX.B $0C                            ;81DAD2|A60C    |000E74;
+                       LDX.B r_ev_0c-$E68                   ;81DAD2|A60C    |000E74;
                        ADC.W r_0005,X                       ;81DAD4|7D0500  |860005;
-                       STA.B $05                            ;81DAD7|8505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;81DAD7|8505    |000E6D;
                        LDA.W r_0008,X                       ;81DAD9|BD0800  |860008;
                        CLC                                  ;81DADC|18      |      ;
                        ADC.W #$0014                         ;81DADD|691400  |      ;
-                       STA.B $08                            ;81DAE0|8508    |000E70;
+                       STA.B r_ev_08_yPos-$E68              ;81DAE0|8508    |000E70;
                        SEP #$20                             ;81DAE2|E220    |      ;
-                       INC.B $35                            ;81DAE4|E635    |000E9D;
-                       LDA.B $35                            ;81DAE6|A535    |000E9D;
+                       INC.B r_ev_35-$E68                   ;81DAE4|E635    |000E9D;
+                       LDA.B r_ev_35-$E68                   ;81DAE6|A535    |000E9D;
                        CMP.B #$22                           ;81DAE8|C922    |      ;
                        BCC CODE_81DAFD                      ;81DAEA|9011    |81DAFD;
                        LDA.B #$02                           ;81DAEC|A902    |      ;
-                       STA.B $01                            ;81DAEE|8501    |000E69;
-                       STZ.B $02                            ;81DAF0|6402    |000E6A;
-                       STZ.B $03                            ;81DAF2|6403    |000E6B;
+                       STA.B r_ev_01_state-$E68             ;81DAEE|8501    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;81DAF0|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81DAF2|6403    |000E6B;
                        REP #$20                             ;81DAF4|C220    |      ;
                        LDA.W #$FDC6                         ;81DAF6|A9C6FD  |      ;
-                       STA.B $1A                            ;81DAF9|851A    |000E82;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81DAF9|851A    |000E82;
                        SEP #$20                             ;81DAFB|E220    |      ;
                                                             ;      |        |      ;
           CODE_81DAFD:
@@ -12178,41 +12348,41 @@ eventID_chillPingu_01_main:
                        REP #$20                             ;81DB02|C220    |      ;
                        LDA.W r_0bad                         ;81DB04|ADAD0B  |860BAD;
                        SEC                                  ;81DB07|38      |      ;
-                       SBC.B $05                            ;81DB08|E505    |000E6D;
+                       SBC.B r_ev_05_xPos-$E68              ;81DB08|E505    |000E6D;
                        SEP #$20                             ;81DB0A|E220    |      ;
                        LDA.B #$00                           ;81DB0C|A900    |      ;
                        ROR A                                ;81DB0E|6A      |      ;
                        ROR A                                ;81DB0F|6A      |      ;
-                       EOR.B $11                            ;81DB10|4511    |000E79;
+                       EOR.B r_ev_11_sprAtri-$E68           ;81DB10|4511    |000E79;
                        AND.B #$40                           ;81DB12|2940    |      ;
                        RTS                                  ;81DB14|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DB15:
-                       LDA.B $11                            ;81DB15|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81DB15|A511    |000E79;
                        AND.B #$40                           ;81DB17|2940    |      ;
                        BEQ CODE_81DB33                      ;81DB19|F018    |81DB33;
                        JSL.L CODE_828195                    ;81DB1B|22958182|828195;
                        REP #$20                             ;81DB1F|C220    |      ;
-                       LDA.B $1A                            ;81DB21|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;81DB21|A51A    |000E82;
                        CMP.W #$0200                         ;81DB23|C90002  |      ;
                        BEQ CODE_81DB47                      ;81DB26|F01F    |81DB47;
                        BMI CODE_81DB47                      ;81DB28|301D    |81DB47;
                        LDA.W #$0200                         ;81DB2A|A90002  |      ;
-                       STA.B $1A                            ;81DB2D|851A    |000E82;
-                       STZ.B $1E                            ;81DB2F|641E    |000E86;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81DB2D|851A    |000E82;
+                       STZ.B r_ev_1e_weight-$E68            ;81DB2F|641E    |000E86;
                        BRA CODE_81DB47                      ;81DB31|8014    |81DB47;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DB33:
                        JSL.L CODE_828174                    ;81DB33|22748182|828174;
                        REP #$20                             ;81DB37|C220    |      ;
-                       LDA.B $1A                            ;81DB39|A51A    |000E82;
+                       LDA.B r_ev_1a_xSpdSub-$E68           ;81DB39|A51A    |000E82;
                        CMP.W #$FE00                         ;81DB3B|C900FE  |      ;
                        BPL CODE_81DB47                      ;81DB3E|1007    |81DB47;
                        LDA.W #$FE00                         ;81DB40|A900FE  |      ;
-                       STA.B $1A                            ;81DB43|851A    |000E82;
-                       STZ.B $1E                            ;81DB45|641E    |000E86;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;81DB43|851A    |000E82;
+                       STZ.B r_ev_1e_weight-$E68            ;81DB45|641E    |000E86;
                                                             ;      |        |      ;
           CODE_81DB47:
                        SEP #$30                             ;81DB47|E230    |      ;
@@ -12220,25 +12390,25 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DB4A:
-                       LDA.B $27                            ;81DB4A|A527    |000E8F;
+                       LDA.B r_ev_27-$E68                   ;81DB4A|A527    |000E8F;
                        AND.B #$7F                           ;81DB4C|297F    |      ;
                        BNE CODE_81DB65                      ;81DB4E|D015    |81DB65;
                        LDA.B #$23                           ;81DB50|A923    |      ;
                        JSL.L CODE_8088A2                    ;81DB52|22A28880|8088A2;
                        JSR.W CODE_81DB66                    ;81DB56|2066DB  |81DB66;
-                       INC.B $01                            ;81DB59|E601    |000E69;
-                       INC.B $01                            ;81DB5B|E601    |000E69;
-                       STZ.B $02                            ;81DB5D|6402    |000E6A;
-                       STZ.B $03                            ;81DB5F|6403    |000E6B;
-                       LDA.B $31                            ;81DB61|A531    |000E99;
-                       STA.B $32                            ;81DB63|8532    |000E9A;
+                       INC.B r_ev_01_state-$E68             ;81DB59|E601    |000E69;
+                       INC.B r_ev_01_state-$E68             ;81DB5B|E601    |000E69;
+                       STZ.B r_ev_02_action-$E68            ;81DB5D|6402    |000E6A;
+                       STZ.B r_ev_03_do-$E68                ;81DB5F|6403    |000E6B;
+                       LDA.B r_ev_31-$E68                   ;81DB61|A531    |000E99;
+                       STA.B r_ev_32-$E68                   ;81DB63|8532    |000E9A;
                                                             ;      |        |      ;
           CODE_81DB65:
                        RTS                                  ;81DB65|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DB66:
-                       LDX.B $01                            ;81DB66|A601    |000E69;
+                       LDX.B r_ev_01_state-$E68             ;81DB66|A601    |000E69;
                        DEX                                  ;81DB68|CA      |      ;
                        DEX                                  ;81DB69|CA      |      ;
                        JMP.W (UNREACH_81DB6D,X)             ;81DB6A|7C6DDB  |81DB6D;
@@ -12256,9 +12426,9 @@ eventID_chillPingu_01_main:
                        STA.W r_000a,X                       ;81DB80|9D0A00  |86000A;
                        LDA.W UNREACH_86C8F5,Y               ;81DB83|B9F5C8  |86C8F5;
                        STA.W r_000b,X                       ;81DB86|9D0B00  |86000B;
-                       LDA.B $11                            ;81DB89|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81DB89|A511    |000E79;
                        STA.W r_0011,X                       ;81DB8B|9D1100  |860011;
-                       LDA.B $18                            ;81DB8E|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;81DB8E|A518    |000E80;
                        STA.W r_0018,X                       ;81DB90|9D1800  |860018;
                        REP #$20                             ;81DB93|C220    |      ;
                        TDC                                  ;81DB95|7B      |      ;
@@ -12282,9 +12452,9 @@ eventID_chillPingu_01_main:
                        STA.W r_000a,X                       ;81DBB2|9D0A00  |86000A;
                        LDA.W UNREACH_86C8FB,Y               ;81DBB5|B9FBC8  |86C8FB;
                        STA.W r_000b,X                       ;81DBB8|9D0B00  |86000B;
-                       LDA.B $11                            ;81DBBB|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81DBBB|A511    |000E79;
                        STA.W r_0011,X                       ;81DBBD|9D1100  |860011;
-                       LDA.B $18                            ;81DBC0|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;81DBC0|A518    |000E80;
                        STA.W r_0018,X                       ;81DBC2|9D1800  |860018;
                        REP #$20                             ;81DBC5|C220    |      ;
                        TDC                                  ;81DBC7|7B      |      ;
@@ -12308,9 +12478,9 @@ eventID_chillPingu_01_main:
                        STA.W r_000a,X                       ;81DBE4|9D0A00  |86000A;
                        LDA.W UNREACH_86C901,Y               ;81DBE7|B901C9  |86C901;
                        STA.W r_000b,X                       ;81DBEA|9D0B00  |86000B;
-                       LDA.B $11                            ;81DBED|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81DBED|A511    |000E79;
                        STA.W r_0011,X                       ;81DBEF|9D1100  |860011;
-                       LDA.B $18                            ;81DBF2|A518    |000E80;
+                       LDA.B r_ev_18_gfxSlot-$E68           ;81DBF2|A518    |000E80;
                        STA.W r_0018,X                       ;81DBF4|9D1800  |860018;
                        REP #$20                             ;81DBF7|C220    |      ;
                        TDC                                  ;81DBF9|7B      |      ;
@@ -12325,7 +12495,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DC05:
-                       LDA.B $11                            ;81DC05|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81DC05|A511    |000E79;
                        AND.B #$40                           ;81DC07|2940    |      ;
                        BNE CODE_81DC0F                      ;81DC09|D004    |81DC0F;
                        LDA.B #$C0                           ;81DC0B|A9C0    |      ;
@@ -12336,12 +12506,12 @@ eventID_chillPingu_01_main:
                        LDA.B #$40                           ;81DC0F|A940    |      ;
                                                             ;      |        |      ;
           CODE_81DC11:
-                       STA.B $29                            ;81DC11|8529    |000E91;
-                       STZ.B $2A                            ;81DC13|642A    |000E92;
+                       STA.B r_ev_29-$E68                   ;81DC11|8529    |000E91;
+                       STZ.B r_ev_2a-$E68                   ;81DC13|642A    |000E92;
                        JSL.L CODE_8490A0                    ;81DC15|22A09084|8490A0;
                        CMP.B #$34                           ;81DC19|C934    |      ;
                        BCC CODE_81DC42                      ;81DC1B|9025    |81DC42;
-                       LDA.B $11                            ;81DC1D|A511    |000EB9;
+                       LDA.B r_ev_2_11_sprAtri-$EA8         ;81DC1D|A511    |000EB9;
                        AND.B #$40                           ;81DC1F|2940    |      ;
                        BNE CODE_81DC27                      ;81DC21|D004    |81DC27;
                        LDA.B #$E0                           ;81DC23|A9E0    |      ;
@@ -12352,7 +12522,7 @@ eventID_chillPingu_01_main:
                        LDA.B #$20                           ;81DC27|A920    |      ;
                                                             ;      |        |      ;
           CODE_81DC29:
-                       STA.B $29                            ;81DC29|8529    |000ED1;
+                       STA.B r_ev_2_29-$EA8                 ;81DC29|8529    |000ED1;
                        JSL.L CODE_8490A0                    ;81DC2B|22A09084|8490A0;
                        CMP.B #$00                           ;81DC2F|C900    |      ;
                        BEQ CODE_81DC37                      ;81DC31|F004    |81DC37;
@@ -12361,17 +12531,17 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81DC37:
                        LDA.B #$06                           ;81DC37|A906    |      ;
-                       STA.B $02                            ;81DC39|8502    |000EAA;
-                       STZ.B $03                            ;81DC3B|6403    |000EAB;
+                       STA.B r_ev_2_02_action-$EA8          ;81DC39|8502    |000EAA;
+                       STZ.B r_ev_2_03_do-$EA8              ;81DC3B|6403    |000EAB;
                        LDA.B #$3C                           ;81DC3D|A93C    |      ;
-                       STA.B $3A                            ;81DC3F|853A    |000EE2;
+                       STA.B r_ev_2_3a-$EA8                 ;81DC3F|853A    |000EE2;
                                                             ;      |        |      ;
           CODE_81DC41:
                        RTS                                  ;81DC41|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DC42:
-                       LDA.B $11                            ;81DC42|A511    |000E79;
+                       LDA.B r_ev_11_sprAtri-$E68           ;81DC42|A511    |000E79;
                        AND.B #$40                           ;81DC44|2940    |      ;
                        BNE CODE_81DC4C                      ;81DC46|D004    |81DC4C;
                        LDA.B #$E0                           ;81DC48|A9E0    |      ;
@@ -12382,15 +12552,17 @@ eventID_chillPingu_01_main:
                        LDA.B #$20                           ;81DC4C|A920    |      ;
                                                             ;      |        |      ;
           CODE_81DC4E:
-                       STA.B $29                            ;81DC4E|8529    |000E91;
-                       STZ.B $2A                            ;81DC50|642A    |000E92;
+                       STA.B r_ev_29-$E68                   ;81DC4E|8529    |000E91;
+                       STZ.B r_ev_2a-$E68                   ;81DC50|642A    |000E92;
                        JSL.L CODE_8490A0                    ;81DC52|22A09084|8490A0;
                        CMP.B #$34                           ;81DC56|C934    |      ;
                        BCS CODE_81DC37                      ;81DC58|B0DD    |81DC37;
                        RTS                                  ;81DC5A|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $3B                            ;81DC5B|C63B    |000EA3;
-                       LDX.B $3B                            ;81DC5D|A63B    |000EA3;
+                                                            ;      |        |      ;
+          CODE_81DC5B:
+                       DEC.B r_ev_3b-$E68                   ;81DC5B|C63B    |000EA3;
+                       LDX.B r_ev_3b-$E68                   ;81DC5D|A63B    |000EA3;
                        LDA.W UNREACH_86C913,X               ;81DC5F|BD13C9  |86C913;
                        REP #$20                             ;81DC62|C220    |      ;
                        BMI CODE_81DC6B                      ;81DC64|3005    |81DC6B;
@@ -12403,20 +12575,20 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81DC6E:
                        CLC                                  ;81DC6E|18      |      ;
-                       ADC.B $05                            ;81DC6F|6505    |000E6D;
-                       STA.B $05                            ;81DC71|8505    |000E6D;
+                       ADC.B r_ev_05_xPos-$E68              ;81DC6F|6505    |000E6D;
+                       STA.B r_ev_05_xPos-$E68              ;81DC71|8505    |000E6D;
                        SEP #$20                             ;81DC73|E220    |      ;
-                       LDA.B $3B                            ;81DC75|A53B    |000EA3;
+                       LDA.B r_ev_3b-$E68                   ;81DC75|A53B    |000EA3;
                        BNE CODE_81DC7D                      ;81DC77|D004    |81DC7D;
-                       LDA.B $3C                            ;81DC79|A53C    |000EA4;
-                       STA.B $01                            ;81DC7B|8501    |000E69;
+                       LDA.B r_ev_3c-$E68                   ;81DC79|A53C    |000EA4;
+                       STA.B r_ev_01_state-$E68             ;81DC7B|8501    |000E69;
                                                             ;      |        |      ;
           CODE_81DC7D:
                        RTS                                  ;81DC7D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DC7E:
-                       DEC.B $36                            ;81DC7E|C636    |000E9E;
+                       DEC.B r_ev_36-$E68                   ;81DC7E|C636    |000E9E;
                        BNE CODE_81DCCF                      ;81DC80|D04D    |81DCCF;
                        JSL.L CODE_828358                    ;81DC82|22588382|828358;
                        BNE CODE_81DCCB                      ;81DC86|D043    |81DCCB;
@@ -12463,35 +12635,35 @@ eventID_chillPingu_01_main:
                        RTS                                  ;81DCCF|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_81DCD0:
+     eventID__12_main:
                        REP #$30                             ;81DCD0|C230    |      ;
-                       LDX.B $33                            ;81DCD2|A633    |000EDB;
+                       LDX.B r_ev_2_33-$EA8                 ;81DCD2|A633    |000EDB;
                        LDA.W r_0005,X                       ;81DCD4|BD0500  |860005;
-                       STA.B $05                            ;81DCD7|8505    |000EAD;
+                       STA.B r_ev_2_05_xPos-$EA8            ;81DCD7|8505    |000EAD;
                        LDA.W r_0008,X                       ;81DCD9|BD0800  |860008;
-                       STA.B $08                            ;81DCDC|8508    |000EB0;
+                       STA.B r_ev_2_08_yPos-$EA8            ;81DCDC|8508    |000EB0;
                        SEP #$20                             ;81DCDE|E220    |      ;
                        LDA.W r_0011,X                       ;81DCE0|BD1100  |860011;
-                       STA.B $11                            ;81DCE3|8511    |000EB9;
+                       STA.B r_ev_2_11_sprAtri-$EA8         ;81DCE3|8511    |000EB9;
                        SEP #$10                             ;81DCE5|E210    |      ;
-                       LDX.B $01                            ;81DCE7|A601    |000EA9;
-                       JSR.W (UNREACH_81DD1D,X)             ;81DCE9|FC1DDD  |81DD1D;
+                       LDX.B r_ev_2_01_state-$EA8           ;81DCE7|A601    |000EA9;
+                       JSR.W (eventID__12_state,X)          ;81DCE9|FC1DDD  |81DD1D;
                        JSR.W CODE_81DDE0                    ;81DCEC|20E0DD  |81DDE0;
                        REP #$30                             ;81DCEF|C230    |      ;
-                       LDA.B $35                            ;81DCF1|A535    |000EDD;
+                       LDA.B r_ev_2_35-$EA8                 ;81DCF1|A535    |000EDD;
                        CLC                                  ;81DCF3|18      |      ;
-                       ADC.B $2C                            ;81DCF4|652C    |000ED4;
+                       ADC.B r_ev_2_2c-$EA8                 ;81DCF4|652C    |000ED4;
                        AND.W #$00FF                         ;81DCF6|29FF00  |      ;
                        CLC                                  ;81DCF9|18      |      ;
-                       ADC.B $08                            ;81DCFA|6508    |000EB0;
-                       STA.B $08                            ;81DCFC|8508    |000EB0;
-                       LDX.B $33                            ;81DCFE|A633    |000EDB;
+                       ADC.B r_ev_2_08_yPos-$EA8            ;81DCFA|6508    |000EB0;
+                       STA.B r_ev_2_08_yPos-$EA8            ;81DCFC|8508    |000EB0;
+                       LDX.B r_ev_2_33-$EA8                 ;81DCFE|A633    |000EDB;
                        LDA.W r_0000,X                       ;81DD00|BD0000  |860000;
-                       STA.B $00                            ;81DD03|8500    |000EA8;
+                       STA.B r_event_2_active_00-$EA8       ;81DD03|8500    |000EA8;
                        LDA.W r_0002,X                       ;81DD05|BD0200  |860002;
-                       STA.B $02                            ;81DD08|8502    |000EAA;
+                       STA.B r_ev_2_02_action-$EA8          ;81DD08|8502    |000EAA;
                        SEP #$30                             ;81DD0A|E230    |      ;
-                       LDA.B $01                            ;81DD0C|A501    |000EA9;
+                       LDA.B r_ev_2_01_state-$EA8           ;81DD0C|A501    |000EA9;
                        CMP.B #$04                           ;81DD0E|C904    |      ;
                        BCC CODE_81DD19                      ;81DD10|9007    |81DD19;
                        CMP.B #$0A                           ;81DD12|C90A    |      ;
@@ -12499,33 +12671,45 @@ eventID_chillPingu_01_main:
                        JSR.W CODE_81DE1C                    ;81DD16|201CDE  |81DE1C;
                                                             ;      |        |      ;
           CODE_81DD19:
-                       JML.L CODE_8280B4                    ;81DD19|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81DD19|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_81DD1D:
-                       db $2D,$DD,$4B,$DD,$A0,$DD,$B8,$DD   ;81DD1D|        |004BDD;
-                       db $D0,$DD,$4A,$DD,$DF,$DD,$DB,$DD   ;81DD25|        |81DD04;
-                       JSL.L CODE_82827D                    ;81DD2D|227D8282|82827D;
-                       STZ.B $3B                            ;81DD31|643B    |000EE3;
+    eventID__12_state:
+                       dw eventID__12_state_00              ;81DD1D|        |81DD2D;
+                       dw CODE_81DD4B                       ;81DD1F|        |81DD4B;
+                       dw CODE_81DDA0                       ;81DD21|        |81DDA0;
+                       dw CODE_81DDB8                       ;81DD23|        |81DDB8;
+                       dw CODE_81DDD0                       ;81DD25|        |81DDD0;
+                       dw CODE_81DD4A                       ;81DD27|        |81DD4A;
+                       dw CODE_81DDDF                       ;81DD29|        |81DDDF;
+                       dw CODE_81DDDB                       ;81DD2B|        |81DDDB;
+                                                            ;      |        |      ;
+ eventID__12_state_00:
+                       JSL.L enemy_initiate_jumpPhysic      ;81DD2D|227D8282|82827D;
+                       STZ.B r_ev_2_3b-$EA8                 ;81DD31|643B    |000EE3;
                        LDA.B #$03                           ;81DD33|A903    |      ;
                        JSL.L CODE_848F07                    ;81DD35|22078F84|848F07;
-                       STZ.B $36                            ;81DD39|6436    |000EDE;
-                       STZ.B $35                            ;81DD3B|6435    |000EDD;
-                       STZ.B $37                            ;81DD3D|6437    |000EDF;
-                       STZ.B $2C                            ;81DD3F|642C    |000ED4;
+                       STZ.B r_ev_2_36-$EA8                 ;81DD39|6436    |000EDE;
+                       STZ.B r_ev_2_35-$EA8                 ;81DD3B|6435    |000EDD;
+                       STZ.B r_ev_2_37-$EA8                 ;81DD3D|6437    |000EDF;
+                       STZ.B r_ev_2_2c-$EA8                 ;81DD3F|642C    |000ED4;
                        REP #$20                             ;81DD41|C220    |      ;
                        LDA.W #$C92B                         ;81DD43|A92BC9  |      ;
-                       STA.B $20                            ;81DD46|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;81DD46|8520    |000EC8;
                        SEP #$20                             ;81DD48|E220    |      ;
+                                                            ;      |        |      ;
+          CODE_81DD4A:
                        RTS                                  ;81DD4A|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;81DD4B|A602    |000EAA;
+                                                            ;      |        |      ;
+          CODE_81DD4B:
+                       LDX.B r_ev_2_02_action-$EA8          ;81DD4B|A602    |000EAA;
                        JMP.W (UNREACH_81DD50,X)             ;81DD4D|7C50DD  |81DD50;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_81DD50:
                        db $58,$DD,$67,$DD,$82,$DD,$91,$DD   ;81DD50|        |      ;
-                       LDA.B $03                            ;81DD58|A503    |000EAB;
+                       LDA.B r_ev_2_03_do-$EA8              ;81DD58|A503    |000EAB;
                        BNE CODE_81DD62                      ;81DD5A|D006    |81DD62;
                        LDA.B #$03                           ;81DD5C|A903    |      ;
                        JSL.L CODE_848F07                    ;81DD5E|22078F84|848F07;
@@ -12534,13 +12718,13 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81DD62|22EA8E84|848EEA;
                        RTS                                  ;81DD66|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $03                            ;81DD67|A503    |000EAB;
+                       LDA.B r_ev_2_03_do-$EA8              ;81DD67|A503    |000EAB;
                        BNE CODE_81DD71                      ;81DD69|D006    |81DD71;
                        LDA.B #$03                           ;81DD6B|A903    |      ;
                        JSL.L CODE_848F07                    ;81DD6D|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_81DD71:
-                       LDA.B $3B                            ;81DD71|A53B    |000EE3;
+                       LDA.B r_ev_2_3b-$EA8                 ;81DD71|A53B    |000EE3;
                        BEQ CODE_81DD7D                      ;81DD73|F008    |81DD7D;
                        STZ.B $3B                            ;81DD75|643B    |000FA3;
                        LDA.B #$05                           ;81DD77|A905    |      ;
@@ -12550,7 +12734,7 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81DD7D|22EA8E84|848EEA;
                        RTS                                  ;81DD81|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $03                            ;81DD82|A503    |000EAB;
+                       LDA.B r_ev_2_03_do-$EA8              ;81DD82|A503    |000EAB;
                        BNE CODE_81DD8C                      ;81DD84|D006    |81DD8C;
                        LDA.B #$04                           ;81DD86|A904    |      ;
                        JSL.L CODE_848F07                    ;81DD88|22078F84|848F07;
@@ -12559,7 +12743,7 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81DD8C|22EA8E84|848EEA;
                        RTS                                  ;81DD90|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $03                            ;81DD91|A503    |000EAB;
+                       LDA.B r_ev_2_03_do-$EA8              ;81DD91|A503    |000EAB;
                        BNE CODE_81DD9B                      ;81DD93|D006    |81DD9B;
                        LDA.B #$10                           ;81DD95|A910    |      ;
                        JSL.L CODE_848F07                    ;81DD97|22078F84|848F07;
@@ -12568,33 +12752,39 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81DD9B|22EA8E84|848EEA;
                        RTS                                  ;81DD9F|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;81DDA0|A602    |000EAA;
+                                                            ;      |        |      ;
+          CODE_81DDA0:
+                       LDX.B r_ev_2_02_action-$EA8          ;81DDA0|A602    |000EAA;
                        BNE CODE_81DDB3                      ;81DDA2|D00F    |81DDB3;
                        LDA.B #$01                           ;81DDA4|A901    |      ;
                        JSL.L CODE_848F07                    ;81DDA6|22078F84|848F07;
                        REP #$20                             ;81DDAA|C220    |      ;
                        LDA.W #$C92F                         ;81DDAC|A92FC9  |      ;
-                       STA.B $20                            ;81DDAF|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;81DDAF|8520    |000EC8;
                        SEP #$20                             ;81DDB1|E220    |      ;
                                                             ;      |        |      ;
           CODE_81DDB3:
                        JSL.L updateEv_13_14_17_0f           ;81DDB3|22EA8E84|848EEA;
                        RTS                                  ;81DDB7|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $02                            ;81DDB8|A502    |000EAA;
+                                                            ;      |        |      ;
+          CODE_81DDB8:
+                       LDA.B r_ev_2_02_action-$EA8          ;81DDB8|A502    |000EAA;
                        BNE CODE_81DDCB                      ;81DDBA|D00F    |81DDCB;
                        LDA.B #$02                           ;81DDBC|A902    |      ;
                        JSL.L CODE_848F07                    ;81DDBE|22078F84|848F07;
                        REP #$20                             ;81DDC2|C220    |      ;
                        LDA.W #$C933                         ;81DDC4|A933C9  |      ;
-                       STA.B $20                            ;81DDC7|8520    |000EC8;
+                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;81DDC7|8520    |000EC8;
                        SEP #$20                             ;81DDC9|E220    |      ;
                                                             ;      |        |      ;
           CODE_81DDCB:
                        JSL.L updateEv_13_14_17_0f           ;81DDCB|22EA8E84|848EEA;
                        RTS                                  ;81DDCF|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $02                            ;81DDD0|A502    |000EAA;
+                                                            ;      |        |      ;
+          CODE_81DDD0:
+                       LDA.B r_ev_2_02_action-$EA8          ;81DDD0|A502    |000EAA;
                        BNE CODE_81DDDA                      ;81DDD2|D006    |81DDDA;
                        LDA.B #$11                           ;81DDD4|A911    |      ;
                        JSL.L CODE_848F07                    ;81DDD6|22078F84|848F07;
@@ -12602,61 +12792,65 @@ eventID_chillPingu_01_main:
           CODE_81DDDA:
                        RTS                                  ;81DDDA|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_81DDDB:
                        JSL.L updateEv_13_14_17_0f           ;81DDDB|22EA8E84|848EEA;
+                                                            ;      |        |      ;
+          CODE_81DDDF:
                        RTS                                  ;81DDDF|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DDE0:
-                       LDA.B $37                            ;81DDE0|A537    |000EDF;
+                       LDA.B r_ev_2_37-$EA8                 ;81DDE0|A537    |000EDF;
                        BNE CODE_81DDEB                      ;81DDE2|D007    |81DDEB;
-                       LDA.B $36                            ;81DDE4|A536    |000EDE;
-                       CMP.B $35                            ;81DDE6|C535    |000EDD;
+                       LDA.B r_ev_2_36-$EA8                 ;81DDE4|A536    |000EDE;
+                       CMP.B r_ev_2_35-$EA8                 ;81DDE6|C535    |000EDD;
                        BNE CODE_81DDF3                      ;81DDE8|D009    |81DDF3;
                        RTS                                  ;81DDEA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DDEB:
-                       STA.B $36                            ;81DDEB|8536    |000EDE;
-                       STZ.B $37                            ;81DDED|6437    |000EDF;
+                       STA.B r_ev_2_36-$EA8                 ;81DDEB|8536    |000EDE;
+                       STZ.B r_ev_2_37-$EA8                 ;81DDED|6437    |000EDF;
                        LDA.B #$01                           ;81DDEF|A901    |      ;
-                       STA.B $39                            ;81DDF1|8539    |000EE1;
+                       STA.B r_ev_2_39-$EA8                 ;81DDF1|8539    |000EE1;
                                                             ;      |        |      ;
           CODE_81DDF3:
-                       DEC.B $39                            ;81DDF3|C639    |000EE1;
+                       DEC.B r_ev_2_39-$EA8                 ;81DDF3|C639    |000EE1;
                        BNE CODE_81DE1B                      ;81DDF5|D024    |81DE1B;
                        LDA.B #$01                           ;81DDF7|A901    |      ;
-                       STA.B $39                            ;81DDF9|8539    |000EE1;
-                       LDA.B $36                            ;81DDFB|A536    |000EDE;
-                       CMP.B $35                            ;81DDFD|C535    |000EDD;
+                       STA.B r_ev_2_39-$EA8                 ;81DDF9|8539    |000EE1;
+                       LDA.B r_ev_2_36-$EA8                 ;81DDFB|A536    |000EDE;
+                       CMP.B r_ev_2_35-$EA8                 ;81DDFD|C535    |000EDD;
                        BCC CODE_81DE05                      ;81DDFF|9004    |81DE05;
-                       INC.B $35                            ;81DE01|E635    |000EDD;
+                       INC.B r_ev_2_35-$EA8                 ;81DE01|E635    |000EDD;
                        BRA CODE_81DE07                      ;81DE03|8002    |81DE07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DE05:
-                       DEC.B $35                            ;81DE05|C635    |000EDD;
+                       DEC.B r_ev_2_35-$EA8                 ;81DE05|C635    |000EDD;
                                                             ;      |        |      ;
           CODE_81DE07:
-                       LDA.B $36                            ;81DE07|A536    |000EDE;
+                       LDA.B r_ev_2_36-$EA8                 ;81DE07|A536    |000EDE;
                        BNE CODE_81DE0F                      ;81DE09|D004    |81DE0F;
                        LDA.B #$03                           ;81DE0B|A903    |      ;
-                       STA.B $39                            ;81DE0D|8539    |000EE1;
+                       STA.B r_ev_2_39-$EA8                 ;81DE0D|8539    |000EE1;
                                                             ;      |        |      ;
           CODE_81DE0F:
-                       LDA.B $35                            ;81DE0F|A535    |000EDD;
-                       CMP.B $36                            ;81DE11|C536    |000EDE;
+                       LDA.B r_ev_2_35-$EA8                 ;81DE0F|A535    |000EDD;
+                       CMP.B r_ev_2_36-$EA8                 ;81DE11|C536    |000EDE;
                        BNE CODE_81DE1B                      ;81DE13|D006    |81DE1B;
-                       STZ.B $36                            ;81DE15|6436    |000EDE;
+                       STZ.B r_ev_2_36-$EA8                 ;81DE15|6436    |000EDE;
                        LDA.B #$03                           ;81DE17|A903    |      ;
-                       STA.B $39                            ;81DE19|8539    |000EE1;
+                       STA.B r_ev_2_39-$EA8                 ;81DE19|8539    |000EE1;
                                                             ;      |        |      ;
           CODE_81DE1B:
                        RTS                                  ;81DE1B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81DE1C:
-                       LDA.B $2C                            ;81DE1C|A52C    |000ED4;
-                       STA.B $3A                            ;81DE1E|853A    |000EE2;
+                       LDA.B r_ev_2_2c-$EA8                 ;81DE1C|A52C    |000ED4;
+                       STA.B r_ev_2_3a-$EA8                 ;81DE1E|853A    |000EE2;
                        BEQ CODE_81DE45                      ;81DE20|F023    |81DE45;
                        LDA.W r_0bd4                         ;81DE22|ADD40B  |860BD4;
                        AND.B #$04                           ;81DE25|2904    |      ;
@@ -12677,7 +12871,7 @@ eventID_chillPingu_01_main:
                        SEP #$20                             ;81DE43|E220    |      ;
                                                             ;      |        |      ;
           CODE_81DE45:
-                       STZ.B $2C                            ;81DE45|642C    |000ED4;
+                       STZ.B r_ev_2_2c-$EA8                 ;81DE45|642C    |000ED4;
                        REP #$10                             ;81DE47|C210    |      ;
                        LDX.W #$0BA8                         ;81DE49|A2A80B  |      ;
                        JSL.L CODE_849C0E                    ;81DE4C|220E9C84|849C0E;
@@ -12703,14 +12897,14 @@ eventID_chillPingu_01_main:
                        db $D0,$37,$A9,$08,$80,$0E           ;81DE7B|        |81DEB4;
                                                             ;      |        |      ;
           CODE_81DE81:
-                       LDA.B $3A                            ;81DE81|A53A    |000EE2;
+                       LDA.B r_ev_2_3a-$EA8                 ;81DE81|A53A    |000EE2;
                        BNE CODE_81DE89                      ;81DE83|D004    |81DE89;
                        LDA.B #$02                           ;81DE85|A902    |      ;
-                       STA.B $37                            ;81DE87|8537    |000EDF;
+                       STA.B r_ev_2_37-$EA8                 ;81DE87|8537    |000EDF;
                                                             ;      |        |      ;
           CODE_81DE89:
                        LDA.B #$01                           ;81DE89|A901    |      ;
-                       STA.B $2C                            ;81DE8B|852C    |000ED4;
+                       STA.B r_ev_2_2c-$EA8                 ;81DE8B|852C    |000ED4;
                        LDA.B #$04                           ;81DE8D|A904    |      ;
                        TSB.W r_0bd4                         ;81DE8F|0CD40B  |860BD4;
                        BRA CODE_81DEB4                      ;81DE92|8020    |81DEB4;
@@ -12778,7 +12972,7 @@ eventID_chillPingu_01_main:
           CODE_81DEEA:
                        STX.B $20                            ;81DEEA|8620    |001648;
                        SEP #$10                             ;81DEEC|E210    |      ;
-                       JSL.L CODE_8280B4                    ;81DEEE|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81DEEE|22B48082|8280B4;
                        LDA.B #$07                           ;81DEF2|A907    |      ;
                        STA.B $16                            ;81DEF4|8516    |00163E;
                        LDA.B $0B                            ;81DEF6|A50B    |001633;
@@ -12787,11 +12981,11 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_848F07                    ;81DEFB|22078F84|848F07;
                        RTS                                  ;81DEFF|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_82806E                    ;81DF00|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81DF00|226E8082|82806E;
                        BCC CODE_81DF14                      ;81DF04|900E    |81DF14;
                        LDA.B $0B                            ;81DF06|A50B    |001633;
                        BPL CODE_81DF0F                      ;81DF08|1005    |81DF0F;
-                       JSL.L CODE_828387                    ;81DF0A|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;81DF0A|22878382|828387;
                        RTS                                  ;81DF0E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12832,7 +13026,7 @@ eventID_chillPingu_01_main:
                        BIT.B #$08                           ;81DF41|8908    |      ;
                        BNE CODE_81DF51                      ;81DF43|D00C    |81DF51;
                        JSL.L CODE_828174                    ;81DF45|22748182|828174;
-                       JSL.L CODE_8280B4                    ;81DF49|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81DF49|22B48082|8280B4;
                        LDA.B $1D                            ;81DF4D|A51D    |001645;
                        BPL CODE_81DF5A                      ;81DF4F|1009    |81DF5A;
                                                             ;      |        |      ;
@@ -12895,7 +13089,7 @@ eventID_chillPingu_01_main:
                        db $AD,$9C,$0B,$4A,$90,$04           ;81DFB0|        |000B9C;
                                                             ;      |        |      ;
           CODE_81DFB6:
-                       JSL.L CODE_8280B4                    ;81DFB6|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81DFB6|22B48082|8280B4;
                        JSL.L CODE_81E109                    ;81DFBA|2209E181|81E109;
                        LDA.W r_0bcf                         ;81DFBE|ADCF0B  |860BCF;
                        AND.B #$7F                           ;81DFC1|297F    |      ;
@@ -12946,7 +13140,7 @@ eventID_chillPingu_01_main:
                        BNE CODE_81E016                      ;81E010|D004    |81E016;
                                                             ;      |        |      ;
           CODE_81E012:
-                       JSL.L CODE_8280B4                    ;81E012|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E012|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_81E016:
                        LDA.W r_0bcf                         ;81E016|ADCF0B  |860BCF;
@@ -13077,7 +13271,7 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_849FB2                    ;81E0FF|22B29F84|849FB2;
                        RTS                                  ;81E103|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_828398                    ;81E104|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81E104|22988382|828398;
                        RTS                                  ;81E108|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13199,7 +13393,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81E1D3:
                        SEP #$10                             ;81E1D3|E210    |      ;
-                       JSL.L CODE_8280B4                    ;81E1D5|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E1D5|22B48082|8280B4;
                        RTS                                  ;81E1D9|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13361,7 +13555,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81E333:
                        SEP #$10                             ;81E333|E210    |      ;
-                       JSL.L CODE_828398                    ;81E335|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81E335|22988382|828398;
                        RTS                                  ;81E339|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13389,18 +13583,18 @@ eventID_chillPingu_01_main:
                        LDA.W #$D8B3                         ;81E361|A9B3D8  |      ;
                        STA.B $20                            ;81E364|8520    |0016A8;
                        SEP #$20                             ;81E366|E220    |      ;
-                       JSL.L CODE_8280B4                    ;81E368|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E368|22B48082|8280B4;
                        LDA.B #$11                           ;81E36C|A911    |      ;
                        STA.B $16                            ;81E36E|8516    |00169E;
                        LDA.B #$00                           ;81E370|A900    |      ;
                        JSL.L CODE_848F07                    ;81E372|22078F84|848F07;
                        RTS                                  ;81E376|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_82806E                    ;81E377|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81E377|226E8082|82806E;
                        BCC CODE_81E38B                      ;81E37B|900E    |81E38B;
                        LDA.B $0B                            ;81E37D|A50B    |001693;
                        BPL CODE_81E386                      ;81E37F|1005    |81E386;
-                       JSL.L CODE_828387                    ;81E381|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;81E381|22878382|828387;
                        RTS                                  ;81E385|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13443,7 +13637,7 @@ eventID_chillPingu_01_main:
                        BIT.B #$08                           ;81E3B6|8908    |      ;
                        BNE CODE_81E3C6                      ;81E3B8|D00C    |81E3C6;
                        JSL.L CODE_828174                    ;81E3BA|22748182|828174;
-                       JSL.L CODE_8280B4                    ;81E3BE|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E3BE|22B48082|8280B4;
                        LDA.B $1D                            ;81E3C2|A51D    |0016A5;
                        BPL CODE_81E3CF                      ;81E3C4|1009    |81E3CF;
                                                             ;      |        |      ;
@@ -13503,7 +13697,7 @@ eventID_chillPingu_01_main:
                        db $AD,$9C,$0B,$4A,$90,$04           ;81E41F|        |000B9C;
                                                             ;      |        |      ;
           CODE_81E425:
-                       JSL.L CODE_8280B4                    ;81E425|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E425|22B48082|8280B4;
                        JSL.L CODE_81E109                    ;81E429|2209E181|81E109;
                        LDA.W r_0bcf                         ;81E42D|ADCF0B  |860BCF;
                        AND.B #$7F                           ;81E430|297F    |      ;
@@ -13547,7 +13741,7 @@ eventID_chillPingu_01_main:
                        BNE CODE_81E47F                      ;81E479|D004    |81E47F;
                                                             ;      |        |      ;
           CODE_81E47B:
-                       JSL.L CODE_8280B4                    ;81E47B|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E47B|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_81E47F:
                        LDA.W r_0bcf                         ;81E47F|ADCF0B  |860BCF;
@@ -13565,7 +13759,7 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81E495|22EA8E84|848EEA;
                        RTS                                  ;81E499|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_828398                    ;81E49A|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81E49A|22988382|828398;
                        RTS                                  ;81E49E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13622,14 +13816,14 @@ eventID_chillPingu_01_main:
                        LDA.W #$D8BD                         ;81E4FC|A9BDD8  |      ;
                        STA.B $20                            ;81E4FF|8520    |001888;
                        SEP #$20                             ;81E501|E220    |      ;
-                       JSL.L CODE_8280B4                    ;81E503|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E503|22B48082|8280B4;
                        LDA.B #$96                           ;81E507|A996    |      ;
                        STA.B $16                            ;81E509|8516    |00187E;
                        LDA.B #$00                           ;81E50B|A900    |      ;
                        JSL.L CODE_848F07                    ;81E50D|22078F84|848F07;
                        RTS                                  ;81E511|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_82806E                    ;81E512|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81E512|226E8082|82806E;
                        BCC CODE_81E51D                      ;81E516|9005    |81E51D;
                        db $22,$87,$83,$82,$60               ;81E518|        |828387;
                                                             ;      |        |      ;
@@ -13658,7 +13852,7 @@ eventID_chillPingu_01_main:
                        BIT.B #$08                           ;81E541|8908    |      ;
                        BNE CODE_81E551                      ;81E543|D00C    |81E551;
                        JSL.L CODE_828174                    ;81E545|22748182|828174;
-                       JSL.L CODE_8280B4                    ;81E549|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E549|22B48082|8280B4;
                        LDA.B $1D                            ;81E54D|A51D    |001885;
                        BPL CODE_81E55A                      ;81E54F|1009    |81E55A;
                                                             ;      |        |      ;
@@ -13719,7 +13913,7 @@ eventID_chillPingu_01_main:
                        db $AD,$9C,$0B,$4A,$90,$04           ;81E5B0|        |000B9C;
                                                             ;      |        |      ;
           CODE_81E5B6:
-                       JSL.L CODE_8280B4                    ;81E5B6|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E5B6|22B48082|8280B4;
                        JSL.L CODE_81E109                    ;81E5BA|2209E181|81E109;
                        LDA.W r_0bcf                         ;81E5BE|ADCF0B  |860BCF;
                        AND.B #$7F                           ;81E5C1|297F    |      ;
@@ -13753,7 +13947,7 @@ eventID_chillPingu_01_main:
                        db $60,$A5,$27,$89,$01,$D0,$04       ;81E60B|        |      ;
                                                             ;      |        |      ;
           CODE_81E612:
-                       JSL.L CODE_8280B4                    ;81E612|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E612|22B48082|8280B4;
                        LDA.W r_0bcf                         ;81E616|ADCF0B  |860BCF;
                        AND.B #$7F                           ;81E619|297F    |      ;
                        BEQ CODE_81E633                      ;81E61B|F016    |81E633;
@@ -13845,16 +14039,16 @@ eventID_chillPingu_01_main:
                        RTS                                  ;81E6BC|60      |      ;
                                                             ;      |        |      ;
                        STZ.W r_1f3b                         ;81E6BD|9C3B1F  |861F3B;
-                       JSL.L CODE_828398                    ;81E6C0|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81E6C0|22988382|828398;
                        RTS                                  ;81E6C4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81E6C5:
                        LDX.B $01                            ;81E6C5|A601    |001629;
                        JSR.W (UNREACH_81E6D5,X)             ;81E6C7|FCD5E6  |81E6D5;
-                       JSL.L CODE_82806E                    ;81E6CA|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81E6CA|226E8082|82806E;
                        BCC CODE_81E6D4                      ;81E6CE|9004    |81E6D4;
-                       JML.L CODE_828387                    ;81E6D0|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;81E6D0|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81E6D4:
@@ -13930,7 +14124,7 @@ eventID_chillPingu_01_main:
                        LDA.B #$04                           ;81E76B|A904    |      ;
                        STA.B $01                            ;81E76D|8501    |001629;
                        JSR.W CODE_81E8DB                    ;81E76F|20DBE8  |81E8DB;
-                       JSL.L CODE_8280B4                    ;81E772|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E772|22B48082|8280B4;
                        RTS                                  ;81E776|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81E777|22EA8E84|848EEA;
@@ -13947,7 +14141,7 @@ eventID_chillPingu_01_main:
           CODE_81E78F:
                        LDA.B $0F                            ;81E78F|A50F    |001637;
                        BMI CODE_81E798                      ;81E791|3005    |81E798;
-                       JSL.L CODE_8280B4                    ;81E793|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E793|22B48082|8280B4;
                        RTS                                  ;81E797|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14007,7 +14201,7 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81E804|22EA8E84|848EEA;
                        LDA.B $0F                            ;81E808|A50F    |001637;
                        BMI CODE_81E811                      ;81E80A|3005    |81E811;
-                       JSL.L CODE_8280B4                    ;81E80C|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E80C|22B48082|8280B4;
                        RTS                                  ;81E810|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14183,7 +14377,7 @@ eventID_chillPingu_01_main:
                        LDA.B $0B                            ;81E99D|A50B    |001663;
                        BIT.W r_1f9c                         ;81E99F|2C9C1F  |861F9C;
                        BEQ CODE_81E9A8                      ;81E9A2|F004    |81E9A8;
-                       JML.L CODE_828398                    ;81E9A4|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81E9A4|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81E9A8:
@@ -14204,16 +14398,16 @@ eventID_chillPingu_01_main:
                        LDA.W #$DAA3                         ;81E9CB|A9A3DA  |      ;
                        STA.B $20                            ;81E9CE|8520    |001678;
                        SEP #$20                             ;81E9D0|E220    |      ;
-                       JSL.L CODE_8280B4                    ;81E9D2|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81E9D2|22B48082|8280B4;
                        LDA.B #$38                           ;81E9D6|A938    |      ;
                        STA.B $16                            ;81E9D8|8516    |00166E;
                        LDA.B #$00                           ;81E9DA|A900    |      ;
                        JSL.L CODE_848F07                    ;81E9DC|22078F84|848F07;
                        RTL                                  ;81E9E0|6B      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_82806E                    ;81E9E1|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81E9E1|226E8082|82806E;
                        BCC CODE_81E9EB                      ;81E9E5|9004    |81E9EB;
-                       JML.L CODE_828387                    ;81E9E7|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;81E9E7|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81E9EB:
@@ -14241,7 +14435,7 @@ eventID_chillPingu_01_main:
                        BIT.B #$08                           ;81EA0F|8908    |      ;
                        BNE CODE_81EA1F                      ;81EA11|D00C    |81EA1F;
                        JSL.L CODE_828174                    ;81EA13|22748182|828174;
-                       JSL.L CODE_8280B4                    ;81EA17|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EA17|22B48082|8280B4;
                        LDA.B $1D                            ;81EA1B|A51D    |001675;
                        BPL CODE_81EA28                      ;81EA1D|1009    |81EA28;
                                                             ;      |        |      ;
@@ -14290,7 +14484,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81EA6B:
                        SEP #$20                             ;81EA6B|E220    |      ;
-                       JSL.L CODE_8280B4                    ;81EA6D|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EA6D|22B48082|8280B4;
                        JSL.L CODE_81E109                    ;81EA71|2209E181|81E109;
                        LDA.W r_0bcf                         ;81EA75|ADCF0B  |860BCF;
                        AND.B #$7F                           ;81EA78|297F    |      ;
@@ -14323,7 +14517,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81EAAD:
-                       JSL.L CODE_8280B4                    ;81EAAD|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EAAD|22B48082|8280B4;
                        LDA.W r_0bcf                         ;81EAB1|ADCF0B  |860BCF;
                        AND.B #$7F                           ;81EAB4|297F    |      ;
                        BEQ CODE_81EAD1                      ;81EAB6|F019    |81EAD1;
@@ -14453,7 +14647,7 @@ eventID_chillPingu_01_main:
                        BRA CODE_81EBAA                      ;81EB90|8018    |81EBAA;
                                                             ;      |        |      ;
                        STZ.W r_1f3b                         ;81EB92|9C3B1F  |861F3B;
-                       JML.L CODE_828398                    ;81EB95|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81EB95|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81EB99:
@@ -14488,7 +14682,7 @@ eventID_chillPingu_01_main:
           CODE_81EBB8:
                        LDX.B $01                            ;81EBB8|A601    |001659;
                        JSR.W (UNREACH_81EBC1,X)             ;81EBBA|FCC1EB  |81EBC1;
-                       JML.L CODE_8280B4                    ;81EBBD|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81EBBD|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_81EBC1:
@@ -14568,7 +14762,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81EC46:
                        JSR.W CODE_81E83C                    ;81EC46|203CE8  |81E83C;
-                       JSL.L CODE_828398                    ;81EC49|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81EC49|22988382|828398;
                        PLA                                  ;81EC4D|68      |      ;
                        PLA                                  ;81EC4E|68      |      ;
                        RTL                                  ;81EC4F|6B      |      ;
@@ -14577,9 +14771,9 @@ eventID_chillPingu_01_main:
           CODE_81EC50:
                        LDX.B $01                            ;81EC50|A601    |001629;
                        JSR.W (UNREACH_81EC60,X)             ;81EC52|FC60EC  |81EC60;
-                       JSL.L CODE_82806E                    ;81EC55|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81EC55|226E8082|82806E;
                        BCC CODE_81EC5F                      ;81EC59|9004    |81EC5F;
-                       JML.L CODE_828387                    ;81EC5B|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;81EC5B|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81EC5F:
@@ -14612,7 +14806,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                        LDA.W r_1f41                         ;81EC98|AD411F  |861F41;
                        BEQ CODE_81ECA4                      ;81EC9B|F007    |81ECA4;
-                       JSL.L CODE_828398                    ;81EC9D|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81EC9D|22988382|828398;
                        PLA                                  ;81ECA1|68      |      ;
                        PLA                                  ;81ECA2|68      |      ;
                        RTL                                  ;81ECA3|6B      |      ;
@@ -14710,7 +14904,7 @@ eventID_chillPingu_01_main:
                        STZ.B $1F                            ;81EE43|641F    |0019C7;
                        LDA.B #$04                           ;81EE45|A904    |      ;
                        STA.B $1E                            ;81EE47|851E    |0019C6;
-                       JSL.L CODE_8280B4                    ;81EE49|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EE49|22B48082|8280B4;
                        LDA.B #$0B                           ;81EE4D|A90B    |      ;
                        STA.B $16                            ;81EE4F|8516    |0019BE;
                        LDA.B #$07                           ;81EE51|A907    |      ;
@@ -14731,7 +14925,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81EE6E:
                        JSL.L CODE_828174                    ;81EE6E|22748182|828174;
-                       JSL.L CODE_8280B4                    ;81EE72|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EE72|22B48082|8280B4;
                        RTS                                  ;81EE76|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14748,13 +14942,13 @@ eventID_chillPingu_01_main:
                        LDA.B $03                            ;81EE84|A503    |00196B;
                        LSR A                                ;81EE86|4A      |      ;
                        BCC CODE_81EE8D                      ;81EE87|9004    |81EE8D;
-                       JSL.L CODE_8280B4                    ;81EE89|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EE89|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_81EE8D:
                        JSL.L updateEv_13_14_17_0f           ;81EE8D|22EA8E84|848EEA;
                        RTS                                  ;81EE91|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_828398                    ;81EE92|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81EE92|22988382|828398;
                        RTS                                  ;81EE96|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14769,11 +14963,11 @@ eventID_chillPingu_01_main:
                        STZ.B $12                            ;81EEA6|6412    |00195A;
                        LDA.B $0B                            ;81EEA8|A50B    |001953;
                        JSL.L CODE_848F07                    ;81EEAA|22078F84|848F07;
-                       JML.L CODE_8280B4                    ;81EEAE|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81EEAE|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81EEB2:
-                       JSL.L CODE_8280B4                    ;81EEB2|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EEB2|22B48082|8280B4;
                        LDA.B $0E                            ;81EEB6|A50E    |001956;
                        BEQ CODE_81EEC3                      ;81EEB8|F009    |81EEC3;
                        JSL.L updateEv_13_14_17_0f           ;81EEBA|22EA8E84|848EEA;
@@ -14783,7 +14977,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81EEC3:
-                       JML.L CODE_828398                    ;81EEC3|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81EEC3|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81EEC7:
@@ -14820,7 +15014,7 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81EF01|22EA8E84|848EEA;
                        DEC.B $0B                            ;81EF05|C60B    |001C53;
                        BNE CODE_81EF0D                      ;81EF07|D004    |81EF0D;
-                       JML.L CODE_828398                    ;81EF09|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81EF09|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81EF0D:
@@ -14828,7 +15022,7 @@ eventID_chillPingu_01_main:
                        EOR.W $0B9C                          ;81EF0F|4D9C0B  |860B9C;
                        LSR A                                ;81EF12|4A      |      ;
                        BCC CODE_81EF19                      ;81EF13|9004    |81EF19;
-                       JML.L CODE_8280B4                    ;81EF15|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81EF15|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81EF19:
@@ -14865,7 +15059,7 @@ eventID_chillPingu_01_main:
                        STZ.B $1F                            ;81EF47|641F    |001B27;
                        LDA.B #$28                           ;81EF49|A928    |      ;
                        STA.B $1E                            ;81EF4B|851E    |001B26;
-                       JSL.L CODE_8280B4                    ;81EF4D|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EF4D|22B48082|8280B4;
                        LDA.B #$02                           ;81EF51|A902    |      ;
                        STA.B $16                            ;81EF53|8516    |001B1E;
                        LDA.B #$0B                           ;81EF55|A90B    |      ;
@@ -14877,7 +15071,7 @@ eventID_chillPingu_01_main:
                        LDA.W $0B9C                          ;81EF5F|AD9C0B  |860B9C;
                        LSR A                                ;81EF62|4A      |      ;
                        BCC CODE_81EF71                      ;81EF63|900C    |81EF71;
-                       JSL.L CODE_8280B4                    ;81EF65|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EF65|22B48082|8280B4;
                        LDA.B $0E                            ;81EF69|A50E    |001AD6;
                        BNE CODE_81EF71                      ;81EF6B|D004    |81EF71;
                        LDA.B #$04                           ;81EF6D|A904    |      ;
@@ -14887,7 +15081,7 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_828174                    ;81EF71|22748182|828174;
                        RTS                                  ;81EF75|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_828398                    ;81EF76|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81EF76|22988382|828398;
                        RTS                                  ;81EF7A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14902,14 +15096,14 @@ eventID_chillPingu_01_main:
                        LDA.B #$02                           ;81EF87|A902    |      ;
                        STA.B $01                            ;81EF89|8501    |001A69;
                        STZ.B $12                            ;81EF8B|6412    |001A7A;
-                       JSL.L CODE_8280B4                    ;81EF8D|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EF8D|22B48082|8280B4;
                        LDA.B #$02                           ;81EF91|A902    |      ;
                        STA.B $16                            ;81EF93|8516    |001A7E;
                        LDA.B #$0A                           ;81EF95|A90A    |      ;
                        JSL.L CODE_848F07                    ;81EF97|22078F84|848F07;
                        RTS                                  ;81EF9B|60      |      ;
                                                             ;      |        |      ;
-                       JSL.L CODE_8280B4                    ;81EF9C|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EF9C|22B48082|8280B4;
                        REP #$10                             ;81EFA0|C210    |      ;
                        LDX.B $0C                            ;81EFA2|A60C    |001A74;
                        LDA.W r_0011,X                       ;81EFA4|BD1100  |860011;
@@ -14946,13 +15140,13 @@ eventID_chillPingu_01_main:
                        STZ.B $1F                            ;81EFDE|641F    |001A87;
                        LDA.B #$40                           ;81EFE0|A940    |      ;
                        STA.B $1E                            ;81EFE2|851E    |001A86;
-                       JSL.L CODE_8280B4                    ;81EFE4|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EFE4|22B48082|8280B4;
                        RTS                                  ;81EFE8|60      |      ;
                                                             ;      |        |      ;
                        LDA.W $0B9C                          ;81EFE9|AD9C0B  |860B9C;
                        LSR A                                ;81EFEC|4A      |      ;
                        BCC CODE_81EFF7                      ;81EFED|9008    |81EFF7;
-                       JSL.L CODE_8280B4                    ;81EFEF|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81EFEF|22B48082|8280B4;
                        LDA.B $0E                            ;81EFF3|A50E    |001A36;
                        BEQ CODE_81EFFC                      ;81EFF5|F005    |81EFFC;
                                                             ;      |        |      ;
@@ -14962,7 +15156,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81EFFC:
-                       JSL.L CODE_828398                    ;81EFFC|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81EFFC|22988382|828398;
                        RTS                                  ;81F000|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15021,11 +15215,11 @@ eventID_chillPingu_01_main:
                        db $C6,$1E,$D0,$04                   ;81F05F|        |00001E;
                                                             ;      |        |      ;
           CODE_81F063:
-                       JML.L CODE_828398                    ;81F063|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81F063|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F067:
-                       JML.L CODE_8280B4                    ;81F067|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81F067|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F06B:
@@ -15047,12 +15241,12 @@ eventID_chillPingu_01_main:
           CODE_81F083:
                        STA.B $1A                            ;81F083|851A    |001942;
                        SEP #$20                             ;81F085|E220    |      ;
-                       JML.L CODE_8280B4                    ;81F087|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81F087|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F08B:
                        SEP #$20                             ;81F08B|E220    |      ;
-                       JML.L CODE_828398                    ;81F08D|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81F08D|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F091:
@@ -15089,12 +15283,12 @@ eventID_chillPingu_01_main:
           CODE_81F0C7:
                        LDA.B $0F                            ;81F0C7|A50F    |001CF7;
                        BPL CODE_81F0CF                      ;81F0C9|1004    |81F0CF;
-                       JML.L CODE_828398                    ;81F0CB|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81F0CB|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F0CF:
                        JSL.L updateEv_13_14_17_0f           ;81F0CF|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;81F0D3|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81F0D3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F0D7:
@@ -15138,11 +15332,11 @@ eventID_chillPingu_01_main:
                        BPL CODE_81F125                      ;81F11F|1004    |81F125;
                                                             ;      |        |      ;
           CODE_81F121:
-                       JML.L CODE_828398                    ;81F121|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81F121|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F125:
-                       JSL.L CODE_8280B4                    ;81F125|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81F125|22B48082|8280B4;
                        JML.L updateEv_13_14_17_0f           ;81F129|5CEA8E84|848EEA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15200,7 +15394,7 @@ eventID_chillPingu_01_main:
                        LDA.B $0F                            ;81F184|A50F    |0019B7;
                        BPL CODE_81F1A1                      ;81F186|1019    |81F1A1;
                        STZ.B $19                            ;81F188|6419    |0019C1;
-                       JML.L CODE_828398                    ;81F18A|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81F18A|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F18E:
@@ -15212,11 +15406,11 @@ eventID_chillPingu_01_main:
                        BEQ CODE_81F1A1                      ;81F19B|F004    |81F1A1;
                                                             ;      |        |      ;
           CODE_81F19D:
-                       JML.L CODE_828398                    ;81F19D|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81F19D|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F1A1:
-                       JSL.L CODE_8280B4                    ;81F1A1|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81F1A1|22B48082|8280B4;
                        LDA.B $0E                            ;81F1A5|A50E    |0019B6;
                        BEQ CODE_81F19D                      ;81F1A7|F0F4    |81F19D;
                        RTL                                  ;81F1A9|6B      |      ;
@@ -15288,7 +15482,7 @@ eventID_chillPingu_01_main:
                        LDY.B #$00                           ;81F21F|A000    |      ;
                        LDA.B ($0C),Y                        ;81F221|B10C    |001994;
                        BNE CODE_81F229                      ;81F223|D004    |81F229;
-                       JML.L CODE_828398                    ;81F225|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81F225|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F229:
@@ -15361,7 +15555,7 @@ eventID_chillPingu_01_main:
           CODE_81F288:
                        STA.B $05                            ;81F288|8505    |00198D;
                        SEP #$30                             ;81F28A|E230    |      ;
-                       JML.L CODE_8280B4                    ;81F28C|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81F28C|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F290:
@@ -15383,7 +15577,7 @@ eventID_chillPingu_01_main:
                        STA.B $1E                            ;81F2AF|851E    |00001E;
                        LDA.B #$04                           ;81F2B1|A904    |      ;
                        STA.B $01                            ;81F2B3|8501    |000001;
-                       JML.L CODE_8280B4                    ;81F2B5|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81F2B5|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F2B9:
@@ -15399,19 +15593,19 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F2CA:
-                       JSL.L CODE_8280B4                    ;81F2CA|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81F2CA|22B48082|8280B4;
                        LDA.B $0E                            ;81F2CE|A50E    |00000E;
                        BNE CODE_81F2C9                      ;81F2D0|D0F7    |81F2C9;
-                       JML.L CODE_828398                    ;81F2D2|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81F2D2|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F2D6:
                        LDX.B $01                            ;81F2D6|A601    |0019E9;
                        JSR.W (UNREACH_81F2E8,X)             ;81F2D8|FCE8F2  |81F2E8;
-                       JSL.L CODE_8280B4                    ;81F2DB|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81F2DB|22B48082|8280B4;
                        LDA.B $0E                            ;81F2DF|A50E    |0019D6;
                        BNE CODE_81F2E7                      ;81F2E1|D004    |81F2E7;
-                       JML.L CODE_828398                    ;81F2E3|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81F2E3|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F2E7:
@@ -15442,7 +15636,7 @@ eventID_chillPingu_01_main:
                        ASL A                                ;81F30E|0A      |      ;
                        TAX                                  ;81F30F|AA      |      ;
                        REP #$20                             ;81F310|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;81F312|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;81F312|BD37EE  |86EE37;
                        ASL A                                ;81F315|0A      |      ;
                        STA.B $1A                            ;81F316|851A    |0019E2;
                        ASL A                                ;81F318|0A      |      ;
@@ -15475,7 +15669,7 @@ eventID_chillPingu_01_main:
                        ASL A                                ;81F34F|0A      |      ;
                        TAX                                  ;81F350|AA      |      ;
                        REP #$20                             ;81F351|C220    |      ;
-                       LDA.W DATA8_86EE37,X                 ;81F353|BD37EE  |86EE37;
+                       LDA.W stormEagle_56_subID,X          ;81F353|BD37EE  |86EE37;
                        ASL A                                ;81F356|0A      |      ;
                        STA.B $1A                            ;81F357|851A    |001AC2;
                        LDA.W DATA8_86EE39,X                 ;81F359|BD39EE  |86EE39;
@@ -15487,7 +15681,7 @@ eventID_chillPingu_01_main:
                        JSL.L updateEv_13_14_17_0f           ;81F361|22EA8E84|848EEA;
                        DEC.B $0D                            ;81F365|C60D    |001AB5;
                        BNE CODE_81F36D                      ;81F367|D004    |81F36D;
-                       JSL.L CODE_828398                    ;81F369|22988382|828398;
+                       JSL.L clearStates_00_02_0E           ;81F369|22988382|828398;
                                                             ;      |        |      ;
           CODE_81F36D:
                        RTS                                  ;81F36D|60      |      ;
@@ -15566,10 +15760,10 @@ eventID_chillPingu_01_main:
                        EOR.B $0B                            ;81F3EE|450B    |001993;
                        LSR A                                ;81F3F0|4A      |      ;
                        BCC CODE_81F3FF                      ;81F3F1|900C    |81F3FF;
-                       JSL.L CODE_8280B4                    ;81F3F3|22B48082|8280B4;
+                       JSL.L eventID_vile_68_afterInit      ;81F3F3|22B48082|8280B4;
                        LDA.B $0E                            ;81F3F7|A50E    |001996;
                        BNE CODE_81F3FF                      ;81F3F9|D004    |81F3FF;
-                       JML.L CODE_828398                    ;81F3FB|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81F3FB|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F3FF:
@@ -15591,7 +15785,7 @@ eventID_chillPingu_01_main:
           CODE_81F416:
                        LDX.B $02                            ;81F416|A602    |001BAA;
                        BNE CODE_81F41E                      ;81F418|D004    |81F41E;
-                       JML.L CODE_8280B4                    ;81F41A|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81F41A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F41E:
@@ -15610,7 +15804,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81F42F:
                        JSL.L updateEv_13_14_17_0f           ;81F42F|22EA8E84|848EEA;
-                       JML.L CODE_8280B4                    ;81F433|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81F433|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F437:
@@ -15651,14 +15845,14 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_828174                    ;81F47D|22748182|828174;
                        DEC.B $0C                            ;81F481|C60C    |001C74;
                        BNE CODE_81F489                      ;81F483|D004    |81F489;
-                       JML.L CODE_828398                    ;81F485|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81F485|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F489:
                        LDA.B $0C                            ;81F489|A50C    |001C74;
                        LSR A                                ;81F48B|4A      |      ;
                        BCC CODE_81F492                      ;81F48C|9004    |81F492;
-                       JML.L CODE_8280B4                    ;81F48E|5CB48082|8280B4;
+                       JML.L eventID_vile_68_afterInit      ;81F48E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F492:
@@ -15913,7 +16107,7 @@ eventID_chillPingu_01_main:
           CODE_81F640:
                        LDA.B $0C                            ;81F640|A50C    |001994;
                        BEQ CODE_81F69A                      ;81F642|F056    |81F69A;
-                       JSL.L CODE_82806E                    ;81F644|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81F644|226E8082|82806E;
                        BCS CODE_81F69A                      ;81F648|B050    |81F69A;
                        DEC.B $03                            ;81F64A|C603    |00198B;
                        BNE CODE_81F69A                      ;81F64C|D04C    |81F69A;
@@ -16078,7 +16272,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81F76B:
                        SEP #$30                             ;81F76B|E230    |      ;
-                       JSL.L CODE_828387                    ;81F76D|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;81F76D|22878382|828387;
                        RTS                                  ;81F771|60      |      ;
                                                             ;      |        |      ;
                        db $A5,$01,$D0,$12,$E6,$01,$AD,$2C   ;81F772|        |000001;
@@ -16123,7 +16317,7 @@ eventID_chillPingu_01_main:
                        JSL.L CODE_84A20A                    ;81F889|220AA284|84A20A;
                        TYA                                  ;81F88D|98      |      ;
                        BEQ CODE_81F894                      ;81F88E|F004    |81F894;
-                       JML.L CODE_828387                    ;81F890|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;81F890|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F894:
@@ -16223,9 +16417,9 @@ eventID_chillPingu_01_main:
                        SEP #$10                             ;81F92D|E210    |      ;
                        LDX.B $01                            ;81F92F|A601    |001D09;
                        JSR.W (DATA8_81F940,X)               ;81F931|FC40F9  |81F940;
-                       JSL.L CODE_82806E                    ;81F934|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81F934|226E8082|82806E;
                        BCC CODE_81F93E                      ;81F938|9004    |81F93E;
-                       JSL.L CODE_828387                    ;81F93A|22878382|828387;
+                       JSL.L clearStateIf_0cEqual           ;81F93A|22878382|828387;
                                                             ;      |        |      ;
           CODE_81F93E:
                        PLP                                  ;81F93E|28      |      ;
@@ -16717,9 +16911,9 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81FCE2:
-                       JSL.L CODE_82806E                    ;81FCE2|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81FCE2|226E8082|82806E;
                        BCC CODE_81FCEC                      ;81FCE6|9004    |81FCEC;
-                       JML.L CODE_828387                    ;81FCE8|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;81FCE8|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81FCEC:
@@ -16828,7 +17022,7 @@ eventID_chillPingu_01_main:
                        BNE CODE_81FE89                      ;81FE7D|D00A    |81FE89;
                        LDA.B #$2F                           ;81FE7F|A92F    |      ;
                        JSL.L CODE_8088CD                    ;81FE81|22CD8880|8088CD;
-                       JML.L CODE_828398                    ;81FE85|5C988382|828398;
+                       JML.L clearStates_00_02_0E           ;81FE85|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81FE89:
@@ -16873,7 +17067,7 @@ eventID_chillPingu_01_main:
                        BCS CODE_81FF37                      ;81FF31|B004    |81FF37;
                                                             ;      |        |      ;
           CODE_81FF33:
-                       JML.L CODE_828387                    ;81FF33|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;81FF33|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81FF37:
@@ -16904,13 +17098,13 @@ eventID_chillPingu_01_main:
                        LDA.B $0B                            ;81FF5A|A50B    |001D53;
                        AND.B #$3F                           ;81FF5C|293F    |      ;
                        STA.W r_1f81                         ;81FF5E|8D811F  |861F81;
-                       JML.L CODE_828387                    ;81FF61|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;81FF61|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81FF65:
-                       JSL.L CODE_82806E                    ;81FF65|226E8082|82806E;
+                       JSL.L initPosAllign                  ;81FF65|226E8082|82806E;
                        BCC CODE_81FF6F                      ;81FF69|9004    |81FF6F;
-                       JML.L CODE_828387                    ;81FF6B|5C878382|828387;
+                       JML.L clearStateIf_0cEqual           ;81FF6B|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81FF6F:
