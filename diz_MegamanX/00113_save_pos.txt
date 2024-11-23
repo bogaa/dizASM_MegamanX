@@ -175,41 +175,6 @@ U
 U
 U
 A
-Ag
-U
-U
-U
-U
-U
-A
-A
-r 64 U
-r 40 A
-U
-U
-U
-U
-U
-U
-A
-A
-A
-A
-r 468 U
-r 122 A
-U
-U
-A
-A
-U
-U
-U
-U
-r 72 A
-U
-U
-U
-U
-U
-U
-U
+Eg86
+r 355 E086
+r 443 B

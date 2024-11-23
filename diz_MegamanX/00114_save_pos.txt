@@ -1,35 +1,11 @@
 
 ;pos=036800
-r 23 U
-r 20 A
-r 1188 U
-Ug
-U
-Ug
-U
-A
-A
-A
-A
-r 12 U
-A
-A
-A
-A
-r 12 U
-r 32 A
-U
-U
-U
-U
-r 20 A
-r 8 U
-A
-A
-A
-A
-r 216 U
-Ag
+r 1231 B
+Bg
+B
+Bg
+r 317 B
+Bg
 r 15 A
 Ag
 r 22 A

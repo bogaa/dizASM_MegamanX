@@ -86,27 +86,11 @@ A
 A
 A
 r 136 U
-Ug
-Ug
+Bg
+Bg
+r 206 B
 U
 U
-U
-U
-A
-A
-r 32 U
-A
-A
-r 42 U
-r 8 A
-U
-U
-A
-A
-r 8 U
-A
-A
-r 104 U
 Ug
 U
 U

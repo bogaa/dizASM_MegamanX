@@ -1045,7 +1045,10 @@
                        db $88,$AC,$AF                       ;AFA036|        |      ;
                        db $C0,$AC,$AF,$24,$AD,$AF,$47,$AD   ;AFA039|        |      ;
                        db $AF,$94,$AD,$AF                   ;AFA041|        |AFAD94;
-                       db $30,$AE,$AF,$10,$A2,$AF           ;AFA045|        |      ;
+                       db $30,$AE,$AF                       ;AFA045|        |      ;
+                                                            ;      |        |      ;
+  player_walkAnimCTRL:
+                       db $10,$A2,$AF                       ;AFA048|        |      ;
                        db $74,$AF,$AF,$C6,$AF,$AF,$1C,$B0   ;AFA04B|        |0000AF;
                        db $AF,$8D,$B0,$AF,$F0,$B0,$AF,$15   ;AFA053|        |AFB08D;
                        db $B1,$AF,$8F,$B1,$AF,$7F,$B2,$AF   ;AFA05B|        |0000AF;

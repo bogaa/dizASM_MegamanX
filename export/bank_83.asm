@@ -4,13 +4,13 @@
                                                             ;      |        |      ;
           CODE_838000:
                        REP #$20                             ;838000|C220    |      ;
-                       LDA.W r_joy1_buttonHoldLo_0          ;838002|ADDE0B  |860BDE;
-                       STA.B $36                            ;838005|8536    |000E4E;
-                       LDA.W r_joy1_buttonPressedLo         ;838007|ADE20B  |860BE2;
+                       LDA.W r_d_joy1_buttonHoldLo_0        ;838002|ADDE0B  |860BDE;
+                       STA.B r_ride_controller_0a-$E18      ;838005|8536    |000E4E;
+                       LDA.W r_d_joy1_buttonPressedLo       ;838007|ADE20B  |860BE2;
                        STA.B $3A                            ;83800A|853A    |000E52;
-                       LDA.B $05                            ;83800C|A505    |000E1D;
+                       LDA.B r_ride_xPos_03-$E18            ;83800C|A505    |000E1D;
                        STA.B $22                            ;83800E|8522    |000E3A;
-                       LDA.B $08                            ;838010|A508    |000E20;
+                       LDA.B r_ride_yPos_05-$E18            ;838010|A508    |000E20;
                        STA.B $24                            ;838012|8524    |000E3C;
                        SEP #$20                             ;838014|E220    |      ;
                        LDX.B $01                            ;838016|A601    |000E19;
@@ -19,7 +19,7 @@
                        TRB.B $27                            ;83801D|1427    |000E3F;
                        LDA.B $11                            ;83801F|A511    |000E29;
                        AND.B #$3F                           ;838021|293F    |      ;
-                       ORA.B $33                            ;838023|0533    |000E4B;
+                       ORA.B r_ride_dir_09-$E18             ;838023|0533    |000E4B;
                        STA.B $11                            ;838025|8511    |000E29;
                        RTL                                  ;838027|6B      |      ;
                                                             ;      |        |      ;
@@ -50,7 +50,7 @@
                        STZ.B $0F                            ;83805A|640F    |000E27;
                        STZ.B $1F                            ;83805C|641F    |000E37;
                        LDA.B #$40                           ;83805E|A940    |      ;
-                       STA.B $1E                            ;838060|851E    |000E36;
+                       STA.B r_ride_waight_08-$E18          ;838060|851E    |000E36;
                        REP #$20                             ;838062|C220    |      ;
                        LDA.W #$BB4C                         ;838064|A94CBB  |      ;
                        STA.B $20                            ;838067|8520    |000E38;
@@ -65,7 +65,7 @@
                                                             ;      |        |      ;
           CODE_838076:
                        LDA.L $7F8349                        ;838076|AF49837F|7F8349;
-                       ORA.B $33                            ;83807A|0533    |000E4B;
+                       ORA.B r_ride_dir_09-$E18             ;83807A|0533    |000E4B;
                        STA.B $11                            ;83807C|8511    |000E29;
                        LDA.B $27                            ;83807E|A527    |000E3F;
                        BPL CODE_8380B7                      ;838080|1035    |8380B7;
@@ -96,7 +96,7 @@
                        BIT.B $0A                            ;8380BF|240A    |000E22;
                        BVC CODE_8380CA                      ;8380C1|5007    |8380CA;
                        LDA.B #$01                           ;8380C3|A901    |      ;
-                       STA.W r_0bb6                         ;8380C5|8DB60B  |860BB6;
+                       STA.W r_d_r_player_activSpr          ;8380C5|8DB60B  |860BB6;
                        STZ.B $30                            ;8380C8|6430    |000E48;
                                                             ;      |        |      ;
           CODE_8380CA:
@@ -110,7 +110,7 @@
           CODE_8380DB:
                        JSR.W CODE_83875B                    ;8380DB|205B87  |83875B;
                        JSR.W CODE_83879E                    ;8380DE|209E87  |83879E;
-                       LDX.B $02                            ;8380E1|A602    |000E1A;
+                       LDX.B r_ride_state_01-$E18           ;8380E1|A602    |000E1A;
                        JSR.W (UNREACH_83810F,X)             ;8380E3|FC0F81  |83810F;
                        JSR.W CODE_8388C4                    ;8380E6|20C488  |8388C4;
                        JSL.L CODE_8491BE                    ;8380E9|22BE9184|8491BE;
@@ -147,7 +147,7 @@
                        STA.B $20                            ;838134|8520    |000E38;
                        SEP #$20                             ;838136|E220    |      ;
                        LDA.B #$09                           ;838138|A909    |      ;
-                       JSL.L CODE_848F07                    ;83813A|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83813A|22078F84|848F07;
                        RTS                                  ;83813E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -171,11 +171,11 @@
                        BMI CODE_838187                      ;838162|3023    |838187;
                        LDA.W r_1f23                         ;838164|AD231F  |861F23;
                        BNE CODE_838187                      ;838167|D01E    |838187;
-                       LDA.W r_0bcf                         ;838169|ADCF0B  |860BCF;
+                       LDA.W r_d_0bcf                       ;838169|ADCF0B  |860BCF;
                        AND.B #$7F                           ;83816C|297F    |      ;
                        BEQ CODE_838187                      ;83816E|F017    |838187;
                        LDA.B #$14                           ;838170|A914    |      ;
-                       STA.B $02                            ;838172|8502    |000E1A;
+                       STA.B r_ride_state_01-$E18           ;838172|8502    |000E1A;
                        STZ.B $03                            ;838174|6403    |000E1B;
                        REP #$20                             ;838176|C220    |      ;
                        LDA.W #$BB42                         ;838178|A942BB  |      ;
@@ -198,7 +198,7 @@
                        LDA.B #$00                           ;838196|A900    |      ;
                        JSR.W CODE_8386EA                    ;838198|20EA86  |8386EA;
                        LDA.B #$00                           ;83819B|A900    |      ;
-                       JSL.L CODE_848F07                    ;83819D|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83819D|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_8381A1:
                        JSR.W CODE_8386DF                    ;8381A1|20DF86  |8386DF;
@@ -252,7 +252,7 @@
                        LDA.B #$01                           ;8381EB|A901    |      ;
                        JSR.W CODE_8386EA                    ;8381ED|20EA86  |8386EA;
                        LDA.B #$01                           ;8381F0|A901    |      ;
-                       JSL.L CODE_848F07                    ;8381F2|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;8381F2|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_8381F6:
                        JSR.W CODE_8386DF                    ;8381F6|20DF86  |8386DF;
@@ -315,11 +315,11 @@
                        LDA.B #$19                           ;83824D|A919    |      ;
                        JSR.W CODE_838933                    ;83824F|203389  |838933;
                        INC A                                ;838252|1A      |      ;
-                       STA.W r_1f0d                         ;838253|8D0D1F  |861F0D;
+                       STA.W r_curShotFired                 ;838253|8D0D1F  |861F0D;
                        LDA.B #$02                           ;838256|A902    |      ;
                        JSR.W CODE_8386EA                    ;838258|20EA86  |8386EA;
                        LDA.B #$02                           ;83825B|A902    |      ;
-                       JSL.L CODE_848F07                    ;83825D|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83825D|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_838261:
                        LDA.B $0F                            ;838261|A50F    |000E27;
@@ -336,11 +336,11 @@
                        BNE CODE_83829D                      ;838271|D02A    |83829D;
                        INC.B $03                            ;838273|E603    |000E1B;
                        REP #$20                             ;838275|C220    |      ;
-                       STZ.B $1A                            ;838277|641A    |000E32;
+                       STZ.B r_ride_xSpd_06-$E18            ;838277|641A    |000E32;
                        LDA.W #$0553                         ;838279|A95305  |      ;
-                       STA.B $1C                            ;83827C|851C    |000E34;
+                       STA.B r_ride_ySpd_07-$E18            ;83827C|851C    |000E34;
                        LDA.W #$0040                         ;83827E|A94000  |      ;
-                       STA.B $1E                            ;838281|851E    |000E36;
+                       STA.B r_ride_waight_08-$E18          ;838281|851E    |000E36;
                        SEP #$20                             ;838283|E220    |      ;
                        LDA.B #$0C                           ;838285|A90C    |      ;
                        JSR.W CODE_83CD18                    ;838287|2018CD  |83CD18;
@@ -350,7 +350,7 @@
                        LDA.B #$03                           ;838292|A903    |      ;
                        JSR.W CODE_8386EA                    ;838294|20EA86  |8386EA;
                        LDA.B #$03                           ;838297|A903    |      ;
-                       JSL.L CODE_848F07                    ;838299|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838299|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83829D:
                        LDA.B $3B                            ;83829D|A53B    |000E53;
@@ -369,7 +369,7 @@
                        LDA.B $0A                            ;8382B2|A50A    |000E22;
                        BIT.B #$02                           ;8382B4|8902    |      ;
                        BNE CODE_8382D8                      ;8382B6|D020    |8382D8;
-                       STZ.B $1A                            ;8382B8|641A    |000E32;
+                       STZ.B r_ride_xSpd_06-$E18            ;8382B8|641A    |000E32;
                        STZ.B $1B                            ;8382BA|641B    |000E33;
                        JSR.W CODE_838707                    ;8382BC|200787  |838707;
                        LDA.B $2B                            ;8382BF|A52B    |000E43;
@@ -411,7 +411,7 @@
                        LDA.B #$04                           ;8382FF|A904    |      ;
                        JSR.W CODE_8386EA                    ;838301|20EA86  |8386EA;
                        LDA.B #$04                           ;838304|A904    |      ;
-                       JSL.L CODE_848F07                    ;838306|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838306|22078F84|848F07;
                        LDA.B #$04                           ;83830A|A904    |      ;
                        TSB.B $2B                            ;83830C|042B    |000E43;
                                                             ;      |        |      ;
@@ -463,11 +463,11 @@
                        LDA.B #$19                           ;838356|A919    |      ;
                        JSR.W CODE_838933                    ;838358|203389  |838933;
                        INC A                                ;83835B|1A      |      ;
-                       STA.W r_1f0d                         ;83835C|8D0D1F  |861F0D;
+                       STA.W r_curShotFired                 ;83835C|8D0D1F  |861F0D;
                        LDA.B #$05                           ;83835F|A905    |      ;
                        JSR.W CODE_8386EA                    ;838361|20EA86  |8386EA;
                        LDA.B #$05                           ;838364|A905    |      ;
-                       JSL.L CODE_848F07                    ;838366|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838366|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83836A:
                        LDA.B $2B                            ;83836A|A52B    |000E43;
@@ -481,7 +481,7 @@
                        LDA.B $0A                            ;838375|A50A    |000E22;
                        BIT.B #$02                           ;838377|8902    |      ;
                        BNE CODE_8383B6                      ;838379|D03B    |8383B6;
-                       STZ.B $1A                            ;83837B|641A    |000E32;
+                       STZ.B r_ride_xSpd_06-$E18            ;83837B|641A    |000E32;
                        STZ.B $1B                            ;83837D|641B    |000E33;
                        JSR.W CODE_83871D                    ;83837F|201D87  |83871D;
                        LDA.B $2B                            ;838382|A52B    |000E43;
@@ -494,7 +494,7 @@
                        BNE CODE_838396                      ;838390|D004    |838396;
                                                             ;      |        |      ;
           CODE_838392:
-                       STZ.B $1C                            ;838392|641C    |000E34;
+                       STZ.B r_ride_ySpd_07-$E18            ;838392|641C    |000E34;
                        STZ.B $1D                            ;838394|641D    |000E35;
                                                             ;      |        |      ;
           CODE_838396:
@@ -506,14 +506,14 @@
                        LDX.B #$18                           ;8383A0|A218    |      ;
                                                             ;      |        |      ;
           CODE_8383A2:
-                       STX.B $02                            ;8383A2|8602    |000E1A;
+                       STX.B r_ride_state_01-$E18           ;8383A2|8602    |000E1A;
                        RTS                                  ;8383A4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8383A5:
                        REP #$20                             ;8383A5|C220    |      ;
                        LDA.W #$FA80                         ;8383A7|A980FA  |      ;
-                       CMP.B $1C                            ;8383AA|C51C    |000E34;
+                       CMP.B r_ride_ySpd_07-$E18            ;8383AA|C51C    |000E34;
                        BMI CODE_8383B0                      ;8383AC|3002    |8383B0;
                        db $85,$1C                           ;8383AE|        |00001C;
                                                             ;      |        |      ;
@@ -568,7 +568,7 @@
                        LDA.B #$09                           ;8384E3|A909    |      ;
                        JSR.W CODE_8386EA                    ;8384E5|20EA86  |8386EA;
                        LDA.B #$09                           ;8384E8|A909    |      ;
-                       JSL.L CODE_848F07                    ;8384EA|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;8384EA|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_8384EE:
                        LDA.B $0F                            ;8384EE|A50F    |000E27;
@@ -579,7 +579,7 @@
                                                             ;      |        |      ;
           CODE_8384F8:
                        LDA.B #$02                           ;8384F8|A902    |      ;
-                       STA.B $02                            ;8384FA|8502    |000E1A;
+                       STA.B r_ride_state_01-$E18           ;8384FA|8502    |000E1A;
                        STZ.B $03                            ;8384FC|6403    |000E1B;
                        RTS                                  ;8384FE|60      |      ;
                                                             ;      |        |      ;
@@ -607,11 +607,11 @@
                        BIT.B #$02                           ;838521|8902    |      ;
                        BNE CODE_838535                      ;838523|D010    |838535;
                        REP #$20                             ;838525|C220    |      ;
-                       STZ.B $1A                            ;838527|641A    |000E32;
+                       STZ.B r_ride_xSpd_06-$E18            ;838527|641A    |000E32;
                        LDA.W #$01DC                         ;838529|A9DC01  |      ;
-                       STA.B $1C                            ;83852C|851C    |000E34;
+                       STA.B r_ride_ySpd_07-$E18            ;83852C|851C    |000E34;
                        LDA.W #$0040                         ;83852E|A94000  |      ;
-                       STA.B $1E                            ;838531|851E    |000E36;
+                       STA.B r_ride_waight_08-$E18          ;838531|851E    |000E36;
                        SEP #$20                             ;838533|E220    |      ;
                                                             ;      |        |      ;
           CODE_838535:
@@ -621,8 +621,8 @@
                        BIT.B #$02                           ;83853B|8902    |      ;
                        BNE CODE_838547                      ;83853D|D008    |838547;
                        REP #$20                             ;83853F|C220    |      ;
-                       STZ.B $1C                            ;838541|641C    |000E34;
-                       STZ.B $1E                            ;838543|641E    |000E36;
+                       STZ.B r_ride_ySpd_07-$E18            ;838541|641C    |000E34;
+                       STZ.B r_ride_waight_08-$E18          ;838543|641E    |000E36;
                        SEP #$20                             ;838545|E220    |      ;
                                                             ;      |        |      ;
           CODE_838547:
@@ -638,19 +638,19 @@
                                                             ;      |        |      ;
           CODE_838555:
                        LDA.B #$0A                           ;838555|A90A    |      ;
-                       JSL.L CODE_848F07                    ;838557|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838557|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83855B:
                        LDA.B $2B                            ;83855B|A52B    |000E43;
                        BIT.B #$04                           ;83855D|8904    |      ;
                        BEQ CODE_838565                      ;83855F|F004    |838565;
-                       STZ.B $1C                            ;838561|641C    |000E34;
+                       STZ.B r_ride_ySpd_07-$E18            ;838561|641C    |000E34;
                        STZ.B $1D                            ;838563|641D    |000E35;
                                                             ;      |        |      ;
           CODE_838565:
                        LDA.B $0F                            ;838565|A50F    |000E27;
                        BPL CODE_83856D                      ;838567|1004    |83856D;
-                       STZ.B $02                            ;838569|6402    |000E1A;
+                       STZ.B r_ride_state_01-$E18           ;838569|6402    |000E1A;
                        STZ.B $03                            ;83856B|6403    |000E1B;
                                                             ;      |        |      ;
           CODE_83856D:
@@ -667,10 +667,10 @@
                        BNE CODE_8385A0                      ;83857E|D020    |8385A0;
                        INC.B $03                            ;838580|E603    |000E1B;
                        REP #$20                             ;838582|C220    |      ;
-                       STZ.B $1A                            ;838584|641A    |000E32;
-                       STZ.B $1C                            ;838586|641C    |000E34;
+                       STZ.B r_ride_xSpd_06-$E18            ;838584|641A    |000E32;
+                       STZ.B r_ride_ySpd_07-$E18            ;838586|641C    |000E34;
                        LDA.W #$0040                         ;838588|A94000  |      ;
-                       STA.B $1E                            ;83858B|851E    |000E36;
+                       STA.B r_ride_waight_08-$E18          ;83858B|851E    |000E36;
                        SEP #$20                             ;83858D|E220    |      ;
                        INC.B $2F                            ;83858F|E62F    |000E47;
                        BIT.B $0A                            ;838591|240A    |000E22;
@@ -680,7 +680,7 @@
                                                             ;      |        |      ;
           CODE_83859A:
                        LDA.B #$03                           ;83859A|A903    |      ;
-                       JSL.L CODE_848F07                    ;83859C|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83859C|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_8385A0:
                        BIT.B $0A                            ;8385A0|240A    |000E22;
@@ -727,16 +727,16 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8385E7:
-                       STZ.B $1A                            ;8385E7|641A    |000E32;
+                       STZ.B r_ride_xSpd_06-$E18            ;8385E7|641A    |000E32;
                        STZ.B $1B                            ;8385E9|641B    |000E33;
                        JSR.W CODE_838707                    ;8385EB|200787  |838707;
                                                             ;      |        |      ;
           CODE_8385EE:
                        REP #$20                             ;8385EE|C220    |      ;
                        LDA.W #$FA80                         ;8385F0|A980FA  |      ;
-                       CMP.B $1C                            ;8385F3|C51C    |000E34;
+                       CMP.B r_ride_ySpd_07-$E18            ;8385F3|C51C    |000E34;
                        BMI CODE_8385F9                      ;8385F5|3002    |8385F9;
-                       STA.B $1C                            ;8385F7|851C    |000E34;
+                       STA.B r_ride_ySpd_07-$E18            ;8385F7|851C    |000E34;
                                                             ;      |        |      ;
           CODE_8385F9:
                        JSL.L CODE_828174                    ;8385F9|22748182|828174;
@@ -751,17 +751,17 @@
                                                             ;      |        |      ;
           CODE_838605:
                        LDA.B #$2C                           ;838605|A92C    |      ;
-                       STA.W r_0baa                         ;838607|8DAA0B  |860BAA;
-                       STZ.W r_0bab                         ;83860A|9CAB0B  |860BAB;
-                       STA.W r_0bd8                         ;83860D|8DD80B  |860BD8;
-                       STA.W r_blaster10                    ;838610|8D0C0C  |860C0C;
+                       STA.W $0BAA                          ;838607|8DAA0B  |860BAA;
+                       STZ.W r_d_0bab                       ;83860A|9CAB0B  |860BAB;
+                       STA.W r_d_0bd8                       ;83860D|8DD80B  |860BD8;
+                       STA.W $0C0C                          ;838610|8D0C0C  |860C0C;
                        STA.W $0C24                          ;838613|8D240C  |860C24;
-                       STZ.W r_blaster04                    ;838616|9C000C  |860C00;
-                       STZ.W r_blaster07                    ;838619|9C030C  |860C03;
-                       STZ.W r_blaster17                    ;83861C|9C130C  |860C13;
-                       STZ.W r_0bd3                         ;83861F|9CD30B  |860BD3;
+                       STZ.W $0C00                          ;838616|9C000C  |860C00;
+                       STZ.W $0C03                          ;838619|9C030C  |860C03;
+                       STZ.W $0C13                          ;83861C|9C130C  |860C13;
+                       STZ.W r_d_0bd3                       ;83861F|9CD30B  |860BD3;
                        LDA.B #$01                           ;838622|A901    |      ;
-                       STA.W r_0bb6                         ;838624|8DB60B  |860BB6;
+                       STA.W r_d_r_player_activSpr          ;838624|8DB60B  |860BB6;
                        LDA.B #$17                           ;838627|A917    |      ;
                        JSL.L CODE_8088CD                    ;838629|22CD8880|8088CD;
                        LDX.B #$6A                           ;83862D|A26A    |      ;
@@ -771,7 +771,7 @@
                        db $E8                               ;838636|        |      ;
                                                             ;      |        |      ;
           CODE_838637:
-                       STX.W r_0bbe                         ;838637|8EBE0B  |860BBE;
+                       STX.W r_d_0bbe                       ;838637|8EBE0B  |860BBE;
                        LDA.B #$6C                           ;83863A|A96C    |      ;
                        STA.W $0C48                          ;83863C|8D480C  |860C48;
                        STA.W $0C68                          ;83863F|8D680C  |860C68;
@@ -780,15 +780,15 @@
                        STZ.W $0C59                          ;838648|9C590C  |860C59;
                        STZ.W $0C79                          ;83864B|9C790C  |860C79;
                        REP #$31                             ;83864E|C231    |      ;
-                       LDA.W r_0bdb                         ;838650|ADDB0B  |860BDB;
+                       LDA.W r_d_0bdb                       ;838650|ADDB0B  |860BDB;
                        AND.W #$00FF                         ;838653|29FF00  |      ;
                        ADC.W #$0100                         ;838656|690001  |      ;
                        TAY                                  ;838659|A8      |      ;
                        JSL.L CODE_828011                    ;83865A|22118082|828011;
                        LDA.W #$A8A5                         ;83865E|A9A5A8  |      ;
-                       STA.W r_0bd9                         ;838661|8DD90B  |860BD9;
+                       STA.W r_d_0bd9                       ;838661|8DD90B  |860BD9;
                        LDA.W #$BB56                         ;838664|A956BB  |      ;
-                       STA.W r_0bc8                         ;838667|8DC80B  |860BC8;
+                       STA.W r_d_0bc8                       ;838667|8DC80B  |860BC8;
                        SEP #$30                             ;83866A|E230    |      ;
                        LDA.B #$40                           ;83866C|A940    |      ;
                        TSB.B $0A                            ;83866E|040A    |000E22;
@@ -797,13 +797,13 @@
                                                             ;      |        |      ;
           CODE_838673:
                        LDA.B #$06                           ;838673|A906    |      ;
-                       STA.W r_0baa                         ;838675|8DAA0B  |860BAA;
-                       STZ.W r_0bab                         ;838678|9CAB0B  |860BAB;
-                       STZ.W r_0bd8                         ;83867B|9CD80B  |860BD8;
-                       STZ.W r_blaster10                    ;83867E|9C0C0C  |860C0C;
+                       STA.W $0BAA                          ;838675|8DAA0B  |860BAA;
+                       STZ.W r_d_0bab                       ;838678|9CAB0B  |860BAB;
+                       STZ.W r_d_0bd8                       ;83867B|9CD80B  |860BD8;
+                       STZ.W $0C0C                          ;83867E|9C0C0C  |860C0C;
                        STZ.W $0C24                          ;838681|9C240C  |860C24;
                        LDA.B #$01                           ;838684|A901    |      ;
-                       STA.W r_0bb6                         ;838686|8DB60B  |860BB6;
+                       STA.W r_d_r_player_activSpr          ;838686|8DB60B  |860BB6;
                        LDA.B #$5D                           ;838689|A95D    |      ;
                        STA.W $0C48                          ;83868B|8D480C  |860C48;
                        STA.W $0C68                          ;83868E|8D680C  |860C68;
@@ -819,14 +819,14 @@
                        db $A9,$75,$03                       ;8386A9|        |      ;
                                                             ;      |        |      ;
           CODE_8386AC:
-                       STA.W r_blaster08                    ;8386AC|8D040C  |860C04;
-                       STZ.W r_player_xSubSpd               ;8386AF|9CC20B  |860BC2;
+                       STA.W $0C04                          ;8386AC|8D040C  |860C04;
+                       STZ.W r_d_player_xSubSpd             ;8386AF|9CC20B  |860BC2;
                        LDA.W #$0553                         ;8386B2|A95305  |      ;
-                       STA.W r_player_ySubSpd               ;8386B5|8DC40B  |860BC4;
+                       STA.W r_d_player_ySubSpd             ;8386B5|8DC40B  |860BC4;
                        LDA.W #$A552                         ;8386B8|A952A5  |      ;
-                       STA.W r_0bc8                         ;8386BB|8DC80B  |860BC8;
+                       STA.W r_d_0bc8                       ;8386BB|8DC80B  |860BC8;
                        LDA.W #$A597                         ;8386BE|A997A5  |      ;
-                       STA.W r_0bd9                         ;8386C1|8DD90B  |860BD9;
+                       STA.W r_d_0bd9                       ;8386C1|8DD90B  |860BD9;
                        SEP #$30                             ;8386C4|E230    |      ;
                        LDX.B #$00                           ;8386C6|A200    |      ;
                        LDA.W r_player_upgradeMask           ;8386C8|AD991F  |861F99;
@@ -835,10 +835,10 @@
                        db $A2,$18                           ;8386CF|        |      ;
                                                             ;      |        |      ;
           CODE_8386D1:
-                       STX.W r_0bbe                         ;8386D1|8EBE0B  |860BBE;
-                       STZ.W r_0bc7                         ;8386D4|9CC70B  |860BC7;
+                       STX.W r_d_0bbe                       ;8386D1|8EBE0B  |860BBE;
+                       STZ.W r_d_0bc7                       ;8386D4|9CC70B  |860BC7;
                        LDA.B #$40                           ;8386D7|A940    |      ;
-                       STA.W r_0bc6                         ;8386D9|8DC60B  |860BC6;
+                       STA.W r_d_0bc6                       ;8386D9|8DC60B  |860BC6;
                        TRB.B $0A                            ;8386DC|140A    |000E22;
                        RTS                                  ;8386DE|60      |      ;
                                                             ;      |        |      ;
@@ -856,7 +856,7 @@
                                                             ;      |        |      ;
           CODE_8386EA:
                        STA.W $0C23                          ;8386EA|8D230C  |860C23;
-                       STZ.W r_0bab                         ;8386ED|9CAB0B  |860BAB;
+                       STZ.W r_d_0bab                       ;8386ED|9CAB0B  |860BAB;
                        RTS                                  ;8386F0|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -874,7 +874,7 @@
                        LDA.W #$FE88                         ;8386FF|A988FE  |      ;
                                                             ;      |        |      ;
           CODE_838702:
-                       STA.B $1A                            ;838702|851A    |000E32;
+                       STA.B r_ride_xSpd_06-$E18            ;838702|851A    |000E32;
                        SEP #$20                             ;838704|E220    |      ;
                        RTS                                  ;838706|60      |      ;
                                                             ;      |        |      ;
@@ -890,7 +890,7 @@
                        INC A                                ;838717|1A      |      ;
                                                             ;      |        |      ;
           CODE_838718:
-                       STA.B $1A                            ;838718|851A    |000E32;
+                       STA.B r_ride_xSpd_06-$E18            ;838718|851A    |000E32;
                        SEP #$20                             ;83871A|E220    |      ;
                                                             ;      |        |      ;
           CODE_83871C:
@@ -910,7 +910,7 @@
                        INC A                                ;83872F|1A      |      ;
                                                             ;      |        |      ;
           CODE_838730:
-                       STA.B $1A                            ;838730|851A    |000E32;
+                       STA.B r_ride_xSpd_06-$E18            ;838730|851A    |000E32;
                        SEP #$20                             ;838732|E220    |      ;
                                                             ;      |        |      ;
           CODE_838734:
@@ -921,7 +921,7 @@
                        LDA.B $37                            ;838735|A537    |000E4F;
                        BIT.B #$02                           ;838737|8902    |      ;
                        BEQ CODE_83873E                      ;838739|F003    |83873E;
-                       STZ.B $33                            ;83873B|6433    |000E4B;
+                       STZ.B r_ride_dir_09-$E18             ;83873B|6433    |000E4B;
                        RTS                                  ;83873D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -929,7 +929,7 @@
                        BIT.B #$01                           ;83873E|8901    |      ;
                        BEQ CODE_838746                      ;838740|F004    |838746;
                        LDA.B #$40                           ;838742|A940    |      ;
-                       STA.B $33                            ;838744|8533    |000E4B;
+                       STA.B r_ride_dir_09-$E18             ;838744|8533    |000E4B;
                                                             ;      |        |      ;
           CODE_838746:
                        RTS                                  ;838746|60      |      ;
@@ -937,13 +937,13 @@
                                                             ;      |        |      ;
           CODE_838747:
                        REP #$20                             ;838747|C220    |      ;
-                       LDA.B $05                            ;838749|A505    |000E1D;
-                       STA.W r_0bad                         ;83874B|8DAD0B  |860BAD;
-                       LDA.B $08                            ;83874E|A508    |000E20;
-                       STA.W r_0bb0                         ;838750|8DB00B  |860BB0;
+                       LDA.B r_ride_xPos_03-$E18            ;838749|A505    |000E1D;
+                       STA.W r_d_player_xSubPos             ;83874B|8DAD0B  |860BAD;
+                       LDA.B r_ride_yPos_05-$E18            ;83874E|A508    |000E20;
+                       STA.W r_d_player_yPos                ;838750|8DB00B  |860BB0;
                        SEP #$20                             ;838753|E220    |      ;
-                       LDA.B $33                            ;838755|A533    |000E4B;
-                       STA.W r_blaster15_dir_mirror         ;838757|8D110C  |860C11;
+                       LDA.B r_ride_dir_09-$E18             ;838755|A533    |000E4B;
+                       STA.W $0C11                          ;838757|8D110C  |860C11;
                                                             ;      |        |      ;
           CODE_83875A:
                        RTS                                  ;83875A|60      |      ;
@@ -987,7 +987,7 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_838791:
-                       LDA.B $02                            ;838791|A502    |000E1A;
+                       LDA.B r_ride_state_01-$E18           ;838791|A502    |000E1A;
                        CMP.B #$02                           ;838793|C902    |      ;
                        BEQ CODE_83879D                      ;838795|F006    |83879D;
                        CMP.B #$04                           ;838797|C904    |      ;
@@ -1017,11 +1017,11 @@
                        REP #$20                             ;8387BB|C220    |      ;
                        BIT.B $09                            ;8387BD|2409    |000E21;
                        BVC CODE_8387F3                      ;8387BF|5032    |8387F3;
-                       LDA.W r_1e58                         ;8387C1|AD581E  |861E58;
+                       LDA.W r_cam_BG0_RightBorder          ;8387C1|AD581E  |861E58;
                        CLC                                  ;8387C4|18      |      ;
                        ADC.W #$0100                         ;8387C5|690001  |      ;
                        STA.W r_0000                         ;8387C8|8D0000  |860000;
-                       LDA.B $05                            ;8387CB|A505    |000E1D;
+                       LDA.B r_ride_xPos_03-$E18            ;8387CB|A505    |000E1D;
                        CLC                                  ;8387CD|18      |      ;
                        ADC.W #$0010                         ;8387CE|691000  |      ;
                        CMP.W r_0000                         ;8387D1|CD0000  |860000;
@@ -1030,20 +1030,20 @@
                        db $05                               ;8387DE|        |0000A5;
                                                             ;      |        |      ;
           CODE_8387DF:
-                       LDA.B $05                            ;8387DF|A505    |000E1D;
+                       LDA.B r_ride_xPos_03-$E18            ;8387DF|A505    |000E1D;
                        SEC                                  ;8387E1|38      |      ;
                        SBC.W #$0010                         ;8387E2|E91000  |      ;
-                       CMP.W r_1e56                         ;8387E5|CD561E  |861E56;
+                       CMP.W r_cam_BG0_LeftBorder           ;8387E5|CD561E  |861E56;
                        BPL CODE_8387F3                      ;8387E8|1009    |8387F3;
                        db $AD,$56,$1E,$18,$69,$10,$00,$85   ;8387EA|        |001E56;
                        db $05                               ;8387F2|        |0000AD;
                                                             ;      |        |      ;
           CODE_8387F3:
-                       LDA.W r_cam_BG0_yPos_lock            ;8387F3|AD5C1E  |861E5C;
+                       LDA.W r_cam_BG0_BottomBorder         ;8387F3|AD5C1E  |861E5C;
                        CLC                                  ;8387F6|18      |      ;
                        ADC.W #$00E0                         ;8387F7|69E000  |      ;
                        STA.W r_0000                         ;8387FA|8D0000  |860000;
-                       LDA.B $08                            ;8387FD|A508    |000E20;
+                       LDA.B r_ride_yPos_05-$E18            ;8387FD|A508    |000E20;
                        CLC                                  ;8387FF|18      |      ;
                        ADC.W #$FFE0                         ;838800|69E0FF  |      ;
                        CMP.W r_0000                         ;838803|CD0000  |860000;
@@ -1062,10 +1062,10 @@
                        LDA.B $26                            ;838814|A526    |000E3E;
                        BEQ CODE_838823                      ;838816|F00B    |838823;
                        LDX.B #$01                           ;838818|A201    |      ;
-                       STX.W r_0bb6                         ;83881A|8EB60B  |860BB6;
+                       STX.W r_d_r_player_activSpr          ;83881A|8EB60B  |860BB6;
                        LSR A                                ;83881D|4A      |      ;
                        BCC CODE_838823                      ;83881E|9003    |838823;
-                       STZ.W r_0bb6                         ;838820|9CB60B  |860BB6;
+                       STZ.W r_d_r_player_activSpr          ;838820|9CB60B  |860BB6;
                                                             ;      |        |      ;
           CODE_838823:
                        RTS                                  ;838823|60      |      ;
@@ -1119,23 +1119,23 @@
                        LDA.B #$04                           ;8388CF|A904    |      ;
                        STA.B $40                            ;8388D1|8540    |000E58;
                        REP #$20                             ;8388D3|C220    |      ;
-                       LDA.B $1A                            ;8388D5|A51A    |000E32;
+                       LDA.B r_ride_xSpd_06-$E18            ;8388D5|A51A    |000E32;
                        STA.B $41                            ;8388D7|8541    |000E59;
-                       LDA.B $1C                            ;8388D9|A51C    |000E34;
+                       LDA.B r_ride_ySpd_07-$E18            ;8388D9|A51C    |000E34;
                        STA.B $43                            ;8388DB|8543    |000E5B;
-                       LDA.B $1E                            ;8388DD|A51E    |000E36;
+                       LDA.B r_ride_waight_08-$E18          ;8388DD|A51E    |000E36;
                        STA.B $45                            ;8388DF|8545    |000E5D;
                        LDA.B $3E                            ;8388E1|A53E    |000E56;
                        AND.W #$FF00                         ;8388E3|2900FF  |      ;
-                       STA.B $1A                            ;8388E6|851A    |000E32;
-                       STZ.B $1C                            ;8388E8|641C    |000E34;
+                       STA.B r_ride_xSpd_06-$E18            ;8388E6|851A    |000E32;
+                       STZ.B r_ride_ySpd_07-$E18            ;8388E8|641C    |000E34;
                        LDA.W #$4040                         ;8388EA|A94040  |      ;
-                       STA.B $1E                            ;8388ED|851E    |000E36;
+                       STA.B r_ride_waight_08-$E18          ;8388ED|851E    |000E36;
                        SEP #$20                             ;8388EF|E220    |      ;
                        STZ.B $31                            ;8388F1|6431    |000E49;
                        RTS                                  ;8388F3|60      |      ;
                                                             ;      |        |      ;
-                       BIT.B $33                            ;8388F4|2433    |000E4B;
+                       BIT.B r_ride_dir_09-$E18             ;8388F4|2433    |000E4B;
                        BVC CODE_8388FE                      ;8388F6|5006    |8388FE;
                        JSL.L CODE_828195                    ;8388F8|22958182|828195;
                        BRA CODE_838902                      ;8388FC|8004    |838902;
@@ -1146,7 +1146,7 @@
                                                             ;      |        |      ;
           CODE_838902:
                        REP #$20                             ;838902|C220    |      ;
-                       LDA.B $1A                            ;838904|A51A    |000E32;
+                       LDA.B r_ride_xSpd_06-$E18            ;838904|A51A    |000E32;
                        BPL CODE_83890C                      ;838906|1004    |83890C;
                        EOR.W #$FFFF                         ;838908|49FFFF  |      ;
                        INC A                                ;83890B|1A      |      ;
@@ -1160,16 +1160,16 @@
                        STZ.B $40                            ;838917|6440    |000E58;
                        REP #$20                             ;838919|C220    |      ;
                        LDA.B $41                            ;83891B|A541    |000E59;
-                       STA.B $1A                            ;83891D|851A    |000E32;
+                       STA.B r_ride_xSpd_06-$E18            ;83891D|851A    |000E32;
                        LDA.B $45                            ;83891F|A545    |000E5D;
-                       STA.B $1E                            ;838921|851E    |000E36;
+                       STA.B r_ride_waight_08-$E18          ;838921|851E    |000E36;
                        SEP #$20                             ;838923|E220    |      ;
                                                             ;      |        |      ;
           CODE_838925:
                        LDA.B $2B                            ;838925|A52B    |000E43;
                        BIT.B #$04                           ;838927|8904    |      ;
                        BEQ CODE_838932                      ;838929|F007    |838932;
-                       STZ.B $1C                            ;83892B|641C    |000E34;
+                       STZ.B r_ride_ySpd_07-$E18            ;83892B|641C    |000E34;
                        STZ.B $1D                            ;83892D|641D    |000E35;
                        JSR.W CODE_83CDB3                    ;83892F|20B3CD  |83CDB3;
                                                             ;      |        |      ;
@@ -1193,14 +1193,14 @@
           CODE_838948:
                        REP #$20                             ;838948|C220    |      ;
                        SEC                                  ;83894A|38      |      ;
-                       LDA.B $05                            ;83894B|A505    |000E1D;
+                       LDA.B r_ride_xPos_03-$E18            ;83894B|A505    |000E1D;
                        SBC.W r_cam_BG0_xPos_target          ;83894D|ED4D1E  |861E4D;
                        CLC                                  ;838950|18      |      ;
                        ADC.W #$0080                         ;838951|698000  |      ;
                        CMP.W #$0200                         ;838954|C90002  |      ;
                        BCS CODE_838966                      ;838957|B00D    |838966;
                        SEC                                  ;838959|38      |      ;
-                       LDA.B $08                            ;83895A|A508    |000E20;
+                       LDA.B r_ride_yPos_05-$E18            ;83895A|A508    |000E20;
                        SBC.W r_cam_BG0_yPos_target          ;83895C|ED501E  |861E50;
                        CLC                                  ;83895F|18      |      ;
                        ADC.W #$0080                         ;838960|698000  |      ;
@@ -1246,13 +1246,13 @@
                        LDA.B $0B                            ;8389BC|A50B    |0012F3;
                        BNE CODE_8389E1                      ;8389BE|D021    |8389E1;
                        LDX.W r_level_current                ;8389C0|AE7A1F  |861F7A;
-                       LDA.W r_0bb9                         ;8389C3|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;8389C3|ADB90B  |860BB9;
                        AND.B #$70                           ;8389C6|2970    |      ;
                        ORA.B #$06                           ;8389C8|0906    |      ;
                        STA.B $11                            ;8389CA|8511    |001239;
                        JSR.W CODE_838B6A                    ;8389CC|206A8B  |838B6A;
                        REP #$21                             ;8389CF|C221    |      ;
-                       LDA.W r_0bb0                         ;8389D1|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;8389D1|ADB00B  |860BB0;
                        ADC.W r_0002                         ;8389D4|6D0200  |860002;
                        STA.B $08                            ;8389D7|8508    |001230;
                        JSR.W CODE_838C25                    ;8389D9|20258C  |838C25;
@@ -1285,7 +1285,7 @@
                        LDA.B #$02                           ;838A0D|A902    |      ;
                        STA.B $01                            ;838A0F|8501    |001329;
                        JSL.L CODE_84A524                    ;838A11|2224A584|84A524;
-                       LDA.B r_ev_proj_2e-$12A8             ;838A15|A50E    |0012B6;
+                       LDA.B $0E                            ;838A15|A50E    |0012B6;
                        BNE CODE_838A24                      ;838A17|D00B    |838A24;
                        LDA.B #$08                           ;838A19|A908    |      ;
                        STA.B $01                            ;838A1B|8501    |0012E9;
@@ -1296,9 +1296,9 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_838A24:
-                       LDX.B r_ev_proj_22_xPosBkp-$12A8     ;838A24|A602    |0012AA;
+                       LDX.B $02                            ;838A24|A602    |0012AA;
                        JSR.W (UNREACH_838A2E,X)             ;838A26|FC2E8A  |838A2E;
-                       JSL.L eventID_vile_68_afterInit      ;838A29|22B48082|8280B4;
+                       JSL.L checkEventRange                ;838A29|22B48082|8280B4;
                        RTS                                  ;838A2D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1308,14 +1308,14 @@
                        BNE CODE_838A3E                      ;838A34|D008    |838A3E;
                        INC.B $03                            ;838A36|E603    |00122B;
                        LDA.B #$09                           ;838A38|A909    |      ;
-                       JSL.L CODE_848F07                    ;838A3A|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838A3A|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_838A3E:
                        LDA.B $0F                            ;838A3E|A50F    |001237;
                        BPL CODE_838A50                      ;838A40|100E    |838A50;
                        JSR.W CODE_838B99                    ;838A42|20998B  |838B99;
                        LDA.B #$04                           ;838A45|A904    |      ;
-                       JSL.L CODE_848F07                    ;838A47|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838A47|22078F84|848F07;
                        LDA.B #$02                           ;838A4B|A902    |      ;
                        JMP.W CODE_8386F1                    ;838A4D|4CF186  |8386F1;
                                                             ;      |        |      ;
@@ -1339,7 +1339,7 @@
                        LDA.W UNREACH_86BE99,X               ;838A6C|BD99BE  |86BE99;
                        STA.B $38                            ;838A6F|8538    |001320;
                        LDA.B #$04                           ;838A71|A904    |      ;
-                       JSL.L CODE_848F07                    ;838A73|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838A73|22078F84|848F07;
                        RTS                                  ;838A77|60      |      ;
                                                             ;      |        |      ;
                        DEC.B $38                            ;838A78|C638    |0012E0;
@@ -1351,23 +1351,23 @@
                        LDA.B #$04                           ;838A7D|A904    |      ;
                        STA.B $03                            ;838A7F|8503    |0012AB;
                        REP #$21                             ;838A81|C221    |      ;
-                       LDA.B r_ev_proj_2b-$12A8             ;838A83|A50B    |0012B3;
+                       LDA.B $0B                            ;838A83|A50B    |0012B3;
                        AND.W #$00FF                         ;838A85|29FF00  |      ;
                        TAX                                  ;838A88|AA      |      ;
                        LDA.W UNREACH_86BE8D,X               ;838A89|BD8DBE  |86BE8D;
-                       ADC.B r_ev_proj_28-$12A8             ;838A8C|6508    |0012B0;
-                       STA.B r_ev_proj_28-$12A8             ;838A8E|8508    |0012B0;
+                       ADC.B $08                            ;838A8C|6508    |0012B0;
+                       STA.B $08                            ;838A8E|8508    |0012B0;
                        LDA.W UNREACH_86BE81,X               ;838A90|BD81BE  |86BE81;
-                       STA.B r_ev_proj_3c-$12A8             ;838A93|851C    |0012C4;
+                       STA.B $1C                            ;838A93|851C    |0012C4;
                        LDA.W #$00C0                         ;838A95|A9C000  |      ;
-                       STA.B r_ev_proj_3e-$12A8             ;838A98|851E    |0012C6;
+                       STA.B $1E                            ;838A98|851E    |0012C6;
                        LDA.W #$0600                         ;838A9A|A90006  |      ;
-                       BIT.B r_ev_proj_30-$12A8             ;838A9D|2410    |0012B8;
+                       BIT.B $10                            ;838A9D|2410    |0012B8;
                        BVS CODE_838AA4                      ;838A9F|7003    |838AA4;
                        LDA.W #$FA00                         ;838AA1|A900FA  |      ;
                                                             ;      |        |      ;
           CODE_838AA4:
-                       STA.B r_ev_proj_3a-$12A8             ;838AA4|851A    |0012C2;
+                       STA.B $1A                            ;838AA4|851A    |0012C2;
                        SEP #$20                             ;838AA6|E220    |      ;
                        LDA.W UNREACH_86BE87,X               ;838AA8|BD87BE  |86BE87;
                        STA.B $39                            ;838AAB|8539    |0012E1;
@@ -1375,12 +1375,12 @@
                        STA.B $38                            ;838AB0|8538    |0012E0;
                        JSR.W CODE_838BCE                    ;838AB2|20CE8B  |838BCE;
                        LDX.B #$00                           ;838AB5|A200    |      ;
-                       LDA.B r_ev_proj_3d-$12A8             ;838AB7|A51D    |0012C5;
+                       LDA.B $1D                            ;838AB7|A51D    |0012C5;
                        BPL CODE_838ABD                      ;838AB9|1002    |838ABD;
                        LDX.B #$02                           ;838ABB|A202    |      ;
                                                             ;      |        |      ;
           CODE_838ABD:
-                       STX.B r_ev_proj_32-$12A8             ;838ABD|8612    |0012BA;
+                       STX.B $12                            ;838ABD|8612    |0012BA;
                        JSR.W CODE_838BF8                    ;838ABF|20F88B  |838BF8;
                        LDX.B $39                            ;838AC2|A639    |0012E1;
                        BNE CODE_838ADD                      ;838AC4|D017    |838ADD;
@@ -1404,9 +1404,9 @@
                        BNE CODE_838AEF                      ;838ADF|D00E    |838AEF;
                        STZ.B $39                            ;838AE1|6439    |0012E1;
                        LDA.B #$4A                           ;838AE3|A94A    |      ;
-                       STA.B r_ev_proj_3c-$12A8             ;838AE5|851C    |0012C4;
+                       STA.B $1C                            ;838AE5|851C    |0012C4;
                        LDA.B #$05                           ;838AE7|A905    |      ;
-                       STA.B r_ev_proj_3d-$12A8             ;838AE9|851D    |0012C5;
+                       STA.B $1D                            ;838AE9|851D    |0012C5;
                        LDA.B #$08                           ;838AEB|A908    |      ;
                        STA.B $38                            ;838AED|8538    |0012E0;
                                                             ;      |        |      ;
@@ -1414,9 +1414,9 @@
                        JSL.L CODE_8281B2                    ;838AEF|22B28182|8281B2;
                        RTS                                  ;838AF3|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B r_ev_proj_22_xPosBkp-$12A8     ;838AF4|A602    |0012AA;
+                       LDX.B $02                            ;838AF4|A602    |0012AA;
                        JSR.W (UNREACH_838AFE,X)             ;838AF6|FCFE8A  |838AFE;
-                       JSL.L eventID_vile_68_afterInit      ;838AF9|22B48082|8280B4;
+                       JSL.L checkEventRange                ;838AF9|22B48082|8280B4;
                        RTS                                  ;838AFD|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1426,19 +1426,19 @@
                        LDA.B $33                            ;838B04|A533    |0012DB;
                        STA.B $05                            ;838B06|8505    |0012AD;
                        LDA.B $35                            ;838B08|A535    |0012DD;
-                       STA.B r_ev_proj_28-$12A8             ;838B0A|8508    |0012B0;
+                       STA.B $08                            ;838B0A|8508    |0012B0;
                        SEP #$20                             ;838B0C|E220    |      ;
                        LDA.B #$02                           ;838B0E|A902    |      ;
-                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;838B10|8502    |0012AA;
+                       STA.B $02                            ;838B10|8502    |0012AA;
                        INC.B $30                            ;838B12|E630    |0012D8;
                        LDA.B #$08                           ;838B14|A908    |      ;
-                       JSL.L CODE_848F07                    ;838B16|22078F84|848F07;
-                       LDA.B r_ev_proj_2f-$12A8             ;838B1A|A50F    |0012B7;
+                       JSL.L playerGrabedRoutine            ;838B16|22078F84|848F07;
+                       LDA.B $0F                            ;838B1A|A50F    |0012B7;
                        BPL CODE_838B27                      ;838B1C|1009    |838B27;
                        LDA.B #$08                           ;838B1E|A908    |      ;
-                       STA.B r_ev_proj_21-$12A8             ;838B20|8501    |0012A9;
+                       STA.B $01                            ;838B20|8501    |0012A9;
                        LDA.B #$02                           ;838B22|A902    |      ;
-                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;838B24|8502    |0012AA;
+                       STA.B $02                            ;838B24|8502    |0012AA;
                        RTS                                  ;838B26|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1453,12 +1453,12 @@
        UNREACH_838B33:
                        db $39,$8B,$42,$8B,$54,$8B           ;838B33|        |00428B;
                        LDA.B #$02                           ;838B39|A902    |      ;
-                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;838B3B|8502    |0012AA;
+                       STA.B $02                            ;838B3B|8502    |0012AA;
                        JSL.L CODE_84A524                    ;838B3D|2224A584|84A524;
                        RTS                                  ;838B41|60      |      ;
                                                             ;      |        |      ;
                        LDA.B #$04                           ;838B42|A904    |      ;
-                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;838B44|8502    |0012AA;
+                       STA.B $02                            ;838B44|8502    |0012AA;
                        LDA.B #$10                           ;838B46|A910    |      ;
                        STA.B $38                            ;838B48|8538    |0012E0;
                        LDY.B $3A                            ;838B4A|A43A    |0012E2;
@@ -1475,7 +1475,7 @@
           CODE_838B5B:
                        LDA.B $0B                            ;838B5B|A50B    |001233;
                        BNE CODE_838B62                      ;838B5D|D003    |838B62;
-                       DEC.W r_0bdd                         ;838B5F|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;838B5F|CEDD0B  |860BDD;
                                                             ;      |        |      ;
           CODE_838B62:
                        DEC.W $0C25                          ;838B62|CE250C  |860C25;
@@ -1504,7 +1504,7 @@
                                                             ;      |        |      ;
           CODE_838B90:
                        CLC                                  ;838B90|18      |      ;
-                       ADC.W r_0bad                         ;838B91|6DAD0B  |860BAD;
+                       ADC.W r_d_player_xSubPos             ;838B91|6DAD0B  |860BAD;
                        STA.B $05                            ;838B94|8505    |00122D;
                        SEP #$20                             ;838B96|E220    |      ;
                        RTS                                  ;838B98|60      |      ;
@@ -1551,7 +1551,7 @@
                        STZ.W r_000a,X                       ;838BD9|9E0A00  |86000A;
                        TYA                                  ;838BDC|98      |      ;
                        STA.W r_000b,X                       ;838BDD|9D0B00  |86000B;
-                       LDA.B r_ev_proj_31-$12A8             ;838BE0|A511    |0012B9;
+                       LDA.B $11                            ;838BE0|A511    |0012B9;
                        STA.W r_0011,X                       ;838BE2|9D1100  |860011;
                        REP #$20                             ;838BE5|C220    |      ;
                        TDC                                  ;838BE7|7B      |      ;
@@ -1571,7 +1571,7 @@
                        REP #$20                             ;838BF8|C220    |      ;
                        LDY.B $3A                            ;838BFA|A43A    |0012E2;
                        LDA.W #$0000                         ;838BFC|A90000  |      ;
-                       LDX.B r_ev_proj_32-$12A8             ;838BFF|A612    |0012BA;
+                       LDX.B $12                            ;838BFF|A612    |0012BA;
                        BEQ CODE_838C06                      ;838C01|F003    |838C06;
                        LDA.W #$4000                         ;838C03|A90040  |      ;
                                                             ;      |        |      ;
@@ -1580,7 +1580,7 @@
                        STA.B [$26],Y                        ;838C08|9726    |0012CE;
                        INY                                  ;838C0A|C8      |      ;
                        INY                                  ;838C0B|C8      |      ;
-                       LDA.B r_ev_proj_28-$12A8             ;838C0C|A508    |0012B0;
+                       LDA.B $08                            ;838C0C|A508    |0012B0;
                        STA.B [$26],Y                        ;838C0E|9726    |0012CE;
                        INY                                  ;838C10|C8      |      ;
                        INY                                  ;838C11|C8      |      ;
@@ -1637,7 +1637,7 @@
                        STA.B $10                            ;838C59|8510    |001238;
                        STZ.B $18                            ;838C5B|6418    |001240;
                        STZ.B $12                            ;838C5D|6412    |00123A;
-                       LDA.W r_0bb9                         ;838C5F|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;838C5F|ADB90B  |860BB9;
                        AND.B #$70                           ;838C62|2970    |      ;
                        ORA.B #$06                           ;838C64|0906    |      ;
                        STA.B $11                            ;838C66|8511    |001239;
@@ -1656,7 +1656,7 @@
                        LDX.B $02                            ;838C7F|A602    |00122A;
                        JSR.W (DATA8_838C9D,X)               ;838C81|FC9D8C  |838C9D;
                        JSL.L CODE_848FCA                    ;838C84|22CA8F84|848FCA;
-                       JSL.L eventID_vile_68_afterInit      ;838C88|22B48082|8280B4;
+                       JSL.L checkEventRange                ;838C88|22B48082|8280B4;
                        LDA.B $0E                            ;838C8C|A50E    |001236;
                        BNE CODE_838C9A                      ;838C8E|D00A    |838C9A;
                        LDA.B #$08                           ;838C90|A908    |      ;
@@ -1676,7 +1676,7 @@
                        INC.B $03                            ;838CA5|E603    |00122B;
                        STZ.B $30                            ;838CA7|6430    |001258;
                        LDA.B #$00                           ;838CA9|A900    |      ;
-                       JSL.L CODE_848F07                    ;838CAB|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838CAB|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_838CAF:
                        LDA.B $0F                            ;838CAF|A50F    |001237;
@@ -1703,7 +1703,7 @@
                        STA.B $1A                            ;838CD4|851A    |001242;
                        SEP #$20                             ;838CD6|E220    |      ;
                        LDA.B #$01                           ;838CD8|A901    |      ;
-                       JSL.L CODE_848F07                    ;838CDA|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838CDA|22078F84|848F07;
                        RTS                                  ;838CDE|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1728,9 +1728,9 @@
                        INC.B $30                            ;838CFF|E630    |001258;
                        LDA.B #$02                           ;838D01|A902    |      ;
                        STA.B $02                            ;838D03|8502    |00122A;
-                       JSL.L eventID_vile_68_afterInit      ;838D05|22B48082|8280B4;
+                       JSL.L checkEventRange                ;838D05|22B48082|8280B4;
                        LDA.B #$02                           ;838D09|A902    |      ;
-                       JSL.L CODE_848F07                    ;838D0B|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838D0B|22078F84|848F07;
                        JSL.L CODE_848FCA                    ;838D0F|22CA8F84|848FCA;
                        RTS                                  ;838D13|60      |      ;
                                                             ;      |        |      ;
@@ -1740,12 +1740,12 @@
                        STA.B $02                            ;838D1A|8502    |00122A;
                                                             ;      |        |      ;
           CODE_838D1C:
-                       JSL.L eventID_vile_68_afterInit      ;838D1C|22B48082|8280B4;
+                       JSL.L checkEventRange                ;838D1C|22B48082|8280B4;
                        JSL.L CODE_848FCA                    ;838D20|22CA8F84|848FCA;
                        JSL.L updateEv_13_14_17_0f           ;838D24|22EA8E84|848EEA;
                        RTS                                  ;838D28|60      |      ;
                                                             ;      |        |      ;
-                       DEC.W r_0bdd                         ;838D29|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;838D29|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;838D2C|CE250C  |860C25;
                        JSL.L clearStates_01_00_02_0E_2C     ;838D2F|22A38382|8283A3;
                        RTS                                  ;838D33|60      |      ;
@@ -1753,7 +1753,7 @@
                        LDX.B $02                            ;838D34|A602    |00122A;
                        JSR.W (UNREACH_838D42,X)             ;838D36|FC428D  |838D42;
                        JSL.L CODE_848FCA                    ;838D39|22CA8F84|848FCA;
-                       JSL.L eventID_vile_68_afterInit      ;838D3D|22B48082|8280B4;
+                       JSL.L checkEventRange                ;838D3D|22B48082|8280B4;
                        RTS                                  ;838D41|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1769,7 +1769,7 @@
                        STA.B $02                            ;838D54|8502    |00122A;
                        INC.B $30                            ;838D56|E630    |001258;
                        LDA.B #$03                           ;838D58|A903    |      ;
-                       JSL.L CODE_848F07                    ;838D5A|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838D5A|22078F84|848F07;
                        RTS                                  ;838D5E|60      |      ;
                                                             ;      |        |      ;
                        LDA.B $0F                            ;838D5F|A50F    |001237;
@@ -1819,7 +1819,7 @@
                                                             ;      |        |      ;
           CODE_838DA8:
                        CLC                                  ;838DA8|18      |      ;
-                       ADC.W r_0bad                         ;838DA9|6DAD0B  |860BAD;
+                       ADC.W r_d_player_xSubPos             ;838DA9|6DAD0B  |860BAD;
                        STA.B $05                            ;838DAC|8505    |00122D;
                        RTS                                  ;838DAE|60      |      ;
                                                             ;      |        |      ;
@@ -1868,7 +1868,7 @@
                        STA.B $01                            ;838EAE|8501    |001229;
                        JSL.L CODE_83917D                    ;838EB0|227D9183|83917D;
                        LDX.W r_level_current                ;838EB4|AE7A1F  |861F7A;
-                       LDA.W r_0bb9                         ;838EB7|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;838EB7|ADB90B  |860BB9;
                        AND.B #$70                           ;838EBA|2970    |      ;
                        ORA.B #$06                           ;838EBC|0906    |      ;
                        STA.B $11                            ;838EBE|8511    |001239;
@@ -1901,9 +1901,9 @@
                                                             ;      |        |      ;
           CODE_838EF8:
                        CLC                                  ;838EF8|18      |      ;
-                       ADC.W r_0bad                         ;838EF9|6DAD0B  |860BAD;
+                       ADC.W r_d_player_xSubPos             ;838EF9|6DAD0B  |860BAD;
                        STA.B $05                            ;838EFC|8505    |00122D;
-                       LDA.W r_0bb0                         ;838EFE|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;838EFE|ADB00B  |860BB0;
                        CLC                                  ;838F01|18      |      ;
                        ADC.W r_0002                         ;838F02|6D0200  |860002;
                        STA.B $08                            ;838F05|8508    |001230;
@@ -1948,7 +1948,7 @@
                                                             ;      |        |      ;
           CODE_838F4C:
                        STA.B $3D                            ;838F4C|853D    |001265;
-                       JSL.L CODE_848F07                    ;838F4E|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;838F4E|22078F84|848F07;
                        JSL.L CODE_848FCA                    ;838F52|22CA8F84|848FCA;
                        LDA.B #$40                           ;838F56|A940    |      ;
                        TRB.B $11                            ;838F58|1411    |001239;
@@ -1983,7 +1983,7 @@
                        ASL A                                ;838F87|0A      |      ;
                        TAX                                  ;838F88|AA      |      ;
                        REP #$20                             ;838F89|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;838F8B|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;838F8B|BD37EE  |86EE37;
                        ASL A                                ;838F8E|0A      |      ;
                        ASL A                                ;838F8F|0A      |      ;
                        ASL A                                ;838F90|0A      |      ;
@@ -2084,7 +2084,7 @@
                                                             ;      |        |      ;
           CODE_839031:
                        SEP #$20                             ;839031|E220    |      ;
-                       JSL.L eventID_vile_68_afterInit      ;839033|22B48082|8280B4;
+                       JSL.L checkEventRange                ;839033|22B48082|8280B4;
                        LDA.B $0E                            ;839037|A50E    |001236;
                        BEQ CODE_839040                      ;839039|F005    |839040;
                        RTL                                  ;83903B|6B      |      ;
@@ -2092,7 +2092,7 @@
                        JSL.L CODE_84A524                    ;83903C|2224A584|84A524;
                                                             ;      |        |      ;
           CODE_839040:
-                       DEC.W r_0bdd                         ;839040|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;839040|CEDD0B  |860BDD;
                        JML.L clearStates_01_00_02_0E_2C     ;839043|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2192,7 +2192,7 @@
                        CMP.B $3D                            ;8390FF|C53D    |001265;
                        BEQ CODE_83910D                      ;839101|F00A    |83910D;
                        STA.B $3D                            ;839103|853D    |001265;
-                       JSL.L CODE_848F07                    ;839105|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;839105|22078F84|848F07;
                        JSL.L CODE_848FCA                    ;839109|22CA8F84|848FCA;
                                                             ;      |        |      ;
           CODE_83910D:
@@ -2211,10 +2211,10 @@
                        ASL A                                ;839116|0A      |      ;
                        TAX                                  ;839117|AA      |      ;
                        REP #$20                             ;839118|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;83911A|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;83911A|BD37EE  |86EE37;
                        ASL A                                ;83911D|0A      |      ;
                        CLC                                  ;83911E|18      |      ;
-                       ADC.W stormEagle_56_subID,X          ;83911F|7D37EE  |86EE37;
+                       ADC.W $EE37,X                        ;83911F|7D37EE  |86EE37;
                        STA.W r_0000                         ;839122|8D0000  |860000;
                        LDA.W DATA8_86EE39,X                 ;839125|BD39EE  |86EE39;
                        ASL A                                ;839128|0A      |      ;
@@ -2241,7 +2241,7 @@
                        ASL A                                ;839151|0A      |      ;
                        ASL A                                ;839152|0A      |      ;
                        TAY                                  ;839153|A8      |      ;
-                       LDA.W stormEagle_56_subID,Y          ;839154|B937EE  |86EE37;
+                       LDA.W $EE37,Y                        ;839154|B937EE  |86EE37;
                        ASL A                                ;839157|0A      |      ;
                        AND.W #$FF00                         ;839158|2900FF  |      ;
                        BPL CODE_839160                      ;83915B|1003    |839160;
@@ -2348,7 +2348,7 @@
                        STZ.B $12                            ;8391EC|6412    |0012FA;
                        LDA.B $0B                            ;8391EE|A50B    |0012F3;
                        BNE CODE_8391FF                      ;8391F0|D00D    |8391FF;
-                       LDA.W r_0bb9                         ;8391F2|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;8391F2|ADB90B  |860BB9;
                        AND.B #$70                           ;8391F5|2970    |      ;
                        ORA.B #$06                           ;8391F7|0906    |      ;
                        STA.B $11                            ;8391F9|8511    |001239;
@@ -2367,7 +2367,7 @@
                                                             ;      |        |      ;
                        LDX.B $02                            ;83920C|A602    |0012EA;
                        JSR.W (DATA8_83921E,X)               ;83920E|FC1E92  |83921E;
-                       JSL.L eventID_vile_68_afterInit      ;839211|22B48082|8280B4;
+                       JSL.L checkEventRange                ;839211|22B48082|8280B4;
                        LDA.B $0E                            ;839215|A50E    |0012F6;
                        BNE CODE_83921D                      ;839217|D004    |83921D;
                        LDA.B #$0A                           ;839219|A90A    |      ;
@@ -2384,7 +2384,7 @@
                        INC.B $03                            ;839226|E603    |00122B;
                        STZ.B $30                            ;839228|6430    |001258;
                        LDA.B #$00                           ;83922A|A900    |      ;
-                       JSL.L CODE_848F07                    ;83922C|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83922C|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_839230:
                        JSL.L updateEv_13_14_17_0f           ;839230|22EA8E84|848EEA;
@@ -2440,7 +2440,7 @@
                        STA.B $20                            ;839286|8520    |001308;
                        SEP #$20                             ;839288|E220    |      ;
                        LDA.B $0B                            ;83928A|A50B    |0012F3;
-                       JSL.L CODE_848F07                    ;83928C|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83928C|22078F84|848F07;
                        RTS                                  ;839290|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2450,7 +2450,7 @@
                                                             ;      |        |      ;
                        JSL.L CODE_84A524                    ;839296|2224A584|84A524;
                        INC.B $30                            ;83929A|E630    |001318;
-                       DEC.W r_0bdd                         ;83929C|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;83929C|CEDD0B  |860BDD;
                        JSL.L clearStates_01_00_02_0E_2C     ;83929F|22A38382|8283A3;
                        RTS                                  ;8392A3|60      |      ;
                                                             ;      |        |      ;
@@ -2463,7 +2463,7 @@
                        JSL.L loadProjectileSlotBase         ;8392A9|223E8382|82833E;
                        BNE CODE_8392E9                      ;8392AD|D03A    |8392E9;
                        INC.W r_0000,X                       ;8392AF|FE0000  |860000;
-                       INC.W r_0bdd                         ;8392B2|EEDD0B  |860BDD;
+                       INC.W r_d_bulletCount                ;8392B2|EEDD0B  |860BDD;
                        LDA.B #$08                           ;8392B5|A908    |      ;
                        STA.W r_000a,X                       ;8392B7|9D0A00  |86000A;
                        TYA                                  ;8392BA|98      |      ;
@@ -2521,7 +2521,7 @@
                        STZ.B $3A                            ;83930F|643A    |001262;
                        STZ.B $38                            ;839311|6438    |001260;
                        STZ.B $39                            ;839313|6439    |001261;
-                       LDA.W r_0bb9                         ;839315|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;839315|ADB90B  |860BB9;
                        AND.B #$70                           ;839318|2970    |      ;
                        ORA.B #$06                           ;83931A|0906    |      ;
                        STA.B $11                            ;83931C|8511    |001239;
@@ -2562,7 +2562,7 @@
                        JSL.L CODE_8491BE                    ;839360|22BE9184|8491BE;
                        LDA.B $00                            ;839364|A500    |001228;
                        BEQ CODE_839346                      ;839366|F0DE    |839346;
-                       JSL.L eventID_vile_68_afterInit      ;839368|22B48082|8280B4;
+                       JSL.L checkEventRange                ;839368|22B48082|8280B4;
                        LDA.B $0E                            ;83936C|A50E    |001236;
                        BNE CODE_839378                      ;83936E|D008    |839378;
                        LDA.B #$04                           ;839370|A904    |      ;
@@ -2585,7 +2585,7 @@
                        BNE CODE_839394                      ;839389|D009    |839394;
                        INC.B $03                            ;83938B|E603    |00122B;
                        LDA.B #$00                           ;83938D|A900    |      ;
-                       JSL.L CODE_848F07                    ;83938F|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83938F|22078F84|848F07;
                        RTS                                  ;839393|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2611,7 +2611,7 @@
                        STA.B $03                            ;8393B0|8503    |00122B;
                        STZ.B $30                            ;8393B2|6430    |001258;
                        LDA.B #$01                           ;8393B4|A901    |      ;
-                       JSL.L CODE_848F07                    ;8393B6|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;8393B6|22078F84|848F07;
                        RTS                                  ;8393BA|60      |      ;
                                                             ;      |        |      ;
                        LDA.B $2B                            ;8393BB|A52B    |001253;
@@ -2679,7 +2679,7 @@
                                                             ;      |        |      ;
                        JSL.L CODE_84A4B5                    ;83941C|22B5A484|84A4B5;
                        INC.B $30                            ;839420|E630    |001258;
-                       DEC.W r_0bdd                         ;839422|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;839422|CEDD0B  |860BDD;
                        JSL.L clearStates_01_00_02_0E_2C     ;839425|22A38382|8283A3;
                        RTS                                  ;839429|60      |      ;
                                                             ;      |        |      ;
@@ -2714,7 +2714,7 @@
                        STA.B $18                            ;839457|8518    |001340;
                        STA.B $30                            ;839459|8530    |001358;
                        STZ.B $12                            ;83945B|6412    |00133A;
-                       LDA.W $0B9C                          ;83945D|AD9C0B  |860B9C;
+                       LDA.W r_frameCounter1                ;83945D|AD9C0B  |860B9C;
                        AND.B #$0E                           ;839460|290E    |      ;
                        BNE CODE_83946A                      ;839462|D006    |83946A;
                        LDA.B #$61                           ;839464|A961    |      ;
@@ -2723,7 +2723,7 @@
           CODE_83946A:
                        STZ.B $38                            ;83946A|6438    |001360;
                        STZ.B $39                            ;83946C|6439    |001361;
-                       LDA.W r_0bb9                         ;83946E|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;83946E|ADB90B  |860BB9;
                        AND.B #$70                           ;839471|2970    |      ;
                        ORA.B #$06                           ;839473|0906    |      ;
                        STA.B $11                            ;839475|8511    |001339;
@@ -2740,7 +2740,7 @@
                        STA.B $20                            ;83948C|8520    |001348;
                        STZ.B $28                            ;83948E|6428    |001350;
                        SEP #$20                             ;839490|E220    |      ;
-                       LDA.W r_powerUp_00                   ;839492|AD180C  |860C18;
+                       LDA.W $0C18                          ;839492|AD180C  |860C18;
                        BEQ CODE_83949B                      ;839495|F004    |83949B;
                        LDA.B #$02                           ;839497|A902    |      ;
                        STA.B $02                            ;839499|8502    |00126A;
@@ -2756,16 +2756,16 @@
                                                             ;      |        |      ;
                        LDA.B #$02                           ;8394A4|A902    |      ;
                        STA.B $01                            ;8394A6|8501    |001269;
-                       LDA.B r_ev_proj_18_gfxSlot-$1268     ;8394A8|A538    |0012A0;
+                       LDA.B $38                            ;8394A8|A538    |0012A0;
                        STA.B $02                            ;8394AA|8502    |00126A;
-                       LDA.B r_ev_proj_19-$1268             ;8394AC|A539    |0012A1;
+                       LDA.B $39                            ;8394AC|A539    |0012A1;
                        STA.B $03                            ;8394AE|8503    |00126B;
-                       STZ.B r_ev_proj_10-$1268             ;8394B0|6430    |001298;
+                       STZ.B $30                            ;8394B0|6430    |001298;
                        LDX.B $02                            ;8394B2|A602    |00132A;
                        JSR.W (DATA8_8394CE,X)               ;8394B4|FCCE94  |8394CE;
                        LDA.B $00                            ;8394B7|A500    |001328;
                        BEQ CODE_8394A3                      ;8394B9|F0E8    |8394A3;
-                       JSL.L eventID_vile_68_afterInit      ;8394BB|22B48082|8280B4;
+                       JSL.L checkEventRange                ;8394BB|22B48082|8280B4;
                        LDA.B $02                            ;8394BF|A502    |00132A;
                        STA.B $38                            ;8394C1|8538    |001360;
                        LDA.B $03                            ;8394C3|A503    |00132B;
@@ -2785,7 +2785,7 @@
                        LDA.B #$05                           ;8394DA|A905    |      ;
                        STA.B $37                            ;8394DC|8537    |00135F;
                        LDA.B #$00                           ;8394DE|A900    |      ;
-                       JSL.L CODE_848F07                    ;8394E0|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;8394E0|22078F84|848F07;
                        RTS                                  ;8394E4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2805,7 +2805,7 @@
                        BNE CODE_839505                      ;8394FA|D009    |839505;
                        INC.B $03                            ;8394FC|E603    |00132B;
                        LDA.B #$01                           ;8394FE|A901    |      ;
-                       JSL.L CODE_848F07                    ;839500|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;839500|22078F84|848F07;
                        RTS                                  ;839504|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2813,7 +2813,7 @@
                        LDA.B $0F                            ;839505|A50F    |001337;
                        BPL CODE_839513                      ;839507|100A    |839513;
                        INC.B $30                            ;839509|E630    |001358;
-                       DEC.W r_0bdd                         ;83950B|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;83950B|CEDD0B  |860BDD;
                        JSL.L clearStates_01_00_02_0E_2C     ;83950E|22A38382|8283A3;
                        RTS                                  ;839512|60      |      ;
                                                             ;      |        |      ;
@@ -2844,9 +2844,9 @@
                                                             ;      |        |      ;
           CODE_83953E:
                        CLC                                  ;83953E|18      |      ;
-                       ADC.W r_0bad                         ;83953F|6DAD0B  |860BAD;
+                       ADC.W r_d_player_xSubPos             ;83953F|6DAD0B  |860BAD;
                        STA.B $05                            ;839542|8505    |00122D;
-                       LDA.W r_0bb0                         ;839544|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;839544|ADB00B  |860BB0;
                        CLC                                  ;839547|18      |      ;
                        ADC.W r_0002                         ;839548|6D0200  |860002;
                        STA.B $08                            ;83954B|8508    |001230;
@@ -2874,7 +2874,7 @@
                        STZ.B $12                            ;839571|6412    |00123A;
                        STZ.B $38                            ;839573|6438    |001260;
                        STZ.B $39                            ;839575|6439    |001261;
-                       LDA.W r_0bb9                         ;839577|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;839577|ADB90B  |860BB9;
                        AND.B #$70                           ;83957A|2970    |      ;
                        ORA.B #$06                           ;83957C|0906    |      ;
                        STA.B $11                            ;83957E|8511    |001239;
@@ -2885,7 +2885,7 @@
                        LDA.W #$FFF0                         ;839589|A9F0FF  |      ;
                                                             ;      |        |      ;
           CODE_83958C:
-                       ADC.W r_0bad                         ;83958C|6DAD0B  |860BAD;
+                       ADC.W r_d_player_xSubPos             ;83958C|6DAD0B  |860BAD;
                        STA.B $05                            ;83958F|8505    |00122D;
                        LDA.W #$0800                         ;839591|A90008  |      ;
                        BIT.B $10                            ;839594|2410    |001238;
@@ -2894,7 +2894,7 @@
                                                             ;      |        |      ;
           CODE_83959B:
                        STA.B $1A                            ;83959B|851A    |001242;
-                       LDA.W r_0bb0                         ;83959D|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;83959D|ADB00B  |860BB0;
                        STA.B $08                            ;8395A0|8508    |001230;
                        LDA.W #$AE67                         ;8395A2|A967AE  |      ;
                        STA.B $31                            ;8395A5|8531    |001259;
@@ -2918,7 +2918,7 @@
                        JSR.W (DATA8_8395E7,X)               ;8395C2|FCE795  |8395E7;
                        LDA.B $00                            ;8395C5|A500    |001228;
                        BEQ CODE_8395B1                      ;8395C7|F0E8    |8395B1;
-                       LDA.W $0B9C                          ;8395C9|AD9C0B  |860B9C;
+                       LDA.W r_frameCounter1                ;8395C9|AD9C0B  |860B9C;
                        LSR A                                ;8395CC|4A      |      ;
                        BCS CODE_8395D3                      ;8395CD|B004    |8395D3;
                        JSL.L CODE_82808F                    ;8395CF|228F8082|82808F;
@@ -2944,7 +2944,7 @@
                        INC.B $03                            ;8395F1|E603    |00122B;
                        STZ.B $30                            ;8395F3|6430    |001258;
                        LDA.B #$00                           ;8395F5|A900    |      ;
-                       JSL.L CODE_848F07                    ;8395F7|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;8395F7|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_8395FB:
                        LDA.B $0F                            ;8395FB|A50F    |001237;
@@ -2961,7 +2961,7 @@
                        BNE CODE_839616                      ;83960C|D008    |839616;
                        INC.B $03                            ;83960E|E603    |00122B;
                        LDA.B #$01                           ;839610|A901    |      ;
-                       JSL.L CODE_848F07                    ;839612|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;839612|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_839616:
                        JSL.L CODE_82823E                    ;839616|223E8282|82823E;
@@ -2969,7 +2969,7 @@
                        RTS                                  ;83961E|60      |      ;
                                                             ;      |        |      ;
                        INC.B $30                            ;83961F|E630    |001258;
-                       DEC.W r_0bdd                         ;839621|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;839621|CEDD0B  |860BDD;
                        JSL.L clearStates_01_00_02_0E_2C     ;839624|22A38382|8283A3;
                        RTS                                  ;839628|60      |      ;
                                                             ;      |        |      ;
@@ -3024,7 +3024,7 @@
                        STZ.B $12                            ;839675|6412    |00123A;
                        LDA.B $0B                            ;839677|A50B    |001233;
                        BNE CODE_839688                      ;839679|D00D    |839688;
-                       LDA.W r_0bb9                         ;83967B|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;83967B|ADB90B  |860BB9;
                        AND.B #$70                           ;83967E|2970    |      ;
                        ORA.B #$06                           ;839680|0906    |      ;
                        STA.B $11                            ;839682|8511    |001239;
@@ -3034,7 +3034,7 @@
                        LDA.B $0B                            ;839688|A50B    |001233;
                        BEQ CODE_839690                      ;83968A|F004    |839690;
                        LDA.B #$04                           ;83968C|A904    |      ;
-                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;83968E|8502    |0012AA;
+                       STA.B $02                            ;83968E|8502    |0012AA;
                                                             ;      |        |      ;
           CODE_839690:
                        REP #$20                             ;839690|C220    |      ;
@@ -3046,7 +3046,7 @@
                        STA.B $16                            ;83969D|8516    |00123E;
                        RTS                                  ;83969F|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B r_ev_proj_2b-$12A8             ;8396A0|A50B    |0012B3;
+                       LDA.B $0B                            ;8396A0|A50B    |0012B3;
                        BNE CODE_8396B0                      ;8396A2|D00C    |8396B0;
                        LDA.B #$02                           ;8396A4|A902    |      ;
                        STA.B $01                            ;8396A6|8501    |001229;
@@ -3058,18 +3058,18 @@
                                                             ;      |        |      ;
           CODE_8396B0:
                        LDA.B #$02                           ;8396B0|A902    |      ;
-                       STA.B r_ev_proj_21-$12A8             ;8396B2|8501    |0012A9;
+                       STA.B $01                            ;8396B2|8501    |0012A9;
                        LDA.B #$04                           ;8396B4|A904    |      ;
-                       STA.B r_ev_proj_22_xPosBkp-$12A8     ;8396B6|8502    |0012AA;
+                       STA.B $02                            ;8396B6|8502    |0012AA;
                                                             ;      |        |      ;
           CODE_8396B8:
                        LDX.B $02                            ;8396B8|A602    |00122A;
                        JSR.W (DATA8_8396CA,X)               ;8396BA|FCCA96  |8396CA;
-                       JSL.L eventID_vile_68_afterInit      ;8396BD|22B48082|8280B4;
+                       JSL.L checkEventRange                ;8396BD|22B48082|8280B4;
                        LDA.B $0E                            ;8396C1|A50E    |001236;
                        BNE CODE_8396C9                      ;8396C3|D004    |8396C9;
                        LDA.B #$0A                           ;8396C5|A90A    |      ;
-                       STA.B r_ev_proj_21-$12A8             ;8396C7|8501    |0012A9;
+                       STA.B $01                            ;8396C7|8501    |0012A9;
                                                             ;      |        |      ;
           CODE_8396C9:
                        RTS                                  ;8396C9|60      |      ;
@@ -3092,7 +3092,7 @@
                        STA.B $1A                            ;8396E4|851A    |001242;
                        SEP #$20                             ;8396E6|E220    |      ;
                        LDA.B #$00                           ;8396E8|A900    |      ;
-                       JSL.L CODE_848F07                    ;8396EA|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;8396EA|22078F84|848F07;
                        RTS                                  ;8396EE|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3121,7 +3121,7 @@
                        LDA.B #$02                           ;839714|A902    |      ;
                        STA.B $03                            ;839716|8503    |00122B;
                        LDA.B #$01                           ;839718|A901    |      ;
-                       JSL.L CODE_848F07                    ;83971A|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83971A|22078F84|848F07;
                        RTS                                  ;83971E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3142,7 +3142,7 @@
                        INC.B $03                            ;839734|E603    |0012AB;
                        STZ.B $30                            ;839736|6430    |0012D8;
                        LDA.B #$00                           ;839738|A900    |      ;
-                       JSL.L CODE_848F07                    ;83973A|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83973A|22078F84|848F07;
                        RTS                                  ;83973E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3156,7 +3156,7 @@
                        INC.B $02                            ;83974C|E602    |00122A;
                        LDA.B #$01                           ;83974E|A901    |      ;
                        STA.B $30                            ;839750|8530    |001258;
-                       JSL.L CODE_848F07                    ;839752|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;839752|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_839756:
                        LDA.B $0F                            ;839756|A50F    |001237;
@@ -3166,11 +3166,11 @@
                                                             ;      |        |      ;
           CODE_83975E:
                        JSL.L updateEv_13_14_17_0f           ;83975E|22EA8E84|848EEA;
-                       JSL.L eventID_vile_68_afterInit      ;839762|22B48082|8280B4;
+                       JSL.L checkEventRange                ;839762|22B48082|8280B4;
                        RTS                                  ;839766|60      |      ;
                                                             ;      |        |      ;
                        INC.B $30                            ;839767|E630    |001258;
-                       DEC.W r_0bdd                         ;839769|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;839769|CEDD0B  |860BDD;
                        JSL.L clearStates_01_00_02_0E_2C     ;83976C|22A38382|8283A3;
                        RTS                                  ;839770|60      |      ;
                                                             ;      |        |      ;
@@ -3183,7 +3183,7 @@
                        JSL.L loadProjectileSlotBase         ;839776|223E8382|82833E;
                        BNE CODE_8397A5                      ;83977A|D029    |8397A5;
                        INC.W r_0000,X                       ;83977C|FE0000  |860000;
-                       INC.W r_0bdd                         ;83977F|EEDD0B  |860BDD;
+                       INC.W r_d_bulletCount                ;83977F|EEDD0B  |860BDD;
                        LDA.B #$0C                           ;839782|A90C    |      ;
                        STA.W r_000a,X                       ;839784|9D0A00  |86000A;
                        LDA.B $11                            ;839787|A511    |001239;
@@ -3282,7 +3282,7 @@
                        LDA.B #$02                           ;83981A|A902    |      ;
                        STA.B $18                            ;83981C|8518    |001240;
                        LDX.W r_level_current                ;83981E|AE7A1F  |861F7A;
-                       LDA.W r_0bb9                         ;839821|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;839821|ADB90B  |860BB9;
                        AND.B #$70                           ;839824|2970    |      ;
                        ORA.B #$06                           ;839826|0906    |      ;
                        STA.B $11                            ;839828|8511    |001239;
@@ -3315,9 +3315,9 @@
                                                             ;      |        |      ;
           CODE_839862:
                        CLC                                  ;839862|18      |      ;
-                       ADC.W r_0bad                         ;839863|6DAD0B  |860BAD;
+                       ADC.W r_d_player_xSubPos             ;839863|6DAD0B  |860BAD;
                        STA.B $05                            ;839866|8505    |00122D;
-                       LDA.W r_0bb0                         ;839868|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;839868|ADB00B  |860BB0;
                        CLC                                  ;83986B|18      |      ;
                        ADC.W r_0002                         ;83986C|6D0200  |860002;
                        STA.B $08                            ;83986F|8508    |001230;
@@ -3333,8 +3333,8 @@
                        STA.B $20                            ;839882|8520    |001248;
                        SEP #$20                             ;839884|E220    |      ;
                        LDA.B #$00                           ;839886|A900    |      ;
-                       JSL.L CODE_848F07                    ;839888|22078F84|848F07;
-                       JML.L eventID_vile_68_afterInit      ;83988C|5CB48082|8280B4;
+                       JSL.L playerGrabedRoutine            ;839888|22078F84|848F07;
+                       JML.L checkEventRange                ;83988C|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_839890:
@@ -3344,7 +3344,7 @@
                        ASL A                                ;839895|0A      |      ;
                        TAX                                  ;839896|AA      |      ;
                        REP #$20                             ;839897|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;839899|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;839899|BD37EE  |86EE37;
                        ASL A                                ;83989C|0A      |      ;
                        ASL A                                ;83989D|0A      |      ;
                        STA.B $1A                            ;83989E|851A    |001382;
@@ -3356,9 +3356,9 @@
                        STA.B $20                            ;8398AA|8520    |001388;
                        SEP #$20                             ;8398AC|E220    |      ;
                        LDA.B #$03                           ;8398AE|A903    |      ;
-                       JSL.L CODE_848F07                    ;8398B0|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;8398B0|22078F84|848F07;
                        INC.B $02                            ;8398B4|E602    |00136A;
-                       JML.L eventID_vile_68_afterInit      ;8398B6|5CB48082|8280B4;
+                       JML.L checkEventRange                ;8398B6|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8398BA:
@@ -3377,7 +3377,7 @@
                        JSL.L CODE_82820A                    ;8398D2|220A8282|82820A;
                                                             ;      |        |      ;
           CODE_8398D6:
-                       JSL.L eventID_vile_68_afterInit      ;8398D6|22B48082|8280B4;
+                       JSL.L checkEventRange                ;8398D6|22B48082|8280B4;
                        LDA.B $0E                            ;8398DA|A50E    |0012F6;
                        BEQ CODE_8398F0                      ;8398DC|F012    |8398F0;
                        RTL                                  ;8398DE|6B      |      ;
@@ -3387,14 +3387,14 @@
                        JSL.L CODE_84A524                    ;8398DF|2224A584|84A524;
                                                             ;      |        |      ;
           CODE_8398E3:
-                       LDA.B r_ev_proj_2b-$12A8             ;8398E3|A50B    |0012B3;
+                       LDA.B $0B                            ;8398E3|A50B    |0012B3;
                        BNE CODE_8398F0                      ;8398E5|D009    |8398F0;
                        JSR.W CODE_839924                    ;8398E7|202499  |839924;
                        LDA.B #$78                           ;8398EA|A978    |      ;
-                       JSL.L CODE_8088A2                    ;8398EC|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;8398EC|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_8398F0:
-                       DEC.W r_0bdd                         ;8398F0|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;8398F0|CEDD0B  |860BDD;
                        JML.L clearStates_01_00_02_0E_2C     ;8398F3|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3446,7 +3446,7 @@
                        LDA.B $08                            ;83994B|A508    |001230;
                        STA.W r_0008,X                       ;83994D|9D0800  |860008;
                        SEP #$20                             ;839950|E220    |      ;
-                       INC.W r_0bdd                         ;839952|EEDD0B  |860BDD;
+                       INC.W r_d_bulletCount                ;839952|EEDD0B  |860BDD;
                        DEY                                  ;839955|88      |      ;
                        DEC.B $38                            ;839956|C638    |001260;
                        BNE CODE_839930                      ;839958|D0D6    |839930;
@@ -3470,18 +3470,18 @@
                        STA.B $01                            ;83996E|8501    |001269;
                        JSL.L CODE_83917D                    ;839970|227D9183|83917D;
                        LDX.W r_level_current                ;839974|AE7A1F  |861F7A;
-                       LDA.W r_0bb9                         ;839977|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;839977|ADB90B  |860BB9;
                        AND.B #$70                           ;83997A|2970    |      ;
                        ORA.B #$06                           ;83997C|0906    |      ;
                        STA.B $11                            ;83997E|8511    |001279;
-                       STZ.B r_ev_proj_10-$1268             ;839980|6430    |001298;
+                       STZ.B $30                            ;839980|6430    |001298;
                        LDA.B #$01                           ;839982|A901    |      ;
-                       STA.B r_ev_proj_18_gfxSlot-$1268     ;839984|8538    |0012A0;
+                       STA.B $38                            ;839984|8538    |0012A0;
                        LDA.B #$FF                           ;839986|A9FF    |      ;
                        STA.B $10                            ;839988|8510    |001278;
                        LDA.B #$93                           ;83998A|A993    |      ;
                        STA.B $16                            ;83998C|8516    |00127E;
-                       LDX.B r_ev_proj_1c_ySpdSub-$1268     ;83998E|A63C    |0012A4;
+                       LDX.B $3C                            ;83998E|A63C    |0012A4;
                        LDA.W DATA8_86BE39,X                 ;839990|BD39BE  |86BE39;
                        STA.W r_0000                         ;839993|8D0000  |860000;
                        STZ.W r_0001                         ;839996|9C0100  |860001;
@@ -3501,9 +3501,9 @@
                                                             ;      |        |      ;
           CODE_8399B4:
                        CLC                                  ;8399B4|18      |      ;
-                       ADC.W r_0bad                         ;8399B5|6DAD0B  |860BAD;
+                       ADC.W r_d_player_xSubPos             ;8399B5|6DAD0B  |860BAD;
                        STA.B $05                            ;8399B8|8505    |00126D;
-                       LDA.W r_0bb0                         ;8399BA|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;8399BA|ADB00B  |860BB0;
                        CLC                                  ;8399BD|18      |      ;
                        ADC.W r_0002                         ;8399BE|6D0200  |860002;
                        STA.B $08                            ;8399C1|8508    |001270;
@@ -3518,10 +3518,10 @@
                        LDA.W #$BFA4                         ;8399D1|A9A4BF  |      ;
                        STA.B r_ev_projectile_00-$1268       ;8399D4|8520    |001288;
                        LDA.W #$ACA5                         ;8399D6|A9A5AC  |      ;
-                       STA.B r_ev_proj_11_sprAtri-$1268     ;8399D9|8531    |001299;
+                       STA.B $31                            ;8399D9|8531    |001299;
                        STZ.B $0C                            ;8399DB|640C    |001274;
                        LDA.W #$FFFF                         ;8399DD|A9FFFF  |      ;
-                       STA.B r_ev_proj_19-$1268             ;8399E0|8539    |0012A1;
+                       STA.B $39                            ;8399E0|8539    |0012A1;
                        STZ.B $1A                            ;8399E2|641A    |001282;
                        STZ.B $1C                            ;8399E4|641C    |001284;
                        SEP #$20                             ;8399E6|E220    |      ;
@@ -3532,8 +3532,8 @@
                        LDA.B #$01                           ;8399EE|A901    |      ;
                        STA.B $1B                            ;8399F0|851B    |001283;
                        LDA.B #$08                           ;8399F2|A908    |      ;
-                       STA.B r_ev_proj_17-$1268             ;8399F4|8537    |00129F;
-                       STA.B r_ev_proj_1b_xSpd-$1268        ;8399F6|853B    |0012A3;
+                       STA.B $37                            ;8399F4|8537    |00129F;
+                       STA.B $3B                            ;8399F6|853B    |0012A3;
                        LDA.B #$0C                           ;8399F8|A90C    |      ;
                        BRA CODE_839A08                      ;8399FA|800C    |839A08;
                                                             ;      |        |      ;
@@ -3547,15 +3547,15 @@
                        LDA.B #$04                           ;839A06|A904    |      ;
                                                             ;      |        |      ;
           CODE_839A08:
-                       STA.B r_ev_proj_1d_ySpd-$1268        ;839A08|853D    |0012A5;
-                       JSL.L CODE_848F07                    ;839A0A|22078F84|848F07;
+                       STA.B $3D                            ;839A08|853D    |0012A5;
+                       JSL.L playerGrabedRoutine            ;839A0A|22078F84|848F07;
                        LDA.B #$40                           ;839A0E|A940    |      ;
                        TRB.B $11                            ;839A10|1411    |001279;
                        JSR.W CODE_839047                    ;839A12|204790  |839047;
                        LDA.B #$10                           ;839A15|A910    |      ;
-                       STA.B r_ev_proj_18_gfxSlot-$1268     ;839A17|8538    |0012A0;
+                       STA.B $38                            ;839A17|8538    |0012A0;
                        LDA.B #$05                           ;839A19|A905    |      ;
-                       STA.B r_ev_proj_1e_weight-$1268      ;839A1B|853E    |0012A6;
+                       STA.B $3E                            ;839A1B|853E    |0012A6;
                        STZ.B $1F                            ;839A1D|641F    |001287;
                        STZ.B $1E                            ;839A1F|641E    |001286;
                        LDA.B $0B                            ;839A21|A50B    |001273;
@@ -3563,29 +3563,29 @@
                        ASL A                                ;839A25|0A      |      ;
                        ASL A                                ;839A26|0A      |      ;
                        CLC                                  ;839A27|18      |      ;
-                       ADC.B r_ev_proj_1b_xSpd-$1268        ;839A28|653B    |0012A3;
-                       STA.B r_ev_proj_1b_xSpd-$1268        ;839A2A|853B    |0012A3;
+                       ADC.B $3B                            ;839A28|653B    |0012A3;
+                       STA.B $3B                            ;839A2A|853B    |0012A3;
                        ASL A                                ;839A2C|0A      |      ;
                        ASL A                                ;839A2D|0A      |      ;
                        TAX                                  ;839A2E|AA      |      ;
                        REP #$20                             ;839A2F|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;839A31|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;839A31|BD37EE  |86EE37;
                        STA.B $1A                            ;839A34|851A    |001282;
                        LDA.W DATA8_86EE39,X                 ;839A36|BD39EE  |86EE39;
                        STA.B $1C                            ;839A39|851C    |001284;
                        SEP #$20                             ;839A3B|E220    |      ;
                        LDA.B $0B                            ;839A3D|A50B    |001273;
                        CLC                                  ;839A3F|18      |      ;
-                       ADC.B r_ev_proj_1e_weight-$1268      ;839A40|653E    |0012A6;
-                       STA.B r_ev_proj_1e_weight-$1268      ;839A42|853E    |0012A6;
+                       ADC.B $3E                            ;839A40|653E    |0012A6;
+                       STA.B $3E                            ;839A42|853E    |0012A6;
                        LDA.B $0B                            ;839A44|A50B    |001273;
                        CLC                                  ;839A46|18      |      ;
-                       ADC.B r_ev_proj_17-$1268             ;839A47|6537    |00129F;
-                       STA.B r_ev_proj_17-$1268             ;839A49|8537    |00129F;
+                       ADC.B $37                            ;839A47|6537    |00129F;
+                       STA.B $37                            ;839A49|8537    |00129F;
                        TAX                                  ;839A4B|AA      |      ;
                        LDA.W UNREACH_86BF84,X               ;839A4C|BD84BF  |86BF84;
-                       STA.B r_ev_proj_1d_ySpd-$1268        ;839A4F|853D    |0012A5;
-                       JSL.L CODE_848F07                    ;839A51|22078F84|848F07;
+                       STA.B $3D                            ;839A4F|853D    |0012A5;
+                       JSL.L playerGrabedRoutine            ;839A51|22078F84|848F07;
                        JSL.L CODE_848FCA                    ;839A55|22CA8F84|848FCA;
                        BRA CODE_839A62                      ;839A59|8007    |839A62;
                                                             ;      |        |      ;
@@ -3598,7 +3598,7 @@
                        DEC.B $3E                            ;839A62|C63E    |0012E6;
                        BNE CODE_839A6D                      ;839A64|D007    |839A6D;
                        LDA.B #$03                           ;839A66|A903    |      ;
-                       STA.B r_ev_proj_1e_weight-$1268      ;839A68|853E    |0012A6;
+                       STA.B $3E                            ;839A68|853E    |0012A6;
                        JSR.W CODE_839133                    ;839A6A|203391  |839133;
                                                             ;      |        |      ;
           CODE_839A6D:
@@ -3606,7 +3606,7 @@
                        BNE CODE_839A85                      ;839A6F|D014    |839A85;
                        LDA.B #$01                           ;839A71|A901    |      ;
                        STA.B $38                            ;839A73|8538    |0012E0;
-                       LDA.B r_ev_proj_2d-$12A8             ;839A75|A50D    |0012B5;
+                       LDA.B $0D                            ;839A75|A50D    |0012B5;
                        BEQ CODE_839A82                      ;839A77|F009    |839A82;
                        JSR.W CODE_8390AF                    ;839A79|20AF90  |8390AF;
                        LDA.B $37                            ;839A7C|A537    |0012DF;
@@ -3623,7 +3623,7 @@
                        ASL A                                ;839A88|0A      |      ;
                        TAX                                  ;839A89|AA      |      ;
                        REP #$20                             ;839A8A|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;839A8C|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;839A8C|BD37EE  |86EE37;
                        ASL A                                ;839A8F|0A      |      ;
                        ASL A                                ;839A90|0A      |      ;
                        ASL A                                ;839A91|0A      |      ;
@@ -3636,7 +3636,7 @@
           CODE_839A9A:
                        SEP #$20                             ;839A9A|E220    |      ;
                        XBA                                  ;839A9C|EB      |      ;
-                       STA.B r_ev_proj_3f-$12A8             ;839A9D|851F    |0012C7;
+                       STA.B $1F                            ;839A9D|851F    |0012C7;
                        REP #$20                             ;839A9F|C220    |      ;
                        LDA.W DATA8_86EE39,X                 ;839AA1|BD39EE  |86EE39;
                        ASL A                                ;839AA4|0A      |      ;
@@ -3651,7 +3651,7 @@
           CODE_839AAF:
                        SEP #$20                             ;839AAF|E220    |      ;
                        XBA                                  ;839AB1|EB      |      ;
-                       STA.B r_ev_proj_3e-$12A8             ;839AB2|851E    |0012C6;
+                       STA.B $1E                            ;839AB2|851E    |0012C6;
                        LDA.B $37                            ;839AB4|A537    |0012DF;
                        BIT.B #$10                           ;839AB6|8910    |      ;
                        BEQ CODE_839AF8                      ;839AB8|F03E    |839AF8;
@@ -3663,7 +3663,7 @@
                        LDA.W r_0000                         ;839AC7|AD0000  |860000;
                        CMP.B $1A                            ;839ACA|C51A    |001302;
                        BMI CODE_839AD0                      ;839ACC|3002    |839AD0;
-                       STA.B r_ev_proj_3a-$12A8             ;839ACE|851A    |0012C2;
+                       STA.B $1A                            ;839ACE|851A    |0012C2;
                                                             ;      |        |      ;
           CODE_839AD0:
                        LDA.W r_0002                         ;839AD0|AD0200  |860002;
@@ -3678,13 +3678,13 @@
                        JSR.W CODE_839113                    ;839ADF|201391  |839113;
                        REP #$20                             ;839AE2|C220    |      ;
                        LDA.W r_0000                         ;839AE4|AD0000  |860000;
-                       CMP.B r_ev_proj_3a-$12A8             ;839AE7|C51A    |0012C2;
+                       CMP.B $1A                            ;839AE7|C51A    |0012C2;
                        BMI CODE_839AED                      ;839AE9|3002    |839AED;
                        STA.B $1A                            ;839AEB|851A    |001282;
                                                             ;      |        |      ;
           CODE_839AED:
                        LDA.W r_0002                         ;839AED|AD0200  |860002;
-                       CMP.B r_ev_proj_3c-$12A8             ;839AF0|C51C    |0012C4;
+                       CMP.B $1C                            ;839AF0|C51C    |0012C4;
                        BMI CODE_839B34                      ;839AF2|3040    |839B34;
                        STA.B $1C                            ;839AF4|851C    |001284;
                        BRA CODE_839B34                      ;839AF6|803C    |839B34;
@@ -3697,13 +3697,13 @@
                        JSR.W CODE_839113                    ;839B00|201391  |839113;
                        REP #$20                             ;839B03|C220    |      ;
                        LDA.W r_0000                         ;839B05|AD0000  |860000;
-                       CMP.B r_ev_proj_3a-$12A8             ;839B08|C51A    |0012C2;
+                       CMP.B $1A                            ;839B08|C51A    |0012C2;
                        BPL CODE_839B0E                      ;839B0A|1002    |839B0E;
-                       STA.B r_ev_proj_3a-$12A8             ;839B0C|851A    |0012C2;
+                       STA.B $1A                            ;839B0C|851A    |0012C2;
                                                             ;      |        |      ;
           CODE_839B0E:
                        LDA.W r_0002                         ;839B0E|AD0200  |860002;
-                       CMP.B r_ev_proj_3c-$12A8             ;839B11|C51C    |0012C4;
+                       CMP.B $1C                            ;839B11|C51C    |0012C4;
                        BMI CODE_839B34                      ;839B13|301F    |839B34;
                        STA.B $1C                            ;839B15|851C    |001284;
                        BRA CODE_839B34                      ;839B17|801B    |839B34;
@@ -3726,21 +3726,21 @@
                                                             ;      |        |      ;
           CODE_839B34:
                        SEP #$20                             ;839B34|E220    |      ;
-                       JSL.L eventID_vile_68_afterInit      ;839B36|22B48082|8280B4;
+                       JSL.L checkEventRange                ;839B36|22B48082|8280B4;
                        LDA.B $0E                            ;839B3A|A50E    |001276;
                        BEQ CODE_839B4F                      ;839B3C|F011    |839B4F;
                        RTL                                  ;839B3E|6B      |      ;
                                                             ;      |        |      ;
                        REP #$20                             ;839B3F|C220    |      ;
-                       LDA.B r_ev_proj_13-$1268             ;839B41|A533    |00129B;
+                       LDA.B $33                            ;839B41|A533    |00129B;
                        STA.B $05                            ;839B43|8505    |00126D;
-                       LDA.B r_ev_proj_15-$1268             ;839B45|A535    |00129D;
+                       LDA.B $35                            ;839B45|A535    |00129D;
                        STA.B $08                            ;839B47|8508    |001270;
                        SEP #$20                             ;839B49|E220    |      ;
                        JSL.L CODE_84A4B5                    ;839B4B|22B5A484|84A4B5;
                                                             ;      |        |      ;
           CODE_839B4F:
-                       DEC.W r_0bdd                         ;839B4F|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;839B4F|CEDD0B  |860BDD;
                        JML.L clearStates_01_00_02_0E_2C     ;839B52|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3760,7 +3760,7 @@
                                                             ;      |        |      ;
           CODE_839B6C:
                        STA.W r_000b,X                       ;839B6C|9D0B00  |86000B;
-                       INC.W r_0bdd                         ;839B6F|EEDD0B  |860BDD;
+                       INC.W r_d_bulletCount                ;839B6F|EEDD0B  |860BDD;
                        LDA.B $3C                            ;839B72|A53C    |001264;
                        STA.W r_003c,X                       ;839B74|9D3C00  |86003C;
                        DEY                                  ;839B77|88      |      ;
@@ -3784,7 +3784,7 @@
                        STA.W $0C31                          ;839B8E|8D310C  |860C31;
                        STA.W $0C32                          ;839B91|8D320C  |860C32;
                        INC.W $0C25                          ;839B94|EE250C  |860C25;
-                       INC.W r_blaster13                    ;839B97|EE0F0C  |860C0F;
+                       INC.W $0C0F                          ;839B97|EE0F0C  |860C0F;
                        LDA.B #$E0                           ;839B9A|A9E0    |      ;
                        STA.B $37                            ;839B9C|8537    |00125F;
                        LDA.B #$01                           ;839B9E|A901    |      ;
@@ -3803,14 +3803,14 @@
                        RTL                                  ;839BB8|6B      |      ;
                                                             ;      |        |      ;
                        STZ.W $0C31                          ;839BB9|9C310C  |860C31;
-                       DEC.W r_0bdd                         ;839BBC|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;839BBC|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;839BBF|CE250C  |860C25;
-                       DEC.W r_blaster13                    ;839BC2|CE0F0C  |860C0F;
-                       LDA.W r_0bcf                         ;839BC5|ADCF0B  |860BCF;
+                       DEC.W $0C0F                          ;839BC2|CE0F0C  |860C0F;
+                       LDA.W r_d_0bcf                       ;839BC5|ADCF0B  |860BCF;
                        AND.B #$7F                           ;839BC8|297F    |      ;
                        BEQ CODE_839BD1                      ;839BCA|F005    |839BD1;
                        LDA.B #$01                           ;839BCC|A901    |      ;
-                       STA.W r_0bb6                         ;839BCE|8DB60B  |860BB6;
+                       STA.W r_d_r_player_activSpr          ;839BCE|8DB60B  |860BB6;
                                                             ;      |        |      ;
           CODE_839BD1:
                        REP #$10                             ;839BD1|C210    |      ;
@@ -3848,7 +3848,7 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_839C02:
-                       LDA.W r_0bcf                         ;839C02|ADCF0B  |860BCF;
+                       LDA.W r_d_0bcf                       ;839C02|ADCF0B  |860BCF;
                        AND.B #$7F                           ;839C05|297F    |      ;
                        BEQ CODE_839C21                      ;839C07|F018    |839C21;
                        DEC.B $3C                            ;839C09|C63C    |001264;
@@ -3859,9 +3859,9 @@
                        TAX                                  ;839C13|AA      |      ;
                        LDA.W DATA8_86BFA8,X                 ;839C14|BDA8BF  |86BFA8;
                        STA.B $3C                            ;839C17|853C    |001264;
-                       LDA.W r_0bb6                         ;839C19|ADB60B  |860BB6;
+                       LDA.W r_d_r_player_activSpr          ;839C19|ADB60B  |860BB6;
                        EOR.B #$01                           ;839C1C|4901    |      ;
-                       STA.W r_0bb6                         ;839C1E|8DB60B  |860BB6;
+                       STA.W r_d_r_player_activSpr          ;839C1E|8DB60B  |860BB6;
                                                             ;      |        |      ;
           CODE_839C21:
                        RTS                                  ;839C21|60      |      ;
@@ -3923,7 +3923,7 @@
                        STZ.B $12                            ;839C77|6412    |00123A;
                        STZ.B $38                            ;839C79|6438    |001260;
                        STZ.B $39                            ;839C7B|6439    |001261;
-                       LDA.W r_0bb9                         ;839C7D|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;839C7D|ADB90B  |860BB9;
                        AND.B #$70                           ;839C80|2970    |      ;
                        ORA.B #$06                           ;839C82|0906    |      ;
                        STA.B $11                            ;839C84|8511    |001239;
@@ -3955,7 +3955,7 @@
                        STA.B $20                            ;839CAF|8520    |001248;
                        LDA.B #$BF                           ;839CB1|A9BF    |      ;
                        STA.B $21                            ;839CB3|8521    |001249;
-                       LDA.W r_0baa                         ;839CB5|ADAA0B  |860BAA;
+                       LDA.W $0BAA                          ;839CB5|ADAA0B  |860BAA;
                        CMP.B #$2C                           ;839CB8|C92C    |      ;
                        BEQ CODE_839CD5                      ;839CBA|F019    |839CD5;
                        LDA.W r_1f23                         ;839CBC|AD231F  |861F23;
@@ -3963,7 +3963,7 @@
                        LDA.W r_1f7b                         ;839CC1|AD7B1F  |861F7B;
                        CMP.B #$04                           ;839CC4|C904    |      ;
                        BEQ CODE_839CD5                      ;839CC6|F00D    |839CD5;
-                       LDA.W r_0bcf                         ;839CC8|ADCF0B  |860BCF;
+                       LDA.W r_d_0bcf                       ;839CC8|ADCF0B  |860BCF;
                        AND.B #$7F                           ;839CCB|297F    |      ;
                        BEQ CODE_839CD5                      ;839CCD|F006    |839CD5;
                        JSL.L CODE_849BC8                    ;839CCF|22C89B84|849BC8;
@@ -3985,12 +3985,12 @@
                        STA.B $39                            ;839CE9|8539    |001261;
                        LDA.B $37                            ;839CEB|A537    |00125F;
                        BEQ CODE_839CF5                      ;839CED|F006    |839CF5;
-                       LDA.W $0B9C                          ;839CEF|AD9C0B  |860B9C;
+                       LDA.W r_frameCounter1                ;839CEF|AD9C0B  |860B9C;
                        LSR A                                ;839CF2|4A      |      ;
                        BCS CODE_839CF9                      ;839CF3|B004    |839CF9;
                                                             ;      |        |      ;
           CODE_839CF5:
-                       JSL.L eventID_vile_68_afterInit      ;839CF5|22B48082|8280B4;
+                       JSL.L checkEventRange                ;839CF5|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_839CF9:
                        JMP.W CODE_839DC5                    ;839CF9|4CC59D  |839DC5;
@@ -4004,7 +4004,7 @@
                        STZ.B $37                            ;839D06|6437    |00125F;
                        STZ.B $30                            ;839D08|6430    |001258;
                        LDA.B #$00                           ;839D0A|A900    |      ;
-                       JSL.L CODE_848F07                    ;839D0C|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;839D0C|22078F84|848F07;
                        RTS                                  ;839D10|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4030,10 +4030,10 @@
                        LDA.B #$01                           ;839D30|A901    |      ;
                        STA.B $3B                            ;839D32|853B    |001263;
                        LDA.B #$01                           ;839D34|A901    |      ;
-                       JSL.L CODE_848F07                    ;839D36|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;839D36|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_839D3A:
-                       LDA.W $0B9C                          ;839D3A|AD9C0B  |860B9C;
+                       LDA.W r_frameCounter1                ;839D3A|AD9C0B  |860B9C;
                        AND.B #$0F                           ;839D3D|290F    |      ;
                        BNE CODE_839D47                      ;839D3F|D006    |839D47;
                        LDA.B #$64                           ;839D41|A964    |      ;
@@ -4048,7 +4048,7 @@
                        JSR.W (DATA8_839D5A,X)               ;839D4C|FC5A9D  |839D5A;
                        LDA.B $00                            ;839D4F|A500    |001228;
                        BEQ CODE_839D57                      ;839D51|F004    |839D57;
-                       JSL.L eventID_vile_68_afterInit      ;839D53|22B48082|8280B4;
+                       JSL.L checkEventRange                ;839D53|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_839D57:
                        JMP.W CODE_839DC5                    ;839D57|4CC59D  |839DC5;
@@ -4064,13 +4064,13 @@
                        LDY.B #$46                           ;839D68|A046    |      ;
                        JSL.L CODE_828000                    ;839D6A|22008082|828000;
                        LDA.B #$02                           ;839D6E|A902    |      ;
-                       JSL.L CODE_848F07                    ;839D70|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;839D70|22078F84|848F07;
                        RTS                                  ;839D74|60      |      ;
                                                             ;      |        |      ;
                        LDA.B $0F                            ;839D75|A50F    |001237;
                        BPL CODE_839D89                      ;839D77|1010    |839D89;
                        INC.B $30                            ;839D79|E630    |001258;
-                       DEC.W r_0bdd                         ;839D7B|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;839D7B|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;839D7E|CE250C  |860C25;
                        STZ.W $0C30                          ;839D81|9C300C  |860C30;
                        JSL.L clearStates_01_00_02_0E_2C     ;839D84|22A38382|8283A3;
@@ -4111,9 +4111,9 @@
                                                             ;      |        |      ;
           CODE_839DC5:
                        REP #$20                             ;839DC5|C220    |      ;
-                       LDA.W r_0bad                         ;839DC7|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;839DC7|ADAD0B  |860BAD;
                        STA.B $05                            ;839DCA|8505    |00122D;
-                       LDA.W r_0bb0                         ;839DCC|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;839DCC|ADB00B  |860BB0;
                        STA.B $08                            ;839DCF|8508    |001230;
                        SEP #$20                             ;839DD1|E220    |      ;
                        RTS                                  ;839DD3|60      |      ;
@@ -4134,21 +4134,21 @@
                        INC.W $0C25                          ;839DE8|EE250C  |860C25;
                        LDA.B #$08                           ;839DEB|A908    |      ;
                        STA.B $18                            ;839DED|8518    |001280;
-                       STA.B r_ev_proj_10-$1268             ;839DEF|8530    |001298;
+                       STA.B $30                            ;839DEF|8530    |001298;
                        STZ.B $12                            ;839DF1|6412    |00127A;
-                       STZ.B r_ev_proj_18_gfxSlot-$1268     ;839DF3|6438    |0012A0;
-                       STZ.B r_ev_proj_19-$1268             ;839DF5|6439    |0012A1;
+                       STZ.B $38                            ;839DF3|6438    |0012A0;
+                       STZ.B $39                            ;839DF5|6439    |0012A1;
                        LDA.B $0B                            ;839DF7|A50B    |001273;
                        BPL CODE_839E05                      ;839DF9|100A    |839E05;
                        LDA.B #$02                           ;839DFB|A902    |      ;
                        STA.B $02                            ;839DFD|8502    |00126A;
-                       STA.B r_ev_proj_18_gfxSlot-$1268     ;839DFF|8538    |0012A0;
+                       STA.B $38                            ;839DFF|8538    |0012A0;
                        STZ.B $03                            ;839E01|6403    |00126B;
                        BRA CODE_839E1A                      ;839E03|8015    |839E1A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_839E05:
-                       LDA.W r_0bb9                         ;839E05|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;839E05|ADB90B  |860BB9;
                        AND.B #$70                           ;839E08|2970    |      ;
                        ORA.B #$06                           ;839E0A|0906    |      ;
                        STA.B $11                            ;839E0C|8511    |001239;
@@ -4160,7 +4160,7 @@
                                                             ;      |        |      ;
           CODE_839E1A:
                        LDA.B #$F0                           ;839E1A|A9F0    |      ;
-                       STA.B r_ev_proj_0a_ID-$1268          ;839E1C|852A    |001292;
+                       STA.B $2A                            ;839E1C|852A    |001292;
                        JSR.W CODE_839F65                    ;839E1E|20659F  |839F65;
                        LDA.B #$8C                           ;839E21|A98C    |      ;
                        STA.B $16                            ;839E23|8516    |00127E;
@@ -4172,31 +4172,31 @@
                                                             ;      |        |      ;
                        LDA.B #$02                           ;839E2A|A902    |      ;
                        STA.B $01                            ;839E2C|8501    |001269;
-                       LDA.B r_ev_proj_18_gfxSlot-$1268     ;839E2E|A538    |0012A0;
+                       LDA.B $38                            ;839E2E|A538    |0012A0;
                        STA.B $02                            ;839E30|8502    |00126A;
-                       LDA.B r_ev_proj_19-$1268             ;839E32|A539    |0012A1;
+                       LDA.B $39                            ;839E32|A539    |0012A1;
                        STA.B $03                            ;839E34|8503    |00126B;
-                       STZ.B r_ev_proj_10-$1268             ;839E36|6430    |001298;
+                       STZ.B $30                            ;839E36|6430    |001298;
                        LDX.B $02                            ;839E38|A602    |00126A;
                        JSR.W (DATA8_839E62,X)               ;839E3A|FC629E  |839E62;
                        LDA.B $00                            ;839E3D|A500    |001268;
                        BEQ CODE_839E29                      ;839E3F|F0E8    |839E29;
                        LDA.B $02                            ;839E41|A502    |00126A;
-                       STA.B r_ev_proj_18_gfxSlot-$1268     ;839E43|8538    |0012A0;
+                       STA.B $38                            ;839E43|8538    |0012A0;
                        LDA.B $03                            ;839E45|A503    |00126B;
-                       STA.B r_ev_proj_19-$1268             ;839E47|8539    |0012A1;
+                       STA.B $39                            ;839E47|8539    |0012A1;
                        LDA.B $02                            ;839E49|A502    |00126A;
                        CMP.B #$06                           ;839E4B|C906    |      ;
                        BEQ CODE_839E29                      ;839E4D|F0DA    |839E29;
-                       JSL.L eventID_vile_68_afterInit      ;839E4F|22B48082|8280B4;
+                       JSL.L checkEventRange                ;839E4F|22B48082|8280B4;
                        LDA.B $0E                            ;839E53|A50E    |001276;
                        BNE CODE_839E5B                      ;839E55|D004    |839E5B;
                        db $A9,$04,$85,$02                   ;839E57|        |      ;
                                                             ;      |        |      ;
           CODE_839E5B:
-                       LDA.B r_ev_proj_10-$1268             ;839E5B|A530    |001298;
+                       LDA.B $30                            ;839E5B|A530    |001298;
                        EOR.B #$01                           ;839E5D|4901    |      ;
-                       STA.B r_ev_proj_10-$1268             ;839E5F|8530    |001298;
+                       STA.B $30                            ;839E5F|8530    |001298;
                        RTS                                  ;839E61|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4219,7 +4219,7 @@
                        STA.B $1E                            ;839E85|851E    |001246;
                        SEP #$20                             ;839E87|E220    |      ;
                        LDA.B #$01                           ;839E89|A901    |      ;
-                       JSL.L CODE_848F07                    ;839E8B|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;839E8B|22078F84|848F07;
                        RTS                                  ;839E8F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4249,11 +4249,11 @@
                        LDX.B $03                            ;839EBA|A603    |00126B;
                        BNE CODE_839ED1                      ;839EBC|D013    |839ED1;
                        INC.B $03                            ;839EBE|E603    |00126B;
-                       STZ.B r_ev_proj_10-$1268             ;839EC0|6430    |001298;
+                       STZ.B $30                            ;839EC0|6430    |001298;
                        LDA.B #$61                           ;839EC2|A961    |      ;
-                       JSL.L CODE_8088A2                    ;839EC4|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;839EC4|22A28880|8088A2;
                        LDA.B #$00                           ;839EC8|A900    |      ;
-                       JSL.L CODE_848F07                    ;839ECA|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;839ECA|22078F84|848F07;
                        JMP.W CODE_839F2A                    ;839ECE|4C2A9F  |839F2A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4267,8 +4267,8 @@
                        JSL.L updateEv_13_14_17_0f           ;839ED9|22EA8E84|848EEA;
                        JMP.W CODE_839F2A                    ;839EDD|4C2A9F  |839F2A;
                                                             ;      |        |      ;
-                       INC.B r_ev_proj_10-$1268             ;839EE0|E630    |001298;
-                       DEC.W r_0bdd                         ;839EE2|CEDD0B  |860BDD;
+                       INC.B $30                            ;839EE0|E630    |001298;
+                       DEC.W r_d_bulletCount                ;839EE2|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;839EE5|CE250C  |860C25;
                        JSL.L clearStates_01_00_02_0E_2C     ;839EE8|22A38382|8283A3;
                        RTS                                  ;839EEC|60      |      ;
@@ -4326,7 +4326,7 @@
                        JSL.L loadProjectileSlotBase         ;839F3B|223E8382|82833E;
                        BNE CODE_839F62                      ;839F3F|D021    |839F62;
                        INC.W r_0000,X                       ;839F41|FE0000  |860000;
-                       INC.W r_0bdd                         ;839F44|EEDD0B  |860BDD;
+                       INC.W r_d_bulletCount                ;839F44|EEDD0B  |860BDD;
                        LDA.B #$13                           ;839F47|A913    |      ;
                        STA.W r_000a,X                       ;839F49|9D0A00  |86000A;
                        LDA.B $11                            ;839F4C|A511    |001239;
@@ -4354,7 +4354,7 @@
                        BEQ CODE_839F7E                      ;839F73|F009    |839F7E;
                        CMP.B #$34                           ;839F75|C934    |      ;
                        BCC CODE_839F84                      ;839F77|900B    |839F84;
-                       LDA.W r_powerUp_00                   ;839F79|AD180C  |860C18;
+                       LDA.W $0C18                          ;839F79|AD180C  |860C18;
                        BEQ CODE_839F84                      ;839F7C|F006    |839F84;
                                                             ;      |        |      ;
           CODE_839F7E:
@@ -4413,11 +4413,11 @@
                        STA.B $10                            ;839FC8|8510    |001278;
                        LDA.B #$02                           ;839FCA|A902    |      ;
                        STA.B $18                            ;839FCC|8518    |001280;
-                       STA.B r_ev_proj_10-$1268             ;839FCE|8530    |001298;
+                       STA.B $30                            ;839FCE|8530    |001298;
                        STZ.B $12                            ;839FD0|6412    |00127A;
-                       STZ.B r_ev_proj_18_gfxSlot-$1268     ;839FD2|6438    |0012A0;
-                       STZ.B r_ev_proj_19-$1268             ;839FD4|6439    |0012A1;
-                       LDA.W r_0bb9                         ;839FD6|ADB90B  |860BB9;
+                       STZ.B $38                            ;839FD2|6438    |0012A0;
+                       STZ.B $39                            ;839FD4|6439    |0012A1;
+                       LDA.W r_d_0bb9                       ;839FD6|ADB90B  |860BB9;
                        AND.B #$70                           ;839FD9|2970    |      ;
                        ORA.B #$06                           ;839FDB|0906    |      ;
                        STA.B $11                            ;839FDD|8511    |001279;
@@ -4428,12 +4428,12 @@
                        LDA.W #$0060                         ;839FE8|A96000  |      ;
                                                             ;      |        |      ;
           CODE_839FEB:
-                       ADC.W r_0bb0                         ;839FEB|6DB00B  |860BB0;
+                       ADC.W r_d_player_yPos                ;839FEB|6DB00B  |860BB0;
                        STA.B $08                            ;839FEE|8508    |001270;
-                       LDA.W r_0bad                         ;839FF0|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;839FF0|ADAD0B  |860BAD;
                        STA.B $05                            ;839FF3|8505    |00126D;
                        LDA.W #$AECF                         ;839FF5|A9CFAE  |      ;
-                       STA.B r_ev_proj_11_sprAtri-$1268     ;839FF8|8531    |001299;
+                       STA.B $31                            ;839FF8|8531    |001299;
                        SEP #$20                             ;839FFA|E220    |      ;
                        LDA.B #$41                           ;839FFC|A941    |      ;
                        STA.B $16                            ;839FFE|8516    |00127E;
@@ -4452,11 +4452,11 @@
           CODE_83A00F:
                        LDA.B #$02                           ;83A00F|A902    |      ;
                        STA.B $01                            ;83A011|8501    |001269;
-                       LDA.B r_ev_proj_18_gfxSlot-$1268     ;83A013|A538    |0012A0;
+                       LDA.B $38                            ;83A013|A538    |0012A0;
                        STA.B $02                            ;83A015|8502    |00126A;
-                       LDA.B r_ev_proj_19-$1268             ;83A017|A539    |0012A1;
+                       LDA.B $39                            ;83A017|A539    |0012A1;
                        STA.B $03                            ;83A019|8503    |00126B;
-                       STZ.B r_ev_proj_10-$1268             ;83A01B|6430    |001298;
+                       STZ.B $30                            ;83A01B|6430    |001298;
                                                             ;      |        |      ;
           CODE_83A01D:
                        LDX.B $02                            ;83A01D|A602    |00126A;
@@ -4464,10 +4464,10 @@
                        LDA.B $00                            ;83A022|A500    |001268;
                        BEQ CODE_83A00E                      ;83A024|F0E8    |83A00E;
                        LDA.B $02                            ;83A026|A502    |00126A;
-                       STA.B r_ev_proj_18_gfxSlot-$1268     ;83A028|8538    |0012A0;
+                       STA.B $38                            ;83A028|8538    |0012A0;
                        LDA.B $03                            ;83A02A|A503    |00126B;
-                       STA.B r_ev_proj_19-$1268             ;83A02C|8539    |0012A1;
-                       LDA.W $0B9C                          ;83A02E|AD9C0B  |860B9C;
+                       STA.B $39                            ;83A02C|8539    |0012A1;
+                       LDA.W r_frameCounter1                ;83A02E|AD9C0B  |860B9C;
                        LSR A                                ;83A031|4A      |      ;
                        BCS CODE_83A038                      ;83A032|B004    |83A038;
                        JSL.L CODE_82808F                    ;83A034|228F8082|82808F;
@@ -4481,14 +4481,14 @@
                        LDX.B $03                            ;83A043|A603    |00126B;
                        BNE CODE_83A057                      ;83A045|D010    |83A057;
                        INC.B $03                            ;83A047|E603    |00126B;
-                       STZ.B r_ev_proj_10-$1268             ;83A049|6430    |001298;
+                       STZ.B $30                            ;83A049|6430    |001298;
                        LDA.B #$01                           ;83A04B|A901    |      ;
                        LDX.B $0B                            ;83A04D|A60B    |001273;
                        BEQ CODE_83A053                      ;83A04F|F002    |83A053;
                        LDA.B #$04                           ;83A051|A904    |      ;
                                                             ;      |        |      ;
           CODE_83A053:
-                       JSL.L CODE_848F07                    ;83A053|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A053|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83A057:
                        LDA.B $0F                            ;83A057|A50F    |001277;
@@ -4505,12 +4505,12 @@
                        BNE CODE_83A076                      ;83A068|D00C    |83A076;
                        INC.B $03                            ;83A06A|E603    |00126B;
                        LDA.B #$1E                           ;83A06C|A91E    |      ;
-                       STA.B r_ev_proj_17-$1268             ;83A06E|8537    |00129F;
+                       STA.B $37                            ;83A06E|8537    |00129F;
                        LDA.B #$02                           ;83A070|A902    |      ;
-                       JSL.L CODE_848F07                    ;83A072|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A072|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83A076:
-                       DEC.B r_ev_proj_17-$1268             ;83A076|C637    |00129F;
+                       DEC.B $37                            ;83A076|C637    |00129F;
                        BNE CODE_83A080                      ;83A078|D006    |83A080;
                        LDA.B #$04                           ;83A07A|A904    |      ;
                        STA.B $02                            ;83A07C|8502    |00126A;
@@ -4529,7 +4529,7 @@
                        LDA.B #$00                           ;83A091|A900    |      ;
                                                             ;      |        |      ;
           CODE_83A093:
-                       JSL.L CODE_848F07                    ;83A093|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A093|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83A097:
                        LDA.B $0F                            ;83A097|A50F    |001277;
@@ -4544,7 +4544,7 @@
                        LDA.B $0B                            ;83A0A4|A50B    |001273;
                        BNE CODE_83A0B0                      ;83A0A6|D008    |83A0B0;
                        INC.B $30                            ;83A0A8|E630    |001258;
-                       DEC.W r_0bdd                         ;83A0AA|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;83A0AA|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;83A0AD|CE250C  |860C25;
                                                             ;      |        |      ;
           CODE_83A0B0:
@@ -4589,15 +4589,15 @@
                        db $1B,$A1,$1B,$A1,$91,$A1           ;83A0E6|        |      ;
                        LDA.B #$02                           ;83A0EC|A902    |      ;
                        STA.B $01                            ;83A0EE|8501    |001269;
-                       STA.B r_ev_proj_10-$1268             ;83A0F0|8530    |001298;
+                       STA.B $30                            ;83A0F0|8530    |001298;
                        INC.W $0C25                          ;83A0F2|EE250C  |860C25;
                        STZ.B $18                            ;83A0F5|6418    |001280;
                        STZ.B $12                            ;83A0F7|6412    |00127A;
-                       STZ.B r_ev_proj_18_gfxSlot-$1268     ;83A0F9|6438    |0012A0;
-                       STZ.B r_ev_proj_19-$1268             ;83A0FB|6439    |0012A1;
+                       STZ.B $38                            ;83A0F9|6438    |0012A0;
+                       STZ.B $39                            ;83A0FB|6439    |0012A1;
                        LDA.B $0B                            ;83A0FD|A50B    |001273;
                        BNE CODE_83A10E                      ;83A0FF|D00D    |83A10E;
-                       LDA.W r_0bb9                         ;83A101|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;83A101|ADB90B  |860BB9;
                        AND.B #$70                           ;83A104|2970    |      ;
                        ORA.B #$06                           ;83A106|0906    |      ;
                        STA.B $11                            ;83A108|8511    |001239;
@@ -4623,7 +4623,7 @@
                        STZ.B $30                            ;83A127|6430    |001258;
                        LDX.B $02                            ;83A129|A602    |00122A;
                        JSR.W (DATA8_83A145,X)               ;83A12B|FC45A1  |83A145;
-                       JSL.L eventID_vile_68_afterInit      ;83A12E|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83A12E|22B48082|8280B4;
                        LDA.B $02                            ;83A132|A502    |00122A;
                        STA.B $38                            ;83A134|8538    |001260;
                        LDA.B $03                            ;83A136|A503    |00122B;
@@ -4644,7 +4644,7 @@
                        INC.B $03                            ;83A14D|E603    |00122B;
                        STZ.B $30                            ;83A14F|6430    |001258;
                        LDA.B #$02                           ;83A151|A902    |      ;
-                       JSL.L CODE_848F07                    ;83A153|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A153|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83A157:
                        LDA.B $0F                            ;83A157|A50F    |001237;
@@ -4662,7 +4662,7 @@
                        LDX.B $03                            ;83A169|A603    |00122B;
                        BNE CODE_83A188                      ;83A16B|D01B    |83A188;
                        INC.B $03                            ;83A16D|E603    |00126B;
-                       STZ.B r_ev_proj_10-$1268             ;83A16F|6430    |001298;
+                       STZ.B $30                            ;83A16F|6430    |001298;
                        REP #$21                             ;83A171|C221    |      ;
                        LDA.W #$0800                         ;83A173|A90008  |      ;
                        BIT.B $10                            ;83A176|2410    |001278;
@@ -4673,7 +4673,7 @@
                        STA.B $1A                            ;83A17D|851A    |001282;
                        SEP #$20                             ;83A17F|E220    |      ;
                        LDA.B #$03                           ;83A181|A903    |      ;
-                       JSL.L CODE_848F07                    ;83A183|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A183|22078F84|848F07;
                        RTS                                  ;83A187|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4683,7 +4683,7 @@
                        RTS                                  ;83A190|60      |      ;
                                                             ;      |        |      ;
                        INC.B $30                            ;83A191|E630    |001258;
-                       DEC.W r_0bdd                         ;83A193|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;83A193|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;83A196|CE250C  |860C25;
                        JSL.L clearStates_01_00_02_0E_2C     ;83A199|22A38382|8283A3;
                        RTS                                  ;83A19D|60      |      ;
@@ -4705,7 +4705,7 @@
                        JSL.L loadProjectileSlotBase         ;83A1AF|223E8382|82833E;
                        BNE CODE_83A1D8                      ;83A1B3|D023    |83A1D8;
                        INC.W r_0000,X                       ;83A1B5|FE0000  |860000;
-                       INC.W r_0bdd                         ;83A1B8|EEDD0B  |860BDD;
+                       INC.W r_d_bulletCount                ;83A1B8|EEDD0B  |860BDD;
                        LDA.B #$15                           ;83A1BB|A915    |      ;
                        STA.W r_000a,X                       ;83A1BD|9D0A00  |86000A;
                        LDA.B $11                            ;83A1C0|A511    |001239;
@@ -4735,7 +4735,7 @@
                        LDA.B #$02                           ;83A1EA|A902    |      ;
                        STA.B $01                            ;83A1EC|8501    |0012E9;
                        INC.W $0C25                          ;83A1EE|EE250C  |860C25;
-                       LDA.W r_0bb9                         ;83A1F1|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;83A1F1|ADB90B  |860BB9;
                        AND.B #$70                           ;83A1F4|2970    |      ;
                        ORA.B #$06                           ;83A1F6|0906    |      ;
                        STA.B $11                            ;83A1F8|8511    |0012F9;
@@ -4765,7 +4765,7 @@
                        ASL A                                ;83A220|0A      |      ;
                        TAX                                  ;83A221|AA      |      ;
                        REP #$20                             ;83A222|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;83A224|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;83A224|BD37EE  |86EE37;
                        ASL A                                ;83A227|0A      |      ;
                        ASL A                                ;83A228|0A      |      ;
                        STA.B $1A                            ;83A229|851A    |001302;
@@ -4777,19 +4777,19 @@
                        STA.B $20                            ;83A235|8520    |001308;
                        LDA.W #$ADA7                         ;83A237|A9A7AD  |      ;
                        STA.B $31                            ;83A23A|8531    |001319;
-                       LDA.W r_0bad                         ;83A23C|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83A23C|ADAD0B  |860BAD;
                        STA.B $05                            ;83A23F|8505    |0012ED;
                        STA.B $28                            ;83A241|8528    |001310;
                        STA.B $2A                            ;83A243|852A    |001312;
                        STA.B $2D                            ;83A245|852D    |001315;
-                       LDA.W r_0bb0                         ;83A247|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;83A247|ADB00B  |860BB0;
                        STA.B $08                            ;83A24A|8508    |0012F0;
                        STA.B $3A                            ;83A24C|853A    |001322;
                        STA.B $3C                            ;83A24E|853C    |001324;
                        STA.B $3E                            ;83A250|853E    |001326;
                        SEP #$20                             ;83A252|E220    |      ;
                        LDA.B #$00                           ;83A254|A900    |      ;
-                       JSL.L CODE_848F07                    ;83A256|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A256|22078F84|848F07;
                        LDA.B $0B                            ;83A25A|A50B    |0012F3;
                        BNE CODE_83A29C                      ;83A25C|D03E    |83A29C;
                        JSL.L CODE_848FCA                    ;83A25E|22CA8F84|848FCA;
@@ -4812,7 +4812,7 @@
           CODE_83A27F:
                        JSL.L loadProjectileSlotBase         ;83A27F|223E8382|82833E;
                        BNE CODE_83A29C                      ;83A283|D017    |83A29C;
-                       INC.W r_0bdd                         ;83A285|EEDD0B  |860BDD;
+                       INC.W r_d_bulletCount                ;83A285|EEDD0B  |860BDD;
                        INC.W r_0000,X                       ;83A288|FE0000  |860000;
                        LDA.B #$16                           ;83A28B|A916    |      ;
                        STA.W r_000a,X                       ;83A28D|9D0A00  |86000A;
@@ -4837,9 +4837,9 @@
                                                             ;      |        |      ;
           CODE_83A2B5:
                        SEP #$30                             ;83A2B5|E230    |      ;
-                       JML.L eventID_vile_68_afterInit      ;83A2B7|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83A2B7|5CB48082|8280B4;
                                                             ;      |        |      ;
-                       STZ.B r_ev_proj_10-$1268             ;83A2BB|6430    |001298;
+                       STZ.B $30                            ;83A2BB|6430    |001298;
                        LDA.B #$02                           ;83A2BD|A902    |      ;
                        STA.B $01                            ;83A2BF|8501    |001269;
                        LDX.B $02                            ;83A2C1|A602    |0012EA;
@@ -4860,7 +4860,7 @@
                        SEP #$20                             ;83A2E0|E220    |      ;
                        JSL.L initPosAllign                  ;83A2E2|226E8082|82806E;
                        BCC CODE_83A2F2                      ;83A2E6|900A    |83A2F2;
-                       DEC.W r_0bdd                         ;83A2E8|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;83A2E8|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;83A2EB|CE250C  |860C25;
                        JML.L clearStates_01_00_02_0E_2C     ;83A2EE|5CA38382|8283A3;
                                                             ;      |        |      ;
@@ -4889,7 +4889,7 @@
                        SEP #$20                             ;83A313|E220    |      ;
                        CPX.W #$1428                         ;83A315|E02814  |      ;
                        BCC CODE_83A2FB                      ;83A318|90E1    |83A2FB;
-                       STZ.B r_ev_proj_2b-$12A8             ;83A31A|640B    |0012B3;
+                       STZ.B $0B                            ;83A31A|640B    |0012B3;
                                                             ;      |        |      ;
           CODE_83A31C:
                        SEP #$30                             ;83A31C|E230    |      ;
@@ -4914,7 +4914,7 @@
                        STA.B $17                            ;83A341|8517    |0012FF;
                                                             ;      |        |      ;
           CODE_83A343:
-                       JML.L eventID_vile_68_afterInit      ;83A343|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83A343|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83A347:
@@ -4938,7 +4938,7 @@
                        ASL A                                ;83A366|0A      |      ;
                        TAX                                  ;83A367|AA      |      ;
                        REP #$20                             ;83A368|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;83A36A|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;83A36A|BD37EE  |86EE37;
                        ASL A                                ;83A36D|0A      |      ;
                        ASL A                                ;83A36E|0A      |      ;
                        STA.B $1A                            ;83A36F|851A    |001302;
@@ -4956,7 +4956,7 @@
                        JSL.L CODE_82820A                    ;83A382|220A8282|82820A;
                        RTS                                  ;83A386|60      |      ;
                                                             ;      |        |      ;
-                       DEC.W r_0bdd                         ;83A387|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;83A387|CEDD0B  |860BDD;
                        DEC.W $0C25                          ;83A38A|CE250C  |860C25;
                        JML.L clearStates_01_00_02_0E_2C     ;83A38D|5CA38382|8283A3;
                                                             ;      |        |      ;
@@ -4979,7 +4979,7 @@
                        STA.B $01                            ;83A3AB|8501    |001229;
                        LDA.B #$08                           ;83A3AD|A908    |      ;
                        STA.B $18                            ;83A3AF|8518    |001240;
-                       LDA.W r_0bb9                         ;83A3B1|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;83A3B1|ADB90B  |860BB9;
                        AND.B #$70                           ;83A3B4|2970    |      ;
                        ORA.B #$06                           ;83A3B6|0906    |      ;
                        STA.B $11                            ;83A3B8|8511    |001239;
@@ -5009,9 +5009,9 @@
                                                             ;      |        |      ;
           CODE_83A3EE:
                        CLC                                  ;83A3EE|18      |      ;
-                       ADC.W r_0bad                         ;83A3EF|6DAD0B  |860BAD;
+                       ADC.W r_d_player_xSubPos             ;83A3EF|6DAD0B  |860BAD;
                        STA.B $05                            ;83A3F2|8505    |00122D;
-                       LDA.W r_0bb0                         ;83A3F4|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;83A3F4|ADB00B  |860BB0;
                        CLC                                  ;83A3F7|18      |      ;
                        ADC.W r_0002                         ;83A3F8|6D0200  |860002;
                        STA.B $08                            ;83A3FB|8508    |001230;
@@ -5027,9 +5027,9 @@
                        LDA.B #$FF                           ;83A411|A9FF    |      ;
                        STA.B $2F                            ;83A413|852F    |001257;
                        LDA.B #$00                           ;83A415|A900    |      ;
-                       JSL.L CODE_848F07                    ;83A417|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A417|22078F84|848F07;
                        JSL.L CODE_848FCA                    ;83A41B|22CA8F84|848FCA;
-                       JML.L eventID_vile_68_afterInit      ;83A41F|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83A41F|5CB48082|8280B4;
                                                             ;      |        |      ;
                        db $A9,$02,$85,$01,$64,$30           ;83A423|        |      ;
                        LDX.B $02                            ;83A429|A602    |00122A;
@@ -5037,12 +5037,12 @@
                        JSL.L CODE_848FCA                    ;83A42E|22CA8F84|848FCA;
                        JSL.L initPosAllign                  ;83A432|226E8082|82806E;
                        BCS CODE_83A43C                      ;83A436|B004    |83A43C;
-                       JML.L eventID_vile_68_afterInit      ;83A438|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83A438|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83A43C:
                        STZ.W $0C25                          ;83A43C|9C250C  |860C25;
-                       DEC.W r_0bdd                         ;83A43F|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;83A43F|CEDD0B  |860BDD;
                        JML.L clearStates_01_00_02_0E_2C     ;83A442|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5055,7 +5055,7 @@
                        LDA.B #$02                           ;83A458|A902    |      ;
                        STA.B $02                            ;83A45A|8502    |00122A;
                        LDA.B #$02                           ;83A45C|A902    |      ;
-                       JSL.L CODE_848F07                    ;83A45E|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A45E|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83A462:
                        RTS                                  ;83A462|60      |      ;
@@ -5087,7 +5087,7 @@
                        DEC.B $37                            ;83A490|C637    |00125F;
                        BNE CODE_83A4A2                      ;83A492|D00E    |83A4A2;
                        LDA.B #$01                           ;83A494|A901    |      ;
-                       JSL.L CODE_848F07                    ;83A496|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A496|22078F84|848F07;
                        LDA.B #$10                           ;83A49A|A910    |      ;
                        STA.B $1F                            ;83A49C|851F    |001247;
                        LDA.B #$06                           ;83A49E|A906    |      ;
@@ -5105,7 +5105,7 @@
                        LDA.B #$08                           ;83A4B4|A908    |      ;
                        STA.B $02                            ;83A4B6|8502    |00122A;
                        LDA.B #$02                           ;83A4B8|A902    |      ;
-                       JSL.L CODE_848F07                    ;83A4BA|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A4BA|22078F84|848F07;
                        LDA.B #$FF                           ;83A4BE|A9FF    |      ;
                        STA.B $2F                            ;83A4C0|852F    |001257;
                        STZ.B $1F                            ;83A4C2|641F    |001247;
@@ -5123,7 +5123,7 @@
                        LDA.B #$06                           ;83A4D6|A906    |      ;
                        STA.B $02                            ;83A4D8|8502    |00122A;
                        LDA.B #$01                           ;83A4DA|A901    |      ;
-                       JSL.L CODE_848F07                    ;83A4DC|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A4DC|22078F84|848F07;
                        STZ.B $2F                            ;83A4E0|642F    |001257;
                        STZ.B $1E                            ;83A4E2|641E    |001246;
                        LDA.B #$10                           ;83A4E4|A910    |      ;
@@ -5137,10 +5137,10 @@
                                                             ;      |        |      ;
                        JSL.L CODE_84A524                    ;83A4F1|2224A584|84A524;
                        LDA.B #$4C                           ;83A4F5|A94C    |      ;
-                       JSL.L CODE_8088A2                    ;83A4F7|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83A4F7|22A28880|8088A2;
                        JSR.W CODE_83A55B                    ;83A4FB|205BA5  |83A55B;
                        STZ.W $0C25                          ;83A4FE|9C250C  |860C25;
-                       DEC.W r_0bdd                         ;83A501|CEDD0B  |860BDD;
+                       DEC.W r_d_bulletCount                ;83A501|CEDD0B  |860BDD;
                        JML.L clearStates_01_00_02_0E_2C     ;83A504|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5238,25 +5238,25 @@
                        STA.B $10                            ;83A5B0|8510    |001278;
                        LDA.B #$08                           ;83A5B2|A908    |      ;
                        STA.B $18                            ;83A5B4|8518    |001280;
-                       STZ.B r_ev_proj_10-$1268             ;83A5B6|6430    |001298;
+                       STZ.B $30                            ;83A5B6|6430    |001298;
                        LDX.W r_level_current                ;83A5B8|AE7A1F  |861F7A;
-                       LDA.W r_0bb9                         ;83A5BB|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;83A5BB|ADB90B  |860BB9;
                        AND.B #$70                           ;83A5BE|2970    |      ;
                        ORA.B #$06                           ;83A5C0|0906    |      ;
                        STA.B $11                            ;83A5C2|8511    |001279;
                        LDA.B #$50                           ;83A5C4|A950    |      ;
-                       STA.B r_ev_proj_11_sprAtri-$1268     ;83A5C6|8531    |001299;
+                       STA.B $31                            ;83A5C6|8531    |001299;
                        LDA.B #$AB                           ;83A5C8|A9AB    |      ;
-                       STA.B r_ev_proj_12-$1268             ;83A5CA|8532    |00129A;
+                       STA.B $32                            ;83A5CA|8532    |00129A;
                        LDA.B #$54                           ;83A5CC|A954    |      ;
                        STA.B $16                            ;83A5CE|8516    |00127E;
                        LDA.B #$00                           ;83A5D0|A900    |      ;
-                       JSL.L CODE_848F07                    ;83A5D2|22078F84|848F07;
-                       STZ.B r_ev_proj_10-$1268             ;83A5D6|6430    |001298;
+                       JSL.L playerGrabedRoutine            ;83A5D2|22078F84|848F07;
+                       STZ.B $30                            ;83A5D6|6430    |001298;
                        REP #$20                             ;83A5D8|C220    |      ;
-                       LDA.W r_0bad                         ;83A5DA|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83A5DA|ADAD0B  |860BAD;
                        STA.B $05                            ;83A5DD|8505    |00126D;
-                       LDA.W r_0bb0                         ;83A5DF|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;83A5DF|ADB00B  |860BB0;
                        STA.B $08                            ;83A5E2|8508    |001270;
                        JSL.L updateEv_13_14_17_0f           ;83A5E4|22EA8E84|848EEA;
                        LDA.B $0F                            ;83A5E8|A50F    |001277;
@@ -5272,7 +5272,7 @@
                                                             ;      |        |      ;
           CODE_83A5FD:
                        JSL.L CODE_848FCA                    ;83A5FD|22CA8F84|848FCA;
-                       JML.L eventID_vile_68_afterInit      ;83A601|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83A601|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83A605:
@@ -5286,7 +5286,7 @@
                        ASL A                                ;83A612|0A      |      ;
                        TAX                                  ;83A613|AA      |      ;
                        REP #$20                             ;83A614|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;83A616|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;83A616|BD37EE  |86EE37;
                        STA.B $1A                            ;83A619|851A    |001442;
                        LDA.W DATA8_86EE39,X                 ;83A61B|BD39EE  |86EE39;
                        STA.B $1C                            ;83A61E|851C    |001444;
@@ -5297,7 +5297,7 @@
                        STA.B $27                            ;83A629|8527    |00144F;
                        STA.B $26                            ;83A62B|8526    |00144E;
                        LDA.B #$04                           ;83A62D|A904    |      ;
-                       JSL.L CODE_848F07                    ;83A62F|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A62F|22078F84|848F07;
                        LDA.B #$80                           ;83A633|A980    |      ;
                        STA.B $37                            ;83A635|8537    |00145F;
                                                             ;      |        |      ;
@@ -5305,7 +5305,7 @@
                        JSL.L CODE_82820A                    ;83A637|220A8282|82820A;
                        JSL.L CODE_849B03                    ;83A63B|22039B84|849B03;
                        BNE CODE_83A64E                      ;83A63F|D00D    |83A64E;
-                       JSL.L eventID_vile_68_afterInit      ;83A641|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83A641|22B48082|8280B4;
                        LDA.B $0E                            ;83A645|A50E    |001436;
                        BEQ CODE_83A64E                      ;83A647|F005    |83A64E;
                        DEC.B $37                            ;83A649|C637    |00145F;
@@ -5334,11 +5334,11 @@
                        STA.B $26                            ;83A668|8526    |00148E;
                        LDA.B #$02                           ;83A66A|A902    |      ;
                        STA.B $12                            ;83A66C|8512    |00147A;
-                       JSL.L eventID_vile_68_afterInit      ;83A66E|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83A66E|22B48082|8280B4;
                        LDA.B #$60                           ;83A672|A960    |      ;
                        STA.B $39                            ;83A674|8539    |0014A1;
                        LDA.B $0B                            ;83A676|A50B    |001473;
-                       JSL.L CODE_848F07                    ;83A678|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A678|22078F84|848F07;
                        RTS                                  ;83A67C|60      |      ;
                                                             ;      |        |      ;
                        DEC.B $39                            ;83A67D|C639    |0014A1;
@@ -5356,7 +5356,7 @@
                        BNE CODE_83A6A5                      ;83A690|D013    |83A6A5;
                        JSL.L CODE_82823E                    ;83A692|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;83A696|22EA8E84|848EEA;
-                       JSL.L eventID_vile_68_afterInit      ;83A69A|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83A69A|22B48082|8280B4;
                        LDA.B $0E                            ;83A69E|A50E    |001476;
                        BNE CODE_83A6B3                      ;83A6A0|D011    |83A6B3;
                        JMP.W CODE_83A6AF                    ;83A6A2|4CAFA6  |83A6AF;
@@ -5402,8 +5402,8 @@
                        LDA.B #$50                           ;83A6DF|A950    |      ;
                        STA.B $16                            ;83A6E1|8516    |00143E;
                        LDA.B #$02                           ;83A6E3|A902    |      ;
-                       JSL.L CODE_848F07                    ;83A6E5|22078F84|848F07;
-                       JSL.L eventID_vile_68_afterInit      ;83A6E9|22B48082|8280B4;
+                       JSL.L playerGrabedRoutine            ;83A6E5|22078F84|848F07;
+                       JSL.L checkEventRange                ;83A6E9|22B48082|8280B4;
                        RTS                                  ;83A6ED|60      |      ;
                                                             ;      |        |      ;
                        REP #$10                             ;83A6EE|C210    |      ;
@@ -5420,7 +5420,7 @@
                        BNE CODE_83A71E                      ;83A703|D019    |83A71E;
                        JSL.L CODE_8281E8                    ;83A705|22E88182|8281E8;
                        JSL.L updateEv_13_14_17_0f           ;83A709|22EA8E84|848EEA;
-                       JSL.L eventID_vile_68_afterInit      ;83A70D|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83A70D|22B48082|8280B4;
                        JSL.L initPosAllign                  ;83A711|226E8082|82806E;
                        BCC CODE_83A73B                      ;83A715|9024    |83A73B;
                        JSL.L clearStates_01_00_02_0E_2C     ;83A717|22A38382|8283A3;
@@ -5593,7 +5593,7 @@
           CODE_83A96A:
                        LSR A                                ;83A96A|4A      |      ;
                        BCS CODE_83A971                      ;83A96B|B004    |83A971;
-                       JSL.L eventID_vile_68_afterInit      ;83A96D|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83A96D|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_83A971:
                        JML.L CODE_8491BE                    ;83A971|5CBE9184|8491BE;
@@ -5608,7 +5608,7 @@
                        INC.B $03                            ;83A98B|E603    |0014EB;
                        INC.B $2F                            ;83A98D|E62F    |001517;
                        LDA.B #$01                           ;83A98F|A901    |      ;
-                       JSL.L CODE_848F07                    ;83A991|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A991|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83A995:
                        LDA.B $1D                            ;83A995|A51D    |001505;
@@ -5648,7 +5648,7 @@
                        BNE CODE_83A9DC                      ;83A9D2|D008    |83A9DC;
                        INC.B $03                            ;83A9D4|E603    |0014EB;
                        LDA.B #$03                           ;83A9D6|A903    |      ;
-                       JSL.L CODE_848F07                    ;83A9D8|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A9D8|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83A9DC:
                        LDA.B $0F                            ;83A9DC|A50F    |0014F7;
@@ -5671,7 +5671,7 @@
                        INC.B $03                            ;83A9F4|E603    |0014EB;
                        INC.B $10                            ;83A9F6|E610    |0014F8;
                        LDA.B #$04                           ;83A9F8|A904    |      ;
-                       JSL.L CODE_848F07                    ;83A9FA|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83A9FA|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83A9FE:
                        LDA.B $0F                            ;83A9FE|A50F    |0014F7;
@@ -5702,7 +5702,7 @@
                        BNE CODE_83AA2E                      ;83AA24|D008    |83AA2E;
                        INC.B $03                            ;83AA26|E603    |00146B;
                        LDA.B #$05                           ;83AA28|A905    |      ;
-                       JSL.L CODE_848F07                    ;83AA2A|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AA2A|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83AA2E:
                        LDA.B $0F                            ;83AA2E|A50F    |001477;
@@ -5725,7 +5725,7 @@
                        LDA.B #$C3                           ;83AA4A|A9C3    |      ;
                        STA.B $21                            ;83AA4C|8521    |0014C9;
                        LDA.B #$06                           ;83AA4E|A906    |      ;
-                       JSL.L CODE_848F07                    ;83AA50|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AA50|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83AA54:
                        DEC.B $10                            ;83AA54|C610    |0014B8;
@@ -5751,20 +5751,20 @@
                        REP #$20                             ;83AA70|C220    |      ;
                        LDA.W #$C307                         ;83AA72|A907C3  |      ;
                        STA.B $20                            ;83AA75|8520    |001448;
-                       LDA.W r_0bad                         ;83AA77|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83AA77|ADAD0B  |860BAD;
                        STA.B $05                            ;83AA7A|8505    |00142D;
                        SEP #$20                             ;83AA7C|E220    |      ;
                        LDA.B #$78                           ;83AA7E|A978    |      ;
                        STA.B $10                            ;83AA80|8510    |001438;
                        LDA.B #$07                           ;83AA82|A907    |      ;
-                       JSL.L CODE_848F07                    ;83AA84|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AA84|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83AA88:
-                       LDA.W r_0bcf                         ;83AA88|ADCF0B  |860BCF;
+                       LDA.W r_d_0bcf                       ;83AA88|ADCF0B  |860BCF;
                        BEQ CODE_83AA98                      ;83AA8B|F00B    |83AA98;
                        BMI CODE_83AA98                      ;83AA8D|3009    |83AA98;
                        LDA.B #$08                           ;83AA8F|A908    |      ;
-                       TSB.W r_0bd4                         ;83AA91|0CD40B  |860BD4;
+                       TSB.W r_d_0bd4                       ;83AA91|0CD40B  |860BD4;
                        DEC.B $10                            ;83AA94|C610    |001438;
                        BNE CODE_83AA9D                      ;83AA96|D005    |83AA9D;
                                                             ;      |        |      ;
@@ -5774,8 +5774,8 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AA9D:
-                       LDA.W r_joy1_buttonPressedLo         ;83AA9D|ADE20B  |860BE2;
-                       ORA.W r_joy1_buttonPressedHi         ;83AAA0|0DE30B  |860BE3;
+                       LDA.W r_d_joy1_buttonPressedLo       ;83AA9D|ADE20B  |860BE2;
+                       ORA.W r_d_joy1_buttonPressedHi       ;83AAA0|0DE30B  |860BE3;
                        BEQ CODE_83AAAE                      ;83AAA3|F009    |83AAAE;
                        LDA.B $10                            ;83AAA5|A510    |001438;
                        SEC                                  ;83AAA7|38      |      ;
@@ -5793,21 +5793,21 @@
                        REP #$20                             ;83AABB|C220    |      ;
                        STZ.B $1A                            ;83AABD|641A    |001482;
                        STZ.B $1C                            ;83AABF|641C    |001484;
-                       LDA.W r_0bad                         ;83AAC1|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83AAC1|ADAD0B  |860BAD;
                        STA.B $05                            ;83AAC4|8505    |00146D;
-                       LDA.W r_0bb0                         ;83AAC6|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;83AAC6|ADB00B  |860BB0;
                        CLC                                  ;83AAC9|18      |      ;
                        ADC.W #$0008                         ;83AACA|690800  |      ;
                        STA.B $08                            ;83AACD|8508    |001470;
                        SEP #$20                             ;83AACF|E220    |      ;
                        LDA.B #$08                           ;83AAD1|A908    |      ;
-                       JSL.L CODE_848F07                    ;83AAD3|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AAD3|22078F84|848F07;
                        JMP.W CODE_83AB38                    ;83AAD7|4C38AB  |83AB38;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AADA:
                        LDA.B #$08                           ;83AADA|A908    |      ;
-                       TSB.W r_0bd4                         ;83AADC|0CD40B  |860BD4;
+                       TSB.W r_d_0bd4                       ;83AADC|0CD40B  |860BD4;
                        LDA.B $2B                            ;83AADF|A52B    |001493;
                        BIT.B #$04                           ;83AAE1|8904    |      ;
                        BEQ CODE_83AAEC                      ;83AAE3|F007    |83AAEC;
@@ -5825,7 +5825,7 @@
                        BNE CODE_83AB02                      ;83AAF8|D008    |83AB02;
                        INC.B $03                            ;83AAFA|E603    |00142B;
                        LDA.B #$09                           ;83AAFC|A909    |      ;
-                       JSL.L CODE_848F07                    ;83AAFE|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AAFE|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83AB02:
                        LDA.B $0F                            ;83AB02|A50F    |001437;
@@ -5868,9 +5868,9 @@
                        REP #$21                             ;83AB38|C221    |      ;
                        LDA.B $08                            ;83AB3A|A508    |001430;
                        ADC.W #$FFF8                         ;83AB3C|69F8FF  |      ;
-                       STA.W r_0bb0                         ;83AB3F|8DB00B  |860BB0;
+                       STA.W r_d_player_yPos                ;83AB3F|8DB00B  |860BB0;
                        LDA.B $05                            ;83AB42|A505    |00142D;
-                       STA.W r_0bad                         ;83AB44|8DAD0B  |860BAD;
+                       STA.W r_d_player_xSubPos             ;83AB44|8DAD0B  |860BAD;
                        SEP #$20                             ;83AB47|E220    |      ;
                        RTS                                  ;83AB49|60      |      ;
                                                             ;      |        |      ;
@@ -5898,7 +5898,7 @@
                        LDA.B $0F                            ;83AB64|A50F    |001437;
                        BPL CODE_83AB6E                      ;83AB66|1006    |83AB6E;
                        LDA.B #$51                           ;83AB68|A951    |      ;
-                       JSL.L CODE_8088A2                    ;83AB6A|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83AB6A|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83AB6E:
                        LDX.B $01                            ;83AB6E|A601    |001429;
@@ -5914,7 +5914,7 @@
                        ASL A                                ;83AB82|0A      |      ;
                        TAX                                  ;83AB83|AA      |      ;
                        REP #$20                             ;83AB84|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;83AB86|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;83AB86|BD37EE  |86EE37;
                        ASL A                                ;83AB89|0A      |      ;
                        STA.B $1A                            ;83AB8A|851A    |001442;
                        LDA.W DATA8_86EE39,X                 ;83AB8C|BD39EE  |86EE39;
@@ -5932,14 +5932,14 @@
                        LDA.B #$75                           ;83ABA9|A975    |      ;
                        STA.B $16                            ;83ABAB|8516    |00143E;
                        LDA.B #$16                           ;83ABAD|A916    |      ;
-                       JSL.L CODE_848F07                    ;83ABAF|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83ABAF|22078F84|848F07;
                        LDA.B #$02                           ;83ABB3|A902    |      ;
                        STA.B $01                            ;83ABB5|8501    |001429;
                        LDA.B #$02                           ;83ABB7|A902    |      ;
                        STA.B $26                            ;83ABB9|8526    |00144E;
                        STA.B $27                            ;83ABBB|8527    |00144F;
                        JSL.L CODE_849B03                    ;83ABBD|22039B84|849B03;
-                       JML.L eventID_vile_68_afterInit      ;83ABC1|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83ABC1|5CB48082|8280B4;
                                                             ;      |        |      ;
                        JSL.L CODE_82820A                    ;83ABC5|220A8282|82820A;
                        DEC.B $38                            ;83ABC9|C638    |001460;
@@ -5950,7 +5950,7 @@
           CODE_83ABD1:
                        JSL.L updateEv_13_14_17_0f           ;83ABD1|22EA8E84|848EEA;
                        JSL.L CODE_849B03                    ;83ABD5|22039B84|849B03;
-                       JML.L eventID_vile_68_afterInit      ;83ABD9|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83ABD9|5CB48082|8280B4;
                                                             ;      |        |      ;
                        REP #$30                             ;83ABDD|C230    |      ;
                        LDX.B $0C                            ;83ABDF|A60C    |001434;
@@ -5986,7 +5986,7 @@
                        ASL A                                ;83AC17|0A      |      ;
                        TAX                                  ;83AC18|AA      |      ;
                        REP #$30                             ;83AC19|C230    |      ;
-                       LDA.W stormEagle_56_subID,X          ;83AC1B|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;83AC1B|BD37EE  |86EE37;
                        ASL A                                ;83AC1E|0A      |      ;
                        STA.B $1A                            ;83AC1F|851A    |001442;
                        LDA.W DATA8_86EE39,X                 ;83AC21|BD39EE  |86EE39;
@@ -6025,7 +6025,7 @@
                        SEP #$30                             ;83AC5C|E230    |      ;
                        JSL.L updateEv_13_14_17_0f           ;83AC5E|22EA8E84|848EEA;
                        JSL.L CODE_849B03                    ;83AC62|22039B84|849B03;
-                       JML.L eventID_vile_68_afterInit      ;83AC66|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83AC66|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AC6A:
@@ -6061,9 +6061,9 @@
                        ADC.W #$C31D                         ;83AC9E|691DC3  |      ;
                        STA.B $20                            ;83ACA1|8520    |001488;
                        SEP #$20                             ;83ACA3|E220    |      ;
-                       JSL.L eventID_vile_68_afterInit      ;83ACA5|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83ACA5|22B48082|8280B4;
                        LDA.B $0B                            ;83ACA9|A50B    |001473;
-                       JSL.L CODE_848F07                    ;83ACAB|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83ACAB|22078F84|848F07;
                        LDA.B $38                            ;83ACAF|A538    |0014A0;
                        ASL A                                ;83ACB1|0A      |      ;
                        TAX                                  ;83ACB2|AA      |      ;
@@ -6117,7 +6117,7 @@
                        STA.B $08                            ;83AD11|8508    |001470;
                        SEP #$20                             ;83AD13|E220    |      ;
                        LDA.B #$0B                           ;83AD15|A90B    |      ;
-                       JSL.L CODE_848F07                    ;83AD17|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AD17|22078F84|848F07;
                        LDA.B #$04                           ;83AD1B|A904    |      ;
                        STA.B $01                            ;83AD1D|8501    |001469;
                        JMP.W CODE_83AD36                    ;83AD1F|4C36AD  |83AD36;
@@ -6126,7 +6126,7 @@
           CODE_83AD22:
                        JSL.L CODE_82820A                    ;83AD22|220A8282|82820A;
                        JSL.L updateEv_13_14_17_0f           ;83AD26|22EA8E84|848EEA;
-                       JSL.L eventID_vile_68_afterInit      ;83AD2A|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83AD2A|22B48082|8280B4;
                        LDA.B $0E                            ;83AD2E|A50E    |001476;
                        BNE CODE_83AD36                      ;83AD30|D004    |83AD36;
                        JSL.L clearStates_01_00_02_0E_2C     ;83AD32|22A38382|8283A3;
@@ -6137,7 +6137,7 @@
                        LDA.B $0F                            ;83AD37|A50F    |001477;
                        BMI CODE_83AD46                      ;83AD39|300B    |83AD46;
                        JSL.L updateEv_13_14_17_0f           ;83AD3B|22EA8E84|848EEA;
-                       JSL.L eventID_vile_68_afterInit      ;83AD3F|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83AD3F|22B48082|8280B4;
                        JMP.W CODE_83AD4A                    ;83AD43|4C4AAD  |83AD4A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6169,7 +6169,7 @@
                        LDA.B #$04                           ;83AD67|A904    |      ;
                        STA.B $01                            ;83AD69|8501    |001569;
                        STZ.B $02                            ;83AD6B|6402    |00156A;
-                       JML.L eventID_vile_68_afterInit      ;83AD6D|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83AD6D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AD71:
@@ -6177,7 +6177,7 @@
                        TRB.B $11                            ;83AD73|1411    |001479;
                                                             ;      |        |      ;
           CODE_83AD75:
-                       JSL.L eventID_vile_68_afterInit      ;83AD75|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83AD75|22B48082|8280B4;
                        LDA.B $0E                            ;83AD79|A50E    |001476;
                        BEQ CODE_83AD7E                      ;83AD7B|F001    |83AD7E;
                        RTL                                  ;83AD7D|6B      |      ;
@@ -6192,7 +6192,7 @@
                        REP #$20                             ;83AD88|C220    |      ;
                        LDA.W #$C3BB                         ;83AD8A|A9BBC3  |      ;
                        STA.B $20                            ;83AD8D|8520    |001488;
-                       LDA.W r_0bad                         ;83AD8F|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83AD8F|ADAD0B  |860BAD;
                        SEC                                  ;83AD92|38      |      ;
                        SBC.B $05                            ;83AD93|E505    |00146D;
                        ASL A                                ;83AD95|0A      |      ;
@@ -6221,7 +6221,7 @@
                        STZ.B $02                            ;83ADC1|6402    |00146A;
                        STZ.B $03                            ;83ADC3|6403    |00146B;
                        LDA.B #$05                           ;83ADC5|A905    |      ;
-                       JSL.L CODE_848F07                    ;83ADC7|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83ADC7|22078F84|848F07;
                        RTS                                  ;83ADCB|60      |      ;
                                                             ;      |        |      ;
                        LDX.B $02                            ;83ADCC|A602    |00146A;
@@ -6236,7 +6236,7 @@
                        BPL CODE_83ADED                      ;83ADDF|100C    |83ADED;
                        SEP #$20                             ;83ADE1|E220    |      ;
                        LDA.B #$04                           ;83ADE3|A904    |      ;
-                       JSL.L CODE_848F07                    ;83ADE5|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83ADE5|22078F84|848F07;
                        LDA.B #$02                           ;83ADE9|A902    |      ;
                        STA.B $02                            ;83ADEB|8502    |00146A;
                                                             ;      |        |      ;
@@ -6247,7 +6247,7 @@
                        LDA.B $0F                            ;83ADF0|A50F    |001477;
                        BPL CODE_83AE14                      ;83ADF2|1020    |83AE14;
                        LDA.B #$06                           ;83ADF4|A906    |      ;
-                       JSL.L CODE_848F07                    ;83ADF6|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83ADF6|22078F84|848F07;
                        REP #$20                             ;83ADFA|C220    |      ;
                        STZ.B $1A                            ;83ADFC|641A    |001482;
                        LDA.W #$FE80                         ;83ADFE|A980FE  |      ;
@@ -6305,7 +6305,7 @@
                        LDA.B #$60                           ;83AE5A|A960    |      ;
                        STA.B $38                            ;83AE5C|8538    |0014A0;
                        LDA.B #$05                           ;83AE5E|A905    |      ;
-                       JSL.L CODE_848F07                    ;83AE60|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AE60|22078F84|848F07;
                        RTL                                  ;83AE64|6B      |      ;
                                                             ;      |        |      ;
                        DEC.B $38                            ;83AE65|C638    |0014A0;
@@ -6315,7 +6315,7 @@
                        BNE CODE_83AE7D                      ;83AE71|D00A    |83AE7D;
                        JSL.L initPosAllign                  ;83AE73|226E8082|82806E;
                        BCS CODE_83AE7D                      ;83AE77|B004    |83AE7D;
-                       JML.L eventID_vile_68_afterInit      ;83AE79|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83AE79|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AE7D:
@@ -6338,9 +6338,9 @@ eventID_hoganmer_01_main:
                        dw hoganmer_state1_02                ;83AE93|        |83B0A9;
                                                             ;      |        |      ;
    hoganmer_state1_00:
-                       JSL.L enemy_initiate_jumpPhysic      ;83AE95|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83AE95|227D8282|82827D;
                        LDA.B #$08                           ;83AE99|A908    |      ;
-                       STA.B r_ev_27-$E68                   ;83AE9B|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83AE9B|8527    |000E8F;
                        LDA.B #$03                           ;83AE9D|A903    |      ;
                        STA.B r_ev_26-$E68                   ;83AE9F|8526    |000E8E;
                        STA.B r_ev_38-$E68                   ;83AEA1|8538    |000EA0;
@@ -6353,7 +6353,7 @@ eventID_hoganmer_01_main:
                        LDA.W #$C423                         ;83AEAF|A923C4  |      ;
                        STA.B r_ev_20_hitBoxAddr-$E68        ;83AEB2|8520    |000E88;
                        LDX.B #$00                           ;83AEB4|A200    |      ;
-                       LDA.W r_0bad                         ;83AEB6|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83AEB6|ADAD0B  |860BAD;
                        CMP.B r_ev_05_xPos-$E68              ;83AEB9|C505    |000E6D;
                        BCC CODE_83AEBF                      ;83AEBB|9002    |83AEBF;
                        LDX.B #$40                           ;83AEBD|A240    |      ;
@@ -6364,7 +6364,7 @@ eventID_hoganmer_01_main:
                        LDA.B #$40                           ;83AEC3|A940    |      ;
                        STA.B r_ev_1e_weight-$E68            ;83AEC5|851E    |000E86;
                        LDA.B #$00                           ;83AEC7|A900    |      ;
-                       JSL.L CODE_848F07                    ;83AEC9|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AEC9|22078F84|848F07;
                        JMP.W CODE_83B0D9                    ;83AECD|4CD9B0  |83B0D9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6377,7 +6377,7 @@ eventID_hoganmer_01_main:
                        BEQ CODE_83AEF1                      ;83AEDF|F010    |83AEF1;
                        LDA.B #$0E                           ;83AEE1|A90E    |      ;
                        TRB.B r_ev_11_sprAtri-$E68           ;83AEE3|1411    |000E79;
-                       LDA.B r_ev_27-$E68                   ;83AEE5|A527    |000E8F;
+                       LDA.B r_ev_27_health-$E68            ;83AEE5|A527    |000E8F;
                        AND.B #$7F                           ;83AEE7|297F    |      ;
                        BNE CODE_83AEF1                      ;83AEE9|D006    |83AEF1;
                        LDA.B #$04                           ;83AEEB|A904    |      ;
@@ -6385,7 +6385,7 @@ eventID_hoganmer_01_main:
                        STA.B r_ev_0b_subID-$E68             ;83AEEF|850B    |000E73;
                                                             ;      |        |      ;
           CODE_83AEF1:
-                       JSL.L eventID_vile_68_afterInit      ;83AEF1|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83AEF1|22B48082|8280B4;
                        JSL.L CODE_849B03                    ;83AEF5|22039B84|849B03;
                        RTS                                  ;83AEF9|60      |      ;
                                                             ;      |        |      ;
@@ -6404,7 +6404,7 @@ eventID_hoganmer_01_main:
                        LDA.B #$3C                           ;83AF0A|A93C    |      ;
                        STA.B r_ev_36-$E68                   ;83AF0C|8536    |000E9E;
                        LDA.B #$00                           ;83AF0E|A900    |      ;
-                       JSL.L CODE_848F07                    ;83AF10|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AF10|22078F84|848F07;
                        RTS                                  ;83AF14|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6455,7 +6455,7 @@ eventID_hoganmer_01_main:
                        STA.B r_ev_36-$E68                   ;83AF5C|8536    |000E9E;
                        REP #$20                             ;83AF5E|C220    |      ;
                        LDX.B #$00                           ;83AF60|A200    |      ;
-                       LDA.W r_0bad                         ;83AF62|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83AF62|ADAD0B  |860BAD;
                        CMP.B r_ev_05_xPos-$E68              ;83AF65|C505    |000E6D;
                        BCC CODE_83AF6B                      ;83AF67|9002    |83AF6B;
                        LDX.B #$40                           ;83AF69|A240    |      ;
@@ -6485,7 +6485,7 @@ eventID_hoganmer_01_main:
                        STZ.B r_ev_1c_ySpdSub-$E68           ;83AF82|641C    |000E84;
                        STZ.B r_ev_1d_ySpd-$E68              ;83AF84|641D    |000E85;
                        LDA.B #$06                           ;83AF86|A906    |      ;
-                       JSL.L CODE_848F07                    ;83AF88|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AF88|22078F84|848F07;
                        RTS                                  ;83AF8C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6518,12 +6518,12 @@ eventID_hoganmer_01_main:
                        JSL.L CODE_84A081                    ;83AFAC|2281A084|84A081;
                        STA.B r_ev_39-$E68                   ;83AFB0|8539    |000EA1;
                        LDA.B #$02                           ;83AFB2|A902    |      ;
-                       JSL.L CODE_848F07                    ;83AFB4|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AFB4|22078F84|848F07;
                        RTS                                  ;83AFB8|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AFB9:
-                       LDA.B r_ev_0f-$E68                   ;83AFB9|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83AFB9|A50F    |000E77;
                        BIT.B #$01                           ;83AFBB|8901    |      ;
                        BEQ CODE_83AFCC                      ;83AFBD|F00D    |83AFCC;
                        LDA.B #$04                           ;83AFBF|A904    |      ;
@@ -6554,12 +6554,12 @@ eventID_hoganmer_01_main:
                        LDA.B #$06                           ;83AFE9|A906    |      ;
                        STA.B r_ev_03_do-$E68                ;83AFEB|8503    |000E6B;
                        LDA.B #$04                           ;83AFED|A904    |      ;
-                       JSL.L CODE_848F07                    ;83AFEF|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83AFEF|22078F84|848F07;
                        RTS                                  ;83AFF3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83AFF4:
-                       LDA.B r_ev_0f-$E68                   ;83AFF4|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83AFF4|A50F    |000E77;
                        BPL CODE_83AFFF                      ;83AFF6|1007    |83AFFF;
                        LDA.B #$3C                           ;83AFF8|A93C    |      ;
                        STA.B r_ev_38-$E68                   ;83AFFA|8538    |000EA0;
@@ -6674,7 +6674,7 @@ eventID_hoganmer_01_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B109:
-                       JSL.L CODE_828358                    ;83B109|22588382|828358;
+                       JSL.L findEnemyShotEmptySlot         ;83B109|22588382|828358;
                        BNE CODE_83B141                      ;83B10D|D032    |83B141;
                        INC.W r_0000,X                       ;83B10F|FE0000  |860000;
                        LDA.B #$01                           ;83B112|A901    |      ;
@@ -6743,7 +6743,7 @@ armadillo_14_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B17F:
-                       JSL.L enemy_initiate_jumpPhysic      ;83B17F|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83B17F|227D8282|82827D;
                        REP #$10                             ;83B183|C210    |      ;
                        LDY.W #$01F0                         ;83B185|A0F001  |      ;
                        JSL.L CODE_828011                    ;83B188|22118082|828011;
@@ -6801,7 +6801,7 @@ armadillo_14_state_00:
           CODE_83B1FC:
                        LDX.B r_ev_02_action-$E68            ;83B1FC|A602    |000E6A;
                        JSR.W (UNREACH_83B205,X)             ;83B1FE|FC05B2  |83B205;
-                       JML.L eventID_vile_68_afterInit      ;83B201|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83B201|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83B205:
@@ -6833,7 +6833,7 @@ armadillo_14_state_00:
                        LDA.B r_ev_03_do-$E68                ;83B23D|A503    |000E6B;
                        BNE CODE_83B255                      ;83B23F|D014    |83B255;
                        JSL.L updateEv_13_14_17_0f           ;83B241|22EA8E84|848EEA;
-                       LDA.B r_ev_0f-$E68                   ;83B245|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83B245|A50F    |000E77;
                        BPL CODE_83B255                      ;83B247|100C    |83B255;
                        db $A5,$1D,$10,$08,$A9,$02,$22,$07   ;83B249|        |00001D;
                        db $8F,$84,$E6,$03                   ;83B251|        |03E684;
@@ -6857,37 +6857,37 @@ armadillo_14_state_00:
                        RTS                                  ;83B276|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83B277|22EA8E84|848EEA;
-                       LDA.B r_ev_0f-$E68                   ;83B27B|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83B27B|A50F    |000E77;
                        BPL CODE_83B293                      ;83B27D|1014    |83B293;
                        LDA.B #$06                           ;83B27F|A906    |      ;
                        STA.B r_ev_02_action-$E68            ;83B281|8502    |000E6A;
-                       STZ.B r_ev_27-$E68                   ;83B283|6427    |000E8F;
+                       STZ.B r_ev_27_health-$E68            ;83B283|6427    |000E8F;
                        REP #$20                             ;83B285|C220    |      ;
                        TDC                                  ;83B287|7B      |      ;
                        STA.W r_1f0e                         ;83B288|8D0E1F  |861F0E;
                        SEP #$20                             ;83B28B|E220    |      ;
                        LDA.B #$15                           ;83B28D|A915    |      ;
-                       JSL.L CODE_848F07                    ;83B28F|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83B28F|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83B293:
                        RTS                                  ;83B293|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B r_ev_0f-$E68                   ;83B294|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83B294|A50F    |000E77;
                        BMI CODE_83B29D                      ;83B296|3005    |83B29D;
                        JSL.L updateEv_13_14_17_0f           ;83B298|22EA8E84|848EEA;
                        RTS                                  ;83B29C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B29D:
-                       LDA.W $0B9C                          ;83B29D|AD9C0B  |860B9C;
+                       LDA.W r_frameCounter1                ;83B29D|AD9C0B  |860B9C;
                        AND.B #$01                           ;83B2A0|2901    |      ;
                        BEQ CODE_83B2C5                      ;83B2A2|F021    |83B2C5;
                        LDA.B #$0C                           ;83B2A4|A90C    |      ;
                        JSL.L CODE_8088CD                    ;83B2A6|22CD8880|8088CD;
-                       INC.B r_ev_27-$E68                   ;83B2AA|E627    |000E8F;
+                       INC.B r_ev_27_health-$E68            ;83B2AA|E627    |000E8F;
                        LDA.B #$80                           ;83B2AC|A980    |      ;
-                       ORA.B r_ev_27-$E68                   ;83B2AE|0527    |000E8F;
-                       STA.B r_ev_27-$E68                   ;83B2B0|8527    |000E8F;
+                       ORA.B r_ev_27_health-$E68            ;83B2AE|0527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83B2B0|8527    |000E8F;
                        AND.B #$7F                           ;83B2B2|297F    |      ;
                        CMP.B #$20                           ;83B2B4|C920    |      ;
                        BCC CODE_83B2C5                      ;83B2B6|900D    |83B2C5;
@@ -6923,7 +6923,7 @@ armadillo_14_state_00:
           CODE_83B2E8:
                        LDX.B r_ev_02_action-$E68            ;83B2E8|A602    |000E6A;
                        JSR.W (PTR16_83B3DA,X)               ;83B2EA|FCDAB3  |83B3DA;
-                       LDA.B r_ev_27-$E68                   ;83B2ED|A527    |000E8F;
+                       LDA.B r_ev_27_health-$E68            ;83B2ED|A527    |000E8F;
                        STA.B r_ev_39-$E68                   ;83B2EF|8539    |000EA1;
                        LDA.B r_ev_35-$E68                   ;83B2F1|A535    |000E9D;
                        TSB.B r_ev_11_sprAtri-$E68           ;83B2F3|0411    |000E79;
@@ -7002,7 +7002,7 @@ armadillo_14_state_00:
                        LDA.B r_ev_38-$E68                   ;83B35C|A538    |000EA0;
                        BEQ CODE_83B366                      ;83B35E|F006    |83B366;
                        LDA.B r_ev_39-$E68                   ;83B360|A539    |000EA1;
-                       STA.B r_ev_27-$E68                   ;83B362|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83B362|8527    |000E8F;
                        BRA CODE_83B3C7                      ;83B364|8061    |83B3C7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7039,8 +7039,8 @@ armadillo_14_state_00:
                                                             ;      |        |      ;
           CODE_83B39A:
                        LDA.B #$13                           ;83B39A|A913    |      ;
-                       JSL.L CODE_8088A2                    ;83B39C|22A28880|8088A2;
-                       LDA.B r_ev_27-$E68                   ;83B3A0|A527    |000E8F;
+                       JSL.L lunchSFX                       ;83B39C|22A28880|8088A2;
+                       LDA.B r_ev_27_health-$E68            ;83B3A0|A527    |000E8F;
                        AND.B #$7F                           ;83B3A2|297F    |      ;
                        BNE CODE_83B3C7                      ;83B3A4|D021    |83B3C7;
                        LDA.B #$06                           ;83B3A6|A906    |      ;
@@ -7048,27 +7048,27 @@ armadillo_14_state_00:
                        STZ.B r_ev_02_action-$E68            ;83B3AA|6402    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;83B3AC|6403    |000E6B;
                        LDA.B #$01                           ;83B3AE|A901    |      ;
-                       STA.W r_0bd8                         ;83B3B0|8DD80B  |860BD8;
-                       STA.W r_1f0c                         ;83B3B3|8D0C1F  |861F0C;
+                       STA.W r_d_0bd8                       ;83B3B0|8DD80B  |860BD8;
+                       STA.W r_bossDefeatInvFlag            ;83B3B3|8D0C1F  |861F0C;
                        LDA.B #$07                           ;83B3B6|A907    |      ;
                        JSR.W CODE_83B9C8                    ;83B3B8|20C8B9  |83B9C8;
                        LDA.B r_ev_11_sprAtri-$E68           ;83B3BB|A511    |000E79;
                        AND.B #$F1                           ;83B3BD|29F1    |      ;
                        ORA.B #$08                           ;83B3BF|0908    |      ;
                        STA.B r_ev_11_sprAtri-$E68           ;83B3C1|8511    |000E79;
-                       JML.L eventID_vile_68_afterInit      ;83B3C3|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83B3C3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B3C7:
                        JSL.L CODE_849B03                    ;83B3C7|22039B84|849B03;
-                       LDA.W r_0bcf                         ;83B3CB|ADCF0B  |860BCF;
+                       LDA.W r_d_0bcf                       ;83B3CB|ADCF0B  |860BCF;
                        AND.B #$7F                           ;83B3CE|297F    |      ;
                        BNE CODE_83B3D6                      ;83B3D0|D004    |83B3D6;
                        LDA.B #$01                           ;83B3D2|A901    |      ;
                        STA.B r_ev_30-$E68                   ;83B3D4|8530    |000E98;
                                                             ;      |        |      ;
           CODE_83B3D6:
-                       JML.L eventID_vile_68_afterInit      ;83B3D6|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83B3D6|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_83B3DA:
@@ -7114,7 +7114,7 @@ armadillo_14_state_00:
                        JSL.L CODE_8281E8                    ;83B41A|22E88182|8281E8;
                        JSL.L updateEv_13_14_17_0f           ;83B41E|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;83B422|22BE9184|8491BE;
-                       LDA.B r_ev_0f-$E68                   ;83B426|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83B426|A50F    |000E77;
                        BPL CODE_83B440                      ;83B428|1016    |83B440;
                        LDA.B #$04                           ;83B42A|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;83B42C|8503    |000E6B;
@@ -7186,7 +7186,7 @@ armadillo_14_state_00:
                        AND.B #$03                           ;83B4A1|2903    |      ;
                        BEQ CODE_83B4FD                      ;83B4A3|F058    |83B4FD;
                        LDA.B #$48                           ;83B4A5|A948    |      ;
-                       JSL.L CODE_8088A2                    ;83B4A7|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83B4A7|22A28880|8088A2;
                        LDA.B r_ev_11_sprAtri-$E68           ;83B4AB|A511    |000E79;
                        ASL A                                ;83B4AD|0A      |      ;
                        ASL A                                ;83B4AE|0A      |      ;
@@ -7269,13 +7269,13 @@ armadillo_14_state_00:
                        JSR.W CODE_83BB38                    ;83B53A|2038BB  |83BB38;
                        SEP #$20                             ;83B53D|E220    |      ;
                        LDA.B #$48                           ;83B53F|A948    |      ;
-                       JSL.L CODE_8088A2                    ;83B541|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83B541|22A28880|8088A2;
                        JMP.W CODE_83B9FE                    ;83B545|4CFEB9  |83B9FE;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B548:
                        LDA.B #$48                           ;83B548|A948    |      ;
-                       JSL.L CODE_8088A2                    ;83B54A|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83B54A|22A28880|8088A2;
                        LDA.B r_ev_2b-$E68                   ;83B54E|A52B    |000E93;
                        BIT.B #$0C                           ;83B550|890C    |      ;
                        REP #$20                             ;83B552|C220    |      ;
@@ -7360,7 +7360,7 @@ armadillo_14_state_00:
           CODE_83B5E2:
                        JSL.L CODE_8491BE                    ;83B5E2|22BE9184|8491BE;
                        JSL.L updateEv_13_14_17_0f           ;83B5E6|22EA8E84|848EEA;
-                       LDA.B r_ev_0f-$E68                   ;83B5EA|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83B5EA|A50F    |000E77;
                        BPL CODE_83B5F4                      ;83B5EC|1006    |83B5F4;
                        LDA.B #$04                           ;83B5EE|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;83B5F0|8502    |000E6A;
@@ -7424,7 +7424,7 @@ armadillo_14_state_00:
                        REP #$20                             ;83B64A|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;83B64C|A505    |000E6D;
                        SEC                                  ;83B64E|38      |      ;
-                       SBC.W r_0bad                         ;83B64F|EDAD0B  |860BAD;
+                       SBC.W r_d_player_xSubPos             ;83B64F|EDAD0B  |860BAD;
                        BCS CODE_83B658                      ;83B652|B004    |83B658;
                        EOR.W #$FFFF                         ;83B654|49FFFF  |      ;
                        INC A                                ;83B657|1A      |      ;
@@ -7503,15 +7503,15 @@ armadillo_14_state_00:
                        RTS                                  ;83B6BD|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83B6BE|22EA8E84|848EEA;
-                       LDA.B r_ev_17-$E68                   ;83B6C2|A517    |000E7F;
+                       LDA.B r_ev_17_sprIdx-$E68            ;83B6C2|A517    |000E7F;
                        BPL CODE_83B741                      ;83B6C4|107B    |83B741;
                        AND.B #$7F                           ;83B6C6|297F    |      ;
-                       STA.B r_ev_17-$E68                   ;83B6C8|8517    |000E7F;
-                       LDA.B r_ev_0f-$E68                   ;83B6CA|A50F    |000E77;
+                       STA.B r_ev_17_sprIdx-$E68            ;83B6C8|8517    |000E7F;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83B6CA|A50F    |000E77;
                        BMI CODE_83B733                      ;83B6CC|3065    |83B733;
                        BEQ CODE_83B741                      ;83B6CE|F071    |83B741;
                        DEC.B r_ev_36-$E68                   ;83B6D0|C636    |000E9E;
-                       JSL.L CODE_828358                    ;83B6D2|22588382|828358;
+                       JSL.L findEnemyShotEmptySlot         ;83B6D2|22588382|828358;
                        BNE CODE_83B729                      ;83B6D6|D051    |83B729;
                        INC.W r_0000,X                       ;83B6D8|FE0000  |860000;
                        LDA.B #$04                           ;83B6DB|A904    |      ;
@@ -7553,7 +7553,7 @@ armadillo_14_state_00:
           CODE_83B729:
                        SEP #$30                             ;83B729|E230    |      ;
                        LDA.B #$33                           ;83B72B|A933    |      ;
-                       JSL.L CODE_8088A2                    ;83B72D|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83B72D|22A28880|8088A2;
                        BRA CODE_83B741                      ;83B731|800E    |83B741;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7732,14 +7732,14 @@ armadillo_14_state_00:
                        RTS                                  ;83B8E2|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83B8E3|22EA8E84|848EEA;
-                       LDA.B r_ev_17-$E68                   ;83B8E7|A517    |000E7F;
+                       LDA.B r_ev_17_sprIdx-$E68            ;83B8E7|A517    |000E7F;
                        BPL CODE_83B8F9                      ;83B8E9|100E    |83B8F9;
                        AND.B #$7F                           ;83B8EB|297F    |      ;
-                       STA.B r_ev_17-$E68                   ;83B8ED|8517    |000E7F;
-                       LDA.B r_ev_0f-$E68                   ;83B8EF|A50F    |000E77;
+                       STA.B r_ev_17_sprIdx-$E68            ;83B8ED|8517    |000E7F;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83B8EF|A50F    |000E77;
                        BPL CODE_83B8F9                      ;83B8F1|1006    |83B8F9;
                        LDA.B #$47                           ;83B8F3|A947    |      ;
-                       JSL.L CODE_8088A2                    ;83B8F5|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83B8F5|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83B8F9:
                        LDA.B r_ev_3a-$E68                   ;83B8F9|A53A    |000EA2;
@@ -7779,7 +7779,7 @@ armadillo_14_state_00:
                        LDA.B r_ev_03_do-$E68                ;83B930|A503    |000E6B;
                        CMP.B #$14                           ;83B932|C914    |      ;
                        BCS CODE_83B93A                      ;83B934|B004    |83B93A;
-                       JML.L eventID_vile_68_afterInit      ;83B936|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83B936|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83B93A:
@@ -7829,14 +7829,14 @@ armadillo_14_state_00:
                        STA.B $20                            ;83B9A3|8520    |001488;
                        SEP #$20                             ;83B9A5|E220    |      ;
                        LDA.B #$02                           ;83B9A7|A902    |      ;
-                       JSL.L CODE_848F07                    ;83B9A9|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83B9A9|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83B9AD:
                        JSL.L updateEv_13_14_17_0f           ;83B9AD|22EA8E84|848EEA;
                        JSL.L CODE_82820A                    ;83B9B1|220A8282|82820A;
                        JSL.L CODE_849B03                    ;83B9B5|22039B84|849B03;
                        BNE CODE_83B9C4                      ;83B9B9|D009    |83B9C4;
-                       JSL.L eventID_vile_68_afterInit      ;83B9BB|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83B9BB|22B48082|8280B4;
                        LDA.B $0E                            ;83B9BF|A50E    |001476;
                        BEQ CODE_83B9C4                      ;83B9C1|F001    |83B9C4;
                        RTL                                  ;83B9C3|6B      |      ;
@@ -7860,8 +7860,8 @@ armadillo_14_state_00:
                        TAX                                  ;83B9D6|AA      |      ;
                        LDA.W UNREACH_86C95D,X               ;83B9D7|BD5DC9  |86C95D;
                        LDX.B #$62                           ;83B9DA|A262    |      ;
-                       STX.B r_ev_16-$E68                   ;83B9DC|8616    |000E7E;
-                       JSL.L CODE_848F07                    ;83B9DE|22078F84|848F07;
+                       STX.B r_ev_16_sprID-$E68             ;83B9DC|8616    |000E7E;
+                       JSL.L playerGrabedRoutine            ;83B9DE|22078F84|848F07;
                        LDA.B #$01                           ;83B9E2|A901    |      ;
                        TSB.B r_ev_11_sprAtri-$E68           ;83B9E4|0411    |000E79;
                        STZ.B r_ev_18_gfxSlot-$E68           ;83B9E6|6418    |000E80;
@@ -7871,9 +7871,9 @@ armadillo_14_state_00:
                                                             ;      |        |      ;
           CODE_83B9EA:
                        LDX.B #$63                           ;83B9EA|A263    |      ;
-                       STX.B r_ev_16-$E68                   ;83B9EC|8616    |000E7E;
+                       STX.B r_ev_16_sprID-$E68             ;83B9EC|8616    |000E7E;
                        LDA.B #$00                           ;83B9EE|A900    |      ;
-                       JSL.L CODE_848F07                    ;83B9F0|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83B9F0|22078F84|848F07;
                        LDA.B #$01                           ;83B9F4|A901    |      ;
                        TRB.B r_ev_11_sprAtri-$E68           ;83B9F6|1411    |000E79;
                        LDA.B #$40                           ;83B9F8|A940    |      ;
@@ -8166,8 +8166,8 @@ fallingRocks_18_state:
                        dw CODE_83BD6A                       ;83BBDD|        |83BD6A;
                                                             ;      |        |      ;
 fallingRocks_18_state_00:
-                       JSL.L enemy_initiate_jumpPhysic      ;83BBDF|227D8282|82827D;
-                       LDA.B r_ev_2_0b_subID-$EA8           ;83BBE3|A50B    |000EB3;
+                       JSL.L mainEnemySpriteLoad            ;83BBDF|227D8282|82827D;
+                       LDA.B $0B                            ;83BBE3|A50B    |000EB3;
                        BEQ CODE_83BC26                      ;83BBE5|F03F    |83BC26;
                        REP #$10                             ;83BBE7|C210    |      ;
                        LDX.W #$0E68                         ;83BBE9|A2680E  |      ;
@@ -8206,16 +8206,16 @@ fallingRocks_18_state_00:
                                                             ;      |        |      ;
           CODE_83BC26:
                        LDA.B #$04                           ;83BC26|A904    |      ;
-                       STA.B r_ev_2_12-$EA8                 ;83BC28|8512    |000EBA;
+                       STA.B $12                            ;83BC28|8512    |000EBA;
                        LDA.B #$01                           ;83BC2A|A901    |      ;
-                       STA.B r_ev_2_27-$EA8                 ;83BC2C|8527    |000ECF;
-                       STA.B r_ev_2_26-$EA8                 ;83BC2E|8526    |000ECE;
+                       STA.B $27                            ;83BC2C|8527    |000ECF;
+                       STA.B $26                            ;83BC2E|8526    |000ECE;
                        LDA.B #$00                           ;83BC30|A900    |      ;
-                       JSL.L CODE_848F07                    ;83BC32|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83BC32|22078F84|848F07;
                        REP #$20                             ;83BC36|C220    |      ;
                        LDA.W #$CA9C                         ;83BC38|A99CCA  |      ;
-                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;83BC3B|8520    |000EC8;
-                       LDA.B r_ev_2_05_xPos-$EA8            ;83BC3D|A505    |000EAD;
+                       STA.B $20                            ;83BC3B|8520    |000EC8;
+                       LDA.B $05                            ;83BC3D|A505    |000EAD;
                        CMP.W #$0C20                         ;83BC3F|C9200C  |      ;
                        BCS CODE_83BC49                      ;83BC42|B005    |83BC49;
                        CMP.W #$05E0                         ;83BC44|C9E005  |      ;
@@ -8228,7 +8228,7 @@ fallingRocks_18_state_00:
           CODE_83BC4D:
                        LDA.B $05                            ;83BC4D|A505    |000EED;
                        SEC                                  ;83BC4F|38      |      ;
-                       SBC.W r_0bad                         ;83BC50|EDAD0B  |860BAD;
+                       SBC.W r_d_player_xSubPos             ;83BC50|EDAD0B  |860BAD;
                        BCS CODE_83BC59                      ;83BC53|B004    |83BC59;
                        EOR.W #$FFFF                         ;83BC55|49FFFF  |      ;
                        INC A                                ;83BC58|1A      |      ;
@@ -8274,7 +8274,7 @@ fallingRocks_18_state_00:
                        STA.B $1E                            ;83BC9C|851E    |000F46;
                        LDA.B #$FF                           ;83BC9E|A9FF    |      ;
                        STA.B $2F                            ;83BCA0|852F    |000F57;
-                       JML.L eventID_vile_68_afterInit      ;83BCA2|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83BCA2|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BCA6:
@@ -8337,11 +8337,11 @@ fallingRocks_18_state_00:
                        SEP #$10                             ;83BD15|E210    |      ;
                        BCC CODE_83BD3E                      ;83BD17|9025    |83BD3E;
                        LDA.W $0C32                          ;83BD19|AD320C  |860C32;
-                       ORA.W r_1f0c                         ;83BD1C|0D0C1F  |861F0C;
+                       ORA.W r_bossDefeatInvFlag            ;83BD1C|0D0C1F  |861F0C;
                        BNE CODE_83BD57                      ;83BD1F|D036    |83BD57;
                        REP #$20                             ;83BD21|C220    |      ;
-                       LDA.W r_0bb0                         ;83BD23|ADB00B  |860BB0;
-                       CMP.B r_ev_2_08_yPos-$EA8            ;83BD26|C508    |000EB0;
+                       LDA.W r_d_player_yPos                ;83BD23|ADB00B  |860BB0;
+                       CMP.B $08                            ;83BD26|C508    |000EB0;
                        SEP #$20                             ;83BD28|E220    |      ;
                        BCC CODE_83BD33                      ;83BD2A|9007    |83BD33;
                        LDA.W r_player_upgradeMask           ;83BD2C|AD991F  |861F99;
@@ -8350,7 +8350,7 @@ fallingRocks_18_state_00:
                                                             ;      |        |      ;
           CODE_83BD33:
                        LDA.B #$01                           ;83BD33|A901    |      ;
-                       STA.W r_0bce                         ;83BD35|8DCE0B  |860BCE;
+                       STA.W r_d_0bce                       ;83BD35|8DCE0B  |860BCE;
                        JSL.L CODE_849F2F                    ;83BD38|222F9F84|849F2F;
                        BRA CODE_83BD57                      ;83BD3C|8019    |83BD57;
                                                             ;      |        |      ;
@@ -8362,7 +8362,7 @@ fallingRocks_18_state_00:
                        BNE CODE_83BD57                      ;83BD47|D00E    |83BD57;
                        JSL.L initPosAllign                  ;83BD49|226E8082|82806E;
                        BCS CODE_83BD53                      ;83BD4D|B004    |83BD53;
-                       JML.L eventID_vile_68_afterInit      ;83BD4F|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83BD4F|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83BD53:
@@ -8636,7 +8636,7 @@ eventID_moleBorer_2c_main:
                        JSR.W (moleBorer_2c_state,X)         ;83BF4C|FCCCBF  |83BFCC;
                        LDA.B #$09                           ;83BF4F|A909    |      ;
                        STA.B r_ev_28-$E68                   ;83BF51|8528    |000E90;
-                       LDA.B r_ev_27-$E68                   ;83BF53|A527    |000E8F;
+                       LDA.B r_ev_27_health-$E68            ;83BF53|A527    |000E8F;
                        STA.B r_ev_0b_subID-$E68             ;83BF55|850B    |000E73;
                        JSL.L CODE_849B03                    ;83BF57|22039B84|849B03;
                        JSL.L CODE_849B43                    ;83BF5B|22439B84|849B43;
@@ -8646,7 +8646,7 @@ eventID_moleBorer_2c_main:
                        LDA.B r_ev_2c-$E68                   ;83BF65|A52C    |000E94;
                        BEQ CODE_83BF6F                      ;83BF67|F006    |83BF6F;
                        LDA.B r_ev_0b_subID-$E68             ;83BF69|A50B    |000E73;
-                       STA.B r_ev_27-$E68                   ;83BF6B|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83BF6B|8527    |000E8F;
                        BRA CODE_83BF81                      ;83BF6D|8012    |83BF81;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8668,7 +8668,7 @@ eventID_moleBorer_2c_main:
                                                             ;      |        |      ;
           CODE_83BF83:
                        REP #$20                             ;83BF83|C220    |      ;
-                       LDA.B r_ev_0f-$E68                   ;83BF85|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83BF85|A50F    |000E77;
                        AND.W #$007F                         ;83BF87|297F00  |      ;
                        ASL A                                ;83BF8A|0A      |      ;
                        ASL A                                ;83BF8B|0A      |      ;
@@ -8686,7 +8686,7 @@ eventID_moleBorer_2c_main:
                        STA.B r_ev_26-$E68                   ;83BFA5|8526    |000E8E;
                        LDA.B r_ev_3e-$E68                   ;83BFA7|A53E    |000EA6;
                        BNE CODE_83BFC4                      ;83BFA9|D019    |83BFC4;
-                       LDA.B r_ev_27-$E68                   ;83BFAB|A527    |000E8F;
+                       LDA.B r_ev_27_health-$E68            ;83BFAB|A527    |000E8F;
                        AND.B #$7F                           ;83BFAD|297F    |      ;
                        BNE CODE_83BFC4                      ;83BFAF|D013    |83BFC4;
                        INC.B r_ev_3e-$E68                   ;83BFB1|E63E    |000EA6;
@@ -8695,7 +8695,7 @@ eventID_moleBorer_2c_main:
                        ADC.B #$04                           ;83BFB6|6904    |      ;
                        STA.B r_ev_01_state-$E68             ;83BFB8|8501    |000E69;
                        LDA.B #$21                           ;83BFBA|A921    |      ;
-                       JSL.L CODE_8088A2                    ;83BFBC|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83BFBC|22A28880|8088A2;
                        LDA.B #$B4                           ;83BFC0|A9B4    |      ;
                        STA.B r_ev_33-$E68                   ;83BFC2|8533    |000E9B;
                                                             ;      |        |      ;
@@ -8716,15 +8716,15 @@ eventID_moleBorer_2c_main:
 moleBorer_2c_state_00:
                        LDA.B r_ev_02_action-$E68            ;83BFD6|A502    |000E6A;
                        BNE CODE_83C00E                      ;83BFD8|D034    |83C00E;
-                       JSL.L enemy_initiate_jumpPhysic      ;83BFDA|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83BFDA|227D8282|82827D;
                        LDA.B #$40                           ;83BFDE|A940    |      ;
                        TSB.B r_ev_11_sprAtri-$E68           ;83BFE0|0411    |000E79;
                        STZ.B r_ev_3e-$E68                   ;83BFE2|643E    |000EA6;
                        LDA.B #$00                           ;83BFE4|A900    |      ;
-                       JSL.L CODE_848F07                    ;83BFE6|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83BFE6|22078F84|848F07;
                        STZ.B r_ev_28-$E68                   ;83BFEA|6428    |000E90;
                        LDA.B #$3C                           ;83BFEC|A93C    |      ;
-                       STA.B r_ev_27-$E68                   ;83BFEE|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83BFEE|8527    |000E8F;
                        LDA.B #$02                           ;83BFF0|A902    |      ;
                        STA.B r_ev_26-$E68                   ;83BFF2|8526    |000E8E;
                        LDA.B #$04                           ;83BFF4|A904    |      ;
@@ -8744,7 +8744,7 @@ moleBorer_2c_state_00:
                        REP #$20                             ;83C00E|C220    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;83C010|A508    |000E70;
                        SEC                                  ;83C012|38      |      ;
-                       SBC.W r_0bb0                         ;83C013|EDB00B  |860BB0;
+                       SBC.W r_d_player_yPos                ;83C013|EDB00B  |860BB0;
                        BCS CODE_83C01C                      ;83C016|B004    |83C01C;
                        db $49,$FF,$FF,$1A                   ;83C018|        |      ;
                                                             ;      |        |      ;
@@ -8764,16 +8764,16 @@ moleBorer_2c_state_00:
           CODE_83C02E:
                        JSL.L updateEv_13_14_17_0f           ;83C02E|22EA8E84|848EEA;
                        JSL.L CODE_82808F                    ;83C032|228F8082|82808F;
-                       LDA.B r_ev_17-$E68                   ;83C036|A517    |000E7F;
+                       LDA.B r_ev_17_sprIdx-$E68            ;83C036|A517    |000E7F;
                        BPL CODE_83C04D                      ;83C038|1013    |83C04D;
                        AND.B #$7F                           ;83C03A|297F    |      ;
-                       STA.B r_ev_17-$E68                   ;83C03C|8517    |000E7F;
+                       STA.B r_ev_17_sprIdx-$E68            ;83C03C|8517    |000E7F;
                        JSR.W CODE_83C0D7                    ;83C03E|20D7C0  |83C0D7;
-                       LDA.B r_ev_17-$E68                   ;83C041|A517    |000E7F;
+                       LDA.B r_ev_17_sprIdx-$E68            ;83C041|A517    |000E7F;
                        CMP.B #$03                           ;83C043|C903    |      ;
                        BNE CODE_83C04D                      ;83C045|D006    |83C04D;
                        LDA.B #$42                           ;83C047|A942    |      ;
-                       JSL.L CODE_8088A2                    ;83C049|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83C049|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83C04D:
                        JSL.L CODE_82823E                    ;83C04D|223E8282|82823E;
@@ -8807,10 +8807,10 @@ moleBorer_2c_state_00:
                        SEP #$20                             ;83C087|E220    |      ;
                                                             ;      |        |      ;
           CODE_83C089:
-                       LDA.B r_ev_2e-$E68                   ;83C089|A52E    |000E96;
+                       LDA.B r_ev_2e_BG_colusionMask-$E68   ;83C089|A52E    |000E96;
                        CMP.B #$3F                           ;83C08B|C93F    |      ;
                        BNE CODE_83C091                      ;83C08D|D002    |83C091;
-                       STZ.B r_ev_27-$E68                   ;83C08F|6427    |000E8F;
+                       STZ.B r_ev_27_health-$E68            ;83C08F|6427    |000E8F;
                                                             ;      |        |      ;
           CODE_83C091:
                        RTS                                  ;83C091|60      |      ;
@@ -8851,7 +8851,7 @@ moleBorer_2c_state_00:
                                                             ;      |        |      ;
           CODE_83C0D7:
                        JSR.W CODE_83C2DD                    ;83C0D7|20DDC2  |83C2DD;
-                       LDA.B r_ev_0f-$E68                   ;83C0DA|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83C0DA|A50F    |000E77;
                        AND.B #$7F                           ;83C0DC|297F    |      ;
                        ASL A                                ;83C0DE|0A      |      ;
                        TAX                                  ;83C0DF|AA      |      ;
@@ -9288,7 +9288,7 @@ eventID_metC15_2e_main:
           CODE_83C3BD:
                        JSL.L initPosAllign                  ;83C3BD|226E8082|82806E;
                        BCS CODE_83C3B5                      ;83C3C1|B0F2    |83C3B5;
-                       JML.L eventID_vile_68_afterInit      ;83C3C3|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83C3C3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
       metC15_2e_state:
@@ -9298,7 +9298,7 @@ eventID_metC15_2e_main:
                        dw CODE_83C4B1                       ;83C3CD|        |83C4B1;
                                                             ;      |        |      ;
    metC15_2e_state_00:
-                       JSL.L enemy_initiate_jumpPhysic      ;83C3CF|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83C3CF|227D8282|82827D;
                        LDA.B $11                            ;83C3D3|A511    |000EF9;
                        AND.B #$0E                           ;83C3D5|290E    |      ;
                        STA.B $33                            ;83C3D7|8533    |000F1B;
@@ -9308,7 +9308,7 @@ eventID_metC15_2e_main:
                        STA.B $26                            ;83C3DF|8526    |000F0E;
                        STZ.B $2F                            ;83C3E1|642F    |000F17;
                        LDA.B #$00                           ;83C3E3|A900    |      ;
-                       JSL.L CODE_848F07                    ;83C3E5|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C3E5|22078F84|848F07;
                        LDA.B #$78                           ;83C3E9|A978    |      ;
                        STA.B $34                            ;83C3EB|8534    |000F1C;
                        RTS                                  ;83C3ED|60      |      ;
@@ -9319,7 +9319,7 @@ eventID_metC15_2e_main:
                        BNE CODE_83C3FC                      ;83C3F0|D00A    |83C3FC;
                        INC.B $02                            ;83C3F2|E602    |000EEA;
                        LDA.B #$00                           ;83C3F4|A900    |      ;
-                       JSL.L CODE_848F07                    ;83C3F6|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C3F6|22078F84|848F07;
                        STZ.B $28                            ;83C3FA|6428    |000F10;
                                                             ;      |        |      ;
           CODE_83C3FC:
@@ -9339,7 +9339,7 @@ eventID_metC15_2e_main:
                        REP #$20                             ;83C412|C220    |      ;
                        LDA.B $05                            ;83C414|A505    |000EED;
                        SEC                                  ;83C416|38      |      ;
-                       SBC.W r_0bad                         ;83C417|EDAD0B  |860BAD;
+                       SBC.W r_d_player_xSubPos             ;83C417|EDAD0B  |860BAD;
                        BCS CODE_83C420                      ;83C41A|B004    |83C420;
                        EOR.W #$FFFF                         ;83C41C|49FFFF  |      ;
                        INC A                                ;83C41F|1A      |      ;
@@ -9349,7 +9349,7 @@ eventID_metC15_2e_main:
                        BCS CODE_83C43E                      ;83C423|B019    |83C43E;
                        LDA.B $08                            ;83C425|A508    |000EF0;
                        SEC                                  ;83C427|38      |      ;
-                       SBC.W r_0bb0                         ;83C428|EDB00B  |860BB0;
+                       SBC.W r_d_player_yPos                ;83C428|EDB00B  |860BB0;
                        BCS CODE_83C431                      ;83C42B|B004    |83C431;
                        EOR.W #$FFFF                         ;83C42D|49FFFF  |      ;
                        INC A                                ;83C430|1A      |      ;
@@ -9383,7 +9383,7 @@ eventID_metC15_2e_main:
                        LDA.B #$02                           ;83C452|A902    |      ;
                        STA.B $02                            ;83C454|8502    |00102A;
                        LDA.B #$01                           ;83C456|A901    |      ;
-                       JSL.L CODE_848F07                    ;83C458|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C458|22078F84|848F07;
                        LDA.B #$03                           ;83C45C|A903    |      ;
                        STA.B $28                            ;83C45E|8528    |001050;
                                                             ;      |        |      ;
@@ -9394,7 +9394,7 @@ eventID_metC15_2e_main:
                        LDA.B #$04                           ;83C468|A904    |      ;
                        STA.B $02                            ;83C46A|8502    |000FAA;
                        LDA.B #$02                           ;83C46C|A902    |      ;
-                       JSL.L CODE_848F07                    ;83C46E|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C46E|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C472:
                        RTS                                  ;83C472|60      |      ;
@@ -9415,7 +9415,7 @@ eventID_metC15_2e_main:
                        JSR.W CODE_83C55B                    ;83C485|205BC5  |83C55B;
                        BEQ CODE_83C495                      ;83C488|F00B    |83C495;
                        LDA.B #$03                           ;83C48A|A903    |      ;
-                       JSL.L CODE_848F07                    ;83C48C|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C48C|22078F84|848F07;
                        LDA.B #$06                           ;83C490|A906    |      ;
                        STA.B $02                            ;83C492|8502    |000FAA;
                        RTS                                  ;83C494|60      |      ;
@@ -9451,7 +9451,7 @@ eventID_metC15_2e_main:
                        LDA.B #$02                           ;83C4C0|A902    |      ;
                        STA.B $02                            ;83C4C2|8502    |000EEA;
                        LDA.B #$01                           ;83C4C4|A901    |      ;
-                       JSL.L CODE_848F07                    ;83C4C6|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C4C6|22078F84|848F07;
                        LDA.B #$03                           ;83C4CA|A903    |      ;
                        STA.B $28                            ;83C4CC|8528    |000F10;
                        JSL.L updateEv_13_14_17_0f           ;83C4CE|22EA8E84|848EEA;
@@ -9460,7 +9460,7 @@ eventID_metC15_2e_main:
                        LDA.B #$04                           ;83C4D6|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;83C4D8|8502    |000E6A;
                        LDA.B #$03                           ;83C4DA|A903    |      ;
-                       JSL.L CODE_848F07                    ;83C4DC|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C4DC|22078F84|848F07;
                        JSL.L CODE_84A081                    ;83C4E0|2281A084|84A081;
                        TAY                                  ;83C4E4|A8      |      ;
                        LDA.B r_ev_11_sprAtri-$E68           ;83C4E5|A511    |000E79;
@@ -9488,14 +9488,14 @@ eventID_metC15_2e_main:
                        LDY.B #$06                           ;83C507|A006    |      ;
                                                             ;      |        |      ;
           CODE_83C509:
-                       JSL.L CODE_828358                    ;83C509|22588382|828358;
+                       JSL.L findEnemyShotEmptySlot         ;83C509|22588382|828358;
                        BNE CODE_83C545                      ;83C50D|D036    |83C545;
                        INC.W r_0000,X                       ;83C50F|FE0000  |860000;
                        LDA.B #$10                           ;83C512|A910    |      ;
                        STA.W r_000a,X                       ;83C514|9D0A00  |86000A;
                        LDA.B r_ev_18_gfxSlot-$E68           ;83C517|A518    |000E80;
                        STA.W r_0018,X                       ;83C519|9D1800  |860018;
-                       LDA.B r_ev_16-$E68                   ;83C51C|A516    |000E7E;
+                       LDA.B r_ev_16_sprID-$E68             ;83C51C|A516    |000E7E;
                        STA.W r_0016,X                       ;83C51E|9D1600  |860016;
                        TYA                                  ;83C521|98      |      ;
                        STA.W r_000b,X                       ;83C522|9D0B00  |86000B;
@@ -9524,7 +9524,7 @@ eventID_metC15_2e_main:
                        RTS                                  ;83C547|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83C548|22EA8E84|848EEA;
-                       LDA.B r_ev_0f-$E68                   ;83C54C|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83C54C|A50F    |000E77;
                        BPL CODE_83C55A                      ;83C54E|100A    |83C55A;
                        LDA.B #$02                           ;83C550|A902    |      ;
                        STA.B r_ev_01_state-$E68             ;83C552|8501    |000E69;
@@ -9540,7 +9540,7 @@ eventID_metC15_2e_main:
                        REP #$20                             ;83C55B|C220    |      ;
                        LDA.B $08                            ;83C55D|A508    |000EF0;
                        SEC                                  ;83C55F|38      |      ;
-                       SBC.W r_0bb0                         ;83C560|EDB00B  |860BB0;
+                       SBC.W r_d_player_yPos                ;83C560|EDB00B  |860BB0;
                        BCS CODE_83C569                      ;83C563|B004    |83C569;
                        EOR.W #$FFFF                         ;83C565|49FFFF  |      ;
                        INC A                                ;83C568|1A      |      ;
@@ -9576,7 +9576,7 @@ eventID_metC15_2e_main:
                                                             ;      |        |      ;
           CODE_83C59E:
                        LDA.B $11                            ;83C59E|A511    |000EF9;
-                       EOR.W r_0bb9                         ;83C5A0|4DB90B  |860BB9;
+                       EOR.W r_d_0bb9                       ;83C5A0|4DB90B  |860BB9;
                        AND.B #$40                           ;83C5A3|2940    |      ;
                        RTS                                  ;83C5A5|60      |      ;
                                                             ;      |        |      ;
@@ -9598,7 +9598,7 @@ eventID_armorSoldir_2f_main:
                        dw CODE_83CAAB                       ;83C5B4|        |83CAAB;
                                                             ;      |        |      ;
 armorSoldir_2f_state_00:
-                       LDA.B r_ev_2_0b_subID-$EA8           ;83C5B6|A50B    |000EB3;
+                       LDA.B $0B                            ;83C5B6|A50B    |000EB3;
                        CMP.B #$01                           ;83C5B8|C901    |      ;
                        BEQ CODE_83C5C7                      ;83C5BA|F00B    |83C5C7;
                        JSL.L CODE_84A1D5                    ;83C5BC|22D5A184|84A1D5;
@@ -9608,7 +9608,7 @@ armorSoldir_2f_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C5C7:
-                       JSL.L enemy_initiate_jumpPhysic      ;83C5C7|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83C5C7|227D8282|82827D;
                        LDA.B #$04                           ;83C5CB|A904    |      ;
                        STA.B r_ev_12-$E68                   ;83C5CD|8512    |000E7A;
                        STZ.B r_ev_33-$E68                   ;83C5CF|6433    |000E9B;
@@ -9616,7 +9616,7 @@ armorSoldir_2f_state_00:
                        LDA.B #$02                           ;83C5D3|A902    |      ;
                        STA.B r_ev_26-$E68                   ;83C5D5|8526    |000E8E;
                        LDA.B #$03                           ;83C5D7|A903    |      ;
-                       STA.B r_ev_27-$E68                   ;83C5D9|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83C5D9|8527    |000E8F;
                        STA.B r_ev_3b-$E68                   ;83C5DB|853B    |000EA3;
                        LDA.B #$03                           ;83C5DD|A903    |      ;
                        STA.B r_ev_28-$E68                   ;83C5DF|8528    |000E90;
@@ -9633,13 +9633,13 @@ armorSoldir_2f_state_00:
                        SEP #$20                             ;83C5F7|E220    |      ;
                        LDA.B r_ev_0b_subID-$E68             ;83C5F9|A50B    |000E73;
                        BMI CODE_83C63B                      ;83C5FB|303E    |83C63B;
-                       LDA.W r_donnoSlot                    ;83C5FD|AD180E  |860E18;
+                       LDA.W r_d_donnoSlot                  ;83C5FD|AD180E  |860E18;
                        BNE CODE_83C63B                      ;83C600|D039    |83C63B;
-                       INC.W r_donnoSlot                    ;83C602|EE180E  |860E18;
+                       INC.W r_d_donnoSlot                  ;83C602|EE180E  |860E18;
                        STZ.W $0E4B                          ;83C605|9C4B0E  |860E4B;
                        REP #$31                             ;83C608|C231    |      ;
                        LDA.W #$0020                         ;83C60A|A92000  |      ;
-                       LDX.W r_0bad                         ;83C60D|AEAD0B  |860BAD;
+                       LDX.W r_d_player_xSubPos             ;83C60D|AEAD0B  |860BAD;
                        CPX.B r_ev_05_xPos-$E68              ;83C610|E405    |000E6D;
                        BCC CODE_83C61D                      ;83C612|9009    |83C61D;
                        LDA.W #$0040                         ;83C614|A94000  |      ;
@@ -9672,7 +9672,7 @@ armorSoldir_2f_state_00:
                        LDA.B #$06                           ;83C641|A906    |      ;
                        STA.B r_ev_02_action-$E68            ;83C643|8502    |000E6A;
                        LDA.B #$10                           ;83C645|A910    |      ;
-                       STA.B r_ev_27-$E68                   ;83C647|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83C647|8527    |000E8F;
                        REP #$21                             ;83C649|C221    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;83C64B|A508    |000E70;
                        ADC.W #$FFF0                         ;83C64D|69F0FF  |      ;
@@ -9695,8 +9695,8 @@ armorSoldir_2f_state_00:
                        STA.B r_ev_11_sprAtri-$E68           ;83C665|8511    |000E79;
                        LDX.B r_ev_02_action-$E68            ;83C667|A602    |000E6A;
                        JSR.W (UNREACH_83C6D0,X)             ;83C669|FCD0C6  |83C6D0;
-                       JSL.L eventID_vile_68_afterInit      ;83C66C|22B48082|8280B4;
-                       LDA.B r_ev_27-$E68                   ;83C670|A527    |000E8F;
+                       JSL.L checkEventRange                ;83C66C|22B48082|8280B4;
+                       LDA.B r_ev_27_health-$E68            ;83C670|A527    |000E8F;
                        AND.B #$7F                           ;83C672|297F    |      ;
                        STA.B r_ev_3b-$E68                   ;83C674|853B    |000EA3;
                        JSL.L CODE_849B43                    ;83C676|22439B84|849B43;
@@ -9733,7 +9733,7 @@ armorSoldir_2f_state_00:
                        LDA.B #$09                           ;83C6A8|A909    |      ;
                                                             ;      |        |      ;
           CODE_83C6AA:
-                       JSL.L CODE_8088A2                    ;83C6AA|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83C6AA|22A28880|8088A2;
                        LDA.B #$06                           ;83C6AE|A906    |      ;
                        STA.B r_ev_35-$E68                   ;83C6B0|8535    |000E9D;
                        LDA.B #$05                           ;83C6B2|A905    |      ;
@@ -9767,9 +9767,9 @@ armorSoldir_2f_state_00:
                        LDA.B #$02                           ;83C6FA|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;83C6FC|8503    |000E6B;
                        LDA.B #$18                           ;83C6FE|A918    |      ;
-                       JSL.L CODE_848F07                    ;83C700|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C700|22078F84|848F07;
                        REP #$20                             ;83C704|C220    |      ;
-                       LDA.W r_0bad                         ;83C706|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83C706|ADAD0B  |860BAD;
                        SEC                                  ;83C709|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;83C70A|E505    |000E6D;
                        CLC                                  ;83C70C|18      |      ;
@@ -9800,7 +9800,7 @@ armorSoldir_2f_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C738:
-                       LDA.B r_ev_27-$E68                   ;83C738|A527    |000E8F;
+                       LDA.B r_ev_27_health-$E68            ;83C738|A527    |000E8F;
                        AND.B #$7F                           ;83C73A|297F    |      ;
                        CMP.B #$03                           ;83C73C|C903    |      ;
                        BEQ CODE_83C745                      ;83C73E|F005    |83C745;
@@ -9831,7 +9831,7 @@ armorSoldir_2f_state_00:
                        LDA.B #$04                           ;83C76D|A904    |      ;
                        TRB.B r_ev_2b-$E68                   ;83C76F|142B    |000E93;
                        LDA.B #$1A                           ;83C771|A91A    |      ;
-                       JSL.L CODE_848F07                    ;83C773|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C773|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C777:
                        LDA.B r_ev_2b-$E68                   ;83C777|A52B    |000E93;
@@ -9842,8 +9842,8 @@ armorSoldir_2f_state_00:
                        LDA.B #$40                           ;83C782|A940    |      ;
                        TSB.B r_ev_10-$E68                   ;83C784|0410    |000E78;
                        LDA.B #$10                           ;83C786|A910    |      ;
-                       STA.B r_ev_27-$E68                   ;83C788|8527    |000E8F;
-                       STZ.W r_donnoSlot                    ;83C78A|9C180E  |860E18;
+                       STA.B r_ev_27_health-$E68            ;83C788|8527    |000E8F;
+                       STZ.W r_d_donnoSlot                  ;83C78A|9C180E  |860E18;
                        STZ.W $0E19                          ;83C78D|9C190E  |860E19;
                        STZ.W $0E1A                          ;83C790|9C1A0E  |860E1A;
                        STZ.W $0E1B                          ;83C793|9C1B0E  |860E1B;
@@ -9869,10 +9869,10 @@ armorSoldir_2f_state_00:
                        EOR.B #$40                           ;83C7B8|4940    |      ;
                        STA.B r_ev_33-$E68                   ;83C7BA|8533    |000E9B;
                        LDA.B #$09                           ;83C7BC|A909    |      ;
-                       JSL.L CODE_848F07                    ;83C7BE|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C7BE|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C7C2:
-                       LDA.B r_ev_0f-$E68                   ;83C7C2|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83C7C2|A50F    |000E77;
                        BPL CODE_83C7CB                      ;83C7C4|1005    |83C7CB;
                        LDA.B #$06                           ;83C7C6|A906    |      ;
                        JMP.W CODE_8386F1                    ;83C7C8|4CF186  |8386F1;
@@ -9900,7 +9900,7 @@ armorSoldir_2f_state_00:
                        AND.B #$3F                           ;83C7ED|293F    |      ;
                        STA.B r_ev_34-$E68                   ;83C7EF|8534    |000E9C;
                        LDA.B #$00                           ;83C7F1|A900    |      ;
-                       JSL.L CODE_848F07                    ;83C7F3|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C7F3|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C7F7:
                        DEC.B r_ev_34-$E68                   ;83C7F7|C634    |000E9C;
@@ -9926,10 +9926,10 @@ armorSoldir_2f_state_00:
                        BNE CODE_83C81C                      ;83C812|D008    |83C81C;
                        INC.B r_ev_03_do-$E68                ;83C814|E603    |000E6B;
                        LDA.B #$02                           ;83C816|A902    |      ;
-                       JSL.L CODE_848F07                    ;83C818|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C818|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C81C:
-                       LDA.B r_ev_0f-$E68                   ;83C81C|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83C81C|A50F    |000E77;
                        BPL CODE_83C825                      ;83C81E|1005    |83C825;
                        LDA.B #$06                           ;83C820|A906    |      ;
                        JMP.W CODE_8386F1                    ;83C822|4CF186  |8386F1;
@@ -9944,7 +9944,7 @@ armorSoldir_2f_state_00:
                        BNE CODE_83C839                      ;83C82F|D008    |83C839;
                        INC.B r_ev_03_do-$E68                ;83C831|E603    |000E6B;
                        LDA.B #$01                           ;83C833|A901    |      ;
-                       JSL.L CODE_848F07                    ;83C835|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C835|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C839:
                        LDA.B r_ev_2b-$E68                   ;83C839|A52B    |000E93;
@@ -9994,11 +9994,11 @@ armorSoldir_2f_state_00:
                                                             ;      |        |      ;
           CODE_83C881:
                        JSL.L updateEv_13_14_17_0f           ;83C881|22EA8E84|848EEA;
-                       LDA.B r_ev_0f-$E68                   ;83C885|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83C885|A50F    |000E77;
                        AND.B #$03                           ;83C887|2903    |      ;
                        BEQ CODE_83C891                      ;83C889|F006    |83C891;
                        ORA.B #$38                           ;83C88B|0938    |      ;
-                       JSL.L CODE_8088A2                    ;83C88D|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83C88D|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83C891:
                        RTS                                  ;83C891|60      |      ;
@@ -10026,13 +10026,13 @@ armorSoldir_2f_state_00:
                        LDA.B #$05                           ;83C8B8|A905    |      ;
                        STA.B r_ev_1d_ySpd-$E68              ;83C8BA|851D    |000E85;
                        LDA.B #$38                           ;83C8BC|A938    |      ;
-                       JSL.L CODE_8088A2                    ;83C8BE|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83C8BE|22A28880|8088A2;
                        LDA.B #$08                           ;83C8C2|A908    |      ;
                        STA.B r_ev_2f-$E68                   ;83C8C4|852F    |000E97;
                        LDA.B #$0C                           ;83C8C6|A90C    |      ;
                        JSR.W CODE_83CD18                    ;83C8C8|2018CD  |83CD18;
                        LDA.B #$03                           ;83C8CB|A903    |      ;
-                       JSL.L CODE_848F07                    ;83C8CD|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C8CD|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C8D1:
                        LDA.B r_ev_1d_ySpd-$E68              ;83C8D1|A51D    |000E85;
@@ -10064,7 +10064,7 @@ armorSoldir_2f_state_00:
                        BNE CODE_83C900                      ;83C8F6|D008    |83C900;
                        INC.B r_ev_03_do-$E68                ;83C8F8|E603    |000E6B;
                        LDA.B #$05                           ;83C8FA|A905    |      ;
-                       JSL.L CODE_848F07                    ;83C8FC|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C8FC|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C900:
                        LDA.B r_ev_2b-$E68                   ;83C900|A52B    |000E93;
@@ -10081,7 +10081,7 @@ armorSoldir_2f_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83C913:
-                       LDA.B r_ev_0f-$E68                   ;83C913|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83C913|A50F    |000E77;
                        BPL CODE_83C924                      ;83C915|100D    |83C924;
                        LDA.B r_ev_1d_ySpd-$E68              ;83C917|A51D    |000E85;
                        BPL CODE_83C91F                      ;83C919|1004    |83C91F;
@@ -10117,11 +10117,11 @@ armorSoldir_2f_state_00:
                        SEP #$20                             ;83C944|E220    |      ;
                        STZ.B r_ev_31-$E68                   ;83C946|6431    |000E99;
                        LDA.B #$3B                           ;83C948|A93B    |      ;
-                       JSL.L CODE_8088A2                    ;83C94A|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83C94A|22A28880|8088A2;
                        LDA.B #$40                           ;83C94E|A940    |      ;
                        STA.B r_ev_34-$E68                   ;83C950|8534    |000E9C;
                        LDA.B #$06                           ;83C952|A906    |      ;
-                       JSL.L CODE_848F07                    ;83C954|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C954|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C958:
                        JSR.W CODE_83CDB3                    ;83C958|20B3CD  |83CDB3;
@@ -10163,7 +10163,7 @@ armorSoldir_2f_state_00:
                        BNE CODE_83C9A4                      ;83C99A|D008    |83C9A4;
                        INC.B r_ev_03_do-$E68                ;83C99C|E603    |000E6B;
                        LDA.B #$08                           ;83C99E|A908    |      ;
-                       JSL.L CODE_848F07                    ;83C9A0|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C9A0|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C9A4:
                        DEC.B r_ev_34-$E68                   ;83C9A4|C634    |000E9C;
@@ -10196,10 +10196,10 @@ armorSoldir_2f_state_00:
                        BNE CODE_83C9D8                      ;83C9CE|D008    |83C9D8;
                        INC.B r_ev_03_do-$E68                ;83C9D0|E603    |000E6B;
                        LDA.B #$07                           ;83C9D2|A907    |      ;
-                       JSL.L CODE_848F07                    ;83C9D4|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83C9D4|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83C9D8:
-                       LDA.B r_ev_0f-$E68                   ;83C9D8|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83C9D8|A50F    |000E77;
                        BPL CODE_83C9E1                      ;83C9DA|1005    |83C9E1;
                        LDA.B #$0A                           ;83C9DC|A90A    |      ;
                        JMP.W CODE_8386F1                    ;83C9DE|4CF186  |8386F1;
@@ -10228,7 +10228,7 @@ armorSoldir_2f_state_00:
                        LDA.B #$08                           ;83CA52|A908    |      ;
                        STA.B r_ev_2f-$E68                   ;83CA54|852F    |000E97;
                        LDA.B #$03                           ;83CA56|A903    |      ;
-                       JSL.L CODE_848F07                    ;83CA58|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83CA58|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83CA5C:
                        LDA.B r_ev_2b-$E68                   ;83CA5C|A52B    |000E93;
@@ -10258,15 +10258,15 @@ armorSoldir_2f_state_00:
                        LDA.B #$0A                           ;83CA83|A90A    |      ;
                        JSL.L CODE_84A341                    ;83CA85|2241A384|84A341;
                        LDA.B #$39                           ;83CA89|A939    |      ;
-                       JSL.L CODE_8088A2                    ;83CA8B|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83CA8B|22A28880|8088A2;
                        STZ.B r_ev_2f-$E68                   ;83CA8F|642F    |000E97;
                        JSR.W CODE_83CD41                    ;83CA91|2041CD  |83CD41;
                        JSR.W CODE_83CD6C                    ;83CA94|206CCD  |83CD6C;
                        LDA.B #$04                           ;83CA97|A904    |      ;
-                       JSL.L CODE_848F07                    ;83CA99|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83CA99|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83CA9D:
-                       LDA.B r_ev_0f-$E68                   ;83CA9D|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83CA9D|A50F    |000E77;
                        BPL CODE_83CAA6                      ;83CA9F|1005    |83CAA6;
                        LDA.B #$0A                           ;83CAA1|A90A    |      ;
                        JMP.W CODE_8386F1                    ;83CAA3|4CF186  |8386F1;
@@ -10331,7 +10331,7 @@ armorSoldir_2f_state_00:
           CODE_83CB05:
                        REP #$20                             ;83CB05|C220    |      ;
                        LDX.B #$40                           ;83CB07|A240    |      ;
-                       LDA.W r_0bad                         ;83CB09|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83CB09|ADAD0B  |860BAD;
                        CMP.B r_ev_05_xPos-$E68              ;83CB0C|C505    |000E6D;
                        BCS CODE_83CB12                      ;83CB0E|B002    |83CB12;
                        LDX.B #$00                           ;83CB10|A200    |      ;
@@ -10359,7 +10359,7 @@ armorSoldir_2f_state_00:
           CODE_83CB2B:
                        REP #$20                             ;83CB2B|C220    |      ;
                        STA.W r_0000                         ;83CB2D|8D0000  |860000;
-                       LDA.W r_0bad                         ;83CB30|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83CB30|ADAD0B  |860BAD;
                        SEC                                  ;83CB33|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;83CB34|E505    |000E6D;
                        BPL CODE_83CB3C                      ;83CB36|1004    |83CB3C;
@@ -10376,16 +10376,16 @@ armorSoldir_2f_state_00:
                        REP #$20                             ;83CB42|C220    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;83CB44|A508    |000E70;
                        SEC                                  ;83CB46|38      |      ;
-                       SBC.W r_0bb0                         ;83CB47|EDB00B  |860BB0;
+                       SBC.W r_d_player_yPos                ;83CB47|EDB00B  |860BB0;
                        BCC CODE_83CB51                      ;83CB4A|9005    |83CB51;
                        CMP.W #$0018                         ;83CB4C|C91800  |      ;
                        BCS CODE_83CB65                      ;83CB4F|B014    |83CB65;
                                                             ;      |        |      ;
           CODE_83CB51:
                        SEP #$20                             ;83CB51|E220    |      ;
-                       LDA.W r_1f0d                         ;83CB53|AD0D1F  |861F0D;
+                       LDA.W r_curShotFired                 ;83CB53|AD0D1F  |861F0D;
                        BEQ CODE_83CB63                      ;83CB56|F00B    |83CB63;
-                       LDA.W r_0bb9                         ;83CB58|ADB90B  |860BB9;
+                       LDA.W r_d_0bb9                       ;83CB58|ADB90B  |860BB9;
                        AND.B #$40                           ;83CB5B|2940    |      ;
                        CMP.B r_ev_33-$E68                   ;83CB5D|C533    |000E9B;
                        BEQ CODE_83CB63                      ;83CB5F|F002    |83CB63;
@@ -10406,10 +10406,10 @@ armorSoldir_2f_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83CB6C:
-                       BIT.B r_ev_0f-$E68                   ;83CB6C|240F    |000E77;
+                       BIT.B r_ev_0f_waitCount-$E68         ;83CB6C|240F    |000E77;
                        BVC CODE_83CBA4                      ;83CB6E|5034    |83CBA4;
                        REP #$21                             ;83CB70|C221    |      ;
-                       LDA.B r_ev_0f-$E68                   ;83CB72|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83CB72|A50F    |000E77;
                        AND.W #$0030                         ;83CB74|293000  |      ;
                        LSR A                                ;83CB77|4A      |      ;
                        LSR A                                ;83CB78|4A      |      ;
@@ -10427,7 +10427,7 @@ armorSoldir_2f_state_00:
                        JSL.L CODE_849B03                    ;83CB8C|22039B84|849B03;
                        BEQ CODE_83CB98                      ;83CB90|F006    |83CB98;
                        LDA.B #$3C                           ;83CB92|A93C    |      ;
-                       JSL.L CODE_8088A2                    ;83CB94|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83CB94|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83CB98:
                        LDA.B #$3B                           ;83CB98|A93B    |      ;
@@ -10463,7 +10463,7 @@ armorSoldir_2f_state_00:
                        LDA.B #$04                           ;83CBBD|A904    |      ;
                        STA.B r_ev_32-$E68                   ;83CBBF|8532    |000E9A;
                        STZ.B r_ev_31-$E68                   ;83CBC1|6431    |000E99;
-                       LDA.B r_ev_27-$E68                   ;83CBC3|A527    |000E8F;
+                       LDA.B r_ev_27_health-$E68            ;83CBC3|A527    |000E8F;
                        AND.B #$7F                           ;83CBC5|297F    |      ;
                        STA.W r_0000                         ;83CBC7|8D0000  |860000;
                        LDA.B r_ev_3b-$E68                   ;83CBCA|A53B    |000EA3;
@@ -10553,7 +10553,7 @@ armorSoldir_2f_state_00:
           CODE_83CC52:
                        REP #$10                             ;83CC52|C210    |      ;
                        LDA.B #$21                           ;83CC54|A921    |      ;
-                       JSL.L CODE_8088A2                    ;83CC56|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83CC56|22A28880|8088A2;
                        LDA.B #$08                           ;83CC5A|A908    |      ;
                        STA.W r_0000                         ;83CC5C|8D0000  |860000;
                        LDY.W #$0009                         ;83CC5F|A00900  |      ;
@@ -10738,7 +10738,7 @@ armorSoldir_2f_state_00:
                        LDA.B r_ev_31-$E68                   ;83CDB8|A531    |000E99;
                        CMP.B #$04                           ;83CDBA|C904    |      ;
                        BCS CODE_83CDE7                      ;83CDBC|B029    |83CDE7;
-                       LDA.W $0B9C                          ;83CDBE|AD9C0B  |860B9C;
+                       LDA.W r_frameCounter1                ;83CDBE|AD9C0B  |860B9C;
                        BIT.B #$03                           ;83CDC1|8903    |      ;
                        BNE CODE_83CDE7                      ;83CDC3|D022    |83CDE7;
                        JSL.L CODE_8282D3                    ;83CDC5|22D38282|8282D3;
@@ -10782,11 +10782,11 @@ eventID_digLouber_30_main:
                        LDX.B r_ev_01_state-$E68             ;83CE03|A601    |000E69;
                        JSR.W (digLouber_30_state,X)         ;83CE05|FC65CE  |83CE65;
                        JSL.L CODE_879ED4                    ;83CE08|22D49E87|879ED4;
-                       LDA.B r_ev_27-$E68                   ;83CE0C|A527    |000E8F;
+                       LDA.B r_ev_27_health-$E68            ;83CE0C|A527    |000E8F;
                        BEQ CODE_83CE56                      ;83CE0E|F046    |83CE56;
                        JSL.L CODE_849B43                    ;83CE10|22439B84|849B43;
                        BEQ CODE_83CE36                      ;83CE14|F020    |83CE36;
-                       LDA.B r_ev_27-$E68                   ;83CE16|A527    |000E8F;
+                       LDA.B r_ev_27_health-$E68            ;83CE16|A527    |000E8F;
                        AND.B #$7F                           ;83CE18|297F    |      ;
                        BNE CODE_83CE2E                      ;83CE1A|D012    |83CE2E;
                        JSL.L CODE_84A4B5                    ;83CE1C|22B5A484|84A4B5;
@@ -10816,14 +10816,14 @@ eventID_digLouber_30_main:
                        BNE CODE_83CE56                      ;83CE44|D010    |83CE56;
                        STZ.B r_ev_0b_subID-$E68             ;83CE46|640B    |000E73;
                        LDA.B #$03                           ;83CE48|A903    |      ;
-                       JSL.L CODE_848F07                    ;83CE4A|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83CE4A|22078F84|848F07;
                        LDA.B #$02                           ;83CE4E|A902    |      ;
                        STA.B r_ev_01_state-$E68             ;83CE50|8501    |000E69;
                        LDA.B #$50                           ;83CE52|A950    |      ;
                        STA.B r_ev_33-$E68                   ;83CE54|8533    |000E9B;
                                                             ;      |        |      ;
           CODE_83CE56:
-                       JSL.L eventID_vile_68_afterInit      ;83CE56|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83CE56|22B48082|8280B4;
                        JSL.L initPosAllign                  ;83CE5A|226E8082|82806E;
                        BCC CODE_83CE64                      ;83CE5E|9004    |83CE64;
                        JSL.L clearStateIf_0cEqual           ;83CE60|22878382|828387;
@@ -10839,27 +10839,27 @@ eventID_digLouber_30_main:
                        dw CODE_83CECE                       ;83CE6B|        |83CECE;
                                                             ;      |        |      ;
 digLouber_30_state_00:
-                       JSL.L enemy_initiate_jumpPhysic      ;83CE6D|227D8282|82827D;
-                       LDA.B r_ev_2_11_sprAtri-$EA8         ;83CE71|A511    |000EB9;
+                       JSL.L mainEnemySpriteLoad            ;83CE6D|227D8282|82827D;
+                       LDA.B $11                            ;83CE71|A511    |000EB9;
                        AND.B #$0E                           ;83CE73|290E    |      ;
-                       STA.B r_ev_2_34-$EA8                 ;83CE75|8534    |000EDC;
+                       STA.B $34                            ;83CE75|8534    |000EDC;
                        LDA.B #$08                           ;83CE77|A908    |      ;
-                       STA.B r_ev_2_27-$EA8                 ;83CE79|8527    |000ECF;
+                       STA.B $27                            ;83CE79|8527    |000ECF;
                        LDA.B #$01                           ;83CE7B|A901    |      ;
-                       STA.B r_ev_2_28-$EA8                 ;83CE7D|8528    |000ED0;
+                       STA.B $28                            ;83CE7D|8528    |000ED0;
                        LDA.B #$03                           ;83CE7F|A903    |      ;
-                       STA.B r_ev_2_26-$EA8                 ;83CE81|8526    |000ECE;
+                       STA.B $26                            ;83CE81|8526    |000ECE;
                        LDA.B #$04                           ;83CE83|A904    |      ;
-                       STA.B r_ev_2_12-$EA8                 ;83CE85|8512    |000EBA;
-                       STZ.B r_ev_2_0b_subID-$EA8           ;83CE87|640B    |000EB3;
+                       STA.B $12                            ;83CE85|8512    |000EBA;
+                       STZ.B $0B                            ;83CE87|640B    |000EB3;
                        REP #$20                             ;83CE89|C220    |      ;
                        LDA.W #$CF71                         ;83CE8B|A971CF  |      ;
-                       STA.B r_ev_2_20_hitBoxAddr-$EA8      ;83CE8E|8520    |000EC8;
+                       STA.B $20                            ;83CE8E|8520    |000EC8;
                        SEP #$20                             ;83CE90|E220    |      ;
                        LDA.B #$01                           ;83CE92|A901    |      ;
-                       STA.B r_ev_2_33-$EA8                 ;83CE94|8533    |000EDB;
+                       STA.B $33                            ;83CE94|8533    |000EDB;
                        LDA.B #$00                           ;83CE96|A900    |      ;
-                       JSL.L CODE_848F07                    ;83CE98|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83CE98|22078F84|848F07;
                        RTS                                  ;83CE9C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10869,7 +10869,7 @@ digLouber_30_state_00:
                        LDA.B #$04                           ;83CEA1|A904    |      ;
                        STA.B r_ev_01_state-$E68             ;83CEA3|8501    |000E69;
                        LDA.B #$01                           ;83CEA5|A901    |      ;
-                       JSL.L CODE_848F07                    ;83CEA7|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83CEA7|22078F84|848F07;
                        LDA.B #$40                           ;83CEAB|A940    |      ;
                        STA.B r_ev_35-$E68                   ;83CEAD|8535    |000E9D;
                        JMP.W CODE_83CEB6                    ;83CEAF|4CB6CE  |83CEB6;
@@ -10904,7 +10904,7 @@ digLouber_30_state_00:
                        DEC.B r_ev_35-$E68                   ;83CECE|C635    |000E9D;
                        BNE CODE_83CEDF                      ;83CED0|D00D    |83CEDF;
                        LDA.B #$00                           ;83CED2|A900    |      ;
-                       JSL.L CODE_848F07                    ;83CED4|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83CED4|22078F84|848F07;
                        LDA.B #$02                           ;83CED8|A902    |      ;
                        STA.B r_ev_01_state-$E68             ;83CEDA|8501    |000E69;
                        JMP.W CODE_83CEE3                    ;83CEDC|4CE3CE  |83CEE3;
@@ -10919,7 +10919,7 @@ digLouber_30_state_00:
                                                             ;      |        |      ;
           CODE_83CEE4:
                        REP #$10                             ;83CEE4|C210    |      ;
-                       JSL.L CODE_828358                    ;83CEE6|22588382|828358;
+                       JSL.L findEnemyShotEmptySlot         ;83CEE6|22588382|828358;
                        BNE CODE_83CF48                      ;83CEEA|D05C    |83CF48;
                        INC.W r_0000,X                       ;83CEEC|FE0000  |860000;
                        LDA.B #$14                           ;83CEEF|A914    |      ;
@@ -10977,9 +10977,9 @@ digLouber_30_state_00:
                                                             ;      |        |      ;
           CODE_83CF55:
                        REP #$20                             ;83CF55|C220    |      ;
-                       LDA.W r_0bad                         ;83CF57|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83CF57|ADAD0B  |860BAD;
                        STA.W r_0000                         ;83CF5A|8D0000  |860000;
-                       LDA.W r_0bb0                         ;83CF5D|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;83CF5D|ADB00B  |860BB0;
                        STA.W r_0002                         ;83CF60|8D0200  |860002;
                        LDA.W #$0600                         ;83CF63|A90006  |      ;
                        STA.W r_0008                         ;83CF66|8D0800  |860008;
@@ -10999,7 +10999,7 @@ eventID_mechVile_32_main:
                        dw CODE_83D6E3                       ;83CF79|        |83D6E3;
                                                             ;      |        |      ;
  mechVile_32_state_00:
-                       JSL.L enemy_initiate_jumpPhysic      ;83CF7B|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83CF7B|227D8282|82827D;
                        LDA.B #$04                           ;83CF7F|A904    |      ;
                        STA.B r_ev_12-$E68                   ;83CF81|8512    |000E7A;
                        STZ.B r_ev_33-$E68                   ;83CF83|6433    |000E9B;
@@ -11007,7 +11007,7 @@ eventID_mechVile_32_main:
                        LDA.B #$02                           ;83CF87|A902    |      ;
                        STA.B r_ev_26-$E68                   ;83CF89|8526    |000E8E;
                        LDA.B #$7F                           ;83CF8B|A97F    |      ;
-                       STA.B r_ev_27-$E68                   ;83CF8D|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83CF8D|8527    |000E8F;
                        STA.B r_ev_3b-$E68                   ;83CF8F|853B    |000EA3;
                        LDA.B #$03                           ;83CF91|A903    |      ;
                        STA.B r_ev_28-$E68                   ;83CF93|8528    |000E90;
@@ -11030,8 +11030,8 @@ eventID_mechVile_32_main:
                        STA.B r_ev_11_sprAtri-$E68           ;83CFB2|8511    |000E79;
                        LDX.B r_ev_02_action-$E68            ;83CFB4|A602    |000E6A;
                        JSR.W (UNREACH_83D03C,X)             ;83CFB6|FC3CD0  |83D03C;
-                       JSL.L eventID_vile_68_afterInit      ;83CFB9|22B48082|8280B4;
-                       LDA.B r_ev_27-$E68                   ;83CFBD|A527    |000E8F;
+                       JSL.L checkEventRange                ;83CFB9|22B48082|8280B4;
+                       LDA.B r_ev_27_health-$E68            ;83CFBD|A527    |000E8F;
                        AND.B #$7F                           ;83CFBF|297F    |      ;
                        STA.B r_ev_3b-$E68                   ;83CFC1|853B    |000EA3;
                        JSL.L CODE_849B43                    ;83CFC3|22439B84|849B43;
@@ -11072,7 +11072,7 @@ eventID_mechVile_32_main:
                        BIT.B r_ev_10-$E68                   ;83D00F|2410    |000E78;
                        BVS CODE_83D019                      ;83D011|7006    |83D019;
                        LDA.B #$13                           ;83D013|A913    |      ;
-                       JSL.L CODE_8088A2                    ;83D015|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83D015|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83D019:
                        LDA.B #$02                           ;83D019|A902    |      ;
@@ -11108,7 +11108,7 @@ eventID_mechVile_32_main:
                        BNE CODE_83D082                      ;83D066|D01A    |83D082;
                        INC.B r_ev_03_do-$E68                ;83D068|E603    |000E6B;
                        LDA.B #$02                           ;83D06A|A902    |      ;
-                       JSL.L CODE_848F07                    ;83D06C|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D06C|22078F84|848F07;
                        REP #$20                             ;83D070|C220    |      ;
                        LDA.W #$FF80                         ;83D072|A980FF  |      ;
                        STA.B r_ev_1c_ySpdSub-$E68           ;83D075|851C    |000E84;
@@ -11137,7 +11137,7 @@ eventID_mechVile_32_main:
                                                             ;      |        |      ;
           CODE_83D09C:
                        REP #$10                             ;83D09C|C210    |      ;
-                       LDX.B r_ev_0c-$E68                   ;83D09E|A60C    |000E74;
+                       LDX.B r_ev_0c_parent-$E68            ;83D09E|A60C    |000E74;
                        LDA.W r_0013,X                       ;83D0A0|BD1300  |860013;
                        CMP.B #$01                           ;83D0A3|C901    |      ;
                        SEP #$10                             ;83D0A5|E210    |      ;
@@ -11178,7 +11178,7 @@ eventID_mechVile_32_main:
                        db $A9,$09                           ;83D0E9|        |      ;
                                                             ;      |        |      ;
           CODE_83D0EB:
-                       JSL.L CODE_848F07                    ;83D0EB|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D0EB|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83D0EF:
                        JSR.W CODE_83D6E7                    ;83D0EF|20E7D6  |83D6E7;
@@ -11237,14 +11237,14 @@ eventID_mechVile_32_main:
           CODE_83D158:
                        RTS                                  ;83D158|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B r_ev_2_03_do-$EA8              ;83D159|A603    |000EAB;
+                       LDX.B $03                            ;83D159|A603    |000EAB;
                        BNE CODE_83D165                      ;83D15B|D008    |83D165;
-                       INC.B r_ev_2_03_do-$EA8              ;83D15D|E603    |000EAB;
+                       INC.B $03                            ;83D15D|E603    |000EAB;
                        LDA.B #$00                           ;83D15F|A900    |      ;
-                       JSL.L CODE_848F07                    ;83D161|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D161|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83D165:
-                       LDA.B r_ev_2_2b-$EA8                 ;83D165|A52B    |000ED3;
+                       LDA.B $2B                            ;83D165|A52B    |000ED3;
                        BIT.B #$04                           ;83D167|8904    |      ;
                        BNE CODE_83D174                      ;83D169|D009    |83D174;
                        db $64,$1C,$64,$1D,$A9,$14,$4C,$F1   ;83D16B|        |00001C;
@@ -11259,7 +11259,7 @@ eventID_mechVile_32_main:
                        CPX.W r_0000                         ;83D184|EC0000  |860000;
                        BEQ CODE_83D18D                      ;83D187|F004    |83D18D;
                        LDA.B #$04                           ;83D189|A904    |      ;
-                       STA.B r_ev_2_02_action-$EA8          ;83D18B|8502    |000EAA;
+                       STA.B $02                            ;83D18B|8502    |000EAA;
                                                             ;      |        |      ;
           CODE_83D18D:
                        LDA.B #$00                           ;83D18D|A900    |      ;
@@ -11271,7 +11271,7 @@ eventID_mechVile_32_main:
                                                             ;      |        |      ;
           CODE_83D19A:
                        JSL.L updateEv_13_14_17_0f           ;83D19A|22EA8E84|848EEA;
-                       LDA.B r_ev_2_0f-$EA8                 ;83D19E|A50F    |000EB7;
+                       LDA.B $0F                            ;83D19E|A50F    |000EB7;
                        AND.B #$03                           ;83D1A0|2903    |      ;
                        BEQ CODE_83D1AA                      ;83D1A2|F006    |83D1AA;
                        db $09,$38,$22,$A2,$88,$80           ;83D1A4|        |      ;
@@ -11279,32 +11279,32 @@ eventID_mechVile_32_main:
           CODE_83D1AA:
                        JMP.W CODE_83D755                    ;83D1AA|4C55D7  |83D755;
                                                             ;      |        |      ;
-                       LDX.B r_ev_2_03_do-$EA8              ;83D1AD|A603    |000EAB;
+                       LDX.B $03                            ;83D1AD|A603    |000EAB;
                        JMP.W (UNREACH_83D1B2,X)             ;83D1AF|7CB2D1  |83D1B2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83D1B2:
                        db $B8,$D1,$CD,$D1,$DC,$D1           ;83D1B2|        |      ;
                        LDA.B #$02                           ;83D1B8|A902    |      ;
-                       STA.B r_ev_2_03_do-$EA8              ;83D1BA|8503    |000EAB;
+                       STA.B $03                            ;83D1BA|8503    |000EAB;
                        JSL.L CODE_849086                    ;83D1BC|22869084|849086;
                        AND.B #$0F                           ;83D1C0|290F    |      ;
                        CLC                                  ;83D1C2|18      |      ;
                        ADC.B #$0F                           ;83D1C3|690F    |      ;
-                       STA.B r_ev_2_34-$EA8                 ;83D1C5|8534    |000EDC;
+                       STA.B $34                            ;83D1C5|8534    |000EDC;
                        LDA.B #$02                           ;83D1C7|A902    |      ;
-                       JSL.L CODE_848F07                    ;83D1C9|22078F84|848F07;
-                       DEC.B r_ev_2_34-$EA8                 ;83D1CD|C634    |000EDC;
+                       JSL.L playerGrabedRoutine            ;83D1C9|22078F84|848F07;
+                       DEC.B $34                            ;83D1CD|C634    |000EDC;
                        BNE CODE_83D1DB                      ;83D1CF|D00A    |83D1DB;
                        LDA.B #$01                           ;83D1D1|A901    |      ;
-                       JSL.L CODE_848F07                    ;83D1D3|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D1D3|22078F84|848F07;
                        LDA.B #$04                           ;83D1D7|A904    |      ;
-                       STA.B r_ev_2_03_do-$EA8              ;83D1D9|8503    |000EAB;
+                       STA.B $03                            ;83D1D9|8503    |000EAB;
                                                             ;      |        |      ;
           CODE_83D1DB:
                        RTS                                  ;83D1DB|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B r_ev_2_0f-$EA8                 ;83D1DC|A50F    |000EB7;
+                       LDA.B $0F                            ;83D1DC|A50F    |000EB7;
                        BPL CODE_83D1E5                      ;83D1DE|1005    |83D1E5;
                        LDA.B #$04                           ;83D1E0|A904    |      ;
                        JMP.W CODE_8386F1                    ;83D1E2|4CF186  |8386F1;
@@ -11338,11 +11338,11 @@ eventID_mechVile_32_main:
                        SEP #$20                             ;83D247|E220    |      ;
                        STZ.B r_ev_31-$E68                   ;83D249|6431    |000E99;
                        LDA.B #$3B                           ;83D24B|A93B    |      ;
-                       JSL.L CODE_8088A2                    ;83D24D|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83D24D|22A28880|8088A2;
                        LDA.B #$40                           ;83D251|A940    |      ;
                        STA.B r_ev_34-$E68                   ;83D253|8534    |000E9C;
                        LDA.B #$06                           ;83D255|A906    |      ;
-                       JSL.L CODE_848F07                    ;83D257|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D257|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83D25B:
                        JSR.W CODE_83CDB3                    ;83D25B|20B3CD  |83CDB3;
@@ -11391,10 +11391,10 @@ eventID_mechVile_32_main:
                        BNE CODE_83D2B2                      ;83D2A8|D008    |83D2B2;
                        INC.B r_ev_03_do-$E68                ;83D2AA|E603    |000E6B;
                        LDA.B #$07                           ;83D2AC|A907    |      ;
-                       JSL.L CODE_848F07                    ;83D2AE|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D2AE|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83D2B2:
-                       LDA.B r_ev_0f-$E68                   ;83D2B2|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83D2B2|A50F    |000E77;
                        BPL CODE_83D2BB                      ;83D2B4|1005    |83D2BB;
                        LDA.B #$04                           ;83D2B6|A904    |      ;
                        JMP.W CODE_8386F1                    ;83D2B8|4CF186  |8386F1;
@@ -11462,7 +11462,7 @@ eventID_mechVile_32_main:
                        STA.B r_ev_1c_ySpdSub-$E68           ;83D3F3|851C    |000E84;
                        SEP #$30                             ;83D3F5|E230    |      ;
                        LDA.B #$03                           ;83D3F7|A903    |      ;
-                       JSL.L CODE_848F07                    ;83D3F9|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D3F9|22078F84|848F07;
                        RTS                                  ;83D3FD|60      |      ;
                                                             ;      |        |      ;
                        LDA.B r_ev_2b-$E68                   ;83D3FE|A52B    |000E93;
@@ -11472,13 +11472,13 @@ eventID_mechVile_32_main:
                        STA.B r_ev_03_do-$E68                ;83D406|8503    |000E6B;
                        STZ.B r_ev_2f-$E68                   ;83D408|642F    |000E97;
                        LDA.B #$0F                           ;83D40A|A90F    |      ;
-                       JSL.L CODE_848F07                    ;83D40C|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D40C|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83D410:
                        JSL.L CODE_828174                    ;83D410|22748182|828174;
                        RTS                                  ;83D414|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B r_ev_0f-$E68                   ;83D415|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83D415|A50F    |000E77;
                        BPL CODE_83D421                      ;83D417|1008    |83D421;
                        JSR.W CODE_83D725                    ;83D419|2025D7  |83D725;
                        LDA.B #$04                           ;83D41C|A904    |      ;
@@ -11499,12 +11499,12 @@ eventID_mechVile_32_main:
                        LDA.B #$02                           ;83D437|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;83D439|8503    |000E6B;
                        REP #$31                             ;83D43B|C231    |      ;
-                       LDA.W r_0bad                         ;83D43D|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83D43D|ADAD0B  |860BAD;
                        ADC.W #$FF80                         ;83D440|6980FF  |      ;
-                       STA.W r_1e5e                         ;83D443|8D5E1E  |861E5E;
+                       STA.W r_levelSpecFlag                ;83D443|8D5E1E  |861E5E;
                        STA.W r_cam_BG0_xPos_lock            ;83D446|8D601E  |861E60;
                        LDX.W #$0178                         ;83D449|A27801  |      ;
-                       LDA.W r_0bad                         ;83D44C|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83D44C|ADAD0B  |860BAD;
                        CLC                                  ;83D44F|18      |      ;
                        ADC.W #$0020                         ;83D450|692000  |      ;
                        CMP.B r_ev_05_xPos-$E68              ;83D453|C505    |000E6D;
@@ -11517,7 +11517,7 @@ eventID_mechVile_32_main:
                        LDA.B #$78                           ;83D45E|A978    |      ;
                        STA.B r_ev_34-$E68                   ;83D460|8534    |000E9C;
                        LDA.B #$02                           ;83D462|A902    |      ;
-                       JSL.L CODE_848F07                    ;83D464|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D464|22078F84|848F07;
                        RTS                                  ;83D468|60      |      ;
                                                             ;      |        |      ;
                        DEC.B r_ev_34-$E68                   ;83D469|C634    |000E9C;
@@ -11526,7 +11526,7 @@ eventID_mechVile_32_main:
                        STA.B r_ev_03_do-$E68                ;83D46F|8503    |000E6B;
                        REP #$21                             ;83D471|C221    |      ;
                        LDX.B #$40                           ;83D473|A240    |      ;
-                       LDA.W r_0bad                         ;83D475|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83D475|ADAD0B  |860BAD;
                        ADC.W #$0020                         ;83D478|692000  |      ;
                        CMP.B r_ev_05_xPos-$E68              ;83D47B|C505    |000E6D;
                        BCS CODE_83D481                      ;83D47D|B002    |83D481;
@@ -11536,13 +11536,13 @@ eventID_mechVile_32_main:
                        STX.B r_ev_33-$E68                   ;83D481|8633    |000E9B;
                        SEP #$20                             ;83D483|E220    |      ;
                        LDA.B #$00                           ;83D485|A900    |      ;
-                       JSL.L CODE_848F07                    ;83D487|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D487|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83D48B:
                        RTS                                  ;83D48B|60      |      ;
                                                             ;      |        |      ;
                        REP #$21                             ;83D48C|C221    |      ;
-                       LDA.W r_0bad                         ;83D48E|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83D48E|ADAD0B  |860BAD;
                        ADC.W #$0020                         ;83D491|692000  |      ;
                        SEC                                  ;83D494|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;83D495|E505    |000E6D;
@@ -11557,24 +11557,24 @@ eventID_mechVile_32_main:
                        LDA.B #$02                           ;83D4A8|A902    |      ;
                        STA.B r_ev_12-$E68                   ;83D4AA|8512    |000E7A;
                        LDA.B #$14                           ;83D4AC|A914    |      ;
-                       JSL.L CODE_848F07                    ;83D4AE|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D4AE|22078F84|848F07;
                        RTS                                  ;83D4B2|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83D4B3:
                        JSL.L CODE_82823E                    ;83D4B3|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;83D4B7|22EA8E84|848EEA;
-                       LDA.B r_ev_0f-$E68                   ;83D4BB|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83D4BB|A50F    |000E77;
                        AND.B #$03                           ;83D4BD|2903    |      ;
                        BEQ CODE_83D4C7                      ;83D4BF|F006    |83D4C7;
                        ORA.B #$38                           ;83D4C1|0938    |      ;
-                       JSL.L CODE_8088A2                    ;83D4C3|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83D4C3|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83D4C7:
                        RTS                                  ;83D4C7|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83D4C8|22EA8E84|848EEA;
-                       BIT.B r_ev_0f-$E68                   ;83D4CC|240F    |000E77;
+                       BIT.B r_ev_0f_waitCount-$E68         ;83D4CC|240F    |000E77;
                        BPL CODE_83D4FC                      ;83D4CE|102C    |83D4FC;
                        LDA.B #$08                           ;83D4D0|A908    |      ;
                        STA.B r_ev_03_do-$E68                ;83D4D2|8503    |000E6B;
@@ -11622,18 +11622,18 @@ eventID_mechVile_32_main:
                        LDA.B #$02                           ;83D521|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;83D523|8503    |000E6B;
                        LDA.B #$40                           ;83D525|A940    |      ;
-                       STA.W r_blaster15_dir_mirror         ;83D527|8D110C  |860C11;
+                       STA.W $0C11                          ;83D527|8D110C  |860C11;
                        LDA.B #$0E                           ;83D52A|A90E    |      ;
-                       JSL.L CODE_848F07                    ;83D52C|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D52C|22078F84|848F07;
                        RTS                                  ;83D530|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B r_ev_0f-$E68                   ;83D531|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83D531|A50F    |000E77;
                        BPL CODE_83D541                      ;83D533|100C    |83D541;
                        LDA.B #$04                           ;83D535|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;83D537|8503    |000E6B;
                        STA.B r_ev_30-$E68                   ;83D539|8530    |000E98;
                        LDA.B #$09                           ;83D53B|A909    |      ;
-                       JSL.L CODE_848F07                    ;83D53D|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D53D|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83D541:
                        JSL.L updateEv_13_14_17_0f           ;83D541|22EA8E84|848EEA;
@@ -11668,7 +11668,7 @@ eventID_mechVile_32_main:
                        STZ.B r_ev_1e_weight-$E68            ;83D577|641E    |000E86;
                        SEP #$20                             ;83D579|E220    |      ;
                        LDA.B #$0A                           ;83D57B|A90A    |      ;
-                       JSL.L CODE_848F07                    ;83D57D|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D57D|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83D581:
                        JSL.L CODE_82825D                    ;83D581|225D8282|82825D;
@@ -11695,7 +11695,7 @@ eventID_mechVile_32_main:
        UNREACH_83D5A6:
                        db $AC,$D5,$C7,$D5,$D7,$D5           ;83D5A6|        |00C7D5;
                        REP #$10                             ;83D5AC|C210    |      ;
-                       LDX.B r_ev_0c-$E68                   ;83D5AE|A60C    |000E74;
+                       LDX.B r_ev_0c_parent-$E68            ;83D5AE|A60C    |000E74;
                        LDA.W r_0002,X                       ;83D5B0|BD0200  |860002;
                        CMP.B #$04                           ;83D5B3|C904    |      ;
                        BNE CODE_83D5C0                      ;83D5B5|D009    |83D5C0;
@@ -11712,12 +11712,12 @@ eventID_mechVile_32_main:
                        LDA.B #$04                           ;83D5C7|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;83D5C9|8503    |000E6B;
                        LDA.B #$09                           ;83D5CB|A909    |      ;
-                       JSL.L CODE_848F07                    ;83D5CD|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D5CD|22078F84|848F07;
                        STZ.B r_ev_34-$E68                   ;83D5D1|6434    |000E9C;
                        LDA.B #$04                           ;83D5D3|A904    |      ;
                        STA.B r_ev_35-$E68                   ;83D5D5|8535    |000E9D;
                        REP #$10                             ;83D5D7|C210    |      ;
-                       LDX.B r_ev_0c-$E68                   ;83D5D9|A60C    |000E74;
+                       LDX.B r_ev_0c_parent-$E68            ;83D5D9|A60C    |000E74;
                        LDA.W r_0013,X                       ;83D5DB|BD1300  |860013;
                        CMP.B #$01                           ;83D5DE|C901    |      ;
                        SEP #$10                             ;83D5E0|E210    |      ;
@@ -11785,18 +11785,18 @@ eventID_mechVile_32_main:
                        LDA.B #$05                           ;83D652|A905    |      ;
                        STA.B r_ev_1d_ySpd-$E68              ;83D654|851D    |000E85;
                        LDA.B #$38                           ;83D656|A938    |      ;
-                       JSL.L CODE_8088A2                    ;83D658|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83D658|22A28880|8088A2;
                        LDA.B #$0C                           ;83D65C|A90C    |      ;
                        JSR.W CODE_83CD18                    ;83D65E|2018CD  |83CD18;
                        LDA.B #$03                           ;83D661|A903    |      ;
-                       JSL.L CODE_848F07                    ;83D663|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D663|22078F84|848F07;
                        LDA.B r_ev_2b-$E68                   ;83D667|A52B    |000E93;
                        BIT.B #$04                           ;83D669|8904    |      ;
                        BEQ CODE_83D68E                      ;83D66B|F021    |83D68E;
                        LDA.B #$04                           ;83D66D|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;83D66F|8503    |000E6B;
                        LDA.B #$39                           ;83D671|A939    |      ;
-                       JSL.L CODE_8088A2                    ;83D673|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83D673|22A28880|8088A2;
                        LDX.B #$02                           ;83D677|A202    |      ;
                        LDY.B #$01                           ;83D679|A001    |      ;
                        LDA.B #$0A                           ;83D67B|A90A    |      ;
@@ -11804,7 +11804,7 @@ eventID_mechVile_32_main:
                        JSR.W CODE_83CD41                    ;83D681|2041CD  |83CD41;
                        JSR.W CODE_83CD6C                    ;83D684|206CCD  |83CD6C;
                        LDA.B #$04                           ;83D687|A904    |      ;
-                       JSL.L CODE_848F07                    ;83D689|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D689|22078F84|848F07;
                        RTS                                  ;83D68D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11820,7 +11820,7 @@ eventID_mechVile_32_main:
                        SEP #$20                             ;83D69D|E220    |      ;
                        RTS                                  ;83D69F|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B r_ev_0f-$E68                   ;83D6A0|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83D6A0|A50F    |000E77;
                        BPL CODE_83D6AC                      ;83D6A2|1008    |83D6AC;
                        LDA.B #$06                           ;83D6A4|A906    |      ;
                        STA.B r_ev_03_do-$E68                ;83D6A6|8503    |000E6B;
@@ -11853,7 +11853,7 @@ eventID_mechVile_32_main:
                                                             ;      |        |      ;
           CODE_83D6D6:
                        JSL.L CODE_84A003                    ;83D6D6|2203A084|84A003;
-                       STZ.W r_0bd8                         ;83D6DA|9CD80B  |860BD8;
+                       STZ.W r_d_0bd8                       ;83D6DA|9CD80B  |860BD8;
                        LDA.B #$04                           ;83D6DD|A904    |      ;
                        JMP.W CODE_8386F1                    ;83D6DF|4CF186  |8386F1;
                                                             ;      |        |      ;
@@ -11870,7 +11870,7 @@ eventID_mechVile_32_main:
                        REP #$20                             ;83D6E7|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;83D6E9|A505    |000E6D;
                        SEC                                  ;83D6EB|38      |      ;
-                       SBC.W r_0bad                         ;83D6EC|EDAD0B  |860BAD;
+                       SBC.W r_d_player_xSubPos             ;83D6EC|EDAD0B  |860BAD;
                        BPL CODE_83D6F5                      ;83D6EF|1004    |83D6F5;
                        EOR.W #$FFFF                         ;83D6F1|49FFFF  |      ;
                        INC A                                ;83D6F4|1A      |      ;
@@ -11911,7 +11911,7 @@ eventID_mechVile_32_main:
                        LDX.B #$08                           ;83D714|A208    |      ;
                                                             ;      |        |      ;
           CODE_83D716:
-                       LDA.W r_0bcf                         ;83D716|ADCF0B  |860BCF;
+                       LDA.W r_d_0bcf                       ;83D716|ADCF0B  |860BCF;
                        AND.B #$7F                           ;83D719|297F    |      ;
                        CMP.B #$04                           ;83D71B|C904    |      ;
                        BCS CODE_83D721                      ;83D71D|B002    |83D721;
@@ -11923,7 +11923,7 @@ eventID_mechVile_32_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83D725:
-                       JSL.L CODE_828358                    ;83D725|22588382|828358;
+                       JSL.L findEnemyShotEmptySlot         ;83D725|22588382|828358;
                        BNE CODE_83D752                      ;83D729|D027    |83D752;
                        INC.W r_0000,X                       ;83D72B|FE0000  |860000;
                        LDA.B #$16                           ;83D72E|A916    |      ;
@@ -11962,7 +11962,7 @@ eventID_mechVile_32_main:
                                                             ;      |        |      ;
           CODE_83D760:
                        REP #$21                             ;83D760|C221    |      ;
-                       LDA.B r_ev_0f-$E68                   ;83D762|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83D762|A50F    |000E77;
                        AND.W #$0003                         ;83D764|290300  |      ;
                        TAX                                  ;83D767|AA      |      ;
                        LDA.W UNREACH_86D016,X               ;83D768|BD16D0  |86D016;
@@ -11974,12 +11974,12 @@ eventID_mechVile_32_main:
                                                             ;      |        |      ;
           CODE_83D776:
                        ADC.B r_ev_05_xPos-$E68              ;83D776|6505    |000E6D;
-                       STA.W r_0bad                         ;83D778|8DAD0B  |860BAD;
+                       STA.W r_d_player_xSubPos             ;83D778|8DAD0B  |860BAD;
                        LDA.W UNREACH_86D017,X               ;83D77B|BD17D0  |86D017;
                        AND.W #$00FF                         ;83D77E|29FF00  |      ;
                        CLC                                  ;83D781|18      |      ;
                        ADC.B r_ev_08_yPos-$E68              ;83D782|6508    |000E70;
-                       STA.W r_0bb0                         ;83D784|8DB00B  |860BB0;
+                       STA.W r_d_player_yPos                ;83D784|8DB00B  |860BB0;
                        SEP #$20                             ;83D787|E220    |      ;
                        RTS                                  ;83D789|60      |      ;
                                                             ;      |        |      ;
@@ -12049,7 +12049,7 @@ eventID_mechVile_32_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83D80D:
-                       LDA.W $0B9C                          ;83D80D|AD9C0B  |860B9C;
+                       LDA.W r_frameCounter1                ;83D80D|AD9C0B  |860B9C;
                        AND.B #$07                           ;83D810|2907    |      ;
                        BNE CODE_83D845                      ;83D812|D031    |83D845;
                        JSL.L CODE_8282D3                    ;83D814|22D38282|8282D3;
@@ -12129,7 +12129,7 @@ eventID_cragMan_34_main:
           CODE_83D8A4:
                        JSL.L initPosAllign                  ;83D8A4|226E8082|82806E;
                        BCS CODE_83D8AE                      ;83D8A8|B004    |83D8AE;
-                       JML.L eventID_vile_68_afterInit      ;83D8AA|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83D8AA|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83D8AE:
@@ -12147,7 +12147,7 @@ eventID_cragMan_34_main:
                        dw UNREACH_83DA2E                    ;83D8C0|        |83DA2E;
                                                             ;      |        |      ;
   cragMan_34_state_00:
-                       JSL.L enemy_initiate_jumpPhysic      ;83D8C2|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83D8C2|227D8282|82827D;
                        STZ.B $28                            ;83D8C6|6428    |000F10;
                        LDA.B $11                            ;83D8C8|A511    |000EF9;
                        AND.B #$0E                           ;83D8CA|290E    |      ;
@@ -12157,7 +12157,7 @@ eventID_cragMan_34_main:
                        LDA.B #$02                           ;83D8D2|A902    |      ;
                        STA.B $26                            ;83D8D4|8526    |000F0E;
                        LDA.B #$00                           ;83D8D6|A900    |      ;
-                       JSL.L CODE_848F07                    ;83D8D8|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D8D8|22078F84|848F07;
                        REP #$20                             ;83D8DC|C220    |      ;
                        LDA.W #$D024                         ;83D8DE|A924D0  |      ;
                        STA.B $20                            ;83D8E1|8520    |000F08;
@@ -12169,7 +12169,7 @@ eventID_cragMan_34_main:
                        REP #$20                             ;83D8E6|C220    |      ;
                        LDA.B $05                            ;83D8E8|A505    |000EED;
                        SEC                                  ;83D8EA|38      |      ;
-                       SBC.W r_0bad                         ;83D8EB|EDAD0B  |860BAD;
+                       SBC.W r_d_player_xSubPos             ;83D8EB|EDAD0B  |860BAD;
                        BCS CODE_83D8F4                      ;83D8EE|B004    |83D8F4;
                        EOR.W #$FFFF                         ;83D8F0|49FFFF  |      ;
                        INC A                                ;83D8F3|1A      |      ;
@@ -12199,11 +12199,11 @@ eventID_cragMan_34_main:
                        AND.B #$04                           ;83D918|2904    |      ;
                        BEQ CODE_83D94A                      ;83D91A|F02E    |83D94A;
                        LDA.B #$06                           ;83D91C|A906    |      ;
-                       JSL.L CODE_848F07                    ;83D91E|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D91E|22078F84|848F07;
                        LDA.B #$06                           ;83D922|A906    |      ;
                        STA.B $01                            ;83D924|8501    |000EE9;
                        LDA.B #$20                           ;83D926|A920    |      ;
-                       JSL.L CODE_8088A2                    ;83D928|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83D928|22A28880|8088A2;
                        REP #$20                             ;83D92C|C220    |      ;
                        LDA.B $1C                            ;83D92E|A51C    |000F04;
                        EOR.W #$FFFF                         ;83D930|49FFFF  |      ;
@@ -12246,7 +12246,7 @@ eventID_cragMan_34_main:
                        STA.B $01                            ;83D972|8501    |000EE9;
                        STZ.B $02                            ;83D974|6402    |000EEA;
                        LDA.B #$05                           ;83D976|A905    |      ;
-                       JSL.L CODE_848F07                    ;83D978|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D978|22078F84|848F07;
                        REP #$20                             ;83D97C|C220    |      ;
                        LDA.W #$D02E                         ;83D97E|A92ED0  |      ;
                        STA.B $20                            ;83D981|8520    |000F08;
@@ -12269,7 +12269,7 @@ eventID_cragMan_34_main:
                        LDA.B #$1E                           ;83D99A|A91E    |      ;
                        STA.B $35                            ;83D99C|8535    |000F1D;
                        LDA.B #$10                           ;83D99E|A910    |      ;
-                       JSL.L CODE_848F07                    ;83D9A0|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83D9A0|22078F84|848F07;
                        LDA.B #$08                           ;83D9A4|A908    |      ;
                        STA.B $27                            ;83D9A6|8527    |000F0F;
                        LDA.B #$03                           ;83D9A8|A903    |      ;
@@ -12299,7 +12299,7 @@ eventID_cragMan_34_main:
                                                             ;      |        |      ;
           CODE_83DA06:
                        LDA.B #$1E                           ;83DA06|A91E    |      ;
-                       STA.B r_ev_2_35-$EA8                 ;83DA08|8535    |000EDD;
+                       STA.B $35                            ;83DA08|8535    |000EDD;
                                                             ;      |        |      ;
           CODE_83DA0A:
                        JMP.W CODE_83DB67                    ;83DA0A|4C67DB  |83DB67;
@@ -12487,18 +12487,18 @@ metalWing_35_state_00:
                        LDA.W $0C26                          ;83DBAE|AD260C  |860C26;
                        BIT.B #$20                           ;83DBB1|8920    |      ;
                        BEQ CODE_83DBD4                      ;83DBB3|F01F    |83DBD4;
-                       JSL.L enemy_initiate_jumpPhysic      ;83DBB5|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83DBB5|227D8282|82827D;
                        LDA.B #$04                           ;83DBB9|A904    |      ;
                        STA.B r_ev_12-$E68                   ;83DBBB|8512    |000E7A;
                        STZ.B r_ev_2f-$E68                   ;83DBBD|642F    |000E97;
                        LDA.B #$02                           ;83DBBF|A902    |      ;
-                       STA.B r_ev_27-$E68                   ;83DBC1|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83DBC1|8527    |000E8F;
                        LDA.B #$01                           ;83DBC3|A901    |      ;
                        STA.B r_ev_28-$E68                   ;83DBC5|8528    |000E90;
                        LDA.B #$03                           ;83DBC7|A903    |      ;
                        STA.B r_ev_26-$E68                   ;83DBC9|8526    |000E8E;
                        REP #$20                             ;83DBCB|C220    |      ;
-                       LDA.W r_0bad                         ;83DBCD|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83DBCD|ADAD0B  |860BAD;
                        CMP.B r_ev_05_xPos-$E68              ;83DBD0|C505    |000E6D;
                        BCC CODE_83DBD8                      ;83DBD2|9004    |83DBD8;
                                                             ;      |        |      ;
@@ -12515,7 +12515,7 @@ metalWing_35_state_00:
                        STZ.B r_ev_1e_weight-$E68            ;83DBE4|641E    |000E86;
                        SEP #$20                             ;83DBE6|E220    |      ;
                        LDA.B #$02                           ;83DBE8|A902    |      ;
-                       JML.L CODE_848F07                    ;83DBEA|5C078F84|848F07;
+                       JML.L playerGrabedRoutine            ;83DBEA|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DBEE:
@@ -12546,7 +12546,7 @@ metalWing_35_state_00:
                                                             ;      |        |      ;
           CODE_83DC1C:
                        JSL.L CODE_849B03                    ;83DC1C|22039B84|849B03;
-                       JML.L eventID_vile_68_afterInit      ;83DC20|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83DC20|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_83DC24:
@@ -12569,7 +12569,7 @@ metalWing_35_state_00:
           CODE_83DC3F:
                        STA.B r_ev_33-$E68                   ;83DC3F|8533    |000E9B;
                        LDA.B #$00                           ;83DC41|A900    |      ;
-                       JSL.L CODE_848F07                    ;83DC43|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83DC43|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83DC47:
                        DEC.B r_ev_33-$E68                   ;83DC47|C633    |000E9B;
@@ -12600,15 +12600,15 @@ metalWing_35_state_00:
                        LDA.B #$40                           ;83DC68|A940    |      ;
                        STA.B r_ev_1f-$E68                   ;83DC6A|851F    |000E87;
                        LDA.B #$02                           ;83DC6C|A902    |      ;
-                       JSL.L CODE_848F07                    ;83DC6E|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83DC6E|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83DC72:
-                       LDA.B r_ev_0f-$E68                   ;83DC72|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83DC72|A50F    |000E77;
                        BPL CODE_83DC80                      ;83DC74|100A    |83DC80;
                        LDA.B #$04                           ;83DC76|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;83DC78|8503    |000E6B;
                        LDA.B #$00                           ;83DC7A|A900    |      ;
-                       JSL.L CODE_848F07                    ;83DC7C|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83DC7C|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83DC80:
                        JSL.L CODE_828195                    ;83DC80|22958182|828195;
@@ -12638,7 +12638,7 @@ metalWing_35_state_00:
                        LDA.B #$04                           ;83DCA7|A904    |      ;
                        STA.B r_ev_1f-$E68                   ;83DCA9|851F    |000E87;
                        LDA.B #$01                           ;83DCAB|A901    |      ;
-                       JSL.L CODE_848F07                    ;83DCAD|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83DCAD|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83DCB1:
                        JSL.L CODE_828174                    ;83DCB1|22748182|828174;
@@ -12672,7 +12672,7 @@ metalWing_35_state_00:
           CODE_83DCE0:
                        LDX.B r_ev_02_action-$E68            ;83DCE0|A602    |000E6A;
                        JSR.W (DATA8_83DCEA,X)               ;83DCE2|FCEADC  |83DCEA;
-                       JSL.L eventID_vile_68_afterInit      ;83DCE5|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83DCE5|22B48082|8280B4;
                        RTL                                  ;83DCE9|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12689,7 +12689,7 @@ metalWing_35_state_00:
                        LDA.B #$10                           ;83DD00|A910    |      ;
                        STA.B r_ev_2a-$E68                   ;83DD02|852A    |000E92;
                        LDA.B #$03                           ;83DD04|A903    |      ;
-                       JSL.L CODE_848F07                    ;83DD06|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83DD06|22078F84|848F07;
                        JSR.W CODE_83DD38                    ;83DD0A|2038DD  |83DD38;
                        JSL.L CODE_8490A0                    ;83DD0D|22A09084|8490A0;
                        CMP.B #$34                           ;83DD11|C934    |      ;
@@ -12716,7 +12716,7 @@ metalWing_35_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DD38:
-                       LDA.W $0B9C                          ;83DD38|AD9C0B  |860B9C;
+                       LDA.W r_frameCounter1                ;83DD38|AD9C0B  |860B9C;
                        AND.B #$07                           ;83DD3B|2907    |      ;
                        BNE CODE_83DD66                      ;83DD3D|D027    |83DD66;
                        JSL.L CODE_8282D3                    ;83DD3F|22D38282|8282D3;
@@ -12772,7 +12772,7 @@ eventID_jamminger_36_main:
                        JSL.L initPosAllign                  ;83DD98|226E8082|82806E;
                        BCS CODE_83DD90                      ;83DD9C|B0F2    |83DD90;
                        JSR.W CODE_83DF5E                    ;83DD9E|205EDF  |83DF5E;
-                       JML.L eventID_vile_68_afterInit      ;83DDA1|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83DDA1|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    jamminger_36_state:
@@ -12785,19 +12785,19 @@ eventID_jamminger_36_main:
                        dw CODE_83DF17                       ;83DDB1|        |83DF17;
                                                             ;      |        |      ;
 jamminger_36_state_00:
-                       JSL.L enemy_initiate_jumpPhysic      ;83DDB3|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83DDB3|227D8282|82827D;
                        LDA.B r_ev_11_sprAtri-$E68           ;83DDB7|A511    |000E79;
                        AND.B #$0E                           ;83DDB9|290E    |      ;
                        STA.B r_ev_33-$E68                   ;83DDBB|8533    |000E9B;
                        LDA.B #$02                           ;83DDBD|A902    |      ;
-                       STA.B r_ev_27-$E68                   ;83DDBF|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83DDBF|8527    |000E8F;
                        LDA.B #$01                           ;83DDC1|A901    |      ;
                        STA.B r_ev_26-$E68                   ;83DDC3|8526    |000E8E;
                        LDA.B #$04                           ;83DDC5|A904    |      ;
                        STA.B r_ev_12-$E68                   ;83DDC7|8512    |000E7A;
                        STZ.B r_ev_34-$E68                   ;83DDC9|6434    |000E9C;
                        LDA.B #$00                           ;83DDCB|A900    |      ;
-                       JSL.L CODE_848F07                    ;83DDCD|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83DDCD|22078F84|848F07;
                        REP #$20                             ;83DDD1|C220    |      ;
                        LDA.W #$D0C2                         ;83DDD3|A9C2D0  |      ;
                        STA.B r_ev_20_hitBoxAddr-$E68        ;83DDD6|8520    |000E88;
@@ -12815,7 +12815,7 @@ jamminger_36_state_00:
                        JSR.W CODE_83DF35                    ;83DDE6|2035DF  |83DF35;
                        JSL.L CODE_82820A                    ;83DDE9|220A8282|82820A;
                        REP #$20                             ;83DDED|C220    |      ;
-                       LDA.W r_0bad                         ;83DDEF|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83DDEF|ADAD0B  |860BAD;
                        SEC                                  ;83DDF2|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;83DDF3|E505    |000E6D;
                        BCS CODE_83DDFB                      ;83DDF5|B004    |83DDFB;
@@ -12825,7 +12825,7 @@ jamminger_36_state_00:
           CODE_83DDFB:
                        CMP.W #$0040                         ;83DDFB|C94000  |      ;
                        BCS CODE_83DE59                      ;83DDFE|B059    |83DE59;
-                       LDA.W r_0bb0                         ;83DE00|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;83DE00|ADB00B  |860BB0;
                        SEC                                  ;83DE03|38      |      ;
                        SBC.B r_ev_08_yPos-$E68              ;83DE04|E508    |000E70;
                        BCS CODE_83DE0C                      ;83DE06|B004    |83DE0C;
@@ -12842,7 +12842,7 @@ jamminger_36_state_00:
                        ASL A                                ;83DE1B|0A      |      ;
                        TAX                                  ;83DE1C|AA      |      ;
                        REP #$20                             ;83DE1D|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;83DE1F|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;83DE1F|BD37EE  |86EE37;
                        LSR A                                ;83DE22|4A      |      ;
                        LSR A                                ;83DE23|4A      |      ;
                        LSR A                                ;83DE24|4A      |      ;
@@ -12914,7 +12914,7 @@ jamminger_36_state_00:
                        LDA.B r_ev_35-$E68                   ;83DE8B|A535    |000E9D;
                        BEQ CODE_83DEA5                      ;83DE8D|F016    |83DEA5;
                        LDA.B #$01                           ;83DE8F|A901    |      ;
-                       JSL.L CODE_848F07                    ;83DE91|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83DE91|22078F84|848F07;
                        LDA.B #$04                           ;83DE95|A904    |      ;
                        STA.B r_ev_1d_ySpd-$E68              ;83DE97|851D    |000E85;
                        STZ.B r_ev_1c_ySpdSub-$E68           ;83DE99|641C    |000E84;
@@ -12938,7 +12938,7 @@ jamminger_36_state_00:
                        ASL A                                ;83DEB3|0A      |      ;
                        TAX                                  ;83DEB4|AA      |      ;
                        REP #$20                             ;83DEB5|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;83DEB7|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;83DEB7|BD37EE  |86EE37;
                        LSR A                                ;83DEBA|4A      |      ;
                        BIT.W #$4000                         ;83DEBB|890040  |      ;
                        BEQ CODE_83DEC3                      ;83DEBE|F003    |83DEC3;
@@ -12965,7 +12965,7 @@ jamminger_36_state_00:
                        LDA.B r_ev_35-$E68                   ;83DEDA|A535    |000E9D;
                        BEQ CODE_83DEF2                      ;83DEDC|F014    |83DEF2;
                        LDA.B #$01                           ;83DEDE|A901    |      ;
-                       JSL.L CODE_848F07                    ;83DEE0|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83DEE0|22078F84|848F07;
                        LDA.B #$04                           ;83DEE4|A904    |      ;
                        STA.B r_ev_1d_ySpd-$E68              ;83DEE6|851D    |000E85;
                        STZ.B r_ev_1c_ySpdSub-$E68           ;83DEE8|641C    |000E84;
@@ -12996,7 +12996,7 @@ jamminger_36_state_00:
                        DEC.B r_ev_34-$E68                   ;83DF06|C634    |000E9C;
                        BNE CODE_83DF16                      ;83DF08|D00C    |83DF16;
                        LDA.B #$00                           ;83DF0A|A900    |      ;
-                       JSL.L CODE_848F07                    ;83DF0C|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83DF0C|22078F84|848F07;
                        LDA.B #$02                           ;83DF10|A902    |      ;
                        STA.B r_ev_01_state-$E68             ;83DF12|8501    |000E69;
                        STZ.B r_ev_02_action-$E68            ;83DF14|6402    |000E6A;
@@ -13009,7 +13009,7 @@ jamminger_36_state_00:
                        LDA.B r_ev_02_action-$E68            ;83DF17|A502    |000E6A;
                        BNE CODE_83DF2C                      ;83DF19|D011    |83DF2C;
                        LDA.B #$00                           ;83DF1B|A900    |      ;
-                       JSL.L CODE_848F07                    ;83DF1D|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83DF1D|22078F84|848F07;
                        REP #$20                             ;83DF21|C220    |      ;
                        LDA.W #$0300                         ;83DF23|A90003  |      ;
                        STA.B r_ev_1c_ySpdSub-$E68           ;83DF26|851C    |000E84;
@@ -13024,7 +13024,7 @@ jamminger_36_state_00:
                                                             ;      |        |      ;
           CODE_83DF35:
                        REP #$20                             ;83DF35|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;83DF37|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;83DF37|BD37EE  |86EE37;
                        LSR A                                ;83DF3A|4A      |      ;
                        BIT.W #$4000                         ;83DF3B|890040  |      ;
                        BEQ CODE_83DF43                      ;83DF3E|F003    |83DF43;
@@ -13032,7 +13032,7 @@ jamminger_36_state_00:
                                                             ;      |        |      ;
           CODE_83DF43:
                        CLC                                  ;83DF43|18      |      ;
-                       ADC.W stormEagle_56_subID,X          ;83DF44|7D37EE  |86EE37;
+                       ADC.W $EE37,X                        ;83DF44|7D37EE  |86EE37;
                        STA.B r_ev_1a_xSpdSub-$E68           ;83DF47|851A    |000E82;
                        LDA.W DATA8_86EE39,X                 ;83DF49|BD39EE  |86EE39;
                        LSR A                                ;83DF4C|4A      |      ;
@@ -13088,7 +13088,7 @@ eventID_flamer_38_main:
                        dw CODE_83E16B                       ;83DF92|        |83E16B;
                                                             ;      |        |      ;
    flamer_38_state_00:
-                       JSL.L enemy_initiate_jumpPhysic      ;83DF94|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83DF94|227D8282|82827D;
                        LDA.B r_ev_11_sprAtri-$E68           ;83DF98|A511    |000E79;
                        AND.B #$0E                           ;83DF9A|290E    |      ;
                        STA.B r_ev_3e-$E68                   ;83DF9C|853E    |000EA6;
@@ -13111,9 +13111,9 @@ eventID_flamer_38_main:
                        LDA.B #$03                           ;83DFBF|A903    |      ;
                        STA.B r_ev_26-$E68                   ;83DFC1|8526    |000E8E;
                        LDA.B #$06                           ;83DFC3|A906    |      ;
-                       STA.B r_ev_27-$E68                   ;83DFC5|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83DFC5|8527    |000E8F;
                        LDA.B #$00                           ;83DFC7|A900    |      ;
-                       JML.L CODE_848F07                    ;83DFC9|5C078F84|848F07;
+                       JML.L playerGrabedRoutine            ;83DFC9|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83DFCD:
@@ -13133,14 +13133,14 @@ eventID_flamer_38_main:
                                                             ;      |        |      ;
           CODE_83DFE3:
                        LDA.B #$01                           ;83DFE3|A901    |      ;
-                       STA.B r_ev_27-$E68                   ;83DFE5|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83DFE5|8527    |000E8F;
                        STA.B r_ev_30-$E68                   ;83DFE7|8530    |000E98;
                        LDA.B #$02                           ;83DFE9|A902    |      ;
                        STA.B r_ev_26-$E68                   ;83DFEB|8526    |000E8E;
                        LDA.B #$10                           ;83DFED|A910    |      ;
                        STA.B r_ev_3b-$E68                   ;83DFEF|853B    |000EA3;
                        LDA.B #$02                           ;83DFF1|A902    |      ;
-                       JSL.L CODE_848F07                    ;83DFF3|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83DFF3|22078F84|848F07;
                        LDA.B #$06                           ;83DFF7|A906    |      ;
                        STA.B r_ev_01_state-$E68             ;83DFF9|8501    |000E69;
                        LDY.B #$11                           ;83DFFB|A011    |      ;
@@ -13174,7 +13174,7 @@ eventID_flamer_38_main:
                        REP #$20                             ;83E025|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;83E027|A505    |000E6D;
                        SEC                                  ;83E029|38      |      ;
-                       SBC.W r_0bad                         ;83E02A|EDAD0B  |860BAD;
+                       SBC.W r_d_player_xSubPos             ;83E02A|EDAD0B  |860BAD;
                        BCS CODE_83E033                      ;83E02D|B004    |83E033;
                        EOR.W #$FFFF                         ;83E02F|49FFFF  |      ;
                        INC A                                ;83E032|1A      |      ;
@@ -13184,7 +13184,7 @@ eventID_flamer_38_main:
                        BCS CODE_83E072                      ;83E036|B03A    |83E072;
                        LDA.B r_ev_08_yPos-$E68              ;83E038|A508    |000E70;
                        SEC                                  ;83E03A|38      |      ;
-                       SBC.W r_0bb0                         ;83E03B|EDB00B  |860BB0;
+                       SBC.W r_d_player_yPos                ;83E03B|EDB00B  |860BB0;
                        BCS CODE_83E044                      ;83E03E|B004    |83E044;
                        EOR.W #$FFFF                         ;83E040|49FFFF  |      ;
                        INC A                                ;83E043|1A      |      ;
@@ -13208,7 +13208,7 @@ eventID_flamer_38_main:
                        STA.W r_000c,X                       ;83E067|9D0C00  |86000C;
                        SEP #$20                             ;83E06A|E220    |      ;
                        LDA.B #$01                           ;83E06C|A901    |      ;
-                       JSL.L CODE_848F07                    ;83E06E|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E06E|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83E072:
                        SEP #$30                             ;83E072|E230    |      ;
@@ -13221,7 +13221,7 @@ eventID_flamer_38_main:
                        LDA.B #$02                           ;83E07A|A902    |      ;
                        STA.B r_ev_01_state-$E68             ;83E07C|8501    |000E69;
                        LDA.B #$00                           ;83E07E|A900    |      ;
-                       JSL.L CODE_848F07                    ;83E080|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E080|22078F84|848F07;
                        LDA.B #$3C                           ;83E084|A93C    |      ;
                        STA.B r_ev_3b-$E68                   ;83E086|853B    |000EA3;
                                                             ;      |        |      ;
@@ -13229,7 +13229,7 @@ eventID_flamer_38_main:
                        LDA.B r_ev_0b_subID-$E68             ;83E088|A50B    |000E73;
                        BPL CODE_83E09E                      ;83E08A|1012    |83E09E;
                        REP #$30                             ;83E08C|C230    |      ;
-                       LDX.B r_ev_0c-$E68                   ;83E08E|A60C    |000E74;
+                       LDX.B r_ev_0c_parent-$E68            ;83E08E|A60C    |000E74;
                        LDA.W r_0005,X                       ;83E090|BD0500  |860005;
                        STA.B r_ev_05_xPos-$E68              ;83E093|8505    |000E6D;
                        LDA.W r_0008,X                       ;83E095|BD0800  |860008;
@@ -13276,7 +13276,7 @@ eventID_flamer_38_main:
                        JSL.L initPosAllign                  ;83E0DC|226E8082|82806E;
                        BCS CODE_83E0CC                      ;83E0E0|B0EA    |83E0CC;
                        JSL.L updateEv_13_14_17_0f           ;83E0E2|22EA8E84|848EEA;
-                       JML.L eventID_vile_68_afterInit      ;83E0E6|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83E0E6|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E0EA:
@@ -13295,7 +13295,7 @@ eventID_flamer_38_main:
                        LDA.B r_ev_0b_subID-$E68             ;83E107|A50B    |000E73;
                        INC A                                ;83E109|1A      |      ;
                        STA.W r_000b,X                       ;83E10A|9D0B00  |86000B;
-                       LDA.B r_ev_0c-$E68                   ;83E10D|A50C    |000E74;
+                       LDA.B r_ev_0c_parent-$E68            ;83E10D|A50C    |000E74;
                        STA.W r_000c,X                       ;83E10F|9D0C00  |86000C;
                        LDA.B r_ev_0d-$E68                   ;83E112|A50D    |000E75;
                        STA.W r_000d,X                       ;83E114|9D0D00  |86000D;
@@ -13344,23 +13344,23 @@ eventID_flamer_38_main:
                        LDA.B #$0A                           ;83E155|A90A    |      ;
                        STA.B r_ev_01_state-$E68             ;83E157|8501    |000E69;
                        LDA.B #$03                           ;83E159|A903    |      ;
-                       JSL.L CODE_848F07                    ;83E15B|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E15B|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83E15F:
                        JSL.L CODE_849B03                    ;83E15F|22039B84|849B03;
                        JSL.L updateEv_13_14_17_0f           ;83E163|22EA8E84|848EEA;
-                       JML.L eventID_vile_68_afterInit      ;83E167|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83E167|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E16B:
                        JSL.L updateEv_13_14_17_0f           ;83E16B|22EA8E84|848EEA;
-                       LDA.B r_ev_0f-$E68                   ;83E16F|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83E16F|A50F    |000E77;
                        BPL CODE_83E177                      ;83E171|1004    |83E177;
                        JML.L clearStates_00_02_0E           ;83E173|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E177:
-                       JML.L eventID_vile_68_afterInit      ;83E177|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83E177|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E17B:
@@ -13425,7 +13425,7 @@ eventID_conveyor_39_main:
                        ADC.W #$0030                         ;83E1E0|693000  |      ;
                        STA.B r_ev_08_yPos-$E68              ;83E1E3|8508    |000E70;
                        SEP #$20                             ;83E1E5|E220    |      ;
-                       JSL.L eventID_vile_68_afterInit      ;83E1E7|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83E1E7|22B48082|8280B4;
                        JSL.L initPosAllign                  ;83E1EB|226E8082|82806E;
                        BCC CODE_83E1F8                      ;83E1EF|9007    |83E1F8;
                        JSL.L clearStateIf_0cEqual           ;83E1F1|22878382|828387;
@@ -13452,9 +13452,9 @@ eventID_conveyor_39_main:
                        dw CODE_83E3A8                       ;83E20D|        |83E3A8;
                                                             ;      |        |      ;
           CODE_83E20F:
-                       JSL.L enemy_initiate_jumpPhysic      ;83E20F|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83E20F|227D8282|82827D;
                        LDA.B #$01                           ;83E213|A901    |      ;
-                       STA.B r_ev_27-$E68                   ;83E215|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83E215|8527    |000E8F;
                        STZ.B r_ev_28-$E68                   ;83E217|6428    |000E90;
                        LDA.B #$04                           ;83E219|A904    |      ;
                        STA.B r_ev_26-$E68                   ;83E21B|8526    |000E8E;
@@ -13478,7 +13478,7 @@ eventID_conveyor_39_main:
                        LDA.B #$50                           ;83E240|A950    |      ;
                        STA.B r_ev_1e_weight-$E68            ;83E242|851E    |000E86;
                        LDA.B #$00                           ;83E244|A900    |      ;
-                       JSL.L CODE_848F07                    ;83E246|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E246|22078F84|848F07;
                        RTS                                  ;83E24A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13495,12 +13495,12 @@ eventID_conveyor_39_main:
           CODE_83E25E:
                        TCD                                  ;83E25E|5B      |      ;
                        SEP #$20                             ;83E25F|E220    |      ;
-                       LDA.B r_event_active_00-$E68         ;83E261|A500    |000E68;
+                       LDA.B r_ev_active_00-$E68            ;83E261|A500    |000E68;
                        BEQ CODE_83E293                      ;83E263|F02E    |83E293;
                        LDA.B r_ev_0a_ID-$E68                ;83E265|A50A    |000E72;
                        CMP.B #$2A                           ;83E267|C92A    |      ;
                        BNE CODE_83E293                      ;83E269|D028    |83E293;
-                       LDA.B r_ev_0f-$E68                   ;83E26B|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83E26B|A50F    |000E77;
                        AND.B #$02                           ;83E26D|2902    |      ;
                        CMP.B #$02                           ;83E26F|C902    |      ;
                        BEQ CODE_83E293                      ;83E271|F020    |83E293;
@@ -13527,7 +13527,7 @@ eventID_conveyor_39_main:
                        REP #$20                             ;83E29E|C220    |      ;
                        LDA.W r_0002                         ;83E2A0|AD0200  |860002;
                        TCD                                  ;83E2A3|5B      |      ;
-                       LDA.W r_0bad                         ;83E2A4|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83E2A4|ADAD0B  |860BAD;
                        SEC                                  ;83E2A7|38      |      ;
                        SBC.W r_0000                         ;83E2A8|ED0000  |860000;
                        BCS CODE_83E2B1                      ;83E2AB|B004    |83E2B1;
@@ -13537,7 +13537,7 @@ eventID_conveyor_39_main:
           CODE_83E2B1:
                        CMP.W #$0020                         ;83E2B1|C92000  |      ;
                        BCS CODE_83E2C5                      ;83E2B4|B00F    |83E2C5;
-                       LDA.W r_0bb0                         ;83E2B6|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;83E2B6|ADB00B  |860BB0;
                        SEC                                  ;83E2B9|38      |      ;
                        SBC.W r_0004                         ;83E2BA|ED0400  |860004;
                        BCC CODE_83E2C5                      ;83E2BD|9006    |83E2C5;
@@ -13602,12 +13602,12 @@ eventID_conveyor_39_main:
                                                             ;      |        |      ;
           CODE_83E31C:
                        REP #$20                             ;83E31C|C220    |      ;
-                       LDA.W r_0bb0                         ;83E31E|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;83E31E|ADB00B  |860BB0;
                        SEC                                  ;83E321|38      |      ;
                        SBC.W r_0006                         ;83E322|ED0600  |860006;
-                       STA.W r_0bb0                         ;83E325|8DB00B  |860BB0;
+                       STA.W r_d_player_yPos                ;83E325|8DB00B  |860BB0;
                        SEP #$20                             ;83E328|E220    |      ;
-                       LDA.W r_blaster0a                    ;83E32A|AD060C  |860C06;
+                       LDA.W $0C06                          ;83E32A|AD060C  |860C06;
                        AND.B #$04                           ;83E32D|2904    |      ;
                        BNE CODE_83E338                      ;83E32F|D007    |83E338;
                        db $AD,$D3,$0B,$29,$04,$F0,$07       ;83E331|        |000BD3;
@@ -13631,19 +13631,19 @@ eventID_conveyor_39_main:
                                                             ;      |        |      ;
           CODE_83E357:
                        JSL.L CODE_8491BE                    ;83E357|22BE9184|8491BE;
-                       LDA.B r_ev_2e-$E68                   ;83E35B|A52E    |000E96;
+                       LDA.B r_ev_2e_BG_colusionMask-$E68   ;83E35B|A52E    |000E96;
                        CMP.B #$00                           ;83E35D|C900    |      ;
                        BEQ CODE_83E39B                      ;83E35F|F03A    |83E39B;
                        LDA.B #$10                           ;83E361|A910    |      ;
                        JSL.L CODE_84A338                    ;83E363|2238A384|84A338;
                        LDA.B #$3D                           ;83E367|A93D    |      ;
-                       JSL.L CODE_8088A2                    ;83E369|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83E369|22A28880|8088A2;
                        LDA.B #$08                           ;83E36D|A908    |      ;
                        STA.B r_ev_01_state-$E68             ;83E36F|8501    |000E69;
                        LDA.B #$2C                           ;83E371|A92C    |      ;
                        STA.B r_ev_35-$E68                   ;83E373|8535    |000E9D;
                        LDA.B #$01                           ;83E375|A901    |      ;
-                       JSL.L CODE_848F07                    ;83E377|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E377|22078F84|848F07;
                        JSL.L CODE_849B7E                    ;83E37B|227E9B84|849B7E;
                        BEQ CODE_83E38F                      ;83E37F|F00E    |83E38F;
                        db $C9,$2A,$D0,$0A,$C2,$20,$A5,$08   ;83E381|        |      ;
@@ -13673,7 +13673,7 @@ eventID_conveyor_39_main:
                        LDA.B #$01                           ;83E3AF|A901    |      ;
                        STA.B r_ev_35-$E68                   ;83E3B1|8535    |000E9D;
                        LDA.B #$00                           ;83E3B3|A900    |      ;
-                       JSL.L CODE_848F07                    ;83E3B5|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E3B5|22078F84|848F07;
                        JSL.L CODE_82825D                    ;83E3B9|225D8282|82825D;
                        REP #$20                             ;83E3BD|C220    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;83E3BF|A508    |000E70;
@@ -13717,11 +13717,11 @@ eventID_conveyor_39_main:
 eventID_tomBot_3a_main:
                        LDX.B r_ev_01_state-$E68             ;83E404|A601    |000E69;
                        JSR.W (tomBot_3a_state,X)            ;83E406|FC44E4  |83E444;
-                       LDA.B r_ev_27-$E68                   ;83E409|A527    |000E8F;
+                       LDA.B r_ev_27_health-$E68            ;83E409|A527    |000E8F;
                        BEQ CODE_83E433                      ;83E40B|F026    |83E433;
                        JSL.L CODE_849B43                    ;83E40D|22439B84|849B43;
                        BEQ CODE_83E42D                      ;83E411|F01A    |83E42D;
-                       LDA.B r_ev_27-$E68                   ;83E413|A527    |000E8F;
+                       LDA.B r_ev_27_health-$E68            ;83E413|A527    |000E8F;
                        AND.B #$7F                           ;83E415|297F    |      ;
                        BNE CODE_83E425                      ;83E417|D00C    |83E425;
                        JSL.L CODE_84A4B5                    ;83E419|22B5A484|84A4B5;
@@ -13744,7 +13744,7 @@ eventID_tomBot_3a_main:
                                                             ;      |        |      ;
           CODE_83E433:
                        JSL.L CODE_849B03                    ;83E433|22039B84|849B03;
-                       JSL.L eventID_vile_68_afterInit      ;83E437|22B48082|8280B4;
+                       JSL.L checkEventRange                ;83E437|22B48082|8280B4;
                        LDA.B r_ev_0e-$E68                   ;83E43B|A50E    |000E76;
                        BNE CODE_83E443                      ;83E43D|D004    |83E443;
                                                             ;      |        |      ;
@@ -13764,7 +13764,7 @@ eventID_tomBot_3a_main:
                        dw UNREACH_83E663                    ;83E44E|        |83E663;
                                                             ;      |        |      ;
    tomBot_3a_state_00:
-                       JSL.L enemy_initiate_jumpPhysic      ;83E450|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83E450|227D8282|82827D;
                        LDA.B r_ev_0b_subID-$E68             ;83E454|A50B    |000E73;
                        CMP.B #$80                           ;83E456|C980    |      ;
                        BNE CODE_83E45C                      ;83E458|D002    |83E45C;
@@ -13793,7 +13793,7 @@ eventID_tomBot_3a_main:
                        AND.B #$10                           ;83E479|2910    |      ;
                        BEQ CODE_83E49A                      ;83E47B|F01D    |83E49A;
                        REP #$20                             ;83E47D|C220    |      ;
-                       LDA.W r_0bad                         ;83E47F|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83E47F|ADAD0B  |860BAD;
                        SEC                                  ;83E482|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;83E483|E505    |000E6D;
                        BCC CODE_83E492                      ;83E485|900B    |83E492;
@@ -13820,7 +13820,7 @@ eventID_tomBot_3a_main:
                                                             ;      |        |      ;
           CODE_83E4A6:
                        LDA.B #$01                           ;83E4A6|A901    |      ;
-                       STA.B r_ev_27-$E68                   ;83E4A8|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83E4A8|8527    |000E8F;
                        LDA.B #$01                           ;83E4AA|A901    |      ;
                        STA.B r_ev_28-$E68                   ;83E4AC|8528    |000E90;
                        LDA.B #$02                           ;83E4AE|A902    |      ;
@@ -13857,7 +13857,7 @@ eventID_tomBot_3a_main:
                                                             ;      |        |      ;
           CODE_83E4E9:
                        LDA.B #$00                           ;83E4E9|A900    |      ;
-                       JSL.L CODE_848F07                    ;83E4EB|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E4EB|22078F84|848F07;
                        RTS                                  ;83E4EF|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13904,7 +13904,7 @@ eventID_tomBot_3a_main:
                        LDA.B #$2C                           ;83E530|A92C    |      ;
                        STA.B r_ev_35-$E68                   ;83E532|8535    |000E9D;
                        LDA.B #$01                           ;83E534|A901    |      ;
-                       JSL.L CODE_848F07                    ;83E536|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E536|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83E53A:
                        RTS                                  ;83E53A|60      |      ;
@@ -14005,7 +14005,7 @@ eventID_tomBot_3a_main:
                                                             ;      |        |      ;
           CODE_83E5D8:
                        LDA.B #$03                           ;83E5D8|A903    |      ;
-                       JSL.L CODE_848F07                    ;83E5DA|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E5DA|22078F84|848F07;
                        LDA.B #$06                           ;83E5DE|A906    |      ;
                        STA.B r_ev_01_state-$E68             ;83E5E0|8501    |000E69;
                        LDA.B #$00                           ;83E5E2|A900    |      ;
@@ -14032,7 +14032,7 @@ eventID_tomBot_3a_main:
                        LDA.B #$08                           ;83E605|A908    |      ;
                        STA.B r_ev_01_state-$E68             ;83E607|8501    |000E69;
                        LDA.B #$02                           ;83E609|A902    |      ;
-                       JSL.L CODE_848F07                    ;83E60B|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E60B|22078F84|848F07;
                        STZ.B r_ev_37-$E68                   ;83E60F|6437    |000E9F;
                        JMP.W CODE_83E630                    ;83E611|4C30E6  |83E630;
                                                             ;      |        |      ;
@@ -14059,7 +14059,7 @@ eventID_tomBot_3a_main:
                                                             ;      |        |      ;
           CODE_83E631:
                        JSL.L updateEv_13_14_17_0f           ;83E631|22EA8E84|848EEA;
-                       LDA.B r_ev_0f-$E68                   ;83E635|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83E635|A50F    |000E77;
                        CMP.B #$81                           ;83E637|C981    |      ;
                        BNE CODE_83E65E                      ;83E639|D023    |83E65E;
                        LDA.B r_ev_11_sprAtri-$E68           ;83E63B|A511    |000E79;
@@ -14078,7 +14078,7 @@ eventID_tomBot_3a_main:
                                                             ;      |        |      ;
           CODE_83E650:
                        LDA.B #$03                           ;83E650|A903    |      ;
-                       JSL.L CODE_848F07                    ;83E652|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E652|22078F84|848F07;
                        LDA.B #$06                           ;83E656|A906    |      ;
                        STA.B r_ev_01_state-$E68             ;83E658|8501    |000E69;
                        LDA.B #$01                           ;83E65A|A901    |      ;
@@ -14095,7 +14095,7 @@ eventID_tomBot_3a_main:
                                                             ;      |        |      ;
           CODE_83E66C:
                        REP #$20                             ;83E66C|C220    |      ;
-                       LDA.W stormEagle_56_subID,X          ;83E66E|BD37EE  |86EE37;
+                       LDA.W $EE37,X                        ;83E66E|BD37EE  |86EE37;
                        BPL CODE_83E67A                      ;83E671|1007    |83E67A;
                        LSR A                                ;83E673|4A      |      ;
                        ORA.W #$F000                         ;83E674|0900F0  |      ;
@@ -14137,7 +14137,7 @@ eventID_tomBot_3a_main:
                        AND.B #$40                           ;83E6A2|2940    |      ;
                        BEQ CODE_83E6C3                      ;83E6A4|F01D    |83E6C3;
                        LDA.B #$02                           ;83E6A6|A902    |      ;
-                       JSL.L CODE_848F07                    ;83E6A8|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E6A8|22078F84|848F07;
                        LDA.B #$01                           ;83E6AC|A901    |      ;
                        STA.B r_ev_37-$E68                   ;83E6AE|8537    |000E9F;
                        JMP.W CODE_83E6C3                    ;83E6B0|4CC3E6  |83E6C3;
@@ -14148,7 +14148,7 @@ eventID_tomBot_3a_main:
                        AND.B #$40                           ;83E6B5|2940    |      ;
                        BNE CODE_83E6C3                      ;83E6B7|D00A    |83E6C3;
                        LDA.B #$02                           ;83E6B9|A902    |      ;
-                       JSL.L CODE_848F07                    ;83E6BB|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E6BB|22078F84|848F07;
                        LDA.B #$01                           ;83E6BF|A901    |      ;
                        STA.B r_ev_37-$E68                   ;83E6C1|8537    |000E9F;
                                                             ;      |        |      ;
@@ -14173,7 +14173,7 @@ eventID_tomBot_3a_main:
                        STA.W r_0011,X                       ;83E6DB|9D1100  |860011;
                        LDA.B r_ev_18_gfxSlot-$E68           ;83E6DE|A518    |000E80;
                        STA.W r_0018,X                       ;83E6E0|9D1800  |860018;
-                       LDA.B r_ev_16-$E68                   ;83E6E3|A516    |000E7E;
+                       LDA.B r_ev_16_sprID-$E68             ;83E6E3|A516    |000E7E;
                        STA.W r_0016,X                       ;83E6E5|9D1600  |860016;
                        STZ.W r_0002,X                       ;83E6E8|9E0200  |860002;
                        LDA.B r_ev_11_sprAtri-$E68           ;83E6EB|A511    |000E79;
@@ -14303,7 +14303,7 @@ eventID_tomBot_3a_main:
                        LSR A                                ;83E7CF|4A      |      ;
                        LSR A                                ;83E7D0|4A      |      ;
                        CLC                                  ;83E7D1|18      |      ;
-                       ADC.W $0B9C                          ;83E7D2|6D9C0B  |860B9C;
+                       ADC.W r_frameCounter1                ;83E7D2|6D9C0B  |860B9C;
                        AND.W #$0007                         ;83E7D5|290700  |      ;
                        CLC                                  ;83E7D8|18      |      ;
                        ADC.W #$0020                         ;83E7D9|692000  |      ;
@@ -14330,7 +14330,7 @@ creeperHole_67_state_00:
                        BNE CODE_83E80F                      ;83E7F5|D018    |83E80F;
                        REP #$20                             ;83E7F7|C220    |      ;
                        LDA.W #$0A80                         ;83E7F9|A9800A  |      ;
-                       STA.W r_1e5e                         ;83E7FC|8D5E1E  |861E5E;
+                       STA.W r_levelSpecFlag                ;83E7FC|8D5E1E  |861E5E;
                        STA.W r_cam_BG0_xPos_lock            ;83E7FF|8D601E  |861E60;
                        SEP #$20                             ;83E802|E220    |      ;
                        JSR.W CODE_83EF1F                    ;83E804|201FEF  |83EF1F;
@@ -14341,7 +14341,7 @@ creeperHole_67_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E80F:
-                       JSL.L enemy_initiate_jumpPhysic      ;83E80F|227D8282|82827D;
+                       JSL.L mainEnemySpriteLoad            ;83E80F|227D8282|82827D;
                        LDA.B #$04                           ;83E813|A904    |      ;
                        STA.B r_ev_12-$E68                   ;83E815|8512    |000E7A;
                        STA.B r_ev_30-$E68                   ;83E817|8530    |000E98;
@@ -14350,7 +14350,7 @@ creeperHole_67_state_00:
                        LDA.B #$06                           ;83E81D|A906    |      ;
                        STA.B r_ev_26-$E68                   ;83E81F|8526    |000E8E;
                        LDA.B #$7F                           ;83E821|A97F    |      ;
-                       STA.B r_ev_27-$E68                   ;83E823|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83E823|8527    |000E8F;
                        STA.B r_ev_3b-$E68                   ;83E825|853B    |000EA3;
                        LDA.B #$03                           ;83E827|A903    |      ;
                        STA.B r_ev_28-$E68                   ;83E829|8528    |000E90;
@@ -14364,7 +14364,7 @@ creeperHole_67_state_00:
                        LDA.W #$0040                         ;83E83A|A94000  |      ;
                        STA.B r_ev_1e_weight-$E68            ;83E83D|851E    |000E86;
                        LDA.W #$0A80                         ;83E83F|A9800A  |      ;
-                       STA.W r_1e5e                         ;83E842|8D5E1E  |861E5E;
+                       STA.W r_levelSpecFlag                ;83E842|8D5E1E  |861E5E;
                        STA.W r_cam_BG0_xPos_lock            ;83E845|8D601E  |861E60;
                        SEP #$20                             ;83E848|E220    |      ;
                        JSL.L CODE_849FEB                    ;83E84A|22EB9F84|849FEB;
@@ -14373,7 +14373,7 @@ creeperHole_67_state_00:
                        STA.W r_1f49                         ;83E852|8D491F  |861F49;
                        JSR.W CODE_83EF1F                    ;83E855|201FEF  |83EF1F;
                        LDA.B #$02                           ;83E858|A902    |      ;
-                       JML.L CODE_848F07                    ;83E85A|5C078F84|848F07;
+                       JML.L playerGrabedRoutine            ;83E85A|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83E85E:
@@ -14382,15 +14382,15 @@ creeperHole_67_state_00:
                        STA.B r_ev_11_sprAtri-$E68           ;83E864|8511    |000E79;
                        LDX.B r_ev_02_action-$E68            ;83E866|A602    |000E6A;
                        JSR.W (UNREACH_83E8C6,X)             ;83E868|FCC6E8  |83E8C6;
-                       JSL.L eventID_vile_68_afterInit      ;83E86B|22B48082|8280B4;
-                       LDA.B r_ev_27-$E68                   ;83E86F|A527    |000E8F;
+                       JSL.L checkEventRange                ;83E86B|22B48082|8280B4;
+                       LDA.B r_ev_27_health-$E68            ;83E86F|A527    |000E8F;
                        AND.B #$7F                           ;83E871|297F    |      ;
                        STA.B r_ev_3b-$E68                   ;83E873|853B    |000EA3;
                        JSL.L CODE_849B43                    ;83E875|22439B84|849B43;
                        BEQ CODE_83E8A7                      ;83E879|F02C    |83E8A7;
                        BPL CODE_83E888                      ;83E87B|100B    |83E888;
                        LDA.B #$30                           ;83E87D|A930    |      ;
-                       STA.B r_ev_27-$E68                   ;83E87F|8527    |000E8F;
+                       STA.B r_ev_27_health-$E68            ;83E87F|8527    |000E8F;
                        LDA.B r_ev_3b-$E68                   ;83E881|A53B    |000EA3;
                        CLC                                  ;83E883|18      |      ;
                        ADC.B #$30                           ;83E884|6930    |      ;
@@ -14410,7 +14410,7 @@ creeperHole_67_state_00:
                        BIT.B r_ev_10-$E68                   ;83E899|2410    |000E78;
                        BVS CODE_83E8A3                      ;83E89B|7006    |83E8A3;
                        LDA.B #$13                           ;83E89D|A913    |      ;
-                       JSL.L CODE_8088A2                    ;83E89F|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83E89F|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83E8A3:
                        LDA.B #$02                           ;83E8A3|A902    |      ;
@@ -14445,7 +14445,7 @@ creeperHole_67_state_00:
                        BNE CODE_83E92C                      ;83E8E4|D046    |83E92C;
                        REP #$20                             ;83E8E6|C220    |      ;
                        LDA.W r_cam_BG0_xPos_target          ;83E8E8|AD4D1E  |861E4D;
-                       CMP.W r_1e56                         ;83E8EB|CD561E  |861E56;
+                       CMP.W r_cam_BG0_LeftBorder           ;83E8EB|CD561E  |861E56;
                        SEP #$20                             ;83E8EE|E220    |      ;
                        BNE CODE_83E92B                      ;83E8F0|D039    |83E92B;
                        LDA.B #$02                           ;83E8F2|A902    |      ;
@@ -14466,10 +14466,10 @@ creeperHole_67_state_00:
                        STA.W r_0008                         ;83E916|8D0800  |860008;
                        JSL.L CODE_83F74A                    ;83E919|224AF783|83F74A;
                        LDA.B #$40                           ;83E91D|A940    |      ;
-                       STA.W r_blaster15_dir_mirror         ;83E91F|8D110C  |860C11;
+                       STA.W $0C11                          ;83E91F|8D110C  |860C11;
                        JSR.W CODE_83EF00                    ;83E922|2000EF  |83EF00;
                        LDA.B #$02                           ;83E925|A902    |      ;
-                       JSL.L CODE_848F07                    ;83E927|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E927|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83E92B:
                        RTS                                  ;83E92B|60      |      ;
@@ -14497,7 +14497,7 @@ creeperHole_67_state_00:
                        INC.B r_ev_03_do-$E68                ;83E94F|E603    |000E6B;
                        JSR.W CODE_83CB05                    ;83E951|2005CB  |83CB05;
                        LDA.B #$02                           ;83E954|A902    |      ;
-                       JSL.L CODE_848F07                    ;83E956|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E956|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83E95A:
                        JSR.W CODE_83EE55                    ;83E95A|2055EE  |83EE55;
@@ -14563,7 +14563,7 @@ creeperHole_67_state_00:
                        BNE CODE_83E9D0                      ;83E9C6|D008    |83E9D0;
                        INC.B r_ev_03_do-$E68                ;83E9C8|E603    |000E6B;
                        LDA.B #$00                           ;83E9CA|A900    |      ;
-                       JSL.L CODE_848F07                    ;83E9CC|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83E9CC|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83E9D0:
                        LDA.B r_ev_2b-$E68                   ;83E9D0|A52B    |000E93;
@@ -14594,11 +14594,11 @@ creeperHole_67_state_00:
                                                             ;      |        |      ;
           CODE_83EA05:
                        JSL.L updateEv_13_14_17_0f           ;83EA05|22EA8E84|848EEA;
-                       LDA.B r_ev_0f-$E68                   ;83EA09|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83EA09|A50F    |000E77;
                        AND.B #$03                           ;83EA0B|2903    |      ;
                        BEQ CODE_83EA15                      ;83EA0D|F006    |83EA15;
                        ORA.B #$38                           ;83EA0F|0938    |      ;
-                       JSL.L CODE_8088A2                    ;83EA11|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83EA11|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83EA15:
                        JMP.W CODE_83EEC3                    ;83EA15|4CC3EE  |83EEC3;
@@ -14617,18 +14617,18 @@ creeperHole_67_state_00:
                        ADC.B #$0F                           ;83EA2E|690F    |      ;
                        STA.B r_ev_34-$E68                   ;83EA30|8534    |000E9C;
                        LDA.B #$02                           ;83EA32|A902    |      ;
-                       JSL.L CODE_848F07                    ;83EA34|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EA34|22078F84|848F07;
                        DEC.B r_ev_34-$E68                   ;83EA38|C634    |000E9C;
                        BNE CODE_83EA46                      ;83EA3A|D00A    |83EA46;
                        LDA.B #$01                           ;83EA3C|A901    |      ;
-                       JSL.L CODE_848F07                    ;83EA3E|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EA3E|22078F84|848F07;
                        LDA.B #$04                           ;83EA42|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;83EA44|8503    |000E6B;
                                                             ;      |        |      ;
           CODE_83EA46:
                        RTS                                  ;83EA46|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B r_ev_0f-$E68                   ;83EA47|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83EA47|A50F    |000E77;
                        BPL CODE_83EA50                      ;83EA49|1005    |83EA50;
                        LDA.B #$00                           ;83EA4B|A900    |      ;
                        JMP.W CODE_8386F1                    ;83EA4D|4CF186  |8386F1;
@@ -14644,7 +14644,7 @@ creeperHole_67_state_00:
                        INC.B r_ev_03_do-$E68                ;83EA5E|E603    |000E6B;
                        REP #$20                             ;83EA60|C220    |      ;
                        LDA.B r_ev_1a_xSpdSub-$E68           ;83EA62|A51A    |000E82;
-                       BIT.B r_ev_0f-$E68                   ;83EA64|240F    |000E77;
+                       BIT.B r_ev_0f_waitCount-$E68         ;83EA64|240F    |000E77;
                        BPL CODE_83EA6C                      ;83EA66|1004    |83EA6C;
                        EOR.W #$FFFF                         ;83EA68|49FFFF  |      ;
                        INC A                                ;83EA6B|1A      |      ;
@@ -14657,11 +14657,11 @@ creeperHole_67_state_00:
                        LDA.B #$80                           ;83EA75|A980    |      ;
                        TRB.B r_ev_10-$E68                   ;83EA77|1410    |000E78;
                        LDA.B #$38                           ;83EA79|A938    |      ;
-                       JSL.L CODE_8088A2                    ;83EA7B|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83EA7B|22A28880|8088A2;
                        LDA.B #$0C                           ;83EA7F|A90C    |      ;
                        JSR.W CODE_83CD18                    ;83EA81|2018CD  |83CD18;
                        LDA.B #$03                           ;83EA84|A903    |      ;
-                       JSL.L CODE_848F07                    ;83EA86|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EA86|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EA8A:
                        LDA.B r_ev_1d_ySpd-$E68              ;83EA8A|A51D    |000E85;
@@ -14693,11 +14693,11 @@ creeperHole_67_state_00:
                        SEP #$20                             ;83EAB2|E220    |      ;
                        STZ.B r_ev_31-$E68                   ;83EAB4|6431    |000E99;
                        LDA.B #$3B                           ;83EAB6|A93B    |      ;
-                       JSL.L CODE_8088A2                    ;83EAB8|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83EAB8|22A28880|8088A2;
                        LDA.B #$40                           ;83EABC|A940    |      ;
                        STA.B r_ev_34-$E68                   ;83EABE|8534    |000E9C;
                        LDA.B #$06                           ;83EAC0|A906    |      ;
-                       JSL.L CODE_848F07                    ;83EAC2|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EAC2|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EAC6:
                        JSR.W CODE_83CDB3                    ;83EAC6|20B3CD  |83CDB3;
@@ -14744,10 +14744,10 @@ creeperHole_67_state_00:
                        BNE CODE_83EB1D                      ;83EB13|D008    |83EB1D;
                        INC.B r_ev_03_do-$E68                ;83EB15|E603    |000E6B;
                        LDA.B #$07                           ;83EB17|A907    |      ;
-                       JSL.L CODE_848F07                    ;83EB19|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EB19|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EB1D:
-                       LDA.B r_ev_0f-$E68                   ;83EB1D|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83EB1D|A50F    |000E77;
                        BPL CODE_83EB26                      ;83EB1F|1005    |83EB26;
                        LDA.B #$00                           ;83EB21|A900    |      ;
                        JMP.W CODE_8386F1                    ;83EB23|4CF186  |8386F1;
@@ -14761,7 +14761,7 @@ creeperHole_67_state_00:
                        BNE CODE_83EB37                      ;83EB2D|D008    |83EB37;
                        INC.B r_ev_03_do-$E68                ;83EB2F|E603    |000E6B;
                        LDA.B #$08                           ;83EB31|A908    |      ;
-                       JSL.L CODE_848F07                    ;83EB33|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EB33|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EB37:
                        DEC.B r_ev_34-$E68                   ;83EB37|C634    |000E9C;
@@ -14806,7 +14806,7 @@ creeperHole_67_state_00:
                        BNE CODE_83EBE3                      ;83EBD9|D008    |83EBE3;
                        INC.B r_ev_03_do-$E68                ;83EBDB|E603    |000E6B;
                        LDA.B #$03                           ;83EBDD|A903    |      ;
-                       JSL.L CODE_848F07                    ;83EBDF|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EBDF|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EBE3:
                        LDA.B r_ev_2b-$E68                   ;83EBE3|A52B    |000E93;
@@ -14836,14 +14836,14 @@ creeperHole_67_state_00:
                        LDA.B #$0A                           ;83EC0A|A90A    |      ;
                        JSL.L CODE_84A341                    ;83EC0C|2241A384|84A341;
                        LDA.B #$39                           ;83EC10|A939    |      ;
-                       JSL.L CODE_8088A2                    ;83EC12|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83EC12|22A28880|8088A2;
                        JSR.W CODE_83CD41                    ;83EC16|2041CD  |83CD41;
                        JSR.W CODE_83CD6C                    ;83EC19|206CCD  |83CD6C;
                        LDA.B #$04                           ;83EC1C|A904    |      ;
-                       JSL.L CODE_848F07                    ;83EC1E|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EC1E|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EC22:
-                       LDA.B r_ev_0f-$E68                   ;83EC22|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83EC22|A50F    |000E77;
                        BPL CODE_83EC2B                      ;83EC24|1005    |83EC2B;
                        LDA.B #$00                           ;83EC26|A900    |      ;
                        JMP.W CODE_8386F1                    ;83EC28|4CF186  |8386F1;
@@ -14878,7 +14878,7 @@ creeperHole_67_state_00:
                        STA.B r_ev_1c_ySpdSub-$E68           ;83EC5E|851C    |000E84;
                        SEP #$30                             ;83EC60|E230    |      ;
                        LDA.B #$03                           ;83EC62|A903    |      ;
-                       JSL.L CODE_848F07                    ;83EC64|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EC64|22078F84|848F07;
                        RTS                                  ;83EC68|60      |      ;
                                                             ;      |        |      ;
                        LDA.B r_ev_2b-$E68                   ;83EC69|A52B    |000E93;
@@ -14888,13 +14888,13 @@ creeperHole_67_state_00:
                        STA.B r_ev_03_do-$E68                ;83EC71|8503    |000E6B;
                        STZ.B r_ev_2f-$E68                   ;83EC73|642F    |000E97;
                        LDA.B #$0F                           ;83EC75|A90F    |      ;
-                       JSL.L CODE_848F07                    ;83EC77|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EC77|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EC7B:
                        JSL.L CODE_828174                    ;83EC7B|22748182|828174;
                        RTS                                  ;83EC7F|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B r_ev_0f-$E68                   ;83EC80|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83EC80|A50F    |000E77;
                        BPL CODE_83EC8C                      ;83EC82|1008    |83EC8C;
                        JSR.W CODE_83EE93                    ;83EC84|2093EE  |83EE93;
                        LDA.B #$00                           ;83EC87|A900    |      ;
@@ -14914,7 +14914,7 @@ creeperHole_67_state_00:
                        db $95,$ED,$C7,$ED,$F6,$ED,$37,$EE   ;83EC9E|        |0000ED;
                        db $47,$EE                           ;83ECA6|        |0000EE;
                        REP #$20                             ;83ECA8|C220    |      ;
-                       LDA.W r_0bad                         ;83ECAA|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83ECAA|ADAD0B  |860BAD;
                        CMP.W #$0AB0                         ;83ECAD|C9B00A  |      ;
                        SEP #$20                             ;83ECB0|E220    |      ;
                        BCS CODE_83ECDA                      ;83ECB2|B026    |83ECDA;
@@ -14933,7 +14933,7 @@ creeperHole_67_state_00:
                        SEP #$30                             ;83ECCF|E230    |      ;
                        STY.B r_ev_33-$E68                   ;83ECD1|8433    |000E9B;
                        LDA.B #$00                           ;83ECD3|A900    |      ;
-                       JSL.L CODE_848F07                    ;83ECD5|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83ECD5|22078F84|848F07;
                        RTS                                  ;83ECD9|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14942,7 +14942,7 @@ creeperHole_67_state_00:
                        STA.B r_ev_03_do-$E68                ;83ECDC|8503    |000E6B;
                        REP #$31                             ;83ECDE|C231    |      ;
                        LDX.W #$0178                         ;83ECE0|A27801  |      ;
-                       LDA.W r_0bad                         ;83ECE3|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83ECE3|ADAD0B  |860BAD;
                        CLC                                  ;83ECE6|18      |      ;
                        ADC.W #$0020                         ;83ECE7|692000  |      ;
                        CMP.B r_ev_05_xPos-$E68              ;83ECEA|C505    |000E6D;
@@ -14958,7 +14958,7 @@ creeperHole_67_state_00:
                        LDA.B #$78                           ;83ECFD|A978    |      ;
                        STA.B r_ev_34-$E68                   ;83ECFF|8534    |000E9C;
                        LDA.B #$02                           ;83ED01|A902    |      ;
-                       JSL.L CODE_848F07                    ;83ED03|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83ED03|22078F84|848F07;
                        RTS                                  ;83ED07|60      |      ;
                                                             ;      |        |      ;
                        DEC.B r_ev_34-$E68                   ;83ED08|C634    |000E9C;
@@ -14967,7 +14967,7 @@ creeperHole_67_state_00:
                        STA.B r_ev_03_do-$E68                ;83ED0E|8503    |000E6B;
                        REP #$21                             ;83ED10|C221    |      ;
                        LDX.B #$40                           ;83ED12|A240    |      ;
-                       LDA.W r_0bad                         ;83ED14|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83ED14|ADAD0B  |860BAD;
                        ADC.W #$0020                         ;83ED17|692000  |      ;
                        CMP.B r_ev_05_xPos-$E68              ;83ED1A|C505    |000E6D;
                        BCS CODE_83ED20                      ;83ED1C|B002    |83ED20;
@@ -14977,13 +14977,13 @@ creeperHole_67_state_00:
                        STX.B r_ev_33-$E68                   ;83ED20|8633    |000E9B;
                        SEP #$20                             ;83ED22|E220    |      ;
                        LDA.B #$00                           ;83ED24|A900    |      ;
-                       JSL.L CODE_848F07                    ;83ED26|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83ED26|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83ED2A:
                        RTS                                  ;83ED2A|60      |      ;
                                                             ;      |        |      ;
                        REP #$21                             ;83ED2B|C221    |      ;
-                       LDA.W r_0bad                         ;83ED2D|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83ED2D|ADAD0B  |860BAD;
                        ADC.W #$0020                         ;83ED30|692000  |      ;
                        SEC                                  ;83ED33|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;83ED34|E505    |000E6D;
@@ -14999,24 +14999,24 @@ creeperHole_67_state_00:
                        LDA.B #$02                           ;83ED49|A902    |      ;
                        STA.B r_ev_12-$E68                   ;83ED4B|8512    |000E7A;
                        LDA.B #$14                           ;83ED4D|A914    |      ;
-                       JSL.L CODE_848F07                    ;83ED4F|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83ED4F|22078F84|848F07;
                        RTS                                  ;83ED53|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83ED54:
                        JSL.L CODE_82823E                    ;83ED54|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;83ED58|22EA8E84|848EEA;
-                       LDA.B r_ev_0f-$E68                   ;83ED5C|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83ED5C|A50F    |000E77;
                        AND.B #$03                           ;83ED5E|2903    |      ;
                        BEQ CODE_83ED68                      ;83ED60|F006    |83ED68;
                        ORA.B #$38                           ;83ED62|0938    |      ;
-                       JSL.L CODE_8088A2                    ;83ED64|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83ED64|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83ED68:
                        RTS                                  ;83ED68|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83ED69|22EA8E84|848EEA;
-                       BIT.B r_ev_0f-$E68                   ;83ED6D|240F    |000E77;
+                       BIT.B r_ev_0f_waitCount-$E68         ;83ED6D|240F    |000E77;
                        BPL CODE_83ED86                      ;83ED6F|1015    |83ED86;
                        LDA.B #$08                           ;83ED71|A908    |      ;
                        STA.B r_ev_03_do-$E68                ;83ED73|8503    |000E6B;
@@ -15025,7 +15025,7 @@ creeperHole_67_state_00:
                        LDA.B #$FE                           ;83ED79|A9FE    |      ;
                        STA.B r_ev_1b_xSpd-$E68              ;83ED7B|851B    |000E83;
                        LDA.B #$17                           ;83ED7D|A917    |      ;
-                       JSL.L CODE_848F07                    ;83ED7F|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83ED7F|22078F84|848F07;
                        JMP.W CODE_83EECE                    ;83ED83|4CCEEE  |83EECE;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15033,7 +15033,7 @@ creeperHole_67_state_00:
                        BVC CODE_83ED94                      ;83ED86|500C    |83ED94;
                        JSL.L CODE_84A066                    ;83ED88|2266A084|84A066;
                        LDA.B #$40                           ;83ED8C|A940    |      ;
-                       STA.W r_blaster15_dir_mirror         ;83ED8E|8D110C  |860C11;
+                       STA.W $0C11                          ;83ED8E|8D110C  |860C11;
                        JSR.W CODE_83EECE                    ;83ED91|20CEEE  |83EECE;
                                                             ;      |        |      ;
           CODE_83ED94:
@@ -15049,11 +15049,11 @@ creeperHole_67_state_00:
                        STA.B r_ev_03_do-$E68                ;83EDA6|8503    |000E6B;
                        STZ.B r_ev_33-$E68                   ;83EDA8|6433    |000E9B;
                        LDA.B #$18                           ;83EDAA|A918    |      ;
-                       JSL.L CODE_848F07                    ;83EDAC|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EDAC|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EDB0:
                        JSL.L CODE_82823E                    ;83EDB0|223E8282|82823E;
-                       LDA.B r_ev_0f-$E68                   ;83EDB4|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83EDB4|A50F    |000E77;
                        AND.B #$30                           ;83EDB6|2930    |      ;
                        BEQ CODE_83EDC4                      ;83EDB8|F00A    |83EDC4;
                        LSR A                                ;83EDBA|4A      |      ;
@@ -15061,13 +15061,13 @@ creeperHole_67_state_00:
                        LSR A                                ;83EDBC|4A      |      ;
                        LSR A                                ;83EDBD|4A      |      ;
                        ORA.B #$38                           ;83EDBE|0938    |      ;
-                       JSL.L CODE_8088A2                    ;83EDC0|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83EDC0|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83EDC4:
                        JMP.W CODE_83EECE                    ;83EDC4|4CCEEE  |83EECE;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83EDC7|22EA8E84|848EEA;
-                       BIT.B r_ev_0f-$E68                   ;83EDCB|240F    |000E77;
+                       BIT.B r_ev_0f_waitCount-$E68         ;83EDCB|240F    |000E77;
                        BPL CODE_83EDE6                      ;83EDCD|1017    |83EDE6;
                        LDA.B #$0C                           ;83EDCF|A90C    |      ;
                        STA.B r_ev_03_do-$E68                ;83EDD1|8503    |000E6B;
@@ -15078,13 +15078,13 @@ creeperHole_67_state_00:
                        LDA.B #$01                           ;83EDDB|A901    |      ;
                        STA.B r_ev_1b_xSpd-$E68              ;83EDDD|851B    |000E83;
                        LDA.B #$00                           ;83EDDF|A900    |      ;
-                       JSL.L CODE_848F07                    ;83EDE1|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EDE1|22078F84|848F07;
                        RTS                                  ;83EDE5|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83EDE6:
                        BVC CODE_83EDF5                      ;83EDE6|500D    |83EDF5;
-                       LDA.B r_ev_0f-$E68                   ;83EDE8|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83EDE8|A50F    |000E77;
                        CMP.B #$50                           ;83EDEA|C950    |      ;
                        BNE CODE_83EDF2                      ;83EDEC|D004    |83EDF2;
                        JSL.L CODE_84A02B                    ;83EDEE|222BA084|84A02B;
@@ -15116,17 +15116,17 @@ creeperHole_67_state_00:
                        LDA.B #$0E                           ;83EE16|A90E    |      ;
                        STA.B r_ev_03_do-$E68                ;83EE18|8503    |000E6B;
                        LDA.B #$16                           ;83EE1A|A916    |      ;
-                       JSL.L CODE_848F07                    ;83EE1C|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83EE1C|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83EE20:
                        SEP #$20                             ;83EE20|E220    |      ;
                        JSL.L CODE_82823E                    ;83EE22|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;83EE26|22EA8E84|848EEA;
-                       LDA.B r_ev_0f-$E68                   ;83EE2A|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83EE2A|A50F    |000E77;
                        AND.B #$03                           ;83EE2C|2903    |      ;
                        BEQ CODE_83EE36                      ;83EE2E|F006    |83EE36;
                        ORA.B #$38                           ;83EE30|0938    |      ;
-                       JSL.L CODE_8088A2                    ;83EE32|22A28880|8088A2;
+                       JSL.L lunchSFX                       ;83EE32|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_83EE36:
                        RTS                                  ;83EE36|60      |      ;
@@ -15158,7 +15158,7 @@ creeperHole_67_state_00:
                        REP #$20                             ;83EE55|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;83EE57|A505    |000E6D;
                        SEC                                  ;83EE59|38      |      ;
-                       SBC.W r_0bad                         ;83EE5A|EDAD0B  |860BAD;
+                       SBC.W r_d_player_xSubPos             ;83EE5A|EDAD0B  |860BAD;
                        BPL CODE_83EE63                      ;83EE5D|1004    |83EE63;
                        EOR.W #$FFFF                         ;83EE5F|49FFFF  |      ;
                        INC A                                ;83EE62|1A      |      ;
@@ -15199,7 +15199,7 @@ creeperHole_67_state_00:
                        LDX.B #$04                           ;83EE82|A204    |      ;
                                                             ;      |        |      ;
           CODE_83EE84:
-                       LDA.W r_0bcf                         ;83EE84|ADCF0B  |860BCF;
+                       LDA.W r_d_0bcf                       ;83EE84|ADCF0B  |860BCF;
                        AND.B #$7F                           ;83EE87|297F    |      ;
                        CMP.B #$07                           ;83EE89|C907    |      ;
                        BCS CODE_83EE8F                      ;83EE8B|B002    |83EE8F;
@@ -15211,7 +15211,7 @@ creeperHole_67_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83EE93:
-                       JSL.L CODE_828358                    ;83EE93|22588382|828358;
+                       JSL.L findEnemyShotEmptySlot         ;83EE93|22588382|828358;
                        BNE CODE_83EEC0                      ;83EE97|D027    |83EEC0;
                        INC.W r_0000,X                       ;83EE99|FE0000  |860000;
                        LDA.B #$16                           ;83EE9C|A916    |      ;
@@ -15250,7 +15250,7 @@ creeperHole_67_state_00:
                                                             ;      |        |      ;
           CODE_83EECE:
                        REP #$21                             ;83EECE|C221    |      ;
-                       LDA.B r_ev_0f-$E68                   ;83EED0|A50F    |000E77;
+                       LDA.B r_ev_0f_waitCount-$E68         ;83EED0|A50F    |000E77;
                        AND.W #$000F                         ;83EED2|290F00  |      ;
                        TAX                                  ;83EED5|AA      |      ;
                        LDA.W UNREACH_86D7F4,X               ;83EED6|BDF4D7  |86D7F4;
@@ -15262,7 +15262,7 @@ creeperHole_67_state_00:
                                                             ;      |        |      ;
           CODE_83EEE4:
                        ADC.B r_ev_05_xPos-$E68              ;83EEE4|6505    |000E6D;
-                       STA.W r_0bad                         ;83EEE6|8DAD0B  |860BAD;
+                       STA.W r_d_player_xSubPos             ;83EEE6|8DAD0B  |860BAD;
                        LDA.W UNREACH_86D7F5,X               ;83EEE9|BDF5D7  |86D7F5;
                        AND.W #$00FF                         ;83EEEC|29FF00  |      ;
                        BIT.W #$0080                         ;83EEEF|898000  |      ;
@@ -15272,7 +15272,7 @@ creeperHole_67_state_00:
           CODE_83EEF7:
                        CLC                                  ;83EEF7|18      |      ;
                        ADC.B r_ev_08_yPos-$E68              ;83EEF8|6508    |000E70;
-                       STA.W r_0bb0                         ;83EEFA|8DB00B  |860BB0;
+                       STA.W r_d_player_yPos                ;83EEFA|8DB00B  |860BB0;
                        SEP #$20                             ;83EEFD|E220    |      ;
                        RTS                                  ;83EEFF|60      |      ;
                                                             ;      |        |      ;
@@ -15458,7 +15458,7 @@ creeperHole_67_state_00:
                        STA.B $29                            ;83F03B|8529    |001801;
                        SEP #$20                             ;83F03D|E220    |      ;
                        LDA.B #$00                           ;83F03F|A900    |      ;
-                       JSL.L CODE_848F07                    ;83F041|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83F041|22078F84|848F07;
                        LDA.B #$02                           ;83F045|A902    |      ;
                        LDX.B $0B                            ;83F047|A60B    |0017E3;
                        BPL CODE_83F04D                      ;83F049|1002    |83F04D;
@@ -15598,7 +15598,7 @@ creeperHole_67_state_00:
                        JSL.L CODE_84AB56                    ;83F129|2256AB84|84AB56;
                        SEP #$20                             ;83F12D|E220    |      ;
                        JSL.L updateEv_13_14_17_0f           ;83F12F|22EA8E84|848EEA;
-                       JML.L eventID_vile_68_afterInit      ;83F133|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83F133|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F137:
@@ -15652,7 +15652,7 @@ creeperHole_67_state_00:
                        STA.B $20                            ;83F192|8520    |001678;
                        JSL.L CODE_84AB56                    ;83F194|2256AB84|84AB56;
                        SEP #$20                             ;83F198|E220    |      ;
-                       JML.L eventID_vile_68_afterInit      ;83F19A|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83F19A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83F19E:
@@ -15691,7 +15691,7 @@ creeperHole_67_state_00:
                        STA.B $08                            ;83F1E8|8508    |001840;
                        SEP #$20                             ;83F1EA|E220    |      ;
                        LDA.B #$00                           ;83F1EC|A900    |      ;
-                       JSL.L CODE_848F07                    ;83F1EE|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83F1EE|22078F84|848F07;
                        JSL.L CODE_849086                    ;83F1F2|22869084|849086;
                        AND.B #$0F                           ;83F1F6|290F    |      ;
                        CMP.B #$04                           ;83F1F8|C904    |      ;
@@ -15707,7 +15707,7 @@ creeperHole_67_state_00:
                        BNE CODE_83F214                      ;83F201|D011    |83F214;
                        INC.B $02                            ;83F203|E602    |00183A;
                        LDA.B #$00                           ;83F205|A900    |      ;
-                       JSL.L CODE_848F07                    ;83F207|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83F207|22078F84|848F07;
                        REP #$20                             ;83F20B|C220    |      ;
                        LDA.W #$0100                         ;83F20D|A90001  |      ;
                        STA.B $1C                            ;83F210|851C    |001854;
@@ -15733,7 +15733,7 @@ creeperHole_67_state_00:
                        BNE CODE_83F242                      ;83F22F|D011    |83F242;
                        INC.B $02                            ;83F231|E602    |00180A;
                        LDA.B #$02                           ;83F233|A902    |      ;
-                       JSL.L CODE_848F07                    ;83F235|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83F235|22078F84|848F07;
                        REP #$20                             ;83F239|C220    |      ;
                        LDA.W #$FF00                         ;83F23B|A900FF  |      ;
                        STA.B $1C                            ;83F23E|851C    |001824;
@@ -15761,7 +15761,7 @@ creeperHole_67_state_00:
                        LDA.B #$1E                           ;83F261|A91E    |      ;
                        STA.B $1E                            ;83F263|851E    |001736;
                        LDA.B #$01                           ;83F265|A901    |      ;
-                       JSL.L CODE_848F07                    ;83F267|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83F267|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83F26B:
                        DEC.B $1E                            ;83F26B|C61E    |001856;
@@ -15781,7 +15781,7 @@ creeperHole_67_state_00:
           CODE_83F27D:
                        LDX.B $01                            ;83F27D|A601    |0016E9;
                        JSR.W (UNREACH_83F286,X)             ;83F27F|FC86F2  |83F286;
-                       JML.L eventID_vile_68_afterInit      ;83F282|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83F282|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83F286:
@@ -15809,7 +15809,7 @@ creeperHole_67_state_00:
                        STA.B $08                            ;83F2BA|8508    |001750;
                        SEP #$20                             ;83F2BC|E220    |      ;
                        LDA.B #$00                           ;83F2BE|A900    |      ;
-                       JSL.L CODE_848F07                    ;83F2C0|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83F2C0|22078F84|848F07;
                        LDA.B #$02                           ;83F2C4|A902    |      ;
                        STA.B $01                            ;83F2C6|8501    |001749;
                        RTS                                  ;83F2C8|60      |      ;
@@ -15927,7 +15927,7 @@ creeperHole_67_state_00:
                        STA.B $08                            ;83F399|8508    |001690;
                        SEP #$20                             ;83F39B|E220    |      ;
                        LDA.B #$00                           ;83F39D|A900    |      ;
-                       JSL.L CODE_848F07                    ;83F39F|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83F39F|22078F84|848F07;
                        LDA.B #$40                           ;83F3A3|A940    |      ;
                        STA.B $26                            ;83F3A5|8526    |0016AE;
                        LDA.B #$02                           ;83F3A7|A902    |      ;
@@ -15990,7 +15990,7 @@ creeperHole_67_state_00:
                        STA.B $20                            ;83F403|8520    |0016A8;
                        JSL.L CODE_84AB56                    ;83F405|2256AB84|84AB56;
                        SEP #$20                             ;83F409|E220    |      ;
-                       JML.L eventID_vile_68_afterInit      ;83F40B|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83F40B|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F40F:
@@ -16025,7 +16025,7 @@ creeperHole_67_state_00:
                        INC A                                ;83F43A|1A      |      ;
                                                             ;      |        |      ;
           CODE_83F43B:
-                       JSL.L CODE_848F07                    ;83F43B|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83F43B|22078F84|848F07;
                        LDX.B $0B                            ;83F43F|A60B    |0019B3;
                        LDA.W UNREACH_86E006,X               ;83F441|BD06E0  |86E006;
                        STA.B $1E                            ;83F444|851E    |0019C6;
@@ -16063,11 +16063,11 @@ creeperHole_67_state_00:
                        JSL.L CODE_8281E8                    ;83F482|22E88182|8281E8;
                        JSL.L initPosAllign                  ;83F486|226E8082|82806E;
                        BCS CODE_83F498                      ;83F48A|B00C    |83F498;
-                       LDA.W $0B9C                          ;83F48C|AD9C0B  |860B9C;
+                       LDA.W r_frameCounter1                ;83F48C|AD9C0B  |860B9C;
                        EOR.B $0B                            ;83F48F|450B    |001953;
                        LSR A                                ;83F491|4A      |      ;
                        BCC CODE_83F49C                      ;83F492|9008    |83F49C;
-                       JML.L eventID_vile_68_afterInit      ;83F494|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83F494|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F498:
@@ -16092,7 +16092,7 @@ creeperHole_67_state_00:
                        LDA.B #$17                           ;83F4AE|A917    |      ;
                        STA.B $16                            ;83F4B0|8516    |001A3E;
                        LDA.B #$00                           ;83F4B2|A900    |      ;
-                       JSL.L CODE_848F07                    ;83F4B4|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83F4B4|22078F84|848F07;
                        LDA.B #$34                           ;83F4B8|A934    |      ;
                        ORA.B $11                            ;83F4BA|0511    |001A39;
                        STA.B $11                            ;83F4BC|8511    |001A39;
@@ -16127,7 +16127,7 @@ creeperHole_67_state_00:
                        STA.B $1F                            ;83F4F0|851F    |001A47;
                        LDA.B #$10                           ;83F4F2|A910    |      ;
                        STA.B $1E                            ;83F4F4|851E    |001A46;
-                       JML.L eventID_vile_68_afterInit      ;83F4F6|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83F4F6|5CB48082|8280B4;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;83F4FA|22EA8E84|848EEA;
                        LDA.B $0F                            ;83F4FE|A50F    |001A37;
@@ -16148,7 +16148,7 @@ creeperHole_67_state_00:
                        JSL.L CODE_8281B2                    ;83F512|22B28182|8281B2;
                                                             ;      |        |      ;
           CODE_83F516:
-                       JML.L eventID_vile_68_afterInit      ;83F516|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83F516|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F51A:
@@ -16611,7 +16611,7 @@ creeperHole_67_state_00:
                        SEP #$20                             ;83F86C|E220    |      ;
                        BNE CODE_83F875                      ;83F86E|D005    |83F875;
                        LDA.B #$80                           ;83F870|A980    |      ;
-                       STA.W r_freezEndingScene             ;83F872|8D7F1F  |861F7F;
+                       STA.W r_endingRoll                   ;83F872|8D7F1F  |861F7F;
                                                             ;      |        |      ;
           CODE_83F875:
                        RTL                                  ;83F875|6B      |      ;
@@ -16788,7 +16788,7 @@ creeperHole_67_state_00:
                        AND.B #$20                           ;83F9AA|2920    |      ;
                        STA.B $0B                            ;83F9AC|850B    |001933;
                        LDA.W DATA8_86E027,Y                 ;83F9AE|B927E0  |86E027;
-                       JML.L CODE_848F07                    ;83F9B1|5C078F84|848F07;
+                       JML.L playerGrabedRoutine            ;83F9B1|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F9B5:
@@ -16828,7 +16828,7 @@ creeperHole_67_state_00:
                        BCC CODE_83F9F3                      ;83F9ED|9004    |83F9F3;
                                                             ;      |        |      ;
           CODE_83F9EF:
-                       JML.L eventID_vile_68_afterInit      ;83F9EF|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83F9EF|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83F9F3:
@@ -16849,7 +16849,7 @@ creeperHole_67_state_00:
                        LDA.B #$4F                           ;83FA0C|A94F    |      ;
                        STA.B $16                            ;83FA0E|8516    |00197E;
                        LDA.B $0B                            ;83FA10|A50B    |001973;
-                       JML.L CODE_848F07                    ;83FA12|5C078F84|848F07;
+                       JML.L playerGrabedRoutine            ;83FA12|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FA16:
@@ -16867,7 +16867,7 @@ creeperHole_67_state_00:
                                                             ;      |        |      ;
           CODE_83FA2E:
                        JSL.L updateEv_13_14_17_0f           ;83FA2E|22EA8E84|848EEA;
-                       JML.L eventID_vile_68_afterInit      ;83FA32|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83FA32|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FA36:
@@ -16892,13 +16892,13 @@ creeperHole_67_state_00:
                        LDA.B #$29                           ;83FA5F|A929    |      ;
                        STA.B $16                            ;83FA61|8516    |0019BE;
                        LDA.B #$00                           ;83FA63|A900    |      ;
-                       JML.L CODE_848F07                    ;83FA65|5C078F84|848F07;
+                       JML.L playerGrabedRoutine            ;83FA65|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FA69:
                        LDX.B $02                            ;83FA69|A602    |0019AA;
                        JSR.W (UNREACH_83FA72,X)             ;83FA6B|FC72FA  |83FA72;
-                       JML.L eventID_vile_68_afterInit      ;83FA6E|5CB48082|8280B4;
+                       JML.L checkEventRange                ;83FA6E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_83FA72:
@@ -16929,7 +16929,7 @@ creeperHole_67_state_00:
                        LDA.B #$06                           ;83FA9E|A906    |      ;
                        STA.B $02                            ;83FAA0|8502    |0019AA;
                        LDA.B #$02                           ;83FAA2|A902    |      ;
-                       JSL.L CODE_848F07                    ;83FAA4|22078F84|848F07;
+                       JSL.L playerGrabedRoutine            ;83FAA4|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_83FAA8:
                        RTS                                  ;83FAA8|60      |      ;
@@ -16991,10 +16991,10 @@ creeperHole_67_state_00:
                                                             ;      |        |      ;
           CODE_83FB0D:
                        REP #$30                             ;83FB0D|C230    |      ;
-                       LDA.W r_0bad                         ;83FB0F|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83FB0F|ADAD0B  |860BAD;
                        CMP.W #$0320                         ;83FB12|C92003  |      ;
                        BCS CODE_83FB26                      ;83FB15|B00F    |83FB26;
-                       LDA.W r_0bb0                         ;83FB17|ADB00B  |860BB0;
+                       LDA.W r_d_player_yPos                ;83FB17|ADB00B  |860BB0;
                        CMP.W #$049F                         ;83FB1A|C99F04  |      ;
                        BCC CODE_83FB26                      ;83FB1D|9007    |83FB26;
                        STZ.W r_0abd                         ;83FB1F|9CBD0A  |860ABD;
@@ -17229,14 +17229,14 @@ creeperHole_67_state_00:
                        CLC                                  ;83FCA3|18      |      ;
                        ADC.W r_cam_BG0_xPos_ff              ;83FCA4|6D8D1E  |861E8D;
                        STA.W r_cam_BG0_xPos_ff              ;83FCA7|8D8D1E  |861E8D;
-                       STA.W $00B8                          ;83FCAA|8DB800  |8600B8;
+                       STA.W r_job_BG2_X_addr               ;83FCAA|8DB800  |8600B8;
                        LDA.W r_cam_BG0_yPos_target          ;83FCAD|AD501E  |861E50;
                        LSR A                                ;83FCB0|4A      |      ;
                        LSR A                                ;83FCB1|4A      |      ;
                        SEC                                  ;83FCB2|38      |      ;
                        SBC.B $08                            ;83FCB3|E508    |001990;
                        STA.W r_cam_BG1_slot                 ;83FCB5|8D901E  |861E90;
-                       STA.W $00BA                          ;83FCB8|8DBA00  |8600BA;
+                       STA.W r_job_BG2_Y_addr               ;83FCB8|8DBA00  |8600BA;
                        LDA.B $07                            ;83FCBB|A507    |00198F;
                        CLC                                  ;83FCBD|18      |      ;
                        ADC.B $1C                            ;83FCBE|651C    |0019A4;
@@ -17257,9 +17257,9 @@ creeperHole_67_state_00:
                                                             ;      |        |      ;
           CODE_83FCD3:
                        LDA.W #$1650                         ;83FCD3|A95016  |      ;
-                       CMP.W r_0bad                         ;83FCD6|CDAD0B  |860BAD;
+                       CMP.W r_d_player_xSubPos             ;83FCD6|CDAD0B  |860BAD;
                        BCS CODE_83FD00                      ;83FCD9|B025    |83FD00;
-                       CMP.W r_0bca                         ;83FCDB|CDCA0B  |860BCA;
+                       CMP.W r_d_0bca                       ;83FCDB|CDCA0B  |860BCA;
                        BCC CODE_83FD00                      ;83FCDE|9020    |83FD00;
                        SEP #$20                             ;83FCE0|E220    |      ;
                        LDA.W r_1f45                         ;83FCE2|AD451F  |861F45;
@@ -17270,9 +17270,9 @@ creeperHole_67_state_00:
                        LDA.B #$FF                           ;83FCEE|A9FF    |      ;
                        JSL.L CODE_84A316                    ;83FCF0|2216A384|84A316;
                        LDA.B #$D0                           ;83FCF4|A9D0    |      ;
-                       STA.W r_1e5e                         ;83FCF6|8D5E1E  |861E5E;
+                       STA.W r_levelSpecFlag                ;83FCF6|8D5E1E  |861E5E;
                        LDA.B #$15                           ;83FCF9|A915    |      ;
-                       STA.W r_1e5f                         ;83FCFB|8D5F1E  |861E5F;
+                       STA.W r_levelSpec                    ;83FCFB|8D5F1E  |861E5F;
                                                             ;      |        |      ;
           CODE_83FCFE:
                        REP #$20                             ;83FCFE|C220    |      ;
@@ -17298,7 +17298,7 @@ creeperHole_67_state_00:
                        JSL.L CODE_849086                    ;83FD1B|22869084|849086;
                        AND.W #$007F                         ;83FD1F|297F00  |      ;
                        BNE CODE_83FD41                      ;83FD22|D01D    |83FD41;
-                       LDA.W r_1e58                         ;83FD24|AD581E  |861E58;
+                       LDA.W r_cam_BG0_RightBorder          ;83FD24|AD581E  |861E58;
                        CMP.W r_cam_BG0_xPos_lock            ;83FD27|CD601E  |861E60;
                        BNE CODE_83FD41                      ;83FD2A|D015    |83FD41;
                        LDX.W #$0001                         ;83FD2C|A20100  |      ;
@@ -17339,13 +17339,13 @@ creeperHole_67_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_83FD62:
-                       LDA.W r_0bad                         ;83FD62|ADAD0B  |860BAD;
+                       LDA.W r_d_player_xSubPos             ;83FD62|ADAD0B  |860BAD;
                        CMP.W #$1650                         ;83FD65|C95016  |      ;
                        BCC CODE_83FD7A                      ;83FD68|9010    |83FD7A;
                        SEP #$20                             ;83FD6A|E220    |      ;
                        LDA.W r_1e78                         ;83FD6C|AD781E  |861E78;
                        BEQ CODE_83FD78                      ;83FD6F|F007    |83FD78;
-                       LDA.W $0B9C                          ;83FD71|AD9C0B  |860B9C;
+                       LDA.W r_frameCounter1                ;83FD71|AD9C0B  |860B9C;
                        AND.B #$1F                           ;83FD74|291F    |      ;
                        BNE CODE_83FD78                      ;83FD76|D000    |83FD78;
                                                             ;      |        |      ;
@@ -17422,7 +17422,7 @@ creeperHole_67_state_00:
                        TAX                                  ;83FDD9|AA      |      ;
                        LDA.W DATA8_86E4DC,X                 ;83FDDA|BDDCE4  |86E4DC;
                        TAX                                  ;83FDDD|AA      |      ;
-                       LDA.W r_0ba8,X                       ;83FDDE|BDA80B  |860BA8;
+                       LDA.W r_d_player_FauxExist,X         ;83FDDE|BDA80B  |860BA8;
                        CMP.B $00,X                          ;83FDE1|D500    |001D18;
                        RTS                                  ;83FDE3|60      |      ;
                                                             ;      |        |      ;
@@ -17622,7 +17622,7 @@ creeperHole_67_state_00:
                        REP #$20                             ;83FF36|C220    |      ;
                        LDA.B $05                            ;83FF38|A505    |001D0D;
                        SEC                                  ;83FF3A|38      |      ;
-                       SBC.W r_0bad                         ;83FF3B|EDAD0B  |860BAD;
+                       SBC.W r_d_player_xSubPos             ;83FF3B|EDAD0B  |860BAD;
                        BCS CODE_83FF44                      ;83FF3E|B004    |83FF44;
                        EOR.W #$FFFF                         ;83FF40|49FFFF  |      ;
                        INC A                                ;83FF43|1A      |      ;
@@ -17632,7 +17632,7 @@ creeperHole_67_state_00:
                        BCC CODE_83FF5F                      ;83FF47|9016    |83FF5F;
                        LDA.B $08                            ;83FF49|A508    |001D10;
                        SEC                                  ;83FF4B|38      |      ;
-                       SBC.W r_0bb0                         ;83FF4C|EDB00B  |860BB0;
+                       SBC.W r_d_player_yPos                ;83FF4C|EDB00B  |860BB0;
                        BCS CODE_83FF55                      ;83FF4F|B004    |83FF55;
                        EOR.W #$FFFF                         ;83FF51|49FFFF  |      ;
                        INC A                                ;83FF54|1A      |      ;
