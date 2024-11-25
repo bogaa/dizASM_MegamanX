@@ -165,6 +165,9 @@
           <Value exs:type="ns1:Label" Name="r_blaster_chargeTimer" Comment="" />
         </sys:Item>
         <sys:Item Key="3074">
+          <Value exs:type="ns1:Label" Name="r_blaster_chargeValue" Comment="" />
+        </sys:Item>
+        <sys:Item Key="3075">
           <Value exs:type="ns1:Label" Name="r_blaster_chargeState" Comment="" />
         </sys:Item>
         <sys:Item Key="3078">
@@ -440,8 +443,698 @@
         <sys:Item Key="5160">
           <Value exs:type="ns1:Label" Name="r_ev_enemyProjectile_00" Comment="" />
         </sys:Item>
+        <sys:Item Key="8448">
+          <Value exs:type="ns1:Label" Name="SNES_INIDISP" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8449">
+          <Value exs:type="ns1:Label" Name="SNES_OBJSEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8450">
+          <Value exs:type="ns1:Label" Name="SNES_OAMADDL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8451">
+          <Value exs:type="ns1:Label" Name="SNES_OAMADDH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8452">
+          <Value exs:type="ns1:Label" Name="SNES_OAMDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8453">
+          <Value exs:type="ns1:Label" Name="SNES_BGMODE" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8454">
+          <Value exs:type="ns1:Label" Name="SNES_MOSAIC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8455">
+          <Value exs:type="ns1:Label" Name="SNES_BG1SC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8456">
+          <Value exs:type="ns1:Label" Name="SNES_BG2SC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8457">
+          <Value exs:type="ns1:Label" Name="SNES_BG3SC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8458">
+          <Value exs:type="ns1:Label" Name="SNES_BG4SC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8459">
+          <Value exs:type="ns1:Label" Name="SNES_BG12NBA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8460">
+          <Value exs:type="ns1:Label" Name="SNES_BG34NBA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8461">
+          <Value exs:type="ns1:Label" Name="SNES_BG1HOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8462">
+          <Value exs:type="ns1:Label" Name="SNES_BG1VOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8463">
+          <Value exs:type="ns1:Label" Name="SNES_BG2HOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8464">
+          <Value exs:type="ns1:Label" Name="SNES_BG2VOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8465">
+          <Value exs:type="ns1:Label" Name="SNES_BG3HOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8466">
+          <Value exs:type="ns1:Label" Name="SNES_BG3VOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8467">
+          <Value exs:type="ns1:Label" Name="SNES_BG4HOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8468">
+          <Value exs:type="ns1:Label" Name="SNES_BG4VOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8469">
+          <Value exs:type="ns1:Label" Name="SNES_VMAINC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8470">
+          <Value exs:type="ns1:Label" Name="SNES_VMADDL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8471">
+          <Value exs:type="ns1:Label" Name="SNES_VMADDH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8472">
+          <Value exs:type="ns1:Label" Name="SNES_VMDATAL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8473">
+          <Value exs:type="ns1:Label" Name="SNES_VMDATAH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8474">
+          <Value exs:type="ns1:Label" Name="SNES_M7SEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8475">
+          <Value exs:type="ns1:Label" Name="SNES_M7A" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8476">
+          <Value exs:type="ns1:Label" Name="SNES_M7B" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8477">
+          <Value exs:type="ns1:Label" Name="SNES_M7C" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8478">
+          <Value exs:type="ns1:Label" Name="SNES_M7D" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8479">
+          <Value exs:type="ns1:Label" Name="SNES_M7X" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8480">
+          <Value exs:type="ns1:Label" Name="SNES_M7Y" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8481">
+          <Value exs:type="ns1:Label" Name="SNES_CGADD" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8482">
+          <Value exs:type="ns1:Label" Name="SNES_CGDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8483">
+          <Value exs:type="ns1:Label" Name="SNES_W12SEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8484">
+          <Value exs:type="ns1:Label" Name="SNES_W34SEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8485">
+          <Value exs:type="ns1:Label" Name="SNES_WOBJSEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8486">
+          <Value exs:type="ns1:Label" Name="SNES_WH0" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8487">
+          <Value exs:type="ns1:Label" Name="SNES_WH1" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8488">
+          <Value exs:type="ns1:Label" Name="SNES_WH2" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8489">
+          <Value exs:type="ns1:Label" Name="SNES_WH3" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8490">
+          <Value exs:type="ns1:Label" Name="SNES_WBGLOG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8491">
+          <Value exs:type="ns1:Label" Name="SNES_WOBJLOG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8492">
+          <Value exs:type="ns1:Label" Name="SNES_TM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8493">
+          <Value exs:type="ns1:Label" Name="SNES_TS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8494">
+          <Value exs:type="ns1:Label" Name="SNES_TMW" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8495">
+          <Value exs:type="ns1:Label" Name="SNES_TSW" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8496">
+          <Value exs:type="ns1:Label" Name="SNES_CGSWSEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8497">
+          <Value exs:type="ns1:Label" Name="SNES_CGADSUB" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8498">
+          <Value exs:type="ns1:Label" Name="SNES_COLDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8499">
+          <Value exs:type="ns1:Label" Name="SNES_SETINI" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8500">
+          <Value exs:type="ns1:Label" Name="SNES_MPYL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8501">
+          <Value exs:type="ns1:Label" Name="SNES_MPYM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8502">
+          <Value exs:type="ns1:Label" Name="SNES_MPYH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8503">
+          <Value exs:type="ns1:Label" Name="SNES_SLHV" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8504">
+          <Value exs:type="ns1:Label" Name="SNES_ROAMDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8505">
+          <Value exs:type="ns1:Label" Name="SNES_RVMDATAL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8506">
+          <Value exs:type="ns1:Label" Name="SNES_RVMDATAH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8507">
+          <Value exs:type="ns1:Label" Name="SNES_RCGDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8508">
+          <Value exs:type="ns1:Label" Name="SNES_OPHCT" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8509">
+          <Value exs:type="ns1:Label" Name="SNES_OPVCT" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8510">
+          <Value exs:type="ns1:Label" Name="SNES_STAT77" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8511">
+          <Value exs:type="ns1:Label" Name="SNES_STAT78" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8512">
+          <Value exs:type="ns1:Label" Name="SNES_APUIO0" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8513">
+          <Value exs:type="ns1:Label" Name="SNES_APUIO1" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8514">
+          <Value exs:type="ns1:Label" Name="SNES_APUIO2" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8515">
+          <Value exs:type="ns1:Label" Name="SNES_APUIO3" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8576">
+          <Value exs:type="ns1:Label" Name="SNES_WMDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8577">
+          <Value exs:type="ns1:Label" Name="SNES_WMADDL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8578">
+          <Value exs:type="ns1:Label" Name="SNES_WMADDM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8579">
+          <Value exs:type="ns1:Label" Name="SNES_WMADDH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16406">
+          <Value exs:type="ns1:Label" Name="SNES_JOY1" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16407">
+          <Value exs:type="ns1:Label" Name="SNES_JOY2" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16896">
+          <Value exs:type="ns1:Label" Name="SNES_NMITIMEN" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16897">
+          <Value exs:type="ns1:Label" Name="SNES_WRIO" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16898">
+          <Value exs:type="ns1:Label" Name="SNES_WRMPYA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16899">
+          <Value exs:type="ns1:Label" Name="SNES_WRMPYB" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16900">
+          <Value exs:type="ns1:Label" Name="SNES_WRDIVL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16901">
+          <Value exs:type="ns1:Label" Name="SNES_WRDIVH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16902">
+          <Value exs:type="ns1:Label" Name="SNES_WRDIVB" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16903">
+          <Value exs:type="ns1:Label" Name="SNES_HTIMEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16904">
+          <Value exs:type="ns1:Label" Name="SNES_HTIMEH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16905">
+          <Value exs:type="ns1:Label" Name="SNES_VTIMEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16906">
+          <Value exs:type="ns1:Label" Name="SNES_VTIMEH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16907">
+          <Value exs:type="ns1:Label" Name="SNES_MDMAEN" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16908">
+          <Value exs:type="ns1:Label" Name="SNES_HDMAEN" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16909">
+          <Value exs:type="ns1:Label" Name="SNES_MEMSEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16912">
+          <Value exs:type="ns1:Label" Name="SNES_RDNMI" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16913">
+          <Value exs:type="ns1:Label" Name="SNES_TIMEUP" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16914">
+          <Value exs:type="ns1:Label" Name="SNES_HVBJOY" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16915">
+          <Value exs:type="ns1:Label" Name="SNES_RDIO" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16916">
+          <Value exs:type="ns1:Label" Name="SNES_RDDIVL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16917">
+          <Value exs:type="ns1:Label" Name="SNES_RDDIVH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16918">
+          <Value exs:type="ns1:Label" Name="SNES_RDMPYL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16919">
+          <Value exs:type="ns1:Label" Name="SNES_RDMPYH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16920">
+          <Value exs:type="ns1:Label" Name="SNES_CNTRL1L" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16921">
+          <Value exs:type="ns1:Label" Name="SNES_CNTRL1H" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16922">
+          <Value exs:type="ns1:Label" Name="SNES_CNTRL2L" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16923">
+          <Value exs:type="ns1:Label" Name="SNES_CNTRL2H" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16924">
+          <Value exs:type="ns1:Label" Name="SNES_CNTRL3L" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16925">
+          <Value exs:type="ns1:Label" Name="SNES_CNTRL3H" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16926">
+          <Value exs:type="ns1:Label" Name="SNES_CNTRL4L" Comment="" />
+        </sys:Item>
+        <sys:Item Key="16927">
+          <Value exs:type="ns1:Label" Name="SNES_CNTRL4H" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17152">
+          <Value exs:type="ns1:Label" Name="SNES_DMA0PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17153">
+          <Value exs:type="ns1:Label" Name="SNES_DMA0REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17154">
+          <Value exs:type="ns1:Label" Name="SNES_DMA0ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17155">
+          <Value exs:type="ns1:Label" Name="SNES_DMA0ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17156">
+          <Value exs:type="ns1:Label" Name="SNES_DMA0ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17157">
+          <Value exs:type="ns1:Label" Name="SNES_DMA0CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17158">
+          <Value exs:type="ns1:Label" Name="SNES_DMA0CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17159">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA0BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17160">
+          <Value exs:type="ns1:Label" Name="SNES_DMA0IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17161">
+          <Value exs:type="ns1:Label" Name="SNES_DMA0IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17162">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA0LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17168">
+          <Value exs:type="ns1:Label" Name="SNES_DMA1PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17169">
+          <Value exs:type="ns1:Label" Name="SNES_DMA1REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17170">
+          <Value exs:type="ns1:Label" Name="SNES_DMA1ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17171">
+          <Value exs:type="ns1:Label" Name="SNES_DMA1ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17172">
+          <Value exs:type="ns1:Label" Name="SNES_DMA1ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17173">
+          <Value exs:type="ns1:Label" Name="SNES_DMA1CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17174">
+          <Value exs:type="ns1:Label" Name="SNES_DMA1CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17175">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA1BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17176">
+          <Value exs:type="ns1:Label" Name="SNES_DMA1IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17177">
+          <Value exs:type="ns1:Label" Name="SNES_DMA1IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17178">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA1LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17184">
+          <Value exs:type="ns1:Label" Name="SNES_DMA2PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17185">
+          <Value exs:type="ns1:Label" Name="SNES_DMA2REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17186">
+          <Value exs:type="ns1:Label" Name="SNES_DMA2ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17187">
+          <Value exs:type="ns1:Label" Name="SNES_DMA2ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17188">
+          <Value exs:type="ns1:Label" Name="SNES_DMA2ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17189">
+          <Value exs:type="ns1:Label" Name="SNES_DMA2CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17190">
+          <Value exs:type="ns1:Label" Name="SNES_DMA2CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17191">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA2BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17192">
+          <Value exs:type="ns1:Label" Name="SNES_DMA2IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17193">
+          <Value exs:type="ns1:Label" Name="SNES_DMA2IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17194">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA2LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17200">
+          <Value exs:type="ns1:Label" Name="SNES_DMA3PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17201">
+          <Value exs:type="ns1:Label" Name="SNES_DMA3REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17202">
+          <Value exs:type="ns1:Label" Name="SNES_DMA3ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17203">
+          <Value exs:type="ns1:Label" Name="SNES_DMA3ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17204">
+          <Value exs:type="ns1:Label" Name="SNES_DMA3ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17205">
+          <Value exs:type="ns1:Label" Name="SNES_DMA3CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17206">
+          <Value exs:type="ns1:Label" Name="SNES_DMA3CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17207">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA3BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17208">
+          <Value exs:type="ns1:Label" Name="SNES_DMA3IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17209">
+          <Value exs:type="ns1:Label" Name="SNES_DMA3IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17210">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA3LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17216">
+          <Value exs:type="ns1:Label" Name="SNES_DMA4PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17217">
+          <Value exs:type="ns1:Label" Name="SNES_DMA4REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17218">
+          <Value exs:type="ns1:Label" Name="SNES_DMA4ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17219">
+          <Value exs:type="ns1:Label" Name="SNES_DMA4ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17220">
+          <Value exs:type="ns1:Label" Name="SNES_DMA4ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17221">
+          <Value exs:type="ns1:Label" Name="SNES_DMA4CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17222">
+          <Value exs:type="ns1:Label" Name="SNES_DMA4CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17223">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA4BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17224">
+          <Value exs:type="ns1:Label" Name="SNES_DMA4IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17225">
+          <Value exs:type="ns1:Label" Name="SNES_DMA4IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17226">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA4LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17232">
+          <Value exs:type="ns1:Label" Name="SNES_DMA5PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17233">
+          <Value exs:type="ns1:Label" Name="SNES_DMA5REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17234">
+          <Value exs:type="ns1:Label" Name="SNES_DMA5ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17235">
+          <Value exs:type="ns1:Label" Name="SNES_DMA5ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17236">
+          <Value exs:type="ns1:Label" Name="SNES_DMA5ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17237">
+          <Value exs:type="ns1:Label" Name="SNES_DMA5CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17238">
+          <Value exs:type="ns1:Label" Name="SNES_DMA5CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17239">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA5BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17240">
+          <Value exs:type="ns1:Label" Name="SNES_DMA5IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17241">
+          <Value exs:type="ns1:Label" Name="SNES_DMA5IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17242">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA5LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17248">
+          <Value exs:type="ns1:Label" Name="SNES_DMA6PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17249">
+          <Value exs:type="ns1:Label" Name="SNES_DMA6REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17250">
+          <Value exs:type="ns1:Label" Name="SNES_DMA6ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17251">
+          <Value exs:type="ns1:Label" Name="SNES_DMA6ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17252">
+          <Value exs:type="ns1:Label" Name="SNES_DMA6ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17253">
+          <Value exs:type="ns1:Label" Name="SNES_DMA6CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17254">
+          <Value exs:type="ns1:Label" Name="SNES_DMA6CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17255">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA6BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17256">
+          <Value exs:type="ns1:Label" Name="SNES_DMA6IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17257">
+          <Value exs:type="ns1:Label" Name="SNES_DMA6IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17258">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA6LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17264">
+          <Value exs:type="ns1:Label" Name="SNES_DMA7PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17265">
+          <Value exs:type="ns1:Label" Name="SNES_DMA7REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17266">
+          <Value exs:type="ns1:Label" Name="SNES_DMA7ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17267">
+          <Value exs:type="ns1:Label" Name="SNES_DMA7ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17268">
+          <Value exs:type="ns1:Label" Name="SNES_DMA7ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17269">
+          <Value exs:type="ns1:Label" Name="SNES_DMA7CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17270">
+          <Value exs:type="ns1:Label" Name="SNES_DMA7CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17271">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA7BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17272">
+          <Value exs:type="ns1:Label" Name="SNES_DMA7IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17273">
+          <Value exs:type="ns1:Label" Name="SNES_DMA7IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="17274">
+          <Value exs:type="ns1:Label" Name="SNES_HDMA7LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551088">
+          <Value exs:type="ns1:Label" Name="music_Highway_stage_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551089">
+          <Value exs:type="ns1:Label" Name="music_Launch_Octopus_stage_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551090">
+          <Value exs:type="ns1:Label" Name="music_Sting_Chameleon_stage_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551091">
+          <Value exs:type="ns1:Label" Name="music_Armored_Armadillo_stage_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551092">
+          <Value exs:type="ns1:Label" Name="music_Flame_Mammoth_stage_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551093">
+          <Value exs:type="ns1:Label" Name="music_Storm_Eagle_stage_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551094">
+          <Value exs:type="ns1:Label" Name="music_Spark_Mandrill_stage_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551095">
+          <Value exs:type="ns1:Label" Name="music_Boomer_Kuwanger_stage_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551096">
+          <Value exs:type="ns1:Label" Name="music_Chill_Penguin_stage_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551097">
+          <Value exs:type="ns1:Label" Name="music_Sigma_stage_1_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551098">
+          <Value exs:type="ns1:Label" Name="music_Sigma_stage_2_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551099">
+          <Value exs:type="ns1:Label" Name="music_Sigma_stage_3_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="551100">
+          <Value exs:type="ns1:Label" Name="music_Sigma_stage_4_music" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8265728">
+          <Value exs:type="ns1:Label" Name="blockMap" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8316928">
+          <Value exs:type="ns1:Label" Name="sceneMap" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8322944">
+          <Value exs:type="ns1:Label" Name="optionIdx" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8322945">
+          <Value exs:type="ns1:Label" Name="optionIdxOld" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8323008">
+          <Value exs:type="ns1:Label" Name="buttonMap_shot" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8323009">
+          <Value exs:type="ns1:Label" Name="buttonMap_jump" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8323010">
+          <Value exs:type="ns1:Label" Name="buttonMap_dash" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8323011">
+          <Value exs:type="ns1:Label" Name="buttonMap_L" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8323012">
+          <Value exs:type="ns1:Label" Name="buttonMap_R" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8323013">
+          <Value exs:type="ns1:Label" Name="buttonMap_start" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8323016">
+          <Value exs:type="ns1:Label" Name="optionBGM_idx" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8323017">
+          <Value exs:type="ns1:Label" Name="optionSFX_idx" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8323018">
+          <Value exs:type="ns1:Label" Name="optionMonoStereo" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8356352">
+          <Value exs:type="ns1:Label" Name="gfxSlotOffsetLockup" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8421376">
+          <Value exs:type="ns1:Label" Name="resetGame" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8421383">
+          <Value exs:type="ns1:Label" Name="goFastRomPage" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8421463">
+          <Value exs:type="ns1:Label" Name="clearRAM_2000" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8421527">
+          <Value exs:type="ns1:Label" Name="wait_loop_8097" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8421529">
+          <Value exs:type="ns1:Label" Name="resetStack" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8421691">
+          <Value exs:type="ns1:Label" Name="startUp_textLoadSet" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8422692">
+          <Value exs:type="ns1:Label" Name="endInterupt" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8422700">
+          <Value exs:type="ns1:Label" Name="introMain" Comment="" />
+        </sys:Item>
         <sys:Item Key="8423586">
           <Value exs:type="ns1:Label" Name="lunchSFX" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8423629">
+          <Value exs:type="ns1:Label" Name="weaponChargeInit" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8423660">
+          <Value exs:type="ns1:Label" Name="startUp_setPPU" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8424649">
+          <Value exs:type="ns1:Label" Name="titleDrawAnimSwoop" Comment="" />
         </sys:Item>
         <sys:Item Key="8426265">
           <Value exs:type="ns1:Label" Name="startScreen_init" Comment="" />
@@ -480,13 +1173,28 @@
           <Value exs:type="ns1:Label" Name="reloadLevel" Comment="" />
         </sys:Item>
         <sys:Item Key="8426873">
-          <Value exs:type="ns1:Label" Name="gameSubLoop_idx_d3" Comment="" />
+          <Value exs:type="ns1:Label" Name="gameSubLoad_idx_d3" Comment="" />
         </sys:Item>
         <sys:Item Key="8427341">
-          <Value exs:type="ns1:Label" Name="mainGameSubLoop" Comment="" />
+          <Value exs:type="ns1:Label" Name="" Comment="" />
         </sys:Item>
         <sys:Item Key="8427894">
           <Value exs:type="ns1:Label" Name="loopD3_mainGame_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8427899">
+          <Value exs:type="ns1:Label" Name="mainGameLoops" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8427913">
+          <Value exs:type="ns1:Label" Name="levelLoadStuff" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8428080">
+          <Value exs:type="ns1:Label" Name="levelLoad_readyText" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8428138">
+          <Value exs:type="ns1:Label" Name="mainGameRun" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8428177">
+          <Value exs:type="ns1:Label" Name="" Comment="" />
         </sys:Item>
         <sys:Item Key="8428882">
           <Value exs:type="ns1:Label" Name="loopD3_03" Comment="" />
@@ -497,11 +1205,38 @@
         <sys:Item Key="8428884">
           <Value exs:type="ns1:Label" Name="loopD3_05" Comment="" />
         </sys:Item>
+        <sys:Item Key="8429160">
+          <Value exs:type="ns1:Label" Name="mainPauseMenuCheck_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8434267">
+          <Value exs:type="ns1:Label" Name="mainGFXloadRoutine" Comment="" />
+        </sys:Item>
         <sys:Item Key="8439798">
           <Value exs:type="ns1:Label" Name="menu_pressedDown" Comment="" />
         </sys:Item>
         <sys:Item Key="8439894">
           <Value exs:type="ns1:Label" Name="menu_pressedUp" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8440005">
+          <Value exs:type="ns1:Label" Name="pauseMenu_upgrades" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8440080">
+          <Value exs:type="ns1:Label" Name="showArmorMenu" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8440124">
+          <Value exs:type="ns1:Label" Name="checkUpgradeSelect" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8440138">
+          <Value exs:type="ns1:Label" Name="" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8440143">
+          <Value exs:type="ns1:Label" Name="getSelecteUpgrade" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8441112">
+          <Value exs:type="ns1:Label" Name="upgradCapsleShow" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8442349">
+          <Value exs:type="ns1:Label" Name="mainPlayer_01" Comment="" />
         </sys:Item>
         <sys:Item Key="8443184">
           <Value exs:type="ns1:Label" Name="mainEventID" Comment="" />
@@ -544,6 +1279,12 @@
         </sys:Item>
         <sys:Item Key="8443948">
           <Value exs:type="ns1:Label" Name="drawHUD_01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8444982">
+          <Value exs:type="ns1:Label" Name="mainEnemy_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8447299">
+          <Value exs:type="ns1:Label" Name="joyPadPullMainGame" Comment="" />
         </sys:Item>
         <sys:Item Key="8450920">
           <Value exs:type="ns1:Label" Name="someEptyRoutine" Comment="" />
@@ -1011,7 +1752,31 @@
           <Value exs:type="ns1:Label" Name="playerKneelAnim" Comment="" />
         </sys:Item>
         <sys:Item Key="8493010">
-          <Value exs:type="ns1:Label" Name="playerChargeBlaster" Comment="" />
+          <Value exs:type="ns1:Label" Name="playerAmorAndCharge" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8493038">
+          <Value exs:type="ns1:Label" Name="startChargeWeapon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8493052">
+          <Value exs:type="ns1:Label" Name="clearWeaponCharge" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8493058">
+          <Value exs:type="ns1:Label" Name="endChargeUpgrades" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8493130">
+          <Value exs:type="ns1:Label" Name="weaponCharge00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8493145">
+          <Value exs:type="ns1:Label" Name="weaponCharge01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8493194">
+          <Value exs:type="ns1:Label" Name="weaponCharge03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8493279">
+          <Value exs:type="ns1:Label" Name="weaponChargeBEQ_testes" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8494654">
+          <Value exs:type="ns1:Label" Name="weaponChargeRoutine_00" Comment="" />
         </sys:Item>
         <sys:Item Key="8495202">
           <Value exs:type="ns1:Label" Name="playerSub_00" Comment="" />
@@ -1496,6 +2261,9 @@
         <sys:Item Key="8687367">
           <Value exs:type="ns1:Label" Name="playerGrabedRoutine" Comment="" />
         </sys:Item>
+        <sys:Item Key="8687750">
+          <Value exs:type="ns1:Label" Name="mainPlayer_00" Comment="" />
+        </sys:Item>
         <sys:Item Key="8695367">
           <Value exs:type="ns1:Label" Name="eventID_slimVolt_02_main" Comment="" />
         </sys:Item>
@@ -1525,9 +2293,6 @@
         </sys:Item>
         <sys:Item Key="8702166">
           <Value exs:type="ns1:Label" Name="text__00" Comment="" />
-        </sys:Item>
-        <sys:Item Key="8702174">
-          <Value exs:type="ns1:Label" Name="" Comment="" />
         </sys:Item>
         <sys:Item Key="8702722">
           <Value exs:type="ns1:Label" Name="text__01" Comment="" />
@@ -1631,11 +2396,875 @@
         <sys:Item Key="8711355">
           <Value exs:type="ns1:Label" Name="text__22" Comment="" />
         </sys:Item>
-        <sys:Item Key="8763136">
-          <Value exs:type="ns1:Label" Name="paletteData_start" Comment="" />
+        <sys:Item Key="8762624">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_main__no_weapon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8762656">
+          <Value exs:type="ns1:Label" Name="palDat_Rush_Roader_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8762688">
+          <Value exs:type="ns1:Label" Name="palDat_Hoganmer_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8762720">
+          <Value exs:type="ns1:Label" Name="palDat_Dodge_Blaster_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8762752">
+          <Value exs:type="ns1:Label" Name="palDat_Sine_Faller_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8762784">
+          <Value exs:type="ns1:Label" Name="palDat_Boomerang_Cutter_weapon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8762816">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_secondary" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8762848">
+          <Value exs:type="ns1:Label" Name="palDat_Flashing_color" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763392">
+          <Value exs:type="ns1:Label" Name="palDat_Flammingle_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763424">
+          <Value exs:type="ns1:Label" Name="palDat_MYSTERY_PALETTE_0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763456">
+          <Value exs:type="ns1:Label" Name="palDat_Planty_plus_Iworm_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763488">
+          <Value exs:type="ns1:Label" Name="palDat_X_Buster_weapon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763520">
+          <Value exs:type="ns1:Label" Name="palDat_Light_Capsule" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763552">
+          <Value exs:type="ns1:Label" Name="palDat_Light_Capsule_glowing" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763616">
+          <Value exs:type="ns1:Label" Name="palDat_Homing_Torpedo_weapon" Comment="" />
         </sys:Item>
         <sys:Item Key="8763648">
-          <Value exs:type="ns1:Label" Name="mainPaletteData" Comment="" />
+          <Value exs:type="ns1:Label" Name="palDat_Chameleon_Sting_weapon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763680">
+          <Value exs:type="ns1:Label" Name="palDat_Large_stone_block_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763712">
+          <Value exs:type="ns1:Label" Name="palDat_RT_55J_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763744">
+          <Value exs:type="ns1:Label" Name="palDat_MYSTERY_PALETTE_0002" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763776">
+          <Value exs:type="ns1:Label" Name="palDat_Boss_door_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763808">
+          <Value exs:type="ns1:Label" Name="palDat_Axe_Max_plus_Axe_wood_plus_falling_leaves_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763840">
+          <Value exs:type="ns1:Label" Name="palDat_Megaman_in_Light_Capsule_flashing" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763904">
+          <Value exs:type="ns1:Label" Name="palDat_Road_Attacker_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763936">
+          <Value exs:type="ns1:Label" Name="palDat_Crusher_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8763968">
+          <Value exs:type="ns1:Label" Name="palDat_Spiky_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764000">
+          <Value exs:type="ns1:Label" Name="palDat_Sting_Chameleon_plus_falling_spikes_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764032">
+          <Value exs:type="ns1:Label" Name="palDat_Bomb_Been_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764064">
+          <Value exs:type="ns1:Label" Name="palDat_MYSTER_PALETTE_0003" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764096">
+          <Value exs:type="ns1:Label" Name="palDat_Highway_breakway_platform_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764128">
+          <Value exs:type="ns1:Label" Name="palDat_Road_Attacker_deployer_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764160">
+          <Value exs:type="ns1:Label" Name="palDat_Gulpfer_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764192">
+          <Value exs:type="ns1:Label" Name="palDat_Mad_Pecker_plus_Creeper_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764224">
+          <Value exs:type="ns1:Label" Name="palDat_Sea_Attacker_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764256">
+          <Value exs:type="ns1:Label" Name="palDat_Amenhopper_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764288">
+          <Value exs:type="ns1:Label" Name="palDat_Bee_Blader_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764320">
+          <Value exs:type="ns1:Label" Name="palDat_Utuboros_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764352">
+          <Value exs:type="ns1:Label" Name="palDat_Ball_De_Voux_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764384">
+          <Value exs:type="ns1:Label" Name="palDat_Gun_Volt_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764416">
+          <Value exs:type="ns1:Label" Name="palDat_Anglerge_parts_plus_snake_missile_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764448">
+          <Value exs:type="ns1:Label" Name="palDat_Boss_intro_lightning_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764480">
+          <Value exs:type="ns1:Label" Name="palDat_Death_Rogumer_cannon_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764512">
+          <Value exs:type="ns1:Label" Name="palDat_Heart_Tank" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764544">
+          <Value exs:type="ns1:Label" Name="palDat_Utuboros_sand_cloud_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764576">
+          <Value exs:type="ns1:Label" Name="palDat_Highway_car_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764608">
+          <Value exs:type="ns1:Label" Name="palDat_Highway_trailer_trucks_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764640">
+          <Value exs:type="ns1:Label" Name="palDat_Highway_van_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764672">
+          <Value exs:type="ns1:Label" Name="palDat_Final_Form_Sigma_head_plus_eyes_plus_claws_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764704">
+          <Value exs:type="ns1:Label" Name="palDat_Final_Form_Sigma_s_fade_in" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764832">
+          <Value exs:type="ns1:Label" Name="palDat_Final_Form_Sigma_s_flames_plus_sparks_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764864">
+          <Value exs:type="ns1:Label" Name="palDat_Jellyfish_enemy_s___UNUSED" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764896">
+          <Value exs:type="ns1:Label" Name="palDat_Cruiziler_parts_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764928">
+          <Value exs:type="ns1:Label" Name="palDat_Stage_select_cursor_plus_map_screen_dot_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764960">
+          <Value exs:type="ns1:Label" Name="palDat_Storm_Tornado_weapon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8764992">
+          <Value exs:type="ns1:Label" Name="palDat_Scrap_Robo_plus_Broken_Utuboros_head_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765024">
+          <Value exs:type="ns1:Label" Name="palDat_Scrap_Robo_plus_Broken_Utuboros_head_s_melting" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765056">
+          <Value exs:type="ns1:Label" Name="palDat_Mine_cart_platform_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765088">
+          <Value exs:type="ns1:Label" Name="palDat_Shotgun_Ice_weapon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765120">
+          <Value exs:type="ns1:Label" Name="palDat_Fire_Wave_weapon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765152">
+          <Value exs:type="ns1:Label" Name="palDat_Electric_Spark_weapon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765184">
+          <Value exs:type="ns1:Label" Name="palDat_Rolling_Shield_weapon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765216">
+          <Value exs:type="ns1:Label" Name="palDat_Charged_Rolling_Shield_weapon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765344">
+          <Value exs:type="ns1:Label" Name="palDat_Mole_Borer_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765376">
+          <Value exs:type="ns1:Label" Name="palDat_Pink_Ride_Armor_plus_Pink_Armor_Soldier_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765408">
+          <Value exs:type="ns1:Label" Name="palDat_Bat_Bone_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765440">
+          <Value exs:type="ns1:Label" Name="palDat_Batton_M_501_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765472">
+          <Value exs:type="ns1:Label" Name="palDat_Met_C_15_plus_password_cursor_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765504">
+          <Value exs:type="ns1:Label" Name="palDat_Crag_Man_plus_small_stone_block_plus_Forest_rubble_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765536">
+          <Value exs:type="ns1:Label" Name="palDat_Dig_Labour_plus_factory_rubble_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765568">
+          <Value exs:type="ns1:Label" Name="palDat_Unknown_Duplicate_Dig_Labour" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765600">
+          <Value exs:type="ns1:Label" Name="palDat_Vile_plus_Vile_s_first_ride_armor_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765632">
+          <Value exs:type="ns1:Label" Name="palDat_Zero_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765664">
+          <Value exs:type="ns1:Label" Name="palDat_Zero_s_Beta_charging" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765728">
+          <Value exs:type="ns1:Label" Name="palDat_Zero_s_charged_shot_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765760">
+          <Value exs:type="ns1:Label" Name="palDat_Password_screen_number_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765824">
+          <Value exs:type="ns1:Label" Name="palDat_Password_screen_cursor_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765856">
+          <Value exs:type="ns1:Label" Name="palDat_Hotarion_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765888">
+          <Value exs:type="ns1:Label" Name="palDat_Metal_Wing_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765920">
+          <Value exs:type="ns1:Label" Name="palDat_Conveyor_belt_crusher_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765952">
+          <Value exs:type="ns1:Label" Name="palDat_Jamminger_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8765984">
+          <Value exs:type="ns1:Label" Name="palDat_MYSTERY_PALETTE_0004" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766016">
+          <Value exs:type="ns1:Label" Name="palDat_Airport_conveyor_platform_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766048">
+          <Value exs:type="ns1:Label" Name="palDat_Flamer_plus_floating_platform_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766080">
+          <Value exs:type="ns1:Label" Name="palDat_Thunder_Slimer_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766112">
+          <Value exs:type="ns1:Label" Name="palDat_Armored_Armadillo_plus_spark" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766144">
+          <Value exs:type="ns1:Label" Name="palDat_Armored_Armadillo_s_charging" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766240">
+          <Value exs:type="ns1:Label" Name="palDat_Armored_Armadillo_s_rubble" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766272">
+          <Value exs:type="ns1:Label" Name="palDat_Tombot_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766304">
+          <Value exs:type="ns1:Label" Name="palDat_Thunder_Slimer_s_slime_blob_plus_electric_bolt_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766336">
+          <Value exs:type="ns1:Label" Name="palDat_Chill_Penguin" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766368">
+          <Value exs:type="ns1:Label" Name="palDat_Chill_Penguin_s_iceball_plus_sculpture" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766400">
+          <Value exs:type="ns1:Label" Name="palDat_Unknown_Duplicate_Chill_Penguin_unused" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766432">
+          <Value exs:type="ns1:Label" Name="palDat_Unknown_Chill_Penguin_but_all_colors_are_black" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766464">
+          <Value exs:type="ns1:Label" Name="palDat_Slide_Cannon_plus_sliding_platform_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766496">
+          <Value exs:type="ns1:Label" Name="palDat_Spring_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766528">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_charged" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766560">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_supercharged" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766592">
+          <Value exs:type="ns1:Label" Name="palDat_Floating_laser_trap_plus_laser_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766624">
+          <Value exs:type="ns1:Label" Name="palDat_Boomer_Kuwanger_plus_boomerang" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766656">
+          <Value exs:type="ns1:Label" Name="palDat_Boomer_Kuwanger_s_afterimage" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766688">
+          <Value exs:type="ns1:Label" Name="palDat_Launch_Octopus_plus_Homing_Torpedo_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766720">
+          <Value exs:type="ns1:Label" Name="palDat_Launch_Octopus__E_Drain" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766784">
+          <Value exs:type="ns1:Label" Name="palDat_Launch_Octopus__fish_missile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766816">
+          <Value exs:type="ns1:Label" Name="palDat_Launch_Octopus__twister" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766848">
+          <Value exs:type="ns1:Label" Name="palDat_Ladder_Yadder_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766880">
+          <Value exs:type="ns1:Label" Name="palDat_MYSTERY_PALETTE_0005" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766912">
+          <Value exs:type="ns1:Label" Name="palDat_Tower_elevator_platform_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766944">
+          <Value exs:type="ns1:Label" Name="palDat_Power_plant_spark_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8766976">
+          <Value exs:type="ns1:Label" Name="palDat_Flame_pillar_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767008">
+          <Value exs:type="ns1:Label" Name="palDat_Dummy__Palette_is_completely_black" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767040">
+          <Value exs:type="ns1:Label" Name="palDat_Shattering_glass_pane_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767072">
+          <Value exs:type="ns1:Label" Name="palDat_Dummy__Palette_is_black_except_for_transparent_color" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767104">
+          <Value exs:type="ns1:Label" Name="palDat_Sky_Claw_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767136">
+          <Value exs:type="ns1:Label" Name="palDat_Cruiziler_missile_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767168">
+          <Value exs:type="ns1:Label" Name="palDat_Flame_Mammoth_plus_oil_plus_flame_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767200">
+          <Value exs:type="ns1:Label" Name="palDat_Unknown_Duplicate_Flame_Mammoth___Used_for_trunk" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767232">
+          <Value exs:type="ns1:Label" Name="palDat_Flame_Mammoth_s_oil_fire" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767264">
+          <Value exs:type="ns1:Label" Name="palDat_Rolling_Gabyool_plus_lava_drip_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767296">
+          <Value exs:type="ns1:Label" Name="palDat_Ray_Bit_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767328">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_default_object" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767360">
+          <Value exs:type="ns1:Label" Name="palDat_Snow_Shooter_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767392">
+          <Value exs:type="ns1:Label" Name="palDat_Storm_Eagle_plus_eagret" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767424">
+          <Value exs:type="ns1:Label" Name="palDat_Storm_Eagle_s_Storm_Tornado" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767456">
+          <Value exs:type="ns1:Label" Name="palDat_Rolling_snowball_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767488">
+          <Value exs:type="ns1:Label" Name="palDat_Turn_Cannon_plus_Turn_Cannon_s_floating_platform_s_plus_long_pillar_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767520">
+          <Value exs:type="ns1:Label" Name="palDat_MYSTERY_PALETTE_0006" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767552">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767584">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_s_frozen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767616">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_s_Electric_Spark" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767648">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_s_groundshock" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767680">
+          <Value exs:type="ns1:Label" Name="palDat_Igloo_rubble_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767712">
+          <Value exs:type="ns1:Label" Name="palDat_Green_Ride_Armor_plus_Green_Armor_Soldier_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767744">
+          <Value exs:type="ns1:Label" Name="palDat_Mega_Tortoise_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767776">
+          <Value exs:type="ns1:Label" Name="palDat_Velguarder_plus_flames_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767808">
+          <Value exs:type="ns1:Label" Name="palDat_Velguarder_s_spark" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767840">
+          <Value exs:type="ns1:Label" Name="palDat_Rangda_Bangda_green_eye_plus_nose_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767872">
+          <Value exs:type="ns1:Label" Name="palDat_Rangda_Bangda_blue_eye_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767904">
+          <Value exs:type="ns1:Label" Name="palDat_Rangda_Bangda_red_eye_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767936">
+          <Value exs:type="ns1:Label" Name="palDat_Rangda_Bangda_closing_wall_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8767968">
+          <Value exs:type="ns1:Label" Name="palDat_Rangda_Bangda_fading_in" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768096">
+          <Value exs:type="ns1:Label" Name="palDat_Vile_s_cage_s_force_field_plus_cage_parts_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768128">
+          <Value exs:type="ns1:Label" Name="palDat_Bospider_plus_Bospider_baby_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768160">
+          <Value exs:type="ns1:Label" Name="palDat_Bospider_s_retracting_thread" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768192">
+          <Value exs:type="ns1:Label" Name="palDat_D_Rex_s_head" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768224">
+          <Value exs:type="ns1:Label" Name="palDat_D_Rex_plasma_ball_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768256">
+          <Value exs:type="ns1:Label" Name="palDat_D_Rex_s_charging" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768288">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768320">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_s_cape" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768352">
+          <Value exs:type="ns1:Label" Name="palDat_MYSTERY_PALETTE_0007" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768384">
+          <Value exs:type="ns1:Label" Name="palDat_X_specification_screen_analyzer_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768416">
+          <Value exs:type="ns1:Label" Name="palDat_Airport_rubble_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768448">
+          <Value exs:type="ns1:Label" Name="palDat_Mine_small_rubble_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768480">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_s_flying_fortress_explosion_plus_splash_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768512">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_s_flying_fortress_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768544">
+          <Value exs:type="ns1:Label" Name="palDat_Vile_s_second_ride_armor_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768576">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_Homing_T" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768608">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_C_Sting" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768640">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_S_Ice" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768672">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_B_Cutter" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768704">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_Storm_T" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768736">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_E_Spark" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768768">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_Fire_W" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768800">
+          <Value exs:type="ns1:Label" Name="palDat_X_s_R_Shield" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8768832">
+          <Value exs:type="ns1:Label" Name="palDat_Chameleon_Sting_rotating_color" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769088">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_Homing_T_object" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769120">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_C_Sting_object" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769152">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_Storm_T_object" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769184">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_Fire_W_object" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769216">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_R_Shield_object" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769248">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_E_Spark_object" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769280">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_B_Cutter_object" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769312">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_S_Ice_object__" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769344">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_Homing_T_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769376">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_C_Sting_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769408">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_Storm_T_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769440">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_Fire_W_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769472">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_R_Shield_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769504">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_E_Spark_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769536">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_B_Cutter_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769568">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_X_s_S_Ice_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769600">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_R_shield_device" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769632">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_C_Sting_device" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769664">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_E_Spark_device" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769696">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_Fire_W_device" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769728">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_S_Ice_device" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769760">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_Homing_T_device" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769792">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_B_Cutter_device" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769824">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_Storm_T_device" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769856">
+          <Value exs:type="ns1:Label" Name="palDat_Dialogue" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8769920">
+          <Value exs:type="ns1:Label" Name="palDat_Sting_Chameleon_stage_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8770176">
+          <Value exs:type="ns1:Label" Name="palDat_Armored_Armadillo_stage_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8770432">
+          <Value exs:type="ns1:Label" Name="palDat_Flame_Mammoth_stage_main__lava" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8770688">
+          <Value exs:type="ns1:Label" Name="palDat_Title_screen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8770848">
+          <Value exs:type="ns1:Label" Name="palDat_Highway_stage" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8771104">
+          <Value exs:type="ns1:Label" Name="palDat_Storm_Eagle_alt___0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8771136">
+          <Value exs:type="ns1:Label" Name="palDat_Highway_stage_alt___0002" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8771200">
+          <Value exs:type="ns1:Label" Name="palDat_Highway_stage_alt___0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8771232">
+          <Value exs:type="ns1:Label" Name="palDat_Large_Capcom_logo_flashing" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8771360">
+          <Value exs:type="ns1:Label" Name="palDat_Launch_Octopus_stage_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8771616">
+          <Value exs:type="ns1:Label" Name="palDat_Boss_intro_screen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8771808">
+          <Value exs:type="ns1:Label" Name="palDat_Launch_Octopus_alt___0002" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8771840">
+          <Value exs:type="ns1:Label" Name="palDat_Launch_Octopus_cycling_water" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8771968">
+          <Value exs:type="ns1:Label" Name="palDat_Launch_Octopus_alt___0004" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772032">
+          <Value exs:type="ns1:Label" Name="palDat_Launch_Octopus_alt___0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772096">
+          <Value exs:type="ns1:Label" Name="palDat_Launch_Octopus_alt___0003" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772128">
+          <Value exs:type="ns1:Label" Name="palDat_Stage_select_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772288">
+          <Value exs:type="ns1:Label" Name="palDat_Stage_select_map_picture" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772320">
+          <Value exs:type="ns1:Label" Name="palDat_Stage_select_boss_spec" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772352">
+          <Value exs:type="ns1:Label" Name="palDat_Stage_select_Megaman_X_icon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772384">
+          <Value exs:type="ns1:Label" Name="palDat_Title_screen_small_Capcom_logo" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772416">
+          <Value exs:type="ns1:Label" Name="palDat_Launch_Octopus_stage_picture" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772448">
+          <Value exs:type="ns1:Label" Name="palDat_Armored_Armadillo_stage_picture" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772480">
+          <Value exs:type="ns1:Label" Name="palDat_Sting_Chamleon_stage_picture" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772512">
+          <Value exs:type="ns1:Label" Name="palDat_Flame_Mammoth_stage_picture" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772544">
+          <Value exs:type="ns1:Label" Name="palDat_Storm_Eagle_stage_picture" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772576">
+          <Value exs:type="ns1:Label" Name="palDat_Chill_Penguin_stage_picture" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772608">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_stage_picture" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772640">
+          <Value exs:type="ns1:Label" Name="palDat_Boomer_Kuwanger_stage_picture" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772672">
+          <Value exs:type="ns1:Label" Name="palDat_Storm_Eagle_stage_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8772928">
+          <Value exs:type="ns1:Label" Name="palDat_Sting_Chameleon_alt___0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8773120">
+          <Value exs:type="ns1:Label" Name="palDat_Sting_Chameleon_alt___0002" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8773312">
+          <Value exs:type="ns1:Label" Name="palDat_Armored_Armadillo_alt__rock__UNUSED" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8773344">
+          <Value exs:type="ns1:Label" Name="palDat_Weapons__Password_screen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8773600">
+          <Value exs:type="ns1:Label" Name="palDat_Sting_Chameleon_boss_room" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8773792">
+          <Value exs:type="ns1:Label" Name="palDat_Armored_Armadillo_alt___0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8773888">
+          <Value exs:type="ns1:Label" Name="palDat_Armored_Armadillo_cycling_waterfall_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8773984">
+          <Value exs:type="ns1:Label" Name="palDat_Armored_Armadillo_cycling_water_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8774112">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_stage_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8774368">
+          <Value exs:type="ns1:Label" Name="palDat_Chill_Penguin_stage_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8774624">
+          <Value exs:type="ns1:Label" Name="palDat_Flame_Mammoth_cycling_lava_plus_conveyor_belt" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8774720">
+          <Value exs:type="ns1:Label" Name="palDat_Flame_Mammoth_alternate__0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8774752">
+          <Value exs:type="ns1:Label" Name="palDat_Flame_Mammoth_cycling_lights_plus_lava_river" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8775136">
+          <Value exs:type="ns1:Label" Name="palDat_Options_menu" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8775232">
+          <Value exs:type="ns1:Label" Name="palDat_Boomer_Kuwanger_stage_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8775488">
+          <Value exs:type="ns1:Label" Name="palDat_Storm_Eagle_cycling_conveyor_belt_plus_clouds" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8775680">
+          <Value exs:type="ns1:Label" Name="palDat_Storm_Eagle_alternate__0002" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8775744">
+          <Value exs:type="ns1:Label" Name="palDat_Storm_Eagle_cycling_light" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8775904">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_regular_X" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8775936">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_border" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8775968">
+          <Value exs:type="ns1:Label" Name="palDat_Weapon_Acquired_flashing_device" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8776000">
+          <Value exs:type="ns1:Label" Name="palDat_Chill_Penguin_alt___0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8776032">
+          <Value exs:type="ns1:Label" Name="palDat_Chill_Penguin_alt___0002" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8776128">
+          <Value exs:type="ns1:Label" Name="palDat_Boomer_Kuwanger_alt___0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8776384">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_cycling_yellow_electricity" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8776448">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_cycling_green_electricity_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8776544">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_alt___0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8776576">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_alt___0002" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8776640">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_1_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8776896">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_2_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8777152">
+          <Value exs:type="ns1:Label" Name="palDat_Flame_Mammoth_stage_main__Frozen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8777408">
+          <Value exs:type="ns1:Label" Name="palDat_Stage_select_Sigma_icon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8777440">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_stage_picture" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8777472">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_3_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8777728">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_3_cycling_water" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8777792">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_3_conveyor_belt" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8777888">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_3_alt___0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8777920">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_3_D_Rex_body_flashing" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8777952">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_4_main" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8778208">
+          <Value exs:type="ns1:Label" Name="palDat_Boss_Intro_Sigma_symbol_fading" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8778336">
+          <Value exs:type="ns1:Label" Name="palDat_Sting_Chameleon_cycling_water" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8778432">
+          <Value exs:type="ns1:Label" Name="palDat_DUMMY_PALETTE" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8778496">
+          <Value exs:type="ns1:Label" Name="palDat_Flame_Mammoth_cycling_lava_plus_conveyor_belt__Frozen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8778560">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_1_flashing_light" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8778624">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_1_alt___0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8778816">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_2_cycling_light_s" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8778912">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_2_alt___0003" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8778976">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_2_att___0004" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779008">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_2_alt___0001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779072">
+          <Value exs:type="ns1:Label" Name="palDat_DUMMY_PALETTE00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779136">
+          <Value exs:type="ns1:Label" Name="palDat_Megaman_X_specification_screen_green_outline" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779168">
+          <Value exs:type="ns1:Label" Name="palDat_DUMMY_PALETTE01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779328">
+          <Value exs:type="ns1:Label" Name="palDat_Megaman_X_specification_screen_fading" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779424">
+          <Value exs:type="ns1:Label" Name="palDat_Megaman_X_specification_screen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779456">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_shut_off_yellow_electricity" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779488">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_shut_off_green_electricity_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779520">
+          <Value exs:type="ns1:Label" Name="palDat_Spark_Mandrill_plane_wreckage" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779552">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_1_alt___0002" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779584">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_1_alt___0003" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779616">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_1_alt___0004_8_bosses_defeated_cutscene" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779648">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_2_brightening_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779872">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_2_alt___0002" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8779904">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_2_fade_in_boss" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8780032">
+          <Value exs:type="ns1:Label" Name="palDat_Sigma_Stage_4_fade_in_boss" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8780544">
+          <Value exs:type="ns1:Label" Name="palDat_Cast_roll_fading_foreground" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8780896">
+          <Value exs:type="ns1:Label" Name="palDat_Cast_roll_fading_background" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8781312">
+          <Value exs:type="ns1:Label" Name="palDat_Dr__Light_warning_screen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8781344">
+          <Value exs:type="ns1:Label" Name="palDat_Credits" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8781376">
+          <Value exs:type="ns1:Label" Name="palDat_Ending_cutscene" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8781440">
+          <Value exs:type="ns1:Label" Name="palDat_Ending_cutscene_flashing_cliff" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8781568">
+          <Value exs:type="ns1:Label" Name="palDat_Credits_fading" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8781728">
+          <Value exs:type="ns1:Label" Name="palDat_EMPTY" Comment="" />
         </sys:Item>
         <sys:Item Key="8781824">
           <Value exs:type="ns1:Label" Name="r_0000" Comment="" />
@@ -12555,22 +14184,22 @@
           <Value exs:type="ns1:Label" Name="r_player_life" Comment="" />
         </sys:Item>
         <sys:Item Key="8789889">
-          <Value exs:type="ns1:Label" Name="r_1f81" Comment="" />
+          <Value exs:type="ns1:Label" Name="r_player_checkpoint" Comment="" />
         </sys:Item>
         <sys:Item Key="8789890">
-          <Value exs:type="ns1:Label" Name="r_1f82" Comment="" />
+          <Value exs:type="ns1:Label" Name="r_player_checkpointFlag" Comment="" />
         </sys:Item>
         <sys:Item Key="8789891">
-          <Value exs:type="ns1:Label" Name="r_1f83" Comment="" />
+          <Value exs:type="ns1:Label" Name="r_player_tankEnergie_01" Comment="" />
         </sys:Item>
         <sys:Item Key="8789892">
-          <Value exs:type="ns1:Label" Name="r_1f84" Comment="" />
+          <Value exs:type="ns1:Label" Name="r_player_tankEnergie_02" Comment="" />
         </sys:Item>
         <sys:Item Key="8789893">
-          <Value exs:type="ns1:Label" Name="r_1f85" Comment="" />
+          <Value exs:type="ns1:Label" Name="r_player_tankEnergie_03" Comment="" />
         </sys:Item>
         <sys:Item Key="8789894">
-          <Value exs:type="ns1:Label" Name="r_1f86" Comment="" />
+          <Value exs:type="ns1:Label" Name="r_player_tankEnergie_04" Comment="" />
         </sys:Item>
         <sys:Item Key="8789895">
           <Value exs:type="ns1:Label" Name="r_1f87" Comment="" />
@@ -12935,11 +14564,776 @@
         <sys:Item Key="8790015">
           <Value exs:type="ns1:Label" Name="r_1fff" Comment="" />
         </sys:Item>
+        <sys:Item Key="8790272">
+          <Value exs:type="ns1:Label" Name="INIDISP" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790273">
+          <Value exs:type="ns1:Label" Name="OBJSEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790274">
+          <Value exs:type="ns1:Label" Name="OAMADDL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790275">
+          <Value exs:type="ns1:Label" Name="OAMADDH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790276">
+          <Value exs:type="ns1:Label" Name="OAMDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790277">
+          <Value exs:type="ns1:Label" Name="BGMODE" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790278">
+          <Value exs:type="ns1:Label" Name="MOSAIC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790279">
+          <Value exs:type="ns1:Label" Name="BG1SC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790280">
+          <Value exs:type="ns1:Label" Name="BG2SC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790281">
+          <Value exs:type="ns1:Label" Name="BG3SC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790282">
+          <Value exs:type="ns1:Label" Name="BG4SC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790283">
+          <Value exs:type="ns1:Label" Name="BG12NBA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790284">
+          <Value exs:type="ns1:Label" Name="BG34NBA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790285">
+          <Value exs:type="ns1:Label" Name="BG1HOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790286">
+          <Value exs:type="ns1:Label" Name="BG1VOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790287">
+          <Value exs:type="ns1:Label" Name="BG2HOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790288">
+          <Value exs:type="ns1:Label" Name="BG2VOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790289">
+          <Value exs:type="ns1:Label" Name="BG3HOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790290">
+          <Value exs:type="ns1:Label" Name="BG3VOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790291">
+          <Value exs:type="ns1:Label" Name="BG4HOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790292">
+          <Value exs:type="ns1:Label" Name="BG4VOFS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790293">
+          <Value exs:type="ns1:Label" Name="VMAINC" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790294">
+          <Value exs:type="ns1:Label" Name="VMADDL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790295">
+          <Value exs:type="ns1:Label" Name="VMADDH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790296">
+          <Value exs:type="ns1:Label" Name="VMDATAL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790297">
+          <Value exs:type="ns1:Label" Name="VMDATAH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790298">
+          <Value exs:type="ns1:Label" Name="M7SEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790299">
+          <Value exs:type="ns1:Label" Name="M7A" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790300">
+          <Value exs:type="ns1:Label" Name="M7B" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790301">
+          <Value exs:type="ns1:Label" Name="M7C" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790302">
+          <Value exs:type="ns1:Label" Name="M7D" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790303">
+          <Value exs:type="ns1:Label" Name="M7X" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790304">
+          <Value exs:type="ns1:Label" Name="M7Y" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790305">
+          <Value exs:type="ns1:Label" Name="CGADD" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790306">
+          <Value exs:type="ns1:Label" Name="CGDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790307">
+          <Value exs:type="ns1:Label" Name="W12SEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790308">
+          <Value exs:type="ns1:Label" Name="W34SEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790309">
+          <Value exs:type="ns1:Label" Name="WOBJSEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790310">
+          <Value exs:type="ns1:Label" Name="WH0" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790311">
+          <Value exs:type="ns1:Label" Name="WH1" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790312">
+          <Value exs:type="ns1:Label" Name="WH2" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790313">
+          <Value exs:type="ns1:Label" Name="WH3" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790314">
+          <Value exs:type="ns1:Label" Name="WBGLOG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790315">
+          <Value exs:type="ns1:Label" Name="WOBJLOG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790316">
+          <Value exs:type="ns1:Label" Name="TM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790317">
+          <Value exs:type="ns1:Label" Name="TS" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790318">
+          <Value exs:type="ns1:Label" Name="TMW" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790319">
+          <Value exs:type="ns1:Label" Name="TSW" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790320">
+          <Value exs:type="ns1:Label" Name="CGSWSEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790321">
+          <Value exs:type="ns1:Label" Name="CGADSUB" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790322">
+          <Value exs:type="ns1:Label" Name="COLDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790323">
+          <Value exs:type="ns1:Label" Name="SETINI" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790324">
+          <Value exs:type="ns1:Label" Name="MPYL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790325">
+          <Value exs:type="ns1:Label" Name="MPYM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790326">
+          <Value exs:type="ns1:Label" Name="MPYH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790327">
+          <Value exs:type="ns1:Label" Name="SLHV" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790328">
+          <Value exs:type="ns1:Label" Name="ROAMDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790329">
+          <Value exs:type="ns1:Label" Name="RVMDATAL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790330">
+          <Value exs:type="ns1:Label" Name="RVMDATAH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790331">
+          <Value exs:type="ns1:Label" Name="RCGDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790332">
+          <Value exs:type="ns1:Label" Name="OPHCT" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790333">
+          <Value exs:type="ns1:Label" Name="OPVCT" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790334">
+          <Value exs:type="ns1:Label" Name="STAT77" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790335">
+          <Value exs:type="ns1:Label" Name="STAT78" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790336">
+          <Value exs:type="ns1:Label" Name="APUIO0" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790337">
+          <Value exs:type="ns1:Label" Name="APUIO1" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790338">
+          <Value exs:type="ns1:Label" Name="APUIO2" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790339">
+          <Value exs:type="ns1:Label" Name="APUIO3" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790400">
+          <Value exs:type="ns1:Label" Name="WMDATA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790401">
+          <Value exs:type="ns1:Label" Name="WMADDL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790402">
+          <Value exs:type="ns1:Label" Name="WMADDM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8790403">
+          <Value exs:type="ns1:Label" Name="WMADDH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798230">
+          <Value exs:type="ns1:Label" Name="JOY1" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798231">
+          <Value exs:type="ns1:Label" Name="JOY2" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798720">
+          <Value exs:type="ns1:Label" Name="NMITIMEN" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798721">
+          <Value exs:type="ns1:Label" Name="WRIO" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798722">
+          <Value exs:type="ns1:Label" Name="WRMPYA" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798723">
+          <Value exs:type="ns1:Label" Name="WRMPYB" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798724">
+          <Value exs:type="ns1:Label" Name="WRDIVL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798725">
+          <Value exs:type="ns1:Label" Name="WRDIVH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798726">
+          <Value exs:type="ns1:Label" Name="WRDIVB" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798727">
+          <Value exs:type="ns1:Label" Name="HTIMEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798728">
+          <Value exs:type="ns1:Label" Name="HTIMEH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798729">
+          <Value exs:type="ns1:Label" Name="VTIMEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798730">
+          <Value exs:type="ns1:Label" Name="VTIMEH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798731">
+          <Value exs:type="ns1:Label" Name="MDMAEN" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798732">
+          <Value exs:type="ns1:Label" Name="HDMAEN" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798733">
+          <Value exs:type="ns1:Label" Name="MEMSEL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798736">
+          <Value exs:type="ns1:Label" Name="RDNMI" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798737">
+          <Value exs:type="ns1:Label" Name="TIMEUP" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798738">
+          <Value exs:type="ns1:Label" Name="HVBJOY" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798739">
+          <Value exs:type="ns1:Label" Name="RDIO" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798740">
+          <Value exs:type="ns1:Label" Name="RDDIVL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798741">
+          <Value exs:type="ns1:Label" Name="RDDIVH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798742">
+          <Value exs:type="ns1:Label" Name="RDMPYL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798743">
+          <Value exs:type="ns1:Label" Name="RDMPYH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798744">
+          <Value exs:type="ns1:Label" Name="CNTRL1L" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798745">
+          <Value exs:type="ns1:Label" Name="CNTRL1H" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798746">
+          <Value exs:type="ns1:Label" Name="CNTRL2L" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798747">
+          <Value exs:type="ns1:Label" Name="CNTRL2H" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798748">
+          <Value exs:type="ns1:Label" Name="CNTRL3L" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798749">
+          <Value exs:type="ns1:Label" Name="CNTRL3H" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798750">
+          <Value exs:type="ns1:Label" Name="CNTRL4L" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798751">
+          <Value exs:type="ns1:Label" Name="CNTRL4H" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798976">
+          <Value exs:type="ns1:Label" Name="DMA0PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798977">
+          <Value exs:type="ns1:Label" Name="DMA0REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798978">
+          <Value exs:type="ns1:Label" Name="DMA0ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798979">
+          <Value exs:type="ns1:Label" Name="DMA0ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798980">
+          <Value exs:type="ns1:Label" Name="DMA0ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798981">
+          <Value exs:type="ns1:Label" Name="DMA0CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798982">
+          <Value exs:type="ns1:Label" Name="DMA0CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798983">
+          <Value exs:type="ns1:Label" Name="HDMA0BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798984">
+          <Value exs:type="ns1:Label" Name="DMA0IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798985">
+          <Value exs:type="ns1:Label" Name="DMA0IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798986">
+          <Value exs:type="ns1:Label" Name="HDMA0LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798992">
+          <Value exs:type="ns1:Label" Name="DMA1PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798993">
+          <Value exs:type="ns1:Label" Name="DMA1REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798994">
+          <Value exs:type="ns1:Label" Name="DMA1ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798995">
+          <Value exs:type="ns1:Label" Name="DMA1ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798996">
+          <Value exs:type="ns1:Label" Name="DMA1ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798997">
+          <Value exs:type="ns1:Label" Name="DMA1CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798998">
+          <Value exs:type="ns1:Label" Name="DMA1CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8798999">
+          <Value exs:type="ns1:Label" Name="HDMA1BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799000">
+          <Value exs:type="ns1:Label" Name="DMA1IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799001">
+          <Value exs:type="ns1:Label" Name="DMA1IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799002">
+          <Value exs:type="ns1:Label" Name="HDMA1LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799008">
+          <Value exs:type="ns1:Label" Name="DMA2PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799009">
+          <Value exs:type="ns1:Label" Name="DMA2REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799010">
+          <Value exs:type="ns1:Label" Name="DMA2ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799011">
+          <Value exs:type="ns1:Label" Name="DMA2ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799012">
+          <Value exs:type="ns1:Label" Name="DMA2ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799013">
+          <Value exs:type="ns1:Label" Name="DMA2CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799014">
+          <Value exs:type="ns1:Label" Name="DMA2CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799015">
+          <Value exs:type="ns1:Label" Name="HDMA2BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799016">
+          <Value exs:type="ns1:Label" Name="DMA2IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799017">
+          <Value exs:type="ns1:Label" Name="DMA2IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799018">
+          <Value exs:type="ns1:Label" Name="HDMA2LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799024">
+          <Value exs:type="ns1:Label" Name="DMA3PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799025">
+          <Value exs:type="ns1:Label" Name="DMA3REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799026">
+          <Value exs:type="ns1:Label" Name="DMA3ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799027">
+          <Value exs:type="ns1:Label" Name="DMA3ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799028">
+          <Value exs:type="ns1:Label" Name="DMA3ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799029">
+          <Value exs:type="ns1:Label" Name="DMA3CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799030">
+          <Value exs:type="ns1:Label" Name="DMA3CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799031">
+          <Value exs:type="ns1:Label" Name="HDMA3BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799032">
+          <Value exs:type="ns1:Label" Name="DMA3IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799033">
+          <Value exs:type="ns1:Label" Name="DMA3IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799034">
+          <Value exs:type="ns1:Label" Name="HDMA3LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799040">
+          <Value exs:type="ns1:Label" Name="DMA4PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799041">
+          <Value exs:type="ns1:Label" Name="DMA4REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799042">
+          <Value exs:type="ns1:Label" Name="DMA4ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799043">
+          <Value exs:type="ns1:Label" Name="DMA4ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799044">
+          <Value exs:type="ns1:Label" Name="DMA4ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799045">
+          <Value exs:type="ns1:Label" Name="DMA4CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799046">
+          <Value exs:type="ns1:Label" Name="DMA4CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799047">
+          <Value exs:type="ns1:Label" Name="HDMA4BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799048">
+          <Value exs:type="ns1:Label" Name="DMA4IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799049">
+          <Value exs:type="ns1:Label" Name="DMA4IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799050">
+          <Value exs:type="ns1:Label" Name="HDMA4LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799056">
+          <Value exs:type="ns1:Label" Name="DMA5PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799057">
+          <Value exs:type="ns1:Label" Name="DMA5REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799058">
+          <Value exs:type="ns1:Label" Name="DMA5ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799059">
+          <Value exs:type="ns1:Label" Name="DMA5ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799060">
+          <Value exs:type="ns1:Label" Name="DMA5ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799061">
+          <Value exs:type="ns1:Label" Name="DMA5CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799062">
+          <Value exs:type="ns1:Label" Name="DMA5CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799063">
+          <Value exs:type="ns1:Label" Name="HDMA5BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799064">
+          <Value exs:type="ns1:Label" Name="DMA5IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799065">
+          <Value exs:type="ns1:Label" Name="DMA5IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799066">
+          <Value exs:type="ns1:Label" Name="HDMA5LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799072">
+          <Value exs:type="ns1:Label" Name="DMA6PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799073">
+          <Value exs:type="ns1:Label" Name="DMA6REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799074">
+          <Value exs:type="ns1:Label" Name="DMA6ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799075">
+          <Value exs:type="ns1:Label" Name="DMA6ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799076">
+          <Value exs:type="ns1:Label" Name="DMA6ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799077">
+          <Value exs:type="ns1:Label" Name="DMA6CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799078">
+          <Value exs:type="ns1:Label" Name="DMA6CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799079">
+          <Value exs:type="ns1:Label" Name="HDMA6BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799080">
+          <Value exs:type="ns1:Label" Name="DMA6IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799081">
+          <Value exs:type="ns1:Label" Name="DMA6IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799082">
+          <Value exs:type="ns1:Label" Name="HDMA6LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799088">
+          <Value exs:type="ns1:Label" Name="DMA7PARAM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799089">
+          <Value exs:type="ns1:Label" Name="DMA7REG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799090">
+          <Value exs:type="ns1:Label" Name="DMA7ADDRL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799091">
+          <Value exs:type="ns1:Label" Name="DMA7ADDRM" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799092">
+          <Value exs:type="ns1:Label" Name="DMA7ADDRH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799093">
+          <Value exs:type="ns1:Label" Name="DMA7CNTL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799094">
+          <Value exs:type="ns1:Label" Name="DMA7CNTH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799095">
+          <Value exs:type="ns1:Label" Name="HDMA7BANK" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799096">
+          <Value exs:type="ns1:Label" Name="DMA7IDXL" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799097">
+          <Value exs:type="ns1:Label" Name="DMA7IDXH" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8799098">
+          <Value exs:type="ns1:Label" Name="HDMA7LINES" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8814592">
+          <Value exs:type="ns1:Label" Name="startupClearData" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8819228">
+          <Value exs:type="ns1:Label" Name="moreTextDataBossTalk" Comment="" />
+        </sys:Item>
         <sys:Item Key="8824292">
           <Value exs:type="ns1:Label" Name="spriteID_tableHi" Comment="" />
         </sys:Item>
         <sys:Item Key="8824293">
           <Value exs:type="ns1:Label" Name="spriteID_tableLo" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824818">
+          <Value exs:type="ns1:Label" Name="load_mask" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824819">
+          <Value exs:type="ns1:Label" Name="load_tileIdx" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824820">
+          <Value exs:type="ns1:Label" Name="load_paletteIdx" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824821">
+          <Value exs:type="ns1:Label" Name="load_player_xPos" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824823">
+          <Value exs:type="ns1:Label" Name="load_player_yPos" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824825">
+          <Value exs:type="ns1:Label" Name="load_cam01_xPos" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824827">
+          <Value exs:type="ns1:Label" Name="load_cam01_yPos" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824829">
+          <Value exs:type="ns1:Label" Name="load_cam02_xPos" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824831">
+          <Value exs:type="ns1:Label" Name="load_cam02_yPos" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824833">
+          <Value exs:type="ns1:Label" Name="load_border_Left" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824835">
+          <Value exs:type="ns1:Label" Name="load_border_Right" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824837">
+          <Value exs:type="ns1:Label" Name="load_border_Top" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824839">
+          <Value exs:type="ns1:Label" Name="load_border_Bottom" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824841">
+          <Value exs:type="ns1:Label" Name="load_force_XPos" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824843">
+          <Value exs:type="ns1:Label" Name="load_force_YPos" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824845">
+          <Value exs:type="ns1:Label" Name="load_BG_effect" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824846">
+          <Value exs:type="ns1:Label" Name="load_teleporDistance" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824847">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Highway_stage" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824876">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Highway_stage" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824905">
+          <Value exs:type="ns1:Label" Name="loadinPoint_4_SPECIAL_Cast_roll" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824934">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Launch_Octopus" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824963">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Launch_Octopus" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824992">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Launch_Octopus" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825021">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Sting_Chameleon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825050">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Sting_Chameleon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825079">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Sting_Chameleon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825108">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Armored_Armadillo" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825137">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Armored_Armadillo" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825166">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Armored_Armadillo" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825195">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Flame_Mammoth" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825224">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Flame_Mammoth" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825253">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Flame_Mammoth" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825282">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Storm_Eagle" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825311">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Storm_Eagle" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825340">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Storm_Eagle" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825369">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Spark_Mandrill" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825398">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Spark_Mandrill" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825427">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Spark_Mandrill" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825456">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Boomer_Kuwanger" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825485">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Boomer_Kuwanger" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825514">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Boomer_Kuwanger" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825543">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Chill_Penguin" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825572">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Chill_Penguin" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825601">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Chill_Penguin" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825630">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Sigma_stage_1" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825659">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Sigma_stage_1" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825688">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Sigma_stage_1" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825717">
+          <Value exs:type="ns1:Label" Name="loadinPoint_4_SPECIAL_8_bosses_defeated_cutscene" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825746">
+          <Value exs:type="ns1:Label" Name="loadinPoint_5_Sigma_stage_1" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825775">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Sigma_stage_2" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825804">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Sigma_stage_2" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825833">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Sigma_stage_2" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825862">
+          <Value exs:type="ns1:Label" Name="loadinPoint_4_Sigma_stage_2" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825891">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Sigma_stage_3" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825920">
+          <Value exs:type="ns1:Label" Name="loadinPoint_2_Sigma_stage_3" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825949">
+          <Value exs:type="ns1:Label" Name="loadinPoint_3_Sigma_stage_3" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8825978">
+          <Value exs:type="ns1:Label" Name="loadinPoint_4_Sigma_stage_3" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8826007">
+          <Value exs:type="ns1:Label" Name="loadinPoint_5_Sigma_stage_3" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8826036">
+          <Value exs:type="ns1:Label" Name="loadinPoint_6_Sigma_stage_3" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8826065">
+          <Value exs:type="ns1:Label" Name="loadinPoint_1_Sigma_stage_4" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8829562">
+          <Value exs:type="ns1:Label" Name="projectileChargeChoose" Comment="" />
         </sys:Item>
         <sys:Item Key="8832903">
           <Value exs:type="ns1:Label" Name="menu_pressLeftRight" Comment="" />
@@ -12949,9 +15343,6 @@
         </sys:Item>
         <sys:Item Key="8833908">
           <Value exs:type="ns1:Label" Name="data_21" Comment="" />
-        </sys:Item>
-        <sys:Item Key="8833918">
-          <Value exs:type="ns1:Label" Name="" Comment="" />
         </sys:Item>
         <sys:Item Key="8835446">
           <Value exs:type="ns1:Label" Name="BoxFace_3c_subID" Comment="" />
@@ -12970,9 +15361,6 @@
         </sys:Item>
         <sys:Item Key="8838367">
           <Value exs:type="ns1:Label" Name="someEventDate" Comment="" />
-        </sys:Item>
-        <sys:Item Key="8842807">
-          <Value exs:type="ns1:Label" Name="" Comment="" />
         </sys:Item>
         <sys:Item Key="8843063">
           <Value exs:type="ns1:Label" Name="weaponDamage_index" Comment="" />
@@ -13036,6 +15424,153 @@
         </sys:Item>
         <sys:Item Key="8843673">
           <Value exs:type="ns1:Label" Name="weaponDamage_12" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844655">
+          <Value exs:type="ns1:Label" Name="mainGFX_load" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844775">
+          <Value exs:type="ns1:Label" Name="GFXload_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844785">
+          <Value exs:type="ns1:Label" Name="GFXload_01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844791">
+          <Value exs:type="ns1:Label" Name="GFXload_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844797">
+          <Value exs:type="ns1:Label" Name="GFXload_03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844803">
+          <Value exs:type="ns1:Label" Name="GFXload_04" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844809">
+          <Value exs:type="ns1:Label" Name="GFXload_05" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844815">
+          <Value exs:type="ns1:Label" Name="GFXload_06" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844821">
+          <Value exs:type="ns1:Label" Name="GFXload_07" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844827">
+          <Value exs:type="ns1:Label" Name="GFXload_08" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844833">
+          <Value exs:type="ns1:Label" Name="GFXload_09" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844839">
+          <Value exs:type="ns1:Label" Name="GFXload_0a" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844845">
+          <Value exs:type="ns1:Label" Name="GFXload_0b" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844851">
+          <Value exs:type="ns1:Label" Name="GFXload_0c" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844857">
+          <Value exs:type="ns1:Label" Name="GFXload_0d" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844863">
+          <Value exs:type="ns1:Label" Name="GFXload_0e" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844869">
+          <Value exs:type="ns1:Label" Name="GFXload_0f" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844879">
+          <Value exs:type="ns1:Label" Name="GFXload_10" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844885">
+          <Value exs:type="ns1:Label" Name="GFXload_11" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844891">
+          <Value exs:type="ns1:Label" Name="GFXload_12" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844897">
+          <Value exs:type="ns1:Label" Name="GFXload_13" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844903">
+          <Value exs:type="ns1:Label" Name="GFXload_14" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844909">
+          <Value exs:type="ns1:Label" Name="GFXload_15" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844915">
+          <Value exs:type="ns1:Label" Name="GFXload_17" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844921">
+          <Value exs:type="ns1:Label" Name="GFXload_16" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844927">
+          <Value exs:type="ns1:Label" Name="GFXload_18" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844933">
+          <Value exs:type="ns1:Label" Name="GFXload_19" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844939">
+          <Value exs:type="ns1:Label" Name="GFXload_1a" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844945">
+          <Value exs:type="ns1:Label" Name="GFXload_1b" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844951">
+          <Value exs:type="ns1:Label" Name="GFXload_1c" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844957">
+          <Value exs:type="ns1:Label" Name="GFXload_1d" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844963">
+          <Value exs:type="ns1:Label" Name="GFXload_1e" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844969">
+          <Value exs:type="ns1:Label" Name="GFXload_1f" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844975">
+          <Value exs:type="ns1:Label" Name="GFXload_20" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844981">
+          <Value exs:type="ns1:Label" Name="GFXload_21" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844987">
+          <Value exs:type="ns1:Label" Name="GFXload_22" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844993">
+          <Value exs:type="ns1:Label" Name="GFXload_23" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8844999">
+          <Value exs:type="ns1:Label" Name="GFXload_24" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8845005">
+          <Value exs:type="ns1:Label" Name="GFXload_25" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8845011">
+          <Value exs:type="ns1:Label" Name="GFXload_26" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8845017">
+          <Value exs:type="ns1:Label" Name="GFXload_27" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8845023">
+          <Value exs:type="ns1:Label" Name="GFXload_28" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8845029">
+          <Value exs:type="ns1:Label" Name="GFXload_29" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8845035">
+          <Value exs:type="ns1:Label" Name="GFXload_2a" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8845041">
+          <Value exs:type="ns1:Label" Name="GFXload_2b" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8845047">
+          <Value exs:type="ns1:Label" Name="mainGFXloadBase" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8845049">
+          <Value exs:type="ns1:Label" Name="mainGFXloadBase_srcAddr" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8845051">
+          <Value exs:type="ns1:Label" Name="mainGFXloadBase_srcBank" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8845182">
+          <Value exs:type="ns1:Label" Name="" Comment="" />
         </sys:Item>
         <sys:Item Key="8882814">
           <Value exs:type="ns1:Label" Name="eventID_flammingle_04_main" Comment="" />
@@ -13261,9 +15796,6 @@
         </sys:Item>
         <sys:Item Key="8900979">
           <Value exs:type="ns1:Label" Name="rollingGabyool_state" Comment="" />
-        </sys:Item>
-        <sys:Item Key="8900982">
-          <Value exs:type="ns1:Label" Name="" Comment="" />
         </sys:Item>
         <sys:Item Key="8900985">
           <Value exs:type="ns1:Label" Name="rollingGabyool_state_00" Comment="" />
@@ -13582,6 +16114,828 @@
         </sys:Item>
         <sys:Item Key="9302408">
           <Value exs:type="ns1:Label" Name="sprAss_megaman_idle_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601024">
+          <Value exs:type="ns1:Label" Name="scebeMap_Sting_Chameleon" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601079">
+          <Value exs:type="ns1:Label" Name="scebeMap_Sting_Chameleon_BG_arrangment_info" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601113">
+          <Value exs:type="ns1:Label" Name="scebeMap_Armored_Armadillo_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601213">
+          <Value exs:type="ns1:Label" Name="scebeMap_Armored_Armadillo_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601289">
+          <Value exs:type="ns1:Label" Name="scebeMap_Flame_Mammoth_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601323">
+          <Value exs:type="ns1:Label" Name="scebeMap_Flame_Mammoth_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601343">
+          <Value exs:type="ns1:Label" Name="scebeMap_Highway_stage_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601361">
+          <Value exs:type="ns1:Label" Name="scebeMap_Highway_stage_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601401">
+          <Value exs:type="ns1:Label" Name="scebeMap_Launch_Octopus_stage_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601451">
+          <Value exs:type="ns1:Label" Name="scebeMap_Launch_Octopus_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601487">
+          <Value exs:type="ns1:Label" Name="scebeMap_Boss_intro_screen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601495">
+          <Value exs:type="ns1:Label" Name="scebeMap_Storm_Eagle_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601553">
+          <Value exs:type="ns1:Label" Name="scebeMap_Storm_Eagle_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601561">
+          <Value exs:type="ns1:Label" Name="scebeMap_Spark_Mandrill_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601591">
+          <Value exs:type="ns1:Label" Name="scebeMap_Spark_Mandrill_BG_arrangment_info" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601609">
+          <Value exs:type="ns1:Label" Name="scebeMap_Chill_Penguin_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601651">
+          <Value exs:type="ns1:Label" Name="scebeMap_Chill_Penguin_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601683">
+          <Value exs:type="ns1:Label" Name="scebeMap_Boomer_Kuwanger_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601789">
+          <Value exs:type="ns1:Label" Name="scebeMap_Boomer_Kuwanger_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601899">
+          <Value exs:type="ns1:Label" Name="scebeMap_Weapon_Get_screen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601907">
+          <Value exs:type="ns1:Label" Name="scebeMap_Weapon_Get_screen_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601915">
+          <Value exs:type="ns1:Label" Name="scebeMap_Sigma_Stage_1_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9601975">
+          <Value exs:type="ns1:Label" Name="scebeMap_Sigma_Stage_1_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9602025">
+          <Value exs:type="ns1:Label" Name="scebeMap_Sigma_Stage_2_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9602059">
+          <Value exs:type="ns1:Label" Name="scebeMap_Sigma_Stage_2_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9602091">
+          <Value exs:type="ns1:Label" Name="scebeMap_Sigma_Stage_3_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9602117">
+          <Value exs:type="ns1:Label" Name="scebeMap_Sigma_Stage_3_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9602137">
+          <Value exs:type="ns1:Label" Name="scebeMap_Sigma_Stage_4_level" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9602147">
+          <Value exs:type="ns1:Label" Name="scebeMap_Sigma_Stage_4_BG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9602155">
+          <Value exs:type="ns1:Label" Name="scebeMap_Megaman_X_Spec_screen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9602161">
+          <Value exs:type="ns1:Label" Name="scebeMap_Dr_Light_Warning_screen" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9605120">
+          <Value exs:type="ns1:Label" Name="block_Sting_Chameleon_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9612928">
+          <Value exs:type="ns1:Label" Name="block_Sting_Chameleon_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9614592">
+          <Value exs:type="ns1:Label" Name="block_Armored_Armadillo_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9621888">
+          <Value exs:type="ns1:Label" Name="block_Armored_Armadillo_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9625984">
+          <Value exs:type="ns1:Label" Name="block_Highway_stage_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9630592">
+          <Value exs:type="ns1:Label" Name="block_Launch_Octopus_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9632512">
+          <Value exs:type="ns1:Label" Name="block_Sigma_Stage_4_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9632896">
+          <Value exs:type="ns1:Label" Name="block_Sigma_Stage_4_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9633152">
+          <Value exs:type="ns1:Label" Name="block_Megaman_X_Spec_screen_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9633408">
+          <Value exs:type="ns1:Label" Name="block_Weapon_Get_screen_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9666560">
+          <Value exs:type="ns1:Label" Name="block_Highway_stage_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9669248">
+          <Value exs:type="ns1:Label" Name="block_Flame_Mammoth_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9675776">
+          <Value exs:type="ns1:Label" Name="block_Flame_Mammoth_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9678336">
+          <Value exs:type="ns1:Label" Name="block_Launch_Octopus_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9685120">
+          <Value exs:type="ns1:Label" Name="block_Storm_Eagle_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9692544">
+          <Value exs:type="ns1:Label" Name="block_Spark_Mandrill_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9698688">
+          <Value exs:type="ns1:Label" Name="block_Sigma_Stage_3_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9732096">
+          <Value exs:type="ns1:Label" Name="block_Spark_Mandrill_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9734912">
+          <Value exs:type="ns1:Label" Name="block_Chill_Penguin_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9741952">
+          <Value exs:type="ns1:Label" Name="block_Chill_Penguin_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9744384">
+          <Value exs:type="ns1:Label" Name="block_Boomer_Kuwanger_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9749760">
+          <Value exs:type="ns1:Label" Name="block_Boomer_Kuwanger_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9751936">
+          <Value exs:type="ns1:Label" Name="block_Sigma_Stage_1_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9756544">
+          <Value exs:type="ns1:Label" Name="block_Sigma_Stage_1_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9758464">
+          <Value exs:type="ns1:Label" Name="block_Sigma_Stage_2_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9762304">
+          <Value exs:type="ns1:Label" Name="block_Sigma_Stage_2_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9797632">
+          <Value exs:type="ns1:Label" Name="block_Sigma_Stage_3_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9800704">
+          <Value exs:type="ns1:Label" Name="block_Weapon_Get_screen_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9801088">
+          <Value exs:type="ns1:Label" Name="block_Boss_intro_screen_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9801344">
+          <Value exs:type="ns1:Label" Name="block_Boss_intro_screen_BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9863168">
+          <Value exs:type="ns1:Label" Name="Block32_Sting_Chameleon__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9868584">
+          <Value exs:type="ns1:Label" Name="Block32_Sting_Chameleon__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9869048">
+          <Value exs:type="ns1:Label" Name="Block32_Armored_Armadillo__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9873672">
+          <Value exs:type="ns1:Label" Name="Block32_Armored_Armadillo__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9875376">
+          <Value exs:type="ns1:Label" Name="Block32_Flame_Mammoth__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9879640">
+          <Value exs:type="ns1:Label" Name="Block32_Flame_Mammoth__bg_tile_" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9880616">
+          <Value exs:type="ns1:Label" Name="Block32_Highway_stage__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9884272">
+          <Value exs:type="ns1:Label" Name="Block32_Highway_stage__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9884616">
+          <Value exs:type="ns1:Label" Name="Block32_Launch_Octopus__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9887688">
+          <Value exs:type="ns1:Label" Name="Block32_Boss_intro__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9887800">
+          <Value exs:type="ns1:Label" Name="Block32_Boss_intro__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9887912">
+          <Value exs:type="ns1:Label" Name="Block32_Weapon_Get_screen__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9888384">
+          <Value exs:type="ns1:Label" Name="Block32_Weapon_Get_screen__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9888600">
+          <Value exs:type="ns1:Label" Name="Block32_Sigma_Stage_4__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9889608">
+          <Value exs:type="ns1:Label" Name="Block32_Sigma_Stage_4__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9889696">
+          <Value exs:type="ns1:Label" Name="Block32_Megaman_X_Spec_Screen__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9889896">
+          <Value exs:type="ns1:Label" Name="Block32_Sigma_Stage_2__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9894896">
+          <Value exs:type="ns1:Label" Name="Block32_Sigma_Stage_2__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9895080">
+          <Value exs:type="ns1:Label" Name="Block32_Dr_Light_Warning__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9928704">
+          <Value exs:type="ns1:Label" Name="Block32_Launch_Octopus__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9929744">
+          <Value exs:type="ns1:Label" Name="Block32_Storm_Eagle__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9933600">
+          <Value exs:type="ns1:Label" Name="Block32_Storm_Eagle__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9934128">
+          <Value exs:type="ns1:Label" Name="Block32_Spark_Mandrill__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9937584">
+          <Value exs:type="ns1:Label" Name="Block32_Spark_Mandrill__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9938456">
+          <Value exs:type="ns1:Label" Name="Block32_Chill_Penguin__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9942968">
+          <Value exs:type="ns1:Label" Name="Block32_Chill_Penguin__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9943816">
+          <Value exs:type="ns1:Label" Name="Block32_Boomer_Kuwanger__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9947872">
+          <Value exs:type="ns1:Label" Name="Block32_Boomer_Kuwanger__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9948584">
+          <Value exs:type="ns1:Label" Name="Block32_Sigma_Stage_3__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9953160">
+          <Value exs:type="ns1:Label" Name="Block32_Sigma_Stage_3__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9953576">
+          <Value exs:type="ns1:Label" Name="Block32_Sigma_Stage_1__tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9958496">
+          <Value exs:type="ns1:Label" Name="Block32_Sigma_Stage_1__BG_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="9994240">
+          <Value exs:type="ns1:Label" Name="block16_Sting_Chameleon_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10001080">
+          <Value exs:type="ns1:Label" Name="block16_Armored_Armadillo_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10008032">
+          <Value exs:type="ns1:Label" Name="block16_Chill_Penguin_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10013936">
+          <Value exs:type="ns1:Label" Name="block16_Storm_Eagle_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10019736">
+          <Value exs:type="ns1:Label" Name="block16_Flame_Mammoth_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10026176">
+          <Value exs:type="ns1:Label" Name="block16_Boss_intro_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10059776">
+          <Value exs:type="ns1:Label" Name="block16_Highway_stage_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10067008">
+          <Value exs:type="ns1:Label" Name="block16_Launch_Octopus_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10072824">
+          <Value exs:type="ns1:Label" Name="block16_Spark_Mandrill_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10085400">
+          <Value exs:type="ns1:Label" Name="block16_Megaman_X_Spec_screen_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10086288">
+          <Value exs:type="ns1:Label" Name="block16_Sigma_Stage_1_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10090248">
+          <Value exs:type="ns1:Label" Name="block16_Sigma_Stage_4_16x16_tile" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10125312">
+          <Value exs:type="ns1:Label" Name="grafico_000" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10128115">
+          <Value exs:type="ns1:Label" Name="grafico_001" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10134829">
+          <Value exs:type="ns1:Label" Name="grafico_002" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10137092">
+          <Value exs:type="ns1:Label" Name="grafico_003" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10140763">
+          <Value exs:type="ns1:Label" Name="grafico_004" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10142437">
+          <Value exs:type="ns1:Label" Name="grafico_005" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10143918">
+          <Value exs:type="ns1:Label" Name="grafico_006" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10144530">
+          <Value exs:type="ns1:Label" Name="grafico_007" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10148026">
+          <Value exs:type="ns1:Label" Name="grafico_008" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10148666">
+          <Value exs:type="ns1:Label" Name="grafico_009" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10149108">
+          <Value exs:type="ns1:Label" Name="grafico_010" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10152332">
+          <Value exs:type="ns1:Label" Name="grafico_011" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10152353">
+          <Value exs:type="ns1:Label" Name="grafico_012" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10205522">
+          <Value exs:type="ns1:Label" Name="grafico_013" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10263478">
+          <Value exs:type="ns1:Label" Name="grafico_014" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10283444">
+          <Value exs:type="ns1:Label" Name="grafico_015" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10286365">
+          <Value exs:type="ns1:Label" Name="grafico_016" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10344621">
+          <Value exs:type="ns1:Label" Name="grafico_017" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10345362">
+          <Value exs:type="ns1:Label" Name="grafico_018" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10345999">
+          <Value exs:type="ns1:Label" Name="grafico_019" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10388495">
+          <Value exs:type="ns1:Label" Name="grafico_020" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10389223">
+          <Value exs:type="ns1:Label" Name="grafico_021" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10394769">
+          <Value exs:type="ns1:Label" Name="grafico_022" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10401914">
+          <Value exs:type="ns1:Label" Name="grafico_023" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10402403">
+          <Value exs:type="ns1:Label" Name="grafico_024" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10403110">
+          <Value exs:type="ns1:Label" Name="grafico_025" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10403434">
+          <Value exs:type="ns1:Label" Name="grafico_026" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10406159">
+          <Value exs:type="ns1:Label" Name="grafico_027" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10420190">
+          <Value exs:type="ns1:Label" Name="grafico_028" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10453486">
+          <Value exs:type="ns1:Label" Name="grafico_029" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10458389">
+          <Value exs:type="ns1:Label" Name="grafico_030" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10459587">
+          <Value exs:type="ns1:Label" Name="grafico_031" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10461717">
+          <Value exs:type="ns1:Label" Name="grafico_032" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10465726">
+          <Value exs:type="ns1:Label" Name="grafico_033" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10466770">
+          <Value exs:type="ns1:Label" Name="grafico_034" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10467920">
+          <Value exs:type="ns1:Label" Name="grafico_035" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10469272">
+          <Value exs:type="ns1:Label" Name="grafico_036" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10470201">
+          <Value exs:type="ns1:Label" Name="grafico_037" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10471014">
+          <Value exs:type="ns1:Label" Name="grafico_038" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10471843">
+          <Value exs:type="ns1:Label" Name="grafico_039" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10524341">
+          <Value exs:type="ns1:Label" Name="grafico_040" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10528679">
+          <Value exs:type="ns1:Label" Name="grafico_041" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10529019">
+          <Value exs:type="ns1:Label" Name="grafico_042" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10531130">
+          <Value exs:type="ns1:Label" Name="grafico_043" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10532570">
+          <Value exs:type="ns1:Label" Name="grafico_044" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10534021">
+          <Value exs:type="ns1:Label" Name="grafico_045" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10538758">
+          <Value exs:type="ns1:Label" Name="grafico_046" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10544868">
+          <Value exs:type="ns1:Label" Name="grafico_047" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10546813">
+          <Value exs:type="ns1:Label" Name="grafico_048" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10549585">
+          <Value exs:type="ns1:Label" Name="grafico_049" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10586758">
+          <Value exs:type="ns1:Label" Name="grafico_050" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10589271">
+          <Value exs:type="ns1:Label" Name="grafico_051" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10590503">
+          <Value exs:type="ns1:Label" Name="grafico_052" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10592044">
+          <Value exs:type="ns1:Label" Name="grafico_053" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10592507">
+          <Value exs:type="ns1:Label" Name="grafico_054" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10592866">
+          <Value exs:type="ns1:Label" Name="grafico_055" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10651402">
+          <Value exs:type="ns1:Label" Name="grafico_056" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10651930">
+          <Value exs:type="ns1:Label" Name="grafico_057" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10653059">
+          <Value exs:type="ns1:Label" Name="grafico_058" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10654450">
+          <Value exs:type="ns1:Label" Name="grafico_059" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10656069">
+          <Value exs:type="ns1:Label" Name="grafico_060" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10656671">
+          <Value exs:type="ns1:Label" Name="grafico_061" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10662593">
+          <Value exs:type="ns1:Label" Name="grafico_062" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10664202">
+          <Value exs:type="ns1:Label" Name="grafico_063" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10666251">
+          <Value exs:type="ns1:Label" Name="grafico_064" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10667964">
+          <Value exs:type="ns1:Label" Name="grafico_065" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10670463">
+          <Value exs:type="ns1:Label" Name="grafico_066" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10670776">
+          <Value exs:type="ns1:Label" Name="grafico_067" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10671217">
+          <Value exs:type="ns1:Label" Name="grafico_068" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10721558">
+          <Value exs:type="ns1:Label" Name="grafico_069" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10723151">
+          <Value exs:type="ns1:Label" Name="grafico_070" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10724498">
+          <Value exs:type="ns1:Label" Name="grafico_071" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10725405">
+          <Value exs:type="ns1:Label" Name="grafico_072" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10728647">
+          <Value exs:type="ns1:Label" Name="grafico_073" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10733581">
+          <Value exs:type="ns1:Label" Name="grafico_074" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10734611">
+          <Value exs:type="ns1:Label" Name="grafico_075" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10735627">
+          <Value exs:type="ns1:Label" Name="grafico_076" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10736776">
+          <Value exs:type="ns1:Label" Name="grafico_077" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10737563">
+          <Value exs:type="ns1:Label" Name="grafico_078" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10739255">
+          <Value exs:type="ns1:Label" Name="grafico_079" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10739332">
+          <Value exs:type="ns1:Label" Name="grafico_080" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10740982">
+          <Value exs:type="ns1:Label" Name="grafico_081" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10781037">
+          <Value exs:type="ns1:Label" Name="grafico_082" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10787155">
+          <Value exs:type="ns1:Label" Name="grafico_083" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10788762">
+          <Value exs:type="ns1:Label" Name="grafico_084" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10789785">
+          <Value exs:type="ns1:Label" Name="grafico_085" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10790575">
+          <Value exs:type="ns1:Label" Name="grafico_086" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10792782">
+          <Value exs:type="ns1:Label" Name="grafico_087" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10793552">
+          <Value exs:type="ns1:Label" Name="grafico_088" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10794018">
+          <Value exs:type="ns1:Label" Name="grafico_089" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10795278">
+          <Value exs:type="ns1:Label" Name="grafico_090" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10795576">
+          <Value exs:type="ns1:Label" Name="grafico_091" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10796008">
+          <Value exs:type="ns1:Label" Name="grafico_092" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10799814">
+          <Value exs:type="ns1:Label" Name="grafico_093" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10806775">
+          <Value exs:type="ns1:Label" Name="grafico_094" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10808400">
+          <Value exs:type="ns1:Label" Name="grafico_095" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10809505">
+          <Value exs:type="ns1:Label" Name="grafico_096" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10857974">
+          <Value exs:type="ns1:Label" Name="grafico_097" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10864302">
+          <Value exs:type="ns1:Label" Name="grafico_098" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10865782">
+          <Value exs:type="ns1:Label" Name="grafico_099" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10866349">
+          <Value exs:type="ns1:Label" Name="grafico_100" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10867187">
+          <Value exs:type="ns1:Label" Name="grafico_101" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10867319">
+          <Value exs:type="ns1:Label" Name="grafico_102" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10867438">
+          <Value exs:type="ns1:Label" Name="grafico_103" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10867803">
+          <Value exs:type="ns1:Label" Name="grafico_104" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10868631">
+          <Value exs:type="ns1:Label" Name="grafico_105" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10873559">
+          <Value exs:type="ns1:Label" Name="grafico_106" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10912229">
+          <Value exs:type="ns1:Label" Name="grafico_107" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10912771">
+          <Value exs:type="ns1:Label" Name="grafico_108" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10914753">
+          <Value exs:type="ns1:Label" Name="grafico_109" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10915201">
+          <Value exs:type="ns1:Label" Name="grafico_110" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10938003">
+          <Value exs:type="ns1:Label" Name="grafico_111" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10938651">
+          <Value exs:type="ns1:Label" Name="grafico_112" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10939063">
+          <Value exs:type="ns1:Label" Name="grafico_113" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10940375">
+          <Value exs:type="ns1:Label" Name="grafico_114" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10941364">
+          <Value exs:type="ns1:Label" Name="grafico_115" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10941675">
+          <Value exs:type="ns1:Label" Name="grafico_116" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10942594">
+          <Value exs:type="ns1:Label" Name="grafico_117" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10943306">
+          <Value exs:type="ns1:Label" Name="grafico_118" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10943430">
+          <Value exs:type="ns1:Label" Name="grafico_119" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10943554">
+          <Value exs:type="ns1:Label" Name="grafico_120" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10944169">
+          <Value exs:type="ns1:Label" Name="grafico_121" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10977578">
+          <Value exs:type="ns1:Label" Name="grafico_122" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10978027">
+          <Value exs:type="ns1:Label" Name="grafico_123" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10978504">
+          <Value exs:type="ns1:Label" Name="grafico_124" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10978928">
+          <Value exs:type="ns1:Label" Name="grafico_125" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10979392">
+          <Value exs:type="ns1:Label" Name="grafico_126" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10980726">
+          <Value exs:type="ns1:Label" Name="grafico_127" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10982302">
+          <Value exs:type="ns1:Label" Name="grafico_128" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10985342">
+          <Value exs:type="ns1:Label" Name="grafico_129" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10986496">
+          <Value exs:type="ns1:Label" Name="grafico_130" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10992022">
+          <Value exs:type="ns1:Label" Name="grafico_131" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10994756">
+          <Value exs:type="ns1:Label" Name="grafico_132" Comment="" />
+        </sys:Item>
+        <sys:Item Key="10998813">
+          <Value exs:type="ns1:Label" Name="grafico_133" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11000685">
+          <Value exs:type="ns1:Label" Name="grafico_134" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11002298">
+          <Value exs:type="ns1:Label" Name="grafico_135" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11003041">
+          <Value exs:type="ns1:Label" Name="grafico_136" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11004216">
+          <Value exs:type="ns1:Label" Name="grafico_137" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11006049">
+          <Value exs:type="ns1:Label" Name="grafico_138" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11045811">
+          <Value exs:type="ns1:Label" Name="grafico_139" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11046567">
+          <Value exs:type="ns1:Label" Name="grafico_140" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11046832">
+          <Value exs:type="ns1:Label" Name="grafico_141" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11048331">
+          <Value exs:type="ns1:Label" Name="grafico_142" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11053065">
+          <Value exs:type="ns1:Label" Name="grafico_143" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11054549">
+          <Value exs:type="ns1:Label" Name="grafico_144" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11054784">
+          <Value exs:type="ns1:Label" Name="grafico_145" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11113417">
+          <Value exs:type="ns1:Label" Name="grafico_146" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11114330">
+          <Value exs:type="ns1:Label" Name="grafico_147" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11114603">
+          <Value exs:type="ns1:Label" Name="grafico_148" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11120505">
+          <Value exs:type="ns1:Label" Name="grafico_149" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11126983">
+          <Value exs:type="ns1:Label" Name="grafico_150" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11127650">
+          <Value exs:type="ns1:Label" Name="grafico_151" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11129954">
+          <Value exs:type="ns1:Label" Name="grafico_152" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11133729">
+          <Value exs:type="ns1:Label" Name="grafico_153" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11140238">
+          <Value exs:type="ns1:Label" Name="grafico_154" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11174588">
+          <Value exs:type="ns1:Label" Name="grafico_155" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11178640">
+          <Value exs:type="ns1:Label" Name="grafico_156" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11179066">
+          <Value exs:type="ns1:Label" Name="grafico_157" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11180130">
+          <Value exs:type="ns1:Label" Name="grafico_158" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11181027">
+          <Value exs:type="ns1:Label" Name="grafico_159" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11183004">
+          <Value exs:type="ns1:Label" Name="grafico_160" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11186197">
+          <Value exs:type="ns1:Label" Name="grafico_161" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11188855">
+          <Value exs:type="ns1:Label" Name="grafico_162" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11189649">
+          <Value exs:type="ns1:Label" Name="grafico_163" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11191192">
+          <Value exs:type="ns1:Label" Name="grafico_164" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11197185">
+          <Value exs:type="ns1:Label" Name="grafico_165" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11202990">
+          <Value exs:type="ns1:Label" Name="grafico_166" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11203354">
+          <Value exs:type="ns1:Label" Name="grafico_167" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11204047">
+          <Value exs:type="ns1:Label" Name="grafico_168" Comment="" />
         </sys:Item>
         <sys:Item Key="11509832">
           <Value exs:type="ns1:Label" Name="player_walkAnimCTRL" Comment="" />

@@ -1757,73 +1757,87 @@
                        db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B4E5|        |FFFFFF;
                        db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B4ED|        |FFFFFF;
                        db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B4F5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B4FD|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B505|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B50D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B515|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B51D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B525|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B52D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B535|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B53D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B545|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B54D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B555|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B55D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B565|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B56D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B575|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B57D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B585|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B58D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B595|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B59D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5A5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5AD|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5B5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5BD|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5C5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5CD|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5D5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5DD|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5E5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5ED|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5F5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5FD|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B605|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B60D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B615|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B61D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B625|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B62D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B635|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B63D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B645|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B64D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B655|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B65D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B665|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B66D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B675|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B67D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B685|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B68D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B695|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B69D|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6A5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6AD|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6B5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6BD|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6C5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6CD|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6D5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6DD|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6E5|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6ED|        |FFFFFF;
-                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6F5|        |FFFFFF;
-                       db $FF,$FF,$FF                       ;85B6FD|        |AFFFFF;
+                       db $FF,$FF,$FF                       ;85B4FD|        |FFFFFF;
                                                             ;      |        |      ;
-    paletteData_start:
+palDat_X_s_main__no_weapon:
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B500|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B508|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B510|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B518|        |FFFFFF;
+                                                            ;      |        |      ;
+ palDat_Rush_Roader_s:
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B520|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B528|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B530|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B538|        |FFFFFF;
+                                                            ;      |        |      ;
+    palDat_Hoganmer_s:
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B540|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B548|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B550|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B558|        |FFFFFF;
+                                                            ;      |        |      ;
+palDat_Dodge_Blaster_s:
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B560|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B568|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B570|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B578|        |FFFFFF;
+                                                            ;      |        |      ;
+ palDat_Sine_Faller_s:
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B580|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B588|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B590|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B598|        |FFFFFF;
+                                                            ;      |        |      ;
+palDat_Boomerang_Cutter_weapon:
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5A0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5A8|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5B0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5B8|        |FFFFFF;
+                                                            ;      |        |      ;
+ palDat_X_s_secondary:
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5C0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5C8|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5D0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5D8|        |FFFFFF;
+                                                            ;      |        |      ;
+palDat_Flashing_color:
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5E0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5E8|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5F0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B5F8|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B600|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B608|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B610|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B618|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B620|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B628|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B630|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B638|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B640|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B648|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B650|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B658|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B660|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B668|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B670|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B678|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B680|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B688|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B690|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B698|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6A0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6A8|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6B0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6B8|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6C0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6C8|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6D0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6D8|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6E0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6E8|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6F0|        |FFFFFF;
+                       db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85B6F8|        |FFFFFF;
                        dw $35AF,$739C,$239D,$091E           ;85B700|        |      ;
                        dw $7B6F,$7A8A,$5963,$7E00           ;85B708|        |      ;
                        dw $7900,$40C4,$42DF,$2597           ;85B710|        |      ;
@@ -1856,26 +1870,38 @@
                        dw $7FFC,$7FFB,$7FFA,$7FF9           ;85B7E8|        |      ;
                        dw $7FF8,$7FF7,$7FF6,$7FF5           ;85B7F0|        |      ;
                        dw $7FF4,$7FF3,$7FF2,$7FF1           ;85B7F8|        |      ;
+                                                            ;      |        |      ;
+  palDat_Flammingle_s:
                        dw $35D0,$7BDE,$4E73,$294A           ;85B800|        |      ;
                        dw $7A53,$6DF0,$596C,$50E8           ;85B808|        |      ;
                        dw $7B1F,$5E1B,$4557,$477E           ;85B810|        |      ;
                        dw $3278,$19B3,$57AD,$14A5           ;85B818|        |      ;
+                                                            ;      |        |      ;
+palDat_MYSTERY_PALETTE_0001:
                        dw $4A0D,$7F45,$69E2,$147D           ;85B820|        |      ;
                        dw $18B4,$10F0,$7BDE,$4633           ;85B828|        |      ;
                        dw $2D6E,$2EEA,$2222,$1DA3           ;85B830|        |      ;
                        dw $433F,$2239,$29B2,$14A5           ;85B838|        |      ;
+                                                            ;      |        |      ;
+palDat_Planty_plus_Iworm_s:
                        dw $4A0E,$0CF5,$0E18,$22DA           ;85B840|        |      ;
                        dw $3B9C,$15A5,$1E87,$3B6E           ;85B848|        |      ;
                        dw $4926,$55A8,$666E,$318C           ;85B850|        |      ;
                        dw $4A52,$6318,$739C,$0C66           ;85B858|        |      ;
+                                                            ;      |        |      ;
+palDat_X_Buster_weapon:
                        dw $35D0,$7FFF,$5BED,$3780           ;85B860|        |      ;
                        dw $3720,$2EA0,$7FD8,$7FA6           ;85B868|        |      ;
                        dw $7B1F,$7F20,$38F9,$6E9F           ;85B870|        |      ;
                        dw $555F,$7E80,$7D80,$14A5           ;85B878|        |      ;
+                                                            ;      |        |      ;
+ palDat_Light_Capsule:
                        dw $4A0D,$73B0,$46C5,$331A           ;85B880|        |      ;
                        dw $2A57,$1952,$049E,$761E           ;85B888|        |      ;
                        dw $5348,$7F80,$7E20,$6904           ;85B890|        |      ;
                        dw $7BDE,$5294,$35AD,$14A5           ;85B898|        |      ;
+                                                            ;      |        |      ;
+palDat_Light_Capsule_glowing:
                        dw $4A0D,$73B0,$46C5,$337E           ;85B8A0|        |      ;
                        dw $2A5A,$19B5,$059E,$76BE           ;85B8A8|        |      ;
                        dw $5348,$7F16,$7E32,$710E           ;85B8B0|        |      ;
@@ -1884,36 +1910,50 @@
                        dw $5EDB,$3DF9,$31FE,$771E           ;85B8C8|        |      ;
                        dw $5348,$7F7F,$7E37,$7116           ;85B8D0|        |      ;
                        dw $7FFF,$6739,$4631,$7A07           ;85B8D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Homing_Torpedo_weapon:
                        dw $3DF2,$7FFF,$432E,$2E47           ;85B8E0|        |      ;
                        dw $725E,$201C,$7F45,$7E41           ;85B8E8|        |      ;
                        dw $7EFC,$79B8,$592E,$52F1           ;85B8F0|        |      ;
                        dw $555F,$6318,$4631,$0C63           ;85B8F8|        |      ;
                                                             ;      |        |      ;
-      mainPaletteData:
+palDat_Chameleon_Sting_weapon:
                        dw $3DF2,$7FFF,$4BFC,$03D6           ;85B900|        |      ;
                        dw $0B0F,$7EDF,$7DFF,$7C5F           ;85B908|        |      ;
                        dw $276F,$3309,$0623,$03D6           ;85B910|        |      ;
                        dw $555F,$6318,$4631,$0C63           ;85B918|        |      ;
+                                                            ;      |        |      ;
+palDat_Large_stone_block_s:
                        dw $258D,$67D9,$4AB2,$31CC           ;85B920|        |      ;
                        dw $2169,$1506,$10C3,$0881           ;85B928|        |      ;
                        dw $1E2E,$19EC,$0440,$31F6           ;85B930|        |      ;
                        dw $1D30,$0CAB,$0447,$0042           ;85B938|        |      ;
+                                                            ;      |        |      ;
+      palDat_RT_55J_s:
                        dw $3DCC,$1471,$2D1A,$521E           ;85B940|        |      ;
                        dw $1154,$225D,$3F3F,$0D44           ;85B948|        |      ;
                        dw $11E6,$1688,$294B,$4633           ;85B950|        |      ;
                        dw $739D,$1D08,$2310,$10C5           ;85B958|        |      ;
+                                                            ;      |        |      ;
+palDat_MYSTERY_PALETTE_0002:
                        dw $6D8A,$7FFF,$7F74,$6A4D           ;85B960|        |      ;
                        dw $6318,$4E73,$2E2B,$2E2B           ;85B968|        |      ;
                        dw $2E2B,$2E2B,$2E2B,$2E2B           ;85B970|        |      ;
                        dw $2E2B,$2E2B,$2E2B,$14A5           ;85B978|        |      ;
+                                                            ;      |        |      ;
+   palDat_Boss_door_s:
                        dw $2D6E,$7716,$6AD3,$5E4E           ;85B980|        |      ;
                        dw $4589,$2CE6,$7FFF,$7FE0           ;85B988|        |      ;
                        dw $7E60,$7CE0,$5400,$0000           ;85B990|        |      ;
                        dw $6318,$4E73,$318C,$0000           ;85B998|        |      ;
+                                                            ;      |        |      ;
+palDat_Axe_Max_plus_Axe_wood_plus_falling_leaves_:
                        dw $31D1,$4187,$5A4C,$7735           ;85B9A0|        |      ;
                        dw $1177,$229D,$477F,$15E5           ;85B9A8|        |      ;
                        dw $2ECF,$53D9,$396E,$5254           ;85B9B0|        |      ;
                        dw $735C,$18EF,$2DFF,$10A6           ;85B9B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Megaman_in_Light_Capsule_flashing:
                        dw $35AF,$739C,$239D,$091E           ;85B9C0|        |      ;
                        dw $7BBA,$7B6A,$6283,$7F00           ;85B9C8|        |      ;
                        dw $7AE0,$5AA4,$42DF,$2597           ;85B9D0|        |      ;
@@ -1922,106 +1962,158 @@
                        dw $7B7C,$7A97,$596F,$7EB3           ;85B9E8|        |      ;
                        dw $7915,$40CE,$42DF,$2597           ;85B9F0|        |      ;
                        dw $1110,$7FFF,$5EF7,$347C           ;85B9F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Road_Attacker_s:
                        dw $4A0D,$7FFF,$10BD,$55FC           ;85BA00|        |      ;
                        dw $10D9,$0070,$3B5E,$19F6           ;85BA08|        |      ;
                        dw $7A47,$6962,$28C4,$472E           ;85BA10|        |      ;
                        dw $7BDE,$4633,$2D6E,$14A5           ;85BA18|        |      ;
+                                                            ;      |        |      ;
+     palDat_Crusher_s:
                        dw $35D0,$25E3,$2E6A,$22FF           ;85BA20|        |      ;
                        dw $117B,$10D1,$7F45,$6962           ;85BA28|        |      ;
                        dw $6DD3,$5D2D,$34E8,$4B2F           ;85BA30|        |      ;
                        dw $7BDE,$4633,$2D6E,$14A5           ;85BA38|        |      ;
+                                                            ;      |        |      ;
+       palDat_Spiky_s:
                        dw $35D0,$4106,$69C5,$7F00           ;85BA40|        |      ;
                        dw $7F94,$7FFF,$3BBE,$01FE           ;85BA48|        |      ;
                        dw $018F,$0092,$185C,$729F           ;85BA50|        |      ;
                        dw $5294,$318C,$0257,$14A5           ;85BA58|        |      ;
+                                                            ;      |        |      ;
+palDat_Sting_Chameleon_plus_falling_spikes_:
                        dw $3DF2,$277E,$227E,$0D97           ;85BA60|        |      ;
                        dw $7E9F,$6BD3,$2345,$2A08           ;85BA68|        |      ;
                        dw $185C,$7A19,$64EF,$6A2C           ;85BA70|        |      ;
                        dw $7BDE,$5AD6,$35AD,$18C6           ;85BA78|        |      ;
+                                                            ;      |        |      ;
+   palDat_Bomb_Been_s:
                        dw $4A0D,$7F45,$6962,$22FF           ;85BA80|        |      ;
                        dw $117B,$10D1,$563F,$10BD           ;85BA88|        |      ;
                        dw $2D6E,$14A5,$7BDE,$439E           ;85BA90|        |      ;
                        dw $1AFF,$0DFD,$00DB,$4633           ;85BA98|        |      ;
+                                                            ;      |        |      ;
+palDat_MYSTER_PALETTE_0003:
                        dw $4A0D,$55B0,$6E34,$3EEA           ;85BAA0|        |      ;
                        dw $5350,$6396,$5272,$5A27           ;85BAA8|        |      ;
                        dw $7710,$6F5A,$7BDE,$4F9E           ;85BAB0|        |      ;
                        dw $36FF,$2E5D,$1DBB,$3D8E           ;85BAB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Highway_breakway_platform_s:
                        dw $24EA,$4B94,$3ACF,$2A2B           ;85BAC0|        |      ;
                        dw $25A8,$1905,$14A3,$5DFE           ;85BAC8|        |      ;
                        dw $4978,$3111,$24CA,$77BF           ;85BAD0|        |      ;
                        dw $577E,$439E,$33BF,$3F99           ;85BAD8|        |      ;
+                                                            ;      |        |      ;
+palDat_Road_Attacker_deployer_s:
                        dw $4A0D,$7FFF,$6B12,$5207           ;85BAE0|        |      ;
                        dw $3D84,$24E4,$379E,$19FC           ;85BAE8|        |      ;
                        dw $3AFF,$2192,$40E9,$5EFA           ;85BAF0|        |      ;
                        dw $4633,$294C,$18C8,$14A5           ;85BAF8|        |      ;
+                                                            ;      |        |      ;
+     palDat_Gulpfer_s:
                        dw $4A0D,$5A7F,$18BA,$5B5E           ;85BB00|        |      ;
                        dw $19F6,$19A7,$6BB3,$56A9           ;85BB08|        |      ;
                        dw $5205,$3542,$24E3,$7BDE           ;85BB10|        |      ;
                        dw $4E75,$35B0,$252C,$14A5           ;85BB18|        |      ;
+                                                            ;      |        |      ;
+palDat_Mad_Pecker_plus_Creeper_s:
                        dw $4A29,$3D88,$2091,$291C           ;85BB20|        |      ;
                        dw $49FE,$25F5,$369C,$4B5E           ;85BB28|        |      ;
                        dw $2E05,$46EC,$5B72,$398C           ;85BB30|        |      ;
                        dw $5673,$6B5B,$7AD1,$14A7           ;85BB38|        |      ;
+                                                            ;      |        |      ;
+palDat_Sea_Attacker_s:
                        dw $4A0D,$539E,$3A9A,$19B6           ;85BB40|        |      ;
                        dw $66BF,$1D3E,$10D4,$7773           ;85BB48|        |      ;
                        dw $56A9,$4DE5,$3962,$376E           ;85BB50|        |      ;
                        dw $7BDE,$5252,$398C,$14A7           ;85BB58|        |      ;
+                                                            ;      |        |      ;
+  palDat_Amenhopper_s:
                        dw $4A0D,$5A7F,$18BA,$3F3D           ;85BB60|        |      ;
                        dw $165C,$1595,$7A86,$2789           ;85BB68|        |      ;
                        dw $2AC5,$1E42,$1143,$7BDE           ;85BB70|        |      ;
                        dw $66D6,$41AD,$3129,$20A5           ;85BB78|        |      ;
+                                                            ;      |        |      ;
+  palDat_Bee_Blader_s:
                        dw $4E0C,$7FFF,$7F91,$6E6C           ;85BB80|        |      ;
                        dw $7169,$60E7,$1B1E,$123A           ;85BB88|        |      ;
                        dw $0998,$7FEC,$4341,$1A02           ;85BB90|        |      ;
                        dw $6AF5,$51EE,$3D8A,$10A6           ;85BB98|        |      ;
+                                                            ;      |        |      ;
+     palDat_Utuboros_:
                        dw $3D47,$3D89,$1C37,$393B           ;85BBA0|        |      ;
                        dw $5A5F,$1DB3,$325C,$477E           ;85BBA8|        |      ;
                        dw $3D88,$5A2A,$7AD1,$318E           ;85BBB0|        |      ;
                        dw $4E75,$6B5C,$770C,$10A6           ;85BBB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Ball_De_Voux_s:
                        dw $4A0D,$5A7F,$18BA,$431E           ;85BBC0|        |      ;
                        dw $25FD,$10F3,$7BDE,$4633           ;85BBC8|        |      ;
                        dw $2D6E,$7F45,$69E2,$4103           ;85BBD0|        |      ;
                        dw $7BDE,$4633,$2D6E,$14A5           ;85BBD8|        |      ;
+                                                            ;      |        |      ;
+    palDat_Gun_Volt_s:
                        dw $4A6F,$1DC7,$28D5,$419C           ;85BBE0|        |      ;
                        dw $5A7E,$3195,$3E3C,$531E           ;85BBE8|        |      ;
                        dw $3D40,$6620,$7F22,$39CE           ;85BBF0|        |      ;
                        dw $56B5,$739C,$3B6E,$1484           ;85BBF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Anglerge_parts_plus_snake_missile_s:
                        dw $55D2,$2605,$2CB0,$4597           ;85BC00|        |      ;
                        dw $5A5C,$25F5,$3A9C,$535E           ;85BC08|        |      ;
                        dw $3D88,$5A2A,$7AD1,$398C           ;85BC10|        |      ;
                        dw $5673,$735A,$474D,$1487           ;85BC18|        |      ;
+                                                            ;      |        |      ;
+palDat_Boss_intro_lightning_s:
                        dw $2D4C,$7FFF,$7FF3,$77C1           ;85BC20|        |      ;
                        dw $4EE0,$18BA,$66BF,$29E6           ;85BC28|        |      ;
                        dw $40C3,$0000,$4CE9,$3391           ;85BC30|        |      ;
                        dw $3391,$4E75,$2D6E,$6DD3           ;85BC38|        |      ;
+                                                            ;      |        |      ;
+palDat_Death_Rogumer_cannon_s:
                        dw $298E,$4D43,$6606,$72F1           ;85BC40|        |      ;
                        dw $0D55,$123E,$477F,$0492           ;85BC48|        |      ;
                        dw $211B,$5E1E,$3DCE,$5A94           ;85BC50|        |      ;
                        dw $6B5B,$29C7,$4AEE,$1885           ;85BC58|        |      ;
+                                                            ;      |        |      ;
+    palDat_Heart_Tank:
                        dw $2608,$7BDE,$66BF,$51FE           ;85BC60|        |      ;
                        dw $289D,$2896,$1872,$3391           ;85BC68|        |      ;
                        dw $3B9E,$1A7D,$1CF8,$3391           ;85BC70|        |      ;
                        dw $7BDE,$4E75,$2D6E,$14A5           ;85BC78|        |      ;
+                                                            ;      |        |      ;
+palDat_Utuboros_sand_cloud_s:
                        dw $4DEC,$2605,$2CB0,$4597           ;85BC80|        |      ;
                        dw $5A5C,$21F6,$2E59,$4F1F           ;85BC88|        |      ;
                        dw $3D88,$5A2A,$7AD1,$4A10           ;85BC90|        |      ;
                        dw $5A94,$6F39,$474D,$1487           ;85BC98|        |      ;
+                                                            ;      |        |      ;
+ palDat_Highway_car_s:
                        dw $4A0D,$46BF,$19BD,$66BF           ;85BCA0|        |      ;
                        dw $76D2,$5DEB,$4967,$34E8           ;85BCA8|        |      ;
                        dw $3FBE,$3299,$29F4,$1D50           ;85BCB0|        |      ;
                        dw $7BDE,$4E75,$2D6E,$1085           ;85BCB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Highway_trailer_trucks_s:
                        dw $41AC,$4AFF,$221D,$66BF           ;85BCC0|        |      ;
                        dw $76F4,$620D,$51AA,$392A           ;85BCC8|        |      ;
                        dw $66D9,$5A13,$4990,$350C           ;85BCD0|        |      ;
                        dw $7BDE,$56B7,$35AE,$14A6           ;85BCD8|        |      ;
+                                                            ;      |        |      ;
+ palDat_Highway_van_s:
                        dw $4A0D,$0084,$199F,$1084           ;85BCE0|        |      ;
                        dw $6B9D,$4E74,$35CE,$04FE           ;85BCE8|        |      ;
                        dw $04D5,$08CD,$4145,$7A8D           ;85BCF0|        |      ;
                        dw $5963,$22FF,$117B,$0C63           ;85BCF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Final_Form_Sigma_head_plus_eyes_plus_claws_:
                        dw $214C,$5CAC,$6D31,$71F5           ;85BD00|        |      ;
                        dw $0D2F,$15B6,$2A9D,$25C7           ;85BD08|        |      ;
                        dw $42A9,$6392,$314A,$5E94           ;85BD10|        |      ;
                        dw $77DC,$0456,$051A,$1C85           ;85BD18|        |      ;
+                                                            ;      |        |      ;
+palDat_Final_Form_Sigma_s_fade_in:
                        dw $214C,$4889,$54ED,$5991           ;85BD20|        |      ;
                        dw $090C,$1191,$2218,$1D66           ;85BD28|        |      ;
                        dw $2628,$4EEB,$2508,$4A10           ;85BD30|        |      ;
@@ -2038,54 +2130,80 @@
                        dw $0443,$0864,$0C85,$0861           ;85BD88|        |      ;
                        dw $0C82,$10A3,$0821,$0C21           ;85BD90|        |      ;
                        dw $0861,$0443,$0444,$0C22           ;85BD98|        |      ;
+                                                            ;      |        |      ;
+palDat_Final_Form_Sigma_s_flames_plus_sparks_:
                        dw $214C,$49A8,$5A29,$6EF0           ;85BDA0|        |      ;
                        dw $7F74,$7BBC,$0E39,$2B1E           ;85BDA8|        |      ;
                        dw $4B7E,$6BDF,$044E,$0456           ;85BDB0|        |      ;
                        dw $051A,$05BC,$065E,$1885           ;85BDB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Jellyfish_enemy_s___UNUSED:
                        dw $4A0D,$7F45,$69E2,$4103           ;85BDC0|        |      ;
                        dw $6993,$58EF,$44AA,$3B9E           ;85BDC8|        |      ;
                        dw $127B,$1974,$7697,$3B9E           ;85BDD0|        |      ;
                        dw $7BDE,$4E75,$2D6E,$18C6           ;85BDD8|        |      ;
+                                                            ;      |        |      ;
+palDat_Cruiziler_parts_:
                        dw $4E0C,$7FFF,$47AE,$32C8           ;85BDE0|        |      ;
                        dw $1E03,$1965,$431E,$161A           ;85BDE8|        |      ;
                        dw $2555,$20F0,$7342,$59C6           ;85BDF0|        |      ;
                        dw $62D6,$4A10,$358C,$0C87           ;85BDF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Stage_select_cursor_plus_map_screen_dot_s:
                        dw $364D,$7FFF,$339F,$265E           ;85BE00|        |      ;
                        dw $18F9,$08B0,$108A,$47AE           ;85BE08|        |      ;
                        dw $3B2C,$32AA,$2A48,$21C6           ;85BE10|        |      ;
                        dw $1965,$7F37,$51EA,$1CA3           ;85BE18|        |      ;
+                                                            ;      |        |      ;
+palDat_Storm_Tornado_weapon:
                        dw $3E2B,$7FFF,$7B7D,$76DC           ;85BE20|        |      ;
                        dw $6658,$4DD4,$7E41,$42BC           ;85BE28|        |      ;
                        dw $7EFC,$79B8,$592E,$7699           ;85BE30|        |      ;
                        dw $555F,$6318,$4631,$0C63           ;85BE38|        |      ;
+                                                            ;      |        |      ;
+palDat_Scrap_Robo_plus_Broken_Utuboros_head_s:
                        dw $31D1,$2095,$395C,$521E           ;85BE40|        |      ;
                        dw $25D7,$2A7E,$3B1E,$3546           ;85BE48|        |      ;
                        dw $5A44,$7B2C,$2D6B,$5294           ;85BE50|        |      ;
                        dw $6B5A,$1DC7,$3B6E,$1CA4           ;85BE58|        |      ;
+                                                            ;      |        |      ;
+palDat_Scrap_Robo_plus_Broken_Utuboros_head_s_melting:
                        dw $31D1,$209D,$395E,$521F           ;85BE60|        |      ;
                        dw $25DD,$2A7E,$3B1F,$355D           ;85BE68|        |      ;
                        dw $623E,$7B3F,$2D7D,$529E           ;85BE70|        |      ;
                        dw $6B5F,$1DDD,$3B7E,$1CB1           ;85BE78|        |      ;
+                                                            ;      |        |      ;
+palDat_Mine_cart_platform_s:
                        dw $4A10,$5396,$3E8E,$21A8           ;85BE80|        |      ;
                        dw $467E,$2518,$1D0F,$3B9E           ;85BE88|        |      ;
                        dw $1A39,$1CF6,$4A0D,$7BDE           ;85BE90|        |      ;
                        dw $673A,$4633,$2D6E,$14A5           ;85BE98|        |      ;
+                                                            ;      |        |      ;
+palDat_Shotgun_Ice_weapon:
                        dw $562E,$7FFF,$7F57,$7EAD           ;85BEA0|        |      ;
                        dw $6DE8,$4D40,$01BD,$031F           ;85BEA8|        |      ;
                        dw $3B6E,$2689,$15C5,$6F91           ;85BEB0|        |      ;
                        dw $555F,$6318,$4631,$0C63           ;85BEB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Fire_Wave_weapon:
                        dw $1202,$7FFF,$0A7E,$0D7C           ;85BEC0|        |      ;
                        dw $08D8,$0492,$01BD,$031F           ;85BEC8|        |      ;
                        dw $0A5D,$08FE,$0897,$39FF           ;85BED0|        |      ;
                        dw $555F,$6318,$4631,$0C63           ;85BED8|        |      ;
+                                                            ;      |        |      ;
+palDat_Electric_Spark_weapon:
                        dw $3DF2,$7FFF,$2FFC,$0BB8           ;85BEE0|        |      ;
                        dw $0B51,$7EDF,$7DFF,$7C5F           ;85BEE8|        |      ;
                        dw $7572,$58C9,$3C66,$2FFC           ;85BEF0|        |      ;
                        dw $555F,$6318,$4631,$0C63           ;85BEF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Rolling_Shield_weapon:
                        dw $2DAE,$7FFF,$7778,$72D1           ;85BF00|        |      ;
                        dw $6A4B,$65A5,$5161,$40E0           ;85BF08|        |      ;
                        dw $72D1,$6A4B,$5D85,$621F           ;85BF10|        |      ;
                        dw $555F,$6318,$4631,$0C63           ;85BF18|        |      ;
+                                                            ;      |        |      ;
+palDat_Charged_Rolling_Shield_weapon:
                        dw $2DAE,$7FFF,$5161,$7778           ;85BF20|        |      ;
                        dw $72D1,$6A4B,$65A5,$40E0           ;85BF28|        |      ;
                        dw $72D1,$6A4B,$65A5,$621F           ;85BF30|        |      ;
@@ -2102,46 +2220,68 @@
                        dw $65A5,$5161,$7778,$40E0           ;85BF88|        |      ;
                        dw $72D1,$6A4B,$65A5,$621F           ;85BF90|        |      ;
                        dw $555F,$6318,$4631,$0C63           ;85BF98|        |      ;
+                                                            ;      |        |      ;
+  palDat_Mole_Borer_s:
                        dw $31D1,$1892,$355B,$521E           ;85BFA0|        |      ;
                        dw $1136,$225D,$3F3F,$4168           ;85BFA8|        |      ;
                        dw $666C,$7F74,$2D6D,$4A54           ;85BFB0|        |      ;
                        dw $6B5A,$1DC7,$3B6E,$1086           ;85BFB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Pink_Ride_Armor_plus_Pink_Armor_Soldier_s:
                        dw $35D0,$49A7,$72EE,$2E7F           ;85BFC0|        |      ;
                        dw $437C,$2A99,$19D6,$192F           ;85BFC8|        |      ;
                        dw $20E9,$24EE,$2CF3,$3D99           ;85BFD0|        |      ;
                        dw $7BDE,$5294,$35AD,$14A5           ;85BFD8|        |      ;
+                                                            ;      |        |      ;
+    palDat_Bat_Bone_s:
                        dw $35D0,$2228,$7B1F,$28DE           ;85BFE0|        |      ;
                        dw $437C,$2A99,$19D3,$192F           ;85BFE8|        |      ;
                        dw $57AD,$412C,$5DB1,$7235           ;85BFF0|        |      ;
                        dw $7BDE,$5294,$35AD,$14A5           ;85BFF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Batton_M_501_s:
                        dw $5650,$1471,$3138,$521E           ;85C000|        |      ;
                        dw $1136,$225D,$3F3F,$4168           ;85C008|        |      ;
                        dw $666C,$7F74,$2D6D,$4A54           ;85C010|        |      ;
                        dw $6B5A,$1DC7,$0844,$1087           ;85C018|        |      ;
+                                                            ;      |        |      ;
+palDat_Met_C_15_plus_password_cursor_s:
                        dw $318C,$0100,$1180,$2204           ;85C020|        |      ;
                        dw $048E,$1577,$22BD,$1855           ;85C028|        |      ;
                        dw $209A,$4DBE,$2D6D,$4A54           ;85C030|        |      ;
                        dw $6B5A,$1DC7,$0845,$1087           ;85C038|        |      ;
+                                                            ;      |        |      ;
+palDat_Crag_Man_plus_small_stone_block_plus_Forest_rubble_s:
                        dw $72CD,$67D9,$4AB2,$31CC           ;85C040|        |      ;
                        dw $2169,$1506,$10C3,$0574           ;85C048|        |      ;
                        dw $229D,$477F,$396E,$5254           ;85C050|        |      ;
                        dw $735C,$18EF,$24DE,$1086           ;85C058|        |      ;
+                                                            ;      |        |      ;
+palDat_Dig_Labour_plus_factory_rubble_s:
                        dw $31D1,$19A8,$46EE,$5B9A           ;85C060|        |      ;
                        dw $1177,$229D,$477F,$4168           ;85C068|        |      ;
                        dw $666C,$7F74,$396E,$5254           ;85C070|        |      ;
                        dw $735C,$18EF,$2DFF,$1086           ;85C078|        |      ;
+                                                            ;      |        |      ;
+palDat_Unknown_Duplicate_Dig_Labour:
                        dw $31D1,$19A8,$46EE,$5B9A           ;85C080|        |      ;
                        dw $1177,$229D,$477F,$4168           ;85C088|        |      ;
                        dw $666C,$7F74,$396E,$5254           ;85C090|        |      ;
                        dw $735C,$18EF,$2DFF,$1086           ;85C098|        |      ;
+                                                            ;      |        |      ;
+palDat_Vile_plus_Vile_s_first_ride_armor_s:
                        dw $35AF,$40EB,$7558,$73B0           ;85C0A0|        |      ;
                        dw $3F5E,$2A5B,$19B8,$192F           ;85C0A8|        |      ;
                        dw $2080,$30C0,$3D00,$5122           ;85C0B0|        |      ;
                        dw $7BDE,$5294,$35AD,$14A5           ;85C0B8|        |      ;
+                                                            ;      |        |      ;
+        palDat_Zero_s:
                        dw $3988,$0128,$7ACD,$5963           ;85C0C0|        |      ;
                        dw $7FBD,$5294,$3DEF,$055E           ;85C0C8|        |      ;
                        dw $04D5,$08CD,$42DF,$2597           ;85C0D0|        |      ;
                        dw $1110,$271E,$1258,$14A7           ;85C0D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Zero_s_Beta_charging:
                        dw $3988,$0128,$7ADA,$5972           ;85C0E0|        |      ;
                        dw $7BDF,$5655,$4591,$7155           ;85C0E8|        |      ;
                        dw $60D1,$3CCA,$42DF,$4997           ;85C0F0|        |      ;
@@ -2150,10 +2290,14 @@
                        dw $7FBD,$5E92,$524F,$41D9           ;85C108|        |      ;
                        dw $3D73,$2D2D,$5ADF,$3597           ;85C110|        |      ;
                        dw $2510,$631E,$4A58,$4547           ;85C118|        |      ;
+                                                            ;      |        |      ;
+palDat_Zero_s_charged_shot_s:
                        dw $3988,$7FFF,$7FD8,$7FD1           ;85C120|        |      ;
                        dw $7EAA,$69E7,$5563,$7FD8           ;85C128|        |      ;
                        dw $7F45,$7540,$4480,$1AFF           ;85C130|        |      ;
                        dw $0DFD,$00DB,$08F3,$14A5           ;85C138|        |      ;
+                                                            ;      |        |      ;
+palDat_Password_screen_number_s:
                        dw $322C,$43ED,$2B69,$02C9           ;85C140|        |      ;
                        dw $1260,$7FE4,$7F61,$7EE1           ;85C148|        |      ;
                        dw $7A62,$7D81,$6103,$7DF5           ;85C150|        |      ;
@@ -2162,46 +2306,68 @@
                        dw $127F,$12FF,$139F,$43BF           ;85C168|        |      ;
                        dw $7A9F,$7A1E,$6DBE,$4D5F           ;85C170|        |      ;
                        dw $24DF,$005E,$0019,$0000           ;85C178|        |      ;
+                                                            ;      |        |      ;
+palDat_Password_screen_cursor_s:
                        dw $322C,$2204,$2204,$2204           ;85C180|        |      ;
                        dw $2204,$2204,$2204,$2204           ;85C188|        |      ;
                        dw $2204,$2204,$2204,$739C           ;85C190|        |      ;
                        dw $6E3E,$553F,$007E,$0000           ;85C198|        |      ;
+                                                            ;      |        |      ;
+    palDat_Hotarion_s:
                        dw $31D1,$3CA9,$61CC,$7AD1           ;85C1A0|        |      ;
                        dw $1177,$229D,$477F,$15A5           ;85C1A8|        |      ;
                        dw $1E87,$3B6E,$39AE,$5274           ;85C1B0|        |      ;
                        dw $737C,$0470,$04FE,$10A6           ;85C1B8|        |      ;
+                                                            ;      |        |      ;
+  palDat_Metal_Wing_s:
                        dw $31D1,$3CA9,$61CC,$7AD1           ;85C1C0|        |      ;
                        dw $1177,$229D,$477F,$2095           ;85C1C8|        |      ;
                        dw $395C,$521E,$39AE,$5274           ;85C1D0|        |      ;
                        dw $737C,$1DC7,$3B6E,$10A6           ;85C1D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Conveyor_belt_crusher_s:
                        dw $14C6,$7FFF,$7FBC,$66F6           ;85C1E0|        |      ;
                        dw $4E30,$3DAC,$2D28,$20C5           ;85C1E8|        |      ;
                        dw $1483,$063E,$0178,$0512           ;85C1F0|        |      ;
                        dw $08CC,$1220,$1100,$751E           ;85C1F8|        |      ;
+                                                            ;      |        |      ;
+   palDat_Jamminger_s:
                        dw $31D1,$2095,$395C,$521E           ;85C200|        |      ;
                        dw $1177,$229D,$477F,$40EC           ;85C208|        |      ;
                        dw $6592,$7E9A,$396E,$5254           ;85C210|        |      ;
                        dw $735C,$49A5,$730C,$1086           ;85C218|        |      ;
+                                                            ;      |        |      ;
+palDat_MYSTERY_PALETTE_0004:
                        dw $4DEC,$1527,$2A07,$3AEE           ;85C220|        |      ;
                        dw $0577,$0A7D,$277F,$3D88           ;85C228|        |      ;
                        dw $5A2A,$7AD1,$396E,$5254           ;85C230|        |      ;
                        dw $735C,$08B8,$093E,$1086           ;85C238|        |      ;
+                                                            ;      |        |      ;
+palDat_Airport_conveyor_platform_s:
                        dw $31D1,$50C8,$61CC,$7AD1           ;85C240|        |      ;
                        dw $1177,$229D,$477F,$15A5           ;85C248|        |      ;
                        dw $1E87,$3B6E,$39AE,$5274           ;85C250|        |      ;
                        dw $737C,$0470,$04FE,$10A6           ;85C258|        |      ;
+                                                            ;      |        |      ;
+palDat_Flamer_plus_floating_platform_s:
                        dw $31D1,$1527,$2A07,$3AEE           ;85C260|        |      ;
                        dw $1177,$229D,$477F,$2852           ;85C268|        |      ;
                        dw $4118,$69DE,$39AE,$5274           ;85C270|        |      ;
                        dw $737C,$08B8,$093E,$10A6           ;85C278|        |      ;
+                                                            ;      |        |      ;
+palDat_Thunder_Slimer_s:
                        dw $35AF,$00FF,$00D6,$00D0           ;85C280|        |      ;
                        dw $4E75,$7215,$5D6E,$4909           ;85C288|        |      ;
                        dw $53F6,$3F2E,$2228,$7BDE           ;85C290|        |      ;
                        dw $2E99,$21F5,$1950,$14A5           ;85C298|        |      ;
+                                                            ;      |        |      ;
+palDat_Armored_Armadillo_plus_spark:
                        dw $31CE,$61CB,$6EAE,$7B91           ;85C2A0|        |      ;
                        dw $1157,$229E,$47BF,$38D0           ;85C2A8|        |      ;
                        dw $5197,$665C,$3D89,$6291           ;85C2B0|        |      ;
                        dw $7B7B,$0470,$04FE,$10A6           ;85C2B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Armored_Armadillo_s_charging:
                        dw $31CE,$71EB,$7ACE,$7F91           ;85C2C0|        |      ;
                        dw $3598,$46DC,$6BBC,$5D11           ;85C2C8|        |      ;
                        dw $75D8,$7E9B,$61CA,$7AD2           ;85C2D0|        |      ;
@@ -2214,66 +2380,98 @@
                        dw $0C4D,$258E,$35F2,$3C09           ;85C308|        |      ;
                        dw $54D0,$6152,$3881,$5D87           ;85C310|        |      ;
                        dw $6E71,$1409,$1437,$1C00           ;85C318|        |      ;
+                                                            ;      |        |      ;
+palDat_Armored_Armadillo_s_rubble:
                        dw $31CE,$1157,$229E,$47BF           ;85C320|        |      ;
                        dw $4631,$5294,$6F7B,$38D0           ;85C328|        |      ;
                        dw $5197,$665C,$3D89,$6291           ;85C330|        |      ;
                        dw $7B7B,$1CC6,$04FE,$10A6           ;85C338|        |      ;
+                                                            ;      |        |      ;
+      palDat_Tombot_s:
                        dw $31CE,$48C5,$6D69,$7AB1           ;85C340|        |      ;
                        dw $1157,$229E,$47BF,$18B3           ;85C348|        |      ;
                        dw $295B,$4A1C,$294B,$4A53           ;85C350|        |      ;
                        dw $6F7C,$0470,$04FE,$18A5           ;85C358|        |      ;
+                                                            ;      |        |      ;
+palDat_Thunder_Slimer_s_slime_blob_plus_electric_bolt_s:
                        dw $35AF,$7FFF,$7FF4,$738E           ;85C360|        |      ;
                        dw $6720,$56A0,$51C0,$779B           ;85C368|        |      ;
                        dw $7315,$6E90,$6A0A,$5965           ;85C370|        |      ;
                        dw $7BDE,$56B5,$4210,$14A5           ;85C378|        |      ;
+                                                            ;      |        |      ;
+ palDat_Chill_Penguin:
                        dw $4A0D,$20C6,$79C7,$2A1A           ;85C380|        |      ;
                        dw $2ADF,$7BDE,$66D6,$41AD           ;85C388|        |      ;
                        dw $3543,$4D64,$04FE,$04D5           ;85C390|        |      ;
                        dw $08CD,$6DD3,$5D2D,$14A5           ;85C398|        |      ;
+                                                            ;      |        |      ;
+palDat_Chill_Penguin_s_iceball_plus_sculpture:
                        dw $4A0D,$0128,$7FFF,$7379           ;85C3A0|        |      ;
                        dw $6B13,$5EAE,$5648,$4DE3           ;85C3A8|        |      ;
                        dw $2D43,$48D0,$7FF6,$7FF5           ;85C3B0|        |      ;
                        dw $7FF4,$7FF3,$7FF2,$7FF1           ;85C3B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Unknown_Duplicate_Chill_Penguin_unused:
                        dw $4A0D,$20C6,$79C7,$2A1A           ;85C3C0|        |      ;
                        dw $2ADF,$7BDE,$66D6,$41AD           ;85C3C8|        |      ;
                        dw $3543,$4D64,$04FE,$04D5           ;85C3D0|        |      ;
                        dw $08CD,$6DD3,$5D2D,$14A5           ;85C3D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Unknown_Chill_Penguin_but_all_colors_are_black:
                        dw $4A0D,$0000,$0000,$0000           ;85C3E0|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85C3E8|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85C3F0|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85C3F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Slide_Cannon_plus_sliding_platform_s:
                        dw $35AF,$437C,$2A77,$1971           ;85C400|        |      ;
                        dw $53FE,$32FF,$565E,$14FC           ;85C408|        |      ;
                        dw $1490,$5396,$3E8E,$21A8           ;85C410|        |      ;
                        dw $7BDE,$5294,$35AD,$14A5           ;85C418|        |      ;
+                                                            ;      |        |      ;
+      palDat_Spring_s:
                        dw $3E2B,$08BE,$6E5E,$3AFA           ;85C420|        |      ;
                        dw $2A36,$0CCC,$7F09,$7DC0           ;85C428|        |      ;
                        dw $5500,$1D66,$21E6,$08BE           ;85C430|        |      ;
                        dw $7BDE,$5AD6,$35AD,$18C6           ;85C438|        |      ;
+                                                            ;      |        |      ;
+   palDat_X_s_charged:
                        dw $35AF,$7FFF,$239D,$61BE           ;85C440|        |      ;
                        dw $7BD4,$7B6A,$7203,$7EE0           ;85C448|        |      ;
                        dw $7A40,$79A4,$42DF,$2597           ;85C450|        |      ;
                        dw $1110,$7FFF,$5AD6,$7143           ;85C458|        |      ;
+                                                            ;      |        |      ;
+palDat_X_s_supercharged:
                        dw $35AF,$7FFF,$239D,$61BE           ;85C460|        |      ;
                        dw $7F9C,$7ED9,$7A33,$7EB6           ;85C468|        |      ;
                        dw $7E36,$75D1,$42DF,$2597           ;85C470|        |      ;
                        dw $1110,$7FFF,$5AD6,$6C12           ;85C478|        |      ;
+                                                            ;      |        |      ;
+palDat_Floating_laser_trap_plus_laser_s:
                        dw $3DF2,$2238,$765E,$08FE           ;85C480|        |      ;
                        dw $3B3C,$7F09,$75EB,$4D46           ;85C488|        |      ;
                        dw $5370,$42CE,$2E09,$2989           ;85C490|        |      ;
                        dw $7BDE,$5AD6,$35AD,$18C6           ;85C498|        |      ;
+                                                            ;      |        |      ;
+palDat_Boomer_Kuwanger_plus_boomerang:
                        dw $3DCC,$1891,$2916,$319E           ;85C4A0|        |      ;
                        dw $1157,$229E,$477F,$50C8           ;85C4A8|        |      ;
                        dw $69C8,$7AD1,$3968,$5E71           ;85C4B0|        |      ;
                        dw $7BBB,$29C2,$170E,$18A5           ;85C4B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Boomer_Kuwanger_s_afterimage:
                        dw $3DCC,$288A,$3D0F,$5194           ;85C4C0|        |      ;
                        dw $3D4F,$5274,$62F8,$38CE           ;85C4C8|        |      ;
                        dw $49D2,$62D8,$2D6B,$5274           ;85C4D0|        |      ;
                        dw $737C,$20E8,$292A,$18A5           ;85C4D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Launch_Octopus_plus_Homing_Torpedo_s:
                        dw $3E2B,$432E,$6E5E,$277E           ;85C4E0|        |      ;
                        dw $2238,$21E6,$75EB,$4D46           ;85C4E8|        |      ;
                        dw $34C4,$0CCC,$0CF2,$08BE           ;85C4F0|        |      ;
                        dw $7BDE,$5AD6,$35AD,$18C6           ;85C4F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Launch_Octopus__E_Drain:
                        dw $3E2B,$432E,$6EDE,$3F7E           ;85C500|        |      ;
                        dw $2E38,$21E6,$75EB,$4D46           ;85C508|        |      ;
                        dw $34C4,$2CCC,$2CF2,$44BE           ;85C510|        |      ;
@@ -2282,154 +2480,230 @@
                        dw $2E38,$21E6,$75EB,$4D46           ;85C528|        |      ;
                        dw $34C4,$38D2,$40F7,$64FE           ;85C530|        |      ;
                        dw $7BDE,$5AD6,$35AD,$18C6           ;85C538|        |      ;
+                                                            ;      |        |      ;
+palDat_Launch_Octopus__fish_missile:
                        dw $3E2B,$3E67,$43CE,$08BE           ;85C540|        |      ;
                        dw $7FFF,$5AD6,$35AD,$7EFC           ;85C548|        |      ;
                        dw $79B8,$70D5,$588E,$477F           ;85C550|        |      ;
                        dw $2A9B,$19F7,$0973,$14A5           ;85C558|        |      ;
+                                                            ;      |        |      ;
+palDat_Launch_Octopus__twister:
                        dw $3E2B,$7FFF,$6F7B,$5EF7           ;85C560|        |      ;
                        dw $4E73,$4210,$725E,$725E           ;85C568|        |      ;
                        dw $725E,$725E,$725E,$725E           ;85C570|        |      ;
                        dw $725E,$725E,$725E,$14A5           ;85C578|        |      ;
+                                                            ;      |        |      ;
+palDat_Ladder_Yadder_s:
                        dw $41CB,$144A,$3511,$5A1A           ;85C580|        |      ;
                        dw $0576,$1A7D,$2B5F,$550A           ;85C588|        |      ;
                        dw $6A09,$7B10,$2D6C,$4632           ;85C590|        |      ;
                        dw $6F7C,$61CC,$7AD1,$1484           ;85C598|        |      ;
+                                                            ;      |        |      ;
+palDat_MYSTERY_PALETTE_0005:
                        dw $3E2B,$7FFF,$431F,$2658           ;85C5A0|        |      ;
                        dw $1954,$0CB0,$000C,$70D5           ;85C5A8|        |      ;
                        dw $70D5,$70D5,$70D5,$70D5           ;85C5B0|        |      ;
                        dw $70D5,$70D5,$70D5,$18C6           ;85C5B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Tower_elevator_platform_s:
                        dw $4881,$6B5A,$22FF,$11B4           ;85C5C0|        |      ;
                        dw $0446,$0005,$0002,$0001           ;85C5C8|        |      ;
                        dw $0400,$4631,$39CE,$2D6B           ;85C5D0|        |      ;
                        dw $1CE7,$1084,$0842,$2800           ;85C5D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Power_plant_spark_s:
                        dw $3DF2,$7FFF,$77F2,$67AB           ;85C5E0|        |      ;
                        dw $5324,$4EE0,$35AD,$7EFC           ;85C5E8|        |      ;
                        dw $79B8,$70D5,$588E,$477F           ;85C5F0|        |      ;
                        dw $2A9B,$19F7,$0973,$14A5           ;85C5F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Flame_pillar_s:
                        dw $4A41,$046D,$08B2,$08B9           ;85C600|        |      ;
                        dw $097D,$0A9E,$2B1F,$0993           ;85C608|        |      ;
                        dw $0ADF,$3FDF,$318D,$4E74           ;85C610|        |      ;
                        dw $7BBB,$29C2,$170E,$1486           ;85C618|        |      ;
+                                                            ;      |        |      ;
+palDat_Dummy__Palette_is_completely_black:
                        dw $0000,$0000,$0000,$0000           ;85C620|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85C628|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85C630|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85C638|        |      ;
+                                                            ;      |        |      ;
+palDat_Shattering_glass_pane_s:
                        dw $7E88,$1800,$2441,$34A3           ;85C640|        |      ;
                        dw $40E4,$5146,$5DA7,$6E09           ;85C648|        |      ;
                        dw $7BDE,$7F79,$76F1,$6E29           ;85C650|        |      ;
                        dw $61C8,$19C0,$1140,$0900           ;85C658|        |      ;
+                                                            ;      |        |      ;
+palDat_Dummy__Palette_is_black_except_for_transparent_color:
                        dw $2D4C,$0000,$0000,$0000           ;85C660|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85C668|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85C670|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85C678|        |      ;
+                                                            ;      |        |      ;
+    palDat_Sky_Claw_s:
                        dw $4A0D,$7EED,$7146,$231F           ;85C680|        |      ;
                        dw $11FB,$1111,$723F,$4631           ;85C688|        |      ;
                        dw $39CE,$14A5,$7BDE,$439E           ;85C690|        |      ;
                        dw $1AFF,$0DFD,$10DB,$56B5           ;85C698|        |      ;
+                                                            ;      |        |      ;
+palDat_Cruiziler_missile_s:
                        dw $4A0D,$7EEB,$7E48,$6145           ;85C6A0|        |      ;
                        dw $04DF,$10D6,$14EE,$3B9E           ;85C6A8|        |      ;
                        dw $127B,$1974,$5E7F,$7AF9           ;85C6B0|        |      ;
                        dw $7BDE,$56B5,$318C,$18C6           ;85C6B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Flame_Mammoth_plus_oil_plus_flame_s:
                        dw $3DCC,$046E,$0897,$089E           ;85C6C0|        |      ;
                        dw $1157,$229E,$477F,$50C8           ;85C6C8|        |      ;
                        dw $69C8,$7AD1,$318D,$4E74           ;85C6D0|        |      ;
                        dw $7BBB,$29C2,$170E,$1486           ;85C6D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Unknown_Duplicate_Flame_Mammoth___Used_for_trunk:
                        dw $3DCC,$046E,$0897,$089E           ;85C6E0|        |      ;
                        dw $1157,$229E,$477F,$50C8           ;85C6E8|        |      ;
                        dw $69C8,$7AD1,$318D,$4E74           ;85C6F0|        |      ;
                        dw $7BBB,$29C2,$170E,$1486           ;85C6F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Flame_Mammoth_s_oil_fire:
                        dw $3DCC,$046E,$0895,$08BE           ;85C700|        |      ;
                        dw $09FD,$0ADF,$3FDF,$0993           ;85C708|        |      ;
                        dw $0ADF,$3FDF,$318D,$4E74           ;85C710|        |      ;
                        dw $7BBB,$29C2,$170E,$1486           ;85C718|        |      ;
+                                                            ;      |        |      ;
+palDat_Rolling_Gabyool_plus_lava_drip_s:
                        dw $210B,$7FFF,$33D5,$1F2A           ;85C720|        |      ;
                        dw $2609,$7B82,$7964,$2F5C           ;85C728|        |      ;
                        dw $0E3B,$045E,$0456,$084B           ;85C730|        |      ;
                        dw $6F15,$55CF,$454A,$0CA3           ;85C738|        |      ;
+                                                            ;      |        |      ;
+     palDat_Ray_Bit_s:
                        dw $5A52,$2A04,$3287,$3B8E           ;85C740|        |      ;
                        dw $20B3,$30D7,$2CFD,$0888           ;85C748|        |      ;
                        dw $25B5,$2E9C,$3B5E,$7FFF           ;85C750|        |      ;
                        dw $7716,$7651,$616E,$1488           ;85C758|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_default_object:
                        dw $29C4,$294A,$10EF,$091E           ;85C760|        |      ;
                        dw $6318,$7A8D,$5963,$79C6           ;85C768|        |      ;
                        dw $6904,$34C4,$2B5F,$023C           ;85C770|        |      ;
                        dw $0154,$7BDE,$4E73,$14A5           ;85C778|        |      ;
+                                                            ;      |        |      ;
+palDat_Snow_Shooter_s:
                        dw $3DCC,$6230,$6EB3,$7F9C           ;85C780|        |      ;
                        dw $2203,$36C3,$43CE,$3143           ;85C788|        |      ;
                        dw $09B7,$0A5D,$0B3F,$7FFF           ;85C790|        |      ;
                        dw $51DF,$0C5C,$1050,$14C3           ;85C798|        |      ;
+                                                            ;      |        |      ;
+palDat_Storm_Eagle_plus_eagret:
                        dw $4A0D,$1084,$113C,$10D4           ;85C7A0|        |      ;
                        dw $1F3E,$125D,$1155,$7593           ;85C7A8|        |      ;
                        dw $58EB,$34A6,$7BDE,$66D6           ;85C7B0|        |      ;
                        dw $41AD,$7A4A,$6904,$14A5           ;85C7B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Storm_Eagle_s_Storm_Tornado:
                        dw $4A0D,$7FFF,$7B7D,$76DC           ;85C7C0|        |      ;
                        dw $6E99,$5E17,$7E41,$42BC           ;85C7C8|        |      ;
                        dw $7EFC,$79B8,$592E,$031F           ;85C7D0|        |      ;
                        dw $051A,$6318,$4631,$0C63           ;85C7D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Rolling_snowball_s:
                        dw $462F,$51CE,$5E2F,$6ED1           ;85C7E0|        |      ;
                        dw $7F38,$7FFF,$294A,$39CE           ;85C7E8|        |      ;
                        dw $4631,$56B5,$6739,$77BD           ;85C7F0|        |      ;
                        dw $459C,$0C56,$104C,$0C83           ;85C7F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Turn_Cannon_plus_Turn_Cannon_s_floating_platform_s_plus_long_pillar_s:
                        dw $5A93,$356B,$4E0F,$6AF6           ;85C800|        |      ;
                        dw $775A,$22DD,$1E3A,$15D7           ;85C808|        |      ;
                        dw $190F,$6268,$73CA,$7FFF           ;85C810|        |      ;
                        dw $334C,$2A87,$25E3,$1886           ;85C818|        |      ;
+                                                            ;      |        |      ;
+palDat_MYSTERY_PALETTE_0006:
                        dw $298E,$19A3,$2A85,$4B2C           ;85C820|        |      ;
                        dw $0D55,$123E,$477F,$0492           ;85C828|        |      ;
                        dw $211B,$5E1E,$3DCE,$5A94           ;85C830|        |      ;
                        dw $6B5B,$71E4,$7EC6,$1885           ;85C838|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_s:
                        dw $3E2B,$7E1F,$1519,$192F           ;85C840|        |      ;
                        dw $1A1E,$137F,$7EF1,$71AA           ;85C848|        |      ;
                        dw $10E9,$33E5,$7A37,$68CB           ;85C850|        |      ;
                        dw $7BDE,$5AD6,$35AD,$18C6           ;85C858|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_s_frozen:
                        dw $3E2B,$7FD9,$7B13,$726A           ;85C860|        |      ;
                        dw $7AD0,$7FDB,$7FDA,$7B31           ;85C868|        |      ;
                        dw $668B,$7FDA,$7FDB,$7AD2           ;85C870|        |      ;
                        dw $7FDB,$7B32,$6E47,$4DA4           ;85C878|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_s_Electric_Spark:
                        dw $3E2B,$7FFF,$2FFC,$0BB8           ;85C880|        |      ;
                        dw $0B51,$7EDF,$7DFF,$7C5F           ;85C888|        |      ;
                        dw $7572,$58C9,$3C66,$7EFC           ;85C890|        |      ;
                        dw $79B8,$6318,$4631,$0C63           ;85C898|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_s_groundshock:
                        dw $3E2B,$7F3F,$515D,$413A           ;85C8A0|        |      ;
                        dw $69FE,$767F,$7ED9,$71B2           ;85C8A8|        |      ;
                        dw $44EF,$33FD,$7A9A,$7533           ;85C8B0|        |      ;
                        dw $7BDE,$67DE,$36D6,$5C4C           ;85C8B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Igloo_rubble_s:
                        dw $7B51,$7FFF,$779C,$7359           ;85C8C0|        |      ;
                        dw $6F17,$6AD4,$6692,$7BD4           ;85C8C8|        |      ;
                        dw $672F,$568A,$45E5,$3540           ;85C8D0|        |      ;
                        dw $1060,$000A,$0131,$0279           ;85C8D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Green_Ride_Armor_plus_Green_Armor_Soldier_s:
                        dw $35D0,$4164,$520B,$2E7F           ;85C8E0|        |      ;
                        dw $437C,$2A99,$19D6,$192F           ;85C8E8|        |      ;
                        dw $2584,$3207,$3AA6,$5789           ;85C8F0|        |      ;
                        dw $7BDE,$5294,$35AD,$14A5           ;85C8F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Mega_Tortoise_s:
                        dw $3DAB,$24AC,$2096,$3D9B           ;85C900|        |      ;
                        dw $0972,$0A1A,$2EDB,$3245           ;85C908|        |      ;
                        dw $5366,$7FFF,$6998,$5D0F           ;85C910|        |      ;
                        dw $5296,$39D0,$210A,$1087           ;85C918|        |      ;
+                                                            ;      |        |      ;
+palDat_Velguarder_plus_flames_:
                        dw $460D,$5CAC,$6D31,$71F5           ;85C920|        |      ;
                        dw $15B6,$32DD,$4B9F,$0452           ;85C928|        |      ;
                        dw $0518,$0A3E,$314A,$5A94           ;85C930|        |      ;
                        dw $7B9C,$2226,$3B0B,$1885           ;85C938|        |      ;
+                                                            ;      |        |      ;
+palDat_Velguarder_s_spark:
                        dw $460D,$5CAC,$6D31,$71F5           ;85C940|        |      ;
                        dw $15B6,$32DD,$4B9F,$61CB           ;85C948|        |      ;
                        dw $6EAE,$7B91,$3DAD,$62D6           ;85C950|        |      ;
                        dw $7B9C,$2226,$3B0B,$1885           ;85C958|        |      ;
+                                                            ;      |        |      ;
+palDat_Rangda_Bangda_green_eye_plus_nose_s:
                        dw $460D,$0DA3,$1E87,$3B0E           ;85C960|        |      ;
                        dw $1DD4,$36BD,$4B5D,$0492           ;85C968|        |      ;
                        dw $191B,$5E1E,$35AF,$5AD8           ;85C970|        |      ;
                        dw $739E,$0931,$6E85,$1885           ;85C978|        |      ;
+                                                            ;      |        |      ;
+palDat_Rangda_Bangda_blue_eye_s:
                        dw $460D,$3526,$55C6,$6A4D           ;85C980|        |      ;
                        dw $1DD4,$36BB,$4B5D,$0492           ;85C988|        |      ;
                        dw $211B,$5E1E,$35AF,$5AD8           ;85C990|        |      ;
                        dw $739E,$0931,$6E85,$1885           ;85C998|        |      ;
+                                                            ;      |        |      ;
+palDat_Rangda_Bangda_red_eye_s:
                        dw $460D,$0492,$211B,$5E1E           ;85C9A0|        |      ;
                        dw $1DD4,$36BB,$4B5D,$0492           ;85C9A8|        |      ;
                        dw $211B,$5E1E,$35AF,$5AD8           ;85C9B0|        |      ;
                        dw $739E,$0931,$6E85,$1885           ;85C9B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Rangda_Bangda_closing_wall_s:
                        dw $6400,$7196,$5110,$34AA           ;85C9C0|        |      ;
                        dw $2867,$1C44,$1022,$7BBC           ;85C9C8|        |      ;
                        dw $5ED4,$49EC,$3548,$24C5           ;85C9D0|        |      ;
                        dw $1442,$1CC0,$1480,$0840           ;85C9D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Rangda_Bangda_fading_in:
                        dw $460D,$0D43,$1A06,$2E6B           ;85C9E0|        |      ;
                        dw $196F,$2E17,$3A97,$046E           ;85C9E8|        |      ;
                        dw $14D5,$4997,$296C,$4633           ;85C9F0|        |      ;
@@ -2446,98 +2720,146 @@
                        dw $0000,$0000,$0000,$0000           ;85CA48|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85CA50|        |      ;
                        dw $0000,$0000,$0000,$1885           ;85CA58|        |      ;
+                                                            ;      |        |      ;
+palDat_Vile_s_cage_s_force_field_plus_cage_parts_:
                        dw $3988,$338C,$2AC5,$19A3           ;85CA60|        |      ;
                        dw $7F45,$69E2,$4103,$6A3F           ;85CA68|        |      ;
                        dw $3497,$2C92,$7BDE,$66D6           ;85CA70|        |      ;
                        dw $41AD,$171C,$01D6,$14A5           ;85CA78|        |      ;
+                                                            ;      |        |      ;
+palDat_Bospider_plus_Bospider_baby_s:
                        dw $3DF2,$52E7,$2DE5,$7E1F           ;85CA80|        |      ;
                        dw $08BE,$4631,$7F13,$71EA           ;85CA88|        |      ;
                        dw $58E5,$7A1A,$70D5,$588E           ;85CA90|        |      ;
                        dw $7BDE,$5AD6,$35AD,$18C6           ;85CA98|        |      ;
+                                                            ;      |        |      ;
+palDat_Bospider_s_retracting_thread:
                        dw $3DF2,$7FFF,$7716,$6AD3           ;85CAA0|        |      ;
                        dw $5E4E,$4589,$2CE6,$0000           ;85CAA8|        |      ;
                        dw $4B36,$3270,$25EC,$1968           ;85CAB0|        |      ;
                        dw $0CE4,$0060,$023A,$0092           ;85CAB8|        |      ;
+                                                            ;      |        |      ;
+  palDat_D_Rex_s_head:
                        dw $3DAB,$148D,$1492,$18B9           ;85CAC0|        |      ;
                        dw $257C,$0D2F,$1E34,$333D           ;85CAC8|        |      ;
                        dw $3147,$3A08,$570E,$7BDE           ;85CAD0|        |      ;
                        dw $5AB8,$39B1,$250C,$1087           ;85CAD8|        |      ;
+                                                            ;      |        |      ;
+palDat_D_Rex_plasma_ball_s:
                        dw $3DAB,$5493,$5C96,$5C9A           ;85CAE0|        |      ;
                        dw $619D,$0D2F,$1E34,$333D           ;85CAE8|        |      ;
                        dw $4627,$52E8,$3FE4,$7BDE           ;85CAF0|        |      ;
                        dw $5AB8,$39B1,$250C,$1087           ;85CAF8|        |      ;
+                                                            ;      |        |      ;
+palDat_D_Rex_s_charging:
                        dw $3DAB,$388D,$3892,$38B9           ;85CB00|        |      ;
                        dw $4D7C,$412F,$41D2,$533D           ;85CB08|        |      ;
                        dw $5147,$5208,$6F0E,$7BDE           ;85CB10|        |      ;
                        dw $6AB8,$61B1,$590C,$4186           ;85CB18|        |      ;
+                                                            ;      |        |      ;
+       palDat_Sigma_s:
                        dw $4A0D,$10A4,$7A8D,$5963           ;85CB20|        |      ;
                        dw $6FDF,$5294,$3DEF,$2749           ;85CB28|        |      ;
                        dw $2242,$1143,$42DF,$2597           ;85CB30|        |      ;
                        dw $04FE,$1E16,$1130,$294A           ;85CB38|        |      ;
+                                                            ;      |        |      ;
+  palDat_Sigma_s_cape:
                        dw $4A0D,$14A5,$490A,$3086           ;85CB40|        |      ;
                        dw $6FDF,$5294,$3DEF,$04FE           ;85CB48|        |      ;
                        dw $04D5,$08CD,$42DF,$2597           ;85CB50|        |      ;
                        dw $1110,$6DD3,$1237,$14A5           ;85CB58|        |      ;
+                                                            ;      |        |      ;
+palDat_MYSTERY_PALETTE_0007:
                        dw $4A0D,$0106,$7A8D,$5963           ;85CB60|        |      ;
                        dw $7FDC,$6F14,$568F,$5F49           ;85CB68|        |      ;
                        dw $3E42,$3943,$6ACF,$6250           ;85CB70|        |      ;
                        dw $7CE1,$5A08,$4124,$14A5           ;85CB78|        |      ;
+                                                            ;      |        |      ;
+palDat_X_specification_screen_analyzer_s:
                        dw $35D0,$7FFF,$7B1F,$6A3F           ;85CB80|        |      ;
                        dw $555F,$3CFA,$2C75,$5ADD           ;85CB88|        |      ;
                        dw $4216,$35B1,$210D,$1E1D           ;85CB90|        |      ;
                        dw $0D7C,$00DB,$3532,$0009           ;85CB98|        |      ;
+                                                            ;      |        |      ;
+palDat_Airport_rubble_s:
                        dw $31D1,$19A8,$46EE,$5B9A           ;85CBA0|        |      ;
                        dw $1177,$229D,$477F,$4168           ;85CBA8|        |      ;
                        dw $666C,$7F74,$5568,$5A28           ;85CBB0|        |      ;
                        dw $7B30,$18EF,$2DFF,$1086           ;85CBB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Mine_small_rubble_s:
                        dw $31D1,$19A8,$46EE,$5B9A           ;85CBC0|        |      ;
                        dw $1177,$229D,$477F,$4168           ;85CBC8|        |      ;
                        dw $666C,$7F74,$2D70,$3637           ;85CBD0|        |      ;
                        dw $4B5F,$18EF,$2DFF,$1086           ;85CBD8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_s_flying_fortress_explosion_plus_splash_s:
                        dw $41C4,$49A8,$5A29,$6EF0           ;85CBE0|        |      ;
                        dw $7F74,$7BBC,$0999,$161D           ;85CBE8|        |      ;
                        dw $1ABE,$3B3F,$39AD,$4A31           ;85CBF0|        |      ;
                        dw $5AB5,$6B39,$737B,$1885           ;85CBF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_s_flying_fortress_:
                        dw $3147,$779A,$4AC4,$19FC           ;85CC00|        |      ;
                        dw $398B,$2907,$1CA4,$1062           ;85CC08|        |      ;
                        dw $156F,$0D0C,$08EA,$04A8           ;85CC10|        |      ;
                        dw $0086,$0064,$0043,$4A0F           ;85CC18|        |      ;
+                                                            ;      |        |      ;
+palDat_Vile_s_second_ride_armor_s:
                        dw $35AF,$40EB,$7558,$73B0           ;85CC20|        |      ;
                        dw $3F5E,$2A5B,$19B8,$192F           ;85CC28|        |      ;
                        dw $1864,$28C7,$30E9,$394B           ;85CC30|        |      ;
                        dw $7BDE,$5294,$35AD,$14A5           ;85CC38|        |      ;
+                                                            ;      |        |      ;
+  palDat_X_s_Homing_T:
                        dw $35D0,$7BDE,$22FF,$0059           ;85CC40|        |      ;
                        dw $5B7F,$46DB,$3657,$4250           ;85CC48|        |      ;
                        dw $35ED,$2168,$42DF,$2597           ;85CC50|        |      ;
                        dw $1110,$7BDE,$4E73,$14A5           ;85CC58|        |      ;
+                                                            ;      |        |      ;
+   palDat_X_s_C_Sting:
                        dw $35D0,$7BDE,$22FF,$0059           ;85CC60|        |      ;
                        dw $73D8,$574C,$3EE4,$2AC3           ;85CC68|        |      ;
                        dw $2A44,$1541,$42DF,$2597           ;85CC70|        |      ;
                        dw $1110,$7BDE,$4E73,$14A5           ;85CC78|        |      ;
+                                                            ;      |        |      ;
+     palDat_X_s_S_Ice:
                        dw $35D0,$7BDE,$239D,$091E           ;85CC80|        |      ;
                        dw $2B9F,$1ABD,$11B5,$7F87           ;85CC88|        |      ;
                        dw $766A,$79C7,$42DF,$2597           ;85CC90|        |      ;
                        dw $1110,$7BDE,$4210,$0C63           ;85CC98|        |      ;
+                                                            ;      |        |      ;
+  palDat_X_s_B_Cutter:
                        dw $35D0,$7BDE,$22FF,$0059           ;85CCA0|        |      ;
                        dw $6BB9,$5714,$46B0,$49CE           ;85CCA8|        |      ;
                        dw $418C,$2908,$42DF,$2597           ;85CCB0|        |      ;
                        dw $1110,$7BDE,$4E73,$14A5           ;85CCB8|        |      ;
+                                                            ;      |        |      ;
+   palDat_X_s_Storm_T:
                        dw $35D0,$7BDE,$22FF,$0059           ;85CCC0|        |      ;
                        dw $731F,$625C,$5A1A,$4973           ;85CCC8|        |      ;
                        dw $4953,$3CCE,$42DF,$2597           ;85CCD0|        |      ;
                        dw $1110,$7BDE,$4E73,$14A5           ;85CCD8|        |      ;
+                                                            ;      |        |      ;
+   palDat_X_s_E_Spark:
                        dw $35D0,$7BDE,$22FF,$0059           ;85CCE0|        |      ;
                        dw $6F7B,$5AD6,$5294,$06DF           ;85CCE8|        |      ;
                        dw $05F8,$014F,$42DF,$2597           ;85CCF0|        |      ;
                        dw $1110,$7BDE,$4E73,$14A5           ;85CCF8|        |      ;
+                                                            ;      |        |      ;
+    palDat_X_s_Fire_W:
                        dw $35D0,$7BDE,$22FF,$0059           ;85CD00|        |      ;
                        dw $3F9F,$229F,$0D9E,$055E           ;85CD08|        |      ;
                        dw $0CFA,$0074,$42DF,$2597           ;85CD10|        |      ;
                        dw $1110,$7BDE,$4E73,$14A5           ;85CD18|        |      ;
+                                                            ;      |        |      ;
+  palDat_X_s_R_Shield:
                        dw $35D0,$7BDE,$22FF,$0059           ;85CD20|        |      ;
                        dw $6BB9,$5714,$46B0,$4E1E           ;85CD28|        |      ;
                        dw $311C,$209A,$42DF,$2597           ;85CD30|        |      ;
                        dw $1110,$7BDE,$4E73,$14A5           ;85CD38|        |      ;
+                                                            ;      |        |      ;
+palDat_Chameleon_Sting_rotating_color:
                        dw $35AF,$739C,$239D,$091E           ;85CD40|        |      ;
                        dw $4F5F,$3E9E,$163C,$16BF           ;85CD48|        |      ;
                        dw $163C,$113C,$42DF,$2597           ;85CD50|        |      ;
@@ -2570,102 +2892,152 @@
                        dw $7B9F,$45DE,$351B,$563E           ;85CE28|        |      ;
                        dw $351B,$34D3,$42DF,$2597           ;85CE30|        |      ;
                        dw $1110,$7B9F,$45DE,$140C           ;85CE38|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_Homing_T_object:
                        dw $29C4,$294A,$10EF,$091E           ;85CE40|        |      ;
                        dw $6318,$46DB,$3657,$4250           ;85CE48|        |      ;
                        dw $35ED,$2168,$2B5F,$023C           ;85CE50|        |      ;
                        dw $0154,$7BDE,$4E73,$14A5           ;85CE58|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_C_Sting_object:
                        dw $29C4,$294A,$10EF,$091E           ;85CE60|        |      ;
                        dw $6318,$574C,$3EE4,$2AC3           ;85CE68|        |      ;
                        dw $2A44,$1541,$2B5F,$023C           ;85CE70|        |      ;
                        dw $0154,$7BDE,$4E73,$14A5           ;85CE78|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_Storm_T_object:
                        dw $29C4,$294A,$10EF,$091E           ;85CE80|        |      ;
                        dw $6318,$625C,$5A1A,$4973           ;85CE88|        |      ;
                        dw $4953,$3CCE,$2B5F,$023C           ;85CE90|        |      ;
                        dw $0154,$7BDE,$4E73,$14A5           ;85CE98|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_Fire_W_object:
                        dw $29C4,$294A,$10EF,$091E           ;85CEA0|        |      ;
                        dw $6318,$229F,$0D9E,$055E           ;85CEA8|        |      ;
                        dw $0CFA,$0074,$2B5F,$023C           ;85CEB0|        |      ;
                        dw $0154,$7BDE,$4E73,$14A5           ;85CEB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_R_Shield_object:
                        dw $29C4,$294A,$10EF,$091E           ;85CEC0|        |      ;
                        dw $6318,$5714,$46B0,$4E1E           ;85CEC8|        |      ;
                        dw $311C,$209A,$2B5F,$023C           ;85CED0|        |      ;
                        dw $0154,$7BDE,$4E73,$14A5           ;85CED8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_E_Spark_object:
                        dw $29C4,$294A,$10EF,$091E           ;85CEE0|        |      ;
                        dw $6318,$5AD6,$5294,$06DF           ;85CEE8|        |      ;
                        dw $05F8,$014F,$2B5F,$023C           ;85CEF0|        |      ;
                        dw $0154,$7BDE,$4E73,$14A5           ;85CEF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_B_Cutter_object:
                        dw $29C4,$294A,$10EF,$091E           ;85CF00|        |      ;
                        dw $6318,$5714,$46B0,$49CE           ;85CF08|        |      ;
                        dw $418C,$2908,$2B5F,$023C           ;85CF10|        |      ;
                        dw $0154,$7BDE,$4E73,$14A5           ;85CF18|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_S_Ice_object__:
                        dw $29C4,$294A,$10EF,$091E           ;85CF20|        |      ;
                        dw $6318,$229F,$6EE4,$7F87           ;85CF28|        |      ;
                        dw $766A,$79C7,$2B5F,$023C           ;85CF30|        |      ;
                        dw $0154,$7BDE,$4E73,$14A5           ;85CF38|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_Homing_T_background:
                        dw $0000,$294A,$10EF,$091E           ;85CF40|        |      ;
                        dw $29C4,$5B7F,$3657,$4250           ;85CF48|        |      ;
                        dw $35ED,$2168,$429F,$2597           ;85CF50|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85CF58|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_C_Sting_background:
                        dw $0000,$294A,$10EF,$091E           ;85CF60|        |      ;
                        dw $29C4,$73D8,$3EE4,$2AC3           ;85CF68|        |      ;
                        dw $2A44,$1541,$429F,$2597           ;85CF70|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85CF78|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_Storm_T_background:
                        dw $0000,$294A,$10EF,$091E           ;85CF80|        |      ;
                        dw $29C4,$731F,$5A1A,$4973           ;85CF88|        |      ;
                        dw $4953,$3CCE,$429F,$2597           ;85CF90|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85CF98|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_Fire_W_background:
                        dw $0000,$294A,$10EF,$091E           ;85CFA0|        |      ;
                        dw $29C4,$3F9F,$0D9E,$055E           ;85CFA8|        |      ;
                        dw $0CFA,$0074,$429F,$2597           ;85CFB0|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85CFB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_R_Shield_background:
                        dw $0000,$294A,$10EF,$091E           ;85CFC0|        |      ;
                        dw $29C4,$6BB9,$46B0,$4E1E           ;85CFC8|        |      ;
                        dw $311C,$209A,$429F,$2597           ;85CFD0|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85CFD8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_E_Spark_background:
                        dw $0000,$294A,$10EF,$091E           ;85CFE0|        |      ;
                        dw $29C4,$6F7B,$5294,$06DF           ;85CFE8|        |      ;
                        dw $05F8,$014F,$429F,$2597           ;85CFF0|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85CFF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_B_Cutter_background:
                        dw $0000,$294A,$10EF,$091E           ;85D000|        |      ;
                        dw $29C4,$6BB9,$46B0,$49CE           ;85D008|        |      ;
                        dw $418C,$2908,$429F,$2597           ;85D010|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85D018|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_X_s_S_Ice_background:
                        dw $0000,$294A,$10EF,$091E           ;85D020|        |      ;
                        dw $29C4,$2B9F,$1ABD,$7F87           ;85D028|        |      ;
                        dw $766A,$79C7,$429F,$2597           ;85D030|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85D038|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_R_shield_device:
                        dw $0000,$294A,$34EF,$5031           ;85D040|        |      ;
                        dw $29C4,$7A8D,$5963,$79C6           ;85D048|        |      ;
                        dw $6904,$34C4,$429F,$2597           ;85D050|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85D058|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_C_Sting_device:
                        dw $0000,$294A,$1D89,$1AB1           ;85D060|        |      ;
                        dw $29C4,$7A8D,$5963,$79C6           ;85D068|        |      ;
                        dw $6904,$34C4,$429F,$2597           ;85D070|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85D078|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_E_Spark_device:
                        dw $0000,$294A,$01EF,$0339           ;85D080|        |      ;
                        dw $29C4,$7A8D,$5963,$79C6           ;85D088|        |      ;
                        dw $6904,$34C4,$429F,$2597           ;85D090|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85D098|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_Fire_W_device:
                        dw $0000,$294A,$010F,$0199           ;85D0A0|        |      ;
                        dw $29C4,$7A8D,$5963,$79C6           ;85D0A8|        |      ;
                        dw $6904,$34C4,$429F,$2597           ;85D0B0|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85D0B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_S_Ice_device:
                        dw $0000,$294A,$5200,$7B80           ;85D0C0|        |      ;
                        dw $29C4,$7A8D,$5963,$79C6           ;85D0C8|        |      ;
                        dw $6904,$34C4,$429F,$2597           ;85D0D0|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85D0D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_Homing_T_device:
                        dw $0000,$294A,$318C,$4631           ;85D0E0|        |      ;
                        dw $29C4,$7A8D,$5963,$79C6           ;85D0E8|        |      ;
                        dw $6904,$34C4,$429F,$2597           ;85D0F0|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85D0F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_B_Cutter_device:
                        dw $0000,$294A,$01C0,$0300           ;85D100|        |      ;
                        dw $29C4,$7A8D,$5963,$79C6           ;85D108|        |      ;
                        dw $6904,$34C4,$429F,$2597           ;85D110|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85D118|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_Storm_T_device:
                        dw $0000,$294A,$240F,$3818           ;85D120|        |      ;
                        dw $29C4,$7A8D,$5963,$79C6           ;85D128|        |      ;
                        dw $6904,$34C4,$429F,$2597           ;85D130|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85D138|        |      ;
+                                                            ;      |        |      ;
+      palDat_Dialogue:
                        dw $0000,$7B9A,$7F8A,$1084           ;85D140|        |      ;
                        dw $0000,$373E,$023E,$1084           ;85D148|        |      ;
                        dw $0000,$77BD,$6BB2,$1484           ;85D150|        |      ;
@@ -2674,6 +3046,8 @@
                        dw $0000,$6F7B,$3F4F,$1084           ;85D168|        |      ;
                        dw $0000,$6F7B,$6A3D,$1084           ;85D170|        |      ;
                        dw $0000,$6F7B,$725A,$1084           ;85D178|        |      ;
+                                                            ;      |        |      ;
+palDat_Sting_Chameleon_stage_main:
                        dw $10E2,$0128,$22FF,$091E           ;85D180|        |      ;
                        dw $7FD8,$7A8D,$5963,$79A6           ;85D188|        |      ;
                        dw $6904,$38E4,$42DF,$2597           ;85D190|        |      ;
@@ -2706,6 +3080,8 @@
                        dw $1083,$0863,$091E,$5629           ;85D268|        |      ;
                        dw $3965,$20C2,$0C60,$0020           ;85D270|        |      ;
                        dw $61C6,$6E69,$72AA,$72CD           ;85D278|        |      ;
+                                                            ;      |        |      ;
+palDat_Armored_Armadillo_stage_main:
                        dw $0004,$777A,$62D4,$4E2E           ;85D280|        |      ;
                        dw $3989,$2907,$24E6,$1064           ;85D288|        |      ;
                        dw $2D4B,$0000,$0000,$0000           ;85D290|        |      ;
@@ -2738,6 +3114,8 @@
                        dw $0066,$0045,$0024,$0004           ;85D368|        |      ;
                        dw $7716,$6AD3,$5E4E,$4589           ;85D370|        |      ;
                        dw $2CE6,$7FFF,$7FE0,$0000           ;85D378|        |      ;
+                                                            ;      |        |      ;
+palDat_Flame_Mammoth_stage_main__lava:
                        dw $0000,$7BDE,$5AD5,$3DED           ;85D380|        |      ;
                        dw $0000,$7BDE,$62D5,$4DED           ;85D388|        |      ;
                        dw $0000,$7BDE,$063E,$0178           ;85D390|        |      ;
@@ -2770,6 +3148,8 @@
                        dw $2000,$2800,$3000,$3800           ;85D468|        |      ;
                        dw $4000,$4800,$5000,$5800           ;85D470|        |      ;
                        dw $6000,$6800,$7000,$7C00           ;85D478|        |      ;
+                                                            ;      |        |      ;
+  palDat_Title_screen:
                        dw $0000,$7FFF,$779B,$6F37           ;85D480|        |      ;
                        dw $6AD3,$626F,$5A0B,$55A7           ;85D488|        |      ;
                        dw $4D43,$4900,$2D49,$3DAC           ;85D490|        |      ;
@@ -2790,6 +3170,8 @@
                        dw $0000,$7BDE,$76B1,$7184           ;85D508|        |      ;
                        dw $0000,$7BDE,$467E,$113F           ;85D510|        |      ;
                        dw $0000,$7BDE,$43B6,$0B8E           ;85D518|        |      ;
+                                                            ;      |        |      ;
+ palDat_Highway_stage:
                        dw $24E9,$36D4,$322D,$29CA           ;85D520|        |      ;
                        dw $2148,$18E5,$1483,$559A           ;85D528|        |      ;
                        dw $4154,$310E,$20C8,$77BF           ;85D530|        |      ;
@@ -2822,10 +3204,14 @@
                        dw $2091,$3118,$321E,$43DE           ;85D608|        |      ;
                        dw $7BDF,$4396,$32C8,$29C4           ;85D610|        |      ;
                        dw $1940,$7E06,$5B5C,$1C85           ;85D618|        |      ;
+                                                            ;      |        |      ;
+palDat_Storm_Eagle_alt___0001:
                        dw $24E9,$7BDE,$27BB,$2713           ;85D620|        |      ;
                        dw $2A6C,$2DC5,$2544,$1D04           ;85D628|        |      ;
                        dw $76B7,$001A,$7214,$598F           ;85D630|        |      ;
                        dw $412B,$2CC8,$1C85,$2008           ;85D638|        |      ;
+                                                            ;      |        |      ;
+palDat_Highway_stage_alt___0002:
                        dw $24EA,$7F4E,$7A48,$5142           ;85D640|        |      ;
                        dw $1CE0,$14A5,$53DE,$039C           ;85D648|        |      ;
                        dw $02B5,$01EF,$016B,$4FEA           ;85D650|        |      ;
@@ -2834,10 +3220,14 @@
                        dw $1CAA,$1486,$63D0,$4AEC           ;85D668|        |      ;
                        dw $3208,$2986,$1904,$129F           ;85D670|        |      ;
                        dw $11D9,$1113,$10CC,$2E1E           ;85D678|        |      ;
+                                                            ;      |        |      ;
+palDat_Highway_stage_alt___0001:
                        dw $24E9,$31BC,$2918,$20CE           ;85D680|        |      ;
                        dw $1CA5,$526D,$3DC5,$2502           ;85D688|        |      ;
                        dw $3B58,$2672,$11AD,$4DEF           ;85D690|        |      ;
                        dw $3D8C,$3129,$24E7,$24EA           ;85D698|        |      ;
+                                                            ;      |        |      ;
+palDat_Large_Capcom_logo_flashing:
                        dw $0000,$77FF,$179C,$0B39           ;85D6A0|        |      ;
                        dw $02F7,$0294,$6F9E,$0AFB           ;85D6A8|        |      ;
                        dw $0277,$01F4,$0191,$4966           ;85D6B0|        |      ;
@@ -2854,6 +3244,8 @@
                        dw $77FF,$77FF,$0236,$0AB9           ;85D708|        |      ;
                        dw $133D,$6F9E,$6F9E,$4D87           ;85D710|        |      ;
                        dw $4966,$4545,$51A8,$0000           ;85D718|        |      ;
+                                                            ;      |        |      ;
+palDat_Launch_Octopus_stage_main:
                        dw $2800,$412B,$1D07,$091E           ;85D720|        |      ;
                        dw $7FD8,$7ACE,$5963,$7F45           ;85D728|        |      ;
                        dw $7540,$4480,$42DF,$2597           ;85D730|        |      ;
@@ -2886,6 +3278,8 @@
                        dw $5985,$6206,$6A88,$730A           ;85D808|        |      ;
                        dw $7B90,$7B95,$7FDA,$5FCC           ;85D810|        |      ;
                        dw $4F64,$3EE0,$3A40,$41A0           ;85D818|        |      ;
+                                                            ;      |        |      ;
+palDat_Boss_intro_screen:
                        dw $4D43,$34C7,$452A,$5D2B           ;85D820|        |      ;
                        dw $1DB5,$21F8,$267D,$373D           ;85D828|        |      ;
                        dw $1CCB,$28CF,$30D3,$7BDE           ;85D830|        |      ;
@@ -2910,10 +3304,14 @@
                        dw $7319,$26BC,$21FB,$2194           ;85D8C8|        |      ;
                        dw $250E,$6228,$7389,$7FFF           ;85D8D0|        |      ;
                        dw $2CFD,$30D7,$20B3,$1487           ;85D8D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Launch_Octopus_alt___0002:
                        dw $4881,$5985,$5985,$5985           ;85D8E0|        |      ;
                        dw $5985,$5985,$5985,$5985           ;85D8E8|        |      ;
                        dw $5985,$5985,$5985,$0000           ;85D8F0|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85D8F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Launch_Octopus_cycling_water:
                        dw $4881,$6206,$6A88,$730A           ;85D900|        |      ;
                        dw $2800,$2800,$3800,$4881           ;85D908|        |      ;
                        dw $5103,$5985,$5985,$0000           ;85D910|        |      ;
@@ -2930,6 +3328,8 @@
                        dw $730A,$7B90,$7B95,$3800           ;85D968|        |      ;
                        dw $4881,$5103,$5985,$0000           ;85D970|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85D978|        |      ;
+                                                            ;      |        |      ;
+palDat_Launch_Octopus_alt___0004:
                        dw $2800,$0000,$0096,$0092           ;85D980|        |      ;
                        dw $008E,$004B,$0047,$2883           ;85D988|        |      ;
                        dw $1441,$0C00,$2250,$1DED           ;85D990|        |      ;
@@ -2938,6 +3338,8 @@
                        dw $2165,$1502,$0CC0,$0C80           ;85D9A8|        |      ;
                        dw $0C60,$0C20,$0C00,$1DED           ;85D9B0|        |      ;
                        dw $1D8B,$1928,$18C6,$0000           ;85D9B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Launch_Octopus_alt___0001:
                        dw $2800,$4881,$2CB0,$4597           ;85D9C0|        |      ;
                        dw $5A5C,$25F5,$3A9C,$535E           ;85D9C8|        |      ;
                        dw $3D88,$5A2A,$7AD1,$398C           ;85D9D0|        |      ;
@@ -2946,10 +3348,14 @@
                        dw $1E03,$1965,$431E,$161A           ;85D9E8|        |      ;
                        dw $2555,$20F0,$7342,$5985           ;85D9F0|        |      ;
                        dw $62D6,$4A10,$358C,$0C87           ;85D9F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Launch_Octopus_alt___0003:
                        dw $2800,$7716,$6AD3,$5E4E           ;85DA00|        |      ;
                        dw $4589,$2CE6,$7FFF,$7FE0           ;85DA08|        |      ;
                        dw $7E60,$7CE0,$5400,$008A           ;85DA10|        |      ;
                        dw $0110,$129A,$4B9D,$0000           ;85DA18|        |      ;
+                                                            ;      |        |      ;
+palDat_Stage_select_main:
                        dw $364D,$1CA3,$51EA,$7F37           ;85DA20|        |      ;
                        dw $0C66,$1CA3,$39CE,$6F7B           ;85DA28|        |      ;
                        dw $0C66,$1CA3,$3116,$5A9E           ;85DA30|        |      ;
@@ -2970,54 +3376,80 @@
                        dw $7BDE,$06BC,$09B7,$0AEA           ;85DAA8|        |      ;
                        dw $19C4,$1922,$5305,$3A02           ;85DAB0|        |      ;
                        dw $6695,$518E,$3507,$1464           ;85DAB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Stage_select_map_picture:
                        dw $364D,$7BDE,$1B5D,$427C           ;85DAC0|        |      ;
                        dw $30FB,$0D4E,$1ECF,$15CA           ;85DAC8|        |      ;
                        dw $31F6,$4775,$7772,$6AC7           ;85DAD0|        |      ;
                        dw $45E8,$5694,$3DEF,$2529           ;85DAD8|        |      ;
+                                                            ;      |        |      ;
+palDat_Stage_select_boss_spec:
                        dw $5A4D,$1CA3,$2529,$318C           ;85DAE0|        |      ;
                        dw $4210,$4E73,$6318,$739C           ;85DAE8|        |      ;
                        dw $104E,$20D2,$20B8,$455F           ;85DAF0|        |      ;
                        dw $1505,$15C5,$3B6E,$0C66           ;85DAF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Stage_select_Megaman_X_icon:
                        dw $5A4D,$1CA3,$2529,$318C           ;85DB00|        |      ;
                        dw $4210,$4E73,$6318,$739C           ;85DB08|        |      ;
                        dw $1558,$121C,$06FD,$30FF           ;85DB10|        |      ;
                        dw $3103,$4D66,$7346,$0C66           ;85DB18|        |      ;
+                                                            ;      |        |      ;
+palDat_Title_screen_small_Capcom_logo:
                        dw $0000,$02DA,$135C,$17DF           ;85DB20|        |      ;
                        dw $77FF,$77FF,$0150,$01F5           ;85DB28|        |      ;
                        dw $02DC,$6F9E,$6F9E,$5104           ;85DB30|        |      ;
                        dw $4CE3,$48C2,$5525,$0842           ;85DB38|        |      ;
+                                                            ;      |        |      ;
+palDat_Launch_Octopus_stage_picture:
                        dw $4E69,$0B09,$41C0,$3980           ;85DB40|        |      ;
                        dw $4DFD,$3178,$2532,$1CEC           ;85DB48|        |      ;
                        dw $18CA,$7755,$628B,$6200           ;85DB50|        |      ;
                        dw $6900,$6080,$3A16,$3540           ;85DB58|        |      ;
+                                                            ;      |        |      ;
+palDat_Armored_Armadillo_stage_picture:
                        dw $4E69,$7BDD,$737A,$5ED5           ;85DB60|        |      ;
                        dw $4A30,$358C,$20E7,$0C63           ;85DB68|        |      ;
                        dw $3A69,$3982,$0239,$0172           ;85DB70|        |      ;
                        dw $00ED,$0088,$0066,$68FE           ;85DB78|        |      ;
+                                                            ;      |        |      ;
+palDat_Sting_Chamleon_stage_picture:
                        dw $4E69,$0B57,$0AD0,$020B           ;85DB80|        |      ;
                        dw $0167,$00C4,$0082,$5226           ;85DB88|        |      ;
                        dw $318C,$2108,$18C6,$0D36           ;85DB90|        |      ;
                        dw $08B1,$046C,$0068,$0843           ;85DB98|        |      ;
+                                                            ;      |        |      ;
+palDat_Flame_Mammoth_stage_picture:
                        dw $4E69,$10A4,$6F9B,$5292           ;85DBA0|        |      ;
                        dw $460E,$3549,$24C5,$0883           ;85DBA8|        |      ;
                        dw $19D7,$77DF,$473C,$0D2A           ;85DBB0|        |      ;
                        dw $158D,$08A6,$49A9,$4568           ;85DBB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Storm_Eagle_stage_picture:
                        dw $4E69,$4525,$321E,$4BEA           ;85DBC0|        |      ;
                        dw $32C5,$19C0,$3118,$2441           ;85DBC8|        |      ;
                        dw $1CE7,$2D6B,$3DEF,$4E73           ;85DBD0|        |      ;
                        dw $7AAC,$7712,$7B77,$77BC           ;85DBD8|        |      ;
+                                                            ;      |        |      ;
+palDat_Chill_Penguin_stage_picture:
                        dw $4E69,$7FFF,$779C,$7359           ;85DBE0|        |      ;
                        dw $6F17,$62B3,$5E70,$7B51           ;85DBE8|        |      ;
                        dw $568A,$45E5,$2920,$3652           ;85DBF0|        |      ;
                        dw $21AE,$194B,$14E8,$1CC3           ;85DBF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_stage_picture:
                        dw $4E69,$20E7,$2928,$358B           ;85DC00|        |      ;
                        dw $45EE,$62D4,$7778,$77BD           ;85DC08|        |      ;
                        dw $5FD2,$3EE9,$2E00,$1520           ;85DC10|        |      ;
                        dw $054C,$1214,$1EDA,$2BDF           ;85DC18|        |      ;
+                                                            ;      |        |      ;
+palDat_Boomer_Kuwanger_stage_picture:
                        dw $4E69,$1884,$24C7,$396C           ;85DC20|        |      ;
                        dw $5232,$6318,$6291,$520D           ;85DC28|        |      ;
                        dw $38E4,$28C4,$0CE6,$0D48           ;85DC30|        |      ;
                        dw $2109,$2D6C,$2632,$0011           ;85DC38|        |      ;
+                                                            ;      |        |      ;
+palDat_Storm_Eagle_stage_main:
                        dw $7ECB,$7B9A,$7F8A,$1084           ;85DC40|        |      ;
                        dw $0000,$373E,$023E,$1084           ;85DC48|        |      ;
                        dw $0000,$77BD,$6BB2,$1484           ;85DC50|        |      ;
@@ -3050,6 +3482,8 @@
                        dw $66D7,$66F8,$6B19,$6F3A           ;85DD28|        |      ;
                        dw $735A,$4E97,$4A76,$4655           ;85DD30|        |      ;
                        dw $4234,$3E13,$39F2,$39F1           ;85DD38|        |      ;
+                                                            ;      |        |      ;
+palDat_Sting_Chameleon_alt___0001:
                        dw $72CD,$533C,$2DD5,$1D30           ;85DD40|        |      ;
                        dw $0CAB,$0447,$0042,$7BDE           ;85DD48|        |      ;
                        dw $4A52,$318C,$2508,$1CA3           ;85DD50|        |      ;
@@ -3074,6 +3508,8 @@
                        dw $0841,$0022,$091E,$2C86           ;85DDE8|        |      ;
                        dw $1C64,$0C42,$0020,$0020           ;85DDF0|        |      ;
                        dw $5CEF,$50CD,$44CB,$38A9           ;85DDF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sting_Chameleon_alt___0002:
                        dw $72CD,$5B7E,$2DD5,$1D30           ;85DE00|        |      ;
                        dw $0CAB,$0447,$0042,$6B5A           ;85DE08|        |      ;
                        dw $4A52,$39CE,$2108,$14A5           ;85DE10|        |      ;
@@ -3098,10 +3534,14 @@
                        dw $0841,$0022,$091E,$2C86           ;85DEA8|        |      ;
                        dw $1C64,$0C42,$0020,$0020           ;85DEB0|        |      ;
                        dw $5CEF,$50CD,$44CB,$38A9           ;85DEB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Armored_Armadillo_alt__rock__UNUSED:
                        dw $0000,$1D2A,$7FFC,$6B57           ;85DEC0|        |      ;
                        dw $420D,$2D68,$14C7,$5B5E           ;85DEC8|        |      ;
                        dw $4F1A,$46F6,$3253,$21B0           ;85DED0|        |      ;
                        dw $110D,$008A,$0047,$0004           ;85DED8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapons__Password_screen:
                        dw $2226,$7B9A,$7F8A,$1084           ;85DEE0|        |      ;
                        dw $0000,$373E,$023E,$1084           ;85DEE8|        |      ;
                        dw $0000,$77BD,$6BB2,$1484           ;85DEF0|        |      ;
@@ -3134,6 +3574,8 @@
                        dw $0424,$0000,$0000,$0000           ;85DFC8|        |      ;
                        dw $0000,$0000,$0000,$7779           ;85DFD0|        |      ;
                        dw $76CE,$6A4C,$0424,$0000           ;85DFD8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sting_Chameleon_boss_room:
                        dw $72CD,$5B7E,$2DD5,$1D30           ;85DFE0|        |      ;
                        dw $0CAB,$0447,$0042,$6B5A           ;85DFE8|        |      ;
                        dw $4A52,$39CE,$2108,$14A5           ;85DFF0|        |      ;
@@ -3158,6 +3600,8 @@
                        dw $0841,$0022,$091E,$2C86           ;85E088|        |      ;
                        dw $1C64,$0C42,$0020,$7CE0           ;85E090|        |      ;
                        dw $5CEF,$50CD,$44CB,$38A9           ;85E098|        |      ;
+                                                            ;      |        |      ;
+palDat_Armored_Armadillo_alt___0001:
                        dw $0000,$1D2A,$7FFC,$6B57           ;85E0A0|        |      ;
                        dw $420D,$2D68,$14C7,$5B5E           ;85E0A8|        |      ;
                        dw $4F1A,$46F6,$3253,$21B0           ;85E0B0|        |      ;
@@ -3170,6 +3614,8 @@
                        dw $6717,$5A70,$42D2,$3670           ;85E0E8|        |      ;
                        dw $362D,$35EA,$35A8,$2D66           ;85E0F0|        |      ;
                        dw $39CB,$35AA,$3189,$5A4D           ;85E0F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Armored_Armadillo_cycling_waterfall_background:
                        dw $0000,$6717,$5E92,$5EB3           ;85E100|        |      ;
                        dw $62D5,$5A70,$42D2,$3670           ;85E108|        |      ;
                        dw $362D,$35EA,$35A8,$2D66           ;85E110|        |      ;
@@ -3182,6 +3628,8 @@
                        dw $5E92,$5A70,$42D2,$3670           ;85E148|        |      ;
                        dw $362D,$35EA,$35A8,$2D66           ;85E150|        |      ;
                        dw $39CB,$35AA,$3189,$5A4D           ;85E158|        |      ;
+                                                            ;      |        |      ;
+palDat_Armored_Armadillo_cycling_water_background:
                        dw $0000,$5A4A,$5A4B,$5A4C           ;85E160|        |      ;
                        dw $5A4D,$5A4E,$5A4F,$5A70           ;85E168|        |      ;
                        dw $62B2,$35EA,$35A8,$2D66           ;85E170|        |      ;
@@ -3198,6 +3646,8 @@
                        dw $5A4D,$5A4E,$5A4F,$5A70           ;85E1C8|        |      ;
                        dw $62B2,$35EA,$35A8,$2D66           ;85E1D0|        |      ;
                        dw $5E91,$5EB2,$5ED4,$5E90           ;85E1D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_stage_main:
                        dw $0C40,$7BDE,$5AD5,$3DED           ;85E1E0|        |      ;
                        dw $0000,$7BDE,$62D5,$4DED           ;85E1E8|        |      ;
                        dw $0000,$7BDE,$063E,$0178           ;85E1F0|        |      ;
@@ -3230,6 +3680,8 @@
                        dw $214C,$1D2B,$190A,$14E9           ;85E2C8|        |      ;
                        dw $3129,$1215,$1190,$154C           ;85E2D0|        |      ;
                        dw $394A,$28E7,$751E,$751E           ;85E2D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Chill_Penguin_stage_main:
                        dw $7B51,$739C,$7359,$6692           ;85E2E0|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85E2E8|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85E2F0|        |      ;
@@ -3262,6 +3714,8 @@
                        dw $4E90,$3A0B,$2586,$1522           ;85E3C8|        |      ;
                        dw $0881,$252C,$20C8,$11B4           ;85E3D0|        |      ;
                        dw $0D51,$08EE,$04AB,$0068           ;85E3D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Flame_Mammoth_cycling_lava_plus_conveyor_belt:
                        dw $0000,$7FFF,$53DE,$4739           ;85E3E0|        |      ;
                        dw $1DCE,$1529,$18C6,$15BB           ;85E3E8|        |      ;
                        dw $0496,$08F7,$0D59,$7F94           ;85E3F0|        |      ;
@@ -3274,10 +3728,14 @@
                        dw $1DCE,$1529,$18C6,$08F7           ;85E428|        |      ;
                        dw $0D59,$15BB,$0496,$7E4C           ;85E430|        |      ;
                        dw $7EF0,$7F94,$7DC8,$110E           ;85E438|        |      ;
+                                                            ;      |        |      ;
+palDat_Flame_Mammoth_alternate__0001:
                        dw $0000,$1D6A,$1507,$10E6           ;85E440|        |      ;
                        dw $0CA5,$0864,$0444,$0443           ;85E448|        |      ;
                        dw $0488,$0466,$0445,$6B40           ;85E450|        |      ;
                        dw $4A40,$2D60,$0447,$0425           ;85E458|        |      ;
+                                                            ;      |        |      ;
+palDat_Flame_Mammoth_cycling_lights_plus_lava_river:
                        dw $0000,$3FDE,$32D4,$2A0F           ;85E460|        |      ;
                        dw $216A,$2128,$20E5,$1883           ;85E468|        |      ;
                        dw $0496,$08F7,$0D59,$15BB           ;85E470|        |      ;
@@ -3326,6 +3784,8 @@
                        dw $216A,$2128,$20E5,$1883           ;85E5C8|        |      ;
                        dw $08F7,$0D59,$15BB,$0496           ;85E5D0|        |      ;
                        dw $046C,$0470,$0468,$0C42           ;85E5D8|        |      ;
+                                                            ;      |        |      ;
+  palDat_Options_menu:
                        dw $0000,$7BDE,$7F8A,$79C0           ;85E5E0|        |      ;
                        dw $0000,$7BDE,$1A9E,$015E           ;85E5E8|        |      ;
                        dw $0000,$7BDE,$3DFC,$001A           ;85E5F0|        |      ;
@@ -3338,6 +3798,8 @@
                        dw $1B7E,$3BBF,$67FF,$08AC           ;85E628|        |      ;
                        dw $1556,$0E18,$589C,$589C           ;85E630|        |      ;
                        dw $589C,$589C,$589C,$589C           ;85E638|        |      ;
+                                                            ;      |        |      ;
+palDat_Boomer_Kuwanger_stage_main:
                        dw $0000,$0128,$22FF,$091E           ;85E640|        |      ;
                        dw $7FD8,$7A8D,$5963,$79A6           ;85E648|        |      ;
                        dw $6904,$38E4,$42DF,$2597           ;85E650|        |      ;
@@ -3370,6 +3832,8 @@
                        dw $7F30,$7B0F,$76EE,$72CD           ;85E728|        |      ;
                        dw $5E4E,$51EB,$4588,$3925           ;85E730|        |      ;
                        dw $2CC2,$2060,$6E8B,$6A49           ;85E738|        |      ;
+                                                            ;      |        |      ;
+palDat_Storm_Eagle_cycling_conveyor_belt_plus_clouds:
                        dw $7ECB,$7ACC,$7AEE,$76F0           ;85E740|        |      ;
                        dw $7712,$7714,$7336,$7338           ;85E748|        |      ;
                        dw $735A,$4A91,$35EC,$2568           ;85E750|        |      ;
@@ -3394,6 +3858,8 @@
                        dw $66F8,$66D7,$62B6,$5E95           ;85E7E8|        |      ;
                        dw $5E74,$4A91,$35EC,$2568           ;85E7F0|        |      ;
                        dw $4589,$7716,$6AD3,$5E4E           ;85E7F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Storm_Eagle_alternate__0002:
                        dw $7ECB,$7716,$6AD3,$5E4E           ;85E800|        |      ;
                        dw $4589,$2CE6,$7FFF,$7FE0           ;85E808|        |      ;
                        dw $7E60,$7CE0,$5400,$0000           ;85E810|        |      ;
@@ -3402,6 +3868,8 @@
                        dw $2091,$3118,$321E,$43DE           ;85E828|        |      ;
                        dw $7BDF,$4396,$32C8,$29C4           ;85E830|        |      ;
                        dw $1940,$7E06,$5B5C,$1C85           ;85E838|        |      ;
+                                                            ;      |        |      ;
+palDat_Storm_Eagle_cycling_light:
                        dw $7ECB,$0000,$0000,$2008           ;85E840|        |      ;
                        dw $2008,$2091,$3118,$321E           ;85E848|        |      ;
                        dw $7BDF,$5EF6,$4630,$2D4A           ;85E850|        |      ;
@@ -3422,22 +3890,32 @@
                        dw $0000,$0000,$0000,$0000           ;85E8C8|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85E8D0|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85E8D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_regular_X:
                        dw $0000,$294A,$10EF,$091E           ;85E8E0|        |      ;
                        dw $29C4,$7A8D,$5963,$79C6           ;85E8E8|        |      ;
                        dw $6904,$34C4,$429F,$2597           ;85E8F0|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85E8F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_border:
                        dw $0000,$77BD,$7314,$520C           ;85E900|        |      ;
                        dw $3505,$2060,$0C06,$242C           ;85E908|        |      ;
                        dw $34D0,$4594,$0000,$0000           ;85E910|        |      ;
                        dw $0000,$0000,$1000,$29C4           ;85E918|        |      ;
+                                                            ;      |        |      ;
+palDat_Weapon_Acquired_flashing_device:
                        dw $0000,$294A,$10EF,$091E           ;85E920|        |      ;
                        dw $29C4,$7A8D,$5963,$79C6           ;85E928|        |      ;
                        dw $6904,$34C4,$429F,$2597           ;85E930|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85E938|        |      ;
+                                                            ;      |        |      ;
+palDat_Chill_Penguin_alt___0001:
                        dw $7B51,$7FFF,$779C,$7359           ;85E940|        |      ;
                        dw $6F17,$6AD4,$6692,$3EB9           ;85E948|        |      ;
                        dw $4B3C,$3EB9,$3256,$25F4           ;85E950|        |      ;
                        dw $218F,$214B,$1CE7,$1485           ;85E958|        |      ;
+                                                            ;      |        |      ;
+palDat_Chill_Penguin_alt___0002:
                        dw $6771,$7FB9,$7B76,$7734           ;85E960|        |      ;
                        dw $7312,$6ED0,$6AAE,$7A74           ;85E968|        |      ;
                        dw $7293,$6EB2,$6AF2,$6731           ;85E970|        |      ;
@@ -3450,6 +3928,8 @@
                        dw $6F17,$6AD4,$6692,$3571           ;85E9A8|        |      ;
                        dw $523F,$41D8,$3571,$290A           ;85E9B0|        |      ;
                        dw $1485,$2107,$258C,$2A55           ;85E9B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Boomer_Kuwanger_alt___0001:
                        dw $0000,$0128,$22FF,$091E           ;85E9C0|        |      ;
                        dw $7FD8,$7A8D,$5963,$79A6           ;85E9C8|        |      ;
                        dw $6904,$38E4,$42DF,$2597           ;85E9D0|        |      ;
@@ -3482,6 +3962,8 @@
                        dw $7F30,$7B0F,$76EE,$72CD           ;85EAA8|        |      ;
                        dw $5E4E,$51EB,$4588,$3925           ;85EAB0|        |      ;
                        dw $2CC2,$2060,$6E8B,$6A49           ;85EAB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_cycling_yellow_electricity:
                        dw $751E,$7FFF,$7B99,$62B3           ;85EAC0|        |      ;
                        dw $49EE,$314A,$14A5,$77FA           ;85EAC8|        |      ;
                        dw $67D4,$530E,$3A28,$2163           ;85EAD0|        |      ;
@@ -3490,6 +3972,8 @@
                        dw $49EE,$314A,$14A5,$77FA           ;85EAE8|        |      ;
                        dw $67D4,$530E,$3A28,$2163           ;85EAF0|        |      ;
                        dw $027F,$039F,$015A,$294A           ;85EAF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_cycling_green_electricity_:
                        dw $751E,$7FFF,$439F,$329C           ;85EB00|        |      ;
                        dw $1DB6,$1130,$14A5,$6BFE           ;85EB08|        |      ;
                        dw $5B9A,$3AB3,$25AB,$1D28           ;85EB10|        |      ;
@@ -3502,10 +3986,14 @@
                        dw $1DB6,$1130,$14A5,$6BFE           ;85EB48|        |      ;
                        dw $5B9A,$3AB3,$25AB,$1D28           ;85EB50|        |      ;
                        dw $5BEE,$7FFC,$4381,$294A           ;85EB58|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_alt___0001:
                        dw $751E,$7BDE,$779B,$7758           ;85EB60|        |      ;
                        dw $7315,$72D3,$6E90,$6E4D           ;85EB68|        |      ;
                        dw $6A0A,$61A7,$5965,$5102           ;85EB70|        |      ;
                        dw $4CC0,$73B0,$73B0,$73B0           ;85EB78|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_alt___0002:
                        dw $751E,$3169,$2928,$2507           ;85EB80|        |      ;
                        dw $20E6,$1CC5,$18A4,$2DA1           ;85EB88|        |      ;
                        dw $2140,$1900,$5856,$6098           ;85EB90|        |      ;
@@ -3514,6 +4002,8 @@
                        dw $1482,$18A3,$1CC4,$20E5           ;85EBA8|        |      ;
                        dw $2506,$14C7,$10A6,$0C85           ;85EBB0|        |      ;
                        dw $0864,$0443,$000A,$0006           ;85EBB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_1_main:
                        dw $0000,$0000,$0000,$0000           ;85EBC0|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85EBC8|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85EBD0|        |      ;
@@ -3546,6 +4036,8 @@
                        dw $3A2E,$2989,$1905,$3D13           ;85ECA8|        |      ;
                        dw $30B0,$248D,$1C6B,$1049           ;85ECB0|        |      ;
                        dw $0827,$0005,$023A,$00D4           ;85ECB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_2_main:
                        dw $6400,$739C,$7359,$6692           ;85ECC0|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85ECC8|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85ECD0|        |      ;
@@ -3578,6 +4070,8 @@
                        dw $0CCB,$0468,$0004,$7BD8           ;85EDA8|        |      ;
                        dw $5F32,$46AC,$2DE8,$1524           ;85EDB0|        |      ;
                        dw $0080,$1CC0,$1480,$0840           ;85EDB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Flame_Mammoth_stage_main__Frozen:
                        dw $751E,$7716,$6AD3,$5E4E           ;85EDC0|        |      ;
                        dw $4589,$2CE6,$7FFF,$1D53           ;85EDC8|        |      ;
                        dw $0140,$092C,$5400,$35A9           ;85EDD0|        |      ;
@@ -3610,14 +4104,20 @@
                        dw $31EB,$1D27,$18C6,$45E8           ;85EEA8|        |      ;
                        dw $524D,$5ED2,$6F58,$7F94           ;85EEB0|        |      ;
                        dw $7DC8,$7E4C,$7EF0,$2D48           ;85EEB8|        |      ;
+                                                            ;      |        |      ;
+palDat_Stage_select_Sigma_icon:
                        dw $5A4D,$1CA3,$2168,$2DCB           ;85EEC0|        |      ;
                        dw $3E4F,$4AB2,$5F37,$7BDE           ;85EEC8|        |      ;
                        dw $1A5E,$0F3F,$400E,$0052           ;85EED0|        |      ;
                        dw $089F,$68C4,$7D8A,$6894           ;85EED8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_stage_picture:
                        dw $4A0D,$22EE,$7A8D,$5963           ;85EEE0|        |      ;
                        dw $14A5,$04FE,$00B4,$5294           ;85EEE8|        |      ;
                        dw $5D2D,$34E8,$637F,$4F1F           ;85EEF0|        |      ;
                        dw $3A5A,$25B5,$1110,$3DEF           ;85EEF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_3_main:
                        dw $0000,$0000,$0000,$0000           ;85EF00|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85EF08|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85EF10|        |      ;
@@ -3650,6 +4150,8 @@
                        dw $1462,$0C41,$0820,$1061           ;85EFE8|        |      ;
                        dw $20C4,$2D06,$3D8A,$3E0B           ;85EFF0|        |      ;
                        dw $2568,$1D26,$0C83,$0821           ;85EFF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_3_cycling_water:
                        dw $0000,$4945,$59EA,$3CE2           ;85F000|        |      ;
                        dw $7357,$6291,$55EB,$4945           ;85F008|        |      ;
                        dw $40C0,$0C80,$10A2,$18C4           ;85F010|        |      ;
@@ -3658,6 +4160,8 @@
                        dw $7357,$6291,$55EB,$4945           ;85F028|        |      ;
                        dw $40C0,$0C80,$10A2,$18C4           ;85F030|        |      ;
                        dw $2106,$1CE5,$1082,$0C60           ;85F038|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_3_conveyor_belt:
                        dw $0C40,$7FFF,$439F,$329C           ;85F040|        |      ;
                        dw $1DB6,$1130,$1462,$53DE           ;85F048|        |      ;
                        dw $4739,$1DCE,$1529,$18C6           ;85F050|        |      ;
@@ -3670,14 +4174,20 @@
                        dw $1DB6,$1130,$1462,$53DE           ;85F088|        |      ;
                        dw $4739,$1DCE,$1529,$18C6           ;85F090|        |      ;
                        dw $7E4C,$7EF0,$7F94,$7DC8           ;85F098|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_3_alt___0001:
                        dw $3DAB,$1C4C,$1C50,$30D9           ;85F0A0|        |      ;
                        dw $519C,$194E,$11F8,$26FD           ;85F0A8|        |      ;
                        dw $3147,$3A08,$570E,$7BDE           ;85F0B0|        |      ;
                        dw $7675,$696F,$3CEB,$1087           ;85F0B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_3_D_Rex_body_flashing:
                        dw $3DAB,$2C8D,$3850,$44D9           ;85F0C0|        |      ;
                        dw $619C,$394E,$39F8,$42FD           ;85F0C8|        |      ;
                        dw $5147,$5208,$6F0E,$7BDE           ;85F0D0|        |      ;
                        dw $7715,$6A6F,$55EB,$4186           ;85F0D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_4_main:
                        dw $0000,$352F,$312D,$091E           ;85F0E0|        |      ;
                        dw $7FD8,$7ACE,$5963,$7F45           ;85F0E8|        |      ;
                        dw $7540,$4480,$42DF,$2597           ;85F0F0|        |      ;
@@ -3710,6 +4220,8 @@
                        dw $0000,$0000,$0000,$2D66           ;85F1C8|        |      ;
                        dw $4248,$538E,$0000,$0000           ;85F1D0|        |      ;
                        dw $0000,$0000,$0860,$0000           ;85F1D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Boss_Intro_Sigma_symbol_fading:
                        dw $4D83,$30A7,$3D09,$4D0A           ;85F1E0|        |      ;
                        dw $2571,$29B3,$2E38,$3ED8           ;85F1E8|        |      ;
                        dw $1CAA,$28AD,$2CB0,$6F7B           ;85F1F0|        |      ;
@@ -3726,6 +4238,8 @@
                        dw $40E6,$4527,$4D89,$55EB           ;85F248|        |      ;
                        dw $28A7,$28A7,$28A7,$5273           ;85F250|        |      ;
                        dw $49F0,$418D,$392B,$2CA7           ;85F258|        |      ;
+                                                            ;      |        |      ;
+palDat_Sting_Chameleon_cycling_water:
                        dw $0000,$2D66,$2525,$3A11           ;85F260|        |      ;
                        dw $31CF,$256D,$2149,$1D26           ;85F268|        |      ;
                        dw $1903,$4DA8,$724D,$7B55           ;85F270|        |      ;
@@ -3738,6 +4252,8 @@
                        dw $31CF,$256D,$2149,$2125           ;85F2A8|        |      ;
                        dw $2D66,$724D,$7B55,$4DA8           ;85F2B0|        |      ;
                        dw $2DD5,$1D30,$0CAB,$0042           ;85F2B8|        |      ;
+                                                            ;      |        |      ;
+ palDat_DUMMY_PALETTE:
                        dw $0000,$0000,$0000,$0000           ;85F2C0|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F2C8|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F2D0|        |      ;
@@ -3746,6 +4262,8 @@
                        dw $0000,$0000,$0000,$0000           ;85F2E8|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F2F0|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F2F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Flame_Mammoth_cycling_lava_plus_conveyor_belt__Frozen:
                        dw $751E,$7FFF,$5FDB,$5756           ;85F300|        |      ;
                        dw $31EB,$1D27,$18C6,$45E8           ;85F308|        |      ;
                        dw $524D,$5ED2,$6F58,$7EF0           ;85F310|        |      ;
@@ -3754,6 +4272,8 @@
                        dw $31EB,$1D27,$18C6,$45E8           ;85F328|        |      ;
                        dw $524D,$5ED2,$6F58,$7E4C           ;85F330|        |      ;
                        dw $7EF0,$7F94,$7DC8,$2D48           ;85F338|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_1_flashing_light:
                        dw $0000,$39CE,$2529,$14A5           ;85F340|        |      ;
                        dw $3A2E,$2989,$1905,$3D13           ;85F348|        |      ;
                        dw $30B0,$248D,$1C6B,$1049           ;85F350|        |      ;
@@ -3762,6 +4282,8 @@
                        dw $3A2E,$2989,$1905,$3D13           ;85F368|        |      ;
                        dw $30B0,$248D,$1C6B,$1049           ;85F370|        |      ;
                        dw $0827,$0005,$000A,$0006           ;85F378|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_1_alt___0001:
                        dw $0000,$4172,$350F,$2CCC           ;85F380|        |      ;
                        dw $248A,$1C47,$1405,$3A0E           ;85F388|        |      ;
                        dw $31CC,$298A,$2148,$1906           ;85F390|        |      ;
@@ -3786,6 +4308,8 @@
                        dw $41CC,$3128,$1C84,$0C00           ;85F428|        |      ;
                        dw $1868,$1446,$0C24,$0802           ;85F430|        |      ;
                        dw $739C,$4210,$294A,$1084           ;85F438|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_2_cycling_light_s:
                        dw $6400,$5240,$3DC0,$2500           ;85F440|        |      ;
                        dw $1CC0,$1480,$0840,$0840           ;85F448|        |      ;
                        dw $0840,$0840,$1E4E,$0D87           ;85F450|        |      ;
@@ -3798,6 +4322,8 @@
                        dw $0CCB,$0468,$0004,$7B1C           ;85F488|        |      ;
                        dw $6256,$4D90,$350B,$2085           ;85F490|        |      ;
                        dw $1843,$1CC0,$1480,$0840           ;85F498|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_2_alt___0003:
                        dw $6400,$414A,$3508,$28C6           ;85F4A0|        |      ;
                        dw $1CA4,$1062,$0840,$2950           ;85F4A8|        |      ;
                        dw $210D,$18CA,$10A7,$0864           ;85F4B0|        |      ;
@@ -3806,10 +4332,14 @@
                        dw $0000,$0000,$0000,$0000           ;85F4C8|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F4D0|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F4D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_2_att___0004:
                        dw $6400,$7196,$5110,$34AA           ;85F4E0|        |      ;
                        dw $2867,$1C44,$1022,$7BBC           ;85F4E8|        |      ;
                        dw $5ED4,$49EC,$3548,$24C5           ;85F4F0|        |      ;
                        dw $1442,$1CC0,$1480,$0840           ;85F4F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_2_alt___0001:
                        dw $6400,$7E9A,$7237,$65F4           ;85F500|        |      ;
                        dw $5DB1,$516E,$490B,$3CC8           ;85F508|        |      ;
                        dw $3485,$2842,$2000,$3148           ;85F510|        |      ;
@@ -3818,6 +4348,8 @@
                        dw $5DB0,$516D,$490B,$40C8           ;85F528|        |      ;
                        dw $3485,$2C42,$2400,$3148           ;85F530|        |      ;
                        dw $28E6,$24A4,$1C42,$1800           ;85F538|        |      ;
+                                                            ;      |        |      ;
+palDat_DUMMY_PALETTE00:
                        dw $0000,$0000,$0000,$0000           ;85F540|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F548|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F550|        |      ;
@@ -3826,10 +4358,14 @@
                        dw $0000,$0000,$0000,$0000           ;85F568|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F570|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F578|        |      ;
+                                                            ;      |        |      ;
+palDat_Megaman_X_specification_screen_green_outline:
                        dw $0000,$0000,$0000,$0000           ;85F580|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F588|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F590|        |      ;
                        dw $0000,$0000,$0000,$228A           ;85F598|        |      ;
+                                                            ;      |        |      ;
+palDat_DUMMY_PALETTE01:
                        dw $0000,$0000,$0000,$0000           ;85F5A0|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F5A8|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F5B0|        |      ;
@@ -3850,6 +4386,8 @@
                        dw $0000,$0000,$0000,$0000           ;85F628|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F630|        |      ;
                        dw $0000,$0000,$0000,$0000           ;85F638|        |      ;
+                                                            ;      |        |      ;
+palDat_Megaman_X_specification_screen_fading:
                        dw $0000,$0000,$0000,$0000           ;85F640|        |      ;
                        dw $0000,$0000,$0000,$79C6           ;85F648|        |      ;
                        dw $6904,$34C4,$0000,$0000           ;85F650|        |      ;
@@ -3862,34 +4400,50 @@
                        dw $0000,$7A8D,$5963,$79C6           ;85F688|        |      ;
                        dw $6904,$34C4,$0000,$0000           ;85F690|        |      ;
                        dw $0000,$0000,$0000,$228A           ;85F698|        |      ;
+                                                            ;      |        |      ;
+palDat_Megaman_X_specification_screen:
                        dw $0000,$294A,$10EF,$091E           ;85F6A0|        |      ;
                        dw $0000,$7A8D,$5963,$79C6           ;85F6A8|        |      ;
                        dw $6904,$34C4,$429F,$2597           ;85F6B0|        |      ;
                        dw $533F,$7BDE,$4E73,$14A5           ;85F6B8|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_shut_off_yellow_electricity:
                        dw $751E,$7FFF,$7B99,$62B3           ;85F6C0|        |      ;
                        dw $49EE,$314A,$14A5,$77FA           ;85F6C8|        |      ;
                        dw $67D4,$530E,$3A28,$2163           ;85F6D0|        |      ;
                        dw $14A5,$14A5,$14A5,$294A           ;85F6D8|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_shut_off_green_electricity_:
                        dw $751E,$7FFF,$439F,$329C           ;85F6E0|        |      ;
                        dw $1DB6,$1130,$14A5,$6BFE           ;85F6E8|        |      ;
                        dw $5B9A,$3AB3,$25AB,$1D28           ;85F6F0|        |      ;
                        dw $14A5,$14A5,$14A5,$294A           ;85F6F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Spark_Mandrill_plane_wreckage:
                        dw $751E,$7A56,$4396,$36EE           ;85F700|        |      ;
                        dw $2A66,$2604,$1DA2,$1940           ;85F708|        |      ;
                        dw $6DF3,$001A,$598F,$494C           ;85F710|        |      ;
                        dw $390A,$30E8,$28C7,$18E6           ;85F718|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_1_alt___0002:
                        dw $0000,$4210,$318C,$2529           ;85F720|        |      ;
                        dw $18C6,$1084,$0842,$354F           ;85F728|        |      ;
                        dw $28EC,$1CA9,$1066,$0824           ;85F730|        |      ;
                        dw $0827,$0005,$00D4,$000A           ;85F738|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_1_alt___0003:
                        dw $0000,$338C,$2AC5,$19A3           ;85F740|        |      ;
                        dw $248A,$1C47,$1405,$6A3F           ;85F748|        |      ;
                        dw $3497,$2C92,$7BDE,$66D6           ;85F750|        |      ;
                        dw $41AD,$171C,$01D6,$0C63           ;85F758|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_1_alt___0004_8_bosses_defeated_cutscene:
                        dw $0000,$4AF9,$4AB7,$4E75           ;85F760|        |      ;
                        dw $4E33,$5212,$4DF0,$4DCF           ;85F768|        |      ;
                        dw $49AE,$49AD,$4AB7,$3253           ;85F770|        |      ;
                        dw $29F0,$258E,$212C,$1CEA           ;85F778|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_2_brightening_background:
                        dw $6400,$76B9,$6E56,$6613           ;85F780|        |      ;
                        dw $5DD0,$556D,$4D2B,$44E8           ;85F788|        |      ;
                        dw $3C85,$3442,$2C00,$3588           ;85F790|        |      ;
@@ -3918,10 +4472,14 @@
                        dw $6250,$5DED,$598A,$5948           ;85F848|        |      ;
                        dw $54E5,$5082,$5040,$4A48           ;85F850|        |      ;
                        dw $39E6,$2D84,$1D22,$10E1           ;85F858|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_2_alt___0002:
                        dw $6400,$6B78,$6715,$66B2           ;85F860|        |      ;
                        dw $6270,$620D,$5DAB,$5D68           ;85F868|        |      ;
                        dw $5906,$58A3,$5861,$4A48           ;85F870|        |      ;
                        dw $39E6,$2D84,$1D22,$10E1           ;85F878|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_2_fade_in_boss:
                        dw $460D,$1C6D,$0020,$0040           ;85F880|        |      ;
                        dw $0022,$0044,$0065,$0001           ;85F888|        |      ;
                        dw $0003,$0421,$0421,$0842           ;85F890|        |      ;
@@ -3938,6 +4496,8 @@
                        dw $00CB,$0150,$01D5,$0006           ;85F8E8|        |      ;
                        dw $000D,$0C63,$1CE6,$2D6A           ;85F8F0|        |      ;
                        dw $3DEE,$5293,$6737,$7BDC           ;85F8F8|        |      ;
+                                                            ;      |        |      ;
+palDat_Sigma_Stage_4_fade_in_boss:
                        dw $0000,$0020,$0440,$0860           ;85F900|        |      ;
                        dw $1080,$14C0,$18C0,$7F60           ;85F908|        |      ;
                        dw $5E80,$3DC0,$1441,$1021           ;85F910|        |      ;
@@ -4002,6 +4562,8 @@
                        dw $10A8,$14EA,$0D6C,$2D66           ;85FAE8|        |      ;
                        dw $4248,$538E,$4CC6,$49EB           ;85FAF0|        |      ;
                        dw $3147,$20C5,$14A0,$0C80           ;85FAF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Cast_roll_fading_foreground:
                        dw $0000,$31AA,$2968,$2127           ;85FB00|        |      ;
                        dw $18E5,$10A4,$0C83,$4994           ;85FB08|        |      ;
                        dw $392F,$28CA,$1866,$77BF           ;85FB10|        |      ;
@@ -4046,6 +4608,8 @@
                        dw $25C9,$1926,$1083,$65DD           ;85FC48|        |      ;
                        dw $4D75,$350E,$20C8,$77BF           ;85FC50|        |      ;
                        dw $6B7B,$6738,$5F14,$56F2           ;85FC58|        |      ;
+                                                            ;      |        |      ;
+palDat_Cast_roll_fading_background:
                        dw $0000,$4BF4,$3F30,$328D           ;85FC60|        |      ;
                        dw $29EA,$1D47,$14A4,$69FE           ;85FC68|        |      ;
                        dw $5196,$392F,$20C8,$77BF           ;85FC70|        |      ;
@@ -4098,14 +4662,20 @@
                        dw $526D,$5A90,$62B3,$66F5           ;85FDE8|        |      ;
                        dw $6F18,$775B,$4AFA,$32B9           ;85FDF0|        |      ;
                        dw $4E8D,$4E4D,$4E0E,$51EF           ;85FDF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Dr__Light_warning_screen:
                        dw $0000,$5F18,$5AD3,$460C           ;85FE00|        |      ;
                        dw $0000,$373E,$023E,$1084           ;85FE08|        |      ;
                        dw $0000,$77BD,$6BB2,$1484           ;85FE10|        |      ;
                        dw $0000,$4B9F,$039F,$1084           ;85FE18|        |      ;
+                                                            ;      |        |      ;
+       palDat_Credits:
                        dw $0000,$7B9A,$7F8A,$1084           ;85FE20|        |      ;
                        dw $0000,$373E,$023E,$1084           ;85FE28|        |      ;
                        dw $0000,$77BD,$6BB2,$1484           ;85FE30|        |      ;
                        dw $0000,$0192,$02DC,$48C2           ;85FE38|        |      ;
+                                                            ;      |        |      ;
+palDat_Ending_cutscene:
                        dw $0000,$7BDE,$5AD5,$3DED           ;85FE40|        |      ;
                        dw $0000,$7BDE,$62D5,$4DED           ;85FE48|        |      ;
                        dw $0000,$7BDE,$063E,$0178           ;85FE50|        |      ;
@@ -4114,6 +4684,8 @@
                        dw $4589,$2CE6,$7FFF,$751E           ;85FE68|        |      ;
                        dw $751E,$751E,$5400,$751E           ;85FE70|        |      ;
                        dw $751E,$751E,$751E,$0000           ;85FE78|        |      ;
+                                                            ;      |        |      ;
+palDat_Ending_cutscene_flashing_cliff:
                        dw $0000,$15D2,$0151,$00EE           ;85FE80|        |      ;
                        dw $00AB,$0068,$0046,$0024           ;85FE88|        |      ;
                        dw $0024,$5B5A,$5A4D,$4588           ;85FE90|        |      ;
@@ -4130,6 +4702,8 @@
                        dw $7B6F,$7A8A,$5963,$7E00           ;85FEE8|        |      ;
                        dw $7900,$40C4,$42DF,$2597           ;85FEF0|        |      ;
                        dw $1110,$7BDE,$4E73,$0C63           ;85FEF8|        |      ;
+                                                            ;      |        |      ;
+palDat_Credits_fading:
                        dw $0000,$526E,$3DCC,$2929           ;85FF00|        |      ;
                        dw $18A5,$0C42,$1040,$1C84           ;85FF08|        |      ;
                        dw $2D07,$3D8A,$4104,$3082           ;85FF10|        |      ;
@@ -4150,6 +4724,8 @@
                        dw $0421,$0000,$0000,$0421           ;85FF88|        |      ;
                        dw $0841,$0C62,$1041,$0C20           ;85FF90|        |      ;
                        dw $0800,$0840,$18C4,$0000           ;85FF98|        |      ;
+                                                            ;      |        |      ;
+         palDat_EMPTY:
                        db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85FFA0|        |FFFFFF;
                        db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85FFA8|        |FFFFFF;
                        db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;85FFB0|        |FFFFFF;

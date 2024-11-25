@@ -119,7 +119,7 @@
                        ADC.B $28                            ;8480BD|6528    |000028;
                        TAX                                  ;8480BF|AA      |      ;
                        LDA.B ($24)                          ;8480C0|B224    |000024;
-                       STA.L $7E2000,X                      ;8480C2|9F00207E|7E2000;
+                       STA.L blockMap,X                     ;8480C2|9F00207E|7E2000;
                        JSR.W CODE_8480ED                    ;8480C6|20ED80  |8480ED;
                        INC.B $24                            ;8480C9|E624    |000024;
                        INC.B $24                            ;8480CB|E624    |000024;
@@ -1131,7 +1131,7 @@
                        RTL                                  ;849085|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_849086:
+        mainPlayer_00:
                        PHP                                  ;849086|08      |      ;
                        REP #$20                             ;849087|C220    |      ;
                        LDA.W $0BA6                          ;849089|ADA60B  |000BA6;
@@ -1211,7 +1211,7 @@
                        STA.B $0E                            ;8490F2|850E    |001696;
                        REP #$20                             ;8490F4|C220    |      ;
                        JSR.W CODE_84916A                    ;8490F6|206A91  |84916A;
-                       LDA.L $7E2000,X                      ;8490F9|BF00207E|7E2000;
+                       LDA.L blockMap,X                     ;8490F9|BF00207E|7E2000;
                        TAY                                  ;8490FD|A8      |      ;
                        LDA.W r_0b92                         ;8490FE|AD920B  |860B92;
                        STA.B $10                            ;849101|8510    |001698;
@@ -1238,7 +1238,7 @@
                        TCD                                  ;84911C|5B      |      ;
                        JSR.W CODE_84916A                    ;84911D|206A91  |84916A;
                        LDA.B $08                            ;849120|A508    |000008;
-                       STA.L $7E2000,X                      ;849122|9F00207E|7E2000;
+                       STA.L blockMap,X                     ;849122|9F00207E|7E2000;
                        PLD                                  ;849126|2B      |      ;
                        PLP                                  ;849127|28      |      ;
                        RTS                                  ;849128|60      |      ;
@@ -1256,9 +1256,9 @@
                        LDA.W #$0000                         ;849131|A90000  |      ;
                        TCD                                  ;849134|5B      |      ;
                        JSR.W CODE_84916A                    ;849135|206A91  |84916A;
-                       LDA.L $7E2000,X                      ;849138|BF00207E|7E2000;
+                       LDA.L blockMap,X                     ;849138|BF00207E|7E2000;
                        INC A                                ;84913C|1A      |      ;
-                       STA.L $7E2000,X                      ;84913D|9F00207E|7E2000;
+                       STA.L blockMap,X                     ;84913D|9F00207E|7E2000;
                        PLD                                  ;849141|2B      |      ;
                        PLP                                  ;849142|28      |      ;
                        RTS                                  ;849143|60      |      ;
@@ -3295,7 +3295,7 @@
                        LDA.W $0C12                          ;849FB2|AD120C  |860C12;
                        STA.W $0BAA                          ;849FB5|8DAA0B  |860BAA;
                        STZ.W $0C16                          ;849FB8|9C160C  |860C16;
-                       JSL.L CODE_849086                    ;849FBB|22869084|849086;
+                       JSL.L mainPlayer_00                  ;849FBB|22869084|849086;
                        TAX                                  ;849FBF|AA      |      ;
                        LDA.L CODE_008000,X                  ;849FC0|BF008000|008000;
                        CMP.L CODE_408000,X                  ;849FC4|DF008040|408000;
@@ -3832,7 +3832,7 @@
                        ASL A                                ;84A386|0A      |      ;
                        DEC A                                ;84A387|3A      |      ;
                        TAX                                  ;84A388|AA      |      ;
-                       JSL.L CODE_849086                    ;84A389|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84A389|22869084|849086;
                                                             ;      |        |      ;
           CODE_84A38D:
                        INX                                  ;84A38D|E8      |      ;
@@ -4046,13 +4046,13 @@
                        LDA.W $0B9C                          ;84A4D3|AD9C0B  |000B9C;
                        AND.W $0008                          ;84A4D6|2D0800  |000008;
                        BNE CODE_84A522                      ;84A4D9|D047    |84A522;
-                       JSL.L CODE_849086                    ;84A4DB|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84A4DB|22869084|849086;
                        AND.B #$03                           ;84A4DF|2903    |      ;
                        CLC                                  ;84A4E1|18      |      ;
                        ADC.B #$93                           ;84A4E2|6993    |      ;
                        JSL.L lunchSFX                       ;84A4E4|22A28880|8088A2;
                        REP #$20                             ;84A4E8|C220    |      ;
-                       JSL.L CODE_849086                    ;84A4EA|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84A4EA|22869084|849086;
                        AND.W $0004                          ;84A4EE|2D0400  |000004;
                        STA.W $0004                          ;84A4F1|8D0400  |000004;
                        LDA.B $05                            ;84A4F4|A505    |000005;
@@ -4061,7 +4061,7 @@
                        CLC                                  ;84A4FA|18      |      ;
                        ADC.W $0004                          ;84A4FB|6D0400  |000004;
                        STA.W $0000                          ;84A4FE|8D0000  |000000;
-                       JSL.L CODE_849086                    ;84A501|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84A501|22869084|849086;
                        AND.W $0006                          ;84A505|2D0600  |000006;
                        STA.W $0006                          ;84A508|8D0600  |000006;
                        LDA.B $08                            ;84A50B|A508    |000008;
@@ -4809,7 +4809,7 @@
                        AND.B #$40                           ;84AAAB|2940    |      ;
                        STA.W r_000c,X                       ;84AAAD|9D0C00  |86000C;
                        REP #$20                             ;84AAB0|C220    |      ;
-                       JSL.L CODE_849086                    ;84AAB2|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84AAB2|22869084|849086;
                        AND.W #$001F                         ;84AAB6|291F00  |      ;
                        LSR A                                ;84AAB9|4A      |      ;
                        BCC CODE_84AAC0                      ;84AABA|9004    |84AAC0;
@@ -4820,7 +4820,7 @@
                        CLC                                  ;84AAC0|18      |      ;
                        ADC.B r_ev_05_xPos-$E68              ;84AAC1|6505    |000E6D;
                        STA.W r_0005,X                       ;84AAC3|9D0500  |860005;
-                       JSL.L CODE_849086                    ;84AAC6|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84AAC6|22869084|849086;
                        AND.W #$000F                         ;84AACA|290F00  |      ;
                        LSR A                                ;84AACD|4A      |      ;
                        BCC CODE_84AAD4                      ;84AACE|9004    |84AAD4;
@@ -4843,7 +4843,7 @@
                        BCS CODE_84AAF3                      ;84AAE2|B00F    |84AAF3;
                        ASL A                                ;84AAE4|0A      |      ;
                        TAX                                  ;84AAE5|AA      |      ;
-                       LDA.W r_1f86,X                       ;84AAE6|BD861F  |861F86;
+                       LDA.W r_player_tankEnergie_04,X      ;84AAE6|BD861F  |861F86;
                        AND.B #$40                           ;84AAE9|2940    |      ;
                        BEQ CODE_84AAF3                      ;84AAEB|F006    |84AAF3;
                        INC.W r_1f23                         ;84AAED|EE231F  |861F23;
@@ -5018,7 +5018,7 @@
                        STY.B $02                            ;84AC3C|8402    |000002;
                        LDA.B $00                            ;84AC3E|A500    |000000;
                        BEQ CODE_84AC5D                      ;84AC40|F01B    |84AC5D;
-                       JSL.L CODE_849086                    ;84AC42|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84AC42|22869084|849086;
                        AND.B $02                            ;84AC46|2502    |000002;
                        BEQ CODE_84AC59                      ;84AC48|F00F    |84AC59;
                        LDA.B $00                            ;84AC4A|A500    |000000;
@@ -5210,15 +5210,15 @@
                                                             ;      |        |      ;
           CODE_84AD54:
                        LDA.B $00                            ;84AD54|A500    |000000;
-                       STA.W $211B                          ;84AD56|8D1B21  |86211B;
+                       STA.W M7A                            ;84AD56|8D1B21  |86211B;
                        LDA.B $01                            ;84AD59|A501    |000001;
-                       STA.W $211B                          ;84AD5B|8D1B21  |86211B;
+                       STA.W M7A                            ;84AD5B|8D1B21  |86211B;
                        LDA.B $14                            ;84AD5E|A514    |000014;
-                       STZ.W $211C                          ;84AD60|9C1C21  |86211C;
-                       STA.W $211C                          ;84AD63|8D1C21  |86211C;
-                       LDA.W $2134                          ;84AD66|AD3421  |862134;
+                       STZ.W M7B                            ;84AD60|9C1C21  |86211C;
+                       STA.W M7B                            ;84AD63|8D1C21  |86211C;
+                       LDA.W MPYL                           ;84AD66|AD3421  |862134;
                        REP #$20                             ;84AD69|C220    |      ;
-                       LDA.W $2135                          ;84AD6B|AD3521  |862135;
+                       LDA.W MPYM                           ;84AD6B|AD3521  |862135;
                        CMP.B $0A                            ;84AD6E|C50A    |00000A;
                        BCC CODE_84AD72                      ;84AD70|9000    |84AD72;
                                                             ;      |        |      ;
@@ -5275,9 +5275,9 @@
                                                             ;      |        |      ;
           CODE_84ADB5:
                        LDA.B $02                            ;84ADB5|A502    |000002;
-                       STA.W $4204                          ;84ADB7|8D0442  |864204;
+                       STA.W WRDIVL                         ;84ADB7|8D0442  |864204;
                        LDX.B #$40                           ;84ADBA|A240    |      ;
-                       STX.W $4206                          ;84ADBC|8E0642  |864206;
+                       STX.W WRDIVB                         ;84ADBC|8E0642  |864206;
                        NOP                                  ;84ADBF|EA      |      ;
                        NOP                                  ;84ADC0|EA      |      ;
                        NOP                                  ;84ADC1|EA      |      ;
@@ -5286,7 +5286,7 @@
                        NOP                                  ;84ADC4|EA      |      ;
                        NOP                                  ;84ADC5|EA      |      ;
                        NOP                                  ;84ADC6|EA      |      ;
-                       LDA.W $4214                          ;84ADC7|AD1442  |864214;
+                       LDA.W RDDIVL                         ;84ADC7|AD1442  |864214;
                        ASL A                                ;84ADCA|0A      |      ;
                        LDX.B $13                            ;84ADCB|A613    |000013;
                        BEQ CODE_84ADD6                      ;84ADCD|F007    |84ADD6;
@@ -5318,28 +5318,28 @@
                        TAX                                  ;84ADFF|AA      |      ;
                        SEP #$20                             ;84AE00|E220    |      ;
                        LDA.W DATA8_86BBD7,X                 ;84AE02|BDD7BB  |86BBD7;
-                       STA.W $211B                          ;84AE05|8D1B21  |86211B;
+                       STA.W M7A                            ;84AE05|8D1B21  |86211B;
                        LDA.W DATA8_86BBD8,X                 ;84AE08|BDD8BB  |86BBD8;
-                       STA.W $211B                          ;84AE0B|8D1B21  |86211B;
+                       STA.W M7A                            ;84AE0B|8D1B21  |86211B;
                        LDA.B $08                            ;84AE0E|A508    |000008;
-                       STZ.W $211C                          ;84AE10|9C1C21  |86211C;
-                       STA.W $211C                          ;84AE13|8D1C21  |86211C;
-                       LDA.W $2134                          ;84AE16|AD3421  |862134;
-                       LDA.W $2135                          ;84AE19|AD3521  |862135;
+                       STZ.W M7B                            ;84AE10|9C1C21  |86211C;
+                       STA.W M7B                            ;84AE13|8D1C21  |86211C;
+                       LDA.W MPYL                           ;84AE16|AD3421  |862134;
+                       LDA.W MPYM                           ;84AE19|AD3521  |862135;
                        STA.B $00                            ;84AE1C|8500    |000000;
-                       LDA.W $2136                          ;84AE1E|AD3621  |862136;
+                       LDA.W MPYH                           ;84AE1E|AD3621  |862136;
                        STA.B $01                            ;84AE21|8501    |000001;
                        LDA.W DATA8_86BBD9,X                 ;84AE23|BDD9BB  |86BBD9;
-                       STA.W $211B                          ;84AE26|8D1B21  |86211B;
+                       STA.W M7A                            ;84AE26|8D1B21  |86211B;
                        LDA.W DATA8_86BBDA,X                 ;84AE29|BDDABB  |86BBDA;
-                       STA.W $211B                          ;84AE2C|8D1B21  |86211B;
+                       STA.W M7A                            ;84AE2C|8D1B21  |86211B;
                        LDA.B $08                            ;84AE2F|A508    |000008;
-                       STZ.W $211C                          ;84AE31|9C1C21  |86211C;
-                       STA.W $211C                          ;84AE34|8D1C21  |86211C;
-                       LDA.W $2134                          ;84AE37|AD3421  |862134;
-                       LDA.W $2135                          ;84AE3A|AD3521  |862135;
+                       STZ.W M7B                            ;84AE31|9C1C21  |86211C;
+                       STA.W M7B                            ;84AE34|8D1C21  |86211C;
+                       LDA.W MPYL                           ;84AE37|AD3421  |862134;
+                       LDA.W MPYM                           ;84AE3A|AD3521  |862135;
                        STA.B $02                            ;84AE3D|8502    |000002;
-                       LDA.W $2136                          ;84AE3F|AD3621  |862136;
+                       LDA.W MPYH                           ;84AE3F|AD3621  |862136;
                        STA.B $03                            ;84AE42|8503    |000003;
                        SEP #$10                             ;84AE44|E210    |      ;
                        RTS                                  ;84AE46|60      |      ;
@@ -5388,7 +5388,7 @@ eventID_slimVolt_02_main:
                        LDA.B #$04                           ;84AE7F|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;84AE81|8502    |000E6A;
                        LDA.B #$20                           ;84AE83|A920    |      ;
-                       JML.L CODE_8088CD                    ;84AE85|5CCD8880|8088CD;
+                       JML.L weaponChargeInit               ;84AE85|5CCD8880|8088CD;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84AE89:
@@ -5514,7 +5514,7 @@ slimVolt_state1_01plus_00:
                        BNE CODE_84AFB2                      ;84AF6D|D043    |84AFB2;
                        INC.B r_ev_03_do-$E68                ;84AF6F|E603    |000E6B;
                        STZ.B r_ev_16_sprID-$E68             ;84AF71|6416    |000E7E;
-                       JSL.L CODE_849086                    ;84AF73|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84AF73|22869084|849086;
                        AND.B #$03                           ;84AF77|2903    |      ;
                        BEQ CODE_84AF97                      ;84AF79|F01C    |84AF97;
                        REP #$20                             ;84AF7B|C220    |      ;
@@ -5946,7 +5946,7 @@ slimVolt_state1_01plus_00:
                        BCC CODE_84B266                      ;84B253|9011    |84B266;
                        STZ.B r_ev_30-$E68                   ;84B255|6430    |000E98;
                        LDA.B #$20                           ;84B257|A920    |      ;
-                       JSL.L CODE_8088CD                    ;84B259|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;84B259|22CD8880|8088CD;
                        JSL.L CODE_84A003                    ;84B25D|2203A084|84A003;
                        LDA.B #$06                           ;84B261|A906    |      ;
                        JMP.W CODE_84B77C                    ;84B263|4C7CB7  |84B77C;
@@ -6473,7 +6473,7 @@ slimVolt_state1_01plus_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_84B5DA:
-                       JSL.L CODE_849086                    ;84B5DA|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84B5DA|22869084|849086;
                        AND.B #$0F                           ;84B5DE|290F    |      ;
                        RTS                                  ;84B5E0|60      |      ;
                                                             ;      |        |      ;
@@ -6514,7 +6514,7 @@ slimVolt_state1_01plus_00:
                        LDA.W r_frameCounter1                ;84B633|AD9C0B  |860B9C;
                        AND.B #$3F                           ;84B636|293F    |      ;
                        BNE CODE_84B660                      ;84B638|D026    |84B660;
-                       JSL.L CODE_849086                    ;84B63A|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84B63A|22869084|849086;
                        AND.B #$03                           ;84B63E|2903    |      ;
                        BEQ CODE_84B653                      ;84B640|F011    |84B653;
                        LDA.B r_ev_27_health-$E68            ;84B642|A527    |000E8F;
@@ -6755,7 +6755,7 @@ slimVolt_state1_01plus_00:
                        REP #$20                             ;84B7DE|C220    |      ;
                        LDA.W #$03B8                         ;84B7E0|A9B803  |      ;
                        STA.W r_000c,X                       ;84B7E3|9D0C00  |86000C;
-                       JSL.L CODE_849086                    ;84B7E6|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84B7E6|22869084|849086;
                        AND.W #$000C                         ;84B7EA|290C00  |      ;
                        TAY                                  ;84B7ED|A8      |      ;
                        LDA.W UNREACH_86C537,Y               ;84B7EE|B937C5  |86C537;
@@ -6771,7 +6771,7 @@ slimVolt_state1_01plus_00:
                        TYA                                  ;84B806|98      |      ;
                        LSR A                                ;84B807|4A      |      ;
                        TAY                                  ;84B808|A8      |      ;
-                       JSL.L CODE_849086                    ;84B809|22869084|849086;
+                       JSL.L mainPlayer_00                  ;84B809|22869084|849086;
                        AND.W #$00FF                         ;84B80D|29FF00  |      ;
                        STA.W r_0000                         ;84B810|8D0000  |860000;
                        LDA.W UNREACH_86C311,Y               ;84B813|B911C3  |86C311;

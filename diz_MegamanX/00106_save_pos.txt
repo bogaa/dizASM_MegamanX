@@ -1,6 +1,9 @@
 
 ;pos=032800
-r 275 U
+r 12 B
+A
+A
+r 261 U
 r 29 A
 r 122 U
 Ug
@@ -10,15 +13,14 @@ A
 r 581 U
 Ug
 r 52 U
-Ug
-Ug
-Ug
-Ug
-Ug
-Ug
-A
-A
-r 62 U
+Bg
+Bg
+Bg
+Bg
+Bg
+Bg
+r 20 B
+r 44 U
 A
 A
 r 64 U

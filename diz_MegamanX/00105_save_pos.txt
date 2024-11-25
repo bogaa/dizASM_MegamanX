@@ -1,91 +1,47 @@
 
 ;pos=032000
-r 57 U
-Ug
-A
-A
-A
-A
-Ag
-r 9 A
+r 57 T
+Tg
+T
+T
+T
+T
+Tg
+r 179 T
+Tg
+r 17 T
+Tg
+T
+T
+T
+T
+T
+T
+T
+Tg
+r 8 T
+Tg
+r 190 T
+Tg
+T
+Tg
+T
+Tg
+T
+Tg
+Tg
+r 131 T
+Tg
+T
+Tg
+r 890 T
 U
 U
 U
 U
 U
 U
-A
-A
-A
-A
-A
-A
 U
-U
-U
-U
-U
-U
-r 50 A
-r 30 U
-r 33 A
-r 39 U
-Ag
-r 17 A
-Ag
-A
-A
-A
-A
-A
-A
-A
-Ag
-r 8 A
-Ag
-r 190 A
-Ug
-U
-Ug
-U
-Ug
-U
-Ag
-Ag
-r 30 U
-A
-A
-r 14 U
-A
-A
-r 83 U
-Ug
-U
-Ug
-U
-U
-U
-A
-A
-r 44 U
-A
-A
-A
-A
-r 587 U
-r 28 A
-r 83 U
-A
-A
-A
-A
-U
-A
-A
-A
-A
-A
-r 136 U
 Bg
 Bg
 r 206 B
@@ -157,4 +113,8 @@ A
 r 22 U
 A
 A
-r 57 U
+r 42 U
+A
+A
+A
+r 12 B

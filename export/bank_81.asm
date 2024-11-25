@@ -290,8 +290,8 @@
                        LDA.B #$02                           ;8181DC|A902    |      ;
                        ORA.W UNREACH_86BAC2,X               ;8181DE|1DC2BA  |86BAC2;
                        STA.B r_player_sprPal-$BA8           ;8181E1|8511    |000BB9;
-                       STZ.B $5B                            ;8181E3|645B    |000C03;
-                       STZ.B r_blaster_chargeState-$BA8     ;8181E5|645A    |000C02;
+                       STZ.B r_blaster_chargeState-$BA8     ;8181E3|645B    |000C03;
+                       STZ.B r_blaster_chargeValue-$BA8     ;8181E5|645A    |000C02;
                        LDA.B #$FF                           ;8181E7|A9FF    |      ;
                        STA.B $66                            ;8181E9|8566    |000C0E;
                        STZ.B $82                            ;8181EB|6482    |000C2A;
@@ -332,7 +332,7 @@
                        STA.B $67                            ;81823C|8567    |000C0F;
                        LDA.B #$08                           ;81823E|A908    |      ;
                        STA.B r_player_jumpFlag-$BA8         ;818240|852F    |000BD7;
-                       JSL.L CODE_849086                    ;818242|22869084|849086;
+                       JSL.L mainPlayer_00                  ;818242|22869084|849086;
                        TAX                                  ;818246|AA      |      ;
                        LDA.L CODE_008000,X                  ;818247|BF008000|008000;
                        CMP.L CODE_408000,X                  ;81824B|DF008040|408000;
@@ -379,7 +379,7 @@
                                                             ;      |        |      ;
           CODE_818292:
                        JSR.W playerSub_00                   ;818292|2062A0  |81A062;
-                       JSR.W playerChargeBlaster            ;818295|20D297  |8197D2;
+                       JSR.W playerAmorAndCharge            ;818295|20D297  |8197D2;
                        JSR.W CODE_81971C                    ;818298|201C97  |81971C;
                        JSR.W CODE_819793                    ;81829B|209397  |819793;
                        JSR.W CODE_819A70                    ;81829E|20709A  |819A70;
@@ -712,7 +712,7 @@ playerState_acending_06:
                        STA.B r_player_action-$BA8           ;818493|8503    |000BAB;
                        JSR.W CODE_819982                    ;818495|208299  |819982;
                        LDA.B #$06                           ;818498|A906    |      ;
-                       JSL.L CODE_8088CD                    ;81849A|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81849A|22CD8880|8088CD;
                        LDA.B #$01                           ;81849E|A901    |      ;
                        CLC                                  ;8184A0|18      |      ;
                        ADC.B $6F                            ;8184A1|656F    |000C17;
@@ -962,7 +962,7 @@ playerState_landing_0a:
                        LDA.B #$04                           ;818616|A904    |      ;
                        STA.B $4E                            ;818618|854E    |000BF6;
                        LDA.B #$07                           ;81861A|A907    |      ;
-                       JSL.L CODE_8088CD                    ;81861C|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81861C|22CD8880|8088CD;
                        LDA.B #$07                           ;818620|A907    |      ;
                        CLC                                  ;818622|18      |      ;
                        ADC.B $6F                            ;818623|656F    |000C17;
@@ -1019,7 +1019,7 @@ playerState_flinch_0e:
                        LDA.B #$02                           ;818664|A902    |      ;
                        STA.B r_player_action-$BA8           ;818666|8503    |000BAB;
                        LDA.B #$09                           ;818668|A909    |      ;
-                       JSL.L CODE_8088CD                    ;81866A|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81866A|22CD8880|8088CD;
                        LDA.B #$08                           ;81866E|A908    |      ;
                        STA.B r_player_jumpFlag-$BA8         ;818670|852F    |000BD7;
                        STA.B r_player_invinsCounter-$BA8    ;818672|8530    |000BD8;
@@ -1066,7 +1066,7 @@ playerState_flinch_0e:
                        BIT.B #$04                           ;8186BA|8904    |      ;
                        BEQ CODE_8186C7                      ;8186BC|F009    |8186C7;
                        LDA.B #$07                           ;8186BE|A907    |      ;
-                       JSL.L CODE_8088CD                    ;8186C0|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;8186C0|22CD8880|8088CD;
                        JMP.W CODE_8195D6                    ;8186C4|4CD695  |8195D6;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1138,7 +1138,7 @@ playerState_wallJump_10:
                        LDA.B #$04                           ;818729|A904    |      ;
                        STA.B $4E                            ;81872B|854E    |000BF6;
                        LDA.B #$06                           ;81872D|A906    |      ;
-                       JSL.L CODE_8088CD                    ;81872F|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81872F|22CD8880|8088CD;
                        LDA.B $4F                            ;818733|A54F    |000BF7;
                        STA.B r_blaster_direction-$BA8       ;818735|8569    |000C11;
                        STZ.B $79                            ;818737|6479    |000C21;
@@ -1320,7 +1320,7 @@ playerState_wallJump_10:
                        LDA.B #$02                           ;818847|A902    |      ;
                        STA.B r_player_action-$BA8           ;818849|8503    |000BAB;
                        LDA.B #$07                           ;81884B|A907    |      ;
-                       JSL.L CODE_8088CD                    ;81884D|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81884D|22CD8880|8088CD;
                        JSR.W CODE_819934                    ;818851|203499  |819934;
                        LDA.B #$08                           ;818854|A908    |      ;
                        STA.B $77                            ;818856|8577    |000C1F;
@@ -1451,7 +1451,7 @@ playerState_wallJump_10:
                        STZ.B $75                            ;81891B|6475    |000C1D;
                        JSR.W CODE_819934                    ;81891D|203499  |819934;
                        LDA.B #$08                           ;818920|A908    |      ;
-                       JSL.L CODE_8088CD                    ;818922|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;818922|22CD8880|8088CD;
                        JSR.W CODE_819592                    ;818926|209295  |819592;
                        LDA.B #$13                           ;818929|A913    |      ;
                        CLC                                  ;81892B|18      |      ;
@@ -1609,7 +1609,7 @@ playerState_dashOut_20:
                        STA.B r_player_ySubSpd-$BA8          ;818A14|851C    |000BC4;
                        SEP #$20                             ;818A16|E220    |      ;
                        LDA.B #$0E                           ;818A18|A90E    |      ;
-                       JSL.L CODE_8088CD                    ;818A1A|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;818A1A|22CD8880|8088CD;
                        LDA.B #$47                           ;818A1E|A947    |      ;
                        JSL.L playerGrabedRoutine            ;818A20|22078F84|848F07;
                        RTS                                  ;818A24|60      |      ;
@@ -1699,7 +1699,7 @@ playerState_dashOut_20:
                        LDA.B #$04                           ;818AA0|A904    |      ;
                        STA.B r_player_action-$BA8           ;818AA2|8503    |000BAB;
                        LDA.B #$0A                           ;818AA4|A90A    |      ;
-                       JSL.L CODE_8088CD                    ;818AA6|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;818AA6|22CD8880|8088CD;
                        STZ.B r_player_bc1-$BA8              ;818AAA|6419    |000BC1;
                        STZ.B r_player_activSpr-$BA8         ;818AAC|640E    |000BB6;
                        STZ.W $0C38                          ;818AAE|9C380C  |860C38;
@@ -1892,7 +1892,7 @@ playerState_idleAwaitBoss_1e:
                        SEP #$20                             ;818BDA|E220    |      ;
                        INC.B r_player_invinsCounter-$BA8    ;818BDC|E630    |000BD8;
                        JSR.W CODE_819E8F                    ;818BDE|208F9E  |819E8F;
-                       STZ.B $5B                            ;818BE1|645B    |000C03;
+                       STZ.B r_blaster_chargeState-$BA8     ;818BE1|645B    |000C03;
                        LDA.B r_player_bd3-$BA8              ;818BE3|A52B    |000BD3;
                        BIT.B #$04                           ;818BE5|8904    |      ;
                        BNE CODE_818BFB                      ;818BE7|D012    |818BFB;
@@ -2047,7 +2047,7 @@ playerState_idleAwaitBoss_1e:
                        LSR A                                ;818CEA|4A      |      ;
                        BCC CODE_818CF6                      ;818CEB|9009    |818CF6;
                        LDA.B #$2D                           ;818CED|A92D    |      ;
-                       JSL.L CODE_8088CD                    ;818CEF|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;818CEF|22CD8880|8088CD;
                        JSR.W CODE_819A93                    ;818CF3|20939A  |819A93;
                                                             ;      |        |      ;
           CODE_818CF6:
@@ -2062,7 +2062,7 @@ playerState_idleAwaitBoss_1e:
                        STA.B r_player_action-$BA8           ;818D01|8503    |000BAB;
                        INC.B $64                            ;818D03|E664    |000C0C;
                        LDA.B #$0F                           ;818D05|A90F    |      ;
-                       JSL.L CODE_8088CD                    ;818D07|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;818D07|22CD8880|8088CD;
                        REP #$20                             ;818D0B|C220    |      ;
                        STZ.B r_player_xSubSpd-$BA8          ;818D0D|641A    |000BC2;
                        LDA.W #$0AA6                         ;818D0F|A9A60A  |      ;
@@ -2327,7 +2327,7 @@ playerState_animation_2e:
                        STA.B r_blaster_direction-$BA8       ;818EAC|8569    |000C11;
                                                             ;      |        |      ;
           CODE_818EAE:
-                       STZ.B $5B                            ;818EAE|645B    |000C03;
+                       STZ.B r_blaster_chargeState-$BA8     ;818EAE|645B    |000C03;
                        STZ.B $58                            ;818EB0|6458    |000C00;
                        JSR.W CODE_819E8F                    ;818EB2|208F9E  |819E8F;
                        LDA.B #$97                           ;818EB5|A997    |      ;
@@ -2347,7 +2347,7 @@ playerState_animation_2e:
                        BIT.B #$04                           ;818ECF|8904    |      ;
                        BEQ CODE_818EF7                      ;818ED1|F024    |818EF7;
                        LDA.B #$07                           ;818ED3|A907    |      ;
-                       JSL.L CODE_8088CD                    ;818ED5|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;818ED5|22CD8880|8088CD;
                        LDA.B #$04                           ;818ED9|A904    |      ;
                        STA.B r_player_action-$BA8           ;818EDB|8503    |000BAB;
                        LDA.B #$02                           ;818EDD|A902    |      ;
@@ -2478,7 +2478,7 @@ playerState_healthRecover_3e:
                        LDA.B #$02                           ;818F9B|A902    |      ;
                        STA.B r_stageEndRunDir-$BA8          ;818F9D|858B    |000C33;
                        LDA.B #$0C                           ;818F9F|A90C    |      ;
-                       JSL.L CODE_8088CD                    ;818FA1|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;818FA1|22CD8880|8088CD;
                        INC.B r_player_health-$BA8           ;818FA5|E627    |000BCF;
                        LDA.B r_player_health-$BA8           ;818FA7|A527    |000BCF;
                        CMP.W r_player_healthCap             ;818FA9|CD9A1F  |861F9A;
@@ -2592,7 +2592,7 @@ playerState_healthRecover_3e:
                        LDA.B $33                            ;81903D|A533    |000033;
                        BNE CODE_81904A                      ;81903F|D009    |81904A;
                        LDA.B #$AF                           ;819041|A9AF    |      ;
-                       JSL.L CODE_8088CD                    ;819043|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;819043|22CD8880|8088CD;
                        JMP.W CODE_81A114                    ;819047|4C14A1  |81A114;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2663,7 +2663,7 @@ playerState_healthRecover_3e:
                        STA.B $8C                            ;8190B7|858C    |000C34;
                        STZ.B $75                            ;8190B9|6475    |000C1D;
                        LDA.B #$08                           ;8190BB|A908    |      ;
-                       JSL.L CODE_8088CD                    ;8190BD|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;8190BD|22CD8880|8088CD;
                        LDA.B #$35                           ;8190C1|A935    |      ;
                        JSL.L playerGrabedRoutine            ;8190C3|22078F84|848F07;
                        RTS                                  ;8190C7|60      |      ;
@@ -2705,7 +2705,7 @@ playerState_healthRecover_3e:
                        LDA.B #$15                           ;819102|A915    |      ;
                        JSL.L playerGrabedRoutine            ;819104|22078F84|848F07;
                        LDA.B #$05                           ;819108|A905    |      ;
-                       JSL.L CODE_8088CD                    ;81910A|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81910A|22CD8880|8088CD;
                        STZ.W r_colorV_c9                    ;81910E|9CC900  |8600C9;
                        LDA.B #$2F                           ;819111|A92F    |      ;
                        STA.W r_colorV_ca                    ;819113|8DCA00  |8600CA;
@@ -2867,7 +2867,7 @@ playerState_healthRecover_3e:
                        STA.B $64                            ;819205|8564    |000C0C;
                        STA.B r_player_invinsCounter-$BA8    ;819207|8530    |000BD8;
                        LDA.B #$0F                           ;819209|A90F    |      ;
-                       JSL.L CODE_8088CD                    ;81920B|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81920B|22CD8880|8088CD;
                        REP #$20                             ;81920F|C220    |      ;
                        STZ.B r_player_xSubSpd-$BA8          ;819211|641A    |000BC2;
                        LDA.W #$0AA6                         ;819213|A9A60A  |      ;
@@ -2912,7 +2912,7 @@ playerState_healthRecover_3e:
                                                             ;      |        |      ;
           CODE_819258:
                        LDA.B #$09                           ;819258|A909    |      ;
-                       JSL.L CODE_8088CD                    ;81925A|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81925A|22CD8880|8088CD;
                        LDA.B #$4A                           ;81925E|A94A    |      ;
                        JSL.L playerGrabedRoutine            ;819260|22078F84|848F07;
                        LDA.B #$80                           ;819264|A980    |      ;
@@ -2941,7 +2941,7 @@ playerState_healthRecover_3e:
                        LDA.B #$4B                           ;819285|A94B    |      ;
                        JSL.L playerGrabedRoutine            ;819287|22078F84|848F07;
                        LDA.B #$07                           ;81928B|A907    |      ;
-                       JSL.L CODE_8088CD                    ;81928D|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81928D|22CD8880|8088CD;
                        REP #$20                             ;819291|C220    |      ;
                        LDA.B r_player_ySubSpd-$BA8          ;819293|A51C    |000BC4;
                        EOR.W #$FFFF                         ;819295|49FFFF  |      ;
@@ -2963,7 +2963,7 @@ playerState_healthRecover_3e:
                        LDA.B #$06                           ;8192AD|A906    |      ;
                        STA.B r_player_action-$BA8           ;8192AF|8503    |000BAB;
                        LDA.B #$07                           ;8192B1|A907    |      ;
-                       JSL.L CODE_8088CD                    ;8192B3|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;8192B3|22CD8880|8088CD;
                        STZ.B r_player_jumpFlag-$BA8         ;8192B7|642F    |000BD7;
                        LDA.B #$4C                           ;8192B9|A94C    |      ;
                        JSL.L playerGrabedRoutine            ;8192BB|22078F84|848F07;
@@ -3023,7 +3023,7 @@ playerState_healthRecover_3e:
                        LSR A                                ;819307|4A      |      ;
                        BCC CODE_819313                      ;819308|9009    |819313;
                        LDA.B #$2D                           ;81930A|A92D    |      ;
-                       JSL.L CODE_8088CD                    ;81930C|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81930C|22CD8880|8088CD;
                        JSR.W CODE_819A93                    ;819310|20939A  |819A93;
                                                             ;      |        |      ;
           CODE_819313:
@@ -3162,7 +3162,7 @@ playerState_healthRecover_3e:
                        LDA.B #$40                           ;8193E0|A940    |      ;
                        TRB.B $87                            ;8193E2|1487    |000C2F;
                        LDA.B #$17                           ;8193E4|A917    |      ;
-                       JSL.L CODE_8088CD                    ;8193E6|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;8193E6|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_8193EA:
                        STZ.B $59                            ;8193EA|6459    |000C01;
@@ -3237,7 +3237,7 @@ spawnPlayerProjectile:
                        LDA.B #$40                           ;819472|A940    |      ;
                        TRB.B $87                            ;819474|1487    |000C2F;
                        LDA.B #$17                           ;819476|A917    |      ;
-                       JSL.L CODE_8088CD                    ;819478|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;819478|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_81947C:
                        LDA.B $3D                            ;81947C|A53D    |000BE5;
@@ -3295,7 +3295,7 @@ spawnPlayerProjectile:
                        BEQ CODE_819539                      ;8194DA|F05D    |819539;
                        REP #$20                             ;8194DC|C220    |      ;
                        LDX.B r_player_curWeapon-$BA8        ;8194DE|A633    |000BDB;
-                       LDA.W r_1f85,X                       ;8194E0|BD851F  |861F85;
+                       LDA.W r_player_tankEnergie_03,X      ;8194E0|BD851F  |861F85;
                        BIT.W #$3F00                         ;8194E3|89003F  |      ;
                        BEQ CODE_81953D                      ;8194E6|F055    |81953D;
                        AND.W #$3FFF                         ;8194E8|29FF3F  |      ;
@@ -3306,13 +3306,13 @@ spawnPlayerProjectile:
                                                             ;      |        |      ;
           CODE_8194F4:
                        ORA.W #$C000                         ;8194F4|0900C0  |      ;
-                       STA.W r_1f85,X                       ;8194F7|9D851F  |861F85;
+                       STA.W r_player_tankEnergie_03,X      ;8194F7|9D851F  |861F85;
                        STZ.W r_0004                         ;8194FA|9C0400  |860004;
                        LDA.B $59                            ;8194FD|A559    |000C01;
                        AND.W #$00FF                         ;8194FF|29FF00  |      ;
                        CMP.W #$0004                         ;819502|C90400  |      ;
                        BNE CODE_819522                      ;819505|D01B    |819522;
-                       LDA.W r_1f85,X                       ;819507|BD851F  |861F85;
+                       LDA.W r_player_tankEnergie_03,X      ;819507|BD851F  |861F85;
                        AND.W #$3FFF                         ;81950A|29FF3F  |      ;
                        SEC                                  ;81950D|38      |      ;
                        SBC.W UNREACH_86BAA4,X               ;81950E|FDA4BA  |86BAA4;
@@ -3321,7 +3321,7 @@ spawnPlayerProjectile:
                                                             ;      |        |      ;
           CODE_819516:
                        ORA.W #$C000                         ;819516|0900C0  |      ;
-                       STA.W r_1f85,X                       ;819519|9D851F  |861F85;
+                       STA.W r_player_tankEnergie_03,X      ;819519|9D851F  |861F85;
                        LDA.W #$0009                         ;81951C|A90900  |      ;
                        STA.W r_0004                         ;81951F|8D0400  |860004;
                                                             ;      |        |      ;
@@ -3552,7 +3552,7 @@ spawnPlayerProjectile:
                                                             ;      |        |      ;
           CODE_819674:
                        BPL CODE_819679                      ;819674|1003    |819679;
-                       STZ.W r_1f81                         ;819676|9C811F  |861F81;
+                       STZ.W r_player_checkpoint            ;819676|9C811F  |861F81;
                                                             ;      |        |      ;
           CODE_819679:
                        STZ.B $55                            ;819679|6455    |000BFD;
@@ -3811,49 +3811,49 @@ spawnPlayerProjectile:
                        JMP.W CODE_8196C3                    ;8197CF|4CC396  |8196C3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-  playerChargeBlaster:
-                       LDA.B $7D                            ;8197D2|A57D    |000C25;
-                       BNE CODE_819802                      ;8197D4|D02C    |819802;
+  playerAmorAndCharge:
+                       LDA.B $7D                            ;8197D2|A57D    |000C25; chargeBlaster
+                       BNE endChargeUpgrades                ;8197D4|D02C    |819802;
                        LDA.B r_player_health-$BA8           ;8197D6|A527    |000BCF;
-                       BEQ CODE_819802                      ;8197D8|F028    |819802;
+                       BEQ endChargeUpgrades                ;8197D8|F028    |819802;
                        LDA.W r_player_upgradeMask           ;8197DA|AD991F  |861F99;
                        BIT.B #$02                           ;8197DD|8902    |      ; set this to 00 to remove the ability to charge special weapons
                        BNE CODE_8197E5                      ;8197DF|D004    |8197E5;
                        LDA.B r_player_curWeapon-$BA8        ;8197E1|A533    |000BDB;
-                       BNE CODE_8197EE                      ;8197E3|D009    |8197EE;
+                       BNE startChargeWeapon                ;8197E3|D009    |8197EE;
                                                             ;      |        |      ;
           CODE_8197E5:
                        LDA.B $7C                            ;8197E5|A57C    |000C24;
-                       BNE CODE_8197EE                      ;8197E7|D005    |8197EE;
+                       BNE startChargeWeapon                ;8197E7|D005    |8197EE;
                        LDA.W r_1f23                         ;8197E9|AD231F  |861F23;
                        BEQ CODE_819803                      ;8197EC|F015    |819803;
                                                             ;      |        |      ;
-          CODE_8197EE:
+    startChargeWeapon:
                        BIT.B $87                            ;8197EE|2487    |000C2F;
-                       BVC CODE_8197FC                      ;8197F0|500A    |8197FC;
+                       BVC clearWeaponCharge                ;8197F0|500A    |8197FC;
                        LDA.B #$40                           ;8197F2|A940    |      ;
                        TRB.B $87                            ;8197F4|1487    |000C2F;
                        LDA.B #$17                           ;8197F6|A917    |      ;
-                       JSL.L CODE_8088CD                    ;8197F8|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;8197F8|22CD8880|8088CD;
                                                             ;      |        |      ;
-          CODE_8197FC:
+    clearWeaponCharge:
                        STZ.B $58                            ;8197FC|6458    |000C00;
-                       STZ.B $5B                            ;8197FE|645B    |000C03;
-                       STZ.B r_blaster_chargeState-$BA8     ;819800|645A    |000C02;
+                       STZ.B r_blaster_chargeState-$BA8     ;8197FE|645B    |000C03;
+                       STZ.B r_blaster_chargeValue-$BA8     ;819800|645A    |000C02;
                                                             ;      |        |      ;
-          CODE_819802:
+    endChargeUpgrades:
                        RTS                                  ;819802|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_819803:
-                       LDA.B $5B                            ;819803|A55B    |000C03;
+                       LDA.B r_blaster_chargeState-$BA8     ;819803|A55B    |000C03;
                        BEQ CODE_81983B                      ;819805|F034    |81983B;
                        LDA.B r_player_activSpr-$BA8         ;819807|A50E    |000BB6;
                        BEQ CODE_81983B                      ;819809|F030    |81983B;
-                       DEC.B r_blaster_chargeState-$BA8     ;81980B|C65A    |000C02;
+                       DEC.B r_blaster_chargeValue-$BA8     ;81980B|C65A    |000C02;
                        BNE CODE_81983B                      ;81980D|D02C    |81983B;
                        LDA.B #$02                           ;81980F|A902    |      ;
-                       STA.B r_blaster_chargeState-$BA8     ;819811|855A    |000C02;
+                       STA.B r_blaster_chargeValue-$BA8     ;819811|855A    |000C02;
                        LDX.B $82                            ;819813|A682    |000C2A;
                        REP #$30                             ;819815|C230    |      ;
                        LDY.W DATA8_86BAD2,X                 ;819817|BCD2BA  |86BAD2;
@@ -3879,14 +3879,18 @@ spawnPlayerProjectile:
                                                             ;      |        |      ;
           CODE_81983B:
                        LDA.B r_getItem-$BA8                 ;81983B|A56E    |000C16;
-                       BNE CODE_819802                      ;81983D|D0C3    |819802;
+                       BNE endChargeUpgrades                ;81983D|D0C3    |819802;
                        LDX.B $58                            ;81983F|A658    |000C00;
-                       JMP.W (DATA8_819844,X)               ;819841|7C4498  |819844;
+                       JMP.W (PTR16_819844,X)               ;819841|7C4498  |819844;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         DATA8_819844:
-                       db $4A,$98,$59,$98,$8A,$98           ;819844|        |      ;
-                       LDA.B r_joy1_mirror_buttonHoldHi_0-$BA8;81984A|A537    |000BDF;
+         PTR16_819844:
+                       dw LOOSE_OP_00984A                   ;819844|        |00984A;
+                       dw LOOSE_OP_009859                   ;819846|        |009859;
+                       dw LOOSE_OP_00988A                   ;819848|        |00988A;
+                                                            ;      |        |      ;
+       weaponCharge00:
+                       LDA.B r_joy1_mirror_buttonHoldHi_0-$BA8;81984A|A537    |000BDF; no charge
                        BIT.B #$40                           ;81984C|8940    |      ;
                        BEQ CODE_819858                      ;81984E|F008    |819858;
                        LDA.B #$02                           ;819850|A902    |      ;
@@ -3897,13 +3901,15 @@ spawnPlayerProjectile:
           CODE_819858:
                        RTS                                  ;819858|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B r_joy1_mirror_buttonHoldHi_0-$BA8;819859|A537    |000BDF;
+                                                            ;      |        |      ;
+       weaponCharge01:
+                       LDA.B r_joy1_mirror_buttonHoldHi_0-$BA8;819859|A537    |000BDF; start charge
                        BIT.B #$40                           ;81985B|8940    |      ;
                        BNE CODE_819869                      ;81985D|D00A    |819869;
                        STZ.B $58                            ;81985F|6458    |000C00;
                        JSR.W CODE_819E8F                    ;819861|208F9E  |819E8F;
-                       STZ.B $5B                            ;819864|645B    |000C03;
-                       STZ.B r_blaster_chargeState-$BA8     ;819866|645A    |000C02;
+                       STZ.B r_blaster_chargeState-$BA8     ;819864|645B    |000C03;
+                       STZ.B r_blaster_chargeValue-$BA8     ;819866|645A    |000C02;
                        RTS                                  ;819868|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3917,36 +3923,38 @@ spawnPlayerProjectile:
                        LDA.B #$40                           ;819875|A940    |      ;
                        TSB.B $87                            ;819877|0487    |000C2F;
                        LDA.B #$03                           ;819879|A903    |      ;
-                       JSL.L CODE_8088CD                    ;81987B|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81987B|22CD8880|8088CD;
                        LDA.B #$03                           ;81987F|A903    |      ;
-                       STA.B $5B                            ;819881|855B    |000C03;
-                       STA.B r_blaster_chargeState-$BA8     ;819883|855A    |000C02;
+                       STA.B r_blaster_chargeState-$BA8     ;819881|855B    |000C03;
+                       STA.B r_blaster_chargeValue-$BA8     ;819883|855A    |000C02;
                        STZ.B $82                            ;819885|6482    |000C2A;
-                       JSR.W CODE_819E3E                    ;819887|203E9E  |819E3E;
-                       LDA.B r_joy1_mirror_buttonHoldHi_0-$BA8;81988A|A537    |000BDF;
+                       JSR.W weaponChargeRoutine_00         ;819887|203E9E  |819E3E;
+                                                            ;      |        |      ;
+       weaponCharge03:
+                       LDA.B r_joy1_mirror_buttonHoldHi_0-$BA8;81988A|A537    |000BDF; is charged ready to lunch
                        BIT.B #$40                           ;81988C|8940    |      ;
                        BNE CODE_8198B8                      ;81988E|D028    |8198B8;
                        LDA.B #$40                           ;819890|A940    |      ;
                        TRB.B $87                            ;819892|1487    |000C2F;
                        LDA.B #$17                           ;819894|A917    |      ;
-                       JSL.L CODE_8088CD                    ;819896|22CD8880|8088CD;
-                       JSR.W CODE_8198DF                    ;81989A|20DF98  |8198DF;
+                       JSL.L weaponChargeInit               ;819896|22CD8880|8088CD;
+                       JSR.W weaponChargeBEQ_testes         ;81989A|20DF98  |8198DF;
                        BEQ CODE_8198AE                      ;81989D|F00F    |8198AE;
                        LDA.B $7D                            ;81989F|A57D    |000C25;
                        BEQ CODE_8198A7                      ;8198A1|F004    |8198A7;
                        LDA.B #$04                           ;8198A3|A904    |      ;
-                       STA.B $5B                            ;8198A5|855B    |000C03;
+                       STA.B r_blaster_chargeState-$BA8     ;8198A5|855B    |000C03;
                                                             ;      |        |      ;
           CODE_8198A7:
-                       LDX.B $5B                            ;8198A7|A65B    |000C03;
+                       LDX.B r_blaster_chargeState-$BA8     ;8198A7|A65B    |000C03;
                        LDA.W UNREACH_86BA71,X               ;8198A9|BD71BA  |86BA71;
                        STA.B $59                            ;8198AC|8559    |000C01;
                                                             ;      |        |      ;
           CODE_8198AE:
                        STZ.B $58                            ;8198AE|6458    |000C00;
                        JSR.W CODE_819E8F                    ;8198B0|208F9E  |819E8F;
-                       STZ.B $5B                            ;8198B3|645B    |000C03;
-                       STZ.B r_blaster_chargeState-$BA8     ;8198B5|645A    |000C02;
+                       STZ.B r_blaster_chargeState-$BA8     ;8198B3|645B    |000C03;
+                       STZ.B r_blaster_chargeValue-$BA8     ;8198B5|645A    |000C02;
                        RTS                                  ;8198B7|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3970,15 +3978,15 @@ spawnPlayerProjectile:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8198D8:
-                       STX.B $5B                            ;8198D8|865B    |000C03;
-                       STX.B r_blaster_chargeState-$BA8     ;8198DA|865A    |000C02;
+                       STX.B r_blaster_chargeState-$BA8     ;8198D8|865B    |000C03;
+                       STX.B r_blaster_chargeValue-$BA8     ;8198DA|865A    |000C02;
                        STY.B $82                            ;8198DC|8482    |000C2A;
                                                             ;      |        |      ;
           CODE_8198DE:
                        RTS                                  ;8198DE|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_8198DF:
+weaponChargeBEQ_testes:
                        LDA.B $02                            ;8198DF|A502    |000BAA;
                        CMP.B #$0E                           ;8198E1|C90E    |      ;
                        BEQ CODE_8198FB                      ;8198E3|F016    |8198FB;
@@ -4019,7 +4027,7 @@ spawnPlayerProjectile:
                        SEP #$30                             ;819928|E230    |      ;
                        JSR.W CODE_819F12                    ;81992A|20129F  |819F12;
                        LDA.B #$23                           ;81992D|A923    |      ;
-                       JSL.L CODE_8088CD                    ;81992F|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81992F|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_819933:
                        RTS                                  ;819933|60      |      ;
@@ -4161,7 +4169,7 @@ spawnPlayerProjectile:
                                                             ;      |        |      ;
           CODE_819A05:
                        LDX.B r_player_curWeapon-$BA8        ;819A05|A633    |000BDB;
-                       BIT.W r_1f86,X                       ;819A07|3C861F  |861F86;
+                       BIT.W r_player_tankEnergie_04,X      ;819A07|3C861F  |861F86;
                        BVS CODE_819A32                      ;819A0A|7026    |819A32;
                        BRA CODE_8199F9                      ;819A0C|80EB    |8199F9;
                                                             ;      |        |      ;
@@ -4190,7 +4198,7 @@ spawnPlayerProjectile:
                        INC.B r_player_curWeapon-$BA8        ;819A27|E633    |000BDB;
                        INC.B r_player_curWeapon-$BA8        ;819A29|E633    |000BDB;
                        LDX.B r_player_curWeapon-$BA8        ;819A2B|A633    |000BDB;
-                       BIT.W r_1f86,X                       ;819A2D|3C861F  |861F86;
+                       BIT.W r_player_tankEnergie_04,X      ;819A2D|3C861F  |861F86;
                        BVC CODE_819A21                      ;819A30|50EF    |819A21;
                                                             ;      |        |      ;
           CODE_819A32:
@@ -4305,7 +4313,7 @@ spawnPlayerProjectile:
                        JSL.L CODE_8282D3                    ;819AE9|22D38282|8282D3;
                        BNE CODE_819B2A                      ;819AED|D03B    |819B2A;
                        LDA.B #$2E                           ;819AEF|A92E    |      ;
-                       JSL.L CODE_8088CD                    ;819AF1|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;819AF1|22CD8880|8088CD;
                        INC.W r_0000,X                       ;819AF5|FE0000  |860000;
                        LDA.B #$0C                           ;819AF8|A90C    |      ;
                        STA.W r_000a,X                       ;819AFA|9D0A00  |86000A;
@@ -4357,13 +4365,13 @@ spawnPlayerProjectile:
                        LDA.B #$02                           ;819B4B|A902    |      ;
                        STA.W r_000b,X                       ;819B4D|9D0B00  |86000B;
                        REP #$21                             ;819B50|C221    |      ;
-                       JSL.L CODE_849086                    ;819B52|22869084|849086;
+                       JSL.L mainPlayer_00                  ;819B52|22869084|849086;
                        AND.W #$000F                         ;819B56|290F00  |      ;
                        ADC.B r_player_xSubPos-$BA8          ;819B59|6505    |000BAD;
                        SEC                                  ;819B5B|38      |      ;
                        SBC.W #$0008                         ;819B5C|E90800  |      ;
                        STA.W r_0005,X                       ;819B5F|9D0500  |860005;
-                       JSL.L CODE_849086                    ;819B62|22869084|849086;
+                       JSL.L mainPlayer_00                  ;819B62|22869084|849086;
                        AND.W #$0007                         ;819B66|290700  |      ;
                        CLC                                  ;819B69|18      |      ;
                        ADC.B r_player_yPos-$BA8             ;819B6A|6508    |000BB0;
@@ -4441,7 +4449,7 @@ spawnPlayerProjectile:
                        LDA.B r_player_yPos-$BA8             ;819BEC|A508    |000BB0;
                        ADC.W #$000C                         ;819BEE|690C00  |      ;
                        STA.W r_0008,X                       ;819BF1|9D0800  |860008;
-                       JSL.L CODE_849086                    ;819BF4|22869084|849086;
+                       JSL.L mainPlayer_00                  ;819BF4|22869084|849086;
                        AND.W #$0003                         ;819BF8|290300  |      ;
                        STA.W r_0000                         ;819BFB|8D0000  |860000;
                        LDA.W #$000C                         ;819BFE|A90C00  |      ;
@@ -4800,7 +4808,7 @@ spawnPlayerProjectile:
                        RTS                                  ;819E3D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_819E3E:
+weaponChargeRoutine_00:
                        JSL.L CODE_8282ED                    ;819E3E|22ED8282|8282ED;
                        BNE CODE_819E4C                      ;819E42|D008    |819E4C;
                        DEC.W r_0000,X                       ;819E44|DE0000  |860000;
@@ -4906,7 +4914,7 @@ spawnPlayerProjectile:
                        JSL.L CODE_80B8C1                    ;819F00|22C1B880|80B8C1;
                        SEP #$20                             ;819F04|E220    |      ;
                        LDA.B #$23                           ;819F06|A923    |      ;
-                       JSL.L CODE_8088CD                    ;819F08|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;819F08|22CD8880|8088CD;
                        JSR.W CODE_819F18                    ;819F0C|20189F  |819F18;
                        REP #$20                             ;819F0F|C220    |      ;
                        RTS                                  ;819F11|60      |      ;
@@ -4936,7 +4944,7 @@ spawnPlayerProjectile:
                        INC.W r_0000,X                       ;819F2A|FE0000  |860000;
                        LDA.B #$2B                           ;819F2D|A92B    |      ;
                        STA.W r_000a,X                       ;819F2F|9D0A00  |86000A;
-                       JSL.L CODE_849086                    ;819F32|22869084|849086;
+                       JSL.L mainPlayer_00                  ;819F32|22869084|849086;
                        AND.B #$03                           ;819F36|2903    |      ;
                        CLC                                  ;819F38|18      |      ;
                        STA.W r_0000                         ;819F39|8D0000  |860000;
@@ -4983,12 +4991,12 @@ spawnPlayerProjectile:
                        STA.W r_0005,X                       ;819F8A|9D0500  |860005;
                        LDA.W #$0030                         ;819F8D|A93000  |      ;
                        STA.W r_001e,X                       ;819F90|9D1E00  |86001E;
-                       JSL.L CODE_849086                    ;819F93|22869084|849086;
+                       JSL.L mainPlayer_00                  ;819F93|22869084|849086;
                        AND.W #$000C                         ;819F97|290C00  |      ;
                        TAY                                  ;819F9A|A8      |      ;
                        LDA.W DATA8_86CE69,Y                 ;819F9B|B969CE  |86CE69;
                        STA.W r_001a,X                       ;819F9E|9D1A00  |86001A;
-                       JSL.L CODE_849086                    ;819FA1|22869084|849086;
+                       JSL.L mainPlayer_00                  ;819FA1|22869084|849086;
                        AND.W #$000C                         ;819FA5|290C00  |      ;
                        TAY                                  ;819FA8|A8      |      ;
                        LDA.W DATA8_86CE71,Y                 ;819FA9|B971CE  |86CE71;
@@ -5038,7 +5046,7 @@ spawnPlayerProjectile:
                        BEQ CODE_81A003                      ;819FEB|F016    |81A003;
                        LDA.B $7D                            ;819FED|A57D    |000C25;
                        BNE CODE_81A003                      ;819FEF|D012    |81A003;
-                       LDA.B $5B                            ;819FF1|A55B    |000C03;
+                       LDA.B r_blaster_chargeState-$BA8     ;819FF1|A55B    |000C03;
                        CMP.B #$01                           ;819FF3|C901    |      ;
                        BEQ CODE_81A003                      ;819FF5|F00C    |81A003;
                        DEC.B $78                            ;819FF7|C678    |000C20;
@@ -5086,7 +5094,7 @@ spawnPlayerProjectile:
                        BMI CODE_81A033                      ;81A02D|3004    |81A033;
                                                             ;      |        |      ;
           CODE_81A02F:
-                       JSL.L CODE_8088CD                    ;81A02F|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81A02F|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_81A033:
                        REP #$10                             ;81A033|C210    |      ;
@@ -6666,9 +6674,9 @@ playerSub_ram7f_state00:
                        INC A                                ;81A9F5|1A      |      ;
                                                             ;      |        |      ;
           CODE_81A9F6:
-                       STA.W $4204                          ;81A9F6|8D0442  |864204;
+                       STA.W WRDIVL                         ;81A9F6|8D0442  |864204;
                        LDX.B #$06                           ;81A9F9|A206    |      ;
-                       STX.W $4206                          ;81A9FB|8E0642  |864206;
+                       STX.W WRDIVB                         ;81A9FB|8E0642  |864206;
                        LDA.B $08                            ;81A9FE|A508    |001430;
                        SEC                                  ;81AA00|38      |      ;
                        SBC.W r_0002                         ;81AA01|ED0200  |860002;
@@ -6679,11 +6687,11 @@ playerSub_ram7f_state00:
           CODE_81AA0A:
                        STA.W r_0006                         ;81AA0A|8D0600  |860006;
                        NOP                                  ;81AA0D|EA      |      ;
-                       LDA.W $4214                          ;81AA0E|AD1442  |864214;
+                       LDA.W RDDIVL                         ;81AA0E|AD1442  |864214;
                        STA.W r_0004                         ;81AA11|8D0400  |860004;
                        LDA.W r_0006                         ;81AA14|AD0600  |860006;
-                       STA.W $4204                          ;81AA17|8D0442  |864204;
-                       STX.W $4206                          ;81AA1A|8E0642  |864206;
+                       STA.W WRDIVL                         ;81AA17|8D0442  |864204;
+                       STX.W WRDIVB                         ;81AA1A|8E0642  |864206;
                        REP #$10                             ;81AA1D|C210    |      ;
                        LDX.W #$0000                         ;81AA1F|A20000  |      ;
                        LDA.B $05                            ;81AA22|A505    |00142D;
@@ -6703,7 +6711,7 @@ playerSub_ram7f_state00:
                        STA.W r_0008                         ;81AA3C|8D0800  |860008;
                                                             ;      |        |      ;
           CODE_81AA3F:
-                       LDA.W $4214                          ;81AA3F|AD1442  |864214;
+                       LDA.W RDDIVL                         ;81AA3F|AD1442  |864214;
                        STA.W r_0006                         ;81AA42|8D0600  |860006;
                        LDA.B $08                            ;81AA45|A508    |001430;
                        CMP.W r_0002                         ;81AA47|CD0200  |860002;
@@ -6978,7 +6986,7 @@ playerSub_ram7f_state00:
                        STX.B $20                            ;81AC40|8620    |001448;
                        SEP #$10                             ;81AC42|E210    |      ;
                        STZ.B $38                            ;81AC44|6438    |001460;
-                       JSL.L CODE_849086                    ;81AC46|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81AC46|22869084|849086;
                        CMP.B #$0A                           ;81AC4A|C90A    |      ;
                        BNE CODE_81AC52                      ;81AC4C|D004    |81AC52;
                        db $A9,$03,$85,$38                   ;81AC4E|        |      ;
@@ -7710,7 +7718,7 @@ playerSub_ram7f_state00:
                        STA.B $1C                            ;81B427|851C    |001484;
                        LDA.W #$C2D1                         ;81B429|A9D1C2  |      ;
                        STA.B $20                            ;81B42C|8520    |001488;
-                       JSL.L CODE_849086                    ;81B42E|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81B42E|22869084|849086;
                        AND.W #$0003                         ;81B432|290300  |      ;
                        BNE CODE_81B441                      ;81B435|D00A    |81B441;
                        LDA.B $1A                            ;81B437|A51A    |001482;
@@ -7969,7 +7977,7 @@ eventID_chillPingu_01_main:
                        LSR A                                ;81B5F2|4A      |      ;
                        BCC CODE_81B61D                      ;81B5F3|9028    |81B61D;
                        LDA.B #$0C                           ;81B5F5|A90C    |      ;
-                       JSL.L CODE_8088CD                    ;81B5F7|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81B5F7|22CD8880|8088CD;
                        LDA.B r_ev_27_health-$E68            ;81B5FB|A527    |000E8F;
                        INC A                                ;81B5FD|1A      |      ;
                        ORA.B #$80                           ;81B5FE|0980    |      ;
@@ -8902,7 +8910,7 @@ eventID_chillPingu_01_main:
                        SEP #$20                             ;81BC2B|E220    |      ;
                        LDA.B #$0A                           ;81BC2D|A90A    |      ;
                        JSL.L playerGrabedRoutine            ;81BC2F|22078F84|848F07;
-                       JSL.L CODE_849086                    ;81BC33|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81BC33|22869084|849086;
                        AND.B #$0F                           ;81BC37|290F    |      ;
                        CMP.B #$0A                           ;81BC39|C90A    |      ;
                        BCS CODE_81BC42                      ;81BC3B|B005    |81BC42;
@@ -9387,7 +9395,7 @@ eventID_chillPingu_01_main:
                        CLC                                  ;81BFD7|18      |      ;
                        ADC.B $08                            ;81BFD8|6508    |001950;
                        STA.W r_0008,X                       ;81BFDA|9D0800  |860008;
-                       JSL.L CODE_849086                    ;81BFDD|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81BFDD|22869084|849086;
                        AND.W #$01FF                         ;81BFE1|29FF01  |      ;
                        CLC                                  ;81BFE4|18      |      ;
                        ADC.W #$0080                         ;81BFE5|698000  |      ;
@@ -9402,7 +9410,7 @@ eventID_chillPingu_01_main:
                                                             ;      |        |      ;
           CODE_81BFF5:
                        STA.W r_001a,X                       ;81BFF5|9D1A00  |86001A;
-                       JSL.L CODE_849086                    ;81BFF8|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81BFF8|22869084|849086;
                        AND.W #$03FF                         ;81BFFC|29FF03  |      ;
                        PHA                                  ;81BFFF|48      |      ;
                        LDA.W r_0000                         ;81C000|AD0000  |860000;
@@ -9430,7 +9438,7 @@ eventID_chillPingu_01_main:
                        ASL A                                ;81C01C|0A      |      ;
                        ASL A                                ;81C01D|0A      |      ;
                        STA.W r_0000                         ;81C01E|8D0000  |860000;
-                       JSL.L CODE_849086                    ;81C021|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81C021|22869084|849086;
                        AND.B #$0F                           ;81C025|290F    |      ;
                        CLC                                  ;81C027|18      |      ;
                        ADC.W r_0000                         ;81C028|6D0000  |860000;
@@ -9693,11 +9701,11 @@ eventID_flamingle_03_main:
                        JSL.L CODE_84A384                    ;81C1B0|2284A384|84A384;
                        JSL.L CODE_84A4B5                    ;81C1B4|22B5A484|84A4B5;
                        REP #$21                             ;81C1B8|C221    |      ;
-                       JSL.L CODE_849086                    ;81C1BA|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81C1BA|22869084|849086;
                        AND.W #$0003                         ;81C1BE|290300  |      ;
                        ASL A                                ;81C1C1|0A      |      ;
                        TAX                                  ;81C1C2|AA      |      ;
-                       JSL.L CODE_849086                    ;81C1C3|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81C1C3|22869084|849086;
                        AND.W #$0003                         ;81C1C7|290300  |      ;
                        ASL A                                ;81C1CA|0A      |      ;
                        TAY                                  ;81C1CB|A8      |      ;
@@ -10170,7 +10178,7 @@ eventID_planty_06_main:
                        LSR A                                ;81C4FD|4A      |      ;
                        BCC CODE_81C515                      ;81C4FE|9015    |81C515;
                        LDA.B #$0C                           ;81C500|A90C    |      ;
-                       JSL.L CODE_8088CD                    ;81C502|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81C502|22CD8880|8088CD;
                        LDA.B r_ev_27_health-$E68            ;81C506|A527    |000E8F;
                        AND.B #$7F                           ;81C508|297F    |      ;
                        INC A                                ;81C50A|1A      |      ;
@@ -10308,7 +10316,7 @@ eventID_planty_06_main:
                        db $8E,$C6                           ;81C5FA|        |00A9C6;
                        LDA.B #$02                           ;81C5FC|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;81C5FE|8503    |000E6B;
-                       JSL.L CODE_849086                    ;81C600|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81C600|22869084|849086;
                        AND.B #$03                           ;81C604|2903    |      ;
                        ASL A                                ;81C606|0A      |      ;
                        TAX                                  ;81C607|AA      |      ;
@@ -10417,9 +10425,9 @@ eventID_planty_06_main:
           CODE_81C6CA:
                        XBA                                  ;81C6CA|EB      |      ;
                        AND.W #$FF00                         ;81C6CB|2900FF  |      ;
-                       STA.W $4204                          ;81C6CE|8D0442  |864204;
+                       STA.W WRDIVL                         ;81C6CE|8D0442  |864204;
                        LDA.W #$002A                         ;81C6D1|A92A00  |      ;
-                       STA.W $4206                          ;81C6D4|8D0642  |864206;
+                       STA.W WRDIVB                         ;81C6D4|8D0642  |864206;
                        LDA.W #$0720                         ;81C6D7|A92007  |      ;
                        STA.B r_ev_1c_ySpdSub-$E68           ;81C6DA|851C    |000E84;
                        LDX.B #$2C                           ;81C6DC|A22C    |      ;
@@ -10428,7 +10436,7 @@ eventID_planty_06_main:
                        LDA.B r_ev_10-$E68                   ;81C6E1|A510    |000E78;
                        ASL A                                ;81C6E3|0A      |      ;
                        ASL A                                ;81C6E4|0A      |      ;
-                       LDA.W $4214                          ;81C6E5|AD1442  |864214;
+                       LDA.W RDDIVL                         ;81C6E5|AD1442  |864214;
                        BCS CODE_81C6EE                      ;81C6E8|B004    |81C6EE;
                        EOR.W #$FFFF                         ;81C6EA|49FFFF  |      ;
                        INC A                                ;81C6ED|1A      |      ;
@@ -10588,7 +10596,7 @@ eventID_planty_06_main:
                        ORA.B #$80                           ;81C81A|0980    |      ;
                        STA.B r_ev_27_health-$E68            ;81C81C|8527    |000E8F;
                        LDA.B #$4F                           ;81C81E|A94F    |      ;
-                       JSL.L CODE_8088CD                    ;81C820|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81C820|22CD8880|8088CD;
                        LDA.B #$20                           ;81C824|A920    |      ;
                        STA.B r_ev_3b-$E68                   ;81C826|853B    |000EA3;
                                                             ;      |        |      ;
@@ -10899,7 +10907,7 @@ eventID_planty_06_main:
                                                             ;      |        |      ;
           CODE_81CA31:
                        STA.B r_ev_37-$E68                   ;81CA31|8537    |000E9F;
-                       JSL.L CODE_849086                    ;81CA33|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81CA33|22869084|849086;
                        AND.B #$1F                           ;81CA37|291F    |      ;
                        CLC                                  ;81CA39|18      |      ;
                        ADC.B r_ev_37-$E68                   ;81CA3A|6537    |000E9F;
@@ -11078,7 +11086,7 @@ eventID_lunchOctopus_07_main:
                        ASL A                                ;81CB54|0A      |      ;
                        TAX                                  ;81CB55|AA      |      ;
                        REP #$20                             ;81CB56|C220    |      ;
-                       LDA.W $EE37,X                        ;81CB58|BD37EE  |86EE37;
+                       LDA.W DATA8_86EE37,X                 ;81CB58|BD37EE  |86EE37;
                        STA.B $1A                            ;81CB5B|851A    |000F82;
                        LDA.W DATA8_86EE39,X                 ;81CB5D|BD39EE  |86EE39;
                        STA.B $1C                            ;81CB60|851C    |000F84;
@@ -11115,7 +11123,7 @@ eventID_lunchOctopus_07_main:
                        ASL A                                ;81CB93|0A      |      ;
                        TAX                                  ;81CB94|AA      |      ;
                        REP #$20                             ;81CB95|C220    |      ;
-                       LDA.W $EE37,X                        ;81CB97|BD37EE  |86EE37;
+                       LDA.W DATA8_86EE37,X                 ;81CB97|BD37EE  |86EE37;
                        STA.B $1A                            ;81CB9A|851A    |000EC2;
                        LDA.W DATA8_86EE39,X                 ;81CB9C|BD39EE  |86EE39;
                        STA.B $1C                            ;81CB9F|851C    |000EC4;
@@ -13219,7 +13227,7 @@ roadAttacker_11_state_00:
                        ADC.W #$FFF4                         ;81DCAE|69F4FF  |      ;
                        STA.W r_0008,X                       ;81DCB1|9D0800  |860008;
                        SEP #$20                             ;81DCB4|E220    |      ;
-                       JSL.L CODE_849086                    ;81DCB6|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81DCB6|22869084|849086;
                        AND.B #$0F                           ;81DCBA|290F    |      ;
                        XBA                                  ;81DCBC|EB      |      ;
                        LDA.B #$00                           ;81DCBD|A900    |      ;
@@ -13796,7 +13804,7 @@ roadAttacker_11_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81E062:
-                       LDA.W r_1f86,Y                       ;81E062|B9861F  |861F86;
+                       LDA.W r_player_tankEnergie_04,Y      ;81E062|B9861F  |861F86;
                        AND.B #$3F                           ;81E065|293F    |      ;
                        CMP.B #$1C                           ;81E067|C91C    |      ;
                        BEQ CODE_81E05A                      ;81E069|F0EF    |81E05A;
@@ -13827,7 +13835,7 @@ roadAttacker_11_state_00:
                        STA.B $26                            ;81E0A2|8526    |00167E;
                        LDY.W r_d_0bdb                       ;81E0A4|ACDB0B  |860BDB;
                        REP #$21                             ;81E0A7|C221    |      ;
-                       LDA.W r_1f85,Y                       ;81E0A9|B9851F  |861F85;
+                       LDA.W r_player_tankEnergie_03,Y      ;81E0A9|B9851F  |861F85;
                        AND.W #$3FFF                         ;81E0AC|29FF3F  |      ;
                        ADC.W #$0100                         ;81E0AF|690001  |      ;
                        CMP.W #$1C00                         ;81E0B2|C9001C  |      ;
@@ -13846,10 +13854,10 @@ roadAttacker_11_state_00:
                                                             ;      |        |      ;
           CODE_81E0CB:
                        ORA.W #$C000                         ;81E0CB|0900C0  |      ;
-                       STA.W r_1f85,Y                       ;81E0CE|99851F  |861F85;
+                       STA.W r_player_tankEnergie_03,Y      ;81E0CE|99851F  |861F85;
                        SEP #$20                             ;81E0D1|E220    |      ;
                        LDA.B #$0C                           ;81E0D3|A90C    |      ;
-                       JSL.L CODE_8088CD                    ;81E0D5|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81E0D5|22CD8880|8088CD;
                        DEC.B $27                            ;81E0D9|C627    |00167F;
                        BNE CODE_81E0E1                      ;81E0DB|D004    |81E0E1;
                                                             ;      |        |      ;
@@ -13903,7 +13911,7 @@ roadAttacker_11_state_00:
                        LDX.B #$02                           ;81E129|A202    |      ;
                                                             ;      |        |      ;
           CODE_81E12B:
-                       LDA.W r_1f85,X                       ;81E12B|BD851F  |861F85;
+                       LDA.W r_player_tankEnergie_03,X      ;81E12B|BD851F  |861F85;
                        BIT.W #$4000                         ;81E12E|890040  |      ;
                        BEQ CODE_81E163                      ;81E131|F030    |81E163;
                        AND.W #$3FFF                         ;81E133|29FF3F  |      ;
@@ -13922,9 +13930,9 @@ roadAttacker_11_state_00:
                                                             ;      |        |      ;
           CODE_81E151:
                        ORA.W #$C000                         ;81E151|0900C0  |      ;
-                       STA.W r_1f85,X                       ;81E154|9D851F  |861F85;
+                       STA.W r_player_tankEnergie_03,X      ;81E154|9D851F  |861F85;
                        LDA.W #$000D                         ;81E157|A90D00  |      ;
-                       JSL.L CODE_8088CD                    ;81E15A|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81E15A|22CD8880|8088CD;
                        LDA.W r_0002                         ;81E15E|AD0200  |860002;
                        BEQ CODE_81E169                      ;81E161|F006    |81E169;
                                                             ;      |        |      ;
@@ -14375,7 +14383,7 @@ roadAttacker_11_state_00:
                                                             ;      |        |      ;
           CODE_81E4AD:
                        LDA.B #$28                           ;81E4AD|A928    |      ;
-                       JSL.L CODE_8088CD                    ;81E4AF|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81E4AF|22CD8880|8088CD;
                        INC.W r_player_life                  ;81E4B3|EE801F  |861F80;
                                                             ;      |        |      ;
           CODE_81E4B6:
@@ -14582,10 +14590,10 @@ roadAttacker_11_state_00:
                        LDX.B #$00                           ;81E64A|A200    |      ;
                                                             ;      |        |      ;
           CODE_81E64C:
-                       LDA.W r_1f83,X                       ;81E64C|BD831F  |861F83;
+                       LDA.W r_player_tankEnergie_01,X      ;81E64C|BD831F  |861F83;
                        BMI CODE_81E65D                      ;81E64F|300C    |81E65D;
                        LDA.B #$80                           ;81E651|A980    |      ;
-                       STA.W r_1f83,X                       ;81E653|9D831F  |861F83;
+                       STA.W r_player_tankEnergie_01,X      ;81E653|9D831F  |861F83;
                        LDA.B $0B                            ;81E656|A50B    |001873;
                        TSB.W r_player_upgradeMask           ;81E658|0C991F  |861F99;
                        BRA CODE_81E667                      ;81E65B|800A    |81E667;
@@ -14617,7 +14625,7 @@ roadAttacker_11_state_00:
                        LDA.B #$50                           ;81E68A|A950    |      ;
                        STA.B $27                            ;81E68C|8527    |00188F;
                        LDA.B #$29                           ;81E68E|A929    |      ;
-                       JSL.L CODE_8088CD                    ;81E690|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81E690|22CD8880|8088CD;
                        RTS                                  ;81E694|60      |      ;
                                                             ;      |        |      ;
                        DEC.B $27                            ;81E695|C627    |00188F;
@@ -14739,7 +14747,7 @@ roadAttacker_11_state_00:
                        AND.B #$7F                           ;81E785|297F    |      ;
                        BEQ CODE_81E78F                      ;81E787|F006    |81E78F;
                        LDA.B #$40                           ;81E789|A940    |      ;
-                       JSL.L CODE_8088CD                    ;81E78B|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81E78B|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_81E78F:
                        LDA.B $0F                            ;81E78F|A50F    |001637;
@@ -14790,7 +14798,7 @@ roadAttacker_11_state_00:
                        LDA.B $0B                            ;81E7F2|A50B    |001633;
                        BPL CODE_81E7FD                      ;81E7F4|1007    |81E7FD;
                        LDA.B #$41                           ;81E7F6|A941    |      ;
-                       JSL.L CODE_8088CD                    ;81E7F8|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81E7F8|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_81E7FC:
                        RTS                                  ;81E7FC|60      |      ;
@@ -14798,7 +14806,7 @@ roadAttacker_11_state_00:
                                                             ;      |        |      ;
           CODE_81E7FD:
                        LDA.B #$40                           ;81E7FD|A940    |      ;
-                       JSL.L CODE_8088CD                    ;81E7FF|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81E7FF|22CD8880|8088CD;
                        RTS                                  ;81E803|60      |      ;
                                                             ;      |        |      ;
                        JSL.L updateEv_13_14_17_0f           ;81E804|22EA8E84|848EEA;
@@ -15187,7 +15195,7 @@ roadAttacker_11_state_00:
                        LDA.B #$50                           ;81EB22|A950    |      ;
                        STA.B $27                            ;81EB24|8527    |00167F;
                        LDA.B #$29                           ;81EB26|A929    |      ;
-                       JSL.L CODE_8088CD                    ;81EB28|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81EB28|22CD8880|8088CD;
                        RTL                                  ;81EB2C|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15223,7 +15231,7 @@ roadAttacker_11_state_00:
                        LDA.B #$80                           ;81EB5D|A980    |      ;
                        TSB.W r_d_0bcf                       ;81EB5F|0CCF0B  |860BCF;
                        LDA.B #$0C                           ;81EB62|A90C    |      ;
-                       JSL.L CODE_8088CD                    ;81EB64|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81EB64|22CD8880|8088CD;
                        DEC.B $27                            ;81EB68|C627    |00167F;
                        BNE CODE_81EB70                      ;81EB6A|D004    |81EB70;
                                                             ;      |        |      ;
@@ -15330,7 +15338,7 @@ roadAttacker_11_state_00:
                        AND.B #$7F                           ;81EC13|297F    |      ;
                        BEQ CODE_81EC1D                      ;81EC15|F006    |81EC1D;
                        LDA.B #$40                           ;81EC17|A940    |      ;
-                       JSL.L CODE_8088CD                    ;81EC19|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81EC19|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_81EC1D:
                        LDA.B $0F                            ;81EC1D|A50F    |001667;
@@ -15348,7 +15356,7 @@ roadAttacker_11_state_00:
                        LDA.B #$08                           ;81EC2B|A908    |      ;
                        STA.B $01                            ;81EC2D|8501    |001659;
                        LDA.B #$40                           ;81EC2F|A940    |      ;
-                       JSL.L CODE_8088CD                    ;81EC31|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81EC31|22CD8880|8088CD;
                        RTS                                  ;81EC35|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16036,7 +16044,7 @@ roadAttacker_11_state_00:
                        LDA.W #$0000                         ;81F1C8|A90000  |      ;
                        TCD                                  ;81F1CB|5B      |      ;
                        JSL.L CODE_849156                    ;81F1CC|22569184|849156;
-                       LDA.L $7E2000,X                      ;81F1D0|BF00207E|7E2000;
+                       LDA.L blockMap,X                     ;81F1D0|BF00207E|7E2000;
                        TAY                                  ;81F1D4|A8      |      ;
                        LDA.W r_0b92                         ;81F1D5|AD920B  |860B92;
                        STA.B $10                            ;81F1D8|8510    |000010;
@@ -16118,9 +16126,9 @@ roadAttacker_11_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_81F252:
-                       STA.W $4204                          ;81F252|8D0442  |864204;
+                       STA.W WRDIVL                         ;81F252|8D0442  |864204;
                        LDX.B #$0A                           ;81F255|A20A    |      ;
-                       STX.W $4206                          ;81F257|8E0642  |864206;
+                       STX.W WRDIVB                         ;81F257|8E0642  |864206;
                        REP #$10                             ;81F25A|C210    |      ;
                        LDX.B $0C                            ;81F25C|A60C    |001994;
                        LDA.B $10                            ;81F25E|A510    |001998;
@@ -16141,7 +16149,7 @@ roadAttacker_11_state_00:
                        LDA.B $10                            ;81F272|A510    |001998;
                        ASL A                                ;81F274|0A      |      ;
                        ASL A                                ;81F275|0A      |      ;
-                       LDA.W $4214                          ;81F276|AD1442  |864214;
+                       LDA.W RDDIVL                         ;81F276|AD1442  |864214;
                        BCS CODE_81F285                      ;81F279|B00A    |81F285;
                        TAX                                  ;81F27B|AA      |      ;
                        LDA.B $1C                            ;81F27C|A51C    |0019A4;
@@ -16163,7 +16171,7 @@ roadAttacker_11_state_00:
                                                             ;      |        |      ;
           CODE_81F290:
                        REP #$20                             ;81F290|C220    |      ;
-                       JSL.L CODE_849086                    ;81F292|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81F292|22869084|849086;
                        AND.W #$07FF                         ;81F296|29FF07  |      ;
                        LSR A                                ;81F299|4A      |      ;
                        BCC CODE_81F2A0                      ;81F29A|9004    |81F2A0;
@@ -16172,7 +16180,7 @@ roadAttacker_11_state_00:
                                                             ;      |        |      ;
           CODE_81F2A0:
                        STA.B $1A                            ;81F2A0|851A    |00001A;
-                       JSL.L CODE_849086                    ;81F2A2|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81F2A2|22869084|849086;
                        AND.W #$07FF                         ;81F2A6|29FF07  |      ;
                        STA.B $1C                            ;81F2A9|851C    |00001C;
                        SEP #$20                             ;81F2AB|E220    |      ;
@@ -16239,7 +16247,7 @@ roadAttacker_11_state_00:
                        ASL A                                ;81F30E|0A      |      ;
                        TAX                                  ;81F30F|AA      |      ;
                        REP #$20                             ;81F310|C220    |      ;
-                       LDA.W $EE37,X                        ;81F312|BD37EE  |86EE37;
+                       LDA.W DATA8_86EE37,X                 ;81F312|BD37EE  |86EE37;
                        ASL A                                ;81F315|0A      |      ;
                        STA.B $1A                            ;81F316|851A    |0019E2;
                        ASL A                                ;81F318|0A      |      ;
@@ -16272,7 +16280,7 @@ roadAttacker_11_state_00:
                        ASL A                                ;81F34F|0A      |      ;
                        TAX                                  ;81F350|AA      |      ;
                        REP #$20                             ;81F351|C220    |      ;
-                       LDA.W $EE37,X                        ;81F353|BD37EE  |86EE37;
+                       LDA.W DATA8_86EE37,X                 ;81F353|BD37EE  |86EE37;
                        ASL A                                ;81F356|0A      |      ;
                        STA.B $1A                            ;81F357|851A    |001AC2;
                        LDA.W DATA8_86EE39,X                 ;81F359|BD39EE  |86EE39;
@@ -16582,7 +16590,7 @@ roadAttacker_11_state_00:
                        AND.B #$0F                           ;81F556|290F    |      ;
                        BNE CODE_81F560                      ;81F558|D006    |81F560;
                        LDA.B #$75                           ;81F55A|A975    |      ;
-                       JSL.L CODE_8088CD                    ;81F55C|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81F55C|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_81F560:
                        JSL.L CODE_848F52                    ;81F560|22528F84|848F52;
@@ -16725,7 +16733,7 @@ roadAttacker_11_state_00:
                        LDA.B #$80                           ;81F662|A980    |      ;
                        STA.W r_000b,X                       ;81F664|9D0B00  |86000B;
                        REP #$21                             ;81F667|C221    |      ;
-                       JSL.L CODE_849086                    ;81F669|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81F669|22869084|849086;
                        AND.W #$0007                         ;81F66D|290700  |      ;
                        STA.W r_0000                         ;81F670|8D0000  |860000;
                        LDA.B $05                            ;81F673|A505    |00198D;
@@ -16734,7 +16742,7 @@ roadAttacker_11_state_00:
                        CLC                                  ;81F679|18      |      ;
                        ADC.W r_0000                         ;81F67A|6D0000  |860000;
                        STA.W r_0005,X                       ;81F67D|9D0500  |860005;
-                       JSL.L CODE_849086                    ;81F680|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81F680|22869084|849086;
                        AND.W #$003F                         ;81F684|293F00  |      ;
                        STA.W r_0000                         ;81F687|8D0000  |860000;
                        LDA.B $08                            ;81F68A|A508    |001990;
@@ -17563,7 +17571,7 @@ roadAttacker_11_state_00:
                        LDA.B $01                            ;81FE09|A501    |001D09;
                        BNE CODE_81FE1E                      ;81FE0B|D011    |81FE1E;
                        INC.B $01                            ;81FE0D|E601    |001D09;
-                       LDA.W r_1f81                         ;81FE0F|AD811F  |861F81;
+                       LDA.W r_player_checkpoint            ;81FE0F|AD811F  |861F81;
                        BEQ CODE_81FE18                      ;81FE12|F004    |81FE18;
                        db $5C,$98,$83,$82                   ;81FE14|        |828398;
                                                             ;      |        |      ;
@@ -17582,16 +17590,16 @@ roadAttacker_11_state_00:
                        INC.W r_0000,X                       ;81FE28|FE0000  |860000;
                        LDA.B #$03                           ;81FE2B|A903    |      ;
                        STA.W r_000a,X                       ;81FE2D|9D0A00  |86000A;
-                       JSL.L CODE_849086                    ;81FE30|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81FE30|22869084|849086;
                        AND.B #$3F                           ;81FE34|293F    |      ;
                        CLC                                  ;81FE36|18      |      ;
                        ADC.B #$10                           ;81FE37|6910    |      ;
                        STA.W r_000b,X                       ;81FE39|9D0B00  |86000B;
-                       JSL.L CODE_849086                    ;81FE3C|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81FE3C|22869084|849086;
                        AND.B #$7F                           ;81FE40|297F    |      ;
                        STA.W r_001c,X                       ;81FE42|9D1C00  |86001C;
                        STZ.W r_001d,X                       ;81FE45|9E1D00  |86001D;
-                       JSL.L CODE_849086                    ;81FE48|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81FE48|22869084|849086;
                        AND.B #$1F                           ;81FE4C|291F    |      ;
                        LSR A                                ;81FE4E|4A      |      ;
                        BCC CODE_81FE54                      ;81FE4F|9003    |81FE54;
@@ -17605,7 +17613,7 @@ roadAttacker_11_state_00:
                        LDA.B #$02                           ;81FE5A|A902    |      ;
                        STA.W r_0009,X                       ;81FE5C|9D0900  |860009;
                        REP #$20                             ;81FE5F|C220    |      ;
-                       JSL.L CODE_849086                    ;81FE61|22869084|849086;
+                       JSL.L mainPlayer_00                  ;81FE61|22869084|849086;
                        AND.W #$003F                         ;81FE65|293F00  |      ;
                        LSR A                                ;81FE68|4A      |      ;
                        BCC CODE_81FE6F                      ;81FE69|9004    |81FE6F;
@@ -17624,7 +17632,7 @@ roadAttacker_11_state_00:
                        DEC.B $0B                            ;81FE7B|C60B    |001D13;
                        BNE CODE_81FE89                      ;81FE7D|D00A    |81FE89;
                        LDA.B #$2F                           ;81FE7F|A92F    |      ;
-                       JSL.L CODE_8088CD                    ;81FE81|22CD8880|8088CD;
+                       JSL.L weaponChargeInit               ;81FE81|22CD8880|8088CD;
                        JML.L clearStates_00_02_0E           ;81FE85|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -17665,7 +17673,7 @@ roadAttacker_11_state_00:
                        INC.B $01                            ;81FF26|E601    |001D49;
                        LDA.B $0B                            ;81FF28|A50B    |001D53;
                        AND.B #$3F                           ;81FF2A|293F    |      ;
-                       CMP.W r_1f81                         ;81FF2C|CD811F  |861F81;
+                       CMP.W r_player_checkpoint            ;81FF2C|CD811F  |861F81;
                        BEQ CODE_81FF33                      ;81FF2F|F002    |81FF33;
                        BCS CODE_81FF37                      ;81FF31|B004    |81FF37;
                                                             ;      |        |      ;
@@ -17700,7 +17708,7 @@ roadAttacker_11_state_00:
                        BNE CODE_81FF65                      ;81FF58|D00B    |81FF65;
                        LDA.B $0B                            ;81FF5A|A50B    |001D53;
                        AND.B #$3F                           ;81FF5C|293F    |      ;
-                       STA.W r_1f81                         ;81FF5E|8D811F  |861F81;
+                       STA.W r_player_checkpoint            ;81FF5E|8D811F  |861F81;
                        JML.L clearStateIf_0cEqual           ;81FF61|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;

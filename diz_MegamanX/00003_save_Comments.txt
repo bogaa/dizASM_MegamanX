@@ -1,12 +1,13 @@
 <Comments>
+        <sys:Item Key="8421403" Value="set data bank 86" />
+        <sys:Item Key="8423629" Value="start charge and lunch weapon ?? " />
         <sys:Item Key="8426832" Value="load" />
-        <sys:Item Key="8426873" Value="loopD2_load" />
-        <sys:Item Key="8427341" Value="or main main lol" />
         <sys:Item Key="8432674" Value="Armpart value" />
         <sys:Item Key="8440018" Value="set this to 00 to remove the leg upgrade" />
         <sys:Item Key="8440036" Value="set this to 00 to remove the armor upgrade" />
         <sys:Item Key="8440049" Value=" set this to 00 to remove the arm upgrade" />
         <sys:Item Key="8440070" Value="set this to 00 to remove the head upgrade" />
+        <sys:Item Key="8441112" Value="discover loop" />
         <sys:Item Key="8450971" Value="curios what this is " />
         <sys:Item Key="8452534" Value="iron ball guy " />
         <sys:Item Key="8452589" Value="flame" />
@@ -22,7 +23,11 @@
         <sys:Item Key="8489787" Value="grabed" />
         <sys:Item Key="8491031" Value="unused?? " />
         <sys:Item Key="8492443" Value="makes armor show" />
+        <sys:Item Key="8493010" Value="chargeBlaster" />
         <sys:Item Key="8493021" Value="set this to 00 to remove the ability to charge special weapons" />
+        <sys:Item Key="8493130" Value="no charge " />
+        <sys:Item Key="8493145" Value="start charge " />
+        <sys:Item Key="8493194" Value="is charged ready to lunch" />
         <sys:Item Key="8493257" Value="set this to 00 to remove the ability to fire level 3/special weapon shots" />
         <sys:Item Key="8493311" Value="set this to 00 to remove the ability to break blocks with leg upgrade" />
         <sys:Item Key="8493335" Value="setting this to 00 will prevent blocks from breaking" />
@@ -61,6 +66,9 @@
         <sys:Item Key="8702185" Value="         from, one being a duplicate of the light blue" />
         <sys:Item Key="8702186" Value="        palette. The colors loop around C8 is the same" />
         <sys:Item Key="8702187" Value="       as C0, C1 is C9, etc." />
+        <sys:Item Key="8824818" Value="this is expanded in the editor and moved to ??" />
+        <sys:Item Key="8826094" Value="pointerData checkpoints??" />
+        <sys:Item Key="8842448" Value="cam lock data ?? " />
         <sys:Item Key="8843063" Value="offset where to find the damage value" />
         <sys:Item Key="8843133" Value="Buster Uncharged" />
         <sys:Item Key="8843134" Value="Buster Charge L.1" />
