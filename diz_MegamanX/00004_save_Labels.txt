@@ -2264,6 +2264,9 @@
         <sys:Item Key="8687750">
           <Value exs:type="ns1:Label" Name="mainPlayer_00" Comment="" />
         </sys:Item>
+        <sys:Item Key="8694493">
+          <Value exs:type="ns1:Label" Name="bossesLevelBasedChange" Comment="" />
+        </sys:Item>
         <sys:Item Key="8695367">
           <Value exs:type="ns1:Label" Name="eventID_slimVolt_02_main" Comment="" />
         </sys:Item>
@@ -15965,6 +15968,93 @@
         <sys:Item Key="8952814">
           <Value exs:type="ns1:Label" Name="sparkMandrill_31_state_00" Comment="" />
         </sys:Item>
+        <sys:Item Key="8952924">
+          <Value exs:type="ns1:Label" Name="sparkMandrill_31_state_01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8952929">
+          <Value exs:type="ns1:Label" Name="mandrill_action" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8952943">
+          <Value exs:type="ns1:Label" Name="mandrill_action_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8952964">
+          <Value exs:type="ns1:Label" Name="mandrill_action_01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953015">
+          <Value exs:type="ns1:Label" Name="mandrill_action_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953061">
+          <Value exs:type="ns1:Label" Name="mandrill_action_03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953093">
+          <Value exs:type="ns1:Label" Name="mandrill_action_04" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953109">
+          <Value exs:type="ns1:Label" Name="mandrill_action_05" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953148">
+          <Value exs:type="ns1:Label" Name="mandrill_action_06" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953198">
+          <Value exs:type="ns1:Label" Name="sparkMandrill_31_state_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953388">
+          <Value exs:type="ns1:Label" Name="mandrill_state2_jumping" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953405">
+          <Value exs:type="ns1:Label" Name="mandrill_state2_jumpNormal_do" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953636">
+          <Value exs:type="ns1:Label" Name="mandrill_does_jumpNormal" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953641">
+          <Value exs:type="ns1:Label" Name="mandrill_do_wire" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953655">
+          <Value exs:type="ns1:Label" Name="mandrill_do_wire_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953689">
+          <Value exs:type="ns1:Label" Name="mandrill_do_wire_01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953722">
+          <Value exs:type="ns1:Label" Name="mandrill_do_wire_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953741">
+          <Value exs:type="ns1:Label" Name="mandrill_do_wire_03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953858">
+          <Value exs:type="ns1:Label" Name="mandrill_do_wire_04" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953906">
+          <Value exs:type="ns1:Label" Name="mandrill_do_wire_05" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8953929">
+          <Value exs:type="ns1:Label" Name="mandrill_do_wire_06" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8954222">
+          <Value exs:type="ns1:Label" Name="mandrill_does" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8954227">
+          <Value exs:type="ns1:Label" Name="mandrill_do" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8954237">
+          <Value exs:type="ns1:Label" Name="mandrill_do_jumpNormal_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8954275">
+          <Value exs:type="ns1:Label" Name="mandrill_do_01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8954292">
+          <Value exs:type="ns1:Label" Name="mandrill_do_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8954340">
+          <Value exs:type="ns1:Label" Name="mandrill_do_03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8954363">
+          <Value exs:type="ns1:Label" Name="mandrill_do_04" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8954676">
+          <Value exs:type="ns1:Label" Name="sparkMandrill_31_state_03" Comment="" />
+        </sys:Item>
         <sys:Item Key="8954754">
           <Value exs:type="ns1:Label" Name="eventID_zero_33_main" Comment="" />
         </sys:Item>
@@ -16936,6 +17026,21 @@
         </sys:Item>
         <sys:Item Key="11204047">
           <Value exs:type="ns1:Label" Name="grafico__168" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11250400">
+          <Value exs:type="ns1:Label" Name="GFX_introLevelBG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11254080">
+          <Value exs:type="ns1:Label" Name="GFX_beeBlader" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11264224">
+          <Value exs:type="ns1:Label" Name="GFX_lvlBG" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11309056">
+          <Value exs:type="ns1:Label" Name="GFX_anglerge_Uboot" Comment="" />
+        </sys:Item>
+        <sys:Item Key="11370496">
+          <Value exs:type="ns1:Label" Name="GFX_mainSpriteMegaman" Comment="" />
         </sys:Item>
         <sys:Item Key="11509832">
           <Value exs:type="ns1:Label" Name="player_walkAnimCTRL" Comment="" />

@@ -4379,6 +4379,9 @@
                        CODE_00D24C = $00D24C                ;      |        |      ;
                        CODE_00D24E = $00D24E                ;      |        |      ;
                        LOOSE_OP_00D264 = $00D264            ;      |        |      ;
+                       LOOSE_OP_00D57D = $00D57D            ;      |        |      ;
+                       LOOSE_OP_00D57F = $00D57F            ;      |        |      ;
+                       CODE_00D585 = $00D585                ;      |        |      ;
                        LOOSE_OP_00EEB7 = $00EEB7            ;      |        |      ;
                        LOOSE_OP_00EEB9 = $00EEB9            ;      |        |      ;
                        LOOSE_OP_00F553 = $00F553            ;      |        |      ;

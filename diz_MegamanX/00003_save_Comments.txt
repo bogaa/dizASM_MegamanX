@@ -115,5 +115,7 @@
         <sys:Item Key="8886163" Value="01 with canon" />
         <sys:Item Key="8899222" Value="01 will make appear on the first visit with all the upgrades." />
         <sys:Item Key="8904592" Value="wrong bank??" />
+        <sys:Item Key="8953671" Value="jump " />
+        <sys:Item Key="8954263" Value="jump normal" />
       </Comments>
       

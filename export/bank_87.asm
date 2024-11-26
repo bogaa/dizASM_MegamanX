@@ -459,11 +459,14 @@
                        LDA.B ($0C),Y                        ;8782CE|B10C    |000D24;
                        STA.B $0B                            ;8782D0|850B    |000D23;
                        LDX.B $01                            ;8782D2|A601    |000D19;
-                       JMP.W (UNREACH_8782D7,X)             ;8782D4|7CD782  |8782D7;
+                       JMP.W (PTR16_8782D7,X)               ;8782D4|7CD782  |8782D7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_8782D7:
-                       db $DB,$82,$F3,$82                   ;8782D7|        |      ;
+         PTR16_8782D7:
+                       dw CODE_8782DB                       ;8782D7|        |8782DB;
+                       dw CODE_8782F3                       ;8782D9|        |8782F3;
+                                                            ;      |        |      ;
+          CODE_8782DB:
                        LDA.B #$02                           ;8782DB|A902    |      ;
                        STA.B $01                            ;8782DD|8501    |000D19;
                        INC.W r_1f31                         ;8782DF|EE311F  |861F31;
@@ -476,6 +479,8 @@
                        JSL.L playerGrabedRoutine            ;8782EE|22078F84|848F07;
                        RTL                                  ;8782F2|6B      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8782F3:
                        REP #$10                             ;8782F3|C210    |      ;
                        LDX.B $0C                            ;8782F5|A60C    |000D24;
                        LDA.W r_0000,X                       ;8782F7|BD0000  |860000;
@@ -513,15 +518,19 @@
                        AND.B #$7F                           ;87832C|297F    |      ;
                        BEQ CODE_878335                      ;87832E|F005    |878335;
                        LDX.B $01                            ;878330|A601    |0014A9;
-                       JMP.W (UNREACH_878339,X)             ;878332|7C3983  |878339;
+                       JMP.W (PTR16_878339,X)               ;878332|7C3983  |878339;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_878335:
                        JML.L clearStates_01_00_02_0E_2C     ;878335|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_878339:
-                       db $3F,$83,$E4,$83,$F9,$83           ;878339|        |83E483;
+         PTR16_878339:
+                       dw CODE_87833F                       ;878339|        |87833F;
+                       dw CODE_8783E4                       ;87833B|        |8783E4;
+                       dw CODE_8783F9                       ;87833D|        |8783F9;
+                                                            ;      |        |      ;
+          CODE_87833F:
                        LDA.L $7F8220                        ;87833F|AF20827F|7F8220;
                        STA.B $18                            ;878343|8518    |0014C0;
                        LDA.L $7F8320                        ;878345|AF20837F|7F8320;
@@ -600,6 +609,8 @@
                        STA.B $01                            ;8783DE|8501    |0014A9;
                        JML.L checkEventRange                ;8783E0|5CB48082|8280B4;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8783E4:
                        JSL.L CODE_8281E8                    ;8783E4|22E88182|8281E8;
                                                             ;      |        |      ;
           CODE_8783E8:
@@ -613,6 +624,8 @@
           CODE_8783F5:
                        JML.L clearStates_01_00_02_0E_2C     ;8783F5|5CA38382|8283A3;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_8783F9:
                        JSL.L CODE_82820A                    ;8783F9|220A8282|82820A;
                        BRA CODE_8783E8                      ;8783FD|80E9    |8783E8;
                                                             ;      |        |      ;
@@ -1450,7 +1463,7 @@ eventID_flammingle_04_main:
   flammingle_state_00:
                        LDA.B r_ev_02_action-$E68            ;878A8B|A502    |000E6A;
                        BNE CODE_878AAE                      ;878A8D|D01F    |878AAE;
-                       JSL.L CODE_84AADD                    ;878A8F|22DDAA84|84AADD;
+                       JSL.L bossesLevelBasedChange         ;878A8F|22DDAA84|84AADD;
                        BEQ CODE_878A99                      ;878A93|F004    |878A99;
                        JML.L clearStates_00_02_0E           ;878A95|5C988382|828398;
                                                             ;      |        |      ;
@@ -2627,7 +2640,7 @@ eventID_mammoth_0c_main:
   mammoth_0c_state_00:
                        LDA.B r_ev_02_action-$E68            ;8791BA|A502    |000E6A;
                        BNE CODE_879202                      ;8791BC|D044    |879202;
-                       JSL.L CODE_84AADD                    ;8791BE|22DDAA84|84AADD;
+                       JSL.L bossesLevelBasedChange         ;8791BE|22DDAA84|84AADD;
                        BEQ CODE_8791C8                      ;8791C2|F004    |8791C8;
                        JML.L clearStates_00_02_0E           ;8791C4|5C988382|828398;
                                                             ;      |        |      ;
@@ -13095,7 +13108,7 @@ stormEagle_52_state_00:
                        LDA.B r_ev_02_action-$E68            ;87D869|A502    |000E6A;
                        BNE CODE_87D888                      ;87D86B|D01B    |87D888;
                        INC.B r_ev_02_action-$E68            ;87D86D|E602    |000E6A;
-                       JSL.L CODE_84AADD                    ;87D86F|22DDAA84|84AADD;
+                       JSL.L bossesLevelBasedChange         ;87D86F|22DDAA84|84AADD;
                        BEQ CODE_87D879                      ;87D873|F004    |87D879;
                        JML.L clearStates_00_02_0E           ;87D875|5C988382|828398;
                                                             ;      |        |      ;

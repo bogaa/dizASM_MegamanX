@@ -263,19 +263,19 @@
                        PHP                                  ;828174|08      |      ;
                        REP #$20                             ;828175|C220    |      ;
                        SEC                                  ;828177|38      |      ;
-                       LDA.B $1E                            ;828178|A51E    |00001E;
+                       LDA.B r_ev_1e_weight-$E68            ;828178|A51E    |000E86;
                        AND.W #$00FF                         ;82817A|29FF00  |      ;
-                       SBC.B $1C                            ;82817D|E51C    |00001C;
+                       SBC.B r_ev_1c_ySpdSub-$E68           ;82817D|E51C    |000E84;
                        EOR.W #$FFFF                         ;82817F|49FFFF  |      ;
                        INC A                                ;828182|1A      |      ;
-                       STA.B $1C                            ;828183|851C    |00001C;
+                       STA.B r_ev_1c_ySpdSub-$E68           ;828183|851C    |000E84;
                        SEC                                  ;828185|38      |      ;
-                       LDA.B $1F                            ;828186|A51F    |00001F;
+                       LDA.B r_ev_1f-$E68                   ;828186|A51F    |000E87;
                        AND.W #$00FF                         ;828188|29FF00  |      ;
-                       SBC.B $1A                            ;82818B|E51A    |00001A;
+                       SBC.B r_ev_1a_xSpdSub-$E68           ;82818B|E51A    |000E82;
                        EOR.W #$FFFF                         ;82818D|49FFFF  |      ;
                        INC A                                ;828190|1A      |      ;
-                       STA.B $1A                            ;828191|851A    |00001A;
+                       STA.B r_ev_1a_xSpdSub-$E68           ;828191|851A    |000E82;
                        BRA CODE_82820B                      ;828193|8076    |82820B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -360,33 +360,33 @@
                                                             ;      |        |      ;
           CODE_82820B:
                        REP #$21                             ;82820B|C221    |      ;
-                       LDA.B $04                            ;82820D|A504    |000004;
-                       ADC.B $1A                            ;82820F|651A    |00001A;
-                       STA.B $04                            ;828211|8504    |000004;
+                       LDA.B r_ev_04_xSubPos-$E68           ;82820D|A504    |000E6C;
+                       ADC.B r_ev_1a_xSpdSub-$E68           ;82820F|651A    |000E82;
+                       STA.B r_ev_04_xSubPos-$E68           ;828211|8504    |000E6C;
                        SEP #$20                             ;828213|E220    |      ;
                        LDA.B #$00                           ;828215|A900    |      ;
-                       BIT.B $1B                            ;828217|241B    |00001B;
+                       BIT.B r_ev_1b_xSpd-$E68              ;828217|241B    |000E83;
                        BPL CODE_82821C                      ;828219|1001    |82821C;
                        DEC A                                ;82821B|3A      |      ;
                                                             ;      |        |      ;
           CODE_82821C:
-                       ADC.B $06                            ;82821C|6506    |000006;
-                       STA.B $06                            ;82821E|8506    |000006;
+                       ADC.B $06                            ;82821C|6506    |000E6E;
+                       STA.B $06                            ;82821E|8506    |000E6E;
                        REP #$20                             ;828220|C220    |      ;
                        SEC                                  ;828222|38      |      ;
-                       LDA.B $07                            ;828223|A507    |000007;
-                       SBC.B $1C                            ;828225|E51C    |00001C;
-                       STA.B $07                            ;828227|8507    |000007;
+                       LDA.B r_ev_07_ySubPos-$E68           ;828223|A507    |000E6F;
+                       SBC.B r_ev_1c_ySpdSub-$E68           ;828225|E51C    |000E84;
+                       STA.B r_ev_07_ySubPos-$E68           ;828227|8507    |000E6F;
                        SEP #$20                             ;828229|E220    |      ;
-                       STZ.W $0000                          ;82822B|9C0000  |000000;
-                       BIT.B $1D                            ;82822E|241D    |00001D;
+                       STZ.W r_0000                         ;82822B|9C0000  |860000;
+                       BIT.B r_ev_1d_ySpd-$E68              ;82822E|241D    |000E85;
                        BPL CODE_828235                      ;828230|1003    |828235;
-                       DEC.W $0000                          ;828232|CE0000  |000000;
+                       DEC.W r_0000                         ;828232|CE0000  |860000;
                                                             ;      |        |      ;
           CODE_828235:
-                       LDA.B $09                            ;828235|A509    |000009;
-                       SBC.W $0000                          ;828237|ED0000  |000000;
-                       STA.B $09                            ;82823A|8509    |000009;
+                       LDA.B $09                            ;828235|A509    |000E71;
+                       SBC.W r_0000                         ;828237|ED0000  |860000;
+                       STA.B $09                            ;82823A|8509    |000E71;
                        PLP                                  ;82823C|28      |      ;
                        RTL                                  ;82823D|6B      |      ;
                                                             ;      |        |      ;
@@ -14150,7 +14150,7 @@ prisonCapsule_63_state:
 prisonCapsule_63_state_00:
                        LDA.B r_ev_02_action-$E68            ;82DB8A|A502    |000E6A;
                        BNE CODE_82DBAD                      ;82DB8C|D01F    |82DBAD;
-                       JSL.L CODE_84AADD                    ;82DB8E|22DDAA84|84AADD;
+                       JSL.L bossesLevelBasedChange         ;82DB8E|22DDAA84|84AADD;
                        BEQ CODE_82DB98                      ;82DB92|F004    |82DB98;
                        JML.L clearStates_00_02_0E           ;82DB94|5C988382|828398;
                                                             ;      |        |      ;
@@ -14749,12 +14749,18 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82DF86:
                        LDX.B r_ev_02_action-$E68            ;82DF86|A602    |000E6A;
-                       JMP.W (UNREACH_82DF8B,X)             ;82DF88|7C8BDF  |82DF8B;
+                       JMP.W (PTR16_82DF8B,X)               ;82DF88|7C8BDF  |82DF8B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_82DF8B:
-                       db $97,$DF,$CB,$DF,$03,$E0,$3F,$E0   ;82DF8B|        |0000DF;
-                       db $85,$E0,$A1,$E0                   ;82DF93|        |0000E0;
+         PTR16_82DF8B:
+                       dw CODE_82DF97                       ;82DF8B|        |82DF97;
+                       dw CODE_82DFCB                       ;82DF8D|        |82DFCB;
+                       dw CODE_82E003                       ;82DF8F|        |82E003;
+                       dw CODE_82E03F                       ;82DF91|        |82E03F;
+                       dw CODE_82E085                       ;82DF93|        |82E085;
+                       dw CODE_82E0A1                       ;82DF95|        |82E0A1;
+                                                            ;      |        |      ;
+          CODE_82DF97:
                        LDA.B r_ev_35-$E68                   ;82DF97|A535    |000E9D;
                        BEQ CODE_82DFA5                      ;82DF99|F00A    |82DFA5;
                        LDA.B #$01                           ;82DF9B|A901    |      ;
@@ -14781,6 +14787,8 @@ prisonCapsule_63_state_00:
           CODE_82DFC7:
                        JML.L checkEventRange                ;82DFC7|5CB48082|8280B4;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82DFCB:
                        LDA.W r_frameCounter1                ;82DFCB|AD9C0B  |860B9C;
                        AND.B #$1F                           ;82DFCE|291F    |      ;
                        BNE CODE_82DFD8                      ;82DFD0|D006    |82DFD8;
@@ -14807,6 +14815,8 @@ prisonCapsule_63_state_00:
                        JSL.L checkEventRange                ;82DFFB|22B48082|8280B4;
                        JML.L CODE_84A4D0                    ;82DFFF|5CD0A484|84A4D0;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82E003:
                        LDA.B #$06                           ;82E003|A906    |      ;
                        STA.B r_ev_02_action-$E68            ;82E005|8502    |000E6A;
                        PHB                                  ;82E007|8B      |      ;
@@ -14832,6 +14842,8 @@ prisonCapsule_63_state_00:
                        STA.B r_ev_35-$E68                   ;82E039|8535    |000E9D;
                        JML.L checkEventRange                ;82E03B|5CB48082|8280B4;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82E03F:
                        LDA.W r_frameCounter1                ;82E03F|AD9C0B  |860B9C;
                        AND.B #$01                           ;82E042|2901    |      ;
                        BNE CODE_82E04E                      ;82E044|D008    |82E04E;
@@ -14872,6 +14884,8 @@ prisonCapsule_63_state_00:
                        JSR.W CODE_82E240                    ;82E07E|2040E2  |82E240;
                        JML.L checkEventRange                ;82E081|5CB48082|8280B4;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82E085:
                        LDA.W r_frameCounter1                ;82E085|AD9C0B  |860B9C;
                        AND.B #$01                           ;82E088|2901    |      ;
                        BNE CODE_82E0A0                      ;82E08A|D014    |82E0A0;
@@ -14887,6 +14901,8 @@ prisonCapsule_63_state_00:
           CODE_82E0A0:
                        RTL                                  ;82E0A0|6B      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82E0A1:
                        STZ.W r_bossDefeatInvFlag            ;82E0A1|9C0C1F  |861F0C;
                        STZ.W r_d_0bd8                       ;82E0A4|9CD80B  |860BD8;
                        JSL.L CODE_84A003                    ;82E0A7|2203A084|84A003;
@@ -14913,7 +14929,8 @@ prisonCapsule_63_state_00:
                        SEC                                  ;82E0D4|38      |      ;
                        SBC.B r_ev_08_yPos-$E68              ;82E0D5|E508    |000E70;
                        BCS CODE_82E0DD                      ;82E0D7|B004    |82E0DD;
-                       db $49,$FF,$FF,$1A                   ;82E0D9|        |      ;
+                       EOR.W #$FFFF                         ;82E0D9|49FFFF  |      ;
+                       INC A                                ;82E0DC|1A      |      ;
                                                             ;      |        |      ;
           CODE_82E0DD:
                        CMP.W #$0020                         ;82E0DD|C92000  |      ;

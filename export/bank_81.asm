@@ -7854,7 +7854,7 @@ eventID_chillPingu_01_main:
  chillPingu_state1_00:
                        LDA.B r_ev_02_action-$E68            ;81B523|A502    |000E6A;
                        BNE CODE_81B546                      ;81B525|D01F    |81B546;
-                       JSL.L CODE_84AADD                    ;81B527|22DDAA84|84AADD;
+                       JSL.L bossesLevelBasedChange         ;81B527|22DDAA84|84AADD;
                        BEQ CODE_81B531                      ;81B52B|F004    |81B531;
                        JML.L clearStates_00_02_0E           ;81B52D|5C988382|828398;
                                                             ;      |        |      ;
@@ -10077,7 +10077,7 @@ eventID_planty_06_main:
           CODE_81C440:
                        LDA.B r_ev_02_action-$E68            ;81C440|A502    |000E6A;
                        BNE CODE_81C463                      ;81C442|D01F    |81C463;
-                       JSL.L CODE_84AADD                    ;81C444|22DDAA84|84AADD;
+                       JSL.L bossesLevelBasedChange         ;81C444|22DDAA84|84AADD;
                        BEQ CODE_81C44E                      ;81C448|F004    |81C44E;
                        JML.L clearStates_00_02_0E           ;81C44A|5C988382|828398;
                                                             ;      |        |      ;

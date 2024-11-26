@@ -6719,7 +6719,7 @@ eventID_armadillo_14_main:
 armadillo_14_state_00:
                        LDA.B r_ev_02_action-$E68            ;83B151|A502    |000E6A;
                        BNE CODE_83B17A                      ;83B153|D025    |83B17A;
-                       JSL.L CODE_84AADD                    ;83B155|22DDAA84|84AADD;
+                       JSL.L bossesLevelBasedChange         ;83B155|22DDAA84|84AADD;
                        BEQ CODE_83B15F                      ;83B159|F004    |83B15F;
                        JML.L clearStates_00_02_0E           ;83B15B|5C988382|828398;
                                                             ;      |        |      ;

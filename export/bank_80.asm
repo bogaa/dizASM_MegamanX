@@ -228,9 +228,9 @@
   startUp_textLoadSet:
                        PHP                                  ;80813B|08      |      ;
                        REP #$20                             ;80813C|C220    |      ;
-                       STA.B $32,X                          ;80813E|9532    |000032;
+                       STA.B $32,X                          ;80813E|9532    |000E9A;
                        LDA.W #$0101                         ;808140|A90101  |      ;
-                       STA.B $30,X                          ;808143|9530    |000030;
+                       STA.B $30,X                          ;808143|9530    |000E98;
                        PLP                                  ;808145|28      |      ;
                        RTS                                  ;808146|60      |      ;
                                                             ;      |        |      ;
@@ -8273,7 +8273,7 @@ mainPauseMenuCheck_00:
                        LDA.W #$0000                         ;80B8CA|A90000  |      ;
                        TCD                                  ;80B8CD|5B      |      ;
                        JSR.W CODE_80BA53                    ;80B8CE|2053BA  |80BA53;
-                       LDA.B $00                            ;80B8D1|A500    |000BA8;
+                       LDA.B r_ev_active_00-$E68            ;80B8D1|A500    |000E68;
                        SEC                                  ;80B8D3|38      |      ;
                        SBC.W r_1fa3                         ;80B8D4|EDA31F  |861FA3;
                        CLC                                  ;80B8D7|18      |      ;
@@ -12562,6 +12562,7 @@ mainPauseMenuCheck_00:
                        PHA                                  ;80D580|48      |      ;
                        PLB                                  ;80D581|AB      |      ;
                        JSR.W drawProjectileOAM              ;80D582|20DFD5  |80D5DF;
+                                                            ;      |        |      ;
                        JSR.W CODE_80D66B                    ;80D585|206BD6  |80D66B;
                        JSR.W drawPlayerOAM                  ;80D588|209CD6  |80D69C;
                        JSR.W drawEventOAM                   ;80D58B|2025D6  |80D625;
