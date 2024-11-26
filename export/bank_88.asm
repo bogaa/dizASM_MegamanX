@@ -4618,9 +4618,9 @@ sparkMandrill_31_state_02:
                                                             ;      |        |      ;
 mandrill_state2_jumping:
                        dw CODE_889E38                       ;889E2C|        |889E38;
-                       dw mandrill_does_jumpNormal          ;889E2E|        |889F24;
+                       dw mandrill_does_wireJump            ;889E2E|        |889F24;
                        dw CODE_88A059                       ;889E30|        |88A059;
-                       dw mandrill_does                     ;889E32|        |88A16E;
+                       dw mandrill_does_jump                ;889E32|        |88A16E;
                        dw CODE_88A20B                       ;889E34|        |88A20B;
                        dw CODE_88A25E                       ;889E36|        |88A25E;
                                                             ;      |        |      ;
@@ -4760,7 +4760,7 @@ mandrill_state2_jumpNormal_do:
                        RTS                                  ;889F23|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-mandrill_does_jumpNormal:
+mandrill_does_wireJump:
                        LDX.B r_ev_03_do-$E68                ;889F24|A603    |000E6B;
                        JMP.W (mandrill_do_wire,X)           ;889F26|7C299F  |889F29;
                                                             ;      |        |      ;
@@ -5110,7 +5110,7 @@ mandrill_does_jumpNormal:
                        RTS                                  ;88A16D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-        mandrill_does:
+   mandrill_does_jump:
                        LDX.B r_ev_03_do-$E68                ;88A16E|A603    |000E6B;
                        JMP.W (mandrill_do,X)                ;88A170|7C73A1  |88A173;
                                                             ;      |        |      ;
