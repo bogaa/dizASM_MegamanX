@@ -110,6 +110,7 @@
         <sys:Item Key="8843613" Value="Unused?" />
         <sys:Item Key="8843643" Value="Sigma" />
         <sys:Item Key="8843673" Value="Wolf Sigma" />
+        <sys:Item Key="8844775" Value="This are Idx values" />
         <sys:Item Key="8884646" Value="flame" />
         <sys:Item Key="8886163" Value="01 with canon" />
         <sys:Item Key="8899222" Value="01 will make appear on the first visit with all the upgrades." />
