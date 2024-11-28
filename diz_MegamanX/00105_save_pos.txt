@@ -1,119 +1,161 @@
 
 ;pos=032000
-r 57 T
-Tg
-T
-T
-T
-T
-Tg
-r 179 T
-Tg
-r 17 T
-Tg
-T
-T
-T
-T
-T
-T
-T
-Tg
-r 8 T
-Tg
-r 190 T
-Tg
-T
-Tg
-T
-Tg
-T
-Tg
-Tg
-r 131 T
-Tg
-T
-Tg
-r 890 T
-U
-U
-U
-U
-U
-U
-U
+r 57 B
+Bg
+B
+B
+B
+B
+Bg
+r 179 B
+Bg
+r 17 B
+Bg
+B
+B
+B
+B
+B
+B
+B
+Bg
+r 8 B
+Eg86
+r 17 E086
+B086
+B086
+E086
+E086
+A086
+B086
+B086
+E086
+E086
+A086
+B086
+B086
+E086
+E086
+A086
+B086
+B086
+E086
+E086
+A086
+B086
+B086
+E086
+E086
+A086
+B086
+B086
+E086
+E086
+A086
+B086
+B086
+E086
+E086
+A086
+B086
+B086
+E086
+E086
+A086
+B086
+B086
+E086
+E086
+r 128 A086
+A
+Ag
+A
+Ag
+A
+Ag
+A
+Ag
+Ag
+r 131 B
+Bg
+B
+Bg
+r 583 B
+Bg
+r 188 B
+A
+r 124 T
+Ag
+Ag
+r 157 A
+r 48 B
+B086
+B086
+B086
+Bg86
+B086
+B086
+B086
+Bg86
+B086
+B086
+B086
+Bg86
+B086
+B086
+B086
+B086
+r 11 B
+Bg
+B
+B
+B
+B
+B
+B
+B
+Bg
+B
+B
+B
+B
+B
+B
+B
 Bg
 Bg
-r 206 B
-U
-U
-Ug
-U
-U
-U
-Ug
-U
-U
-U
-Ug
-r 15 U
-Ug
-U
-U
-U
-U
-U
-U
-U
-Ug
-U
-U
-U
-U
-U
-U
-U
-Ag
-Ag
-r 16 U
-A
-r 143 U
-Ug
-Ug
-Ug
-Ug
-U
-Ug
+r 159 B
 A
 Ag
-U
-Ug
-U
-Ug
-U
-Ug
-U
-Ug
-U
-Ug
-U
-Ug
-U
-Ug
-U
-Ug
-U
-Ug
-U
-Ug
-Ug
-r 17 U
-A
-A
-r 22 U
-A
-A
-r 42 U
+Ag
+Ag
+Bg
+B
+Bg
+B
+Bg
+B
+Bg
+B
+Bg
+B
+Bg
+B
+Bg
+B
+Bg
+B
+Bg
+B
+Bg
+B
+Bg
+B
+Bg
+B
+Ag
+Bg
+r 85 B
 A
 A
 A

@@ -1,84 +1,52 @@
 
 ;pos=031000
-r 38 U
-A
-A
-A
-A
-A
-A
-Ag
-U
-Ug
-U
-U
-U
-U
-U
-U
-A
-A
-A
-A
-r 92 U
-A
-A
-A
-A
-A
-A
-Ag
-U
-Ug
-U
-U
-U
-U
-U
-U
-A
-A
-A
-r 93 U
-A
-A
-A
-A
-A
-A
-Ug
-Ug
-A
-A
-U
-U
-U
-U
-A
-A
-A
-A
-A
-A
-r 18 U
-A
-A
-A
-A
-A
-A
-r 18 U
-r 38 A
-r 12 U
-A
-A
-r 20 U
-A
-A
-A
-A
-r 102 U
-r 37 A
-U
-U
-r 1509 T
+r 38 U086
+A086
+A086
+A086
+A086
+A086
+A086
+Ag86
+U086
+Ug86
+U086
+U086
+U086
+U086
+U086
+U086
+A086
+A086
+A086
+A086
+r 92 U086
+A086
+A086
+A086
+A086
+A086
+A086
+Ag86
+U086
+Ug86
+U086
+U086
+U086
+U086
+U086
+U086
+A086
+A086
+A086
+r 93 U086
+A086
+A086
+A086
+A086
+A086
+A086
+Eg86
+Eg86
+r 232 E086
+r 1548 T

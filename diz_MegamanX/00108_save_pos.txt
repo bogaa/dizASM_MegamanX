@@ -236,7 +236,7 @@ A
 A
 A
 U
-U
+Ug
 U
 U
 r 12 A
@@ -276,16 +276,16 @@ Ag
 Ag
 r 48 A
 r 9 U
-Ug
-r 11 U
-Ug
-r 11 U
-Ug
-r 11 U
-Ug
-r 11 U
-Ug
-r 11 U
+Ag
+r 11 A
+Ag
+r 11 A
+Ag
+r 11 A
+Ag
+r 11 A
+Ag
+r 11 A
 Ag
 A
 A
@@ -301,88 +301,24 @@ A
 A
 A
 A
-Ug
-U
-A
-A
-A
-A
-A
-A
-U
-U
-U
-A
-A
-A
-A
-A
-U
-U
-U
-r 13 A
-U
-U
-U
-r 21 A
-U
-A
-A
-A
-A
-A
-A
-A
-U
-U
-U
-U
-A
-A
-A
-A
-U
-U
-r 14 A
-U
-U
-A
-A
-A
-A
-A
-A
-Ug
-U
-U
-U
-Ug
-U
-U
-U
+Ag
+r 95 A
 Ag
 A
 A
-Ug
-U
-U
-U
-U
-U
-r 8 A
-U
-U
-Ug
-U
+A
+Ag
 A
 A
-U
-U
-U
-U
-r 8 A
-r 35 U
-r 24 A
+A
+Ag
+A
+A
+Ag
+r 15 A
+Ag
+r 62 A
+r 12 B
 U
 U
 U

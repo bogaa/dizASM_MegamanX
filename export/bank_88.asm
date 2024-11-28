@@ -24,7 +24,7 @@
           CODE_888024:
                        JSL.L updateEv_13_14_17_0f           ;888024|22EA8E84|848EEA;
                        JSL.L CODE_82820A                    ;888028|220A8282|82820A;
-                       JSL.L checkEventRange                ;88802C|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88802C|22B48082|8280B4;
                        LDA.B $0E                            ;888030|A50E    |001476;
                        BNE CODE_888038                      ;888032|D004    |888038;
                        JML.L clearStates_01_00_02_0E_2C     ;888034|5CA38382|8283A3;
@@ -85,7 +85,7 @@
                        STA.B $37                            ;888090|8537    |00149F;
                        LDA.B #$FF                           ;888092|A9FF    |      ;
                        STA.B $2F                            ;888094|852F    |001497;
-                       JML.L checkEventRange                ;888096|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;888096|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88809A:
@@ -143,7 +143,7 @@
           CODE_8880FC:
                        JSL.L updateEv_13_14_17_0f           ;8880FC|22EA8E84|848EEA;
                        JSL.L CODE_849B03                    ;888100|22039B84|849B03;
-                       JML.L checkEventRange                ;888104|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;888104|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888108:
@@ -174,7 +174,7 @@
                        SEP #$20                             ;88812F|E220    |      ;
                        LDA.B $0B                            ;888131|A50B    |001573;
                        JSL.L playerGrabedRoutine            ;888133|22078F84|848F07;
-                       JSL.L checkEventRange                ;888137|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;888137|22B48082|8280B4;
                        RTS                                  ;88813B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -192,7 +192,7 @@
                                                             ;      |        |      ;
           CODE_888151:
                        JSL.L updateEv_13_14_17_0f           ;888151|22EA8E84|848EEA;
-                       JSL.L checkEventRange                ;888155|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;888155|22B48082|8280B4;
                        LDA.B $0E                            ;888159|A50E    |001576;
                        BNE CODE_888161                      ;88815B|D004    |888161;
                        JSL.L clearStates_01_00_02_0E_2C     ;88815D|22A38382|8283A3;
@@ -224,7 +224,7 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88818A:
-                       JSL.L checkEventRange                ;88818A|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88818A|22B48082|8280B4;
                        JSL.L initPosAllign                  ;88818E|226E8082|82806E;
                        BCS CODE_888186                      ;888192|B0F2    |888186;
                        RTL                                  ;888194|6B      |      ;
@@ -486,7 +486,7 @@
                        LDA.B $37                            ;888332|A537    |00145F;
                        LSR A                                ;888334|4A      |      ;
                        BCC CODE_88833B                      ;888335|9004    |88833B;
-                       JML.L checkEventRange                ;888337|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;888337|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88833B:
@@ -555,14 +555,14 @@
                        LDA.B $0F                            ;88839B|A50F    |001437;
                        BMI CODE_8883A7                      ;88839D|3008    |8883A7;
                        JSL.L updateEv_13_14_17_0f           ;88839F|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;8883A3|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;8883A3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8883A7:
                        JSL.L CODE_82820A                    ;8883A7|220A8282|82820A;
                        JSL.L CODE_849B03                    ;8883AB|22039B84|849B03;
                        BNE CODE_8883B9                      ;8883AF|D008    |8883B9;
-                       JSL.L checkEventRange                ;8883B1|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;8883B1|22B48082|8280B4;
                        LDA.B $0E                            ;8883B5|A50E    |001436;
                        BNE CODE_8883BD                      ;8883B7|D004    |8883BD;
                                                             ;      |        |      ;
@@ -578,7 +578,7 @@
                        LDX.B $01                            ;8883BE|A601    |001429;
                        JSR.W (PTR16_8883D4,X)               ;8883C0|FCD483  |8883D4;
                        JSL.L CODE_849B03                    ;8883C3|22039B84|849B03;
-                       JSL.L checkEventRange                ;8883C7|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;8883C7|22B48082|8280B4;
                        LDA.B $0E                            ;8883CB|A50E    |001436;
                        BNE CODE_8883D3                      ;8883CD|D004    |8883D3;
                        JSL.L clearStates_01_00_02_0E_2C     ;8883CF|22A38382|8283A3;
@@ -761,7 +761,7 @@
           CODE_88850C:
                        SEP #$10                             ;88850C|E210    |      ;
                        JSL.L updateEv_13_14_17_0f           ;88850E|22EA8E84|848EEA;
-                       JSL.L checkEventRange                ;888512|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;888512|22B48082|8280B4;
                        LDA.B $0E                            ;888516|A50E    |001476;
                        BNE CODE_88851E                      ;888518|D004    |88851E;
                        JSL.L clearStates_01_00_02_0E_2C     ;88851A|22A38382|8283A3;
@@ -882,14 +882,14 @@ eventID_stingCameleon_0a_main:
                        STA.W r_colorV_c9                    ;8885E5|8DC900  |8600C9;
                        LDA.B #$1E                           ;8885E8|A91E    |      ;
                        STA.B r_ev_34-$E68                   ;8885EA|8534    |000E9C;
-                       JML.L checkEventRange                ;8885EC|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;8885EC|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8885F0:
                        JSR.W CODE_888D2F                    ;8885F0|202F8D  |888D2F;
                        LDX.B r_ev_02_action-$E68            ;8885F3|A602    |000E6A;
                        JSR.W (PTR16_8885FC,X)               ;8885F5|FCFC85  |8885FC;
-                       JML.L checkEventRange                ;8885F8|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;8885F8|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_8885FC:
@@ -1014,7 +1014,7 @@ eventID_stingCameleon_0a_main:
                        LSR A                                ;8886B8|4A      |      ;
                        BCC CODE_8886D0                      ;8886B9|9015    |8886D0;
                        LDA.B #$0C                           ;8886BB|A90C    |      ;
-                       JSL.L weaponChargeInit               ;8886BD|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;8886BD|22CD8880|8088CD;
                        LDA.B r_ev_27_health-$E68            ;8886C1|A527    |000E8F;
                        AND.B #$7F                           ;8886C3|297F    |      ;
                        INC A                                ;8886C5|1A      |      ;
@@ -1117,7 +1117,7 @@ eventID_stingCameleon_0a_main:
                        LDA.B #$13                           ;88876D|A913    |      ;
                        JSL.L lunchSFX                       ;88876F|22A28880|8088A2;
                        JSL.L CODE_84ACA5                    ;888773|22A5AC84|84ACA5;
-                       JML.L checkEventRange                ;888777|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;888777|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88877B:
@@ -1158,7 +1158,7 @@ eventID_stingCameleon_0a_main:
           CODE_8887B5:
                        LDA.B r_ev_37-$E68                   ;8887B5|A537    |000E9F;
                        STA.B r_ev_30-$E68                   ;8887B7|8530    |000E98;
-                       JML.L checkEventRange                ;8887B9|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;8887B9|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_8887BD:
@@ -2045,7 +2045,7 @@ eventID_stingCameleon_0a_main:
                        CMP.B #$14                           ;888D22|C914    |      ;
                        BCS CODE_888D2E                      ;888D24|B008    |888D2E;
                        JSL.L updateEv_13_14_17_0f           ;888D26|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;888D2A|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;888D2A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888D2E:
@@ -2407,7 +2407,7 @@ rushRoader_0d_state_00:
           CODE_888F91:
                        LDX.B r_ev_02_action-$E68            ;888F91|A602    |000E6A;
                        JSR.W (PTR16_889011,X)               ;888F93|FC1190  |889011;
-                       JSL.L checkEventRange                ;888F96|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;888F96|22B48082|8280B4;
                        JSL.L initPosAllign                  ;888F9A|226E8082|82806E;
                        BCC CODE_888FA5                      ;888F9E|9005    |888FA5;
                        JSL.L clearStateIf_0cEqual           ;888FA0|22878382|828387;
@@ -3339,13 +3339,13 @@ roadAttackDeploy_action_00:
                        STZ.W $0C00                          ;8895A8|9C000C  |860C00;
                        STZ.W $0C03                          ;8895AB|9C030C  |860C03;
                        LDA.B #$17                           ;8895AE|A917    |      ;
-                       JSL.L weaponChargeInit               ;8895B0|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;8895B0|22CD8880|8088CD;
                        REP #$31                             ;8895B4|C231    |      ;
                        LDA.W r_d_0bdb                       ;8895B6|ADDB0B  |860BDB;
                        AND.W #$00FF                         ;8895B9|29FF00  |      ;
                        ADC.W #$0100                         ;8895BC|690001  |      ;
                        TAY                                  ;8895BF|A8      |      ;
-                       JSL.L CODE_828011                    ;8895C0|22118082|828011;
+                       JSL.L lunchMusic                     ;8895C0|22118082|828011;
                        SEP #$30                             ;8895C4|E230    |      ;
                        LDA.B #$40                           ;8895C6|A940    |      ;
                        STA.W $0C11                          ;8895C8|8D110C  |860C11;
@@ -3761,7 +3761,7 @@ eventID_mineCart_2b_main:
                        STA.B r_ev_20_hitBoxAddr-$E68        ;889881|8520    |000E88;
                        LDA.B #$CE                           ;889883|A9CE    |      ;
                        STA.B r_ev_21-$E68                   ;889885|8521    |000E89;
-                       JML.L checkEventRange                ;889887|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;889887|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88988B:
@@ -4025,7 +4025,7 @@ eventID_mineCart_2b_main:
                        LDA.W r_frameCounter1                ;889A18|AD9C0B  |860B9C;
                        LSR A                                ;889A1B|4A      |      ;
                        BCC CODE_889A22                      ;889A1C|9004    |889A22;
-                       JSL.L checkEventRange                ;889A1E|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;889A1E|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_889A22:
                        RTL                                  ;889A22|6B      |      ;
@@ -4380,7 +4380,7 @@ sparkMandrill_31_state_01:
                        STA.W r_colorV_ca                    ;889C7D|8DCA00  |8600CA;
                                                             ;      |        |      ;
           CODE_889C80:
-                       JML.L checkEventRange                ;889C80|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;889C80|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    mandrill_action_01:
@@ -4395,7 +4395,7 @@ sparkMandrill_31_state_01:
                        STZ.W r_colorV_cd                    ;889C99|9CCD00  |8600CD;
                        LDA.B #$40                           ;889C9C|A940    |      ;
                        STA.B r_ev_1e_weight-$E68            ;889C9E|851E    |000E86;
-                       JML.L checkEventRange                ;889CA0|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;889CA0|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_889CA4:
@@ -4407,7 +4407,7 @@ sparkMandrill_31_state_01:
                        STA.W r_colorV_cd                    ;889CB0|8DCD00  |8600CD;
                                                             ;      |        |      ;
           CODE_889CB3:
-                       JML.L checkEventRange                ;889CB3|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;889CB3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    mandrill_action_02:
@@ -4428,7 +4428,7 @@ sparkMandrill_31_state_01:
                        JSL.L CODE_84A338                    ;889CDD|2238A384|84A338;
                                                             ;      |        |      ;
           CODE_889CE1:
-                       JML.L checkEventRange                ;889CE1|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;889CE1|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    mandrill_action_03:
@@ -4446,7 +4446,7 @@ sparkMandrill_31_state_01:
                        STZ.B r_ev_27_health-$E68            ;889CFF|6427    |000E8F;
                                                             ;      |        |      ;
           CODE_889D01:
-                       JML.L checkEventRange                ;889D01|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;889D01|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    mandrill_action_04:
@@ -4457,7 +4457,7 @@ sparkMandrill_31_state_01:
                        STA.B r_ev_02_action-$E68            ;889D0F|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_889D11:
-                       JML.L checkEventRange                ;889D11|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;889D11|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    mandrill_action_05:
@@ -4465,7 +4465,7 @@ sparkMandrill_31_state_01:
                        LSR A                                ;889D18|4A      |      ;
                        BCC CODE_889D34                      ;889D19|9019    |889D34;
                        LDA.B #$0C                           ;889D1B|A90C    |      ;
-                       JSL.L weaponChargeInit               ;889D1D|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;889D1D|22CD8880|8088CD;
                        LDA.B r_ev_27_health-$E68            ;889D21|A527    |000E8F;
                        AND.B #$7F                           ;889D23|297F    |      ;
                        INC A                                ;889D25|1A      |      ;
@@ -4480,7 +4480,7 @@ sparkMandrill_31_state_01:
           CODE_889D34:
                        LDA.B #$80                           ;889D34|A980    |      ;
                        TSB.B r_ev_27_health-$E68            ;889D36|0427    |000E8F;
-                       JML.L checkEventRange                ;889D38|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;889D38|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    mandrill_action_06:
@@ -4506,7 +4506,7 @@ sparkMandrill_31_state_01:
                        JSL.L CODE_8087A2                    ;889D66|22A28780|8087A2;
                                                             ;      |        |      ;
           CODE_889D6A:
-                       JML.L checkEventRange                ;889D6A|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;889D6A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
 sparkMandrill_31_state_02:
@@ -4555,7 +4555,7 @@ sparkMandrill_31_state_02:
                        LDA.B #$29                           ;889DC1|A929    |      ;
                        STA.B r_ev_11_sprAtri-$E68           ;889DC3|8511    |000E79;
                        JSL.L CODE_84ACA5                    ;889DC5|22A5AC84|84ACA5;
-                       JML.L checkEventRange                ;889DC9|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;889DC9|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_889DCD:
@@ -4613,7 +4613,7 @@ sparkMandrill_31_state_02:
                                                             ;      |        |      ;
           CODE_889E24:
                        JSL.L CODE_849B03                    ;889E24|22039B84|849B03;
-                       JML.L checkEventRange                ;889E28|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;889E28|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
 mandrill_state2_jumping:
@@ -5417,7 +5417,7 @@ sparkMandrill_31_state_03:
                        LDA.B r_ev_03_do-$E68                ;88A357|A503    |000E6B;
                        CMP.B #$14                           ;88A359|C914    |      ;
                        BCS CODE_88A361                      ;88A35B|B004    |88A361;
-                       JML.L checkEventRange                ;88A35D|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88A35D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A361:
@@ -5517,7 +5517,7 @@ sparkMandrill_31_state_03:
           CODE_88A3ED:
                        LDX.B r_ev_02_action-$E68            ;88A3ED|A602    |000E6A;
                        JSR.W (PTR16_88A3FB,X)               ;88A3EF|FCFBA3  |88A3FB;
-                       JSL.L checkEventRange                ;88A3F2|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88A3F2|22B48082|8280B4;
                        JSL.L CODE_8491BE                    ;88A3F6|22BE9184|8491BE;
                        RTS                                  ;88A3FA|60      |      ;
                                                             ;      |        |      ;
@@ -6201,7 +6201,7 @@ rangdaBangdaWall_5c_state_00:
                        BNE CODE_88A81D                      ;88A7FF|D01C    |88A81D;
                        LDA.B r_ev_35-$E68                   ;88A801|A535    |000E9D;
                        BNE CODE_88A809                      ;88A803|D004    |88A809;
-                       JSL.L checkEventRange                ;88A805|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88A805|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_88A809:
                        DEC.B r_ev_34-$E68                   ;88A809|C634    |000E9C;
@@ -6218,7 +6218,7 @@ rangdaBangdaWall_5c_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A81D:
-                       JML.L checkEventRange                ;88A81D|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88A81D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88A821:
@@ -6268,7 +6268,7 @@ rangdaBangdaWall_5c_state_00:
                        LDA.W r_1f3c                         ;88A870|AD3C1F  |861F3C;
                        BEQ CODE_88A88B                      ;88A873|F016    |88A88B;
                        LDA.B #$AE                           ;88A875|A9AE    |      ;
-                       JSL.L weaponChargeInit               ;88A877|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;88A877|22CD8880|8088CD;
                        INC.B r_ev_03_do-$E68                ;88A87B|E603    |000E6B;
                        LDA.B #$02                           ;88A87D|A902    |      ;
                        JSL.L playerGrabedRoutine            ;88A87F|22078F84|848F07;
@@ -6457,7 +6457,7 @@ rangdaBangdaEye_5d_action_00:
                        STZ.B r_ev_3e-$E68                   ;88A9A9|643E    |000EA6;
                        REP #$10                             ;88A9AB|C210    |      ;
                        LDY.W #$0112                         ;88A9AD|A01201  |      ;
-                       JSL.L CODE_828011                    ;88A9B0|22118082|828011;
+                       JSL.L lunchMusic                     ;88A9B0|22118082|828011;
                        SEP #$10                             ;88A9B4|E210    |      ;
                        LDA.B #$08                           ;88A9B6|A908    |      ;
                        STA.W r_1f08                         ;88A9B8|8D081F  |861F08;
@@ -6508,7 +6508,7 @@ rangdaBangdaEye_5d_action_00:
                        CLC                                  ;88AA05|18      |      ;
                        ADC.B #$B8                           ;88AA06|69B8    |      ;
                        TAY                                  ;88AA08|A8      |      ;
-                       JSL.L CODE_828011                    ;88AA09|22118082|828011;
+                       JSL.L lunchMusic                     ;88AA09|22118082|828011;
                        INC.B r_ev_3e-$E68                   ;88AA0D|E63E    |000EA6;
                        INC.B r_ev_3e-$E68                   ;88AA0F|E63E    |000EA6;
                        LDA.B r_ev_3e-$E68                   ;88AA11|A53E    |000EA6;
@@ -6545,7 +6545,7 @@ rangdaBangdaEye_5d_action_00:
                        ORA.B #$80                           ;88AA3C|0980    |      ;
                        STA.B r_ev_27_health-$E68            ;88AA3E|8527    |000E8F;
                        LDA.B #$0C                           ;88AA40|A90C    |      ;
-                       JML.L weaponChargeInit               ;88AA42|5CCD8880|8088CD;
+                       JML.L lunchWeaponSFX                 ;88AA42|5CCD8880|8088CD;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88AA46:
@@ -6910,7 +6910,7 @@ rangdaBangdaEye_5d_action_00:
                        CMP.B #$B0                           ;88AC8C|C9B0    |      ;
                        BNE CODE_88AC96                      ;88AC8E|D006    |88AC96;
                        LDA.B #$21                           ;88AC90|A921    |      ;
-                       JSL.L weaponChargeInit               ;88AC92|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;88AC92|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_88AC96:
                        DEC.B r_ev_3b-$E68                   ;88AC96|C63B    |000EA3;
@@ -7197,7 +7197,7 @@ rangdaBangdaMouth_5e_state_00:
                        STA.B r_ev_28-$E68                   ;88AE83|8528    |000E90;
                                                             ;      |        |      ;
           CODE_88AE85:
-                       JML.L checkEventRange                ;88AE85|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88AE85|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88AE89:
@@ -7863,7 +7863,7 @@ rangdaBangdaWallSide_5f_state_00:
                                                             ;      |        |      ;
           CODE_88B28C:
                        JSL.L CODE_8491BE                    ;88B28C|22BE9184|8491BE;
-                       JML.L checkEventRange                ;88B290|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88B290|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88B294:
@@ -8182,7 +8182,7 @@ eventID_rexHead_60_main:
                        JSR.W (PTR16_88B496,X)               ;88B489|FC96B4  |88B496;
                        JSR.W CODE_88B610                    ;88B48C|2010B6  |88B610;
                        JSR.W CODE_88B5A9                    ;88B48F|20A9B5  |88B5A9;
-                       JML.L checkEventRange                ;88B492|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88B492|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88B496:
@@ -8551,7 +8551,7 @@ eventID_rexBase_61_main:
                        BNE CODE_88B6D9                      ;88B6CC|D00B    |88B6D9;
                        REP #$10                             ;88B6CE|C210    |      ;
                        LDY.W #$019C                         ;88B6D0|A09C01  |      ;
-                       JSL.L CODE_828011                    ;88B6D3|22118082|828011;
+                       JSL.L lunchMusic                     ;88B6D3|22118082|828011;
                        SEP #$10                             ;88B6D7|E210    |      ;
                                                             ;      |        |      ;
           CODE_88B6D9:
@@ -8588,7 +8588,7 @@ eventID_rexBase_61_main:
                        JSL.L CODE_8491BE                    ;88B712|22BE9184|8491BE;
                                                             ;      |        |      ;
           CODE_88B716:
-                       JML.L checkEventRange                ;88B716|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88B716|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88B71A:
@@ -9389,7 +9389,7 @@ eventID_rexBase_61_main:
                        STA.B r_ev_11_sprAtri-$E68           ;88BBE6|8511    |000E79;
                        LDA.B #$0A                           ;88BBE8|A90A    |      ;
                        JSL.L playerGrabedRoutine            ;88BBEA|22078F84|848F07;
-                       JML.L checkEventRange                ;88BBEE|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88BBEE|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BBF2:
@@ -9418,7 +9418,7 @@ eventID_rexBase_61_main:
                        SEP #$20                             ;88BC21|E220    |      ;
                        LDA.B #$03                           ;88BC23|A903    |      ;
                        STA.W r_0008                         ;88BC25|8D0800  |860008;
-                       JSL.L checkEventRange                ;88BC28|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88BC28|22B48082|8280B4;
                        JML.L CODE_84A4D0                    ;88BC2C|5CD0A484|84A4D0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9446,7 +9446,7 @@ eventID_rexBase_61_main:
                        JSR.W CODE_88AD92                    ;88BC61|2092AD  |88AD92;
                        LDA.B #$C0                           ;88BC64|A9C0    |      ;
                        STA.B r_ev_33-$E68                   ;88BC66|8533    |000E9B;
-                       JML.L checkEventRange                ;88BC68|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88BC68|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BC6C:
@@ -9484,12 +9484,12 @@ eventID_rexBase_61_main:
                        CMP.B #$B0                           ;88BCA3|C9B0    |      ;
                        BCC CODE_88BCAE                      ;88BCA5|9007    |88BCAE;
                        JSR.W CODE_88AD92                    ;88BCA7|2092AD  |88AD92;
-                       JML.L checkEventRange                ;88BCAA|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88BCAA|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BCAE:
                        JSR.W CODE_88ADB9                    ;88BCAE|20B9AD  |88ADB9;
-                       JML.L checkEventRange                ;88BCB1|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88BCB1|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BCB5:
@@ -9614,7 +9614,7 @@ eventID_rexBase_61_main:
                        BEQ CODE_88BD83                      ;88BD76|F00B    |88BD83;
                        REP #$10                             ;88BD78|C210    |      ;
                        LDY.W #$019C                         ;88BD7A|A09C01  |      ;
-                       JSL.L CODE_828011                    ;88BD7D|22118082|828011;
+                       JSL.L lunchMusic                     ;88BD7D|22118082|828011;
                        SEP #$10                             ;88BD81|E210    |      ;
                                                             ;      |        |      ;
           CODE_88BD83:
@@ -9624,14 +9624,14 @@ eventID_rexBase_61_main:
           CODE_88BD84:
                        REP #$10                             ;88BD84|C210    |      ;
                        LDY.W #$019E                         ;88BD86|A09E01  |      ;
-                       JSL.L CODE_828011                    ;88BD89|22118082|828011;
+                       JSL.L lunchMusic                     ;88BD89|22118082|828011;
                        SEP #$10                             ;88BD8D|E210    |      ;
                        RTS                                  ;88BD8F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BD90:
                        LDY.B #$A4                           ;88BD90|A0A4    |      ;
-                       JSL.L CODE_828011                    ;88BD92|22118082|828011;
+                       JSL.L lunchMusic                     ;88BD92|22118082|828011;
                                                             ;      |        |      ;
           CODE_88BD96:
                        RTS                                  ;88BD96|60      |      ;
@@ -9698,7 +9698,7 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
           CODE_88BDEE:
                        JSL.L CODE_849B03                    ;88BDEE|22039B84|849B03;
-                       JML.L checkEventRange                ;88BDF2|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88BDF2|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88BDF6:
@@ -10193,7 +10193,7 @@ spiderBoss_62_action_00:
                        LDA.B #$02                           ;88C0EE|A902    |      ;
                        STA.B r_ev_33-$E68                   ;88C0F0|8533    |000E9B;
                        LDA.B #$0C                           ;88C0F2|A90C    |      ;
-                       JSL.L weaponChargeInit               ;88C0F4|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;88C0F4|22CD8880|8088CD;
                        LDA.B r_ev_27_health-$E68            ;88C0F8|A527    |000E8F;
                        AND.B #$7F                           ;88C0FA|297F    |      ;
                        CMP.B #$20                           ;88C0FC|C920    |      ;
@@ -10866,7 +10866,7 @@ zeroStage1_65_state_00:
                        ADC.W #$0011                         ;88C4F1|691100  |      ;
                        STA.W r_0008,X                       ;88C4F4|9D0800  |860008;
                        SEP #$30                             ;88C4F7|E230    |      ;
-                       JML.L checkEventRange                ;88C4F9|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C4F9|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C4FD:
@@ -10883,7 +10883,7 @@ zeroStage1_65_state_00:
                        LDA.B #$12                           ;88C515|A912    |      ;
                        STA.W r_0008                         ;88C517|8D0800  |860008;
                        JSL.L CODE_83F74A                    ;88C51A|224AF783|83F74A;
-                       JML.L checkEventRange                ;88C51E|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C51E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C522:
@@ -10896,7 +10896,7 @@ zeroStage1_65_state_00:
                        ADC.W #$0011                         ;88C52F|691100  |      ;
                        STA.W r_0008,X                       ;88C532|9D0800  |860008;
                        SEP #$30                             ;88C535|E230    |      ;
-                       JML.L checkEventRange                ;88C537|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C537|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C53B:
@@ -10912,7 +10912,7 @@ zeroStage1_65_state_00:
                        STA.B r_ev_02_action-$E68            ;88C54F|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_88C551:
-                       JML.L checkEventRange                ;88C551|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C551|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C555:
@@ -10927,7 +10927,7 @@ zeroStage1_65_state_00:
                        JSL.L CODE_84A003                    ;88C568|2203A084|84A003;
                                                             ;      |        |      ;
           CODE_88C56C:
-                       JML.L checkEventRange                ;88C56C|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C56C|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C570:
@@ -11017,7 +11017,7 @@ zeroStage1_65_state_00:
                        ADC.B r_ev_08_yPos-$E68              ;88C5F3|6508    |000E70;
                        STA.B r_ev_08_yPos-$E68              ;88C5F5|8508    |000E70;
                        SEP #$20                             ;88C5F7|E220    |      ;
-                       JML.L checkEventRange                ;88C5F9|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C5F9|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C5FD:
@@ -11034,13 +11034,13 @@ zeroStage1_65_state_00:
                        JSL.L CODE_83F74A                    ;88C616|224AF783|83F74A;
                        LDA.B #$06                           ;88C61A|A906    |      ;
                        STA.B r_ev_02_action-$E68            ;88C61C|8502    |000E6A;
-                       JML.L checkEventRange                ;88C61E|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C61E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C622:
                        DEC.B r_ev_38-$E68                   ;88C622|C638    |000EA0;
                        JSL.L CODE_82825D                    ;88C624|225D8282|82825D;
-                       JML.L checkEventRange                ;88C628|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C628|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C62C:
@@ -11059,7 +11059,7 @@ zeroStage1_65_state_00:
                        STA.B r_ev_02_action-$E68            ;88C647|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_88C649:
-                       JML.L checkEventRange                ;88C649|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C649|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C64D:
@@ -11068,7 +11068,7 @@ zeroStage1_65_state_00:
                        BEQ CODE_88C663                      ;88C653|F00E    |88C663;
                        BMI CODE_88C65F                      ;88C655|3008    |88C65F;
                        LDA.B #$A2                           ;88C657|A9A2    |      ;
-                       JSL.L weaponChargeInit               ;88C659|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;88C659|22CD8880|8088CD;
                        BRA CODE_88C663                      ;88C65D|8004    |88C663;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11077,7 +11077,7 @@ zeroStage1_65_state_00:
                        STA.B r_ev_02_action-$E68            ;88C661|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_88C663:
-                       JML.L checkEventRange                ;88C663|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C663|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C667:
@@ -11085,7 +11085,7 @@ zeroStage1_65_state_00:
                        LSR A                                ;88C66A|4A      |      ;
                        BCC CODE_88C686                      ;88C66B|9019    |88C686;
                        LDA.B #$0C                           ;88C66D|A90C    |      ;
-                       JSL.L weaponChargeInit               ;88C66F|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;88C66F|22CD8880|8088CD;
                        LDA.B r_ev_27_health-$E68            ;88C673|A527    |000E8F;
                        AND.B #$7F                           ;88C675|297F    |      ;
                        INC A                                ;88C677|1A      |      ;
@@ -11100,7 +11100,7 @@ zeroStage1_65_state_00:
           CODE_88C686:
                        LDA.B #$80                           ;88C686|A980    |      ;
                        TSB.B r_ev_27_health-$E68            ;88C688|0427    |000E8F;
-                       JML.L checkEventRange                ;88C68A|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C68A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C68E:
@@ -11126,7 +11126,7 @@ zeroStage1_65_state_00:
                        JSL.L CODE_84A003                    ;88C6B8|2203A084|84A003;
                                                             ;      |        |      ;
           CODE_88C6BC:
-                       JML.L checkEventRange                ;88C6BC|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C6BC|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C6C0:
@@ -11165,10 +11165,10 @@ zeroStage1_65_state_00:
                        JSL.L playerGrabedRoutine            ;88C703|22078F84|848F07;
                        REP #$10                             ;88C707|C210    |      ;
                        LDY.W #$01E8                         ;88C709|A0E801  |      ;
-                       JSL.L CODE_828011                    ;88C70C|22118082|828011;
+                       JSL.L lunchMusic                     ;88C70C|22118082|828011;
                        SEP #$10                             ;88C710|E210    |      ;
                        STZ.B r_ev_3d-$E68                   ;88C712|643D    |000EA5;
-                       JML.L checkEventRange                ;88C714|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C714|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C718:
@@ -11191,7 +11191,7 @@ zeroStage1_65_state_00:
                        JSL.L CODE_849B03                    ;88C731|22039B84|849B03;
                        LDA.B #$01                           ;88C735|A901    |      ;
                        STA.B r_ev_30-$E68                   ;88C737|8530    |000E98;
-                       JML.L checkEventRange                ;88C739|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88C739|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88C73D:
@@ -11678,14 +11678,14 @@ zeroStage1_65_state_00:
                        STA.B r_ev_01_state-$E68             ;88CA3E|8501    |000E69;
                        STZ.B r_ev_02_action-$E68            ;88CA40|6402    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;88CA42|6403    |000E6B;
-                       JML.L checkEventRange                ;88CA44|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CA44|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CA48:
                        LDA.B r_ev_03_do-$E68                ;88CA48|A503    |000E6B;
                        CMP.B #$14                           ;88CA4A|C914    |      ;
                        BCS CODE_88CA52                      ;88CA4C|B004    |88CA52;
-                       JML.L checkEventRange                ;88CA4E|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CA4E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CA52:
@@ -11746,13 +11746,13 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CACD:
-                       JML.L checkEventRange                ;88CACD|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CACD|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CAD1:
                        LDX.B r_ev_02_action-$E68            ;88CAD1|A602    |000E6A;
                        JSR.W (PTR16_88CADA,X)               ;88CAD3|FCDACA  |88CADA;
-                       JML.L checkEventRange                ;88CAD6|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CAD6|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88CADA:
@@ -11845,7 +11845,7 @@ zeroStage1_65_state_00:
                        LSR A                                ;88CB67|4A      |      ;
                        BCC CODE_88CB83                      ;88CB68|9019    |88CB83;
                        LDA.B #$0C                           ;88CB6A|A90C    |      ;
-                       JSL.L weaponChargeInit               ;88CB6C|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;88CB6C|22CD8880|8088CD;
                        LDA.B r_ev_27_health-$E68            ;88CB70|A527    |000E8F;
                        AND.B #$7F                           ;88CB72|297F    |      ;
                        INC A                                ;88CB74|1A      |      ;
@@ -11930,7 +11930,7 @@ zeroStage1_65_state_00:
                        STZ.W r_1f43                         ;88CC09|9C431F  |861F43;
                        INC.W r_d_0bd8                       ;88CC0C|EED80B  |860BD8;
                        INC.W r_bossDefeatInvFlag            ;88CC0F|EE0C1F  |861F0C;
-                       JML.L checkEventRange                ;88CC12|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CC12|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CC16:
@@ -11955,7 +11955,7 @@ zeroStage1_65_state_00:
                        STA.B r_ev_20_hitBoxAddr-$E68        ;88CC34|8520    |000E88;
                        SEP #$20                             ;88CC36|E220    |      ;
                        JSL.L CODE_849B03                    ;88CC38|22039B84|849B03;
-                       JML.L checkEventRange                ;88CC3C|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CC3C|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88CC40:
@@ -12137,7 +12137,7 @@ zeroStage1_65_state_00:
                        LDA.B #$F6                           ;88CD79|A9F6    |      ;
                        LDY.B #$03                           ;88CD7B|A003    |      ;
                        JSL.L CODE_80887F                    ;88CD7D|227F8880|80887F;
-                       JML.L checkEventRange                ;88CD81|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CD81|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CD85:
@@ -12161,7 +12161,7 @@ zeroStage1_65_state_00:
                        JSL.L CODE_84A316                    ;88CDB2|2216A384|84A316;
                                                             ;      |        |      ;
           CODE_88CDB6:
-                       JML.L checkEventRange                ;88CDB6|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CDB6|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CDBA:
@@ -12183,7 +12183,7 @@ zeroStage1_65_state_00:
           CODE_88CDD7:
                        JSR.W CODE_88CEBB                    ;88CDD7|20BBCE  |88CEBB;
                        JSR.W CODE_88CEC8                    ;88CDDA|20C8CE  |88CEC8;
-                       JML.L checkEventRange                ;88CDDD|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CDDD|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CDE1:
@@ -12202,7 +12202,7 @@ zeroStage1_65_state_00:
           CODE_88CDFC:
                        JSR.W CODE_88CEBB                    ;88CDFC|20BBCE  |88CEBB;
                        JSR.W CODE_88CEC8                    ;88CDFF|20C8CE  |88CEC8;
-                       JML.L checkEventRange                ;88CE02|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CE02|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CE06:
@@ -12219,7 +12219,7 @@ zeroStage1_65_state_00:
           CODE_88CE1C:
                        JSR.W CODE_88CEBB                    ;88CE1C|20BBCE  |88CEBB;
                        JSR.W CODE_88CEC8                    ;88CE1F|20C8CE  |88CEC8;
-                       JML.L checkEventRange                ;88CE22|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CE22|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CE26:
@@ -12228,12 +12228,12 @@ zeroStage1_65_state_00:
                        LDA.B #$0C                           ;88CE2A|A90C    |      ;
                        STA.B r_ev_02_action-$E68            ;88CE2C|8502    |000E6A;
                        LDA.B #$21                           ;88CE2E|A921    |      ;
-                       JSL.L weaponChargeInit               ;88CE30|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;88CE30|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_88CE34:
                        JSR.W CODE_88CEBB                    ;88CE34|20BBCE  |88CEBB;
                        JSR.W CODE_88CEC8                    ;88CE37|20C8CE  |88CEC8;
-                       JML.L checkEventRange                ;88CE3A|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CE3A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CE3E:
@@ -12252,7 +12252,7 @@ zeroStage1_65_state_00:
                        JSL.L CODE_83F74A                    ;88CE5B|224AF783|83F74A;
                        JSR.W CODE_88CEC8                    ;88CE5F|20C8CE  |88CEC8;
                        JSR.W CODE_88CEBB                    ;88CE62|20BBCE  |88CEBB;
-                       JML.L checkEventRange                ;88CE65|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CE65|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CE69:
@@ -12272,7 +12272,7 @@ zeroStage1_65_state_00:
           CODE_88CE88:
                        JSR.W CODE_88CEBB                    ;88CE88|20BBCE  |88CEBB;
                        JSR.W CODE_88CEC8                    ;88CE8B|20C8CE  |88CEC8;
-                       JML.L checkEventRange                ;88CE8E|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CE8E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CE92:
@@ -12293,7 +12293,7 @@ zeroStage1_65_state_00:
           CODE_88CEB1:
                        JSR.W CODE_88CEC8                    ;88CEB1|20C8CE  |88CEC8;
                        JSR.W CODE_88CEBB                    ;88CEB4|20BBCE  |88CEBB;
-                       JML.L checkEventRange                ;88CEB7|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CEB7|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CEBB:
@@ -12429,7 +12429,7 @@ zeroStage1_65_state_00:
                        STA.B r_ev_01_state-$E68             ;88CF8F|8501    |000E69;
                        LDA.B #$06                           ;88CF91|A906    |      ;
                        STA.B r_ev_12-$E68                   ;88CF93|8512    |000E7A;
-                       JML.L checkEventRange                ;88CF95|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CF95|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CF99:
@@ -12448,7 +12448,7 @@ zeroStage1_65_state_00:
                        STA.B r_ev_01_state-$E68             ;88CFB5|8501    |000E69;
                        LDA.B #$04                           ;88CFB7|A904    |      ;
                        STA.B r_ev_12-$E68                   ;88CFB9|8512    |000E7A;
-                       JML.L checkEventRange                ;88CFBB|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CFBB|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CFBF:
@@ -12462,14 +12462,14 @@ zeroStage1_65_state_00:
                        LDY.W #$003E                         ;88CFD0|A03E00  |      ;
                        STY.B r_ev_08_yPos-$E68              ;88CFD3|8408    |000E70;
                        LDY.W #$01EA                         ;88CFD5|A0EA01  |      ;
-                       JSL.L CODE_828011                    ;88CFD8|22118082|828011;
+                       JSL.L lunchMusic                     ;88CFD8|22118082|828011;
                        LDA.B #$08                           ;88CFDC|A908    |      ;
                        STA.B r_ev_01_state-$E68             ;88CFDE|8501    |000E69;
                        LDA.B #$04                           ;88CFE0|A904    |      ;
                        STA.B r_ev_12-$E68                   ;88CFE2|8512    |000E7A;
                        LDA.B #$46                           ;88CFE4|A946    |      ;
-                       JSL.L weaponChargeInit               ;88CFE6|22CD8880|8088CD;
-                       JML.L checkEventRange                ;88CFEA|5CB48082|8280B4;
+                       JSL.L lunchWeaponSFX                 ;88CFE6|22CD8880|8088CD;
+                       JML.L checkPlayerGear                ;88CFEA|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CFEE:
@@ -12481,7 +12481,7 @@ zeroStage1_65_state_00:
                        STA.B r_ev_1a_xSpdSub-$E68           ;88CFF9|851A    |000E82;
                                                             ;      |        |      ;
           CODE_88CFFB:
-                       JML.L checkEventRange                ;88CFFB|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88CFFB|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CFFF:
@@ -12493,7 +12493,7 @@ zeroStage1_65_state_00:
                        STZ.W r_1f3f                         ;88D00B|9C3F1F  |861F3F;
                                                             ;      |        |      ;
           CODE_88D00E:
-                       JML.L checkEventRange                ;88D00E|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D00E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D012:
@@ -12505,7 +12505,7 @@ zeroStage1_65_state_00:
                        STZ.W r_1f3f                         ;88D01E|9C3F1F  |861F3F;
                                                             ;      |        |      ;
           CODE_88D021:
-                       JML.L checkEventRange                ;88D021|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D021|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D025:
@@ -12522,7 +12522,7 @@ zeroStage1_65_state_00:
                        AND.W #$00FF                         ;88D038|29FF00  |      ;
                        ASL A                                ;88D03B|0A      |      ;
                        TAY                                  ;88D03C|A8      |      ;
-                       JSL.L CODE_828011                    ;88D03D|22118082|828011;
+                       JSL.L lunchMusic                     ;88D03D|22118082|828011;
                        SEP #$30                             ;88D041|E230    |      ;
                        INC.B r_ev_1b_xSpd-$E68              ;88D043|E61B    |000E83;
                        LDA.B r_ev_1b_xSpd-$E68              ;88D045|A51B    |000E83;
@@ -12537,7 +12537,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D059:
-                       JML.L checkEventRange                ;88D059|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D059|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D05D:
@@ -12549,7 +12549,7 @@ zeroStage1_65_state_00:
                        STZ.B r_ev_1b_xSpd-$E68              ;88D069|641B    |000E83;
                                                             ;      |        |      ;
           CODE_88D06B:
-                       JML.L checkEventRange                ;88D06B|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D06B|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D06F:
@@ -12561,7 +12561,7 @@ zeroStage1_65_state_00:
                        SEC                                  ;88D07B|38      |      ;
                        SBC.W #$0017                         ;88D07C|E91700  |      ;
                        STA.B r_ev_08_yPos-$E68              ;88D07F|8508    |000E70;
-                       JML.L checkEventRange                ;88D081|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D081|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D085:
@@ -12572,7 +12572,7 @@ zeroStage1_65_state_00:
                        LDA.W r_0008,X                       ;88D08E|BD0800  |860008;
                        STA.B r_ev_08_yPos-$E68              ;88D091|8508    |000E70;
                        SEP #$20                             ;88D093|E220    |      ;
-                       JML.L checkEventRange                ;88D095|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D095|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D099:
@@ -12587,7 +12587,7 @@ zeroStage1_65_state_00:
                        BEQ CODE_88D0B9                      ;88D0AC|F00B    |88D0B9;
                        DEC.W r_1f42                         ;88D0AE|CE421F  |861F42;
                        JSL.L updateEv_13_14_17_0f           ;88D0B1|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;88D0B5|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D0B5|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D0B9:
@@ -12646,7 +12646,7 @@ zeroStage1_65_state_00:
                        LDA.B #$0A                           ;88D10A|A90A    |      ;
                        STA.B r_ev_27_health-$E68            ;88D10C|8527    |000E8F;
                        STA.B r_ev_26-$E68                   ;88D10E|8526    |000E8E;
-                       JML.L checkEventRange                ;88D110|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D110|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D114:
@@ -12659,13 +12659,13 @@ zeroStage1_65_state_00:
                        JSL.L playerGrabedRoutine            ;88D122|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88D126:
-                       JML.L checkEventRange                ;88D126|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D126|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D12A:
                        JSL.L CODE_82820A                    ;88D12A|220A8282|82820A;
                        JSL.L updateEv_13_14_17_0f           ;88D12E|22EA8E84|848EEA;
-                       JSL.L checkEventRange                ;88D132|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88D132|22B48082|8280B4;
                        LDA.B r_ev_0e-$E68                   ;88D136|A50E    |000E76;
                        BEQ CODE_88D13E                      ;88D138|F004    |88D13E;
                        JML.L CODE_849B03                    ;88D13A|5C039B84|849B03;
@@ -12727,7 +12727,7 @@ zeroStage1_65_state_00:
                        STZ.B r_ev_28-$E68                   ;88D190|6428    |000E90;
                        LDA.B #$12                           ;88D192|A912    |      ;
                        JSL.L playerGrabedRoutine            ;88D194|22078F84|848F07;
-                       JML.L checkEventRange                ;88D198|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D198|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D19C:
@@ -12735,7 +12735,7 @@ zeroStage1_65_state_00:
                        JSL.L updateEv_13_14_17_0f           ;88D1A0|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88D1A4|A50F    |000E77;
                        BMI CODE_88D1B4                      ;88D1A6|300C    |88D1B4;
-                       JSL.L checkEventRange                ;88D1A8|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88D1A8|22B48082|8280B4;
                        LDA.B r_ev_0e-$E68                   ;88D1AC|A50E    |000E76;
                        BEQ CODE_88D1B4                      ;88D1AE|F004    |88D1B4;
                        JML.L CODE_849B03                    ;88D1B0|5C039B84|849B03;
@@ -12809,7 +12809,7 @@ eventID_VileMech_66_main:
                        JSL.L CODE_8491BE                    ;88D226|22BE9184|8491BE;
                                                             ;      |        |      ;
           CODE_88D22A:
-                       JSL.L checkEventRange                ;88D22A|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88D22A|22B48082|8280B4;
                        RTS                                  ;88D22E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13552,7 +13552,7 @@ eventID_VileMech_66_main:
                        STA.W r_d_r_player_activSpr          ;88D6E9|8DB60B  |860BB6;
                        REP #$10                             ;88D6EC|C210    |      ;
                        LDY.W #$0100                         ;88D6EE|A00001  |      ;
-                       JSL.L CODE_828011                    ;88D6F1|22118082|828011;
+                       JSL.L lunchMusic                     ;88D6F1|22118082|828011;
                        LDX.W #$0B38                         ;88D6F5|A2380B  |      ;
                        STX.W r_levelSpecFlag                ;88D6F8|8E5E1E  |861E5E;
                        SEP #$10                             ;88D6FB|E210    |      ;
@@ -13796,7 +13796,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
           CODE_88D88E:
                        JSL.L updateEv_13_14_17_0f           ;88D88E|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;88D892|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D892|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D896:
@@ -13819,7 +13819,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D8B8:
-                       JML.L checkEventRange                ;88D8B8|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D8B8|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
 eventID_vile_68_state:
@@ -13961,7 +13961,7 @@ eventID_vileFinalForm_6a_main:
                        JSL.L CODE_849B03                    ;88D9A3|22039B84|849B03;
                        JSL.L initPosAllign                  ;88D9A7|226E8082|82806E;
                        BCS CODE_88D99B                      ;88D9AB|B0EE    |88D99B;
-                       JML.L checkEventRange                ;88D9AD|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88D9AD|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
 vileFinalForm_6a_state:
@@ -14241,7 +14241,7 @@ wallCreeper_69_state_00:
                        SEP #$20                             ;88DB83|E220    |      ;
                                                             ;      |        |      ;
           CODE_88DB85:
-                       JSL.L checkEventRange                ;88DB85|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88DB85|22B48082|8280B4;
                        RTS                                  ;88DB89|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14262,7 +14262,7 @@ wallCreeper_69_state_00:
                        DEC.B r_ev_0c_parent-$E68            ;88DBA2|C60C    |000E74;
                                                             ;      |        |      ;
           CODE_88DBA4:
-                       JSL.L checkEventRange                ;88DBA4|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88DBA4|22B48082|8280B4;
                        RTS                                  ;88DBA8|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14291,7 +14291,7 @@ wallCreeper_69_state_00:
                        DEC.B r_ev_0c_parent-$E68            ;88DBD9|C60C    |000E74;
                                                             ;      |        |      ;
           CODE_88DBDB:
-                       JSL.L checkEventRange                ;88DBDB|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88DBDB|22B48082|8280B4;
                        RTS                                  ;88DBDF|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14305,7 +14305,7 @@ wallCreeper_69_state_00:
                        STZ.B r_ev_0c_parent-$E68            ;88DBEE|640C    |000E74;
                                                             ;      |        |      ;
           CODE_88DBF0:
-                       JSL.L checkEventRange                ;88DBF0|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88DBF0|22B48082|8280B4;
                        RTS                                  ;88DBF4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14341,7 +14341,7 @@ wallCreeper_69_state_00:
                        SEP #$20                             ;88DC26|E220    |      ;
                                                             ;      |        |      ;
           CODE_88DC28:
-                       JSL.L checkEventRange                ;88DC28|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88DC28|22B48082|8280B4;
                        RTS                                  ;88DC2C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14358,7 +14358,7 @@ wallCreeper_69_state_00:
                        ORA.B #$80                           ;88DC3F|0980    |      ;
                        STA.B r_ev_27_health-$E68            ;88DC41|8527    |000E8F;
                        LDA.B #$0C                           ;88DC43|A90C    |      ;
-                       JSL.L weaponChargeInit               ;88DC45|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;88DC45|22CD8880|8088CD;
                        JMP.W CODE_88DC6C                    ;88DC49|4C6CDC  |88DC6C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14378,7 +14378,7 @@ wallCreeper_69_state_00:
                        JSL.L CODE_8087A2                    ;88DC68|22A28780|8087A2;
                                                             ;      |        |      ;
           CODE_88DC6C:
-                       JSL.L checkEventRange                ;88DC6C|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88DC6C|22B48082|8280B4;
                        RTS                                  ;88DC70|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14401,7 +14401,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88DC8C:
                        JSL.L updateEv_13_14_17_0f           ;88DC8C|22EA8E84|848EEA;
-                       JSL.L checkEventRange                ;88DC90|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88DC90|22B48082|8280B4;
                        RTS                                  ;88DC94|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14474,7 +14474,7 @@ wallCreeper_69_state_00:
                        JSL.L CODE_849B03                    ;88DD06|22039B84|849B03;
                                                             ;      |        |      ;
           CODE_88DD0A:
-                       JML.L checkEventRange                ;88DD0A|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88DD0A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88DD0E:
@@ -15164,7 +15164,7 @@ wallCreeper_69_state_00:
                        JSL.L playerGrabedRoutine            ;88E13F|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88E143:
-                       JML.L checkEventRange                ;88E143|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E143|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E147:
@@ -15182,7 +15182,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88E158:
                        JSL.L updateEv_13_14_17_0f           ;88E158|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;88E15C|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E15C|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E160:
@@ -15210,7 +15210,7 @@ wallCreeper_69_state_00:
                        LDA.B #$03                           ;88E18B|A903    |      ;
                        STA.W r_0008                         ;88E18D|8D0800  |860008;
                        JSL.L updateEv_13_14_17_0f           ;88E190|22EA8E84|848EEA;
-                       JSL.L checkEventRange                ;88E194|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88E194|22B48082|8280B4;
                        JML.L CODE_84A4D0                    ;88E198|5CD0A484|84A4D0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15238,7 +15238,7 @@ wallCreeper_69_state_00:
                        JSR.W CODE_88E252                    ;88E1CD|2052E2  |88E252;
                        LDA.B #$C0                           ;88E1D0|A9C0    |      ;
                        STA.B r_ev_0c_parent-$E68            ;88E1D2|850C    |000E74;
-                       JML.L checkEventRange                ;88E1D4|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E1D4|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E1D8:
@@ -15255,7 +15255,7 @@ wallCreeper_69_state_00:
                        CMP.B #$B0                           ;88E1E9|C9B0    |      ;
                        BNE CODE_88E1F3                      ;88E1EB|D006    |88E1F3;
                        LDA.B #$21                           ;88E1ED|A921    |      ;
-                       JSL.L weaponChargeInit               ;88E1EF|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;88E1EF|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_88E1F3:
                        DEC.B r_ev_0c_parent-$E68            ;88E1F3|C60C    |000E74;
@@ -15275,12 +15275,12 @@ wallCreeper_69_state_00:
                        CMP.B #$B0                           ;88E20C|C9B0    |      ;
                        BCC CODE_88E217                      ;88E20E|9007    |88E217;
                        JSR.W CODE_88E252                    ;88E210|2052E2  |88E252;
-                       JML.L checkEventRange                ;88E213|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E213|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E217:
                        JSR.W CODE_88E279                    ;88E217|2079E2  |88E279;
-                       JML.L checkEventRange                ;88E21A|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E21A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E21E:
@@ -15462,7 +15462,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E380:
-                       JML.L checkEventRange                ;88E380|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E380|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88E384:
@@ -15597,7 +15597,7 @@ wallCreeper_69_state_00:
                        LDA.B #$03                           ;88E45D|A903    |      ;
                        JSL.L playerGrabedRoutine            ;88E45F|22078F84|848F07;
                        SEP #$20                             ;88E463|E220    |      ;
-                       JSL.L checkEventRange                ;88E465|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88E465|22B48082|8280B4;
                        RTS                                  ;88E469|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15624,7 +15624,7 @@ wallCreeper_69_state_00:
                        JSL.L updateEv_13_14_17_0f           ;88E491|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88E495:
-                       JSL.L checkEventRange                ;88E495|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88E495|22B48082|8280B4;
                        RTS                                  ;88E499|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15645,7 +15645,7 @@ wallCreeper_69_state_00:
                        JSL.L updateEv_13_14_17_0f           ;88E4B1|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88E4B5:
-                       JSL.L checkEventRange                ;88E4B5|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88E4B5|22B48082|8280B4;
                        RTS                                  ;88E4B9|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15675,7 +15675,7 @@ wallCreeper_69_state_00:
                        STA.B r_ev_01_state-$E68             ;88E4EA|8501    |000E69;
                                                             ;      |        |      ;
           CODE_88E4EC:
-                       JSL.L checkEventRange                ;88E4EC|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88E4EC|22B48082|8280B4;
                        RTS                                  ;88E4F0|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15701,7 +15701,7 @@ wallCreeper_69_state_00:
                        DEC.B r_ev_0c_parent-$E68            ;88E513|C60C    |000E74;
                                                             ;      |        |      ;
           CODE_88E515:
-                       JSL.L checkEventRange                ;88E515|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88E515|22B48082|8280B4;
                        RTS                                  ;88E519|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15719,14 +15719,14 @@ wallCreeper_69_state_00:
           CODE_88E52E:
                        DEC.B r_ev_0c_parent-$E68            ;88E52E|C60C    |000E74;
                        JSL.L updateEv_13_14_17_0f           ;88E530|22EA8E84|848EEA;
-                       JSL.L checkEventRange                ;88E534|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88E534|22B48082|8280B4;
                        RTS                                  ;88E538|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E539:
                        JSL.L CODE_82823E                    ;88E539|223E8282|82823E;
                        JSL.L updateEv_13_14_17_0f           ;88E53D|22EA8E84|848EEA;
-                       JSL.L checkEventRange                ;88E541|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88E541|22B48082|8280B4;
                        RTS                                  ;88E545|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15778,7 +15778,7 @@ wallCreeper_69_state_00:
                        STA.B r_ev_27_health-$E68            ;88E595|8527    |000E8F;
                        STA.B r_ev_26-$E68                   ;88E597|8526    |000E8E;
                        STA.B r_ev_30-$E68                   ;88E599|8530    |000E98;
-                       JML.L checkEventRange                ;88E59B|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E59B|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E59F:
@@ -16092,7 +16092,7 @@ wallCreeper_69_state_00:
                        STA.B r_ev_1e_weight-$E68            ;88E79B|851E    |000E86;
                        LDA.B #$FF                           ;88E79D|A9FF    |      ;
                        STA.B r_ev_2f-$E68                   ;88E79F|852F    |000E97;
-                       JML.L checkEventRange                ;88E7A1|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E7A1|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E7A5:
@@ -16113,7 +16113,7 @@ wallCreeper_69_state_00:
                        SEP #$20                             ;88E7C3|E220    |      ;
                                                             ;      |        |      ;
           CODE_88E7C5:
-                       JML.L checkEventRange                ;88E7C5|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E7C5|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E7C9:
@@ -16128,7 +16128,7 @@ wallCreeper_69_state_00:
                        STA.B r_ev_38-$E68                   ;88E7DD|8538    |000EA0;
                                                             ;      |        |      ;
           CODE_88E7DF:
-                       JML.L checkEventRange                ;88E7DF|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E7DF|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E7E3:
@@ -16145,7 +16145,7 @@ wallCreeper_69_state_00:
                        LDA.B #$07                           ;88E7FD|A907    |      ;
                        STA.W r_0008                         ;88E7FF|8D0800  |860008;
                        JSL.L CODE_84A4D0                    ;88E802|22D0A484|84A4D0;
-                       JML.L checkEventRange                ;88E806|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E806|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E80A:
@@ -16166,7 +16166,7 @@ wallCreeper_69_state_00:
                        LDA.W r_1f3f                         ;88E829|AD3F1F  |861F3F;
                        BMI CODE_88E836                      ;88E82C|3008    |88E836;
                        JSL.L CODE_849B03                    ;88E82E|22039B84|849B03;
-                       JML.L checkEventRange                ;88E832|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E832|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E836:
@@ -16176,7 +16176,7 @@ wallCreeper_69_state_00:
                        STZ.B r_ev_03_do-$E68                ;88E83C|6403    |000E6B;
                        LDA.B #$04                           ;88E83E|A904    |      ;
                        JSL.L playerGrabedRoutine            ;88E840|22078F84|848F07;
-                       JML.L checkEventRange                ;88E844|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E844|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E848:
@@ -16245,7 +16245,7 @@ wallCreeper_69_state_00:
           CODE_88E8A5:
                        LDX.B r_ev_01_state-$E68             ;88E8A5|A601    |000E69;
                        JSR.W (PTR16_88E8AE,X)               ;88E8A7|FCAEE8  |88E8AE;
-                       JML.L checkEventRange                ;88E8AA|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88E8AA|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_88E8AE:
@@ -16394,7 +16394,7 @@ wallCreeper_69_state_00:
                        EOR.W r_frameCounter0                ;88E9AE|4D9B0B  |860B9B;
                        LSR A                                ;88E9B1|4A      |      ;
                        BCC CODE_88E9BC                      ;88E9B2|9008    |88E9BC;
-                       JSL.L checkEventRange                ;88E9B4|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88E9B4|22B48082|8280B4;
                        LDA.B r_ev_0e-$E68                   ;88E9B8|A50E    |000E76;
                        BEQ CODE_88E9BD                      ;88E9BA|F001    |88E9BD;
                                                             ;      |        |      ;
@@ -16460,7 +16460,7 @@ wallCreeper_69_state_00:
                        EOR.W r_frameCounter0                ;88EA27|4D9B0B  |860B9B;
                        LSR A                                ;88EA2A|4A      |      ;
                        BCC CODE_88EA39                      ;88EA2B|900C    |88EA39;
-                       JSL.L checkEventRange                ;88EA2D|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88EA2D|22B48082|8280B4;
                        LDA.B r_ev_0e-$E68                   ;88EA31|A50E    |000E76;
                        BNE CODE_88EA39                      ;88EA33|D004    |88EA39;
                        JML.L clearStates_00_02_0E           ;88EA35|5C988382|828398;
@@ -16488,7 +16488,7 @@ wallCreeper_69_state_00:
                        EOR.B #$01                           ;88EA58|4901    |      ;
                        STA.B r_ev_0b_subID-$E68             ;88EA5A|850B    |000E73;
                        BEQ CODE_88EA6A                      ;88EA5C|F00C    |88EA6A;
-                       JSL.L checkEventRange                ;88EA5E|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88EA5E|22B48082|8280B4;
                        LDA.B r_ev_0e-$E68                   ;88EA62|A50E    |000E76;
                        BNE CODE_88EA6A                      ;88EA64|D004    |88EA6A;
                                                             ;      |        |      ;
@@ -16524,7 +16524,7 @@ wallCreeper_69_state_00:
                        DEC.B r_ev_02_action-$E68            ;88EA86|C602    |000E6A;
                        BEQ CODE_88EA99                      ;88EA88|F00F    |88EA99;
                        SEP #$20                             ;88EA8A|E220    |      ;
-                       JSL.L checkEventRange                ;88EA8C|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88EA8C|22B48082|8280B4;
                        JMP.W CODE_88EA9F                    ;88EA90|4C9FEA  |88EA9F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16671,7 +16671,7 @@ wallCreeper_69_state_00:
                        STA.B r_ev_05_xPos-$E68              ;88EB74|8505    |000E6D;
                        LDA.W r_0008,X                       ;88EB76|BD0800  |860008;
                        STA.B r_ev_08_yPos-$E68              ;88EB79|8508    |000E70;
-                       JML.L checkEventRange                ;88EB7B|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;88EB7B|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88EB7F:
@@ -16701,7 +16701,7 @@ wallCreeper_69_state_00:
                        LDA.W r_frameCounter1                ;88EBAE|AD9C0B  |860B9C;
                        LSR A                                ;88EBB1|4A      |      ;
                        BCC CODE_88EBC0                      ;88EBB2|900C    |88EBC0;
-                       JSL.L checkEventRange                ;88EBB4|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;88EBB4|22B48082|8280B4;
                        LDA.B r_ev_0e-$E68                   ;88EBB8|A50E    |000E76;
                        BNE CODE_88EBC0                      ;88EBBA|D004    |88EBC0;
                        JML.L clearStates_00_02_0E           ;88EBBC|5C988382|828398;

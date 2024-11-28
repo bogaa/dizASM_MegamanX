@@ -13,7 +13,7 @@
                        BRA CODE_82801D                      ;82800F|800C    |82801D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_828011:
+           lunchMusic:
                        PHP                                  ;828011|08      |      ;
                        PHD                                  ;828012|0B      |      ;
                        SEP #$20                             ;828013|E220    |      ;
@@ -119,17 +119,17 @@
                        RTL                                  ;8280B3|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-      checkEventRange:
-                       REP #$20                             ;8280B4|C220    |      ;
+      checkPlayerGear:
+                       REP #$20                             ;8280B4|C220    |      ; also used in pause
                        SEC                                  ;8280B6|38      |      ;
-                       LDA.B $05                            ;8280B7|A505    |00198D;
+                       LDA.B $05                            ;8280B7|A505    |0014ED;
                        SBC.W r_cam_BG0_xPos_target          ;8280B9|ED4D1E  |861E4D;
                        CLC                                  ;8280BC|18      |      ;
                        ADC.W #$0020                         ;8280BD|692000  |      ;
                        CMP.W #$0140                         ;8280C0|C94001  |      ;
                        BCS CODE_8280D4                      ;8280C3|B00F    |8280D4;
                        SEC                                  ;8280C5|38      |      ;
-                       LDA.B $08                            ;8280C6|A508    |001990;
+                       LDA.B $08                            ;8280C6|A508    |0014F0;
                        SBC.W r_cam_BG0_yPos_target          ;8280C8|ED501E  |861E50;
                        CLC                                  ;8280CB|18      |      ;
                        ADC.W #$0010                         ;8280CC|691000  |      ;
@@ -138,7 +138,7 @@
                                                             ;      |        |      ;
           CODE_8280D4:
                        SEP #$20                             ;8280D4|E220    |      ;
-                       STZ.B $0E                            ;8280D6|640E    |001996;
+                       STZ.B $0E                            ;8280D6|640E    |0014F6;
                        RTL                                  ;8280D8|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -152,10 +152,10 @@
                        LDX.B #$0A                           ;8280E5|A20A    |      ;
                                                             ;      |        |      ;
           CODE_8280E7:
-                       JMP.W (PTR16_8280EA,X)               ;8280E7|7CEA80  |8280EA;
+                       JMP.W (checkGearStuff,X)             ;8280E7|7CEA80  |8280EA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_8280EA:
+       checkGearStuff:
                        dw CODE_82810B                       ;8280EA|        |82810B;
                        dw CODE_828120                       ;8280EC|        |828120;
                        dw CODE_828135                       ;8280EE|        |828135;
@@ -263,19 +263,19 @@
                        PHP                                  ;828174|08      |      ;
                        REP #$20                             ;828175|C220    |      ;
                        SEC                                  ;828177|38      |      ;
-                       LDA.B r_ev_1e_weight-$E68            ;828178|A51E    |000E86;
+                       LDA.B $1E                            ;828178|A51E    |00001E;
                        AND.W #$00FF                         ;82817A|29FF00  |      ;
-                       SBC.B r_ev_1c_ySpdSub-$E68           ;82817D|E51C    |000E84;
+                       SBC.B $1C                            ;82817D|E51C    |00001C;
                        EOR.W #$FFFF                         ;82817F|49FFFF  |      ;
                        INC A                                ;828182|1A      |      ;
-                       STA.B r_ev_1c_ySpdSub-$E68           ;828183|851C    |000E84;
+                       STA.B $1C                            ;828183|851C    |00001C;
                        SEC                                  ;828185|38      |      ;
-                       LDA.B r_ev_1f-$E68                   ;828186|A51F    |000E87;
+                       LDA.B $1F                            ;828186|A51F    |00001F;
                        AND.W #$00FF                         ;828188|29FF00  |      ;
-                       SBC.B r_ev_1a_xSpdSub-$E68           ;82818B|E51A    |000E82;
+                       SBC.B $1A                            ;82818B|E51A    |00001A;
                        EOR.W #$FFFF                         ;82818D|49FFFF  |      ;
                        INC A                                ;828190|1A      |      ;
-                       STA.B r_ev_1a_xSpdSub-$E68           ;828191|851A    |000E82;
+                       STA.B $1A                            ;828191|851A    |00001A;
                        BRA CODE_82820B                      ;828193|8076    |82820B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -335,12 +335,12 @@
                        PHP                                  ;8281E8|08      |      ;
                        REP #$20                             ;8281E9|C220    |      ;
                        SEC                                  ;8281EB|38      |      ;
-                       LDA.B $1E                            ;8281EC|A51E    |0016A6;
+                       LDA.B $1E                            ;8281EC|A51E    |00001E;
                        AND.W #$00FF                         ;8281EE|29FF00  |      ;
-                       SBC.B $1C                            ;8281F1|E51C    |0016A4;
+                       SBC.B $1C                            ;8281F1|E51C    |00001C;
                        EOR.W #$FFFF                         ;8281F3|49FFFF  |      ;
                        INC A                                ;8281F6|1A      |      ;
-                       STA.B $1C                            ;8281F7|851C    |0016A4;
+                       STA.B $1C                            ;8281F7|851C    |00001C;
                        BRA CODE_82820B                      ;8281F9|8010    |82820B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -360,33 +360,33 @@
                                                             ;      |        |      ;
           CODE_82820B:
                        REP #$21                             ;82820B|C221    |      ;
-                       LDA.B r_ev_04_xSubPos-$E68           ;82820D|A504    |000E6C;
-                       ADC.B r_ev_1a_xSpdSub-$E68           ;82820F|651A    |000E82;
-                       STA.B r_ev_04_xSubPos-$E68           ;828211|8504    |000E6C;
+                       LDA.B $04                            ;82820D|A504    |000004;
+                       ADC.B $1A                            ;82820F|651A    |00001A;
+                       STA.B $04                            ;828211|8504    |000004;
                        SEP #$20                             ;828213|E220    |      ;
                        LDA.B #$00                           ;828215|A900    |      ;
-                       BIT.B r_ev_1b_xSpd-$E68              ;828217|241B    |000E83;
+                       BIT.B $1B                            ;828217|241B    |00001B;
                        BPL CODE_82821C                      ;828219|1001    |82821C;
                        DEC A                                ;82821B|3A      |      ;
                                                             ;      |        |      ;
           CODE_82821C:
-                       ADC.B $06                            ;82821C|6506    |000E6E;
-                       STA.B $06                            ;82821E|8506    |000E6E;
+                       ADC.B $06                            ;82821C|6506    |000006;
+                       STA.B $06                            ;82821E|8506    |000006;
                        REP #$20                             ;828220|C220    |      ;
                        SEC                                  ;828222|38      |      ;
-                       LDA.B r_ev_07_ySubPos-$E68           ;828223|A507    |000E6F;
-                       SBC.B r_ev_1c_ySpdSub-$E68           ;828225|E51C    |000E84;
-                       STA.B r_ev_07_ySubPos-$E68           ;828227|8507    |000E6F;
+                       LDA.B $07                            ;828223|A507    |000007;
+                       SBC.B $1C                            ;828225|E51C    |00001C;
+                       STA.B $07                            ;828227|8507    |000007;
                        SEP #$20                             ;828229|E220    |      ;
-                       STZ.W r_0000                         ;82822B|9C0000  |860000;
-                       BIT.B r_ev_1d_ySpd-$E68              ;82822E|241D    |000E85;
+                       STZ.W $0000                          ;82822B|9C0000  |000000;
+                       BIT.B $1D                            ;82822E|241D    |00001D;
                        BPL CODE_828235                      ;828230|1003    |828235;
-                       DEC.W r_0000                         ;828232|CE0000  |860000;
+                       DEC.W $0000                          ;828232|CE0000  |000000;
                                                             ;      |        |      ;
           CODE_828235:
-                       LDA.B $09                            ;828235|A509    |000E71;
-                       SBC.W r_0000                         ;828237|ED0000  |860000;
-                       STA.B $09                            ;82823A|8509    |000E71;
+                       LDA.B $09                            ;828235|A509    |000009;
+                       SBC.W $0000                          ;828237|ED0000  |000000;
+                       STA.B $09                            ;82823A|8509    |000009;
                        PLP                                  ;82823C|28      |      ;
                        RTL                                  ;82823D|6B      |      ;
                                                             ;      |        |      ;
@@ -500,7 +500,7 @@
                        LDX.W #$1928                         ;8282D5|A22819  |      ;
                                                             ;      |        |      ;
           CODE_8282D8:
-                       LDA.W r_0000,X                       ;8282D8|BD0000  |860000;
+                       LDA.W $0000,X                        ;8282D8|BD0000  |000000;
                        BEQ notActiveEntity                  ;8282DB|F05E    |82833B;
                        TXA                                  ;8282DD|8A      |      ;
                        CLC                                  ;8282DE|18      |      ;
@@ -595,7 +595,7 @@ findEnemyShotEmptySlot:
                        LDX.W #$1428                         ;82835A|A22814  |      ;
                                                             ;      |        |      ;
           CODE_82835D:
-                       LDA.W r_0000,X                       ;82835D|BD0000  |860000;
+                       LDA.W $0000,X                        ;82835D|BD0000  |000000;
                        BEQ notActiveEntity                  ;828360|F0D9    |82833B;
                        TXA                                  ;828362|8A      |      ;
                        CLC                                  ;828363|18      |      ;
@@ -635,9 +635,9 @@ findEnemyShotEmptySlot:
                                                             ;      |        |      ;
  clearStates_00_02_0E:
                        REP #$20                             ;828398|C220    |      ;
-                       STZ.B r_ev_active_00-$E68            ;82839A|6400    |000E68;
-                       STZ.B r_ev_02_action-$E68            ;82839C|6402    |000E6A;
-                       STZ.B r_ev_0e-$E68                   ;82839E|640E    |000E76;
+                       STZ.B $00                            ;82839A|6400    |000000;
+                       STZ.B $02                            ;82839C|6402    |000002;
+                       STZ.B $0E                            ;82839E|640E    |00000E;
                        SEP #$20                             ;8283A0|E220    |      ;
                        RTL                                  ;8283A2|6B      |      ;
                                                             ;      |        |      ;
@@ -713,7 +713,7 @@ cutterProjectile_main:
                        SEP #$20                             ;828415|E220    |      ;
                        LDA.B #$01                           ;828417|A901    |      ;
                        JSL.L playerGrabedRoutine            ;828419|22078F84|848F07;
-                       JML.L checkEventRange                ;82841D|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82841D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
      we_cutterState03:
@@ -727,7 +727,7 @@ cutterProjectile_main:
                        JSR.W (PTR16_828452,X)               ;82842B|FC5284  |828452;
                        JSR.W CODE_828538                    ;82842E|203885  |828538;
                        JSL.L updateEv_13_14_17_0f           ;828431|22EA8E84|848EEA;
-                       JSL.L checkEventRange                ;828435|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;828435|22B48082|8280B4;
                        JSL.L initPosAllign                  ;828439|226E8082|82806E;
                        BCC CODE_828451                      ;82843D|9012    |828451;
                        LDA.B $3A                            ;82843F|A53A    |0012A2;
@@ -1010,7 +1010,7 @@ cutterProjectile_main:
                        LDA.B $27                            ;8285FE|A527    |00148F;
                        AND.B #$7F                           ;828600|297F    |      ;
                        BEQ CODE_828608                      ;828602|F004    |828608;
-                       JSL.L checkEventRange                ;828604|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;828604|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_828608:
                        JSL.L CODE_849B43                    ;828608|22439B84|849B43;
@@ -1929,7 +1929,7 @@ cutterProjectile_main:
                        LDX.B $01                            ;828BFA|A601    |001429;
                        JSR.W (PTR16_828C10,X)               ;828BFC|FC108C  |828C10;
                        JSL.L CODE_849B03                    ;828BFF|22039B84|849B03;
-                       JSL.L checkEventRange                ;828C03|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;828C03|22B48082|8280B4;
                        LDA.B $0E                            ;828C07|A50E    |001436;
                        BNE CODE_828C0F                      ;828C09|D004    |828C0F;
                        JML.L clearStates_01_00_02_0E_2C     ;828C0B|5CA38382|8283A3;
@@ -2026,7 +2026,7 @@ cutterProjectile_main:
                        SEP #$20                             ;828C96|E220    |      ;
                        LDA.B #$03                           ;828C98|A903    |      ;
                        JSL.L playerGrabedRoutine            ;828C9A|22078F84|848F07;
-                       JML.L checkEventRange                ;828C9E|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;828C9E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828CA2:
@@ -2067,7 +2067,7 @@ cutterProjectile_main:
                        JSL.L playerGrabedRoutine            ;828CE0|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_828CE4:
-                       JML.L checkEventRange                ;828CE4|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;828CE4|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828CE8:
@@ -2086,7 +2086,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_828D02:
                        JSR.W CODE_828D72                    ;828D02|20728D  |828D72;
-                       JML.L checkEventRange                ;828D05|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;828D05|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D09:
@@ -2099,7 +2099,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_828D17:
                        JSL.L updateEv_13_14_17_0f           ;828D17|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;828D1B|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;828D1B|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D1F:
@@ -2125,7 +2125,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_828D41:
                        JSR.W CODE_828D72                    ;828D41|20728D  |828D72;
-                       JML.L checkEventRange                ;828D44|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;828D44|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D48:
@@ -2138,7 +2138,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_828D56:
                        JSL.L updateEv_13_14_17_0f           ;828D56|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;828D5A|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;828D5A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D5E:
@@ -2150,7 +2150,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D6E:
-                       JML.L checkEventRange                ;828D6E|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;828D6E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D72:
@@ -2196,7 +2196,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828DC3:
-                       JSL.L checkEventRange                ;828DC3|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;828DC3|22B48082|8280B4;
                        LDA.B $0E                            ;828DC7|A50E    |001436;
                        BEQ CODE_828DBF                      ;828DC9|F0F4    |828DBF;
                        RTL                                  ;828DCB|6B      |      ;
@@ -2353,7 +2353,7 @@ cutterProjectile_main:
                        SEP #$20                             ;828EC3|E220    |      ;
                        LDA.B #$02                           ;828EC5|A902    |      ;
                        JSL.L playerGrabedRoutine            ;828EC7|22078F84|848F07;
-                       JML.L checkEventRange                ;828ECB|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;828ECB|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828ECF:
@@ -2378,7 +2378,7 @@ cutterProjectile_main:
                        STA.B $39                            ;828EF5|8539    |0014A1;
                        LDA.B #$04                           ;828EF7|A904    |      ;
                        JSL.L playerGrabedRoutine            ;828EF9|22078F84|848F07;
-                       JML.L checkEventRange                ;828EFD|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;828EFD|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828F01:
@@ -2392,7 +2392,7 @@ cutterProjectile_main:
                        JSL.L updateEv_13_14_17_0f           ;828F15|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_828F19:
-                       JML.L checkEventRange                ;828F19|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;828F19|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828F1D:
@@ -2403,7 +2403,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828F29:
-                       JML.L checkEventRange                ;828F29|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;828F29|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828F2D:
@@ -2532,7 +2532,7 @@ cutterProjectile_main:
                        LDA.B ($0C),Y                        ;828FEF|B10C    |001474;
                        AND.B #$7F                           ;828FF1|297F    |      ;
                        BEQ CODE_829027                      ;828FF3|F032    |829027;
-                       JSL.L checkEventRange                ;828FF5|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;828FF5|22B48082|8280B4;
                        LDA.B $0E                            ;828FF9|A50E    |001476;
                        BEQ CODE_82902B                      ;828FFB|F02E    |82902B;
                        DEC.B $3A                            ;828FFD|C63A    |0014A2;
@@ -2618,7 +2618,7 @@ cutterProjectile_main:
                        LDA.B #$02                           ;829087|A902    |      ;
                        STA.B $26                            ;829089|8526    |00144E;
                        STZ.B $28                            ;82908B|6428    |001450;
-                       JML.L checkEventRange                ;82908D|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82908D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829091:
@@ -2636,7 +2636,7 @@ cutterProjectile_main:
                        JSL.L initPosAllign                  ;8290A7|226E8082|82806E;
                        BCS CODE_8290A3                      ;8290AB|B0F6    |8290A3;
                        JSR.W CODE_8290E2                    ;8290AD|20E290  |8290E2;
-                       JML.L checkEventRange                ;8290B0|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;8290B0|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8290B4:
@@ -2656,7 +2656,7 @@ cutterProjectile_main:
           CODE_8290D4:
                        JSL.L initPosAllign                  ;8290D4|226E8082|82806E;
                        BCS CODE_8290DE                      ;8290D8|B004    |8290DE;
-                       JML.L checkEventRange                ;8290DA|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;8290DA|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8290DE:
@@ -2721,7 +2721,7 @@ cutterProjectile_main:
                        JSL.L CODE_849B03                    ;82913E|22039B84|849B03;
                                                             ;      |        |      ;
           CODE_829142:
-                       JSL.L checkEventRange                ;829142|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;829142|22B48082|8280B4;
                        JSL.L initPosAllign                  ;829146|226E8082|82806E;
                        BCC CODE_829150                      ;82914A|9004    |829150;
                        JSL.L clearStates_01_00_02_0E_2C     ;82914C|22A38382|8283A3;
@@ -3518,7 +3518,7 @@ mammothTrunk_0e_state_00:
                        JSR.W CODE_829644                    ;8295D8|204496  |829644;
                        JSR.W CODE_82966D                    ;8295DB|206D96  |82966D;
                        JSL.L updateEv_13_14_17_0f           ;8295DE|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;8295E2|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;8295E2|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8295E6:
@@ -3526,7 +3526,7 @@ mammothTrunk_0e_state_00:
                        JSR.W CODE_829644                    ;8295E9|204496  |829644;
                        JSR.W CODE_82966D                    ;8295EC|206D96  |82966D;
                        JSL.L updateEv_13_14_17_0f           ;8295EF|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;8295F3|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;8295F3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8295F7:
@@ -3537,7 +3537,7 @@ mammothTrunk_0e_state_00:
                        LDA.B $03                            ;829604|A503    |000EAB;
                        CMP.B #$14                           ;829606|C914    |      ;
                        BCS CODE_82960E                      ;829608|B004    |82960E;
-                       JML.L checkEventRange                ;82960A|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82960A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82960E:
@@ -3563,7 +3563,7 @@ mammothTrunk_0e_state_00:
                        LDA.W r_frameCounter1                ;829631|AD9C0B  |860B9C;
                        LSR A                                ;829634|4A      |      ;
                        BCC CODE_829643                      ;829635|900C    |829643;
-                       JSL.L checkEventRange                ;829637|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;829637|22B48082|8280B4;
                        LDA.B $0E                            ;82963B|A50E    |000EB6;
                        BNE CODE_829643                      ;82963D|D004    |829643;
                        JML.L clearStates_00_02_0E           ;82963F|5C988382|828398;
@@ -3713,7 +3713,7 @@ eventID_crusher_0f_main:
                        JSR.W (PTR16_82976B,X)               ;82972A|FC6B97  |82976B;
                        LDA.L $7F831E                        ;82972D|AF1E837F|7F831E;
                        STA.B $11                            ;829731|8511    |000EB9;
-                       JSL.L checkEventRange                ;829733|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;829733|22B48082|8280B4;
                        JSL.L CODE_849B43                    ;829737|22439B84|849B43;
                        BEQ CODE_829766                      ;82973B|F029    |829766;
                        LDA.B #$0E                           ;82973D|A90E    |      ;
@@ -4130,7 +4130,7 @@ eventID_dodgeBlaster_13_main:
           CODE_8299CD:
                        JSL.L initPosAllign                  ;8299CD|226E8082|82806E;
                        BCS CODE_8299C5                      ;8299D1|B0F2    |8299C5;
-                       JML.L checkEventRange                ;8299D3|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;8299D3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
 dodgeBlaster_13_state:
@@ -4429,7 +4429,7 @@ dodgeBlaster_13_state_00:
                        BNE CODE_829BCE                      ;829BBF|D00D    |829BCE;
                        DEC.B $35                            ;829BC1|C635    |0014DD;
                        BEQ CODE_829BCE                      ;829BC3|F009    |829BCE;
-                       JSL.L checkEventRange                ;829BC5|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;829BC5|22B48082|8280B4;
                        LDA.B $0E                            ;829BC9|A50E    |0014B6;
                        BEQ CODE_829BCE                      ;829BCB|F001    |829BCE;
                        RTL                                  ;829BCD|6B      |      ;
@@ -4511,7 +4511,7 @@ eventID_spiky_15_main:
                                                             ;      |        |      ;
           CODE_829C41:
                        JSL.L CODE_849B03                    ;829C41|22039B84|849B03;
-                       JSL.L checkEventRange                ;829C45|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;829C45|22B48082|8280B4;
                        JSL.L initPosAllign                  ;829C49|226E8082|82806E;
                        BCC CODE_829C53                      ;829C4D|9004    |829C53;
                        JML.L clearStateIf_0cEqual           ;829C4F|5C878382|828387;
@@ -5021,7 +5021,7 @@ eventID_bombBeen_19_main:
                        BEQ CODE_829F79                      ;829F73|F004    |829F79;
                                                             ;      |        |      ;
           CODE_829F75:
-                       JML.L checkEventRange                ;829F75|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;829F75|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829F79:
@@ -5278,7 +5278,7 @@ eventID_bombBeen_19_main:
                        STZ.B $35                            ;82A108|6435    |000F5D;
                        SEP #$20                             ;82A10A|E220    |      ;
                        JSR.W CODE_82A178                    ;82A10C|2078A1  |82A178;
-                       JML.L checkEventRange                ;82A10F|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82A10F|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A113:
@@ -5291,7 +5291,7 @@ eventID_bombBeen_19_main:
                                                             ;      |        |      ;
           CODE_82A11F:
                        JSR.W CODE_82A178                    ;82A11F|2078A1  |82A178;
-                       JML.L checkEventRange                ;82A122|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82A122|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A126:
@@ -5317,7 +5317,7 @@ eventID_bombBeen_19_main:
                                                             ;      |        |      ;
           CODE_82A14E:
                        JSR.W CODE_82A178                    ;82A14E|2078A1  |82A178;
-                       JML.L checkEventRange                ;82A151|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82A151|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A155:
@@ -5339,7 +5339,7 @@ eventID_bombBeen_19_main:
                                                             ;      |        |      ;
           CODE_82A171:
                        JSR.W CODE_82A178                    ;82A171|2078A1  |82A178;
-                       JML.L checkEventRange                ;82A174|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82A174|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A178:
@@ -5393,7 +5393,7 @@ eventID_seaAttacker_1c_main:
                        BEQ CODE_82A1C5                      ;82A1C3|F000    |82A1C5;
                                                             ;      |        |      ;
           CODE_82A1C5:
-                       JSL.L checkEventRange                ;82A1C5|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82A1C5|22B48082|8280B4;
                        JSL.L initPosAllign                  ;82A1C9|226E8082|82806E;
                        BCC CODE_82A1D3                      ;82A1CD|9004    |82A1D3;
                        JSL.L clearStates_00_02_0E           ;82A1CF|22988382|828398;
@@ -5691,7 +5691,7 @@ eventID_gulpferd_1d_main:
                        TRB.B $11                            ;82A3A2|1411    |000EB9;
                                                             ;      |        |      ;
           CODE_82A3A4:
-                       JML.L checkEventRange                ;82A3A4|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82A3A4|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
     gulpferd_1d_state:
@@ -6363,7 +6363,7 @@ eventID_madPeker_1e_main:
                                                             ;      |        |      ;
           CODE_82A7FD:
                        JSL.L CODE_849B03                    ;82A7FD|22039B84|849B03;
-                       JML.L checkEventRange                ;82A801|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82A801|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
     madPeker_1e_state:
@@ -6633,7 +6633,7 @@ eventID_creeper_1f_main:
                        CMP.B #$34                           ;82A9C4|C934    |      ;
                        BCS CODE_82A9B4                      ;82A9C6|B0EC    |82A9B4;
                        JSL.L CODE_849B03                    ;82A9C8|22039B84|849B03;
-                       JML.L checkEventRange                ;82A9CC|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82A9CC|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
      creeper_1f_state:
@@ -6815,7 +6815,7 @@ eventID_amenHopper_20_main:
                        JSL.L CODE_849B03                    ;82AAFE|22039B84|849B03;
                        JSL.L initPosAllign                  ;82AB02|226E8082|82806E;
                        BCS CODE_82AAFA                      ;82AB06|B0F2    |82AAFA;
-                       JML.L checkEventRange                ;82AB08|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82AB08|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
   amenHopper_20_state:
@@ -9174,7 +9174,7 @@ beeBlader_22_state_00:
                        JSR.W CODE_82BD42                    ;82BACC|2042BD  |82BD42;
                        BEQ CODE_82BB27                      ;82BACF|F056    |82BB27;
                        LDA.B #$22                           ;82BAD1|A922    |      ;
-                       JSL.L weaponChargeInit               ;82BAD3|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82BAD3|22CD8880|8088CD;
                        LDA.B #$20                           ;82BAD7|A920    |      ;
                        LDX.B #$03                           ;82BAD9|A203    |      ;
                        LDY.B #$01                           ;82BADB|A001    |      ;
@@ -9683,7 +9683,7 @@ utuborosHead_23_state_00:
                        AND.B #$3F                           ;82BE9C|293F    |      ;
                        ORA.B r_ev_33-$E68                   ;82BE9E|0533    |000E9B;
                        STA.B r_ev_11_sprAtri-$E68           ;82BEA0|8511    |000E79;
-                       JML.L checkEventRange                ;82BEA2|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82BEA2|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_82BEA6:
@@ -10531,7 +10531,7 @@ utuborosBody_24_state_00:
                        LDA.B #$CC                           ;82C3FD|A9CC    |      ;
                        STA.B $21                            ;82C3FF|8521    |000FC9;
                        JSL.L CODE_849B43                    ;82C401|22439B84|849B43;
-                       JML.L checkEventRange                ;82C405|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82C405|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C409:
@@ -10542,7 +10542,7 @@ utuborosBody_24_state_00:
                        BCC CODE_82C41C                      ;82C412|9008    |82C41C;
                        LDA.B $00                            ;82C414|A500    |001028;
                        BEQ CODE_82C41C                      ;82C416|F004    |82C41C;
-                       JML.L checkEventRange                ;82C418|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82C418|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C41C:
@@ -11078,7 +11078,7 @@ utuborosTail_state_00:
                                                             ;      |        |      ;
           CODE_82C7C9:
                        JSL.L CODE_849B03                    ;82C7C9|22039B84|849B03;
-                       JML.L checkEventRange                ;82C7CD|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82C7CD|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_82C7D1:
@@ -11203,7 +11203,7 @@ velguarder_26_state_00:
           CODE_82C892:
                        LDX.B $02                            ;82C892|A602    |000EAA;
                        JSR.W (PTR16_82C89B,X)               ;82C894|FC9BC8  |82C89B;
-                       JMP.W checkEventRange                ;82C897|4CB480  |8280B4;
+                       JMP.W checkPlayerGear                ;82C897|4CB480  |8280B4;
                                                             ;      |        |      ;
                        RTL                                  ;82C89A|6B      |      ;
                                                             ;      |        |      ;
@@ -11263,7 +11263,7 @@ velguarder_26_state_00:
                        ORA.B #$80                           ;82C8EA|0980    |      ;
                        STA.B $27                            ;82C8EC|8527    |000ECF;
                        LDA.B #$0C                           ;82C8EE|A90C    |      ;
-                       JSL.L weaponChargeInit               ;82C8F0|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82C8F0|22CD8880|8088CD;
                        JMP.W CODE_82C90E                    ;82C8F4|4C0EC9  |82C90E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11372,7 +11372,7 @@ velguarder_26_state_00:
                        JSL.L CODE_849B03                    ;82C9A4|22039B84|849B03;
                                                             ;      |        |      ;
           CODE_82C9A8:
-                       JML.L checkEventRange                ;82C9A8|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82C9A8|5CB48082|8280B4;
                                                             ;      |        |      ;
                        RTL                                  ;82C9AC|6B      |      ;
                                                             ;      |        |      ;
@@ -11920,7 +11920,7 @@ velguarder_26_state_00:
                        LDA.B #$20                           ;82CCF4|A920    |      ;
                        STA.B $3E                            ;82CCF6|853E    |000EE6;
                        LDA.B #$77                           ;82CCF8|A977    |      ;
-                       JSL.L weaponChargeInit               ;82CCFA|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82CCFA|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_82CCFE:
                        LDA.B $0F                            ;82CCFE|A50F    |000EB7;
@@ -12477,7 +12477,7 @@ velguarder_26_state_00:
                        JSR.W (PTR16_82D04A,X)               ;82D03F|FC4AD0  |82D04A;
                        LDA.B $3B                            ;82D042|A53B    |000EE3;
                        BNE CODE_82D049                      ;82D044|D003    |82D049;
-                       JMP.W checkEventRange                ;82D046|4CB480  |8280B4;
+                       JMP.W checkPlayerGear                ;82D046|4CB480  |8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D049:
@@ -12761,7 +12761,7 @@ eventID_deerball_27_main:
                        BNE CODE_82D208                      ;82D216|D0F0    |82D208;
                        JSL.L initPosAllign                  ;82D218|226E8082|82806E;
                        BCS CODE_82D222                      ;82D21C|B004    |82D222;
-                       JML.L checkEventRange                ;82D21E|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82D21E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D222:
@@ -13936,7 +13936,7 @@ eventID_gunVolt_29_main:
                        BCS CODE_82DA28                      ;82DA22|B004    |82DA28;
                                                             ;      |        |      ;
           CODE_82DA24:
-                       JML.L checkEventRange                ;82DA24|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82DA24|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DA28:
@@ -14233,7 +14233,7 @@ prisonCapsule_63_state_00:
                        ORA.B #$80                           ;82DC19|0980    |      ;
                        STA.B r_ev_27_health-$E68            ;82DC1B|8527    |000E8F;
                        LDA.B #$0C                           ;82DC1D|A90C    |      ;
-                       JSL.L weaponChargeInit               ;82DC1F|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82DC1F|22CD8880|8088CD;
                        JMP.W CODE_82DC47                    ;82DC23|4C47DC  |82DC47;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14249,7 +14249,7 @@ prisonCapsule_63_state_00:
                        BEQ CODE_82DC47                      ;82DC3B|F00A    |82DC47;
                        LDA.B #$24                           ;82DC3D|A924    |      ;
                        JSL.L CODE_8087A2                    ;82DC3F|22A28780|8087A2;
-                       JSL.L checkEventRange                ;82DC43|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82DC43|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82DC47:
                        RTS                                  ;82DC47|60      |      ;
@@ -14269,7 +14269,7 @@ prisonCapsule_63_state_00:
                        DEC.B r_ev_35-$E68                   ;82DC5B|C635    |000E9D;
                        JSL.L CODE_82825D                    ;82DC5D|225D8282|82825D;
                        JSL.L updateEv_13_14_17_0f           ;82DC61|22EA8E84|848EEA;
-                       JSL.L checkEventRange                ;82DC65|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82DC65|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82DC69:
                        RTS                                  ;82DC69|60      |      ;
@@ -14342,7 +14342,7 @@ prisonCapsule_63_state_00:
                        JSL.L CODE_849B03                    ;82DCD7|22039B84|849B03;
                                                             ;      |        |      ;
           CODE_82DCDB:
-                       JML.L checkEventRange                ;82DCDB|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82DCDB|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DCDF:
@@ -14500,7 +14500,7 @@ prisonCapsule_63_state_00:
                        LDA.B r_ev_2f-$E68                   ;82DDBF|A52F    |000E97;
                        BNE CODE_82DDCD                      ;82DDC1|D00A    |82DDCD;
                        LDA.B #$43                           ;82DDC3|A943    |      ;
-                       JSL.L weaponChargeInit               ;82DDC5|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82DDC5|22CD8880|8088CD;
                        LDA.B #$04                           ;82DDC9|A904    |      ;
                        STA.B r_ev_2f-$E68                   ;82DDCB|852F    |000E97;
                                                             ;      |        |      ;
@@ -14537,7 +14537,7 @@ prisonCapsule_63_state_00:
                        LDA.B r_ev_2f-$E68                   ;82DE05|A52F    |000E97;
                        BNE CODE_82DE13                      ;82DE07|D00A    |82DE13;
                        LDA.B #$43                           ;82DE09|A943    |      ;
-                       JSL.L weaponChargeInit               ;82DE0B|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82DE0B|22CD8880|8088CD;
                        LDA.B #$04                           ;82DE0F|A904    |      ;
                        STA.B r_ev_2f-$E68                   ;82DE11|852F    |000E97;
                                                             ;      |        |      ;
@@ -14785,7 +14785,7 @@ prisonCapsule_63_state_00:
                        STA.B r_ev_35-$E68                   ;82DFC5|8535    |000E9D;
                                                             ;      |        |      ;
           CODE_82DFC7:
-                       JML.L checkEventRange                ;82DFC7|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82DFC7|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DFCB:
@@ -14812,7 +14812,7 @@ prisonCapsule_63_state_00:
                        SEP #$20                             ;82DFF4|E220    |      ;
                        LDA.B #$03                           ;82DFF6|A903    |      ;
                        STA.W r_0008                         ;82DFF8|8D0800  |860008;
-                       JSL.L checkEventRange                ;82DFFB|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82DFFB|22B48082|8280B4;
                        JML.L CODE_84A4D0                    ;82DFFF|5CD0A484|84A4D0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14840,7 +14840,7 @@ prisonCapsule_63_state_00:
                        JSR.W CODE_82E219                    ;82E034|2019E2  |82E219;
                        LDA.B #$C0                           ;82E037|A9C0    |      ;
                        STA.B r_ev_35-$E68                   ;82E039|8535    |000E9D;
-                       JML.L checkEventRange                ;82E03B|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82E03B|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E03F:
@@ -14857,7 +14857,7 @@ prisonCapsule_63_state_00:
                        CMP.B #$B0                           ;82E050|C9B0    |      ;
                        BNE CODE_82E05A                      ;82E052|D006    |82E05A;
                        LDA.B #$21                           ;82E054|A921    |      ;
-                       JSL.L weaponChargeInit               ;82E056|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82E056|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_82E05A:
                        DEC.B r_ev_35-$E68                   ;82E05A|C635    |000E9D;
@@ -14877,12 +14877,12 @@ prisonCapsule_63_state_00:
                        CMP.B #$B0                           ;82E073|C9B0    |      ;
                        BCC CODE_82E07E                      ;82E075|9007    |82E07E;
                        JSR.W CODE_82E219                    ;82E077|2019E2  |82E219;
-                       JML.L checkEventRange                ;82E07A|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82E07A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E07E:
                        JSR.W CODE_82E240                    ;82E07E|2040E2  |82E240;
-                       JML.L checkEventRange                ;82E081|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82E081|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E085:
@@ -15114,9 +15114,17 @@ prisonCapsule_63_state_00:
                        SEP #$10                             ;82E203|E210    |      ;
                        RTS                                  ;82E205|60      |      ;
                                                             ;      |        |      ;
-                       db $AD,$CF,$0B,$29,$7F,$F0,$0B,$C2   ;82E206|        |000BCF;
-                       db $10,$A0,$9C,$01,$22,$11,$80,$82   ;82E20E|        |82E1B0;
-                       db $E2,$10,$60                       ;82E216|        |      ;
+                       LDA.W r_d_0bcf                       ;82E206|ADCF0B  |860BCF;
+                       AND.B #$7F                           ;82E209|297F    |      ;
+                       BEQ CODE_82E218                      ;82E20B|F00B    |82E218;
+                       REP #$10                             ;82E20D|C210    |      ;
+                       LDY.W #$019C                         ;82E20F|A09C01  |      ;
+                       JSL.L lunchMusic                     ;82E212|22118082|828011;
+                       SEP #$10                             ;82E216|E210    |      ;
+                                                            ;      |        |      ;
+          CODE_82E218:
+                       RTS                                  ;82E218|60      |      ;
+                                                            ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E219:
                        PHB                                  ;82E219|8B      |      ;
@@ -15177,7 +15185,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E292:
                        LDX.B $01                            ;82E292|A601    |001A69;
-                       JSR.W (UNREACH_82E2AB,X)             ;82E294|FCABE2  |82E2AB;
+                       JSR.W (PTR16_82E2AB,X)               ;82E294|FCABE2  |82E2AB;
                        REP #$10                             ;82E297|C210    |      ;
                        LDX.B $0C                            ;82E299|A60C    |001A74;
                        LDA.W r_0001,X                       ;82E29B|BD0100  |860001;
@@ -15191,15 +15199,22 @@ prisonCapsule_63_state_00:
                        RTL                                  ;82E2AA|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_82E2AB:
-                       db $B3,$E2,$C2,$E2,$F7,$E2,$2E,$E3   ;82E2AB|        |0000E2;
+         PTR16_82E2AB:
+                       dw CODE_82E2B3                       ;82E2AB|        |82E2B3;
+                       dw CODE_82E2C2                       ;82E2AD|        |82E2C2;
+                       dw CODE_82E2F7                       ;82E2AF|        |82E2F7;
+                       dw CODE_82E32E                       ;82E2B1|        |82E32E;
+                                                            ;      |        |      ;
+          CODE_82E2B3:
                        LDA.B #$07                           ;82E2B3|A907    |      ;
                        JSL.L playerGrabedRoutine            ;82E2B5|22078F84|848F07;
                        LDA.B #$02                           ;82E2B9|A902    |      ;
                        STA.B $01                            ;82E2BB|8501    |001A69;
-                       JSL.L checkEventRange                ;82E2BD|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E2BD|22B48082|8280B4;
                        RTS                                  ;82E2C1|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82E2C2:
                        LDA.B $0F                            ;82E2C2|A50F    |001A77;
                        BMI CODE_82E2CD                      ;82E2C4|3007    |82E2CD;
                        JSL.L updateEv_13_14_17_0f           ;82E2C6|22EA8E84|848EEA;
@@ -15226,11 +15241,13 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E2F2:
-                       JSL.L checkEventRange                ;82E2F2|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E2F2|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82E2F6:
                        RTS                                  ;82E2F6|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82E2F7:
                        REP #$10                             ;82E2F7|C210    |      ;
                        LDX.B $0C                            ;82E2F9|A60C    |001A74;
                        LDA.W r_0002,X                       ;82E2FB|BD0200  |860002;
@@ -15254,16 +15271,18 @@ prisonCapsule_63_state_00:
                        LDA.B #$01                           ;82E31F|A901    |      ;
                        STA.B $0B                            ;82E321|850B    |001993;
                        JSL.L CODE_848011                    ;82E323|22118084|848011;
-                       JSL.L checkEventRange                ;82E327|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E327|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82E32B:
                        SEP #$10                             ;82E32B|E210    |      ;
                        RTS                                  ;82E32D|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82E32E:
                        LDA.B $0F                            ;82E32E|A50F    |001A77;
                        BMI CODE_82E33D                      ;82E330|300B    |82E33D;
                        JSL.L updateEv_13_14_17_0f           ;82E332|22EA8E84|848EEA;
-                       JSL.L checkEventRange                ;82E336|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E336|22B48082|8280B4;
                        JMP.W CODE_82E341                    ;82E33A|4C41E3  |82E341;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15304,7 +15323,7 @@ prisonCapsule_63_state_00:
           CODE_82E375:
                        STX.B $20                            ;82E375|8620    |001648;
                        SEP #$10                             ;82E377|E210    |      ;
-                       JSL.L checkEventRange                ;82E379|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E379|22B48082|8280B4;
                        LDA.B #$12                           ;82E37D|A912    |      ;
                        STA.B $16                            ;82E37F|8516    |00163E;
                        LDA.B $0B                            ;82E381|A50B    |001633;
@@ -15358,7 +15377,7 @@ prisonCapsule_63_state_00:
                        BIT.B #$08                           ;82E3CC|8908    |      ;
                        BNE CODE_82E3DC                      ;82E3CE|D00C    |82E3DC;
                        JSL.L CODE_828174                    ;82E3D0|22748182|828174;
-                       JSL.L checkEventRange                ;82E3D4|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E3D4|22B48082|8280B4;
                        LDA.B $1D                            ;82E3D8|A51D    |001645;
                        BPL CODE_82E3E5                      ;82E3DA|1009    |82E3E5;
                                                             ;      |        |      ;
@@ -15402,7 +15421,8 @@ prisonCapsule_63_state_00:
                        STA.B $26                            ;82E41B|8526    |00164E;
                        LDA.W r_1f9d                         ;82E41D|AD9D1F  |861F9D;
                        BPL CODE_82E426                      ;82E420|1004    |82E426;
-                       db $A9,$06,$85,$26                   ;82E422|        |      ;
+                       LDA.B #$06                           ;82E422|A906    |      ;
+                       STA.B $26                            ;82E424|8526    |00164E;
                                                             ;      |        |      ;
           CODE_82E426:
                        STZ.B $27                            ;82E426|6427    |00164F;
@@ -15421,10 +15441,14 @@ prisonCapsule_63_state_00:
                        LDA.B $26                            ;82E43C|A526    |00164E;
                        CMP.B #$3C                           ;82E43E|C93C    |      ;
                        BCS CODE_82E448                      ;82E440|B006    |82E448;
-                       db $AD,$9C,$0B,$4A,$90,$04           ;82E442|        |000B9C;
+                       LDA.W r_frameCounter1                ;82E442|AD9C0B  |860B9C;
+                       LSR A                                ;82E445|4A      |      ;
+                       BCC CODE_82E44C                      ;82E446|9004    |82E44C;
                                                             ;      |        |      ;
           CODE_82E448:
-                       JSL.L checkEventRange                ;82E448|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E448|22B48082|8280B4;
+                                                            ;      |        |      ;
+          CODE_82E44C:
                        JSL.L CODE_81E109                    ;82E44C|2209E181|81E109;
                        LDA.W r_d_0bcf                       ;82E450|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82E453|297F    |      ;
@@ -15488,7 +15512,7 @@ prisonCapsule_63_state_00:
                        BNE CODE_82E4B4                      ;82E4AE|D004    |82E4B4;
                                                             ;      |        |      ;
           CODE_82E4B0:
-                       JSL.L checkEventRange                ;82E4B0|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E4B0|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82E4B4:
                        LDA.W r_d_0bcf                       ;82E4B4|ADCF0B  |860BCF;
@@ -15533,7 +15557,7 @@ prisonCapsule_63_state_00:
                        BCS CODE_82E524                      ;82E4FC|B026    |82E524;
                        PHA                                  ;82E4FE|48      |      ;
                        LDA.B #$0D                           ;82E4FF|A90D    |      ;
-                       JSL.L weaponChargeInit               ;82E501|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82E501|22CD8880|8088CD;
                        PLA                                  ;82E505|68      |      ;
                        INC A                                ;82E506|1A      |      ;
                        STA.W r_player_tankEnergie_01,X      ;82E507|9D831F  |861F83;
@@ -15565,7 +15589,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E52E:
                        LDA.B #$2B                           ;82E52E|A92B    |      ;
-                       JSL.L weaponChargeInit               ;82E530|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82E530|22CD8880|8088CD;
                        BRA CODE_82E529                      ;82E534|80F3    |82E529;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15616,7 +15640,7 @@ prisonCapsule_63_state_00:
                        ORA.B #$80                           ;82E58E|0980    |      ;
                        STA.W r_d_0bcf                       ;82E590|8DCF0B  |860BCF;
                        LDA.B #$0C                           ;82E593|A90C    |      ;
-                       JSL.L weaponChargeInit               ;82E595|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82E595|22CD8880|8088CD;
                        DEC.B $27                            ;82E599|C627    |00164F;
                        BNE CODE_82E5A1                      ;82E59B|D004    |82E5A1;
                                                             ;      |        |      ;
@@ -15644,7 +15668,7 @@ prisonCapsule_63_state_00:
                        DEC.B $26                            ;82E5C4|C626    |00164E;
                        BNE CODE_82E5D0                      ;82E5C6|D008    |82E5D0;
                        LDA.B #$0D                           ;82E5C8|A90D    |      ;
-                       JSL.L weaponChargeInit               ;82E5CA|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82E5CA|22CD8880|8088CD;
                        BRA CODE_82E5D1                      ;82E5CE|8001    |82E5D1;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15659,11 +15683,15 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E5D6:
                        LDX.B $01                            ;82E5D6|A601    |001629;
-                       JMP.W (UNREACH_82E5DB,X)             ;82E5D8|7CDBE5  |82E5DB;
+                       JMP.W (PTR16_82E5DB,X)               ;82E5D8|7CDBE5  |82E5DB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       UNREACH_82E5DB:
-                       db $E1,$E5,$2A,$E6,$6B,$E6           ;82E5DB|        |0000E5;
+         PTR16_82E5DB:
+                       dw CODE_82E5E1                       ;82E5DB|        |82E5E1;
+                       dw CODE_82E62A                       ;82E5DD|        |82E62A;
+                       dw CODE_82E66B                       ;82E5DF|        |82E66B;
+                                                            ;      |        |      ;
+          CODE_82E5E1:
                        LDA.B #$02                           ;82E5E1|A902    |      ;
                        STA.B $01                            ;82E5E3|8501    |001629;
                        STZ.B $18                            ;82E5E5|6418    |001640;
@@ -15698,6 +15726,8 @@ prisonCapsule_63_state_00:
                        LDA.B #$00                           ;82E624|A900    |      ;
                        JML.L playerGrabedRoutine            ;82E626|5C078F84|848F07;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82E62A:
                        DEC.B $28                            ;82E62A|C628    |001650;
                        BEQ CODE_82E66A                      ;82E62C|F03C    |82E66A;
                        LDA.B #$04                           ;82E62E|A904    |      ;
@@ -15732,6 +15762,8 @@ prisonCapsule_63_state_00:
           CODE_82E66A:
                        RTL                                  ;82E66A|6B      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_82E66B:
                        JSL.L CODE_8281E8                    ;82E66B|22E88182|8281E8;
                        REP #$20                             ;82E66F|C220    |      ;
                        LDA.B $1C                            ;82E671|A51C    |001644;
@@ -15766,7 +15798,7 @@ prisonCapsule_63_state_00:
                        STZ.W r_0000                         ;82E6B2|9C0000  |860000;
                        JSL.L CODE_83FE75                    ;82E6B5|2275FE83|83FE75;
                        LDA.B #$25                           ;82E6B9|A925    |      ;
-                       JSL.L weaponChargeInit               ;82E6BB|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;82E6BB|22CD8880|8088CD;
                        LDY.B #$00                           ;82E6BF|A000    |      ;
                        JSR.W CODE_82E6D4                    ;82E6C1|20D4E6  |82E6D4;
                        LDY.B #$40                           ;82E6C4|A040    |      ;
@@ -15896,7 +15928,7 @@ prisonCapsule_63_state_00:
                        SEP #$20                             ;82E7B2|E220    |      ;
                        JSL.L initPosAllign                  ;82E7B4|226E8082|82806E;
                        BCS CODE_82E7BE                      ;82E7B8|B004    |82E7BE;
-                       JML.L checkEventRange                ;82E7BA|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82E7BA|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E7BE:
@@ -15918,7 +15950,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E7E5:
-                       JSL.L checkEventRange                ;82E7E5|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E7E5|22B48082|8280B4;
                        INC.B $01                            ;82E7E9|E601    |0016E9;
                        INC.B $01                            ;82E7EB|E601    |0016E9;
                        JSL.L CODE_849C0E                    ;82E7ED|220E9C84|849C0E;
@@ -15991,7 +16023,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E872:
-                       JSL.L checkEventRange                ;82E872|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E872|22B48082|8280B4;
                        INC.B $01                            ;82E876|E601    |001689;
                        INC.B $01                            ;82E878|E601    |001689;
                        JSL.L CODE_849C0E                    ;82E87A|220E9C84|849C0E;
@@ -16058,7 +16090,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E8F2:
-                       JSL.L checkEventRange                ;82E8F2|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E8F2|22B48082|8280B4;
                        INC.B $01                            ;82E8F6|E601    |001659;
                        INC.B $01                            ;82E8F8|E601    |001659;
                        JSL.L CODE_849C0E                    ;82E8FA|220E9C84|849C0E;
@@ -16138,7 +16170,7 @@ prisonCapsule_63_state_00:
                        LDX.B $0B                            ;82E983|A60B    |001633;
                        LDA.W UNREACH_86DA39,X               ;82E985|BD39DA  |86DA39;
                        JSL.L CODE_848011                    ;82E988|22118084|848011;
-                       JSL.L checkEventRange                ;82E98C|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82E98C|22B48082|8280B4;
                        INC.B $01                            ;82E990|E601    |001629;
                        INC.B $01                            ;82E992|E601    |001629;
                        LDY.B $0B                            ;82E994|A40B    |001633;
@@ -16405,7 +16437,7 @@ prisonCapsule_63_state_00:
                        JSL.L updateEv_13_14_17_0f           ;82EB82|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82EB86:
-                       JML.L checkEventRange                ;82EB86|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82EB86|5CB48082|8280B4;
                                                             ;      |        |      ;
                        LDX.B $02                            ;82EB8A|A602    |00162A;
                        BNE CODE_82EBB3                      ;82EB8C|D025    |82EBB3;
@@ -16713,7 +16745,7 @@ prisonCapsule_63_state_00:
                        LDA.B $0B                            ;82EDF2|A50B    |001993;
                        CMP.B #$1D                           ;82EDF4|C91D    |      ;
                        BEQ CODE_82EDFC                      ;82EDF6|F004    |82EDFC;
-                       JML.L checkEventRange                ;82EDF8|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82EDF8|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EDFC:
@@ -16726,12 +16758,12 @@ prisonCapsule_63_state_00:
                        JSL.L updateEv_13_14_17_0f           ;82EE04|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82EE08:
-                       JML.L checkEventRange                ;82EE08|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82EE08|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE0C:
                        JSL.L updateEv_13_14_17_0f           ;82EE0C|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;82EE10|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82EE10|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE14:
@@ -16812,7 +16844,7 @@ prisonCapsule_63_state_00:
                        BNE CODE_82EE98                      ;82EE8E|D008    |82EE98;
                        LDA.B #$02                           ;82EE90|A902    |      ;
                        STA.B $01                            ;82EE92|8501    |001969;
-                       JML.L checkEventRange                ;82EE94|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82EE94|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE98:
@@ -16822,7 +16854,7 @@ prisonCapsule_63_state_00:
                        LDA.W #$0100                         ;82EE9E|A90001  |      ;
                        STA.B $1C                            ;82EEA1|851C    |001964;
                        SEP #$20                             ;82EEA3|E220    |      ;
-                       JML.L checkEventRange                ;82EEA5|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82EEA5|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EEA9:
@@ -16836,7 +16868,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82EEB8:
                        JSL.L updateEv_13_14_17_0f           ;82EEB8|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;82EEBC|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82EEBC|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EEC0:
@@ -16849,7 +16881,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82EECF:
                        JSL.L updateEv_13_14_17_0f           ;82EECF|22EA8E84|848EEA;
-                       JSL.L checkEventRange                ;82EED3|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82EED3|22B48082|8280B4;
                        LDA.B $0E                            ;82EED7|A50E    |001956;
                        BEQ CODE_82EEDC                      ;82EED9|F001    |82EEDC;
                        RTL                                  ;82EEDB|6B      |      ;
@@ -16974,7 +17006,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82EFA9:
                        STA.B $11                            ;82EFA9|8511    |001959;
-                       JSL.L checkEventRange                ;82EFAB|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82EFAB|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82EFAF:
                        LDA.W $0BAA                          ;82EFAF|ADAA0B  |860BAA;
@@ -17240,7 +17272,7 @@ prisonCapsule_63_state_00:
                        LDA.W r_frameCounter1                ;82F187|AD9C0B  |860B9C;
                        LSR A                                ;82F18A|4A      |      ;
                        BCC CODE_82F191                      ;82F18B|9004    |82F191;
-                       JML.L checkEventRange                ;82F18D|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82F18D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F191:
@@ -17352,7 +17384,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F23D:
                        JSL.L updateEv_13_14_17_0f           ;82F23D|22EA8E84|848EEA;
-                       JML.L checkEventRange                ;82F241|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82F241|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          PTR16_82F245:
@@ -17591,7 +17623,7 @@ prisonCapsule_63_state_00:
                        JSL.L updateEv_13_14_17_0f           ;82F3B3|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82F3B7:
-                       JML.L checkEventRange                ;82F3B7|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82F3B7|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F3BB:
@@ -17687,7 +17719,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F45B:
                        SEP #$10                             ;82F45B|E210    |      ;
-                       JML.L checkEventRange                ;82F45D|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82F45D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F461:
@@ -17819,7 +17851,7 @@ prisonCapsule_63_state_00:
                        LDA.W r_frameCounter1                ;82F542|AD9C0B  |860B9C;
                        LSR A                                ;82F545|4A      |      ;
                        BCC CODE_82F54C                      ;82F546|9004    |82F54C;
-                       JSL.L checkEventRange                ;82F548|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82F548|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82F54C:
                        JML.L updateEv_13_14_17_0f           ;82F54C|5CEA8E84|848EEA;
@@ -17992,7 +18024,7 @@ prisonCapsule_63_state_00:
                        EOR.W r_frameCounter1                ;82F67D|4D9C0B  |860B9C;
                        LSR A                                ;82F680|4A      |      ;
                        BCC CODE_82F68B                      ;82F681|9008    |82F68B;
-                       JSL.L checkEventRange                ;82F683|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82F683|22B48082|8280B4;
                        LDA.B $0E                            ;82F687|A50E    |001956;
                        BEQ CODE_82F68C                      ;82F689|F001    |82F68C;
                                                             ;      |        |      ;
@@ -18050,7 +18082,7 @@ prisonCapsule_63_state_00:
                        JSL.L CODE_8281E8                    ;82F6E4|22E88182|8281E8;
                        JSL.L initPosAllign                  ;82F6E8|226E8082|82806E;
                        BCS CODE_82F6F2                      ;82F6EC|B004    |82F6F2;
-                       JML.L checkEventRange                ;82F6EE|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82F6EE|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F6F2:
@@ -18107,7 +18139,7 @@ prisonCapsule_63_state_00:
                        EOR.B $0B                            ;82F757|450B    |001A33;
                        LSR A                                ;82F759|4A      |      ;
                        BCC CODE_82F764                      ;82F75A|9008    |82F764;
-                       JML.L checkEventRange                ;82F75C|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82F75C|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F760:
@@ -18164,7 +18196,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F7BA:
                        SEP #$10                             ;82F7BA|E210    |      ;
-                       JSL.L checkEventRange                ;82F7BC|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;82F7BC|22B48082|8280B4;
                        JML.L updateEv_13_14_17_0f           ;82F7C0|5CEA8E84|848EEA;
                                                             ;      |        |      ;
                        JML.L clearStates_00_02_0E           ;82F7C4|5C988382|828398;
@@ -18387,7 +18419,7 @@ prisonCapsule_63_state_00:
           CODE_82F93D:
                        JSL.L updateEv_13_14_17_0f           ;82F93D|22EA8E84|848EEA;
                        JSL.L CODE_8281B2                    ;82F941|22B28182|8281B2;
-                       JML.L checkEventRange                ;82F945|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82F945|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F949:
@@ -18437,7 +18469,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F9A6:
                        SEP #$10                             ;82F9A6|E210    |      ;
-                       JML.L checkEventRange                ;82F9A8|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82F9A8|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_82F9AC:
@@ -18463,7 +18495,7 @@ prisonCapsule_63_state_00:
                        LDA.W r_frameCounter1                ;82F9D6|AD9C0B  |860B9C;
                        LSR A                                ;82F9D9|4A      |      ;
                        BCC CODE_82F9E0                      ;82F9DA|9004    |82F9E0;
-                       JML.L checkEventRange                ;82F9DC|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82F9DC|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F9E0:
@@ -18576,7 +18608,7 @@ prisonCapsule_63_state_00:
                        STA.B $16                            ;82FA96|8516    |001A1E;
                        LDX.B $02                            ;82FA98|A602    |0019CA;
                        JSR.W (UNREACH_82FAA1,X)             ;82FA9A|FCA1FA  |82FAA1;
-                       JML.L checkEventRange                ;82FA9D|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82FA9D|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_82FAA1:
@@ -18652,7 +18684,7 @@ prisonCapsule_63_state_00:
                        LDA.W r_0008,X                       ;82FB2B|BD0800  |860008;
                        STA.B $08                            ;82FB2E|8508    |0019F0;
                        SEP #$30                             ;82FB30|E230    |      ;
-                       JML.L checkEventRange                ;82FB32|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;82FB32|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FB36:
@@ -19320,7 +19352,7 @@ prisonCapsule_63_state_00:
                        SBC.B $02                            ;82FF8F|E502    |001D0A;
                        BMI CODE_82FFA5                      ;82FF91|3012    |82FFA5;
                        LDY.B $03                            ;82FF93|A403    |001D0B;
-                       JSL.L CODE_828011                    ;82FF95|22118082|828011;
+                       JSL.L lunchMusic                     ;82FF95|22118082|828011;
                        INC.B $03                            ;82FF99|E603    |001D0B;
                        INC.B $03                            ;82FF9B|E603    |001D0B;
                        LDA.B $02                            ;82FF9D|A502    |001D0A;

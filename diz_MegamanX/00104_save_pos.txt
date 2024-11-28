@@ -1,28 +1,107 @@
 
 ;pos=031800
 r 196 T
+Eg86
+Eg86
+r 158 E086
+r 335 T
 Tg
-Tg
-r 493 T
-Tg
-r 196 T
-Tg
-r 8 T
-Tg
-r 8 T
-Tg
-T
-T
-T
-T
-T
-T
-T
-Tg
-r 67 T
-Tg
-r 47 T
-Tg
-r 15 T
-Tg
-r 1001 T
+r 126 T
+B
+B
+B
+B
+F
+F
+F
+B
+B
+B
+B
+F
+F
+F
+B
+B
+B
+B
+F
+F
+F
+B
+B
+B
+B
+F
+F
+F
+B
+B
+B
+B
+F
+F
+F
+B
+B
+B
+B
+F
+F
+F
+B
+B
+B
+B
+F
+F
+F
+B
+B
+B
+B
+F
+F
+F
+B
+B
+B
+B
+F
+F
+F
+B
+B
+B
+B
+F
+F
+F
+Bg
+r 8 B
+Bg
+r 8 B
+Bg
+B
+B
+B
+B
+B
+B
+B
+Bg
+r 67 B
+Bg
+r 47 B
+Bg
+r 15 B
+Eg86
+r 15 E086
+r 629 T
+E086
+E086
+E086
+E086
+E086
+E086
+r 351 B

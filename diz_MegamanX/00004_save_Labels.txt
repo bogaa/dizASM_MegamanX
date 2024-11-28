@@ -1115,6 +1115,9 @@
         <sys:Item Key="8421529">
           <Value exs:type="ns1:Label" Name="resetStack" Comment="" />
         </sys:Item>
+        <sys:Item Key="8421632">
+          <Value exs:type="ns1:Label" Name="pauseFunc_05" Comment="" />
+        </sys:Item>
         <sys:Item Key="8421691">
           <Value exs:type="ns1:Label" Name="startUp_textLoadSet" Comment="" />
         </sys:Item>
@@ -1128,7 +1131,7 @@
           <Value exs:type="ns1:Label" Name="lunchSFX" Comment="" />
         </sys:Item>
         <sys:Item Key="8423629">
-          <Value exs:type="ns1:Label" Name="weaponChargeInit" Comment="" />
+          <Value exs:type="ns1:Label" Name="lunchWeaponSFX" Comment="" />
         </sys:Item>
         <sys:Item Key="8423660">
           <Value exs:type="ns1:Label" Name="startUp_setPPU" Comment="" />
@@ -1211,11 +1214,23 @@
         <sys:Item Key="8434267">
           <Value exs:type="ns1:Label" Name="mainGFXloadRoutine" Comment="" />
         </sys:Item>
+        <sys:Item Key="8439162">
+          <Value exs:type="ns1:Label" Name="updateScreenPauseMenu" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8439297">
+          <Value exs:type="ns1:Label" Name="updateScreenClearPause" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8439423">
+          <Value exs:type="ns1:Label" Name="menuDpadActions" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8439687">
+          <Value exs:type="ns1:Label" Name="menuLeftRightInput" Comment="" />
+        </sys:Item>
         <sys:Item Key="8439798">
-          <Value exs:type="ns1:Label" Name="menu_pressedDown" Comment="" />
+          <Value exs:type="ns1:Label" Name="menu_pressedUp" Comment="" />
         </sys:Item>
         <sys:Item Key="8439894">
-          <Value exs:type="ns1:Label" Name="menu_pressedUp" Comment="" />
+          <Value exs:type="ns1:Label" Name="menu_pressedDown" Comment="" />
         </sys:Item>
         <sys:Item Key="8440005">
           <Value exs:type="ns1:Label" Name="pauseMenu_upgrades" Comment="" />
@@ -1231,6 +1246,21 @@
         </sys:Item>
         <sys:Item Key="8440143">
           <Value exs:type="ns1:Label" Name="getSelecteUpgrade" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8440448">
+          <Value exs:type="ns1:Label" Name="pauseDrawWeaponMeter_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8440601">
+          <Value exs:type="ns1:Label" Name="pauseDrawWeaponIcon_03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8440843">
+          <Value exs:type="ns1:Label" Name="updatePlauerLifePauseState" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8440896">
+          <Value exs:type="ns1:Label" Name="pauseFunc_06" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8441110">
+          <Value exs:type="ns1:Label" Name="pauseDraw_01" Comment="" />
         </sys:Item>
         <sys:Item Key="8441112">
           <Value exs:type="ns1:Label" Name="upgradCapsleShow" Comment="" />
@@ -1280,11 +1310,26 @@
         <sys:Item Key="8443948">
           <Value exs:type="ns1:Label" Name="drawHUD_01" Comment="" />
         </sys:Item>
+        <sys:Item Key="8444149">
+          <Value exs:type="ns1:Label" Name="the1f12_stateRoutine" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8444167">
+          <Value exs:type="ns1:Label" Name="someProgressTrackingStuff" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8444183">
+          <Value exs:type="ns1:Label" Name="keepTrackOfBossDefeated" Comment="" />
+        </sys:Item>
         <sys:Item Key="8444982">
           <Value exs:type="ns1:Label" Name="mainEnemy_00" Comment="" />
         </sys:Item>
         <sys:Item Key="8447299">
           <Value exs:type="ns1:Label" Name="joyPadPullMainGame" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8449919">
+          <Value exs:type="ns1:Label" Name="backupUpgrade2PWtable" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8450444">
+          <Value exs:type="ns1:Label" Name="clearSetUpgrade" Comment="" />
         </sys:Item>
         <sys:Item Key="8450920">
           <Value exs:type="ns1:Label" Name="someEptyRoutine" Comment="" />
@@ -1874,11 +1919,20 @@
         <sys:Item Key="8510765">
           <Value exs:type="ns1:Label" Name="eventID__12_state_00" Comment="" />
         </sys:Item>
+        <sys:Item Key="8514362">
+          <Value exs:type="ns1:Label" Name="healthUpgradeHealthIncrease" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8552465">
+          <Value exs:type="ns1:Label" Name="lunchMusic" Comment="" />
+        </sys:Item>
         <sys:Item Key="8552558">
           <Value exs:type="ns1:Label" Name="initPosAllign" Comment="" />
         </sys:Item>
         <sys:Item Key="8552628">
-          <Value exs:type="ns1:Label" Name="checkEventRange" Comment="" />
+          <Value exs:type="ns1:Label" Name="checkPlayerGear" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8552682">
+          <Value exs:type="ns1:Label" Name="checkGearStuff" Comment="" />
         </sys:Item>
         <sys:Item Key="8553085">
           <Value exs:type="ns1:Label" Name="mainEnemySpriteLoad" Comment="" />
@@ -2263,6 +2317,9 @@
         </sys:Item>
         <sys:Item Key="8687750">
           <Value exs:type="ns1:Label" Name="mainPlayer_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8688431">
+          <Value exs:type="ns1:Label" Name="someJumpedToRoutine" Comment="" />
         </sys:Item>
         <sys:Item Key="8694493">
           <Value exs:type="ns1:Label" Name="bossesLevelBasedChange" Comment="" />
@@ -14268,7 +14325,7 @@
           <Value exs:type="ns1:Label" Name="r_player_state_1f9b" Comment="" />
         </sys:Item>
         <sys:Item Key="8789916">
-          <Value exs:type="ns1:Label" Name="r_player_state_1f9c" Comment="" />
+          <Value exs:type="ns1:Label" Name="r_intro_levelClearFlag" Comment="" />
         </sys:Item>
         <sys:Item Key="8789917">
           <Value exs:type="ns1:Label" Name="r_1f9d" Comment="" />
@@ -15146,14 +15203,89 @@
         <sys:Item Key="8814592">
           <Value exs:type="ns1:Label" Name="startupClearData" Comment="" />
         </sys:Item>
+        <sys:Item Key="8816816">
+          <Value exs:type="ns1:Label" Name="musicID_forEachStage" Comment="" />
+        </sys:Item>
         <sys:Item Key="8819228">
-          <Value exs:type="ns1:Label" Name="moreTextDataBossTalk" Comment="" />
+          <Value exs:type="ns1:Label" Name="" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8820933">
+          <Value exs:type="ns1:Label" Name="aOtherTextPointerTable" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821555">
+          <Value exs:type="ns1:Label" Name="stageSelect_data00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821561">
+          <Value exs:type="ns1:Label" Name="" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821562">
+          <Value exs:type="ns1:Label" Name="stageSelect_data01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821569">
+          <Value exs:type="ns1:Label" Name="stageSelect_data02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821576">
+          <Value exs:type="ns1:Label" Name="stageSelect_data03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821583">
+          <Value exs:type="ns1:Label" Name="stageSelect_data04" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821590">
+          <Value exs:type="ns1:Label" Name="stageSelect_data05" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821597">
+          <Value exs:type="ns1:Label" Name="stageSelect_data06" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821604">
+          <Value exs:type="ns1:Label" Name="stageSelect_data07" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821611">
+          <Value exs:type="ns1:Label" Name="stageSelect_data08" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821618">
+          <Value exs:type="ns1:Label" Name="stageSelect_data09" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821665">
+          <Value exs:type="ns1:Label" Name="stageSelectValues" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821783">
+          <Value exs:type="ns1:Label" Name="stageSelect_textInfo" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821799">
+          <Value exs:type="ns1:Label" Name="stageSelect_textInfo_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821876">
+          <Value exs:type="ns1:Label" Name="stageSelect_textInfo_01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8821959">
+          <Value exs:type="ns1:Label" Name="stageSelect_textInfo_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8822040">
+          <Value exs:type="ns1:Label" Name="stageSelect_textInfo_03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8822117">
+          <Value exs:type="ns1:Label" Name="stageSelect_textInfo_04" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8822190">
+          <Value exs:type="ns1:Label" Name="stageSelect_textInfo_05" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8822271">
+          <Value exs:type="ns1:Label" Name="stageSelect_textInfo_06" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8822353">
+          <Value exs:type="ns1:Label" Name="stageSelect_textInfo_07" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8823027">
+          <Value exs:type="ns1:Label" Name="someOtherData54" Comment="" />
         </sys:Item>
         <sys:Item Key="8824292">
           <Value exs:type="ns1:Label" Name="spriteID_tableHi" Comment="" />
         </sys:Item>
         <sys:Item Key="8824293">
           <Value exs:type="ns1:Label" Name="spriteID_tableLo" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8824731">
+          <Value exs:type="ns1:Label" Name="someMoreIndexValues" Comment="" />
         </sys:Item>
         <sys:Item Key="8824818">
           <Value exs:type="ns1:Label" Name="load_mask" Comment="" />
@@ -15337,6 +15469,27 @@
         </sys:Item>
         <sys:Item Key="8829562">
           <Value exs:type="ns1:Label" Name="projectileChargeChoose" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8830244">
+          <Value exs:type="ns1:Label" Name="PWupgradeBit2UpgradBase" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8830247">
+          <Value exs:type="ns1:Label" Name="PWupgradeBit2UpgradArmor_00" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8830256">
+          <Value exs:type="ns1:Label" Name="PWupgradeBit2Upgrad_01" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8830268">
+          <Value exs:type="ns1:Label" Name="PWupgradeBit2Upgrad_02" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8830280">
+          <Value exs:type="ns1:Label" Name="PWupgradeBit2Upgrad_03" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8830292">
+          <Value exs:type="ns1:Label" Name="PWupgradeBit2Upgrad_04" Comment="" />
+        </sys:Item>
+        <sys:Item Key="8830304">
+          <Value exs:type="ns1:Label" Name="donnoWhatThisIs" Comment="" />
         </sys:Item>
         <sys:Item Key="8832903">
           <Value exs:type="ns1:Label" Name="menu_pressLeftRight" Comment="" />

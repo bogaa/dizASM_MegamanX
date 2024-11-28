@@ -177,7 +177,7 @@
                        BRA CODE_8080B9                      ;8080FE|80B9    |8080B9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_808100:
+         pauseFunc_05:
                        PHX                                  ;808100|DA      |      ;
                        PHY                                  ;808101|5A      |      ;
                        PHP                                  ;808102|08      |      ;
@@ -780,12 +780,12 @@
             introMain:
                        LDY.B #$20                           ;80852C|A020    |      ;
                        JSR.W CODE_80B2EB                    ;80852E|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;808531|200081  |808100;
+                       JSR.W pauseFunc_05                   ;808531|200081  |808100;
                        LDY.B #$2C                           ;808534|A02C    |      ;
                        JSR.W CODE_80B2EB                    ;808536|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;808539|200081  |808100;
+                       JSR.W pauseFunc_05                   ;808539|200081  |808100;
                        LDY.B #$5E                           ;80853C|A05E    |      ;
-                       JSL.L CODE_828011                    ;80853E|22118082|828011;
+                       JSL.L lunchMusic                     ;80853E|22118082|828011;
                        LDX.B #$00                           ;808542|A200    |      ;
                        JSR.W CODE_808B90                    ;808544|20908B  |808B90;
                        LDX.B #$01                           ;808547|A201    |      ;
@@ -793,15 +793,15 @@
                        LDA.B #$17                           ;80854C|A917    |      ;
                        STA.B $C0                            ;80854E|85C0    |0000C0;
                        JSR.W CODE_808A45                    ;808550|20458A  |808A45;
-                       JSR.W CODE_808100                    ;808553|200081  |808100;
+                       JSR.W pauseFunc_05                   ;808553|200081  |808100;
                        LDA.W STAT78                         ;808556|AD3F21  |86213F;
                        BIT.B #$10                           ;808559|8910    |      ;
                        BEQ CODE_80857B                      ;80855B|F01E    |80857B;
                        LDY.B #$12                           ;80855D|A012    |      ;
-                       JSL.L CODE_828011                    ;80855F|22118082|828011;
+                       JSL.L lunchMusic                     ;80855F|22118082|828011;
                        LDA.B #$15                           ;808563|A915    |      ;
                        JSR.W CODE_8089E1                    ;808565|20E189  |8089E1;
-                       JSR.W CODE_808100                    ;808568|200081  |808100;
+                       JSR.W pauseFunc_05                   ;808568|200081  |808100;
                        LDA.B #$16                           ;80856B|A916    |      ;
                        JSR.W CODE_8089E1                    ;80856D|20E189  |8089E1;
                        JSR.W CODE_808973                    ;808570|207389  |808973;
@@ -814,8 +814,8 @@
                        BNE CODE_80859A                      ;80857F|D019    |80859A;
                        JSR.W CODE_808A45                    ;808581|20458A  |808A45;
                        LDY.B #$12                           ;808584|A012    |      ;
-                       JSL.L CODE_828011                    ;808586|22118082|828011;
-                       JSR.W CODE_808100                    ;80858A|200081  |808100;
+                       JSL.L lunchMusic                     ;808586|22118082|828011;
+                       JSR.W pauseFunc_05                   ;80858A|200081  |808100;
                        LDA.B #$06                           ;80858D|A906    |      ;
                        JSR.W CODE_8089E1                    ;80858F|20E189  |8089E1;
                        JSR.W CODE_808973                    ;808592|207389  |808973;
@@ -877,7 +877,7 @@
           CODE_808607:
                        LDA.L optionMonoStereo               ;808607|AFCAFF7E|7EFFCA;
                        JSR.W CODE_80888B                    ;80860B|208B88  |80888B;
-                       JSR.W CODE_808100                    ;80860E|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80860E|200081  |808100;
                        LDA.B #$10                           ;808611|A910    |      ;
                        JSR.W CODE_8087B0                    ;808613|20B087  |8087B0;
                        LDY.B #$FF                           ;808616|A0FF    |      ;
@@ -952,14 +952,14 @@
                        STA.B $CB                            ;808687|85CB    |0000CB;
                        STA.B $CC                            ;808689|85CC    |0000CC;
                        STA.B $CD                            ;80868B|85CD    |0000CD;
-                       JSR.W CODE_808100                    ;80868D|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80868D|200081  |808100;
                        JSR.W CODE_8086AC                    ;808690|20AC86  |8086AC;
                        BEQ CODE_80867F                      ;808693|F0EA    |80867F;
                                                             ;      |        |      ;
           CODE_808695:
                        LDA.B #$80                           ;808695|A980    |      ;
                        STA.B $B3                            ;808697|85B3    |0000B3;
-                       JSR.W CODE_808100                    ;808699|200081  |808100;
+                       JSR.W pauseFunc_05                   ;808699|200081  |808100;
                        STZ.B $CA                            ;80869C|64CA    |0000CA;
                        LDA.B #$E0                           ;80869E|A9E0    |      ;
                        STA.B $CB                            ;8086A0|85CB    |0000CB;
@@ -1322,7 +1322,7 @@
                        REP #$20                             ;8088A5|C220    |      ;
                        SEP #$10                             ;8088A7|E210    |      ;
                        PHA                                  ;8088A9|48      |      ;
-                       LDA.B r_ev_05_xPos-$E68              ;8088AA|A505    |000E6D;
+                       LDA.B $05                            ;8088AA|A505    |000005;
                        SEC                                  ;8088AC|38      |      ;
                        SBC.W r_player_xSubPos               ;8088AD|EDAD0B  |000BAD;
                        BPL CODE_8088C0                      ;8088B0|100E    |8088C0;
@@ -1346,7 +1346,7 @@
                        BRA CODE_8088D4                      ;8088CB|8007    |8088D4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-     weaponChargeInit:
+       lunchWeaponSFX:
                        PHX                                  ;8088CD|DA      |      ; start charge and lunch weapon ??
                        PHY                                  ;8088CE|5A      |      ;
                        PHP                                  ;8088CF|08      |      ;
@@ -1486,7 +1486,7 @@
           CODE_8089B6:
                        LDA.B #$80                           ;8089B6|A980    |      ;
                        STA.B $B3                            ;8089B8|85B3    |0000B3;
-                       JMP.W CODE_808100                    ;8089BA|4C0081  |808100;
+                       JMP.W pauseFunc_05                   ;8089BA|4C0081  |808100;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8089BD:
@@ -1584,7 +1584,7 @@
                        JSR.W CODE_808A4F                    ;808A45|204F8A  |808A4F;
                        LDA.B #$07                           ;808A48|A907    |      ;
                        TSB.B $A2                            ;808A4A|04A2    |0000A2;
-                       JMP.W CODE_808100                    ;808A4C|4C0081  |808100;
+                       JMP.W pauseFunc_05                   ;808A4C|4C0081  |808100;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_808A4F:
@@ -1636,7 +1636,7 @@
                                                             ;      |        |      ;
           CODE_808A87:
                        REP #$20                             ;808A87|C220    |      ;
-                       LDA.W TEXT_8698C5,Y                  ;808A89|B9C598  |8698C5;
+                       LDA.W aOtherTextPointerTable,Y       ;808A89|B9C598  |8698C5;
                        STA.B $10                            ;808A8C|8510    |000010;
                        LDY.B #$00                           ;808A8E|A000    |      ;
                        LDX.B $A3                            ;808A90|A6A3    |0000A3;
@@ -1727,9 +1727,9 @@
                                                             ;      |        |      ;
           CODE_808B1C:
                        BNE CODE_808B1C                      ;808B1C|D0FE    |808B1C;
-                       LDA.W TEXT_8698C5,Y                  ;808B1E|B9C598  |8698C5;
+                       LDA.W aOtherTextPointerTable,Y       ;808B1E|B9C598  |8698C5;
                        STA.B $10                            ;808B21|8510    |000010;
-                       LDA.W TEXT_8698C6,Y                  ;808B23|B9C698  |8698C6;
+                       LDA.W PTR16_8698C6,Y                 ;808B23|B9C698  |8698C6;
                        STA.B $11                            ;808B26|8511    |000011;
                        LDA.B #$80                           ;808B28|A980    |      ;
                        STA.W VMAINC                         ;808B2A|8D1521  |862115;
@@ -1913,7 +1913,7 @@
           CODE_808C56:
                        LDX.B $38                            ;808C56|A638    |000038;
                        JSR.W (PTR16_808C60,X)               ;808C58|FC608C  |808C60;
-                       JSR.W CODE_808100                    ;808C5B|200081  |808100;
+                       JSR.W pauseFunc_05                   ;808C5B|200081  |808100;
                        BRA CODE_808C56                      ;808C5E|80F6    |808C56;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2005,7 +2005,7 @@
                        JSR.W CODE_80DB3F                    ;808CED|203FDB  |80DB3F;
                        JSR.W CODE_808BCB                    ;808CF0|20CB8B  |808BCB;
                        JSR.W CODE_808A45                    ;808CF3|20458A  |808A45;
-                       JSR.W CODE_808100                    ;808CF6|200081  |808100;
+                       JSR.W pauseFunc_05                   ;808CF6|200081  |808100;
                        REP #$20                             ;808CF9|C220    |      ;
                        LDA.W #$05A0                         ;808CFB|A9A005  |      ;
                        STA.B $D7                            ;808CFE|85D7    |0000D7;
@@ -2018,20 +2018,20 @@
                        SEP #$20                             ;808D0E|E220    |      ;
                        LDY.B #$20                           ;808D10|A020    |      ;
                        JSR.W CODE_80B2EB                    ;808D12|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;808D15|200081  |808100;
+                       JSR.W pauseFunc_05                   ;808D15|200081  |808100;
                        LDY.B #$46                           ;808D18|A046    |      ;
                        JSR.W CODE_80B2EB                    ;808D1A|20EBB2  |80B2EB;
                        LDY.B #$CC                           ;808D1D|A0CC    |      ;
-                       JSL.L CODE_828011                    ;808D1F|22118082|828011;
-                       JSR.W CODE_808100                    ;808D23|200081  |808100;
+                       JSL.L lunchMusic                     ;808D1F|22118082|828011;
+                       JSR.W pauseFunc_05                   ;808D23|200081  |808100;
                        JSR.W CODE_80935D                    ;808D26|205D93  |80935D;
                        JSR.W CODE_808A71                    ;808D29|20718A  |808A71;
-                       JSR.W CODE_808100                    ;808D2C|200081  |808100;
+                       JSR.W pauseFunc_05                   ;808D2C|200081  |808100;
                        JSR.W CODE_809390                    ;808D2F|209093  |809390;
                        LDY.B #$0A                           ;808D32|A00A    |      ;
                        JSR.W CODE_808A87                    ;808D34|20878A  |808A87;
                        LDY.B #$C4                           ;808D37|A0C4    |      ;
-                       JSL.L CODE_828011                    ;808D39|22118082|828011;
+                       JSL.L lunchMusic                     ;808D39|22118082|828011;
                        LDA.B #$1F                           ;808D3D|A91F    |      ;
                        STA.B $E1                            ;808D3F|85E1    |0000E1;
                        LDX.B #$40                           ;808D41|A240    |      ;
@@ -2047,7 +2047,7 @@
                        STA.B $C0                            ;808D59|85C0    |0000C0;
                        LDA.B #$02                           ;808D5B|A902    |      ;
                        STA.B $C1                            ;808D5D|85C1    |0000C1;
-                       JSR.W CODE_808100                    ;808D5F|200081  |808100;
+                       JSR.W pauseFunc_05                   ;808D5F|200081  |808100;
                        STZ.B $CB                            ;808D62|64CB    |0000CB;
                        STZ.B $CC                            ;808D64|64CC    |0000CC;
                        STZ.B $CD                            ;808D66|64CD    |0000CD;
@@ -2272,7 +2272,7 @@
                        STZ.W r_colorV_c9                    ;808EF9|9CC900  |8600C9;
                        STZ.W r_colorV_ca                    ;808EFC|9CCA00  |8600CA;
                        LDY.B #$2E                           ;808EFF|A02E    |      ;
-                       JSL.L CODE_828011                    ;808F01|22118082|828011;
+                       JSL.L lunchMusic                     ;808F01|22118082|828011;
                        PHB                                  ;808F05|8B      |      ;
                        REP #$30                             ;808F06|C230    |      ;
                        LDA.W #$0100                         ;808F08|A90001  |      ;
@@ -2387,7 +2387,7 @@
                        LDA.B #$07                           ;808FD3|A907    |      ;
                        STA.B $C0                            ;808FD5|85C0    |0000C0;
                        LDY.B #$12                           ;808FD7|A012    |      ;
-                       JSL.L CODE_828011                    ;808FD9|22118082|828011;
+                       JSL.L lunchMusic                     ;808FD9|22118082|828011;
                        LDA.B #$01                           ;808FDD|A901    |      ;
                        JSR.W CODE_8089E1                    ;808FDF|20E189  |8089E1;
                                                             ;      |        |      ;
@@ -2687,13 +2687,13 @@
                        LDY.B #$00                           ;8091EA|A000    |      ;
                        JSL.L CODE_828000                    ;8091EC|22008082|828000;
                        LDY.B #$12                           ;8091F0|A012    |      ;
-                       JSL.L CODE_828011                    ;8091F2|22118082|828011;
+                       JSL.L lunchMusic                     ;8091F2|22118082|828011;
                        LDX.B #$30                           ;8091F6|A230    |      ;
                        LDY.B #$40                           ;8091F8|A040    |      ;
                        JSL.L CODE_828000                    ;8091FA|22008082|828000;
                        LDY.B #$20                           ;8091FE|A020    |      ;
                        JSR.W CODE_80B2EB                    ;809200|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;809203|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809203|200081  |808100;
                        STZ.W r_d_player_directPageTable     ;809206|9CA90B  |860BA9;
                        LDA.B #$10                           ;809209|A910    |      ;
                        TSB.W $0C26                          ;80920B|0C260C  |860C26;
@@ -2887,18 +2887,18 @@
                                                             ;      |        |      ;
           CODE_80935D:
                        LDY.B #$12                           ;80935D|A012    |      ;
-                       JSL.L CODE_828011                    ;80935F|22118082|828011;
+                       JSL.L lunchMusic                     ;80935F|22118082|828011;
                        LDY.B #$2E                           ;809363|A02E    |      ;
-                       JSL.L CODE_828011                    ;809365|22118082|828011;
+                       JSL.L lunchMusic                     ;809365|22118082|828011;
                        LDY.B #$26                           ;809369|A026    |      ;
                        JSR.W CODE_80B2EB                    ;80936B|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80936E|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80936E|200081  |808100;
                        LDY.B #$12                           ;809371|A012    |      ;
                        JSR.W CODE_808A87                    ;809373|20878A  |808A87;
-                       JSR.W CODE_808100                    ;809376|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809376|200081  |808100;
                        LDY.B #$28                           ;809379|A028    |      ;
                        JSR.W CODE_80B2EB                    ;80937B|20EBB2  |80B2EB;
-                       JMP.W CODE_808100                    ;80937E|4C0081  |808100;
+                       JMP.W pauseFunc_05                   ;80937E|4C0081  |808100;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_809381:
@@ -3141,7 +3141,7 @@
           initload_d1:
                        LDX.B $D1                            ;8094D9|A6D1    |0000D1;
                        JSR.W (gameLoop_d1,X)                ;8094DB|FCE394  |8094E3;
-                       JSR.W CODE_808100                    ;8094DE|200081  |808100;
+                       JSR.W pauseFunc_05                   ;8094DE|200081  |808100;
                        BRA initload_d1                      ;8094E1|80F6    |8094D9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3163,7 +3163,7 @@
                        STZ.W r_player_upgradeMask           ;809503|9C991F  |861F99;
                        STZ.W r_player_state_1f9b            ;809506|9C9B1F  |861F9B;
                        STZ.W r_player_checkpointFlag        ;809509|9C821F  |861F82;
-                       STZ.W r_player_state_1f9c            ;80950C|9C9C1F  |861F9C;
+                       STZ.W r_intro_levelClearFlag         ;80950C|9C9C1F  |861F9C;
                        REP #$20                             ;80950F|C220    |      ;
                        STZ.W r_player_tankEnergie_01        ;809511|9C831F  |861F83;
                        STZ.W r_player_tankEnergie_03        ;809514|9C851F  |861F85;
@@ -3274,7 +3274,7 @@
                        LDX.B #$01                           ;8095D3|A201    |      ;
                        JSR.W CODE_808B90                    ;8095D5|20908B  |808B90;
                        LDY.B #$12                           ;8095D8|A012    |      ;
-                       JSL.L CODE_828011                    ;8095DA|22118082|828011;
+                       JSL.L lunchMusic                     ;8095DA|22118082|828011;
                        STZ.W r_pal_updateData_BG            ;8095DE|9C0003  |860300;
                        STZ.W $0301                          ;8095E1|9C0103  |860301;
                        INC.W $00A1                          ;8095E4|EEA100  |8600A1;
@@ -3290,16 +3290,16 @@
                        STA.W r_1f12                         ;8095FE|8D121F  |861F12;
                        STA.W r_1f11                         ;809601|8D111F  |861F11;
                        JSR.W CODE_80B117                    ;809604|2017B1  |80B117;
-                       JSR.W CODE_808100                    ;809607|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809607|200081  |808100;
                        LDY.B #$A2                           ;80960A|A0A2    |      ;
-                       JSL.L CODE_828011                    ;80960C|22118082|828011;
+                       JSL.L lunchMusic                     ;80960C|22118082|828011;
                        LDA.W r_level_current                ;809610|AD7A1F  |861F7A;
                        ASL A                                ;809613|0A      |      ;
                        CLC                                  ;809614|18      |      ;
                        ADC.B #$2E                           ;809615|692E    |      ;
                        TAY                                  ;809617|A8      |      ;
                        JSR.W CODE_80B2EB                    ;809618|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80961B|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80961B|200081  |808100;
                        LDA.W r_level_current                ;80961E|AD7A1F  |861F7A;
                        CLC                                  ;809621|18      |      ;
                        ADC.B #$0D                           ;809622|690D    |      ;
@@ -3340,7 +3340,7 @@
                        JSR.W CODE_80B075                    ;80967E|2075B0  |80B075;
                                                             ;      |        |      ;
           CODE_809681:
-                       JSR.W CODE_808100                    ;809681|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809681|200081  |808100;
                        LDA.W r_job_flag_40                  ;809684|AD4000  |860040;
                        BNE CODE_809681                      ;809687|D0F8    |809681;
                        LDA.W r_level_current                ;809689|AD7A1F  |861F7A;
@@ -3687,13 +3687,13 @@
                        JSR.W CODE_808BCB                    ;809936|20CB8B  |808BCB;
                        JSR.W CODE_808A45                    ;809939|20458A  |808A45;
                        LDY.B #$12                           ;80993C|A012    |      ;
-                       JSL.L CODE_828011                    ;80993E|22118082|828011;
-                       JSR.W CODE_808100                    ;809942|200081  |808100;
+                       JSL.L lunchMusic                     ;80993E|22118082|828011;
+                       JSR.W pauseFunc_05                   ;809942|200081  |808100;
                        LDX.B #$01                           ;809945|A201    |      ;
                        JSR.W CODE_808B90                    ;809947|20908B  |808B90;
                        LDY.B #$20                           ;80994A|A020    |      ;
                        JSR.W CODE_80B2EB                    ;80994C|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80994F|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80994F|200081  |808100;
                        LDA.W r_level_current                ;809952|AD7A1F  |861F7A;
                        ASL A                                ;809955|0A      |      ;
                        CLC                                  ;809956|18      |      ;
@@ -3740,7 +3740,7 @@
                        LDY.B #$20                           ;809999|A020    |      ;
                        JSR.W CODE_80B2EB                    ;80999B|20EBB2  |80B2EB;
                        JSR.W CODE_808A45                    ;80999E|20458A  |808A45;
-                       JSR.W CODE_808100                    ;8099A1|200081  |808100;
+                       JSR.W pauseFunc_05                   ;8099A1|200081  |808100;
                        LDA.B #$00                           ;8099A4|A900    |      ;
                        STA.L $7F8400                        ;8099A6|8F00847F|7F8400;
                        LDY.B #$2A                           ;8099AA|A02A    |      ;
@@ -3794,12 +3794,12 @@
                        STA.B $D3                            ;809A03|85D3    |0000D3;
                        STZ.B $D4                            ;809A05|64D4    |0000D4;
                        LDX.W r_level_current                ;809A07|AE7A1F  |861F7A;
-                       LDA.W UNREACH_8688B0,X               ;809A0A|BDB088  |8688B0;
+                       LDA.W musicID_forEachStage,X         ;809A0A|BDB088  |8688B0;
                        LDX.W r_endingRoll                   ;809A0D|AE7F1F  |861F7F;
                        BEQ CODE_809A2D                      ;809A10|F01B    |809A2D;
                        REP #$10                             ;809A12|C210    |      ;
                        LDY.W #$01F4                         ;809A14|A0F401  |      ;
-                       JSL.L CODE_828011                    ;809A17|22118082|828011;
+                       JSL.L lunchMusic                     ;809A17|22118082|828011;
                        SEP #$10                             ;809A1B|E210    |      ;
                        LDA.B #$04                           ;809A1D|A904    |      ;
                        STA.W r_1f11                         ;809A1F|8D111F  |861F11;
@@ -4097,14 +4097,14 @@
                        LDX.B #$01                           ;809C1E|A201    |      ;
                        JSR.W CODE_808B90                    ;809C20|20908B  |808B90;
                        LDY.B #$12                           ;809C23|A012    |      ;
-                       JSL.L CODE_828011                    ;809C25|22118082|828011;
+                       JSL.L lunchMusic                     ;809C25|22118082|828011;
                        LDY.B #$20                           ;809C29|A020    |      ;
                        JSR.W CODE_80B2EB                    ;809C2B|20EBB2  |80B2EB;
                        JSR.W CODE_80891B                    ;809C2E|201B89  |80891B;
                        JSR.W CODE_80DB3F                    ;809C31|203FDB  |80DB3F;
                        JSR.W CODE_808BCB                    ;809C34|20CB8B  |808BCB;
                        JSR.W CODE_808A45                    ;809C37|20458A  |808A45;
-                       JSR.W CODE_808100                    ;809C3A|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809C3A|200081  |808100;
                        LDA.W r_level_current                ;809C3D|AD7A1F  |861F7A;
                        ASL A                                ;809C40|0A      |      ;
                        CLC                                  ;809C41|18      |      ;
@@ -4113,13 +4113,13 @@
                        JSR.W CODE_80B2EB                    ;809C45|20EBB2  |80B2EB;
                        LDA.B #$03                           ;809C48|A903    |      ;
                        STA.W r_player_checkpoint            ;809C4A|8D811F  |861F81;
-                       JSR.W CODE_808100                    ;809C4D|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809C4D|200081  |808100;
                        JSR.W CODE_80DB5A                    ;809C50|205ADB  |80DB5A;
                        JSR.W CODE_809D9E                    ;809C53|209E9D  |809D9E;
                        LDA.B #$04                           ;809C56|A904    |      ;
                        STA.W r_1f12                         ;809C58|8D121F  |861F12;
                        STA.W r_1f11                         ;809C5B|8D111F  |861F11;
-                       JSR.W CODE_808100                    ;809C5E|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809C5E|200081  |808100;
                        REP #$20                             ;809C61|C220    |      ;
                        LDA.W r_cam_BG0_yPos_target          ;809C63|AD501E  |861E50;
                        STA.B $D7                            ;809C66|85D7    |0000D7;
@@ -4151,10 +4151,10 @@
                        LDA.B #$08                           ;809C99|A908    |      ;
                        STA.B $D4                            ;809C9B|85D4    |0000D4;
                        LDY.B #$12                           ;809C9D|A012    |      ;
-                       JSL.L CODE_828011                    ;809C9F|22118082|828011;
+                       JSL.L lunchMusic                     ;809C9F|22118082|828011;
                        LDY.B #$20                           ;809CA3|A020    |      ;
                        JSR.W CODE_80B2EB                    ;809CA5|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;809CA8|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809CA8|200081  |808100;
                        LDA.B #$3C                           ;809CAB|A93C    |      ;
                        STA.B $D7                            ;809CAD|85D7    |0000D7;
                        LDA.B #$03                           ;809CAF|A903    |      ;
@@ -4266,8 +4266,8 @@
                        LDY.B #$00                           ;809D6A|A000    |      ;
                        JSL.L CODE_828000                    ;809D6C|22008082|828000;
                        LDY.B #$12                           ;809D70|A012    |      ;
-                       JSL.L CODE_828011                    ;809D72|22118082|828011;
-                       JSR.W CODE_808100                    ;809D76|200081  |808100;
+                       JSL.L lunchMusic                     ;809D72|22118082|828011;
+                       JSR.W pauseFunc_05                   ;809D76|200081  |808100;
                        LDX.B #$00                           ;809D79|A200    |      ;
                        JSR.W CODE_808B90                    ;809D7B|20908B  |808B90;
                        LDX.B #$01                           ;809D7E|A201    |      ;
@@ -4289,11 +4289,11 @@
                        REP #$10                             ;809D9E|C210    |      ;
                        STZ.W r_0ba1                         ;809DA0|9CA10B  |860BA1;
                        JSR.W CODE_80E68E                    ;809DA3|208EE6  |80E68E;
-                       LDA.W UNREACH_86A780,X               ;809DA6|BD80A7  |86A780;
+                       LDA.W DATA8_86A780,X                 ;809DA6|BD80A7  |86A780;
                        STA.W r_1f08                         ;809DA9|8D081F  |861F08;
-                       LDA.W UNREACH_86A781,X               ;809DAC|BD81A7  |86A781;
+                       LDA.W DATA8_86A781,X                 ;809DAC|BD81A7  |86A781;
                        STA.W r_1f09                         ;809DAF|8D091F  |861F09;
-                       LDA.W UNREACH_86A782,X               ;809DB2|BD82A7  |86A782;
+                       LDA.W DATA8_86A782,X                 ;809DB2|BD82A7  |86A782;
                        STA.W r_1f0a                         ;809DB5|8D0A1F  |861F0A;
                        SEP #$10                             ;809DB8|E210    |      ;
                        STZ.W r_1f0b                         ;809DBA|9C0B1F  |861F0B;
@@ -4306,13 +4306,13 @@
                        STZ.W r_1f0f                         ;809DCD|9C0F1F  |861F0F;
                        JSR.W CODE_80B117                    ;809DD0|2017B1  |80B117;
                        LDY.B #$12                           ;809DD3|A012    |      ;
-                       JSL.L CODE_828011                    ;809DD5|22118082|828011;
+                       JSL.L lunchMusic                     ;809DD5|22118082|828011;
                        LDA.W r_level_current                ;809DD9|AD7A1F  |861F7A;
                        ASL A                                ;809DDC|0A      |      ;
                        CLC                                  ;809DDD|18      |      ;
                        ADC.B #$60                           ;809DDE|6960    |      ;
                        TAY                                  ;809DE0|A8      |      ;
-                       JSL.L CODE_828011                    ;809DE1|22118082|828011;
+                       JSL.L lunchMusic                     ;809DE1|22118082|828011;
                        LDA.W r_player_checkpointFlag        ;809DE5|AD821F  |861F82;
                        BEQ CODE_809DEA                      ;809DE8|F000    |809DEA;
                                                             ;      |        |      ;
@@ -4320,11 +4320,11 @@
                        JSR.W CODE_80BAC1                    ;809DEA|20C1BA  |80BAC1;
                        LDX.B #$00                           ;809DED|A200    |      ;
                        JSR.W CODE_808B90                    ;809DEF|20908B  |808B90;
-                       JSR.W CODE_808100                    ;809DF2|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809DF2|200081  |808100;
                        JSR.W CODE_80E5F7                    ;809DF5|20F7E5  |80E5F7;
                        JSR.W CODE_80B56E                    ;809DF8|206EB5  |80B56E;
                        JSR.W CODE_80B577                    ;809DFB|2077B5  |80B577;
-                       JSR.W CODE_808100                    ;809DFE|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809DFE|200081  |808100;
                        LDA.W r_level_current                ;809E01|AD7A1F  |861F7A;
                        CMP.B #$05                           ;809E04|C905    |      ;
                        BNE CODE_809E20                      ;809E06|D018    |809E20;
@@ -4336,7 +4336,7 @@
                        STA.W r_cam_BG0_xPos_ff              ;809E15|8D8D1E  |861E8D;
                        SEP #$20                             ;809E18|E220    |      ;
                        JSR.W CODE_80B577                    ;809E1A|2077B5  |80B577;
-                       JSR.W CODE_808100                    ;809E1D|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809E1D|200081  |808100;
                                                             ;      |        |      ;
           CODE_809E20:
                        LDX.B #$10                           ;809E20|A210    |      ;
@@ -4351,18 +4351,18 @@
                        LDY.B #$1C                           ;809E37|A01C    |      ;
                        JSL.L CODE_828000                    ;809E39|22008082|828000;
                        LDY.B #$A0                           ;809E3D|A0A0    |      ;
-                       JSL.L CODE_828011                    ;809E3F|22118082|828011;
-                       JSR.W CODE_808100                    ;809E43|200081  |808100;
+                       JSL.L lunchMusic                     ;809E3F|22118082|828011;
+                       JSR.W pauseFunc_05                   ;809E43|200081  |808100;
                        JSR.W CODE_80B075                    ;809E46|2075B0  |80B075;
                                                             ;      |        |      ;
           CODE_809E49:
-                       JSR.W CODE_808100                    ;809E49|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809E49|200081  |808100;
                        LDA.W r_job_flag_40                  ;809E4C|AD4000  |860040;
                        BNE CODE_809E49                      ;809E4F|D0F8    |809E49;
                        JSR.W CODE_80B41A                    ;809E51|201AB4  |80B41A;
                                                             ;      |        |      ;
           CODE_809E54:
-                       JSR.W CODE_808100                    ;809E54|200081  |808100;
+                       JSR.W pauseFunc_05                   ;809E54|200081  |808100;
                        LDA.W r_job_flag_50                  ;809E57|AD5000  |860050;
                        BNE CODE_809E54                      ;809E5A|D0F8    |809E54;
                        JSR.W CODE_80B4E7                    ;809E5C|20E7B4  |80B4E7;
@@ -4674,7 +4674,7 @@ mainPauseMenuCheck_00:
                        JSR.W mainOAM                        ;80A04B|206FD5  |80D56F;
                        LDA.W r_1e48                         ;80A04E|AD481E  |861E48;
                        BEQ CODE_80A058                      ;80A051|F005    |80A058;
-                       JSR.W CODE_808100                    ;80A053|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A053|200081  |808100;
                        BRA CODE_80A02F                      ;80A056|80D7    |80A02F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4717,24 +4717,24 @@ mainPauseMenuCheck_00:
                        PLD                                  ;80A09E|2B      |      ;
                        LDY.B #$6A                           ;80A09F|A06A    |      ;
                        JSR.W CODE_80B2EB                    ;80A0A1|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80A0A4|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A0A4|200081  |808100;
                        LDY.B #$6C                           ;80A0A7|A06C    |      ;
                        JSR.W CODE_80B2EB                    ;80A0A9|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80A0AC|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A0AC|200081  |808100;
                        LDY.B #$6E                           ;80A0AF|A06E    |      ;
                        JSR.W CODE_80B2EB                    ;80A0B1|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80A0B4|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A0B4|200081  |808100;
                        LDY.B #$70                           ;80A0B7|A070    |      ;
                        JSR.W CODE_80B2EB                    ;80A0B9|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80A0BC|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A0BC|200081  |808100;
                        REP #$10                             ;80A0BF|C210    |      ;
                        LDY.W #$01F6                         ;80A0C1|A0F601  |      ;
-                       JSL.L CODE_828011                    ;80A0C4|22118082|828011;
+                       JSL.L lunchMusic                     ;80A0C4|22118082|828011;
                        LDX.W #$0040                         ;80A0C8|A24000  |      ;
                        LDY.W #$01F2                         ;80A0CB|A0F201  |      ;
                        JSL.L CODE_828000                    ;80A0CE|22008082|828000;
                        LDY.W #$0000                         ;80A0D2|A00000  |      ;
-                       JSL.L CODE_828011                    ;80A0D5|22118082|828011;
+                       JSL.L lunchMusic                     ;80A0D5|22118082|828011;
                        SEP #$10                             ;80A0D9|E210    |      ;
                        STZ.B $B3                            ;80A0DB|64B3    |0000B3;
                        JSR.W CODE_8089BD                    ;80A0DD|20BD89  |8089BD;
@@ -4755,14 +4755,14 @@ mainPauseMenuCheck_00:
                        CLC                                  ;80A0F7|18      |      ;
                        ADC.W #$01F6                         ;80A0F8|69F601  |      ;
                        TAY                                  ;80A0FB|A8      |      ;
-                       JSL.L CODE_828011                    ;80A0FC|22118082|828011;
+                       JSL.L lunchMusic                     ;80A0FC|22118082|828011;
                        SEP #$30                             ;80A100|E230    |      ;
                        RTS                                  ;80A102|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_80A103:
                        LDY.W #$01F8                         ;80A103|A0F801  |      ;
-                       JSL.L CODE_828011                    ;80A106|22118082|828011;
+                       JSL.L lunchMusic                     ;80A106|22118082|828011;
                        SEP #$30                             ;80A10A|E230    |      ;
                        LDA.B #$04                           ;80A10C|A904    |      ;
                        STA.B $01                            ;80A10E|8501    |001E49;
@@ -4772,7 +4772,7 @@ mainPauseMenuCheck_00:
                        STZ.B $12                            ;80A118|6412    |001E5A;
                        JSR.W CODE_80A4C9                    ;80A11A|20C9A4  |80A4C9;
                        LDA.B #$21                           ;80A11D|A921    |      ;
-                       JSL.L weaponChargeInit               ;80A11F|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80A11F|22CD8880|8088CD;
                        RTS                                  ;80A123|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4903,7 +4903,7 @@ mainPauseMenuCheck_00:
                        LDA.B #$0A                           ;80A1F6|A90A    |      ;
                        STA.B $1F                            ;80A1F8|851F    |001447;
                        LDA.B #$0E                           ;80A1FA|A90E    |      ;
-                       JSL.L weaponChargeInit               ;80A1FC|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80A1FC|22CD8880|8088CD;
                        RTS                                  ;80A200|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4918,7 +4918,7 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_80A45C                    ;80A211|205CA4  |80A45C;
                                                             ;      |        |      ;
           CODE_80A214:
-                       JSL.L checkEventRange                ;80A214|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80A214|22B48082|8280B4;
                        RTS                                  ;80A218|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4993,12 +4993,12 @@ mainPauseMenuCheck_00:
                        LDA.W #$02D0                         ;80A281|A9D002  |      ;
                        STA.B r_ev_0c_parent-$E68            ;80A284|850C    |000E74;
                        SEP #$20                             ;80A286|E220    |      ;
-                       JSL.L checkEventRange                ;80A288|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80A288|22B48082|8280B4;
                        RTS                                  ;80A28C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_80A28D:
-                       JSL.L checkEventRange                ;80A28D|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80A28D|22B48082|8280B4;
                        JSL.L CODE_82820A                    ;80A291|220A8282|82820A;
                        REP #$20                             ;80A295|C220    |      ;
                        DEC.B r_ev_0c_parent-$E68            ;80A297|C60C    |000E74;
@@ -5015,7 +5015,7 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_80A2A9:
-                       JSL.L checkEventRange                ;80A2A9|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80A2A9|22B48082|8280B4;
                        DEC.B r_ev_0c_parent-$E68            ;80A2AD|C60C    |000E74;
                        BNE CODE_80A2B5                      ;80A2AF|D004    |80A2B5;
                        LDA.B #$06                           ;80A2B1|A906    |      ;
@@ -5069,7 +5069,7 @@ mainPauseMenuCheck_00:
                        JSL.L updateEv_13_14_17_0f           ;80A2EE|22EA8E84|848EEA;
                        LDA.B $0F                            ;80A2F2|A50F    |0019B7;
                        BMI CODE_80A2FB                      ;80A2F4|3005    |80A2FB;
-                       JSL.L checkEventRange                ;80A2F6|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80A2F6|22B48082|8280B4;
                        RTS                                  ;80A2FA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5117,7 +5117,7 @@ mainPauseMenuCheck_00:
                        AND.B #$03                           ;80A34F|2903    |      ;
                        CLC                                  ;80A351|18      |      ;
                        ADC.B #$93                           ;80A352|6993    |      ;
-                       JSL.L weaponChargeInit               ;80A354|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80A354|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_80A358:
                        SEP #$10                             ;80A358|E210    |      ;
@@ -5191,7 +5191,7 @@ mainPauseMenuCheck_00:
                        STA.B $01                            ;80A3C6|8501    |000EA9;
                                                             ;      |        |      ;
           CODE_80A3C8:
-                       JSL.L checkEventRange                ;80A3C8|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80A3C8|22B48082|8280B4;
                        RTS                                  ;80A3CC|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5207,7 +5207,7 @@ mainPauseMenuCheck_00:
                        STA.B $01                            ;80A3E1|8501    |000EA9;
                                                             ;      |        |      ;
           CODE_80A3E3:
-                       JSL.L checkEventRange                ;80A3E3|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80A3E3|22B48082|8280B4;
                        RTS                                  ;80A3E7|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5223,7 +5223,7 @@ mainPauseMenuCheck_00:
                        STA.B $01                            ;80A3FC|8501    |000EA9;
                                                             ;      |        |      ;
           CODE_80A3FE:
-                       JSL.L checkEventRange                ;80A3FE|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80A3FE|22B48082|8280B4;
                        RTS                                  ;80A402|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5237,7 +5237,7 @@ mainPauseMenuCheck_00:
                        STA.B $01                            ;80A413|8501    |000EA9;
                                                             ;      |        |      ;
           CODE_80A415:
-                       JSL.L checkEventRange                ;80A415|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80A415|22B48082|8280B4;
                        RTS                                  ;80A419|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5249,7 +5249,7 @@ mainPauseMenuCheck_00:
                        STA.B $01                            ;80A424|8501    |000EA9;
                                                             ;      |        |      ;
           CODE_80A426:
-                       JSL.L checkEventRange                ;80A426|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80A426|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_80A42A:
                        RTS                                  ;80A42A|60      |      ;
@@ -5278,7 +5278,7 @@ mainPauseMenuCheck_00:
                        SEP #$20                             ;80A455|E220    |      ;
                                                             ;      |        |      ;
           CODE_80A457:
-                       JSL.L checkEventRange                ;80A457|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80A457|22B48082|8280B4;
                        RTS                                  ;80A45B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5393,7 +5393,7 @@ mainPauseMenuCheck_00:
                        JSR.W (PTR16_80A528,X)               ;80A51C|FC28A5  |80A528;
                        PEA.W r_0000                         ;80A51F|F40000  |860000;
                        PLD                                  ;80A522|2B      |      ;
-                       JSR.W CODE_808100                    ;80A523|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A523|200081  |808100;
                        BRA CODE_80A516                      ;80A526|80EE    |80A516;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5416,29 +5416,29 @@ mainPauseMenuCheck_00:
                        PLD                                  ;80A543|2B      |      ;
                        LDY.B #$72                           ;80A544|A072    |      ;
                        JSR.W CODE_80B2EB                    ;80A546|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80A549|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A549|200081  |808100;
                        LDY.B #$74                           ;80A54C|A074    |      ;
                        JSR.W CODE_80B2EB                    ;80A54E|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80A551|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A551|200081  |808100;
                        LDY.B #$76                           ;80A554|A076    |      ;
                        JSR.W CODE_80B2EB                    ;80A556|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80A559|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A559|200081  |808100;
                                                             ;      |        |      ;
                        LDY.B #$20                           ;80A55C|A020    |      ;
                        JSR.W CODE_80B2EB                    ;80A55E|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80A561|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A561|200081  |808100;
                        LDY.B #$6A                           ;80A564|A06A    |      ;
                        JSR.W CODE_808A87                    ;80A566|20878A  |808A87;
                        LDY.B #$12                           ;80A569|A012    |      ;
-                       JSL.L CODE_828011                    ;80A56B|22118082|828011;
+                       JSL.L lunchMusic                     ;80A56B|22118082|828011;
                        REP #$10                             ;80A56F|C210    |      ;
                        LDY.W #$01F4                         ;80A571|A0F401  |      ;
-                       JSL.L CODE_828011                    ;80A574|22118082|828011;
+                       JSL.L lunchMusic                     ;80A574|22118082|828011;
                        SEP #$10                             ;80A578|E210    |      ;
                        LDY.B #$24                           ;80A57A|A024    |      ;
-                       JSL.L CODE_828011                    ;80A57C|22118082|828011;
+                       JSL.L lunchMusic                     ;80A57C|22118082|828011;
                        LDY.B #$1A                           ;80A580|A01A    |      ;
-                       JSL.L CODE_828011                    ;80A582|22118082|828011;
+                       JSL.L lunchMusic                     ;80A582|22118082|828011;
                        LDA.B #$30                           ;80A586|A930    |      ;
                        JSL.L CODE_8087A2                    ;80A588|22A28780|8087A2;
                        LDA.B #$1F                           ;80A58C|A91F    |      ;
@@ -5494,7 +5494,7 @@ mainPauseMenuCheck_00:
                        DEC.B $10                            ;80A5E3|C610    |001E58;
                        BNE CODE_80A5F5                      ;80A5E5|D00E    |80A5F5;
                        LDY.B #$2A                           ;80A5E7|A02A    |      ;
-                       JSL.L CODE_828011                    ;80A5E9|22118082|828011;
+                       JSL.L lunchMusic                     ;80A5E9|22118082|828011;
                        LDA.B #$08                           ;80A5ED|A908    |      ;
                        STA.B $01                            ;80A5EF|8501    |001E49;
                        LDA.B #$1E                           ;80A5F1|A91E    |      ;
@@ -5508,7 +5508,7 @@ mainPauseMenuCheck_00:
                        DEC.B $10                            ;80A5F6|C610    |001E58;
                        BNE CODE_80A608                      ;80A5F8|D00E    |80A608;
                        LDY.B #$28                           ;80A5FA|A028    |      ;
-                       JSL.L CODE_828011                    ;80A5FC|22118082|828011;
+                       JSL.L lunchMusic                     ;80A5FC|22118082|828011;
                        LDA.B #$0A                           ;80A600|A90A    |      ;
                        STA.B $01                            ;80A602|8501    |001E49;
                        LDA.B #$1E                           ;80A604|A91E    |      ;
@@ -5522,7 +5522,7 @@ mainPauseMenuCheck_00:
                        DEC.B $10                            ;80A609|C610    |001E58;
                        BNE CODE_80A61B                      ;80A60B|D00E    |80A61B;
                        LDY.B #$24                           ;80A60D|A024    |      ;
-                       JSL.L CODE_828011                    ;80A60F|22118082|828011;
+                       JSL.L lunchMusic                     ;80A60F|22118082|828011;
                        LDA.B #$0C                           ;80A613|A90C    |      ;
                        STA.B $01                            ;80A615|8501    |001E49;
                        LDA.B #$3C                           ;80A617|A93C    |      ;
@@ -5582,16 +5582,16 @@ mainPauseMenuCheck_00:
                        STA.W r_1f11                         ;80A66A|8D111F  |861F11;
                        REP #$10                             ;80A66D|C210    |      ;
                        LDY.W #$0174                         ;80A66F|A07401  |      ;
-                       JSL.L CODE_828011                    ;80A672|22118082|828011;
+                       JSL.L lunchMusic                     ;80A672|22118082|828011;
                        SEP #$10                             ;80A676|E210    |      ;
                        LDY.B #$12                           ;80A678|A012    |      ;
-                       JSL.L CODE_828011                    ;80A67A|22118082|828011;
+                       JSL.L lunchMusic                     ;80A67A|22118082|828011;
                        LDY.B #$20                           ;80A67E|A020    |      ;
                        JSR.W CODE_80B2EB                    ;80A680|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80A683|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A683|200081  |808100;
                        LDY.B #$58                           ;80A686|A058    |      ;
                        JSR.W CODE_80B2EB                    ;80A688|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80A68B|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A68B|200081  |808100;
                        LDA.B #$23                           ;80A68E|A923    |      ;
                        STA.W r_level_current                ;80A690|8D7A1F  |861F7A;
                        JSR.W CODE_80BAC1                    ;80A693|20C1BA  |80BAC1;
@@ -5628,7 +5628,7 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_80B075                    ;80A6E0|2075B0  |80B075;
                                                             ;      |        |      ;
           CODE_80A6E3:
-                       JSR.W CODE_808100                    ;80A6E3|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A6E3|200081  |808100;
                        LDA.W r_job_flag_40                  ;80A6E6|AD4000  |860040;
                        BNE CODE_80A6E3                      ;80A6E9|D0F8    |80A6E3;
                        LDA.B #$9D                           ;80A6EB|A99D    |      ;
@@ -5681,7 +5681,7 @@ mainPauseMenuCheck_00:
                        LDA.B #$18                           ;80A75F|A918    |      ;
                        STA.B r_ev_02_action-$E68            ;80A761|8502    |000E6A;
                        LDA.B #$89                           ;80A763|A989    |      ;
-                       JSL.L weaponChargeInit               ;80A765|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80A765|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_80A769:
                        RTS                                  ;80A769|60      |      ;
@@ -5692,7 +5692,7 @@ mainPauseMenuCheck_00:
                        LDA.B #$1A                           ;80A771|A91A    |      ;
                        STA.B r_ev_02_action-$E68            ;80A773|8502    |000E6A;
                        LDA.B #$89                           ;80A775|A989    |      ;
-                       JSL.L weaponChargeInit               ;80A777|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80A777|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_80A77B:
                        RTS                                  ;80A77B|60      |      ;
@@ -5703,7 +5703,7 @@ mainPauseMenuCheck_00:
                        LDA.B #$0E                           ;80A783|A90E    |      ;
                        STA.B r_ev_02_action-$E68            ;80A785|8502    |000E6A;
                        LDA.B #$89                           ;80A787|A989    |      ;
-                       JSL.L weaponChargeInit               ;80A789|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80A789|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_80A78D:
                        RTS                                  ;80A78D|60      |      ;
@@ -5754,7 +5754,7 @@ mainPauseMenuCheck_00:
                        CLC                                  ;80A7D8|18      |      ;
                        ADC.W #$0176                         ;80A7D9|697601  |      ;
                        TAY                                  ;80A7DC|A8      |      ;
-                       JSL.L CODE_828011                    ;80A7DD|22118082|828011;
+                       JSL.L lunchMusic                     ;80A7DD|22118082|828011;
                        SEP #$30                             ;80A7E1|E230    |      ;
                        INC.B r_ev_33-$E68                   ;80A7E3|E633    |000E9B;
                        INC.B r_ev_33-$E68                   ;80A7E5|E633    |000E9B;
@@ -5801,7 +5801,7 @@ mainPauseMenuCheck_00:
                        STA.W r_colorV_cc                    ;80A836|8DCC00  |8600CC;
                        STA.W r_colorV_cd                    ;80A839|8DCD00  |8600CD;
                        LDA.B #$86                           ;80A83C|A986    |      ;
-                       JSL.L weaponChargeInit               ;80A83E|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80A83E|22CD8880|8088CD;
                        LDY.B #$18                           ;80A842|A018    |      ;
                        JSL.L CODE_808A7B                    ;80A844|227B8A80|808A7B;
                                                             ;      |        |      ;
@@ -5831,10 +5831,10 @@ mainPauseMenuCheck_00:
                        PEA.W r_0000                         ;80A86D|F40000  |860000;
                        PLD                                  ;80A870|2B      |      ;
                        LDY.B #$7C                           ;80A871|A07C    |      ;
-                       JSL.L CODE_828011                    ;80A873|22118082|828011;
+                       JSL.L lunchMusic                     ;80A873|22118082|828011;
                        LDY.B #$68                           ;80A877|A068    |      ;
                        JSR.W CODE_80B2EB                    ;80A879|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80A87C|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A87C|200081  |808100;
                        LDA.B #$24                           ;80A87F|A924    |      ;
                        STA.W r_level_current                ;80A881|8D7A1F  |861F7A;
                        JSR.W CODE_80BAC1                    ;80A884|20C1BA  |80BAC1;
@@ -5875,7 +5875,7 @@ mainPauseMenuCheck_00:
                        AND.B #$1F                           ;80A8D0|291F    |      ;
                        BNE CODE_80A8DA                      ;80A8D2|D006    |80A8DA;
                        LDA.B #$85                           ;80A8D4|A985    |      ;
-                       JSL.L weaponChargeInit               ;80A8D6|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80A8D6|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_80A8DA:
                        LDA.W r_1f3c                         ;80A8DA|AD3C1F  |861F3C;
@@ -5938,7 +5938,7 @@ mainPauseMenuCheck_00:
                        PHD                                  ;80A930|0B      |      ;
                        PEA.W r_0000                         ;80A931|F40000  |860000;
                        PLD                                  ;80A934|2B      |      ;
-                       JSR.W CODE_808100                    ;80A935|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80A935|200081  |808100;
                        PLD                                  ;80A938|2B      |      ;
                        RTS                                  ;80A939|60      |      ;
                                                             ;      |        |      ;
@@ -5979,7 +5979,7 @@ mainPauseMenuCheck_00:
                        JSR.W (DATA8_80A97A,X)               ;80A96F|FC7AA9  |80A97A;
                        LDA.B $02                            ;80A972|A502    |00192A;
                        BEQ CODE_80A96C                      ;80A974|F0F6    |80A96C;
-                       JML.L checkEventRange                ;80A976|5CB48082|8280B4;
+                       JML.L checkPlayerGear                ;80A976|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          DATA8_80A97A:
@@ -5997,7 +5997,7 @@ mainPauseMenuCheck_00:
                        STA.B $08                            ;80A999|8508    |001930;
                        SEP #$20                             ;80A99B|E220    |      ;
                        LDA.B #$88                           ;80A99D|A988    |      ;
-                       JSL.L weaponChargeInit               ;80A99F|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80A99F|22CD8880|8088CD;
                        LDA.B #$00                           ;80A9A3|A900    |      ;
                        JSL.L playerGrabedRoutine            ;80A9A5|22078F84|848F07;
                                                             ;      |        |      ;
@@ -6022,9 +6022,9 @@ mainPauseMenuCheck_00:
           CODE_80A9C4:
                        BVC CODE_80A9D2                      ;80A9C4|500C    |80A9D2;
                        LDA.B #$87                           ;80A9C6|A987    |      ;
-                       JSL.L weaponChargeInit               ;80A9C8|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80A9C8|22CD8880|8088CD;
                        LDA.B #$8A                           ;80A9CC|A98A    |      ;
-                       JSL.L weaponChargeInit               ;80A9CE|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80A9CE|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_80A9D2:
                        JSL.L updateEv_13_14_17_0f           ;80A9D2|22EA8E84|848EEA;
@@ -6054,7 +6054,7 @@ mainPauseMenuCheck_00:
                        STA.B $08                            ;80AA01|8508    |001930;
                        SEP #$20                             ;80AA03|E220    |      ;
                        LDA.B #$88                           ;80AA05|A988    |      ;
-                       JSL.L weaponChargeInit               ;80AA07|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80AA07|22CD8880|8088CD;
                        LDA.B #$00                           ;80AA0B|A900    |      ;
                        JSL.L playerGrabedRoutine            ;80AA0D|22078F84|848F07;
                                                             ;      |        |      ;
@@ -6080,9 +6080,9 @@ mainPauseMenuCheck_00:
           CODE_80AA30:
                        BVC CODE_80AA3E                      ;80AA30|500C    |80AA3E;
                        LDA.B #$87                           ;80AA32|A987    |      ;
-                       JSL.L weaponChargeInit               ;80AA34|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80AA34|22CD8880|8088CD;
                        LDA.B #$8A                           ;80AA38|A98A    |      ;
-                       JSL.L weaponChargeInit               ;80AA3A|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80AA3A|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_80AA3E:
                        JSL.L updateEv_13_14_17_0f           ;80AA3E|22EA8E84|848EEA;
@@ -6112,7 +6112,7 @@ mainPauseMenuCheck_00:
                        STA.B $08                            ;80AA6D|8508    |001930;
                        SEP #$20                             ;80AA6F|E220    |      ;
                        LDA.B #$88                           ;80AA71|A988    |      ;
-                       JSL.L weaponChargeInit               ;80AA73|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80AA73|22CD8880|8088CD;
                        LDA.B #$00                           ;80AA77|A900    |      ;
                        JSL.L playerGrabedRoutine            ;80AA79|22078F84|848F07;
                                                             ;      |        |      ;
@@ -6138,9 +6138,9 @@ mainPauseMenuCheck_00:
           CODE_80AA9C:
                        BVC CODE_80AAAA                      ;80AA9C|500C    |80AAAA;
                        LDA.B #$87                           ;80AA9E|A987    |      ;
-                       JSL.L weaponChargeInit               ;80AAA0|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80AAA0|22CD8880|8088CD;
                        LDA.B #$8A                           ;80AAA4|A98A    |      ;
-                       JSL.L weaponChargeInit               ;80AAA6|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80AAA6|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_80AAAA:
                        JSL.L updateEv_13_14_17_0f           ;80AAAA|22EA8E84|848EEA;
@@ -6170,7 +6170,7 @@ mainPauseMenuCheck_00:
                        STA.B $08                            ;80AAD9|8508    |001930;
                        SEP #$20                             ;80AADB|E220    |      ;
                        LDA.B #$88                           ;80AADD|A988    |      ;
-                       JSL.L weaponChargeInit               ;80AADF|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80AADF|22CD8880|8088CD;
                        LDA.B #$00                           ;80AAE3|A900    |      ;
                        JSL.L playerGrabedRoutine            ;80AAE5|22078F84|848F07;
                                                             ;      |        |      ;
@@ -6196,9 +6196,9 @@ mainPauseMenuCheck_00:
           CODE_80AB08:
                        BVC CODE_80AB16                      ;80AB08|500C    |80AB16;
                        LDA.B #$87                           ;80AB0A|A987    |      ;
-                       JSL.L weaponChargeInit               ;80AB0C|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80AB0C|22CD8880|8088CD;
                        LDA.B #$8A                           ;80AB10|A98A    |      ;
-                       JSL.L weaponChargeInit               ;80AB12|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80AB12|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_80AB16:
                        JSL.L updateEv_13_14_17_0f           ;80AB16|22EA8E84|848EEA;
@@ -6268,7 +6268,7 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_80AB82:
-                       JSL.L checkEventRange                ;80AB82|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80AB82|22B48082|8280B4;
                        LDA.B $0E                            ;80AB86|A50E    |0019F6;
                        BNE CODE_80AB8E                      ;80AB88|D004    |80AB8E;
                        LDA.B #$04                           ;80AB8A|A904    |      ;
@@ -6324,23 +6324,23 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_8087B0                    ;80ABD6|20B087  |8087B0;
                        REP #$30                             ;80ABD9|C230    |      ;
                        LDY.W #$0170                         ;80ABDB|A07001  |      ;
-                       JSL.L CODE_828011                    ;80ABDE|22118082|828011;
+                       JSL.L lunchMusic                     ;80ABDE|22118082|828011;
                        SEP #$30                             ;80ABE2|E230    |      ;
                        LDY.B #$12                           ;80ABE4|A012    |      ;
-                       JSL.L CODE_828011                    ;80ABE6|22118082|828011;
+                       JSL.L lunchMusic                     ;80ABE6|22118082|828011;
                        LDY.B #$20                           ;80ABEA|A020    |      ;
                        JSR.W CODE_80B2EB                    ;80ABEC|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80ABEF|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80ABEF|200081  |808100;
                        LDY.B #$54                           ;80ABF2|A054    |      ;
                        JSR.W CODE_80B2EB                    ;80ABF4|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80ABF7|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80ABF7|200081  |808100;
                        LDA.W r_level_current                ;80ABFA|AD7A1F  |861F7A;
                        ASL A                                ;80ABFD|0A      |      ;
                        CLC                                  ;80ABFE|18      |      ;
                        ADC.B #$56                           ;80ABFF|6956    |      ;
                        TAY                                  ;80AC01|A8      |      ;
                        JSR.W CODE_80B2EB                    ;80AC02|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80AC05|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80AC05|200081  |808100;
                        LDA.W r_level_current                ;80AC08|AD7A1F  |861F7A;
                        CLC                                  ;80AC0B|18      |      ;
                        ADC.B #$1A                           ;80AC0C|691A    |      ;
@@ -6392,7 +6392,7 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_80B075                    ;80AC88|2075B0  |80B075;
                                                             ;      |        |      ;
           CODE_80AC8B:
-                       JSR.W CODE_808100                    ;80AC8B|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80AC8B|200081  |808100;
                        LDA.W r_job_flag_40                  ;80AC8E|AD4000  |860040;
                        BNE CODE_80AC8B                      ;80AC91|D0F8    |80AC8B;
                        LDA.W r_level_current                ;80AC93|AD7A1F  |861F7A;
@@ -6480,7 +6480,7 @@ mainPauseMenuCheck_00:
                        LDA.B #$37                           ;80AD32|A937    |      ;
                        STA.W r_colorV_ca                    ;80AD34|8DCA00  |8600CA;
                        LDA.B #$2D                           ;80AD37|A92D    |      ;
-                       JSL.L weaponChargeInit               ;80AD39|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80AD39|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_80AD3D:
                        SEP #$20                             ;80AD3D|E220    |      ;
@@ -6603,7 +6603,7 @@ mainPauseMenuCheck_00:
                        ASL A                                ;80AE02|0A      |      ;
                        ADC.W #$01AE                         ;80AE03|69AE01  |      ;
                        TAY                                  ;80AE06|A8      |      ;
-                       JSL.L CODE_828011                    ;80AE07|22118082|828011;
+                       JSL.L lunchMusic                     ;80AE07|22118082|828011;
                        SEP #$30                             ;80AE0B|E230    |      ;
                        LDA.B #$3C                           ;80AE0D|A93C    |      ;
                        STA.B r_ev_33-$E68                   ;80AE0F|8533    |000E9B;
@@ -6792,7 +6792,7 @@ mainPauseMenuCheck_00:
                        PHD                                  ;80AF3F|0B      |      ;
                        PEA.W r_0000                         ;80AF40|F40000  |860000;
                        PLD                                  ;80AF43|2B      |      ;
-                       JSR.W CODE_808100                    ;80AF44|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80AF44|200081  |808100;
                        PLD                                  ;80AF47|2B      |      ;
                        RTS                                  ;80AF48|60      |      ;
                                                             ;      |        |      ;
@@ -6909,7 +6909,7 @@ mainPauseMenuCheck_00:
                        AND.W #$00FF                         ;80B026|29FF00  |      ;
                        ADC.W #$0100                         ;80B029|690001  |      ;
                        TAY                                  ;80B02C|A8      |      ;
-                       JSL.L CODE_828011                    ;80B02D|22118082|828011;
+                       JSL.L lunchMusic                     ;80B02D|22118082|828011;
                        SEP #$10                             ;80B031|E210    |      ;
                        LDA.W #$0140                         ;80B033|A94001  |      ;
                        STA.W r_d_player_xSubPos             ;80B036|8DAD0B  |860BAD;
@@ -6933,7 +6933,7 @@ mainPauseMenuCheck_00:
                        ASL A                                ;80B058|0A      |      ;
                        ADC.W #$01C0                         ;80B059|69C001  |      ;
                        TAY                                  ;80B05C|A8      |      ;
-                       JSL.L CODE_828011                    ;80B05D|22118082|828011;
+                       JSL.L lunchMusic                     ;80B05D|22118082|828011;
                        SEP #$30                             ;80B061|E230    |      ;
                        BRA CODE_80B070                      ;80B063|800B    |80B070;
                                                             ;      |        |      ;
@@ -6941,7 +6941,7 @@ mainPauseMenuCheck_00:
           CODE_80B065:
                        REP #$10                             ;80B065|C210    |      ;
                        LDY.W #$01C0                         ;80B067|A0C001  |      ;
-                       JSL.L CODE_828011                    ;80B06A|22118082|828011;
+                       JSL.L lunchMusic                     ;80B06A|22118082|828011;
                        SEP #$10                             ;80B06E|E210    |      ;
                                                             ;      |        |      ;
           CODE_80B070:
@@ -7002,7 +7002,7 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_80B23C                    ;80B0C4|203CB2  |80B23C;
                                                             ;      |        |      ;
           CODE_80B0C7:
-                       JSR.W CODE_808100                    ;80B0C7|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80B0C7|200081  |808100;
                        LDA.B $F4                            ;80B0CA|A5F4    |0000F4;
                        BNE CODE_80B0C7                      ;80B0CC|D0F9    |80B0C7;
                        LDA.W DATA16_86ACEF,X                ;80B0CE|BDEFAC  |86ACEF;
@@ -7036,7 +7036,7 @@ mainPauseMenuCheck_00:
                        INX                                  ;80B103|E8      |      ;
                        INX                                  ;80B104|E8      |      ;
                        INX                                  ;80B105|E8      |      ;
-                       JSR.W CODE_808100                    ;80B106|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80B106|200081  |808100;
                        BRA CODE_80B0BB                      ;80B109|80B0    |80B0BB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7126,7 +7126,7 @@ mainPauseMenuCheck_00:
                        LDA.W r_1f25                         ;80B18B|AD251F  |861F25;
                        CMP.B #$20                           ;80B18E|C920    |      ;
                        BCC CODE_80B19D                      ;80B190|900B    |80B19D;
-                       JSR.W CODE_808100                    ;80B192|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80B192|200081  |808100;
                        LDA.B #$00                           ;80B195|A900    |      ;
                        XBA                                  ;80B197|EB      |      ;
                        LDA.B $A3                            ;80B198|A5A3    |0000A3;
@@ -7140,7 +7140,7 @@ mainPauseMenuCheck_00:
                        BNE CODE_80B1B5                      ;80B1A2|D011    |80B1B5;
                                                             ;      |        |      ;
           CODE_80B1A4:
-                       JSR.W CODE_808100                    ;80B1A4|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80B1A4|200081  |808100;
                        LDA.W r_1f25                         ;80B1A7|AD251F  |861F25;
                        CMP.B #$20                           ;80B1AA|C920    |      ;
                        BCS CODE_80B1A4                      ;80B1AC|B0F6    |80B1A4;
@@ -7367,7 +7367,7 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_80B23C                    ;80B309|203CB2  |80B23C;
                                                             ;      |        |      ;
           CODE_80B30C:
-                       JSR.W CODE_808100                    ;80B30C|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80B30C|200081  |808100;
                        LDA.B $F4                            ;80B30F|A5F4    |0000F4;
                        BNE CODE_80B30C                      ;80B311|D0F9    |80B30C;
                        PHX                                  ;80B313|DA      |      ;
@@ -7468,7 +7468,7 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_80B23C                    ;80B3AF|203CB2  |80B23C;
                                                             ;      |        |      ;
           CODE_80B3B2:
-                       JSR.W CODE_808100                    ;80B3B2|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80B3B2|200081  |808100;
                        LDA.B $F4                            ;80B3B5|A5F4    |0000F4;
                        BNE CODE_80B3B2                      ;80B3B7|D0F9    |80B3B2;
                        PHX                                  ;80B3B9|DA      |      ;
@@ -7561,15 +7561,15 @@ mainPauseMenuCheck_00:
                        AND.W #$00FF                         ;80B448|29FF00  |      ;
                        ASL A                                ;80B44B|0A      |      ;
                        TAX                                  ;80B44C|AA      |      ;
-                       LDA.W TEXT_86A1D5,X                  ;80B44D|BDD5A1  |86A1D5;
+                       LDA.W DATA8_86A1D5,X                 ;80B44D|BDD5A1  |86A1D5;
                        CLC                                  ;80B450|18      |      ;
                        ADC.B $00                            ;80B451|6500    |000000;
                        TAX                                  ;80B453|AA      |      ;
-                       LDA.W TEXT_86A1D5,X                  ;80B454|BDD5A1  |86A1D5;
+                       LDA.W DATA8_86A1D5,X                 ;80B454|BDD5A1  |86A1D5;
                        TAX                                  ;80B457|AA      |      ;
                                                             ;      |        |      ;
           CODE_80B458:
-                       LDA.W TEXT_86A1D5,X                  ;80B458|BDD5A1  |86A1D5;
+                       LDA.W DATA8_86A1D5,X                 ;80B458|BDD5A1  |86A1D5;
                        BEQ CODE_80B4DA                      ;80B45B|F07D    |80B4DA;
                        STA.B $58                            ;80B45D|8558    |000058;
                        STZ.B $5A                            ;80B45F|645A    |00005A;
@@ -7579,7 +7579,7 @@ mainPauseMenuCheck_00:
                        AND.W #$00FF                         ;80B464|29FF00  |      ;
                        CMP.W #$0020                         ;80B467|C92000  |      ;
                        BCC CODE_80B471                      ;80B46A|9005    |80B471;
-                       JSR.W CODE_808100                    ;80B46C|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80B46C|200081  |808100;
                        BRA CODE_80B461                      ;80B46F|80F0    |80B461;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7607,9 +7607,9 @@ mainPauseMenuCheck_00:
                        LDA.B $5A                            ;80B494|A55A    |00005A;
                        LSR A                                ;80B496|4A      |      ;
                        CLC                                  ;80B497|18      |      ;
-                       ADC.W TEXT_86A1D7,X                  ;80B498|7DD7A1  |86A1D7;
+                       ADC.W DATA8_86A1D7,X                 ;80B498|7DD7A1  |86A1D7;
                        STA.W r_0501,Y                       ;80B49B|990105  |860501;
-                       LDA.W TEXT_86A1D9,X                  ;80B49E|BDD9A1  |86A1D9;
+                       LDA.W DATA8_86A1D9,X                 ;80B49E|BDD9A1  |86A1D9;
                        CLC                                  ;80B4A1|18      |      ;
                        ADC.B $5A                            ;80B4A2|655A    |00005A;
                        STA.W r_0505,Y                       ;80B4A4|990505  |860505;
@@ -7618,22 +7618,22 @@ mainPauseMenuCheck_00:
                        ADC.W #$0400                         ;80B4AA|690004  |      ;
                        STA.B $5A                            ;80B4AD|855A    |00005A;
                        SEP #$20                             ;80B4AF|E220    |      ;
-                       LDA.W TEXT_86A1DB,X                  ;80B4B1|BDDBA1  |86A1DB;
+                       LDA.W DATA8_86A1DB,X                 ;80B4B1|BDDBA1  |86A1DB;
                        STA.W r_0507,Y                       ;80B4B4|990705  |860507;
                        TYA                                  ;80B4B7|98      |      ;
                        CLC                                  ;80B4B8|18      |      ;
                        ADC.B #$08                           ;80B4B9|6908    |      ;
                        STA.B $A3                            ;80B4BB|85A3    |0000A3;
                        REP #$20                             ;80B4BD|C220    |      ;
-                       JSR.W CODE_808100                    ;80B4BF|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80B4BF|200081  |808100;
                        LDA.B $58                            ;80B4C2|A558    |000058;
                        BEQ CODE_80B4C8                      ;80B4C4|F002    |80B4C8;
                        BPL CODE_80B461                      ;80B4C6|1099    |80B461;
                                                             ;      |        |      ;
           CODE_80B4C8:
-                       LDY.W TEXT_86A1DC,X                  ;80B4C8|BCDCA1  |86A1DC;
+                       LDY.W DATA8_86A1DC,X                 ;80B4C8|BCDCA1  |86A1DC;
                        PHX                                  ;80B4CB|DA      |      ;
-                       JSL.L CODE_828011                    ;80B4CC|22118082|828011;
+                       JSL.L lunchMusic                     ;80B4CC|22118082|828011;
                        PLX                                  ;80B4D0|FA      |      ;
                        TXA                                  ;80B4D1|8A      |      ;
                        CLC                                  ;80B4D2|18      |      ;
@@ -7689,21 +7689,21 @@ mainPauseMenuCheck_00:
                        AND.W #$00FF                         ;80B521|29FF00  |      ;
                        ASL A                                ;80B524|0A      |      ;
                        TAY                                  ;80B525|A8      |      ;
-                       LDA.W TEXT_86A260,Y                  ;80B526|B960A2  |86A260;
+                       LDA.W DATA16_86A260,Y                ;80B526|B960A2  |86A260;
                        CLC                                  ;80B529|18      |      ;
                        ADC.B $00                            ;80B52A|6500    |000000;
                        TAY                                  ;80B52C|A8      |      ;
-                       LDA.W TEXT_86A260,Y                  ;80B52D|B960A2  |86A260;
+                       LDA.W DATA16_86A260,Y                ;80B52D|B960A2  |86A260;
                        TAY                                  ;80B530|A8      |      ;
                                                             ;      |        |      ;
           CODE_80B531:
-                       LDA.W TEXT_86A260,Y                  ;80B531|B960A2  |86A260;
+                       LDA.W DATA16_86A260,Y                ;80B531|B960A2  |86A260;
                        CMP.W #$FFFF                         ;80B534|C9FFFF  |      ;
                        BEQ CODE_80B569                      ;80B537|F030    |80B569;
                        STA.B $10                            ;80B539|8510    |000010;
                        LDA.W #$0085                         ;80B53B|A98500  |      ;
                        STA.B $12                            ;80B53E|8512    |000012;
-                       LDA.W TEXT_86A262,Y                  ;80B540|B962A2  |86A262;
+                       LDA.W DATA16_86A262,Y                ;80B540|B962A2  |86A262;
                        AND.W #$00FF                         ;80B543|29FF00  |      ;
                        ASL A                                ;80B546|0A      |      ;
                        TAX                                  ;80B547|AA      |      ;
@@ -7760,7 +7760,7 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_80B595                    ;80B586|2095B5  |80B595;
                        BMI CODE_80B592                      ;80B589|3007    |80B592;
                        PHA                                  ;80B58B|48      |      ;
-                       JSR.W CODE_808100                    ;80B58C|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80B58C|200081  |808100;
                        PLA                                  ;80B58F|68      |      ;
                        BRA CODE_80B581                      ;80B590|80EF    |80B581;
                                                             ;      |        |      ;
@@ -8547,7 +8547,7 @@ mainPauseMenuCheck_00:
                        STZ.B $D7                            ;80BAD2|64D7    |0000D7;
                        LDA.W UNREACH_868D24,X               ;80BAD4|BD248D  |868D24;
                        STA.B $10                            ;80BAD7|8510    |000010;
-                       LDA.W UNREACH_868D26,X               ;80BAD9|BD268D  |868D26;
+                       LDA.W DATA16_868D26,X                ;80BAD9|BD268D  |868D26;
                        STA.B $12                            ;80BADC|8512    |000012;
                        LDA.W DATA8_868D93,X                 ;80BADE|BD938D  |868D93;
                        STA.B $18                            ;80BAE1|8518    |000018;
@@ -8863,15 +8863,15 @@ mainPauseMenuCheck_00:
                        STA.B $1D                            ;80BD0F|851D    |001E65;
                        DEC A                                ;80BD11|3A      |      ;
                        TAX                                  ;80BD12|AA      |      ;
-                       LDA.W TEXT_869B79,X                  ;80BD13|BD799B  |869B79;
+                       LDA.W DATA16_869B79,X                ;80BD13|BD799B  |869B79;
                        STA.B $04                            ;80BD16|8504    |001E4C;
-                       LDA.W TEXT_869B82,X                  ;80BD18|BD829B  |869B82;
+                       LDA.W DATA16_869B82,X                ;80BD18|BD829B  |869B82;
                        STA.B $07                            ;80BD1B|8507    |001E4F;
                        LDX.B #$40                           ;80BD1D|A240    |      ;
                        LDY.B #$CA                           ;80BD1F|A0CA    |      ;
                        JSL.L CODE_828000                    ;80BD21|22008082|828000;
                        LDY.B #$18                           ;80BD25|A018    |      ;
-                       JSL.L CODE_828011                    ;80BD27|22118082|828011;
+                       JSL.L lunchMusic                     ;80BD27|22118082|828011;
                        LDA.B #$04                           ;80BD2B|A904    |      ;
                        STA.W r_1f11                         ;80BD2D|8D111F  |861F11;
                        STA.W r_1f12                         ;80BD30|8D121F  |861F12;
@@ -8894,44 +8894,44 @@ mainPauseMenuCheck_00:
                        JSL.L CODE_8087A2                    ;80BD50|22A28780|8087A2;
                        LDY.B #$2E                           ;80BD54|A02E    |      ;
                        JSR.W CODE_80B2EB                    ;80BD56|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80BD59|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80BD59|200081  |808100;
                        LDY.B #$40                           ;80BD5C|A040    |      ;
                        JSR.W CODE_80B2EB                    ;80BD5E|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80BD61|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80BD61|200081  |808100;
                        LDY.B #$42                           ;80BD64|A042    |      ;
                        JSR.W CODE_80B2EB                    ;80BD66|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80BD69|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80BD69|200081  |808100;
                        LDY.B #$20                           ;80BD6C|A020    |      ;
                        JSR.W CODE_80B2EB                    ;80BD6E|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80BD71|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80BD71|200081  |808100;
                        LDY.B #$24                           ;80BD74|A024    |      ;
                        JSR.W CODE_80B2EB                    ;80BD76|20EBB2  |80B2EB;
                        LDY.B #$68                           ;80BD79|A068    |      ;
                        JSL.L CODE_808A7B                    ;80BD7B|227B8A80|808A7B;
-                       JSR.W CODE_808100                    ;80BD7F|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80BD7F|200081  |808100;
                        PLD                                  ;80BD82|2B      |      ;
                        LDY.B #$CE                           ;80BD83|A0CE    |      ;
-                       JSL.L CODE_828011                    ;80BD85|22118082|828011;
+                       JSL.L lunchMusic                     ;80BD85|22118082|828011;
                        LDY.B #$00                           ;80BD89|A000    |      ;
                        JSL.L CODE_808BE4                    ;80BD8B|22E48B80|808BE4;
                        LDY.B #$06                           ;80BD8F|A006    |      ;
                        JSL.L CODE_808BE4                    ;80BD91|22E48B80|808BE4;
-                       JSR.W CODE_808100                    ;80BD95|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80BD95|200081  |808100;
                        LDY.B #$0A                           ;80BD98|A00A    |      ;
                        JSL.L CODE_808BE4                    ;80BD9A|22E48B80|808BE4;
                        JSR.W CODE_80C177                    ;80BD9E|2077C1  |80C177;
                        JSR.W CODE_80C35F                    ;80BDA1|205FC3  |80C35F;
                        LDA.B #$07                           ;80BDA4|A907    |      ;
                        JSR.W CODE_80C2E9                    ;80BDA6|20E9C2  |80C2E9;
-                       JSR.W CODE_808100                    ;80BDA9|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80BDA9|200081  |808100;
                        JSR.W CODE_80C21B                    ;80BDAC|201BC2  |80C21B;
                        LDA.B $1E                            ;80BDAF|A51E    |001E66;
                        BEQ CODE_80BDC2                      ;80BDB1|F00F    |80BDC2;
                        LDY.B #$0A                           ;80BDB3|A00A    |      ;
-                       JSL.L CODE_828011                    ;80BDB5|22118082|828011;
+                       JSL.L lunchMusic                     ;80BDB5|22118082|828011;
                        LDY.B #$0C                           ;80BDB9|A00C    |      ;
                        JSL.L CODE_808BE4                    ;80BDBB|22E48B80|808BE4;
-                       JSR.W CODE_808100                    ;80BDBF|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80BDBF|200081  |808100;
                                                             ;      |        |      ;
           CODE_80BDC2:
                        LDA.B $07                            ;80BDC2|A507    |001E4F;
@@ -8939,7 +8939,7 @@ mainPauseMenuCheck_00:
                        ASL A                                ;80BDC5|0A      |      ;
                        ADC.B $04                            ;80BDC6|6504    |001E4C;
                        TAX                                  ;80BDC8|AA      |      ;
-                       LDA.W TEXT_869BD7,X                  ;80BDC9|BDD79B  |869BD7;
+                       LDA.W DATA16_869BD7,X                ;80BDC9|BDD79B  |869BD7;
                        CMP.B #$0F                           ;80BDCC|C90F    |      ;
                        BNE CODE_80BDDB                      ;80BDCE|D00B    |80BDDB;
                        TAX                                  ;80BDD0|AA      |      ;
@@ -8959,10 +8959,10 @@ mainPauseMenuCheck_00:
                        ASL A                                ;80BDE4|0A      |      ;
                        ADC.B $04                            ;80BDE5|6504    |001E4C;
                        TAX                                  ;80BDE7|AA      |      ;
-                       LDA.W TEXT_869C07,X                  ;80BDE8|BD079C  |869C07;
+                       LDA.W DATA16_869C07,X                ;80BDE8|BD079C  |869C07;
                        ASL A                                ;80BDEB|0A      |      ;
                        TAY                                  ;80BDEC|A8      |      ;
-                       JSL.L CODE_828011                    ;80BDED|22118082|828011;
+                       JSL.L lunchMusic                     ;80BDED|22118082|828011;
                        LDA.B #$0F                           ;80BDF1|A90F    |      ;
                        STA.W $00B3                          ;80BDF3|8DB300  |8600B3;
                        LDA.B #$07                           ;80BDF6|A907    |      ;
@@ -9046,7 +9046,7 @@ mainPauseMenuCheck_00:
                        LDA.B #$02                           ;80BE71|A902    |      ;
                        STA.B $02                            ;80BE73|8502    |001E4A;
                        LDA.B #$2D                           ;80BE75|A92D    |      ;
-                       JSL.L weaponChargeInit               ;80BE77|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80BE77|22CD8880|8088CD;
                        LDY.B #$04                           ;80BE7B|A004    |      ;
                        JSR.W CODE_808873                    ;80BE7D|207388  |808873;
                        LDA.B #$04                           ;80BE80|A904    |      ;
@@ -9242,7 +9242,7 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
           CODE_80BFAC:
                        LDA.B #$2C                           ;80BFAC|A92C    |      ;
-                       JSL.L weaponChargeInit               ;80BFAE|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80BFAE|22CD8880|8088CD;
                        INC.B $0A                            ;80BFB2|E60A    |001E52;
                        LDA.B $07                            ;80BFB4|A507    |001E4F;
                        ASL A                                ;80BFB6|0A      |      ;
@@ -9250,7 +9250,7 @@ mainPauseMenuCheck_00:
                        CLC                                  ;80BFB8|18      |      ;
                        ADC.B $04                            ;80BFB9|6504    |001E4C;
                        TAX                                  ;80BFBB|AA      |      ;
-                       LDA.W TEXT_869B93,X                  ;80BFBC|BD939B  |869B93;
+                       LDA.W DATA16_869B93,X                ;80BFBC|BD939B  |869B93;
                        BMI CODE_80BFCB                      ;80BFBF|300A    |80BFCB;
                        CMP.B #$09                           ;80BFC1|C909    |      ;
                        BNE CODE_80BFC9                      ;80BFC3|D004    |80BFC9;
@@ -9300,13 +9300,13 @@ mainPauseMenuCheck_00:
                        CMP.B $03                            ;80C000|C503    |001E4B;
                        BEQ CODE_80C022                      ;80C002|F01E    |80C022;
                        JSR.W CODE_80C234                    ;80C004|2034C2  |80C234;
-                       JSR.W CODE_808100                    ;80C007|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C007|200081  |808100;
                        LDY.B #$14                           ;80C00A|A014    |      ;
                        JSL.L CODE_808BE4                    ;80C00C|22E48B80|808BE4;
                        LDY.B #$CE                           ;80C010|A0CE    |      ;
-                       JSL.L CODE_828011                    ;80C012|22118082|828011;
+                       JSL.L lunchMusic                     ;80C012|22118082|828011;
                        LDA.B #$27                           ;80C016|A927    |      ;
-                       JSL.L weaponChargeInit               ;80C018|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80C018|22CD8880|8088CD;
                        LDA.B #$01                           ;80C01C|A901    |      ;
                        STA.B $1D                            ;80C01E|851D    |001E65;
                        INC.B $18                            ;80C020|E618    |001E60;
@@ -9369,15 +9369,15 @@ mainPauseMenuCheck_00:
                        CMP.B $03                            ;80C051|C503    |001E4B;
                        BEQ CODE_80C074                      ;80C053|F01F    |80C074;
                        JSR.W CODE_80C234                    ;80C055|2034C2  |80C234;
-                       JSR.W CODE_808100                    ;80C058|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C058|200081  |808100;
                        LDY.B #$10                           ;80C05B|A010    |      ;
                        JSL.L CODE_808BE4                    ;80C05D|22E48B80|808BE4;
                        REP #$10                             ;80C061|C210    |      ;
                        LDY.W #$0190                         ;80C063|A09001  |      ;
-                       JSL.L CODE_828011                    ;80C066|22118082|828011;
+                       JSL.L lunchMusic                     ;80C066|22118082|828011;
                        SEP #$10                             ;80C06A|E210    |      ;
                        LDA.B #$27                           ;80C06C|A927    |      ;
-                       JSL.L weaponChargeInit               ;80C06E|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80C06E|22CD8880|8088CD;
                        INC.B $18                            ;80C072|E618    |001E60;
                                                             ;      |        |      ;
           CODE_80C074:
@@ -9408,11 +9408,11 @@ mainPauseMenuCheck_00:
                        CMP.B $03                            ;80C08C|C503    |001E4B;
                        BEQ CODE_80C0A4                      ;80C08E|F014    |80C0A4;
                        JSR.W CODE_80C234                    ;80C090|2034C2  |80C234;
-                       JSR.W CODE_808100                    ;80C093|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C093|200081  |808100;
                        LDY.B #$12                           ;80C096|A012    |      ;
                        JSL.L CODE_808BE4                    ;80C098|22E48B80|808BE4;
                        LDA.B #$27                           ;80C09C|A927    |      ;
-                       JSL.L weaponChargeInit               ;80C09E|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80C09E|22CD8880|8088CD;
                        INC.B $18                            ;80C0A2|E618    |001E60;
                                                             ;      |        |      ;
           CODE_80C0A4:
@@ -9444,9 +9444,10 @@ mainPauseMenuCheck_00:
                        ASL A                                ;80C0C3|0A      |      ;
                        ASL A                                ;80C0C4|0A      |      ;
                        CLC                                  ;80C0C5|18      |      ;
+                                                            ;      |        |      ;
                        ADC.B $04                            ;80C0C6|6504    |001E4C;
                        TAX                                  ;80C0C8|AA      |      ;
-                       LDA.W TEXT_869B93,X                  ;80C0C9|BD939B  |869B93;
+                       LDA.W DATA16_869B93,X                ;80C0C9|BD939B  |869B93;
                        BMI CODE_80C0DB                      ;80C0CC|300D    |80C0DB;
                        CMP.B #$09                           ;80C0CE|C909    |      ;
                        BEQ CODE_80C0DB                      ;80C0D0|F009    |80C0DB;
@@ -9468,7 +9469,7 @@ mainPauseMenuCheck_00:
                        ADC.W r_0000                         ;80C0E7|6D0000  |860000;
                        ADC.B $04                            ;80C0EA|6504    |001E4C;
                        TAX                                  ;80C0EC|AA      |      ;
-                       LDA.W TEXT_869BD7,X                  ;80C0ED|BDD79B  |869BD7;
+                       LDA.W DATA16_869BD7,X                ;80C0ED|BDD79B  |869BD7;
                        BEQ CODE_80C125                      ;80C0F0|F033    |80C125;
                        CMP.B #$12                           ;80C0F2|C912    |      ;
                        BNE CODE_80C0FA                      ;80C0F4|D004    |80C0FA;
@@ -9497,11 +9498,11 @@ mainPauseMenuCheck_00:
                        ASL A                                ;80C116|0A      |      ;
                        ADC.B $04                            ;80C117|6504    |001E4C;
                        TAX                                  ;80C119|AA      |      ;
-                       LDA.W TEXT_869C07,X                  ;80C11A|BD079C  |869C07;
+                       LDA.W DATA16_869C07,X                ;80C11A|BD079C  |869C07;
                        BEQ CODE_80C125                      ;80C11D|F006    |80C125;
                        ASL A                                ;80C11F|0A      |      ;
                        TAY                                  ;80C120|A8      |      ;
-                       JSL.L CODE_828011                    ;80C121|22118082|828011;
+                       JSL.L lunchMusic                     ;80C121|22118082|828011;
                                                             ;      |        |      ;
           CODE_80C125:
                        RTS                                  ;80C125|60      |      ;
@@ -9518,7 +9519,7 @@ mainPauseMenuCheck_00:
                        TXA                                  ;80C131|8A      |      ;
                        LSR A                                ;80C132|4A      |      ;
                        TAY                                  ;80C133|A8      |      ;
-                       LDA.W TEXT_869B8B,Y                  ;80C134|B98B9B  |869B8B;
+                       LDA.W DATA16_869B8B,Y                ;80C134|B98B9B  |869B8B;
                        TSB.B $0D                            ;80C137|040D    |001E55;
                                                             ;      |        |      ;
           CODE_80C139:
@@ -9643,7 +9644,7 @@ mainPauseMenuCheck_00:
                        CPX.B #$09                           ;80C223|E009    |      ;
                        BEQ CODE_80C233                      ;80C225|F00C    |80C233;
                        DEX                                  ;80C227|CA      |      ;
-                       LDA.W TEXT_869B8B,X                  ;80C228|BD8B9B  |869B8B;
+                       LDA.W DATA16_869B8B,X                ;80C228|BD8B9B  |869B8B;
                        AND.B $0D                            ;80C22B|250D    |001E55;
                        BEQ CODE_80C233                      ;80C22D|F004    |80C233;
                        LDA.B #$10                           ;80C22F|A910    |      ;
@@ -9699,7 +9700,7 @@ mainPauseMenuCheck_00:
                        ASL A                                ;80C26F|0A      |      ;
                        TAX                                  ;80C270|AA      |      ;
                        REP #$20                             ;80C271|C220    |      ;
-                       LDA.W TEXT_869C17,X                  ;80C273|BD179C  |869C17;
+                       LDA.W stageSelect_textInfo,X         ;80C273|BD179C  |869C17;
                        STA.B $1C                            ;80C276|851C    |001E64;
                        SEP #$20                             ;80C278|E220    |      ;
                        LDA.B #$09                           ;80C27A|A909    |      ;
@@ -9995,7 +9996,7 @@ mainPauseMenuCheck_00:
                        STA.W r_1f12                         ;80C479|8D121F  |861F12;
                        LDA.B #$06                           ;80C47C|A906    |      ;
                        STA.W r_1f10                         ;80C47E|8D101F  |861F10;
-                       JSR.W CODE_80C57A                    ;80C481|207AC5  |80C57A;
+                       JSR.W updateScreenPauseMenu          ;80C481|207AC5  |80C57A;
                        LDA.W r_d_0bdb                       ;80C484|ADDB0B  |860BDB;
                        LSR A                                ;80C487|4A      |      ;
                        STA.B $0A                            ;80C488|850A    |001ED2;
@@ -10044,7 +10045,7 @@ mainPauseMenuCheck_00:
          DATA8_80C4E3:
                        db $E7,$C4,$23,$C7                   ;80C4E3|        |      ;
                        SEP #$30                             ;80C4E7|E230    |      ;
-                       JSR.W CODE_80C67F                    ;80C4E9|207FC6  |80C67F;
+                       JSR.W menuDpadActions                ;80C4E9|207FC6  |80C67F;
                        RTS                                  ;80C4EC|60      |      ;
                                                             ;      |        |      ;
                        LDY.B #$FF                           ;80C4ED|A0FF    |      ;
@@ -10093,7 +10094,7 @@ mainPauseMenuCheck_00:
                        STZ.W r_1f11                         ;80C542|9C111F  |861F11;
                        STZ.W r_1f12                         ;80C545|9C121F  |861F12;
                        STZ.W r_1f10                         ;80C548|9C101F  |861F10;
-                       JSR.W CODE_80C601                    ;80C54B|2001C6  |80C601;
+                       JSR.W updateScreenClearPause         ;80C54B|2001C6  |80C601;
                        LDA.B $21                            ;80C54E|A521    |001EE9;
                        ORA.B #$80                           ;80C550|0980    |      ;
                        STA.W r_1f24                         ;80C552|8D241F  |861F24;
@@ -10115,7 +10116,7 @@ mainPauseMenuCheck_00:
                        RTS                                  ;80C579|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80C57A:
+updateScreenPauseMenu:
                        PHB                                  ;80C57A|8B      |      ;
                        PHD                                  ;80C57B|0B      |      ;
                        PHP                                  ;80C57C|08      |      ;
@@ -10130,13 +10131,13 @@ mainPauseMenuCheck_00:
                        LDA.B #$03                           ;80C58F|A903    |      ;
                        TSB.W $00A2                          ;80C591|0CA200  |8600A2;
                        STZ.B $B3                            ;80C594|64B3    |0000B3;
-                       JSR.W CODE_808100                    ;80C596|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C596|200081  |808100;
                        LDY.B #$48                           ;80C599|A048    |      ;
                        JSR.W CODE_80B2EB                    ;80C59B|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80C59E|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C59E|200081  |808100;
                        LDY.B #$52                           ;80C5A1|A052    |      ;
                        JSR.W CODE_80B2EB                    ;80C5A3|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80C5A6|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C5A6|200081  |808100;
                        REP #$20                             ;80C5A9|C220    |      ;
                        LDA.W r_level_current                ;80C5AB|AD7A1F  |861F7A;
                        AND.W #$00FF                         ;80C5AE|29FF00  |      ;
@@ -10153,31 +10154,31 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_80B23C                    ;80C5C5|203CB2  |80B23C;
                        SEP #$30                             ;80C5C8|E230    |      ;
                        LDY.B #$F8                           ;80C5CA|A0F8    |      ;
-                       JSL.L CODE_828011                    ;80C5CC|22118082|828011;
+                       JSL.L lunchMusic                     ;80C5CC|22118082|828011;
                        REP #$30                             ;80C5D0|C230    |      ;
                        LDA.W r_d_0bdb                       ;80C5D2|ADDB0B  |860BDB;
                        AND.W #$00FF                         ;80C5D5|29FF00  |      ;
                        CLC                                  ;80C5D8|18      |      ;
                        ADC.W #$0100                         ;80C5D9|690001  |      ;
                        TAY                                  ;80C5DC|A8      |      ;
-                       JSL.L CODE_828011                    ;80C5DD|22118082|828011;
+                       JSL.L lunchMusic                     ;80C5DD|22118082|828011;
                        SEP #$30                             ;80C5E1|E230    |      ;
-                       JSR.W CODE_808100                    ;80C5E3|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C5E3|200081  |808100;
                        LDA.B #$80                           ;80C5E6|A980    |      ;
                        STA.W INIDISP                        ;80C5E8|8D0021  |862100;
-                       JSR.W CODE_80CD16                    ;80C5EB|2016CD  |80CD16;
-                       JSR.W CODE_80CA80                    ;80C5EE|2080CA  |80CA80;
-                       JSR.W CODE_80CB19                    ;80C5F1|2019CB  |80CB19;
-                       JSR.W CODE_80CC0B                    ;80C5F4|200BCC  |80CC0B;
-                       JSR.W CODE_808100                    ;80C5F7|200081  |808100;
-                       JSR.W CODE_80CC40                    ;80C5FA|2040CC  |80CC40;
+                       JSR.W pauseDraw_01                   ;80C5EB|2016CD  |80CD16;
+                       JSR.W pauseDrawWeaponMeter_02        ;80C5EE|2080CA  |80CA80;
+                       JSR.W pauseDrawWeaponIcon_03         ;80C5F1|2019CB  |80CB19;
+                       JSR.W updatePlauerLifePauseState     ;80C5F4|200BCC  |80CC0B;
+                       JSR.W pauseFunc_05                   ;80C5F7|200081  |808100;
+                       JSR.W pauseFunc_06                   ;80C5FA|2040CC  |80CC40;
                        PLP                                  ;80C5FD|28      |      ;
                        PLD                                  ;80C5FE|2B      |      ;
                        PLB                                  ;80C5FF|AB      |      ;
                        RTS                                  ;80C600|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80C601:
+updateScreenClearPause:
                        PHB                                  ;80C601|8B      |      ;
                        PHD                                  ;80C602|0B      |      ;
                        PHP                                  ;80C603|08      |      ;
@@ -10189,32 +10190,32 @@ mainPauseMenuCheck_00:
                        STA.W INIDISP                        ;80C60E|8D0021  |862100;
                        JSR.W CODE_80CDF8                    ;80C611|20F8CD  |80CDF8;
                        STZ.W $00B3                          ;80C614|9CB300  |8600B3;
-                       JSR.W CODE_808100                    ;80C617|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C617|200081  |808100;
                        JSR.W CODE_80B56E                    ;80C61A|206EB5  |80B56E;
                                                             ;      |        |      ;
           CODE_80C61D:
-                       JSR.W CODE_808100                    ;80C61D|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C61D|200081  |808100;
                        LDA.B $F4                            ;80C620|A5F4    |0000F4;
                        BNE CODE_80C61D                      ;80C622|D0F9    |80C61D;
                        LDY.B #$00                           ;80C624|A000    |      ;
                        JSR.W CODE_808A87                    ;80C626|20878A  |808A87;
-                       JSR.W CODE_808100                    ;80C629|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C629|200081  |808100;
                        LDA.W r_level_current                ;80C62C|AD7A1F  |861F7A;
                        ASL A                                ;80C62F|0A      |      ;
                        CLC                                  ;80C630|18      |      ;
                        ADC.B #$60                           ;80C631|6960    |      ;
                        TAY                                  ;80C633|A8      |      ;
-                       JSL.L CODE_828011                    ;80C634|22118082|828011;
+                       JSL.L lunchMusic                     ;80C634|22118082|828011;
                        JSR.W CODE_80B075                    ;80C638|2075B0  |80B075;
                                                             ;      |        |      ;
           CODE_80C63B:
-                       JSR.W CODE_808100                    ;80C63B|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C63B|200081  |808100;
                        LDA.W r_job_flag_40                  ;80C63E|AD4000  |860040;
                        BNE CODE_80C63B                      ;80C641|D0F8    |80C63B;
                        JSR.W CODE_80B41A                    ;80C643|201AB4  |80B41A;
                                                             ;      |        |      ;
           CODE_80C646:
-                       JSR.W CODE_808100                    ;80C646|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80C646|200081  |808100;
                        LDA.W r_job_flag_50                  ;80C649|AD5000  |860050;
                        BNE CODE_80C646                      ;80C64C|D0F8    |80C646;
                        REP #$30                             ;80C64E|C230    |      ;
@@ -10235,20 +10236,20 @@ mainPauseMenuCheck_00:
                        LDY.B #$1C                           ;80C66F|A01C    |      ;
                        JSL.L CODE_828000                    ;80C671|22008082|828000;
                        LDY.B #$A0                           ;80C675|A0A0    |      ;
-                       JSL.L CODE_828011                    ;80C677|22118082|828011;
+                       JSL.L lunchMusic                     ;80C677|22118082|828011;
                        PLP                                  ;80C67B|28      |      ;
                        PLD                                  ;80C67C|2B      |      ;
                        PLB                                  ;80C67D|AB      |      ;
                        RTS                                  ;80C67E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80C67F:
+      menuDpadActions:
                        LDA.B $0A                            ;80C67F|A50A    |001ED2;
                        STA.B $0B                            ;80C681|850B    |001ED3;
                        LDA.W r_d_joy1_buttonPressedHi       ;80C683|ADE30B  |860BE3;
                        BIT.B #$03                           ;80C686|8903    |      ;
                        BEQ CODE_80C68D                      ;80C688|F003    |80C68D;
-                       JSR.W CODE_80C787                    ;80C68A|2087C7  |80C787;
+                       JSR.W menuLeftRightInput             ;80C68A|2087C7  |80C787;
                                                             ;      |        |      ;
           CODE_80C68D:
                        LDA.W r_d_joy1_buttonPressedHi       ;80C68D|ADE30B  |860BE3;
@@ -10256,12 +10257,12 @@ mainPauseMenuCheck_00:
                        BEQ CODE_80C6A0                      ;80C692|F00C    |80C6A0;
                        BIT.B #$08                           ;80C694|8908    |      ;
                        BEQ CODE_80C69D                      ;80C696|F005    |80C69D;
-                       JSR.W menu_pressedDown               ;80C698|20F6C7  |80C7F6;
+                       JSR.W menu_pressedUp                 ;80C698|20F6C7  |80C7F6;
                        BRA CODE_80C6A0                      ;80C69B|8003    |80C6A0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_80C69D:
-                       JSR.W menu_pressedUp                 ;80C69D|2056C8  |80C856;
+                       JSR.W menu_pressedDown               ;80C69D|2056C8  |80C856;
                                                             ;      |        |      ;
           CODE_80C6A0:
                        LDA.B $0B                            ;80C6A0|A50B    |001ED3;
@@ -10276,12 +10277,12 @@ mainPauseMenuCheck_00:
                        CLC                                  ;80C6B2|18      |      ;
                        ADC.W #$0100                         ;80C6B3|690001  |      ;
                        TAY                                  ;80C6B6|A8      |      ;
-                       JSL.L CODE_828011                    ;80C6B7|22118082|828011;
+                       JSL.L lunchMusic                     ;80C6B7|22118082|828011;
                        SEP #$30                             ;80C6BB|E230    |      ;
                                                             ;      |        |      ;
           CODE_80C6BD:
                        LDA.B #$2C                           ;80C6BD|A92C    |      ;
-                       JSL.L weaponChargeInit               ;80C6BF|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80C6BF|22CD8880|8088CD;
                                                             ;      |        |      ;
           CODE_80C6C3:
                        JSR.W CODE_80C770                    ;80C6C3|2070C7  |80C770;
@@ -10325,9 +10326,11 @@ mainPauseMenuCheck_00:
                        BEQ CODE_80C722                      ;80C709|F017    |80C722;
                        INC.B $21                            ;80C70B|E621    |001EE9;
                        LDA.B #$2D                           ;80C70D|A92D    |      ;
-                       JSL.L weaponChargeInit               ;80C70F|22CD8880|8088CD;
+                                                            ;      |        |      ;
+                       JSL.L lunchWeaponSFX                 ;80C70F|22CD8880|8088CD;
                        PHD                                  ;80C713|0B      |      ;
                        PEA.W r_0000                         ;80C714|F40000  |860000;
+                                                            ;      |        |      ;
                        PLD                                  ;80C717|2B      |      ;
                        LDA.B #$3C                           ;80C718|A93C    |      ;
                        JSR.W CODE_80810C                    ;80C71A|200C81  |80810C;
@@ -10345,7 +10348,7 @@ mainPauseMenuCheck_00:
                        LDA.B #$04                           ;80C727|A904    |      ;
                        STA.B $10                            ;80C729|8510    |001ED8;
                        LDA.B #$0C                           ;80C72B|A90C    |      ;
-                       JSL.L weaponChargeInit               ;80C72D|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80C72D|22CD8880|8088CD;
                        LDA.B $0A                            ;80C731|A50A    |001ED2;
                        SEC                                  ;80C733|38      |      ;
                        SBC.B #$0A                           ;80C734|E90A    |      ;
@@ -10363,7 +10366,7 @@ mainPauseMenuCheck_00:
           CODE_80C74C:
                        STA.W r_d_0bcf                       ;80C74C|8DCF0B  |860BCF;
                        PHX                                  ;80C74F|DA      |      ;
-                       JSR.W CODE_80CC40                    ;80C750|2040CC  |80CC40;
+                       JSR.W pauseFunc_06                   ;80C750|2040CC  |80CC40;
                        PLX                                  ;80C753|FA      |      ;
                                                             ;      |        |      ;
           CODE_80C754:
@@ -10373,7 +10376,7 @@ mainPauseMenuCheck_00:
                        AND.B #$0F                           ;80C75D|290F    |      ;
                        BNE CODE_80C76F                      ;80C75F|D00E    |80C76F;
                        JSR.W CODE_80CDA1                    ;80C761|20A1CD  |80CDA1;
-                       JSR.W CODE_80CD16                    ;80C764|2016CD  |80CD16;
+                       JSR.W pauseDraw_01                   ;80C764|2016CD  |80CD16;
                        STZ.B $02                            ;80C767|6402    |001ECA;
                        LDA.W r_d_0bdb                       ;80C769|ADDB0B  |860BDB;
                        LSR A                                ;80C76C|4A      |      ;
@@ -10388,7 +10391,7 @@ mainPauseMenuCheck_00:
                        ASL A                                ;80C772|0A      |      ;
                        TAX                                  ;80C773|AA      |      ;
                        REP #$20                             ;80C774|C220    |      ;
-                       LDA.W TEXT_86A03F,X                  ;80C776|BD3FA0  |86A03F;
+                       LDA.W DATA16_86A03F,X                ;80C776|BD3FA0  |86A03F;
                        STA.W r_0aa4                         ;80C779|8DA40A  |860AA4;
                        SEP #$20                             ;80C77C|E220    |      ;
                        LDA.B #$86                           ;80C77E|A986    |      ;
@@ -10397,7 +10400,7 @@ mainPauseMenuCheck_00:
                        RTS                                  ;80C786|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80C787:
+   menuLeftRightInput:
                        LDA.B $0B                            ;80C787|A50B    |001ED3;
                        CMP.B #$05                           ;80C789|C905    |      ;
                        BCS CODE_80C7AC                      ;80C78B|B01F    |80C7AC;
@@ -10490,7 +10493,7 @@ mainPauseMenuCheck_00:
                        RTS                                  ;80C7F5|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-     menu_pressedDown:
+       menu_pressedUp:
                        LDA.B $0B                            ;80C7F6|A50B    |001ED3;
                        CMP.B #$05                           ;80C7F8|C905    |      ;
                        BCS CODE_80C815                      ;80C7FA|B019    |80C815;
@@ -10575,7 +10578,7 @@ mainPauseMenuCheck_00:
                        RTS                                  ;80C855|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-       menu_pressedUp:
+     menu_pressedDown:
                        LDA.B $0B                            ;80C856|A50B    |001ED3;
                        CMP.B #$05                           ;80C858|C905    |      ;
                        BCS CODE_80C875                      ;80C85A|B019    |80C875;
@@ -10725,7 +10728,7 @@ mainPauseMenuCheck_00:
                        LDA.B #$A0                           ;80C91E|A9A0    |      ;
                        STA.B $08                            ;80C920|8508    |001990;
                        LDX.B $0B                            ;80C922|A60B    |001993;
-                       LDA.W TEXT_86A03A,X                  ;80C924|BD3AA0  |86A03A;
+                       LDA.W DATA16_86A03A,X                ;80C924|BD3AA0  |86A03A;
                        STA.B $16                            ;80C927|8516    |00199E;
                        LDA.B #$33                           ;80C929|A933    |      ;
                        STA.B $11                            ;80C92B|8511    |001999;
@@ -10735,7 +10738,7 @@ mainPauseMenuCheck_00:
                        JSL.L playerGrabedRoutine            ;80C933|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_80C937:
-                       JSL.L checkEventRange                ;80C937|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80C937|22B48082|8280B4;
                        RTS                                  ;80C93B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10754,7 +10757,7 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
     getSelecteUpgrade:
                        LDA.B #$74                           ;80C94F|A974    |      ;
-                       JSL.L weaponChargeInit               ;80C951|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80C951|22CD8880|8088CD;
                        LDA.B #$00                           ;80C955|A900    |      ;
                        RTS                                  ;80C957|60      |      ;
                                                             ;      |        |      ;
@@ -10886,14 +10889,14 @@ mainPauseMenuCheck_00:
                        RTS                                  ;80CA7F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80CA80:
+pauseDrawWeaponMeter_02:
                        LDX.B #$10                           ;80CA80|A210    |      ;
                        LDA.B #$80                           ;80CA82|A980    |      ;
                        STA.W VMAINC                         ;80CA84|8D1521  |862115;
                                                             ;      |        |      ;
           CODE_80CA87:
                        REP #$20                             ;80CA87|C220    |      ;
-                       LDA.W TEXT_86A0F3,X                  ;80CA89|BDF3A0  |86A0F3;
+                       LDA.W someOtherData54,X              ;80CA89|BDF3A0  |86A0F3;
                        STA.W VMADDL                         ;80CA8C|8D1621  |862116;
                        SEP #$20                             ;80CA8F|E220    |      ;
                        LDA.W r_1f88,X                       ;80CA91|BD881F  |861F88;
@@ -10958,12 +10961,12 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
           CODE_80CAF0:
                        REP #$20                             ;80CAF0|C220    |      ;
-                       LDA.W TEXT_86A0F3,X                  ;80CAF2|BDF3A0  |86A0F3;
+                       LDA.W someOtherData54,X              ;80CAF2|BDF3A0  |86A0F3;
                        DEC A                                ;80CAF5|3A      |      ;
                        STA.W VMADDL                         ;80CAF6|8D1621  |862116;
                        LDA.W #$2882                         ;80CAF9|A98228  |      ;
                        STA.W VMDATAL                        ;80CAFC|8D1821  |862118;
-                       LDA.W TEXT_86A0F3,X                  ;80CAFF|BDF3A0  |86A0F3;
+                       LDA.W someOtherData54,X              ;80CAFF|BDF3A0  |86A0F3;
                        CLC                                  ;80CB02|18      |      ;
                        ADC.W #$0007                         ;80CB03|690700  |      ;
                        STA.W VMADDL                         ;80CB06|8D1621  |862116;
@@ -10982,7 +10985,7 @@ mainPauseMenuCheck_00:
                        RTS                                  ;80CB18|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80CB19:
+pauseDrawWeaponIcon_03:
                        LDA.B #$80                           ;80CB19|A980    |      ;
                        STA.W VMAINC                         ;80CB1B|8D1521  |862115;
                        LDA.B #$85                           ;80CB1E|A985    |      ;
@@ -11028,22 +11031,22 @@ mainPauseMenuCheck_00:
                        LSR A                                ;80CB7C|4A      |      ;
                        TAY                                  ;80CB7D|A8      |      ;
                        REP #$20                             ;80CB7E|C220    |      ;
-                       LDA.W TEXT_86A0F3,X                  ;80CB80|BDF3A0  |86A0F3;
+                       LDA.W someOtherData54,X              ;80CB80|BDF3A0  |86A0F3;
                        SEC                                  ;80CB83|38      |      ;
                        SBC.W #$0023                         ;80CB84|E92300  |      ;
                        STA.W VMADDL                         ;80CB87|8D1621  |862116;
-                       LDA.W TEXT_86A10D,Y                  ;80CB8A|B90DA1  |86A10D;
+                       LDA.W DATA16_86A10D,Y                ;80CB8A|B90DA1  |86A10D;
                        AND.W #$00FF                         ;80CB8D|29FF00  |      ;
                        ORA.W #$1400                         ;80CB90|090014  |      ;
                        STA.W VMDATAL                        ;80CB93|8D1821  |862118;
                        INC A                                ;80CB96|1A      |      ;
                        STA.W VMDATAL                        ;80CB97|8D1821  |862118;
-                       LDA.W TEXT_86A0F3,X                  ;80CB9A|BDF3A0  |86A0F3;
+                       LDA.W someOtherData54,X              ;80CB9A|BDF3A0  |86A0F3;
                        DEC A                                ;80CB9D|3A      |      ;
                        DEC A                                ;80CB9E|3A      |      ;
                        DEC A                                ;80CB9F|3A      |      ;
                        STA.W VMADDL                         ;80CBA0|8D1621  |862116;
-                       LDA.W TEXT_86A10D,Y                  ;80CBA3|B90DA1  |86A10D;
+                       LDA.W DATA16_86A10D,Y                ;80CBA3|B90DA1  |86A10D;
                        AND.W #$00FF                         ;80CBA6|29FF00  |      ;
                        CLC                                  ;80CBA9|18      |      ;
                        ADC.W #$1410                         ;80CBAA|691014  |      ;
@@ -11051,7 +11054,7 @@ mainPauseMenuCheck_00:
                        INC A                                ;80CBB0|1A      |      ;
                        STA.W VMDATAL                        ;80CBB1|8D1821  |862118;
                        REP #$10                             ;80CBB4|C210    |      ;
-                       LDA.W TEXT_86A116,X                  ;80CBB6|BD16A1  |86A116;
+                       LDA.W PTR16_86A116,X                 ;80CBB6|BD16A1  |86A116;
                        TAY                                  ;80CBB9|A8      |      ;
                        LDA.W r_0000,Y                       ;80CBBA|B90000  |860000;
                        STA.W VMADDL                         ;80CBBD|8D1621  |862116;
@@ -11090,7 +11093,7 @@ mainPauseMenuCheck_00:
                        RTS                                  ;80CC0A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80CC0B:
+updatePlauerLifePauseState:
                        LDA.B #$80                           ;80CC0B|A980    |      ;
                        STA.W VMAINC                         ;80CC0D|8D1521  |862115;
                        LDA.B #$E0                           ;80CC10|A9E0    |      ;
@@ -11116,7 +11119,7 @@ mainPauseMenuCheck_00:
                        RTS                                  ;80CC3F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80CC40:
+         pauseFunc_06:
                        PHP                                  ;80CC40|08      |      ;
                        SEP #$30                             ;80CC41|E230    |      ;
                        PHD                                  ;80CC43|0B      |      ;
@@ -11249,7 +11252,7 @@ mainPauseMenuCheck_00:
                        RTS                                  ;80CD15|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80CD16:
+         pauseDraw_01:
                        LDX.B #$00                           ;80CD16|A200    |      ;
                                                             ;      |        |      ;
      upgradCapsleShow:
@@ -11290,7 +11293,7 @@ mainPauseMenuCheck_00:
                        AND.W #$00FF                         ;80CD43|29FF00  |      ;
                        ADC.W #$1889                         ;80CD46|698918  |      ;
                        STA.W r_0004                         ;80CD49|8D0400  |860004;
-                       LDA.W TEXT_86A105,X                  ;80CD4C|BD05A1  |86A105;
+                       LDA.W DATA16_86A105,X                ;80CD4C|BD05A1  |86A105;
                        STA.W r_0006                         ;80CD4F|8D0600  |860006;
                        JSR.W CODE_80CD78                    ;80CD52|2078CD  |80CD78;
                        LDA.W r_0000                         ;80CD55|AD0000  |860000;
@@ -11303,7 +11306,7 @@ mainPauseMenuCheck_00:
                        AND.W #$00FF                         ;80CD60|29FF00  |      ;
                        ADC.W #$1892                         ;80CD63|699218  |      ;
                        STA.W r_0004                         ;80CD66|8D0400  |860004;
-                       LDA.W TEXT_86A105,X                  ;80CD69|BD05A1  |86A105;
+                       LDA.W DATA16_86A105,X                ;80CD69|BD05A1  |86A105;
                        CLC                                  ;80CD6C|18      |      ;
                        ADC.W #$0020                         ;80CD6D|692000  |      ;
                        STA.W r_0006                         ;80CD70|8D0600  |860006;
@@ -11446,7 +11449,7 @@ mainPauseMenuCheck_00:
                        CLC                                  ;80CE75|18      |      ;
                        ADC.W #$0100                         ;80CE76|690001  |      ;
                        TAY                                  ;80CE79|A8      |      ;
-                       JSL.L CODE_828011                    ;80CE7A|22118082|828011;
+                       JSL.L lunchMusic                     ;80CE7A|22118082|828011;
                        SEP #$30                             ;80CE7E|E230    |      ;
                        RTS                                  ;80CE80|60      |      ;
                                                             ;      |        |      ;
@@ -11484,6 +11487,7 @@ mainPauseMenuCheck_00:
                        SBC.B $04                            ;80CEA5|E504    |000004;
                        BPL CODE_80CEAD                      ;80CEA7|1004    |80CEAD;
                        EOR.W #$FFFF                         ;80CEA9|49FFFF  |      ;
+                                                            ;      |        |      ;
                        INC A                                ;80CEAC|1A      |      ;
                                                             ;      |        |      ;
           CODE_80CEAD:
@@ -12058,7 +12062,7 @@ mainPauseMenuCheck_00:
                        PLD                                  ;80D2B3|2B      |      ;
                        LDA.B $0E                            ;80D2B4|A50E    |000E26;
                        BPL CODE_80D2BC                      ;80D2B6|1004    |80D2BC;
-                       JSL.L checkEventRange                ;80D2B8|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80D2B8|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_80D2BC:
                        RTS                                  ;80D2BC|60      |      ;
@@ -12128,7 +12132,7 @@ mainPauseMenuCheck_00:
           CODE_80D313:
                        LDA.B $0E                            ;80D313|A50E    |0017E6;
                        BPL CODE_80D31B                      ;80D315|1004    |80D31B;
-                       JSL.L checkEventRange                ;80D317|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80D317|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_80D31B:
                        LDA.W r_1f16                         ;80D31B|AD161F  |861F16;
@@ -12207,7 +12211,7 @@ mainPauseMenuCheck_00:
           CODE_80D385:
                        LDA.B $0E                            ;80D385|A50E    |001A16;
                        BPL CODE_80D38D                      ;80D387|1004    |80D38D;
-                       JSL.L checkEventRange                ;80D389|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80D389|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_80D38D:
                        REP #$21                             ;80D38D|C221    |      ;
@@ -12305,7 +12309,7 @@ mainPauseMenuCheck_00:
           CODE_80D40D:
                        LDA.B $0E                            ;80D40D|A50E    |0012B6;
                        BPL CODE_80D415                      ;80D40F|1004    |80D415;
-                       JSL.L checkEventRange                ;80D411|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80D411|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_80D415:
                        REP #$21                             ;80D415|C221    |      ;
@@ -12372,7 +12376,7 @@ mainPauseMenuCheck_00:
           CODE_80D46A:
                        LDA.B $0E                            ;80D46A|A50E    |000CA6;
                        BPL CODE_80D472                      ;80D46C|1004    |80D472;
-                       JSL.L checkEventRange                ;80D46E|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80D46E|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_80D472:
                        REP #$21                             ;80D472|C221    |      ;
@@ -12432,7 +12436,7 @@ mainPauseMenuCheck_00:
           CODE_80D4BD:
                        LDA.B $0E                            ;80D4BD|A50E    |0012B6;
                        BPL CODE_80D4C5                      ;80D4BF|1004    |80D4C5;
-                       JSL.L checkEventRange                ;80D4C1|22B48082|8280B4;
+                       JSL.L checkPlayerGear                ;80D4C1|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_80D4C5:
                        REP #$21                             ;80D4C5|C221    |      ;
@@ -12556,7 +12560,7 @@ mainPauseMenuCheck_00:
                        SEP #$20                             ;80D571|E220    |      ;
                        REP #$10                             ;80D573|C210    |      ;
                        JSR.W drawHealthMeter                ;80D575|20CED7  |80D7CE;
-                       JSR.W CODE_80D8F5                    ;80D578|20F5D8  |80D8F5;
+                       JSR.W the1f12_stateRoutine           ;80D578|20F5D8  |80D8F5;
                        JSR.W CODE_80DA0E                    ;80D57B|200EDA  |80DA0E;
                        LDA.B #$8D                           ;80D57E|A98D    |      ;
                        PHA                                  ;80D580|48      |      ;
@@ -13140,28 +13144,33 @@ mainPauseMenuCheck_00:
                        RTS                                  ;80D8F4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80D8F5:
+ the1f12_stateRoutine:
                        LDA.B #$00                           ;80D8F5|A900    |      ;
                        XBA                                  ;80D8F7|EB      |      ;
                        LDA.W r_1f12                         ;80D8F8|AD121F  |861F12;
                        TAX                                  ;80D8FB|AA      |      ;
-                       JMP.W (DATA8_80D8FF,X)               ;80D8FC|7CFFD8  |80D8FF;
+                       JMP.W (PTR16_80D8FF,X)               ;80D8FC|7CFFD8  |80D8FF;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         DATA8_80D8FF:
-                       db $07,$D9,$4A,$D9,$FA,$D9,$F9,$D9   ;80D8FF|        |      ;
-                       LDA.B #$02                           ;80D907|A902    |      ;
+         PTR16_80D8FF:
+                       dw someProgressTrackingStuff         ;80D8FF|        |80D907;
+                       dw CODE_80D94A                       ;80D901|        |80D94A;
+                       dw CODE_80D9FA                       ;80D903|        |80D9FA;
+                       dw CODE_80D9F9                       ;80D905|        |80D9F9;
+                                                            ;      |        |      ;
+someProgressTrackingStuff:
+                       LDA.B #$02                           ;80D907|A902    |      ; ??
                        STA.W r_1f12                         ;80D909|8D121F  |861F12;
                        LDA.W r_d_0bdb                       ;80D90C|ADDB0B  |860BDB;
-                       BNE CODE_80D917                      ;80D90F|D006    |80D917;
+                       BNE keepTrackOfBossDefeated          ;80D90F|D006    |80D917;
                        LDA.B #$06                           ;80D911|A906    |      ;
                        STA.W r_1f12                         ;80D913|8D121F  |861F12;
                        RTS                                  ;80D916|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80D917:
+keepTrackOfBossDefeated:
                        TAY                                  ;80D917|A8      |      ;
-                       LDA.W r_player_tankEnergie_04,Y      ;80D918|B9861F  |861F86;
+                       LDA.W r_player_tankEnergie_04,Y      ;80D918|B9861F  |861F86; ??
                        ORA.B #$80                           ;80D91B|0980    |      ;
                        STA.W r_player_tankEnergie_04,Y      ;80D91D|99861F  |861F86;
                        LDX.W #$0000                         ;80D920|A20000  |      ;
@@ -13185,6 +13194,8 @@ mainPauseMenuCheck_00:
                        STA.W $071D                          ;80D942|8D1D07  |86071D;
                        LDA.B #$20                           ;80D945|A920    |      ;
                        STA.W $071E                          ;80D947|8D1E07  |86071E;
+                                                            ;      |        |      ;
+          CODE_80D94A:
                        LDA.W r_d_0bdb                       ;80D94A|ADDB0B  |860BDB;
                        TAY                                  ;80D94D|A8      |      ;
                        LDA.W r_player_tankEnergie_04,Y      ;80D94E|B9861F  |861F86;
@@ -13300,6 +13311,8 @@ mainPauseMenuCheck_00:
           CODE_80D9F9:
                        RTS                                  ;80D9F9|60      |      ;
                                                             ;      |        |      ;
+                                                            ;      |        |      ;
+          CODE_80D9FA:
                        LDX.W #$001C                         ;80D9FA|A21C00  |      ;
                                                             ;      |        |      ;
           CODE_80D9FD:
@@ -15190,39 +15203,39 @@ mainPauseMenuCheck_00:
                        STA.W r_1e89                         ;80E5FE|8D891E  |861E89;
                        JSR.W CODE_80E68E                    ;80E601|208EE6  |80E68E;
                        REP #$20                             ;80E604|C220    |      ;
-                       LDA.W DATA8_86A787,X                 ;80E606|BD87A7  |86A787;
+                       LDA.W DATA16_86A787,X                ;80E606|BD87A7  |86A787;
                        STA.W r_cam_BG0_xPos_target          ;80E609|8D4D1E  |861E4D;
                        STA.W r_cam_BG0_xPos_00              ;80E60C|8D6A1E  |861E6A;
                        STA.W r_job_BG1_X_addr               ;80E60F|8DB400  |8600B4;
-                       LDA.W UNREACH_86A789,X               ;80E612|BD89A7  |86A789;
+                       LDA.W DATA16_86A789,X                ;80E612|BD89A7  |86A789;
                        STA.W r_cam_BG0_yPos_target          ;80E615|8D501E  |861E50;
                        STA.W r_1e6c                         ;80E618|8D6C1E  |861E6C;
                        STA.W r_job_BG1_Y_addr               ;80E61B|8DB600  |8600B6;
-                       LDA.W UNREACH_86A78B,X               ;80E61E|BD8BA7  |86A78B;
+                       LDA.W DATA16_86A78B,X                ;80E61E|BD8BA7  |86A78B;
                        STA.W r_cam_BG0_xPos_ff              ;80E621|8D8D1E  |861E8D;
                        STA.W r_1eaa                         ;80E624|8DAA1E  |861EAA;
                        STA.W r_job_BG2_X_addr               ;80E627|8DB800  |8600B8;
-                       LDA.W UNREACH_86A78D,X               ;80E62A|BD8DA7  |86A78D;
+                       LDA.W DATA16_86A78D,X                ;80E62A|BD8DA7  |86A78D;
                        STA.W r_cam_BG1_slot                 ;80E62D|8D901E  |861E90;
                        STA.W r_1eac                         ;80E630|8DAC1E  |861EAC;
                        STA.W r_job_BG2_Y_addr               ;80E633|8DBA00  |8600BA;
-                       LDA.W UNREACH_86A78F,X               ;80E636|BD8FA7  |86A78F;
+                       LDA.W DATA16_86A78F,X                ;80E636|BD8FA7  |86A78F;
                        STA.W r_cam_BG0_LeftBorder           ;80E639|8D561E  |861E56;
                        STA.W r_levelSpecFlag                ;80E63C|8D5E1E  |861E5E;
-                       LDA.W UNREACH_86A791,X               ;80E63F|BD91A7  |86A791;
+                       LDA.W DATA16_86A791,X                ;80E63F|BD91A7  |86A791;
                        STA.W r_cam_BG0_RightBorder          ;80E642|8D581E  |861E58;
                        STA.W r_cam_BG0_xPos_lock            ;80E645|8D601E  |861E60;
-                       LDA.W UNREACH_86A793,X               ;80E648|BD93A7  |86A793;
+                       LDA.W DATA16_86A793,X                ;80E648|BD93A7  |86A793;
                        STA.W r_cam_BG0_TopBorder            ;80E64B|8D5A1E  |861E5A;
                        STA.W r_1e68                         ;80E64E|8D681E  |861E68;
-                       LDA.W UNREACH_86A795,X               ;80E651|BD95A7  |86A795;
+                       LDA.W DATA16_86A795,X                ;80E651|BD95A7  |86A795;
                        STA.W r_cam_BG0_BottomBorder         ;80E654|8D5C1E  |861E5C;
                        STA.W r_cam_BG0_yPos_lock_Set        ;80E657|8D6E1E  |861E6E;
-                       LDA.W UNREACH_86A797,X               ;80E65A|BD97A7  |86A797;
+                       LDA.W DATA16_86A797,X                ;80E65A|BD97A7  |86A797;
                        STA.W r_1e92                         ;80E65D|8D921E  |861E92;
-                       LDA.W UNREACH_86A799,X               ;80E660|BD99A7  |86A799;
+                       LDA.W DATA16_86A799,X                ;80E660|BD99A7  |86A799;
                        STA.W r_1e94                         ;80E663|8D941E  |861E94;
-                       LDA.W UNREACH_86A79B,X               ;80E666|BD9BA7  |86A79B;
+                       LDA.W someMoreIndexValues,X          ;80E666|BD9BA7  |86A79B;
                        AND.W #$00FF                         ;80E669|29FF00  |      ;
                        TAY                                  ;80E66C|A8      |      ;
                        JSL.L CODE_8180E3                    ;80E66D|22E38081|8180E3;
@@ -15235,12 +15248,12 @@ mainPauseMenuCheck_00:
                        SEP #$20                             ;80E674|E220    |      ;
                        REP #$10                             ;80E676|C210    |      ;
                        JSR.W CODE_80E68E                    ;80E678|208EE6  |80E68E;
-                       LDA.W UNREACH_86A79C,X               ;80E67B|BD9CA7  |86A79C;
+                       LDA.W DATA16_86A79C,X                ;80E67B|BD9CA7  |86A79C;
                        STA.B $64                            ;80E67E|8564    |000C0C;
                        REP #$20                             ;80E680|C220    |      ;
-                       LDA.W UNREACH_86A783,X               ;80E682|BD83A7  |86A783;
+                       LDA.W DATA16_86A783,X                ;80E682|BD83A7  |86A783;
                        STA.B r_player_xSubPos-$BA8          ;80E685|8505    |000BAD;
-                       LDA.W UNREACH_86A785,X               ;80E687|BD85A7  |86A785;
+                       LDA.W DATA16_86A785,X                ;80E687|BD85A7  |86A785;
                        STA.B r_player_yPos-$BA8             ;80E68A|8508    |000BB0;
                        PLP                                  ;80E68C|28      |      ;
                        RTL                                  ;80E68D|6B      |      ;
@@ -15256,18 +15269,18 @@ mainPauseMenuCheck_00:
                        AND.W #$00FF                         ;80E69D|29FF00  |      ;
                        ASL A                                ;80E6A0|0A      |      ;
                        TAX                                  ;80E6A1|AA      |      ;
-                       LDA.W UNREACH_86A780,X               ;80E6A2|BD80A7  |86A780;
+                       LDA.W DATA8_86A780,X                 ;80E6A2|BD80A7  |86A780;
                        CLC                                  ;80E6A5|18      |      ;
                        ADC.W r_0000                         ;80E6A6|6D0000  |860000;
                        TAX                                  ;80E6A9|AA      |      ;
-                       LDA.W UNREACH_86A780,X               ;80E6AA|BD80A7  |86A780;
+                       LDA.W DATA8_86A780,X                 ;80E6AA|BD80A7  |86A780;
                        TAX                                  ;80E6AD|AA      |      ;
                        SEP #$20                             ;80E6AE|E220    |      ;
                        RTS                                  ;80E6B0|60      |      ;
                                                             ;      |        |      ;
                        SEP #$30                             ;80E6B1|E230    |      ;
                        JSR.W CODE_80E9C2                    ;80E6B3|20C2E9  |80E9C2;
-                       JSR.W CODE_808100                    ;80E6B6|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80E6B6|200081  |808100;
                        LDA.B #$04                           ;80E6B9|A904    |      ;
                        TSB.B $C0                            ;80E6BB|04C0    |0000C0;
                        LDA.W r_1f32                         ;80E6BD|AD321F  |861F32;
@@ -15453,7 +15466,7 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
           CODE_80E7FE:
                        INC.W r_1f3d                         ;80E7FE|EE3D1F  |861F3D;
-                       JSR.W CODE_808100                    ;80E801|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80E801|200081  |808100;
                                                             ;      |        |      ;
           CODE_80E804:
                        JSR.W CODE_80E9CF                    ;80E804|20CFE9  |80E9CF;
@@ -15469,7 +15482,7 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_80E987                    ;80E815|2087E9  |80E987;
                                                             ;      |        |      ;
           CODE_80E818:
-                       JSR.W CODE_808100                    ;80E818|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80E818|200081  |808100;
                        BRA CODE_80E804                      ;80E81B|80E7    |80E804;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15540,7 +15553,7 @@ mainPauseMenuCheck_00:
                        BNE CODE_80E8D5                      ;80E8CE|D005    |80E8D5;
                                                             ;      |        |      ;
           CODE_80E8D0:
-                       JSR.W CODE_808100                    ;80E8D0|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80E8D0|200081  |808100;
                        BRA CODE_80E8A8                      ;80E8D3|80D3    |80E8A8;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15578,13 +15591,13 @@ mainPauseMenuCheck_00:
                        CLC                                  ;80E911|18      |      ;
                        ADC.B #$44                           ;80E912|6944    |      ;
                        STA.B $A4                            ;80E914|85A4    |0000A4;
-                       JSR.W CODE_808100                    ;80E916|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80E916|200081  |808100;
                        DEC.W r_1f3a                         ;80E919|CE3A1F  |861F3A;
                        BNE CODE_80E8A8                      ;80E91C|D08A    |80E8A8;
                        STZ.W r_1f3d                         ;80E91E|9C3D1F  |861F3D;
                        LDA.W r_endingRoll                   ;80E921|AD7F1F  |861F7F;
                        BNE CODE_80E929                      ;80E924|D003    |80E929;
-                       JSR.W CODE_808100                    ;80E926|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80E926|200081  |808100;
                                                             ;      |        |      ;
           CODE_80E929:
                        JMP.W CODE_80E6E9                    ;80E929|4CE9E6  |80E6E9;
@@ -15592,7 +15605,7 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
           CODE_80E92C:
                        INC.W r_1f3d                         ;80E92C|EE3D1F  |861F3D;
-                       JSR.W CODE_808100                    ;80E92F|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80E92F|200081  |808100;
                        JSR.W CODE_80E9CF                    ;80E932|20CFE9  |80E9CF;
                        BEQ CODE_80E93C                      ;80E935|F005    |80E93C;
                        JSR.W CODE_80E97E                    ;80E937|207EE9  |80E97E;
@@ -15636,7 +15649,7 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
           CODE_80E975:
                        INC.W r_1f3c                         ;80E975|EE3C1F  |861F3C;
-                       JSR.W CODE_808100                    ;80E978|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80E978|200081  |808100;
                        JMP.W CODE_80E6E9                    ;80E97B|4CE9E6  |80E6E9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15689,7 +15702,7 @@ mainPauseMenuCheck_00:
                        LDA.W r_1f25                         ;80E9C2|AD251F  |861F25;
                        CMP.B #$40                           ;80E9C5|C940    |      ;
                        BCC CODE_80E9CE                      ;80E9C7|9005    |80E9CE;
-                       JSR.W CODE_808100                    ;80E9C9|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80E9C9|200081  |808100;
                        BRA CODE_80E9C2                      ;80E9CC|80F4    |80E9C2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15760,23 +15773,23 @@ mainPauseMenuCheck_00:
                        BPL CODE_80EA37                      ;80EA40|10F5    |80EA37;
                        LDA.B #$07                           ;80EA42|A907    |      ;
                        TSB.W $00A2                          ;80EA44|0CA200  |8600A2;
-                       JSR.W CODE_808100                    ;80EA47|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EA47|200081  |808100;
                        JSR.W CODE_80ECE5                    ;80EA4A|20E5EC  |80ECE5;
                        LDA.B #$20                           ;80EA4D|A920    |      ;
                        JSR.W CODE_8089E1                    ;80EA4F|20E189  |8089E1;
                        LDY.B #$4E                           ;80EA52|A04E    |      ;
                        JSR.W CODE_80B2EB                    ;80EA54|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80EA57|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EA57|200081  |808100;
                        LDY.B #$50                           ;80EA5A|A050    |      ;
                        JSR.W CODE_80B2EB                    ;80EA5C|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80EA5F|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EA5F|200081  |808100;
                        REP #$10                             ;80EA62|C210    |      ;
                        LDY.W #$0132                         ;80EA64|A03201  |      ;
-                       JSL.L CODE_828011                    ;80EA67|22118082|828011;
+                       JSL.L lunchMusic                     ;80EA67|22118082|828011;
                        SEP #$10                             ;80EA6B|E210    |      ;
                        JSR.W CODE_80EDAF                    ;80EA6D|20AFED  |80EDAF;
                        JSR.W CODE_80EDF1                    ;80EA70|20F1ED  |80EDF1;
-                       JSR.W CODE_808100                    ;80EA73|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EA73|200081  |808100;
                        LDA.L optionMonoStereo               ;80EA76|AFCAFF7E|7EFFCA;
                        CMP.B #$F7                           ;80EA7A|C9F7    |      ;
                        BEQ CODE_80EA82                      ;80EA7C|F004    |80EA82;
@@ -15876,7 +15889,7 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
           CODE_80EB20:
                        JSR.W CODE_8089E1                    ;80EB20|20E189  |8089E1;
-                       JSR.W CODE_808100                    ;80EB23|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EB23|200081  |808100;
                        JMP.W CODE_80EA90                    ;80EB26|4C90EA  |80EA90;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15994,7 +16007,7 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
           CODE_80EBD0:
                        JSR.W CODE_80ECE5                    ;80EBD0|20E5EC  |80ECE5;
-                       JSR.W CODE_808100                    ;80EBD3|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EBD3|200081  |808100;
                        JMP.W CODE_80EA90                    ;80EBD6|4C90EA  |80EA90;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16002,7 +16015,7 @@ mainPauseMenuCheck_00:
                        LDA.B $AC                            ;80EBD9|A5AC    |0000AC;
                        AND.B #$03                           ;80EBDB|2903    |      ;
                        BNE CODE_80EBE5                      ;80EBDD|D006    |80EBE5;
-                       JSR.W CODE_808100                    ;80EBDF|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EBDF|200081  |808100;
                        JMP.W CODE_80EA90                    ;80EBE2|4C90EA  |80EA90;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16013,11 +16026,11 @@ mainPauseMenuCheck_00:
                        LDA.B #$41                           ;80EBED|A941    |      ;
                        JSR.W CODE_8089E1                    ;80EBEF|20E189  |8089E1;
                        JSR.W CODE_808879                    ;80EBF2|207988  |808879;
-                       JSR.W CODE_808100                    ;80EBF5|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EBF5|200081  |808100;
                        LDA.B #$F7                           ;80EBF8|A9F7    |      ;
                        STA.L optionMonoStereo               ;80EBFA|8FCAFF7E|7EFFCA;
                        JSR.W CODE_80888B                    ;80EBFE|208B88  |80888B;
-                       JSR.W CODE_808100                    ;80EC01|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EC01|200081  |808100;
                        JMP.W CODE_80EA90                    ;80EC04|4C90EA  |80EA90;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16025,11 +16038,11 @@ mainPauseMenuCheck_00:
                        LDA.B #$43                           ;80EC07|A943    |      ;
                        JSR.W CODE_8089E1                    ;80EC09|20E189  |8089E1;
                        JSR.W CODE_808879                    ;80EC0C|207988  |808879;
-                       JSR.W CODE_808100                    ;80EC0F|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EC0F|200081  |808100;
                        LDA.B #$F8                           ;80EC12|A9F8    |      ;
                        STA.L optionMonoStereo               ;80EC14|8FCAFF7E|7EFFCA;
                        JSR.W CODE_80888B                    ;80EC18|208B88  |80888B;
-                       JSR.W CODE_808100                    ;80EC1B|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EC1B|200081  |808100;
                        JMP.W CODE_80EA90                    ;80EC1E|4C90EA  |80EA90;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16068,7 +16081,7 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
           CODE_80EC5C:
                        JSR.W CODE_80EDAF                    ;80EC5C|20AFED  |80EDAF;
-                       JSR.W CODE_808100                    ;80EC5F|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EC5F|200081  |808100;
                        JMP.W CODE_80EA90                    ;80EC62|4C90EA  |80EA90;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16104,7 +16117,7 @@ mainPauseMenuCheck_00:
           CODE_80EC9D:
                        LDA.B #$F1                           ;80EC9D|A9F1    |      ;
                        JSR.W CODE_80888B                    ;80EC9F|208B88  |80888B;
-                       JSR.W CODE_808100                    ;80ECA2|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80ECA2|200081  |808100;
                        LDA.L optionSFX_idx                  ;80ECA5|AFC9FF7E|7EFFC9;
                        BEQ CODE_80ECAF                      ;80ECA9|F004    |80ECAF;
                        CMP.B #$17                           ;80ECAB|C917    |      ;
@@ -16114,13 +16127,13 @@ mainPauseMenuCheck_00:
                        LDA.B #$01                           ;80ECAF|A901    |      ;
                                                             ;      |        |      ;
           CODE_80ECB1:
-                       JSL.L weaponChargeInit               ;80ECB1|22CD8880|8088CD;
+                       JSL.L lunchWeaponSFX                 ;80ECB1|22CD8880|8088CD;
                        LDA.B #$3C                           ;80ECB5|A93C    |      ;
                        STA.L $7EFF86                        ;80ECB7|8F86FF7E|7EFF86;
                                                             ;      |        |      ;
           CODE_80ECBB:
                        JSR.W CODE_80EDF1                    ;80ECBB|20F1ED  |80EDF1;
-                       JSR.W CODE_808100                    ;80ECBE|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80ECBE|200081  |808100;
                        JMP.W CODE_80EA90                    ;80ECC1|4C90EA  |80EA90;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16143,7 +16156,7 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_80ECDF:
-                       JSR.W CODE_808100                    ;80ECDF|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80ECDF|200081  |808100;
                        JMP.W CODE_80EA90                    ;80ECE2|4C90EA  |80EA90;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16366,7 +16379,7 @@ mainPauseMenuCheck_00:
                        PEA.W r_0000                         ;80EEA5|F40000  |860000;
                        PLD                                  ;80EEA8|2B      |      ;
                        JSR.W mainOAM                        ;80EEA9|206FD5  |80D56F;
-                       JSR.W CODE_808100                    ;80EEAC|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EEAC|200081  |808100;
                        BRA CODE_80EE89                      ;80EEAF|80D8    |80EE89;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16374,7 +16387,7 @@ mainPauseMenuCheck_00:
                        PEA.W r_0000                         ;80EEB1|F40000  |860000;
                        PLD                                  ;80EEB4|2B      |      ;
                        JSR.W mainOAM                        ;80EEB5|206FD5  |80D56F;
-                       JSR.W CODE_808100                    ;80EEB8|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EEB8|200081  |808100;
                        PLD                                  ;80EEBB|2B      |      ;
                        PLP                                  ;80EEBC|28      |      ;
                        RTS                                  ;80EEBD|60      |      ;
@@ -16397,18 +16410,18 @@ mainPauseMenuCheck_00:
                        PLD                                  ;80EEE1|2B      |      ;
                        LDY.B #$48                           ;80EEE2|A048    |      ;
                        JSR.W CODE_80B2EB                    ;80EEE4|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80EEE7|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EEE7|200081  |808100;
                        LDY.B #$4A                           ;80EEEA|A04A    |      ;
                        JSR.W CODE_80B2EB                    ;80EEEC|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80EEEF|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EEEF|200081  |808100;
                        LDY.B #$4C                           ;80EEF2|A04C    |      ;
                        JSR.W CODE_80B2EB                    ;80EEF4|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80EEF7|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EEF7|200081  |808100;
                        LDY.B #$56                           ;80EEFA|A056    |      ;
                        JSR.W CODE_80B2EB                    ;80EEFC|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80EEFF|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EEFF|200081  |808100;
                        LDY.B #$F8                           ;80EF02|A0F8    |      ;
-                       JSL.L CODE_828011                    ;80EF04|22118082|828011;
+                       JSL.L lunchMusic                     ;80EF04|22118082|828011;
                        LDY.B #$EC                           ;80EF08|A0EC    |      ;
                        LDX.B #$40                           ;80EF0A|A240    |      ;
                        JSL.L CODE_828000                    ;80EF0C|22008082|828000;
@@ -16473,15 +16486,15 @@ mainPauseMenuCheck_00:
                        BCC CODE_80EF8D                      ;80EF76|9015    |80EF8D;
                                                             ;      |        |      ;
           CODE_80EF78:
-                       JSR.W CODE_80F18C                    ;80EF78|208CF1  |80F18C;
+                       JSR.W clearSetUpgrade                ;80EF78|208CF1  |80F18C;
                        BNE CODE_80EFA3                      ;80EF7B|D026    |80EFA3;
                        LDX.B #$0B                           ;80EF7D|A20B    |      ;
                                                             ;      |        |      ;
-          CODE_80EF7F:
+backupUpgrade2PWtable:
                        LDA.B $18,X                          ;80EF7F|B518    |001E60;
                        STA.L $7EFFCB,X                      ;80EF81|9FCBFF7E|7EFFCB;
                        DEX                                  ;80EF85|CA      |      ;
-                       BPL CODE_80EF7F                      ;80EF86|10F7    |80EF7F;
+                       BPL backupUpgrade2PWtable            ;80EF86|10F7    |80EF7F;
                        LDA.B #$06                           ;80EF88|A906    |      ;
                        STA.B $01                            ;80EF8A|8501    |001E49;
                        RTS                                  ;80EF8C|60      |      ;
@@ -16515,7 +16528,7 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_808995                    ;80EFAE|209589  |808995;
                        LDA.B #$07                           ;80EFB1|A907    |      ;
                        TSB.W $00A2                          ;80EFB3|0CA200  |8600A2;
-                       JSR.W CODE_808100                    ;80EFB6|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EFB6|200081  |808100;
                        PLD                                  ;80EFB9|2B      |      ;
                        JSR.W CODE_80DB3F                    ;80EFBA|203FDB  |80DB3F;
                        RTS                                  ;80EFBD|60      |      ;
@@ -16538,7 +16551,7 @@ mainPauseMenuCheck_00:
                        JSL.L CODE_87813B                    ;80EFD3|223B8187|87813B;
                        JSL.L CODE_878000                    ;80EFD7|22008087|878000;
                        JSR.W mainOAM                        ;80EFDB|206FD5  |80D56F;
-                       JSR.W CODE_808100                    ;80EFDE|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EFDE|200081  |808100;
                        BRA CODE_80EFC0                      ;80EFE1|80DD    |80EFC0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16546,7 +16559,7 @@ mainPauseMenuCheck_00:
                        PEA.W r_0000                         ;80EFE3|F40000  |860000;
                        PLD                                  ;80EFE6|2B      |      ;
                        JSR.W mainOAM                        ;80EFE7|206FD5  |80D56F;
-                       JSR.W CODE_808100                    ;80EFEA|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80EFEA|200081  |808100;
                        PLD                                  ;80EFED|2B      |      ;
                        PLP                                  ;80EFEE|28      |      ;
                        RTS                                  ;80EFEF|60      |      ;
@@ -16577,18 +16590,18 @@ mainPauseMenuCheck_00:
                        PLD                                  ;80F01C|2B      |      ;
                        LDY.B #$48                           ;80F01D|A048    |      ;
                        JSR.W CODE_80B2EB                    ;80F01F|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80F022|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80F022|200081  |808100;
                        LDY.B #$4A                           ;80F025|A04A    |      ;
                        JSR.W CODE_80B2EB                    ;80F027|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80F02A|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80F02A|200081  |808100;
                        LDY.B #$4C                           ;80F02D|A04C    |      ;
                        JSR.W CODE_80B2EB                    ;80F02F|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80F032|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80F032|200081  |808100;
                        LDY.B #$56                           ;80F035|A056    |      ;
                        JSR.W CODE_80B2EB                    ;80F037|20EBB2  |80B2EB;
-                       JSR.W CODE_808100                    ;80F03A|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80F03A|200081  |808100;
                        LDY.B #$F8                           ;80F03D|A0F8    |      ;
-                       JSL.L CODE_828011                    ;80F03F|22118082|828011;
+                       JSL.L lunchMusic                     ;80F03F|22118082|828011;
                        LDY.B #$EC                           ;80F043|A0EC    |      ;
                        LDX.B #$40                           ;80F045|A240    |      ;
                        JSL.L CODE_828000                    ;80F047|22008082|828000;
@@ -16633,7 +16646,7 @@ mainPauseMenuCheck_00:
                        JSR.W CODE_808995                    ;80F07B|209589  |808995;
                        LDA.B #$07                           ;80F07E|A907    |      ;
                        TSB.W $00A2                          ;80F080|0CA200  |8600A2;
-                       JSR.W CODE_808100                    ;80F083|200081  |808100;
+                       JSR.W pauseFunc_05                   ;80F083|200081  |808100;
                        PLD                                  ;80F086|2B      |      ;
                        STZ.B $00                            ;80F087|6400    |001E48;
                        STZ.B $01                            ;80F089|6401    |001E49;
@@ -16645,7 +16658,7 @@ mainPauseMenuCheck_00:
           CODE_80F090:
                        LDA.W r_player_upgradeMask           ;80F090|AD991F  |861F99;
                        STA.B $18                            ;80F093|8518    |001E60;
-                       LDA.W r_player_state_1f9c            ;80F095|AD9C1F  |861F9C;
+                       LDA.W r_intro_levelClearFlag         ;80F095|AD9C1F  |861F9C;
                        STA.B $19                            ;80F098|8519    |001E61;
                        LDX.B #$0E                           ;80F09A|A20E    |      ;
                        STZ.B $30                            ;80F09C|6430    |001E78;
@@ -16758,38 +16771,38 @@ mainPauseMenuCheck_00:
                                                             ;      |        |      ;
           CODE_80F137:
                        STZ.B $30                            ;80F137|6430    |001E78;
-                       LDA.W UNREACH_86BD24,X               ;80F139|BD24BD  |86BD24;
+                       LDA.W PWupgradeBit2UpgradBase,X      ;80F139|BD24BD  |86BD24;
                        BEQ CODE_80F145                      ;80F13C|F007    |80F145;
                        AND.B $18                            ;80F13E|2518    |001E60;
-                       CMP.W UNREACH_86BD24,X               ;80F140|DD24BD  |86BD24;
+                       CMP.W PWupgradeBit2UpgradBase,X      ;80F140|DD24BD  |86BD24;
                        ROL.B $30                            ;80F143|2630    |001E78;
                                                             ;      |        |      ;
           CODE_80F145:
-                       LDA.W UNREACH_86BD30,X               ;80F145|BD30BD  |86BD30;
+                       LDA.W PWupgradeBit2Upgrad_01,X       ;80F145|BD30BD  |86BD30;
                        BEQ CODE_80F151                      ;80F148|F007    |80F151;
                        AND.B $19                            ;80F14A|2519    |001E61;
-                       CMP.W UNREACH_86BD30,X               ;80F14C|DD30BD  |86BD30;
+                       CMP.W PWupgradeBit2Upgrad_01,X       ;80F14C|DD30BD  |86BD30;
                        ROL.B $30                            ;80F14F|2630    |001E78;
                                                             ;      |        |      ;
           CODE_80F151:
-                       LDA.W UNREACH_86BD3C,X               ;80F151|BD3CBD  |86BD3C;
+                       LDA.W PWupgradeBit2Upgrad_02,X       ;80F151|BD3CBD  |86BD3C;
                        BEQ CODE_80F15D                      ;80F154|F007    |80F15D;
                        AND.B $1A                            ;80F156|251A    |001E62;
-                       CMP.W UNREACH_86BD3C,X               ;80F158|DD3CBD  |86BD3C;
+                       CMP.W PWupgradeBit2Upgrad_02,X       ;80F158|DD3CBD  |86BD3C;
                        ROL.B $30                            ;80F15B|2630    |001E78;
                                                             ;      |        |      ;
           CODE_80F15D:
-                       LDA.W UNREACH_86BD48,X               ;80F15D|BD48BD  |86BD48;
+                       LDA.W PWupgradeBit2Upgrad_03,X       ;80F15D|BD48BD  |86BD48;
                        BEQ CODE_80F169                      ;80F160|F007    |80F169;
                        AND.B $1B                            ;80F162|251B    |001E63;
-                       CMP.W UNREACH_86BD48,X               ;80F164|DD48BD  |86BD48;
+                       CMP.W PWupgradeBit2Upgrad_03,X       ;80F164|DD48BD  |86BD48;
                        ROL.B $30                            ;80F167|2630    |001E78;
                                                             ;      |        |      ;
           CODE_80F169:
-                       LDA.W UNREACH_86BD54,X               ;80F169|BD54BD  |86BD54;
+                       LDA.W PWupgradeBit2Upgrad_04,X       ;80F169|BD54BD  |86BD54;
                        BEQ CODE_80F175                      ;80F16C|F007    |80F175;
                        AND.B $1C                            ;80F16E|251C    |001E64;
-                       CMP.W UNREACH_86BD54,X               ;80F170|DD54BD  |86BD54;
+                       CMP.W PWupgradeBit2Upgrad_04,X       ;80F170|DD54BD  |86BD54;
                        ROL.B $30                            ;80F173|2630    |001E78;
                                                             ;      |        |      ;
           CODE_80F175:
@@ -16802,14 +16815,14 @@ mainPauseMenuCheck_00:
                        CLC                                  ;80F17D|18      |      ;
                        ADC.B $30                            ;80F17E|6530    |001E78;
                        TAY                                  ;80F180|A8      |      ;
-                       LDA.W UNREACH_86BD6F,Y               ;80F181|B96FBD  |86BD6F;
+                       LDA.W DATA8_86BD6F,Y                 ;80F181|B96FBD  |86BD6F;
                        STA.L $7EFFCB,X                      ;80F184|9FCBFF7E|7EFFCB;
                        DEX                                  ;80F188|CA      |      ;
                        BPL CODE_80F137                      ;80F189|10AC    |80F137;
                        RTS                                  ;80F18B|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_80F18C:
+      clearSetUpgrade:
                        REP #$20                             ;80F18C|C220    |      ;
                        STZ.B $24                            ;80F18E|6424    |001E6C;
                        STZ.B $26                            ;80F190|6426    |001E6E;
@@ -16928,7 +16941,7 @@ mainPauseMenuCheck_00:
                        ASL.B $30                            ;80F255|0630    |001E78;
                        BNE CODE_80F24B                      ;80F257|D0F2    |80F24B;
                        LDA.B $25                            ;80F259|A525    |001E6D;
-                       STA.W r_player_state_1f9c            ;80F25B|8D9C1F  |861F9C;
+                       STA.W r_intro_levelClearFlag         ;80F25B|8D9C1F  |861F9C;
                        LDY.B #$00                           ;80F25E|A000    |      ;
                                                             ;      |        |      ;
           CODE_80F260:
@@ -17009,7 +17022,7 @@ mainPauseMenuCheck_00:
                        CLC                                  ;80F2D2|18      |      ;
                        ADC.B $32                            ;80F2D3|6532    |001E7A;
                        TAX                                  ;80F2D5|AA      |      ;
-                       LDA.W UNREACH_86BD24,X               ;80F2D6|BD24BD  |86BD24;
+                       LDA.W PWupgradeBit2UpgradBase,X      ;80F2D6|BD24BD  |86BD24;
                        BNE CODE_80F2DE                      ;80F2D9|D003    |80F2DE;
                        INY                                  ;80F2DB|C8      |      ;
                        BRA CODE_80F2CA                      ;80F2DC|80EC    |80F2CA;
@@ -17020,7 +17033,7 @@ mainPauseMenuCheck_00:
                        ASL.B $30                            ;80F2DF|0630    |001E78;
                        BCC CODE_80F2E7                      ;80F2E1|9004    |80F2E7;
                        ORA.B $24,X                          ;80F2E3|1524    |001E6C;
-                       STA.B $24,X                          ;80F2E5|9524    |001E6C;
+                       STA.B $24,X                          ;80F2E5|9524    |001E6C; fill in update table from PW
                                                             ;      |        |      ;
           CODE_80F2E7:
                        INY                                  ;80F2E7|C8      |      ;
