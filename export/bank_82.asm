@@ -7,9 +7,9 @@
                        PHD                                  ;828001|0B      |      ;
                        SEP #$20                             ;828002|E220    |      ;
                        REP #$10                             ;828004|C210    |      ;
-                       STX.W r_0002                         ;828006|8E0200  |860002;
-                       STZ.W r_0003                         ;828009|9C0300  |860003;
-                       ASL.W r_0002                         ;82800C|0E0200  |860002;
+                       STX.W r6_0002                        ;828006|8E0200  |860002;
+                       STZ.W r6_0003                        ;828009|9C0300  |860003;
+                       ASL.W r6_0002                        ;82800C|0E0200  |860002;
                        BRA CODE_82801D                      ;82800F|800C    |82801D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -18,51 +18,51 @@
                        PHD                                  ;828012|0B      |      ;
                        SEP #$20                             ;828013|E220    |      ;
                        REP #$10                             ;828015|C210    |      ;
-                       STZ.W r_0002                         ;828017|9C0200  |860002;
-                       STZ.W r_0003                         ;82801A|9C0300  |860003;
+                       STZ.W r6_0002                        ;828017|9C0200  |860002;
+                       STZ.W r6_0003                        ;82801A|9C0300  |860003;
                                                             ;      |        |      ;
           CODE_82801D:
-                       PEA.W r_0000                         ;82801D|F40000  |860000;
+                       PEA.W r6_0000                        ;82801D|F40000  |860000;
                        PLD                                  ;828020|2B      |      ;
                        LDA.W DATA8_868133,Y                 ;828021|B93381  |868133;
-                       STA.B $10                            ;828024|8510    |001638;
+                       STA.B r_1638-$1628                   ;828024|8510    |001638;
                        LDA.W DATA8_868134,Y                 ;828026|B93481  |868134;
-                       STA.B $11                            ;828029|8511    |001639;
+                       STA.B r_1639-$1628                   ;828029|8511    |001639;
                        LDA.B #$85                           ;82802B|A985    |      ;
-                       STA.B $16                            ;82802D|8516    |00163E;
-                       STZ.B $01                            ;82802F|6401    |001629;
+                       STA.B r_163e-$1628                   ;82802D|8516    |00163E;
+                       STZ.B r_1629-$1628                   ;82802F|6401    |001629;
                                                             ;      |        |      ;
           CODE_828031:
                        SEP #$30                             ;828031|E230    |      ;
                        LDY.B #$00                           ;828033|A000    |      ;
                        LDA.B ($10),Y                        ;828035|B110    |001638;
                        BEQ CODE_828067                      ;828037|F02E    |828067;
-                       STA.B $00                            ;828039|8500    |001628;
+                       STA.B r_1628-$1628                   ;828039|8500    |001628;
                        INY                                  ;82803B|C8      |      ;
                        REP #$31                             ;82803C|C231    |      ;
                        LDA.B ($10),Y                        ;82803E|B110    |001638;
-                       STA.B $14                            ;828040|8514    |00163C;
+                       STA.B r_163c-$1628                   ;828040|8514    |00163C;
                        INY                                  ;828042|C8      |      ;
                        INY                                  ;828043|C8      |      ;
                        LDA.B ($10),Y                        ;828044|B110    |001638;
                        AND.W #$00FF                         ;828046|29FF00  |      ;
                        ASL A                                ;828049|0A      |      ;
                        CLC                                  ;82804A|18      |      ;
-                       ADC.B $02                            ;82804B|6502    |00162A;
+                       ADC.B r_162a-$1628                   ;82804B|6502    |00162A;
                        TAX                                  ;82804D|AA      |      ;
-                       LDA.B $10                            ;82804E|A510    |001638;
+                       LDA.B r_1638-$1628                   ;82804E|A510    |001638;
                        ADC.W #$0004                         ;828050|690400  |      ;
-                       STA.B $10                            ;828053|8510    |001638;
+                       STA.B r_1638-$1628                   ;828053|8510    |001638;
                        LDY.W #$0000                         ;828055|A00000  |      ;
                                                             ;      |        |      ;
           CODE_828058:
                        LDA.B [$14],Y                        ;828058|B714    |00163C;
-                       STA.W r_pal_updateData_BG,X          ;82805A|9D0003  |860300;
+                       STA.W r6_pal_updateData_BG,X         ;82805A|9D0003  |860300;
                        INY                                  ;82805D|C8      |      ;
                        INY                                  ;82805E|C8      |      ;
                        INX                                  ;82805F|E8      |      ;
                        INX                                  ;828060|E8      |      ;
-                       DEC.B $00                            ;828061|C600    |001628;
+                       DEC.B r_1628-$1628                   ;828061|C600    |001628;
                        BNE CODE_828058                      ;828063|D0F3    |828058;
                        BRA CODE_828031                      ;828065|80CA    |828031;
                                                             ;      |        |      ;
@@ -79,14 +79,14 @@
                        REP #$20                             ;82806E|C220    |      ;
                        SEC                                  ;828070|38      |      ;
                        LDA.B $05                            ;828071|A505    |000EAD;
-                       SBC.W r_cam_BG0_xPos_target          ;828073|ED4D1E  |861E4D;
+                       SBC.W r6_cam_BG0_xPos_target         ;828073|ED4D1E  |861E4D;
                        CLC                                  ;828076|18      |      ;
                        ADC.W #$0040                         ;828077|694000  |      ;
                        CMP.W #$0180                         ;82807A|C98001  |      ;
                        BCS CODE_82808C                      ;82807D|B00D    |82808C;
                        SEC                                  ;82807F|38      |      ;
                        LDA.B $08                            ;828080|A508    |000EB0;
-                       SBC.W r_cam_BG0_yPos_target          ;828082|ED501E  |861E50;
+                       SBC.W r6_cam_BG0_yPos_target         ;828082|ED501E  |861E50;
                        CLC                                  ;828085|18      |      ;
                        ADC.W #$0040                         ;828086|694000  |      ;
                        CMP.W #$0160                         ;828089|C96001  |      ;
@@ -100,14 +100,14 @@
                        REP #$20                             ;82808F|C220    |      ;
                        SEC                                  ;828091|38      |      ;
                        LDA.B $05                            ;828092|A505    |00112D;
-                       SBC.W r_cam_BG0_xPos_target          ;828094|ED4D1E  |861E4D;
+                       SBC.W r6_cam_BG0_xPos_target         ;828094|ED4D1E  |861E4D;
                        CLC                                  ;828097|18      |      ;
                        ADC.W #$0060                         ;828098|696000  |      ;
                        CMP.W #$01C0                         ;82809B|C9C001  |      ;
                        BCS CODE_8280AF                      ;82809E|B00F    |8280AF;
                        SEC                                  ;8280A0|38      |      ;
                        LDA.B $08                            ;8280A1|A508    |001130;
-                       SBC.W r_cam_BG0_yPos_target          ;8280A3|ED501E  |861E50;
+                       SBC.W r6_cam_BG0_yPos_target         ;8280A3|ED501E  |861E50;
                        CLC                                  ;8280A6|18      |      ;
                        ADC.W #$0050                         ;8280A7|695000  |      ;
                        CMP.W #$0180                         ;8280AA|C98001  |      ;
@@ -123,14 +123,14 @@
                        REP #$20                             ;8280B4|C220    |      ; also used in pause
                        SEC                                  ;8280B6|38      |      ;
                        LDA.B $05                            ;8280B7|A505    |0014ED;
-                       SBC.W r_cam_BG0_xPos_target          ;8280B9|ED4D1E  |861E4D;
+                       SBC.W r6_cam_BG0_xPos_target         ;8280B9|ED4D1E  |861E4D;
                        CLC                                  ;8280BC|18      |      ;
                        ADC.W #$0020                         ;8280BD|692000  |      ;
                        CMP.W #$0140                         ;8280C0|C94001  |      ;
                        BCS CODE_8280D4                      ;8280C3|B00F    |8280D4;
                        SEC                                  ;8280C5|38      |      ;
                        LDA.B $08                            ;8280C6|A508    |0014F0;
-                       SBC.W r_cam_BG0_yPos_target          ;8280C8|ED501E  |861E50;
+                       SBC.W r6_cam_BG0_yPos_target         ;8280C8|ED501E  |861E50;
                        CLC                                  ;8280CB|18      |      ;
                        ADC.W #$0010                         ;8280CC|691000  |      ;
                        CMP.W #$0100                         ;8280CF|C90001  |      ;
@@ -164,96 +164,96 @@
                        dw CODE_8280F6                       ;8280F4|        |8280F6;
                                                             ;      |        |      ;
           CODE_8280F6:
-                       LDA.W r_00e7                         ;8280F6|ADE700  |8600E7;
+                       LDA.W r6_00e7                        ;8280F6|ADE700  |8600E7;
                        CMP.B #$20                           ;8280F9|C920    |      ;
                        BCS CODE_82810A                      ;8280FB|B00D    |82810A;
                        ASL A                                ;8280FD|0A      |      ;
                        TAX                                  ;8280FE|AA      |      ;
                        REP #$20                             ;8280FF|C220    |      ;
                        TDC                                  ;828101|7B      |      ;
-                       STA.W r_0920,X                       ;828102|9D2009  |860920;
+                       STA.W r6_0920,X                      ;828102|9D2009  |860920;
                        SEP #$20                             ;828105|E220    |      ;
-                       INC.W r_00e7                         ;828107|EEE700  |8600E7;
+                       INC.W r6_00e7                        ;828107|EEE700  |8600E7;
                                                             ;      |        |      ;
           CODE_82810A:
                        RTL                                  ;82810A|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82810B:
-                       LDA.W r_00e8                         ;82810B|ADE800  |8600E8;
+                       LDA.W r6_00e8                        ;82810B|ADE800  |8600E8;
                        CMP.B #$20                           ;82810E|C920    |      ;
                        BCS CODE_82811F                      ;828110|B00D    |82811F;
                        ASL A                                ;828112|0A      |      ;
                        TAX                                  ;828113|AA      |      ;
                        REP #$20                             ;828114|C220    |      ;
                        TDC                                  ;828116|7B      |      ;
-                       STA.W r_0960,X                       ;828117|9D6009  |860960;
+                       STA.W r6_0960,X                      ;828117|9D6009  |860960;
                        SEP #$20                             ;82811A|E220    |      ;
-                       INC.W r_00e8                         ;82811C|EEE800  |8600E8;
+                       INC.W r6_00e8                        ;82811C|EEE800  |8600E8;
                                                             ;      |        |      ;
           CODE_82811F:
                        RTL                                  ;82811F|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828120:
-                       LDA.W r_00e9                         ;828120|ADE900  |8600E9;
+                       LDA.W r6_00e9                        ;828120|ADE900  |8600E9;
                        CMP.B #$20                           ;828123|C920    |      ;
                        BCS CODE_828134                      ;828125|B00D    |828134;
                        ASL A                                ;828127|0A      |      ;
                        TAX                                  ;828128|AA      |      ;
                        REP #$20                             ;828129|C220    |      ;
                        TDC                                  ;82812B|7B      |      ;
-                       STA.W r_09a0,X                       ;82812C|9DA009  |8609A0;
+                       STA.W r6_09a0,X                      ;82812C|9DA009  |8609A0;
                        SEP #$20                             ;82812F|E220    |      ;
-                       INC.W r_00e9                         ;828131|EEE900  |8600E9;
+                       INC.W r6_00e9                        ;828131|EEE900  |8600E9;
                                                             ;      |        |      ;
           CODE_828134:
                        RTL                                  ;828134|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828135:
-                       LDA.W r_00ea                         ;828135|ADEA00  |8600EA;
+                       LDA.W r6_00ea                        ;828135|ADEA00  |8600EA;
                        CMP.B #$20                           ;828138|C920    |      ;
                        BCS CODE_828149                      ;82813A|B00D    |828149;
                        ASL A                                ;82813C|0A      |      ;
                        TAX                                  ;82813D|AA      |      ;
                        REP #$20                             ;82813E|C220    |      ;
                        TDC                                  ;828140|7B      |      ;
-                       STA.W r_09e0,X                       ;828141|9DE009  |8609E0;
+                       STA.W r6_09e0,X                      ;828141|9DE009  |8609E0;
                        SEP #$20                             ;828144|E220    |      ;
-                       INC.W r_00ea                         ;828146|EEEA00  |8600EA;
+                       INC.W r6_00ea                        ;828146|EEEA00  |8600EA;
                                                             ;      |        |      ;
           CODE_828149:
                        RTL                                  ;828149|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82814A:
-                       LDA.W r_00eb                         ;82814A|ADEB00  |8600EB;
+                       LDA.W r6_00eb                        ;82814A|ADEB00  |8600EB;
                        CMP.B #$20                           ;82814D|C920    |      ;
                        BCS CODE_82815E                      ;82814F|B00D    |82815E;
                        ASL A                                ;828151|0A      |      ;
                        TAX                                  ;828152|AA      |      ;
                        REP #$20                             ;828153|C220    |      ;
                        TDC                                  ;828155|7B      |      ;
-                       STA.W r_0a20,X                       ;828156|9D200A  |860A20;
+                       STA.W r6_0a20,X                      ;828156|9D200A  |860A20;
                        SEP #$20                             ;828159|E220    |      ;
-                       INC.W r_00eb                         ;82815B|EEEB00  |8600EB;
+                       INC.W r6_00eb                        ;82815B|EEEB00  |8600EB;
                                                             ;      |        |      ;
           CODE_82815E:
                        RTL                                  ;82815E|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82815F:
-                       LDA.W r_00ec                         ;82815F|ADEC00  |8600EC;
+                       LDA.W r6_00ec                        ;82815F|ADEC00  |8600EC;
                        CMP.B #$20                           ;828162|C920    |      ;
                        BCS CODE_828173                      ;828164|B00D    |828173;
                        ASL A                                ;828166|0A      |      ;
                        TAX                                  ;828167|AA      |      ;
                        REP #$20                             ;828168|C220    |      ;
                        TDC                                  ;82816A|7B      |      ;
-                       STA.W r_0a60,X                       ;82816B|9D600A  |860A60;
+                       STA.W r6_0a60,X                      ;82816B|9D600A  |860A60;
                        SEP #$20                             ;82816E|E220    |      ;
-                       INC.W r_00ec                         ;828170|EEEC00  |8600EC;
+                       INC.W r6_00ec                        ;828170|EEEC00  |8600EC;
                                                             ;      |        |      ;
           CODE_828173:
                        RTL                                  ;828173|6B      |      ;
@@ -348,10 +348,10 @@
                        PHP                                  ;8281FB|08      |      ;
                        REP #$20                             ;8281FC|C220    |      ;
                        CLC                                  ;8281FE|18      |      ;
-                       LDA.B $1E                            ;8281FF|A51E    |001946;
+                       LDA.B r_1946-$1928                   ;8281FF|A51E    |001946;
                        AND.W #$00FF                         ;828201|29FF00  |      ;
-                       ADC.B $1C                            ;828204|651C    |001944;
-                       STA.B $1C                            ;828206|851C    |001944;
+                       ADC.B r_1944-$1928                   ;828204|651C    |001944;
+                       STA.B r_1944-$1928                   ;828206|851C    |001944;
                        BRA CODE_82820B                      ;828208|8001    |82820B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -482,7 +482,7 @@
                        LDX.W #$1628                         ;8282BB|A22816  |      ;
                                                             ;      |        |      ;
           CODE_8282BE:
-                       LDA.W r_0000,X                       ;8282BE|BD0000  |860000;
+                       LDA.W r6_0000,X                      ;8282BE|BD0000  |860000;
                        BEQ notActiveEntity                  ;8282C1|F078    |82833B;
                        TXA                                  ;8282C3|8A      |      ;
                        CLC                                  ;8282C4|18      |      ;
@@ -518,7 +518,7 @@
                        LDX.W #$0C98                         ;8282EF|A2980C  |      ;
                                                             ;      |        |      ;
           CODE_8282F2:
-                       LDA.W r_0000,X                       ;8282F2|BD0000  |860000;
+                       LDA.W r6_0000,X                      ;8282F2|BD0000  |860000;
                        BEQ notActiveEntity                  ;8282F5|F044    |82833B;
                        TXA                                  ;8282F7|8A      |      ;
                        CLC                                  ;8282F8|18      |      ;
@@ -610,30 +610,30 @@ findEnemyShotEmptySlot:
                        SEP #$20                             ;828372|E220    |      ;
                        REP #$10                             ;828374|C210    |      ;
                        LDX.B r_ev_0c_parent-$E68            ;828376|A60C    |000E74;
-                       BEQ clearStates_00_02_0E             ;828378|F01E    |828398;
+                       BEQ despawnEvent_clear_00_02_0E      ;828378|F01E    |828398;
                        PHB                                  ;82837A|8B      |      ;
                        LDA.B #$7E                           ;82837B|A97E    |      ;
                        PHA                                  ;82837D|48      |      ;
                        PLB                                  ;82837E|AB      |      ;
                        LDA.B #$87                           ;82837F|A987    |      ;
-                       STA.W r_0000,X                       ;828381|9D0000  |860000;
+                       STA.W r6_0000,X                      ;828381|9D0000  |860000;
                        PLB                                  ;828384|AB      |      ;
-                       BRA clearStates_00_02_0E             ;828385|8011    |828398;
+                       BRA despawnEvent_clear_00_02_0E      ;828385|8011    |828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
  clearStateIf_0cEqual:
                        SEP #$20                             ;828387|E220    |      ;
                        REP #$10                             ;828389|C210    |      ;
                        LDX.B r_ev_0c_parent-$E68            ;82838B|A60C    |000E74;
-                       BEQ clearStates_00_02_0E             ;82838D|F009    |828398;
+                       BEQ despawnEvent_clear_00_02_0E      ;82838D|F009    |828398;
                        PHB                                  ;82838F|8B      |      ;
                        LDA.B #$7E                           ;828390|A97E    |      ;
                        PHA                                  ;828392|48      |      ;
                        PLB                                  ;828393|AB      |      ;
-                       STZ.W r_0000,X                       ;828394|9E0000  |860000;
+                       STZ.W r6_0000,X                      ;828394|9E0000  |860000;
                        PLB                                  ;828397|AB      |      ;
                                                             ;      |        |      ;
- clearStates_00_02_0E:
+despawnEvent_clear_00_02_0E:
                        REP #$20                             ;828398|C220    |      ;
                        STZ.B $00                            ;82839A|6400    |000000;
                        STZ.B $02                            ;82839C|6402    |000002;
@@ -667,8 +667,8 @@ cutterProjectile_main:
      we_cutterState00:
                        LDA.B #$02                           ;8283BF|A902    |      ;
                        STA.B $01                            ;8283C1|8501    |0012A9;
-                       LDX.W r_level_current                ;8283C3|AE7A1F  |861F7A;
-                       LDA.W r_d_0bb9                       ;8283C6|ADB90B  |860BB9;
+                       LDX.W r6_level_current               ;8283C3|AE7A1F  |861F7A;
+                       LDA.W r6_player_sprPal               ;8283C6|ADB90B  |860BB9;
                        AND.B #$70                           ;8283C9|2970    |      ;
                        ORA.B #$06                           ;8283CB|0906    |      ;
                        STA.B $11                            ;8283CD|8511    |0012B9;
@@ -696,9 +696,9 @@ cutterProjectile_main:
                        STA.B $20                            ;8283F4|8520    |0012C8;
                        LDA.W #$AD8A                         ;8283F6|A98AAD  |      ;
                        STA.B $31                            ;8283F9|8531    |0012D9;
-                       LDA.W r_d_player_xSubPos             ;8283FB|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;8283FB|ADAD0B  |860BAD;
                        STA.B $05                            ;8283FE|8505    |0012AD;
-                       LDA.W r_d_player_yPos                ;828400|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;828400|ADB00B  |860BB0;
                        STA.B $08                            ;828403|8508    |0012B0;
                        LDA.B $10                            ;828405|A510    |0012B8;
                        ASL A                                ;828407|0A      |      ;
@@ -726,7 +726,7 @@ cutterProjectile_main:
                        LDX.B $02                            ;828429|A602    |00126A;
                        JSR.W (PTR16_828452,X)               ;82842B|FC5284  |828452;
                        JSR.W CODE_828538                    ;82842E|203885  |828538;
-                       JSL.L updateEv_13_14_17_0f           ;828431|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;828431|22EA8E84|848EEA;
                        JSL.L checkPlayerGear                ;828435|22B48082|8280B4;
                        JSL.L initPosAllign                  ;828439|226E8082|82806E;
                        BCC CODE_828451                      ;82843D|9012    |828451;
@@ -734,10 +734,10 @@ cutterProjectile_main:
                        BEQ CODE_82844A                      ;828441|F007    |82844A;
                        REP #$10                             ;828443|C210    |      ;
                        LDX.B $0C                            ;828445|A60C    |001274;
-                       STZ.W r_0028,X                       ;828447|9E2800  |860028;
+                       STZ.W r6_0028,X                      ;828447|9E2800  |860028;
                                                             ;      |        |      ;
           CODE_82844A:
-                       DEC.W r_d_bulletCount                ;82844A|CEDD0B  |860BDD;
+                       DEC.W r6_player_bulletCount          ;82844A|CEDD0B  |860BDD;
                        JML.L clearStates_01_00_02_0E_2C     ;82844D|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -800,15 +800,15 @@ cutterProjectile_main:
                        STA.B $38                            ;828498|8538    |0012A0;
                        JSL.L CODE_8284F2                    ;82849A|22F28482|8284F2;
                        REP #$20                             ;82849E|C220    |      ;
-                       LDA.W r_0000                         ;8284A0|AD0000  |860000;
+                       LDA.W r6_0000                        ;8284A0|AD0000  |860000;
                        STA.B $1A                            ;8284A3|851A    |001282;
-                       LDA.W r_0002                         ;8284A5|AD0200  |860002;
+                       LDA.W r6_0002                        ;8284A5|AD0200  |860002;
                        STA.B $1C                            ;8284A8|851C    |001284;
                        SEP #$20                             ;8284AA|E220    |      ;
                                                             ;      |        |      ;
           CODE_8284AC:
                        JSL.L CODE_82820A                    ;8284AC|220A8282|82820A;
-                       LDA.W r_d_0bcf                       ;8284B0|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;8284B0|ADCF0B  |860BCF;
                        AND.B #$7F                           ;8284B3|297F    |      ;
                        BEQ CODE_8284DF                      ;8284B5|F028    |8284DF;
                        LDA.B $3A                            ;8284B7|A53A    |0012A2;
@@ -825,9 +825,9 @@ cutterProjectile_main:
                        SEP #$20                             ;8284D1|E220    |      ;
                        LDA.B $39                            ;8284D3|A539    |0012A1;
                        BNE CODE_8284DF                      ;8284D5|D008    |8284DF;
-                       INC.W r_1f94                         ;8284D7|EE941F  |861F94;
+                       INC.W r6_player_weaponCutter_06      ;8284D7|EE941F  |861F94;
                        LDA.B #$80                           ;8284DA|A980    |      ;
-                       TSB.W r_1f94                         ;8284DC|0C941F  |861F94;
+                       TSB.W r6_player_weaponCutter_06      ;8284DC|0C941F  |861F94;
                                                             ;      |        |      ;
           CODE_8284DF:
                        RTS                                  ;8284DF|60      |      ;
@@ -838,10 +838,10 @@ cutterProjectile_main:
                        LDA.B $3A                            ;8284E2|A53A    |001262;
                        BEQ CODE_8284EB                      ;8284E4|F005    |8284EB;
                        LDX.B $0C                            ;8284E6|A60C    |001234;
-                       STZ.W r_0028,X                       ;8284E8|9E2800  |860028;
+                       STZ.W r6_0028,X                      ;8284E8|9E2800  |860028;
                                                             ;      |        |      ;
           CODE_8284EB:
-                       DEC.W r_d_bulletCount                ;8284EB|CEDD0B  |860BDD;
+                       DEC.W r6_player_bulletCount          ;8284EB|CEDD0B  |860BDD;
                        JML.L clearStates_01_00_02_0E_2C     ;8284EE|5CA38382|8283A3;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -850,7 +850,7 @@ cutterProjectile_main:
                        ASL A                                ;8284F3|0A      |      ;
                        TAX                                  ;8284F4|AA      |      ;
                        PHD                                  ;8284F5|0B      |      ;
-                       PEA.W r_0000                         ;8284F6|F40000  |860000;
+                       PEA.W r6_0000                        ;8284F6|F40000  |860000;
                        PLD                                  ;8284F9|2B      |      ;
                        REP #$20                             ;8284FA|C220    |      ;
                        LDA.W DATA8_86EE37,X                 ;8284FC|BD37EE  |86EE37;
@@ -912,7 +912,7 @@ cutterProjectile_main:
                        LDA.L $7FB700,X                      ;82855E|BF00B77F|7FB700;
                        TAX                                  ;828562|AA      |      ;
                        SEP #$20                             ;828563|E220    |      ;
-                       LDA.W r_0028,X                       ;828565|BD2800  |860028;
+                       LDA.W r6_0028,X                      ;828565|BD2800  |860028;
                        BNE CODE_828570                      ;828568|D006    |828570;
                        JSL.L CODE_849C0E                    ;82856A|220E9C84|849C0E;
                        BCS CODE_828579                      ;82856E|B009    |828579;
@@ -928,7 +928,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_828579:
                        STX.B $0C                            ;828579|860C    |001234;
-                       INC.W r_0028,X                       ;82857B|FE2800  |860028;
+                       INC.W r6_0028,X                      ;82857B|FE2800  |860028;
                        SEP #$10                             ;82857E|E210    |      ;
                        INC.B $3A                            ;828580|E63A    |001262;
                        LDA.B #$02                           ;828582|A902    |      ;
@@ -943,11 +943,11 @@ cutterProjectile_main:
                        REP #$30                             ;828588|C230    |      ;
                        LDX.B $0C                            ;82858A|A60C    |001234;
                        LDA.B $05                            ;82858C|A505    |00122D;
-                       STA.W r_0005,X                       ;82858E|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82858E|9D0500  |860005;
                        LDA.B $08                            ;828591|A508    |001230;
-                       STA.W r_0008,X                       ;828593|9D0800  |860008;
+                       STA.W r6_0008,X                      ;828593|9D0800  |860008;
                        SEP #$20                             ;828596|E220    |      ;
-                       LDA.W r_0000,X                       ;828598|BD0000  |860000;
+                       LDA.W r6_0000,X                      ;828598|BD0000  |860000;
                        BNE CODE_82859F                      ;82859B|D002    |82859F;
                        STZ.B $3A                            ;82859D|643A    |001262;
                                                             ;      |        |      ;
@@ -998,10 +998,10 @@ cutterProjectile_main:
           CODE_8285E2:
                        LDX.B $02                            ;8285E2|A602    |00146A;
                        JSR.W (PTR16_82865A,X)               ;8285E4|FC5A86  |82865A;
-                       LDY.W r_level_current                ;8285E7|AC7A1F  |861F7A;
+                       LDY.W r6_level_current               ;8285E7|AC7A1F  |861F7A;
                        REP #$10                             ;8285EA|C210    |      ;
                        LDX.B $0C                            ;8285EC|A60C    |001474;
-                       LDA.W r_0011,X                       ;8285EE|BD1100  |860011;
+                       LDA.W r6_0011,X                      ;8285EE|BD1100  |860011;
                        AND.B #$40                           ;8285F1|2940    |      ;
                        ORA.L $7F831E                        ;8285F3|0F1E837F|7F831E;
                        ORA.W UNREACH_86BAC2,Y               ;8285F7|19C2BA  |86BAC2;
@@ -1032,7 +1032,7 @@ cutterProjectile_main:
                        REP #$10                             ;828626|C210    |      ;
                        LDX.B $0C                            ;828628|A60C    |001474;
                        LDA.B #$06                           ;82862A|A906    |      ;
-                       STA.W r_0002,X                       ;82862C|9D0200  |860002;
+                       STA.W r6_0002,X                      ;82862C|9D0200  |860002;
                        SEP #$10                             ;82862F|E210    |      ;
                        RTS                                  ;828631|60      |      ;
                                                             ;      |        |      ;
@@ -1052,10 +1052,10 @@ cutterProjectile_main:
                        REP #$10                             ;828641|C210    |      ;
                        LDX.B $0C                            ;828643|A60C    |001474;
                        LDA.B #$04                           ;828645|A904    |      ;
-                       STA.W r_0002,X                       ;828647|9D0200  |860002;
+                       STA.W r6_0002,X                      ;828647|9D0200  |860002;
                        LDA.B #$08                           ;82864A|A908    |      ;
-                       STA.W r_0003,X                       ;82864C|9D0300  |860003;
-                       STA.W r_0037,X                       ;82864F|9D3700  |860037;
+                       STA.W r6_0003,X                      ;82864C|9D0300  |860003;
+                       STA.W r6_0037,X                      ;82864F|9D3700  |860037;
                        SEP #$10                             ;828652|E210    |      ;
                        RTS                                  ;828654|60      |      ;
                                                             ;      |        |      ;
@@ -1091,7 +1091,7 @@ cutterProjectile_main:
                        JSL.L playerGrabedRoutine            ;828679|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82867D:
-                       JSL.L updateEv_13_14_17_0f           ;82867D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82867D|22EA8E84|848EEA;
                        RTS                                  ;828681|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1142,8 +1142,8 @@ cutterProjectile_main:
                        LDY.B $10                            ;8286C1|A410    |001438;
                        REP #$10                             ;8286C3|C210    |      ;
                        LDX.B $31,Y                          ;8286C5|B631    |001459;
-                       INC.W r_0002,X                       ;8286C7|FE0200  |860002;
-                       STZ.W r_0003,X                       ;8286CA|9E0300  |860003;
+                       INC.W r6_0002,X                      ;8286C7|FE0200  |860002;
+                       STZ.W r6_0003,X                      ;8286CA|9E0300  |860003;
                        SEP #$10                             ;8286CD|E210    |      ;
                        INY                                  ;8286CF|C8      |      ;
                        INY                                  ;8286D0|C8      |      ;
@@ -1243,8 +1243,8 @@ cutterProjectile_main:
                        JSR.W CODE_8288D8                    ;828768|20D888  |8288D8;
                        BMI CODE_828779                      ;82876B|300C    |828779;
                        LDX.B $0C                            ;82876D|A60C    |001474;
-                       STZ.W r_0002,X                       ;82876F|9E0200  |860002;
-                       STZ.W r_0003,X                       ;828772|9E0300  |860003;
+                       STZ.W r6_0002,X                      ;82876F|9E0200  |860002;
+                       STZ.W r6_0003,X                      ;828772|9E0300  |860003;
                        STZ.B $02                            ;828775|6402    |00146A;
                        STZ.B $03                            ;828777|6403    |00146B;
                                                             ;      |        |      ;
@@ -1252,7 +1252,7 @@ cutterProjectile_main:
                        SEP #$10                             ;828779|E210    |      ;
                                                             ;      |        |      ;
           CODE_82877B:
-                       JSL.L updateEv_13_14_17_0f           ;82877B|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82877B|22EA8E84|848EEA;
                        RTS                                  ;82877F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1333,7 +1333,7 @@ cutterProjectile_main:
                        BEQ CODE_82880A                      ;8287FF|F009    |82880A;
                        REP #$10                             ;828801|C210    |      ;
                        LDX.B $0C                            ;828803|A60C    |001434;
-                       DEC.W r_0037,X                       ;828805|DE3700  |860037;
+                       DEC.W r6_0037,X                      ;828805|DE3700  |860037;
                        SEP #$10                             ;828808|E210    |      ;
                                                             ;      |        |      ;
           CODE_82880A:
@@ -1352,7 +1352,7 @@ cutterProjectile_main:
                        REP #$10                             ;82881D|C210    |      ;
                        LDX.B $0C                            ;82881F|A60C    |001474;
                        LDA.B #$01                           ;828821|A901    |      ;
-                       STA.W r_0037,X                       ;828823|9D3700  |860037;
+                       STA.W r6_0037,X                      ;828823|9D3700  |860037;
                        SEP #$10                             ;828826|E210    |      ;
                                                             ;      |        |      ;
           CODE_828828:
@@ -1364,9 +1364,9 @@ cutterProjectile_main:
                        REP #$30                             ;82882D|C230    |      ;
                        LDX.B $0C                            ;82882F|A60C    |001474;
                        LDA.B $08                            ;828831|A508    |001470;
-                       CMP.W r_0008,X                       ;828833|DD0800  |860008;
+                       CMP.W r6_0008,X                      ;828833|DD0800  |860008;
                        BCS CODE_828843                      ;828836|B00B    |828843;
-                       DEC.W r_0037,X                       ;828838|DE3700  |860037;
+                       DEC.W r6_0037,X                      ;828838|DE3700  |860037;
                        LDA.W #$000C                         ;82883B|A90C00  |      ;
                        STA.B $03                            ;82883E|8503    |00146B;
                        JMP.W CODE_82899C                    ;828840|4C9C89  |82899C;
@@ -1380,7 +1380,7 @@ cutterProjectile_main:
           CODE_828848:
                        REP #$30                             ;828848|C230    |      ;
                        LDX.B $0C                            ;82884A|A60C    |001474;
-                       LDA.W r_0008,X                       ;82884C|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;82884C|BD0800  |860008;
                        DEC A                                ;82884F|3A      |      ;
                        STA.B $08                            ;828850|8508    |001470;
                        SEP #$30                             ;828852|E230    |      ;
@@ -1459,17 +1459,17 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_8288B7:
                        REP #$30                             ;8288B7|C230    |      ;
-                       STZ.W r_0000                         ;8288B9|9C0000  |860000;
-                       DEC.W r_0000                         ;8288BC|CE0000  |860000;
+                       STZ.W r6_0000                        ;8288B9|9C0000  |860000;
+                       DEC.W r6_0000                        ;8288BC|CE0000  |860000;
                        LDX.B $0C                            ;8288BF|A60C    |001474;
-                       LDA.W r_0007,X                       ;8288C1|BD0700  |860007;
+                       LDA.W r6_0007,X                      ;8288C1|BD0700  |860007;
                        SEC                                  ;8288C4|38      |      ;
                        SBC.B $1C                            ;8288C5|E51C    |001484;
-                       STA.W r_0007,X                       ;8288C7|9D0700  |860007;
+                       STA.W r6_0007,X                      ;8288C7|9D0700  |860007;
                        SEP #$20                             ;8288CA|E220    |      ;
-                       LDA.W r_0009,X                       ;8288CC|BD0900  |860009;
-                       SBC.W r_0000                         ;8288CF|ED0000  |860000;
-                       STA.W r_0009,X                       ;8288D2|9D0900  |860009;
+                       LDA.W r6_0009,X                      ;8288CC|BD0900  |860009;
+                       SBC.W r6_0000                        ;8288CF|ED0000  |860000;
+                       STA.W r6_0009,X                      ;8288D2|9D0900  |860009;
                        SEP #$10                             ;8288D5|E210    |      ;
                        RTS                                  ;8288D7|60      |      ;
                                                             ;      |        |      ;
@@ -1480,27 +1480,27 @@ cutterProjectile_main:
           CODE_8288DB:
                        JSL.L CODE_8282D3                    ;8288DB|22D38282|8282D3;
                        BNE CODE_828919                      ;8288DF|D038    |828919;
-                       INC.W r_0000,X                       ;8288E1|FE0000  |860000;
+                       INC.W r6_0000,X                      ;8288E1|FE0000  |860000;
                        LDA.B #$11                           ;8288E4|A911    |      ;
-                       STA.W r_000a,X                       ;8288E6|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;8288E6|9D0A00  |86000A;
                        PHY                                  ;8288E9|5A      |      ;
                        LDA.B #$00                           ;8288EA|A900    |      ;
                        XBA                                  ;8288EC|EB      |      ;
-                       LDA.W r_level_current                ;8288ED|AD7A1F  |861F7A;
+                       LDA.W r6_level_current               ;8288ED|AD7A1F  |861F7A;
                        TAY                                  ;8288F0|A8      |      ;
                        LDA.B $11                            ;8288F1|A511    |001479;
                        AND.B #$40                           ;8288F3|2940    |      ;
                        ORA.L $7F831E                        ;8288F5|0F1E837F|7F831E;
                        ORA.W UNREACH_86BAC2,Y               ;8288F9|19C2BA  |86BAC2;
-                       STA.W r_0011,X                       ;8288FC|9D1100  |860011;
+                       STA.W r6_0011,X                      ;8288FC|9D1100  |860011;
                        PLY                                  ;8288FF|7A      |      ;
                        LDA.B $12                            ;828900|A512    |00147A;
-                       STA.W r_0012,X                       ;828902|9D1200  |860012;
+                       STA.W r6_0012,X                      ;828902|9D1200  |860012;
                        REP #$20                             ;828905|C220    |      ;
                        LDA.B $05                            ;828907|A505    |00146D;
-                       STA.W r_0005,X                       ;828909|9D0500  |860005;
+                       STA.W r6_0005,X                      ;828909|9D0500  |860005;
                        LDA.B $08                            ;82890C|A508    |001470;
-                       STA.W r_0008,X                       ;82890E|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82890E|9D0800  |860008;
                        SEP #$20                             ;828911|E220    |      ;
                        STX.B $31,Y                          ;828913|9631    |001499;
                        DEY                                  ;828915|88      |      ;
@@ -1511,7 +1511,7 @@ cutterProjectile_main:
                        TYA                                  ;828919|98      |      ;
                        STA.B $3F                            ;82891A|853F    |0014A7;
                        BMI CODE_82892F                      ;82891C|3011    |82892F;
-                       STZ.W r_003f                         ;82891E|9C3F00  |86003F;
+                       STZ.W r6_003f                        ;82891E|9C3F00  |86003F;
                                                             ;      |        |      ;
           CODE_828921:
                        CPY.W #$000C                         ;828921|C00C00  |      ;
@@ -1519,7 +1519,7 @@ cutterProjectile_main:
                        INY                                  ;828926|C8      |      ;
                        INY                                  ;828927|C8      |      ;
                        LDX.B $31,Y                          ;828928|B631    |001499;
-                       STZ.W r_0000,X                       ;82892A|9E0000  |860000;
+                       STZ.W r6_0000,X                      ;82892A|9E0000  |860000;
                        BRA CODE_828921                      ;82892D|80F2    |828921;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -1532,52 +1532,52 @@ cutterProjectile_main:
                        LDX.B $37                            ;828932|A637    |00149F;
                        LDY.B $0C                            ;828934|A40C    |001474;
                        LDA.B $08                            ;828936|A508    |001470;
-                       ADC.W r_0008,Y                       ;828938|790800  |860008;
+                       ADC.W r6_0008,Y                      ;828938|790800  |860008;
                        LSR A                                ;82893B|4A      |      ;
-                       STA.W r_0008,X                       ;82893C|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82893C|9D0800  |860008;
                        LDY.B $3B                            ;82893F|A43B    |0014A3;
                        LDA.B $08                            ;828941|A508    |001470;
                        CLC                                  ;828943|18      |      ;
-                       ADC.W r_0008,X                       ;828944|7D0800  |860008;
+                       ADC.W r6_0008,X                      ;828944|7D0800  |860008;
                        LSR A                                ;828947|4A      |      ;
-                       STA.W r_0008,Y                       ;828948|990800  |860008;
+                       STA.W r6_0008,Y                      ;828948|990800  |860008;
                        LDX.B $3D                            ;82894B|A63D    |0014A5;
                        LDA.B $08                            ;82894D|A508    |001470;
                        CLC                                  ;82894F|18      |      ;
-                       ADC.W r_0008,Y                       ;828950|790800  |860008;
+                       ADC.W r6_0008,Y                      ;828950|790800  |860008;
                        LSR A                                ;828953|4A      |      ;
-                       STA.W r_0008,X                       ;828954|9D0800  |860008;
+                       STA.W r6_0008,X                      ;828954|9D0800  |860008;
                        LDX.B $37                            ;828957|A637    |00149F;
                        LDY.B $3B                            ;828959|A43B    |0014A3;
-                       LDA.W r_0008,X                       ;82895B|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;82895B|BD0800  |860008;
                        CLC                                  ;82895E|18      |      ;
-                       ADC.W r_0008,Y                       ;82895F|790800  |860008;
+                       ADC.W r6_0008,Y                      ;82895F|790800  |860008;
                        LSR A                                ;828962|4A      |      ;
                        LDX.B $39                            ;828963|A639    |0014A1;
-                       STA.W r_0008,X                       ;828965|9D0800  |860008;
+                       STA.W r6_0008,X                      ;828965|9D0800  |860008;
                        LDX.B $37                            ;828968|A637    |00149F;
                        LDY.B $0C                            ;82896A|A40C    |001474;
-                       LDA.W r_0008,X                       ;82896C|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;82896C|BD0800  |860008;
                        CLC                                  ;82896F|18      |      ;
-                       ADC.W r_0008,Y                       ;828970|790800  |860008;
+                       ADC.W r6_0008,Y                      ;828970|790800  |860008;
                        LSR A                                ;828973|4A      |      ;
                        LDX.B $33                            ;828974|A633    |00149B;
-                       STA.W r_0008,X                       ;828976|9D0800  |860008;
+                       STA.W r6_0008,X                      ;828976|9D0800  |860008;
                        LDX.B $33                            ;828979|A633    |00149B;
-                       LDA.W r_0008,X                       ;82897B|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;82897B|BD0800  |860008;
                        CLC                                  ;82897E|18      |      ;
-                       ADC.W r_0008,Y                       ;82897F|790800  |860008;
+                       ADC.W r6_0008,Y                      ;82897F|790800  |860008;
                        LSR A                                ;828982|4A      |      ;
                        LDX.B $31                            ;828983|A631    |001499;
-                       STA.W r_0008,X                       ;828985|9D0800  |860008;
+                       STA.W r6_0008,X                      ;828985|9D0800  |860008;
                        LDX.B $33                            ;828988|A633    |00149B;
                        LDY.B $37                            ;82898A|A437    |00149F;
-                       LDA.W r_0008,X                       ;82898C|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;82898C|BD0800  |860008;
                        CLC                                  ;82898F|18      |      ;
-                       ADC.W r_0008,Y                       ;828990|790800  |860008;
+                       ADC.W r6_0008,Y                      ;828990|790800  |860008;
                        LSR A                                ;828993|4A      |      ;
                        LDX.B $35                            ;828994|A635    |00149D;
-                       STA.W r_0008,X                       ;828996|9D0800  |860008;
+                       STA.W r6_0008,X                      ;828996|9D0800  |860008;
                        SEP #$30                             ;828999|E230    |      ;
                        RTS                                  ;82899B|60      |      ;
                                                             ;      |        |      ;
@@ -1591,8 +1591,8 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_8289A8:
                        LDX.B $31,Y                          ;8289A8|B631    |001499;
-                       STZ.W r_0000,X                       ;8289AA|9E0000  |860000;
-                       STZ.W r_0002,X                       ;8289AD|9E0200  |860002;
+                       STZ.W r6_0000,X                      ;8289AA|9E0000  |860000;
+                       STZ.W r6_0002,X                      ;8289AD|9E0200  |860002;
                        DEY                                  ;8289B0|88      |      ;
                        DEY                                  ;8289B1|88      |      ;
                        BPL CODE_8289A8                      ;8289B2|10F4    |8289A8;
@@ -1624,11 +1624,11 @@ cutterProjectile_main:
                        REP #$31                             ;8289DA|C231    |      ;
                        LDA.B $05                            ;8289DC|A505    |00146D;
                        ADC.W #$0008                         ;8289DE|690800  |      ;
-                       STA.W r_0000                         ;8289E1|8D0000  |860000;
+                       STA.W r6_0000                        ;8289E1|8D0000  |860000;
                        LDA.B $08                            ;8289E4|A508    |001470;
                        CLC                                  ;8289E6|18      |      ;
                        ADC.W #$0018                         ;8289E7|691800  |      ;
-                       STA.W r_0002                         ;8289EA|8D0200  |860002;
+                       STA.W r6_0002                        ;8289EA|8D0200  |860002;
                        LDX.W #$0307                         ;8289ED|A20703  |      ;
                        LDA.B $1F                            ;8289F0|A51F    |001487;
                        AND.W #$00FF                         ;8289F2|29FF00  |      ;
@@ -1637,24 +1637,24 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_8289FA:
                        TXA                                  ;8289FA|8A      |      ;
-                       STA.W r_0008                         ;8289FB|8D0800  |860008;
+                       STA.W r6_0008                        ;8289FB|8D0800  |860008;
                        JSL.L CODE_849111                    ;8289FE|22119184|849111;
                        SEP #$30                             ;828A02|E230    |      ;
                        JSR.W CODE_828AE0                    ;828A04|20E08A  |828AE0;
                        REP #$21                             ;828A07|C221    |      ;
                        LDA.B $05                            ;828A09|A505    |00146D;
                        ADC.W #$0008                         ;828A0B|690800  |      ;
-                       STA.W r_0000                         ;828A0E|8D0000  |860000;
+                       STA.W r6_0000                        ;828A0E|8D0000  |860000;
                        LDA.B $08                            ;828A11|A508    |001470;
                        CLC                                  ;828A13|18      |      ;
                        ADC.W #$0018                         ;828A14|691800  |      ;
-                       STA.W r_0002                         ;828A17|8D0200  |860002;
+                       STA.W r6_0002                        ;828A17|8D0200  |860002;
                        LDA.B $1F                            ;828A1A|A51F    |001487;
                        AND.W #$00FF                         ;828A1C|29FF00  |      ;
                        ASL A                                ;828A1F|0A      |      ;
                        TAX                                  ;828A20|AA      |      ;
                        LDA.W UNREACH_86C0EA,X               ;828A21|BDEAC0  |86C0EA;
-                       STA.W r_0008                         ;828A24|8D0800  |860008;
+                       STA.W r6_0008                        ;828A24|8D0800  |860008;
                        JSL.L CODE_849111                    ;828A27|22119184|849111;
                        JSL.L CODE_80B8C1                    ;828A2B|22C1B880|80B8C1;
                        SEP #$20                             ;828A2F|E220    |      ;
@@ -1682,11 +1682,11 @@ cutterProjectile_main:
                        REP #$31                             ;828A52|C231    |      ;
                        LDA.B $05                            ;828A54|A505    |00146D;
                        ADC.W #$FFF8                         ;828A56|69F8FF  |      ;
-                       STA.W r_0000                         ;828A59|8D0000  |860000;
+                       STA.W r6_0000                        ;828A59|8D0000  |860000;
                        LDA.B $08                            ;828A5C|A508    |001470;
                        CLC                                  ;828A5E|18      |      ;
                        ADC.W #$0018                         ;828A5F|691800  |      ;
-                       STA.W r_0002                         ;828A62|8D0200  |860002;
+                       STA.W r6_0002                        ;828A62|8D0200  |860002;
                        LDX.W #$0307                         ;828A65|A20703  |      ;
                        LDA.B $1F                            ;828A68|A51F    |001487;
                        AND.W #$00FF                         ;828A6A|29FF00  |      ;
@@ -1695,24 +1695,24 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_828A72:
                        TXA                                  ;828A72|8A      |      ;
-                       STA.W r_0008                         ;828A73|8D0800  |860008;
+                       STA.W r6_0008                        ;828A73|8D0800  |860008;
                        JSL.L CODE_849111                    ;828A76|22119184|849111;
                        SEP #$30                             ;828A7A|E230    |      ;
                        JSR.W CODE_828AE0                    ;828A7C|20E08A  |828AE0;
                        REP #$21                             ;828A7F|C221    |      ;
                        LDA.B $05                            ;828A81|A505    |00146D;
                        ADC.W #$FFF8                         ;828A83|69F8FF  |      ;
-                       STA.W r_0000                         ;828A86|8D0000  |860000;
+                       STA.W r6_0000                        ;828A86|8D0000  |860000;
                        LDA.B $08                            ;828A89|A508    |001470;
                        CLC                                  ;828A8B|18      |      ;
                        ADC.W #$0018                         ;828A8C|691800  |      ;
-                       STA.W r_0002                         ;828A8F|8D0200  |860002;
+                       STA.W r6_0002                        ;828A8F|8D0200  |860002;
                        LDA.B $1F                            ;828A92|A51F    |001487;
                        AND.W #$00FF                         ;828A94|29FF00  |      ;
                        ASL A                                ;828A97|0A      |      ;
                        TAX                                  ;828A98|AA      |      ;
                        LDA.W UNREACH_86C0EA,X               ;828A99|BDEAC0  |86C0EA;
-                       STA.W r_0008                         ;828A9C|8D0800  |860008;
+                       STA.W r6_0008                        ;828A9C|8D0800  |860008;
                        JSL.L CODE_849111                    ;828A9F|22119184|849111;
                        JSL.L CODE_80B8C1                    ;828AA3|22C1B880|80B8C1;
                        SEP #$20                             ;828AA7|E220    |      ;
@@ -1731,17 +1731,17 @@ cutterProjectile_main:
           CODE_828AB7:
                        JSL.L CODE_8282D3                    ;828AB7|22D38282|8282D3;
                        BNE CODE_828ADD                      ;828ABB|D020    |828ADD;
-                       INC.W r_0000,X                       ;828ABD|FE0000  |860000;
+                       INC.W r6_0000,X                      ;828ABD|FE0000  |860000;
                        LDA.B #$12                           ;828AC0|A912    |      ;
-                       STA.W r_000a,X                       ;828AC2|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;828AC2|9D0A00  |86000A;
                        TYA                                  ;828AC5|98      |      ;
-                       STA.W r_000b,X                       ;828AC6|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;828AC6|9D0B00  |86000B;
                        REP #$21                             ;828AC9|C221    |      ;
                        LDA.B $05                            ;828ACB|A505    |00146D;
-                       STA.W r_0005,X                       ;828ACD|9D0500  |860005;
+                       STA.W r6_0005,X                      ;828ACD|9D0500  |860005;
                        LDA.B $08                            ;828AD0|A508    |001470;
                        ADC.W #$0020                         ;828AD2|692000  |      ;
-                       STA.W r_0008,X                       ;828AD5|9D0800  |860008;
+                       STA.W r6_0008,X                      ;828AD5|9D0800  |860008;
                        SEP #$20                             ;828AD8|E220    |      ;
                        DEY                                  ;828ADA|88      |      ;
                        BPL CODE_828AB7                      ;828ADB|10DA    |828AB7;
@@ -1890,34 +1890,34 @@ cutterProjectile_main:
                        SEC                                  ;828BAE|38      |      ;
                        SBC.B #$10                           ;828BAF|E910    |      ;
                        STA.B $2A                            ;828BB1|852A    |001492;
-                       STZ.W r_0001                         ;828BB3|9C0100  |860001;
+                       STZ.W r6_0001                        ;828BB3|9C0100  |860001;
                        LDA.B $29                            ;828BB6|A529    |001491;
-                       STA.W r_0000                         ;828BB8|8D0000  |860000;
+                       STA.W r6_0000                        ;828BB8|8D0000  |860000;
                        BPL CODE_828BC0                      ;828BBB|1003    |828BC0;
-                       DEC.W r_0001                         ;828BBD|CE0100  |860001;
+                       DEC.W r6_0001                        ;828BBD|CE0100  |860001;
                                                             ;      |        |      ;
           CODE_828BC0:
-                       STZ.W r_0003                         ;828BC0|9C0300  |860003;
+                       STZ.W r6_0003                        ;828BC0|9C0300  |860003;
                        LDA.B $2A                            ;828BC3|A52A    |001492;
-                       STA.W r_0002                         ;828BC5|8D0200  |860002;
+                       STA.W r6_0002                        ;828BC5|8D0200  |860002;
                        BPL CODE_828BCD                      ;828BC8|1003    |828BCD;
-                       DEC.W r_0003                         ;828BCA|CE0300  |860003;
+                       DEC.W r6_0003                        ;828BCA|CE0300  |860003;
                                                             ;      |        |      ;
           CODE_828BCD:
                        REP #$21                             ;828BCD|C221    |      ;
                        LDA.B $05                            ;828BCF|A505    |00146D;
-                       ADC.W r_0000                         ;828BD1|6D0000  |860000;
-                       STA.W r_0000                         ;828BD4|8D0000  |860000;
+                       ADC.W r6_0000                        ;828BD1|6D0000  |860000;
+                       STA.W r6_0000                        ;828BD4|8D0000  |860000;
                        LDA.B $08                            ;828BD7|A508    |001470;
                        CLC                                  ;828BD9|18      |      ;
-                       ADC.W r_0002                         ;828BDA|6D0200  |860002;
-                       STA.W r_0002                         ;828BDD|8D0200  |860002;
+                       ADC.W r6_0002                        ;828BDA|6D0200  |860002;
+                       STA.W r6_0002                        ;828BDD|8D0200  |860002;
                        LDA.B $19                            ;828BE0|A519    |001481;
                        AND.W #$00FF                         ;828BE2|29FF00  |      ;
                        ASL A                                ;828BE5|0A      |      ;
                        TAX                                  ;828BE6|AA      |      ;
                        LDA.W UNREACH_86C0EA,X               ;828BE7|BDEAC0  |86C0EA;
-                       STA.W r_0008                         ;828BEA|8D0800  |860008;
+                       STA.W r6_0008                        ;828BEA|8D0800  |860008;
                        JSL.L CODE_849111                    ;828BED|22119184|849111;
                        JSL.L CODE_80B8C1                    ;828BF1|22C1B880|80B8C1;
                        SEP #$20                             ;828BF5|E220    |      ;
@@ -2098,7 +2098,7 @@ cutterProjectile_main:
                        STA.B $38                            ;828D15|8538    |001520;
                                                             ;      |        |      ;
           CODE_828D17:
-                       JSL.L updateEv_13_14_17_0f           ;828D17|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;828D17|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;828D1B|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2137,13 +2137,13 @@ cutterProjectile_main:
                        STA.B $38                            ;828D54|8538    |0014A0;
                                                             ;      |        |      ;
           CODE_828D56:
-                       JSL.L updateEv_13_14_17_0f           ;828D56|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;828D56|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;828D5A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828D5E:
                        JSL.L CODE_849B03                    ;828D5E|22039B84|849B03;
-                       JSL.L updateEv_13_14_17_0f           ;828D62|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;828D62|22EA8E84|848EEA;
                        LDA.B $0F                            ;828D66|A50F    |0014F7;
                        BPL CODE_828D6E                      ;828D68|1004    |828D6E;
                        JML.L clearStates_01_00_02_0E_2C     ;828D6A|5CA38382|8283A3;
@@ -2275,7 +2275,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_828E49:
                        JSL.L CODE_8281E8                    ;828E49|22E88182|8281E8;
-                       JSL.L updateEv_13_14_17_0f           ;828E4D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;828E4D|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;828E51|22BE9184|8491BE;
                        REP #$20                             ;828E55|C220    |      ;
                        LDA.B $1C                            ;828E57|A51C    |001444;
@@ -2389,14 +2389,14 @@ cutterProjectile_main:
                        BEQ CODE_828F19                      ;828F0F|F008    |828F19;
                        INC.B $01                            ;828F11|E601    |001429;
                        INC.B $01                            ;828F13|E601    |001429;
-                       JSL.L updateEv_13_14_17_0f           ;828F15|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;828F15|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_828F19:
                        JML.L checkPlayerGear                ;828F19|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_828F1D:
-                       JSL.L updateEv_13_14_17_0f           ;828F1D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;828F1D|22EA8E84|848EEA;
                        LDA.B $0F                            ;828F21|A50F    |001437;
                        BPL CODE_828F29                      ;828F23|1004    |828F29;
                        JML.L clearStates_01_00_02_0E_2C     ;828F25|5CA38382|8283A3;
@@ -2541,16 +2541,16 @@ cutterProjectile_main:
                        BNE CODE_829026                      ;829003|D021    |829026;
                        JSL.L CODE_8282D3                    ;829005|22D38282|8282D3;
                        BNE CODE_829024                      ;829009|D019    |829024;
-                       INC.W r_0000,X                       ;82900B|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82900B|FE0000  |860000;
                        LDA.B #$10                           ;82900E|A910    |      ;
-                       STA.W r_000a,X                       ;829010|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;829010|9D0A00  |86000A;
                        LDA.B #$01                           ;829013|A901    |      ;
-                       STA.W r_000b,X                       ;829015|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;829015|9D0B00  |86000B;
                        REP #$20                             ;829018|C220    |      ;
                        LDA.B $05                            ;82901A|A505    |00146D;
-                       STA.W r_0005,X                       ;82901C|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82901C|9D0500  |860005;
                        LDA.B $08                            ;82901F|A508    |001470;
-                       STA.W r_0008,X                       ;829021|9D0800  |860008;
+                       STA.W r6_0008,X                      ;829021|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_829024:
                        SEP #$30                             ;829024|E230    |      ;
@@ -2640,7 +2640,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8290B4:
-                       JSL.L updateEv_13_14_17_0f           ;8290B4|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8290B4|22EA8E84|848EEA;
                        JSL.L CODE_82820A                    ;8290B8|220A8282|82820A;
                        JSL.L CODE_849B03                    ;8290BC|22039B84|849B03;
                        LDA.B $02                            ;8290C0|A502    |0014EA;
@@ -2670,19 +2670,19 @@ cutterProjectile_main:
                        BNE CODE_829110                      ;8290E8|D026    |829110;
                        JSL.L CODE_8282D3                    ;8290EA|22D38282|8282D3;
                        BNE CODE_82910E                      ;8290EE|D01E    |82910E;
-                       INC.W r_0000,X                       ;8290F0|FE0000  |860000;
+                       INC.W r6_0000,X                      ;8290F0|FE0000  |860000;
                        LDA.B #$10                           ;8290F3|A910    |      ;
-                       STA.W r_000a,X                       ;8290F5|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;8290F5|9D0A00  |86000A;
                        LDA.B #$02                           ;8290F8|A902    |      ;
-                       STA.W r_000b,X                       ;8290FA|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;8290FA|9D0B00  |86000B;
                        REP #$20                             ;8290FD|C220    |      ;
                        LDA.B $05                            ;8290FF|A505    |00142D;
                        CLC                                  ;829101|18      |      ;
                        ADC.W #$0008                         ;829102|690800  |      ;
-                       STA.W r_0005,X                       ;829105|9D0500  |860005;
+                       STA.W r6_0005,X                      ;829105|9D0500  |860005;
                        LDA.B $08                            ;829108|A508    |001430;
                        INC A                                ;82910A|1A      |      ;
-                       STA.W r_0008,X                       ;82910B|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82910B|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82910E:
                        SEP #$30                             ;82910E|E230    |      ;
@@ -3142,7 +3142,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8293AF:
-                       JSL.L updateEv_13_14_17_0f           ;8293AF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8293AF|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_8293B3:
                        RTS                                  ;8293B3|60      |      ;
@@ -3178,10 +3178,10 @@ cutterProjectile_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8293E2:
-                       JSL.L updateEv_13_14_17_0f           ;8293E2|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8293E2|22EA8E84|848EEA;
                        REP #$10                             ;8293E6|C210    |      ;
                        LDX.B $0C                            ;8293E8|A60C    |0014B4;
-                       LDA.W r_0027,X                       ;8293EA|BD2700  |860027;
+                       LDA.W r6_0027,X                      ;8293EA|BD2700  |860027;
                        BNE CODE_8293F3                      ;8293ED|D004    |8293F3;
                        LDA.B #$04                           ;8293EF|A904    |      ;
                        STA.B $01                            ;8293F1|8501    |0014A9;
@@ -3448,7 +3448,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_829578:
                        SEP #$10                             ;829578|E210    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;82957A|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82957A|22EA8E84|848EEA;
                        DEC.B $37                            ;82957E|C637    |000037;
                        BEQ CODE_829586                      ;829580|F004    |829586;
                        LDA.B $0B                            ;829582|A50B    |00000B;
@@ -3468,7 +3468,7 @@ cutterProjectile_main:
                                                             ;      |        |      ;
           CODE_829595:
                        DEC.B $37                            ;829595|C637    |000037;
-                       JSL.L updateEv_13_14_17_0f           ;829597|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829597|22EA8E84|848EEA;
                        LDA.B $0F                            ;82959B|A50F    |00000F;
                        BPL CODE_8295A3                      ;82959D|1004    |8295A3;
                        JSL.L clearStates_01_00_02_0E_2C     ;82959F|22A38382|8283A3;
@@ -3517,7 +3517,7 @@ mammothTrunk_0e_state_00:
                        JSR.W CODE_82967E                    ;8295D5|207E96  |82967E;
                        JSR.W CODE_829644                    ;8295D8|204496  |829644;
                        JSR.W CODE_82966D                    ;8295DB|206D96  |82966D;
-                       JSL.L updateEv_13_14_17_0f           ;8295DE|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8295DE|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;8295E2|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3525,7 +3525,7 @@ mammothTrunk_0e_state_00:
                        JSR.W CODE_82967E                    ;8295E6|207E96  |82967E;
                        JSR.W CODE_829644                    ;8295E9|204496  |829644;
                        JSR.W CODE_82966D                    ;8295EC|206D96  |82966D;
-                       JSL.L updateEv_13_14_17_0f           ;8295EF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8295EF|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;8295F3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3533,7 +3533,7 @@ mammothTrunk_0e_state_00:
                        JSR.W CODE_82967E                    ;8295F7|207E96  |82967E;
                        JSR.W CODE_829644                    ;8295FA|204496  |829644;
                        JSR.W CODE_82966D                    ;8295FD|206D96  |82966D;
-                       JSL.L updateEv_13_14_17_0f           ;829600|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829600|22EA8E84|848EEA;
                        LDA.B $03                            ;829604|A503    |000EAB;
                        CMP.B #$14                           ;829606|C914    |      ;
                        BCS CODE_82960E                      ;829608|B004    |82960E;
@@ -3541,7 +3541,7 @@ mammothTrunk_0e_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82960E:
-                       JML.L clearStates_00_02_0E           ;82960E|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82960E|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829612:
@@ -3560,13 +3560,13 @@ mammothTrunk_0e_state_00:
                                                             ;      |        |      ;
           CODE_82962D:
                        JSL.L CODE_8281E8                    ;82962D|22E88182|8281E8;
-                       LDA.W r_frameCounter1                ;829631|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;829631|AD9C0B  |860B9C;
                        LSR A                                ;829634|4A      |      ;
                        BCC CODE_829643                      ;829635|900C    |829643;
                        JSL.L checkPlayerGear                ;829637|22B48082|8280B4;
                        LDA.B $0E                            ;82963B|A50E    |000EB6;
                        BNE CODE_829643                      ;82963D|D004    |829643;
-                       JML.L clearStates_00_02_0E           ;82963F|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82963F|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829643:
@@ -3576,7 +3576,7 @@ mammothTrunk_0e_state_00:
           CODE_829644:
                        REP #$10                             ;829644|C210    |      ;
                        LDX.B $0C                            ;829646|A60C    |000EB4;
-                       LDA.W r_0036,X                       ;829648|BD3600  |860036;
+                       LDA.W r6_0036,X                      ;829648|BD3600  |860036;
                        BNE CODE_829656                      ;82964B|D009    |829656;
                        LDA.B #$0A                           ;82964D|A90A    |      ;
                        STA.B $01                            ;82964F|8501    |000EA9;
@@ -3586,13 +3586,13 @@ mammothTrunk_0e_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829656:
-                       LDA.W r_0001,X                       ;829656|BD0100  |860001;
+                       LDA.W r6_0001,X                      ;829656|BD0100  |860001;
                        STA.B $01                            ;829659|8501    |000EA9;
-                       LDA.W r_0002,X                       ;82965B|BD0200  |860002;
+                       LDA.W r6_0002,X                      ;82965B|BD0200  |860002;
                        STA.B $02                            ;82965E|8502    |000EAA;
-                       LDA.W r_0003,X                       ;829660|BD0300  |860003;
+                       LDA.W r6_0003,X                      ;829660|BD0300  |860003;
                        STA.B $03                            ;829663|8503    |000EAB;
-                       LDA.W r_0011,X                       ;829665|BD1100  |860011;
+                       LDA.W r6_0011,X                      ;829665|BD1100  |860011;
                        STA.B $11                            ;829668|8511    |000EB9;
                        SEP #$30                             ;82966A|E230    |      ;
                        RTS                                  ;82966C|60      |      ;
@@ -3601,9 +3601,9 @@ mammothTrunk_0e_state_00:
           CODE_82966D:
                        REP #$30                             ;82966D|C230    |      ;
                        LDX.B $0C                            ;82966F|A60C    |000EB4;
-                       LDA.W r_0005,X                       ;829671|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;829671|BD0500  |860005;
                        STA.B $05                            ;829674|8505    |000EAD;
-                       LDA.W r_0008,X                       ;829676|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;829676|BD0800  |860008;
                        STA.B $08                            ;829679|8508    |000EB0;
                        SEP #$30                             ;82967B|E230    |      ;
                        RTS                                  ;82967D|60      |      ;
@@ -3656,8 +3656,8 @@ eventID_crusher_0f_main:
                        CPY.B #$02                           ;8296C0|C002    |      ;
                        BNE CODE_8296D4                      ;8296C2|D010    |8296D4;
                        REP #$10                             ;8296C4|C210    |      ;
-                       LDX.W r_0000                         ;8296C6|AE0000  |860000;
-                       LDA.W r_0012,X                       ;8296C9|BD1200  |860012;
+                       LDX.W r6_0000                        ;8296C6|AE0000  |860000;
+                       LDA.W r6_0012,X                      ;8296C9|BD1200  |860012;
                        CMP.B #$04                           ;8296CC|C904    |      ;
                        BCC CODE_8296D2                      ;8296CE|9002    |8296D2;
                        STZ.B $12                            ;8296D0|6412    |000EBA;
@@ -3669,20 +3669,20 @@ eventID_crusher_0f_main:
                        LDA.B #$40                           ;8296D4|A940    |      ;
                        STA.B $1E                            ;8296D6|851E    |000EC6;
                        JSL.L findEnemyShotEmptySlot         ;8296D8|22588382|828358;
-                       INC.W r_0000,X                       ;8296DC|FE0000  |860000;
+                       INC.W r6_0000,X                      ;8296DC|FE0000  |860000;
                        LDA.B #$09                           ;8296DF|A909    |      ;
-                       STA.W r_000a,X                       ;8296E1|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;8296E1|9D0A00  |86000A;
                        STX.B $34                            ;8296E4|8634    |000EDC;
                        REP #$21                             ;8296E6|C221    |      ;
                        TDC                                  ;8296E8|7B      |      ;
-                       STA.W r_000c,X                       ;8296E9|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;8296E9|9D0C00  |86000C;
                        LDA.B $05                            ;8296EC|A505    |000EAD;
-                       STA.W r_0005,X                       ;8296EE|9D0500  |860005;
+                       STA.W r6_0005,X                      ;8296EE|9D0500  |860005;
                        LDA.B $08                            ;8296F1|A508    |000EB0;
-                       STA.W r_0008,X                       ;8296F3|9D0800  |860008;
+                       STA.W r6_0008,X                      ;8296F3|9D0800  |860008;
                        LDA.B $12                            ;8296F6|A512    |000EBA;
                        ADC.W #$0002                         ;8296F8|690200  |      ;
-                       STA.W r_0012,X                       ;8296FB|9D1200  |860012;
+                       STA.W r6_0012,X                      ;8296FB|9D1200  |860012;
                        SEP #$10                             ;8296FE|E210    |      ;
                        LDX.B #$00                           ;829700|A200    |      ;
                        STX.B $33                            ;829702|8633    |000EDB;
@@ -3702,7 +3702,7 @@ eventID_crusher_0f_main:
                        REP #$10                             ;82971A|C210    |      ;
                        LDX.B $34                            ;82971C|A634    |000EDC;
                        LDA.B #$04                           ;82971E|A904    |      ;
-                       STA.W r_0001,X                       ;829720|9D0100  |860001;
+                       STA.W r6_0001,X                      ;829720|9D0100  |860001;
                        SEP #$10                             ;829723|E210    |      ;
                        RTS                                  ;829725|60      |      ;
                                                             ;      |        |      ;
@@ -3726,13 +3726,13 @@ eventID_crusher_0f_main:
                        REP #$10                             ;82974B|C210    |      ;
                        LDX.B $34                            ;82974D|A634    |000EDC;
                        LDA.B #$7F                           ;82974F|A97F    |      ;
-                       STA.W r_002a,X                       ;829751|9D2A00  |86002A;
-                       LDA.W r_0027,X                       ;829754|BD2700  |860027;
+                       STA.W r6_002a,X                      ;829751|9D2A00  |86002A;
+                       LDA.W r6_0027,X                      ;829754|BD2700  |860027;
                        AND.B #$7F                           ;829757|297F    |      ;
                        BEQ CODE_829763                      ;829759|F008    |829763;
                        LDA.B #$08                           ;82975B|A908    |      ;
-                       STA.W r_0002,X                       ;82975D|9D0200  |860002;
-                       STZ.W r_0003,X                       ;829760|9E0300  |860003;
+                       STA.W r6_0002,X                      ;82975D|9D0200  |860002;
+                       STZ.W r6_0003,X                      ;829760|9E0300  |860003;
                                                             ;      |        |      ;
           CODE_829763:
                        SEP #$10                             ;829763|E210    |      ;
@@ -3756,8 +3756,8 @@ eventID_crusher_0f_main:
                        REP #$10                             ;829777|C210    |      ;
                        INC.B $03                            ;829779|E603    |000EAB;
                        LDX.B $34                            ;82977B|A634    |000EDC;
-                       STZ.W r_0002,X                       ;82977D|9E0200  |860002;
-                       STZ.W r_0003,X                       ;829780|9E0300  |860003;
+                       STZ.W r6_0002,X                      ;82977D|9E0200  |860002;
+                       STZ.W r6_0003,X                      ;829780|9E0300  |860003;
                        SEP #$10                             ;829783|E210    |      ;
                        REP #$20                             ;829785|C220    |      ;
                        LDA.W #$00C0                         ;829787|A9C000  |      ;
@@ -3780,7 +3780,7 @@ eventID_crusher_0f_main:
                        LDA.B $05                            ;8297A2|A505    |000EAD;
                        SEC                                  ;8297A4|38      |      ;
                        SBC.B $3B                            ;8297A5|E53B    |000EE3;
-                       STA.W r_0000                         ;8297A7|8D0000  |860000;
+                       STA.W r6_0000                        ;8297A7|8D0000  |860000;
                        BPL CODE_8297B0                      ;8297AA|1004    |8297B0;
                        EOR.W #$FFFF                         ;8297AC|49FFFF  |      ;
                        INC A                                ;8297AF|1A      |      ;
@@ -3790,7 +3790,7 @@ eventID_crusher_0f_main:
                        BCC CODE_8297C8                      ;8297B3|9013    |8297C8;
                        LDA.W #$FF40                         ;8297B5|A940FF  |      ;
                        LDX.B #$00                           ;8297B8|A200    |      ;
-                       BIT.W r_0000                         ;8297BA|2C0000  |860000;
+                       BIT.W r6_0000                        ;8297BA|2C0000  |860000;
                        BPL CODE_8297C4                      ;8297BD|1005    |8297C4;
                        LDA.W #$00C0                         ;8297BF|A9C000  |      ;
                        LDX.B #$40                           ;8297C2|A240    |      ;
@@ -3840,7 +3840,7 @@ eventID_crusher_0f_main:
                        STA.B r_ev_36-$E68                   ;829806|8536    |000E9E;
                                                             ;      |        |      ;
           CODE_829808:
-                       JSL.L updateEv_13_14_17_0f           ;829808|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829808|22EA8E84|848EEA;
                        JMP.W CODE_829995                    ;82980C|4C9599  |829995;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3851,8 +3851,8 @@ eventID_crusher_0f_main:
                        REP #$10                             ;829815|C210    |      ;
                        LDX.B $34                            ;829817|A634    |000EDC;
                        LDA.B #$02                           ;829819|A902    |      ;
-                       STA.W r_0002,X                       ;82981B|9D0200  |860002;
-                       STZ.W r_0003,X                       ;82981E|9E0300  |860003;
+                       STA.W r6_0002,X                      ;82981B|9D0200  |860002;
+                       STZ.W r6_0003,X                      ;82981E|9E0300  |860003;
                        SEP #$10                             ;829821|E210    |      ;
                        LDA.B #$02                           ;829823|A902    |      ;
                        JSL.L playerGrabedRoutine            ;829825|22078F84|848F07;
@@ -3868,14 +3868,14 @@ eventID_crusher_0f_main:
                        REP #$10                             ;829834|C210    |      ;
                        LDX.B $34                            ;829836|A634    |000EDC;
                        LDA.B #$04                           ;829838|A904    |      ;
-                       STA.W r_0002,X                       ;82983A|9D0200  |860002;
-                       STZ.W r_0003,X                       ;82983D|9E0300  |860003;
+                       STA.W r6_0002,X                      ;82983A|9D0200  |860002;
+                       STZ.W r6_0003,X                      ;82983D|9E0300  |860003;
                        LDX.W #$0002                         ;829840|A20200  |      ;
                        STX.B $37                            ;829843|8637    |000EDF;
                        SEP #$10                             ;829845|E210    |      ;
                                                             ;      |        |      ;
           CODE_829847:
-                       JSL.L updateEv_13_14_17_0f           ;829847|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829847|22EA8E84|848EEA;
                        JMP.W CODE_829995                    ;82984B|4C9599  |829995;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3915,17 +3915,17 @@ eventID_crusher_0f_main:
                        STZ.B $38                            ;829880|6438    |000EE0;
                        JSL.L CODE_8282D3                    ;829882|22D38282|8282D3;
                        BNE CODE_8298A6                      ;829886|D01E    |8298A6;
-                       INC.W r_0000,X                       ;829888|FE0000  |860000;
+                       INC.W r6_0000,X                      ;829888|FE0000  |860000;
                        LDA.B #$10                           ;82988B|A910    |      ;
-                       STA.W r_000a,X                       ;82988D|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;829890|9E0B00  |86000B;
+                       STA.W r6_000a,X                      ;82988D|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;829890|9E0B00  |86000B;
                        LDA.B $11                            ;829893|A511    |000EB9;
-                       STA.W r_0011,X                       ;829895|9D1100  |860011;
+                       STA.W r6_0011,X                      ;829895|9D1100  |860011;
                        REP #$20                             ;829898|C220    |      ;
                        LDA.B $05                            ;82989A|A505    |000EAD;
-                       STA.W r_0005,X                       ;82989C|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82989C|9D0500  |860005;
                        LDA.B $08                            ;82989F|A508    |000EB0;
-                       STA.W r_0008,X                       ;8298A1|9D0800  |860008;
+                       STA.W r6_0008,X                      ;8298A1|9D0800  |860008;
                        SEP #$20                             ;8298A4|E220    |      ;
                                                             ;      |        |      ;
           CODE_8298A6:
@@ -3934,7 +3934,7 @@ eventID_crusher_0f_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8298A9:
-                       LDA.W r_frameCounter1                ;8298A9|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;8298A9|AD9C0B  |860B9C;
                        LSR A                                ;8298AC|4A      |      ;
                        BCC CODE_8298C1                      ;8298AD|9012    |8298C1;
                        REP #$21                             ;8298AF|C221    |      ;
@@ -3948,7 +3948,7 @@ eventID_crusher_0f_main:
                        SEP #$20                             ;8298BF|E220    |      ;
                                                             ;      |        |      ;
           CODE_8298C1:
-                       JSL.L updateEv_13_14_17_0f           ;8298C1|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8298C1|22EA8E84|848EEA;
                        JMP.W CODE_829995                    ;8298C5|4C9599  |829995;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3975,7 +3975,7 @@ eventID_crusher_0f_main:
                        STA.B $1D                            ;8298E8|851D    |000EC5;
                                                             ;      |        |      ;
           CODE_8298EA:
-                       JSL.L updateEv_13_14_17_0f           ;8298EA|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8298EA|22EA8E84|848EEA;
                        RTS                                  ;8298EE|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3990,7 +3990,7 @@ eventID_crusher_0f_main:
                        STA.B $03                            ;8298FF|8503    |000EAB;
                                                             ;      |        |      ;
           CODE_829901:
-                       JSL.L updateEv_13_14_17_0f           ;829901|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829901|22EA8E84|848EEA;
                        RTS                                  ;829905|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4001,7 +4001,7 @@ eventID_crusher_0f_main:
                        STZ.B $03                            ;82990C|6403    |000EAB;
                                                             ;      |        |      ;
           CODE_82990E:
-                       JSL.L updateEv_13_14_17_0f           ;82990E|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82990E|22EA8E84|848EEA;
                        RTS                                  ;829912|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4015,7 +4015,7 @@ eventID_crusher_0f_main:
                        STZ.B r_ev_37-$E68                   ;829921|6437    |000E9F;
                                                             ;      |        |      ;
           CODE_829923:
-                       JSL.L updateEv_13_14_17_0f           ;829923|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829923|22EA8E84|848EEA;
                        RTS                                  ;829927|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4099,9 +4099,9 @@ eventID_crusher_0f_main:
                        REP #$30                             ;829995|C230    |      ;
                        LDX.B $34                            ;829997|A634    |000EDC;
                        LDA.B $05                            ;829999|A505    |000EAD;
-                       STA.W r_0005,X                       ;82999B|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82999B|9D0500  |860005;
                        LDA.B $08                            ;82999E|A508    |000EB0;
-                       STA.W r_0008,X                       ;8299A0|9D0800  |860008;
+                       STA.W r6_0008,X                      ;8299A0|9D0800  |860008;
                        SEP #$30                             ;8299A3|E230    |      ;
                        RTS                                  ;8299A5|60      |      ;
                                                             ;      |        |      ;
@@ -4193,7 +4193,7 @@ dodgeBlaster_13_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_829A3E:
-                       LDA.W r_d_player_xSubPos             ;829A3E|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;829A3E|ADAD0B  |860BAD;
                        SEC                                  ;829A41|38      |      ;
                        SBC.B $05                            ;829A42|E505    |000EAD;
                        BCC CODE_829A4A                      ;829A44|9004    |829A4A;
@@ -4218,13 +4218,13 @@ dodgeBlaster_13_state_00:
                        dw CODE_829AC2                       ;829A56|        |829AC2;
                                                             ;      |        |      ;
           CODE_829A58:
-                       LDA.W r_curShotFired                 ;829A58|AD0D1F  |861F0D;
+                       LDA.W r6_curShotFired                ;829A58|AD0D1F  |861F0D;
                        BEQ CODE_829A99                      ;829A5B|F03C    |829A99;
                        STZ.B $36                            ;829A5D|6436    |000EDE;
                        REP #$20                             ;829A5F|C220    |      ;
                        LDA.B $08                            ;829A61|A508    |000EB0;
                        SEC                                  ;829A63|38      |      ;
-                       SBC.W r_d_player_yPos                ;829A64|EDB00B  |860BB0;
+                       SBC.W r6_player_yPos                 ;829A64|EDB00B  |860BB0;
                        BCS CODE_829A6F                      ;829A67|B006    |829A6F;
                        EOR.W #$FFFF                         ;829A69|49FFFF  |      ;
                        INC A                                ;829A6C|1A      |      ;
@@ -4260,7 +4260,7 @@ dodgeBlaster_13_state_00:
                        REP #$20                             ;829A9C|C220    |      ;
                        LDA.B $08                            ;829A9E|A508    |000EB0;
                        SEC                                  ;829AA0|38      |      ;
-                       SBC.W r_d_player_yPos                ;829AA1|EDB00B  |860BB0;
+                       SBC.W r6_player_yPos                 ;829AA1|EDB00B  |860BB0;
                        BCS CODE_829AAA                      ;829AA4|B004    |829AAA;
                        EOR.W #$FFFF                         ;829AA6|49FFFF  |      ;
                        INC A                                ;829AA9|1A      |      ;
@@ -4298,7 +4298,7 @@ dodgeBlaster_13_state_00:
           CODE_829ADB:
                        JSL.L CODE_82825D                    ;829ADB|225D8282|82825D;
                        JSL.L CODE_8491BE                    ;829ADF|22BE9184|8491BE;
-                       JSL.L updateEv_13_14_17_0f           ;829AE3|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829AE3|22EA8E84|848EEA;
                        DEC.B $35                            ;829AE7|C635    |000EDD;
                        BNE CODE_829AF3                      ;829AE9|D008    |829AF3;
                        STZ.B r_ev_02_action-$E68            ;829AEB|6402    |000E6A;
@@ -4311,23 +4311,23 @@ dodgeBlaster_13_state_00:
                                                             ;      |        |      ;
           CODE_829AF4:
                        JSR.W CODE_829B42                    ;829AF4|20429B  |829B42;
-                       JSL.L updateEv_13_14_17_0f           ;829AF7|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829AF7|22EA8E84|848EEA;
                        DEC.B r_ev_35-$E68                   ;829AFB|C635    |000E9D;
                        BNE CODE_829B41                      ;829AFD|D042    |829B41;
                        JSL.L findEnemyShotEmptySlot         ;829AFF|22588382|828358;
                        BNE CODE_829B35                      ;829B03|D030    |829B35;
-                       INC.W r_0000,X                       ;829B05|FE0000  |860000;
+                       INC.W r6_0000,X                      ;829B05|FE0000  |860000;
                        LDA.B #$02                           ;829B08|A902    |      ;
-                       STA.W r_000a,X                       ;829B0A|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;829B0A|9D0A00  |86000A;
                        LDA.B r_ev_11_sprAtri-$E68           ;829B0D|A511    |000E79;
-                       STA.W r_0011,X                       ;829B0F|9D1100  |860011;
+                       STA.W r6_0011,X                      ;829B0F|9D1100  |860011;
                        LDA.B r_ev_18_gfxSlot-$E68           ;829B12|A518    |000E80;
-                       STA.W r_0018,X                       ;829B14|9D1800  |860018;
+                       STA.W r6_0018,X                      ;829B14|9D1800  |860018;
                        LDA.B #$03                           ;829B17|A903    |      ;
-                       STA.W r_0016,X                       ;829B19|9D1600  |860016;
+                       STA.W r6_0016,X                      ;829B19|9D1600  |860016;
                        REP #$20                             ;829B1C|C220    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;829B1E|A508    |000E70;
-                       STA.W r_0008,X                       ;829B20|9D0800  |860008;
+                       STA.W r6_0008,X                      ;829B20|9D0800  |860008;
                        LDA.B r_ev_10-$E68                   ;829B23|A510    |000E78;
                        ASL A                                ;829B25|0A      |      ;
                        ASL A                                ;829B26|0A      |      ;
@@ -4338,7 +4338,7 @@ dodgeBlaster_13_state_00:
           CODE_829B2F:
                        CLC                                  ;829B2F|18      |      ;
                        ADC.B r_ev_05_xPos-$E68              ;829B30|6505    |000E6D;
-                       STA.W r_0005,X                       ;829B32|9D0500  |860005;
+                       STA.W r6_0005,X                      ;829B32|9D0500  |860005;
                                                             ;      |        |      ;
           CODE_829B35:
                        SEP #$30                             ;829B35|E230    |      ;
@@ -4353,7 +4353,7 @@ dodgeBlaster_13_state_00:
                                                             ;      |        |      ;
           CODE_829B42:
                        REP #$20                             ;829B42|C220    |      ;
-                       LDA.W r_d_player_yPos                ;829B44|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;829B44|ADB00B  |860BB0;
                        SEC                                  ;829B47|38      |      ;
                        SBC.B $08                            ;829B48|E508    |000EB0;
                        LDA.W #$0080                         ;829B4A|A98000  |      ;
@@ -4423,7 +4423,7 @@ dodgeBlaster_13_state_00:
                        STZ.B $30                            ;829BB1|6430    |0014D8;
                                                             ;      |        |      ;
           CODE_829BB3:
-                       JSL.L updateEv_13_14_17_0f           ;829BB3|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829BB3|22EA8E84|848EEA;
                        JSL.L CODE_82823E                    ;829BB7|223E8282|82823E;
                        JSL.L CODE_849B03                    ;829BBB|22039B84|849B03;
                        BNE CODE_829BCE                      ;829BBF|D00D    |829BCE;
@@ -4592,7 +4592,7 @@ eventID_spiky_15_main:
           CODE_829CD2:
                        LDX.B r_ev_02_action-$E68            ;829CD2|A602    |000E6A;
                        JSR.W (PTR16_829CDC,X)               ;829CD4|FCDC9C  |829CDC;
-                       JSL.L updateEv_13_14_17_0f           ;829CD7|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829CD7|22EA8E84|848EEA;
                        RTS                                  ;829CDB|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4713,7 +4713,7 @@ eventID_spiky_15_main:
           CODE_829D91:
                        LDX.B r_ev_03_do-$E68                ;829D91|A603    |000E6B;
                        JSR.W (DATA8_829D9B,X)               ;829D93|FC9B9D  |829D9B;
-                       JSL.L updateEv_13_14_17_0f           ;829D96|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829D96|22EA8E84|848EEA;
                        RTS                                  ;829D9A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4953,7 +4953,7 @@ eventID_spiky_15_main:
                        JSL.L CODE_8491BE                    ;829F09|22BE9184|8491BE;
                                                             ;      |        |      ;
           CODE_829F0D:
-                       JSL.L updateEv_13_14_17_0f           ;829F0D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829F0D|22EA8E84|848EEA;
                        BRA CODE_829F1B                      ;829F11|8008    |829F1B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4986,7 +4986,7 @@ eventID_spiky_15_main:
                                                             ;      |        |      ;
           CODE_829F39:
                        REP #$20                             ;829F39|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;829F3B|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;829F3B|ADAD0B  |860BAD;
                        SEC                                  ;829F3E|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;829F3F|E505    |000E6D;
                        BCS CODE_829F48                      ;829F41|B005    |829F48;
@@ -5058,7 +5058,7 @@ eventID_bombBeen_19_main:
                        STA.B $20                            ;829FAE|8520    |000EC8;
                        LDA.B $05                            ;829FB0|A505    |000EAD;
                        SEC                                  ;829FB2|38      |      ;
-                       SBC.W r_d_player_xSubPos             ;829FB3|EDAD0B  |860BAD;
+                       SBC.W r6_player_xPos                 ;829FB3|EDAD0B  |860BAD;
                        BCS CODE_829FC5                      ;829FB6|B00D    |829FC5;
                        LDA.W #$0140                         ;829FB8|A94001  |      ;
                        STA.B r_ev_1a_xSpdSub-$E68           ;829FBB|851A    |000E82;
@@ -5080,7 +5080,7 @@ eventID_bombBeen_19_main:
                        STA.B $34                            ;829FD2|8534    |000EDC;
                        JSL.L playerGrabedRoutine            ;829FD4|22078F84|848F07;
                        STZ.B $3A                            ;829FD8|643A    |000EE2;
-                       LDA.W r_level_current                ;829FDA|AD7A1F  |861F7A;
+                       LDA.W r6_level_current               ;829FDA|AD7A1F  |861F7A;
                        BEQ CODE_829FE3                      ;829FDD|F004    |829FE3;
                        LDA.B #$02                           ;829FDF|A902    |      ;
                        STA.B $3A                            ;829FE1|853A    |000F22;
@@ -5091,7 +5091,7 @@ eventID_bombBeen_19_main:
                                                             ;      |        |      ;
           CODE_829FE4:
                        JSL.L CODE_82823E                    ;829FE4|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;829FE8|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;829FE8|22EA8E84|848EEA;
                        DEC.B $38                            ;829FEC|C638    |000EE0;
                        BNE CODE_82A000                      ;829FEE|D010    |82A000;
                        LDA.B #$5A                           ;829FF0|A95A    |      ;
@@ -5115,7 +5115,7 @@ eventID_bombBeen_19_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A00E:
-                       JSL.L updateEv_13_14_17_0f           ;82A00E|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A00E|22EA8E84|848EEA;
                        DEC.B $35                            ;82A012|C635    |000EDD;
                        BNE CODE_82A03F                      ;82A014|D029    |82A03F;
                        LDA.B $34                            ;82A016|A534    |000EDC;
@@ -5126,7 +5126,7 @@ eventID_bombBeen_19_main:
                        STZ.B r_ev_02_action-$E68            ;82A020|6402    |000E6A;
                        INC.B r_ev_35-$E68                   ;82A022|E635    |000E9D;
                        REP #$20                             ;82A024|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82A026|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82A026|ADAD0B  |860BAD;
                        SEC                                  ;82A029|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;82A02A|E505    |000E6D;
                        SEP #$20                             ;82A02C|E220    |      ;
@@ -5152,19 +5152,19 @@ eventID_bombBeen_19_main:
                        BNE CODE_82A08C                      ;82A042|D048    |82A08C;
                        JSL.L findEnemyShotEmptySlot         ;82A044|22588382|828358;
                        BNE CODE_82A084                      ;82A048|D03A    |82A084;
-                       INC.W r_0000,X                       ;82A04A|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82A04A|FE0000  |860000;
                        LDA.B r_ev_39-$E68                   ;82A04D|A539    |000EA1;
                        ORA.B r_ev_02_action-$E68            ;82A04F|0502    |000E6A;
-                       STA.W r_000b,X                       ;82A051|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82A051|9D0B00  |86000B;
                        LDA.B #$0B                           ;82A054|A90B    |      ;
-                       STA.W r_000a,X                       ;82A056|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82A056|9D0A00  |86000A;
                        REP #$20                             ;82A059|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82A05B|A505    |000E6D;
-                       STA.W r_0005,X                       ;82A05D|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82A05D|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82A060|A508    |000E70;
                        CLC                                  ;82A062|18      |      ;
                        ADC.W #$000A                         ;82A063|690A00  |      ;
-                       STA.W r_0008,X                       ;82A066|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82A066|9D0800  |860008;
                        SEP #$30                             ;82A069|E230    |      ;
                        LDA.B r_ev_02_action-$E68            ;82A06B|A502    |000E6A;
                        ASL A                                ;82A06D|0A      |      ;
@@ -5198,7 +5198,7 @@ eventID_bombBeen_19_main:
                        STA.B r_ev_38-$E68                   ;82A08A|8538    |000EA0;
                                                             ;      |        |      ;
           CODE_82A08C:
-                       JSL.L updateEv_13_14_17_0f           ;82A08C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A08C|22EA8E84|848EEA;
                        RTS                                  ;82A090|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5219,13 +5219,13 @@ eventID_bombBeen_19_main:
                        STA.B r_ev_38-$E68                   ;82A0AC|8538    |000EA0;
                                                             ;      |        |      ;
           CODE_82A0AE:
-                       JSL.L updateEv_13_14_17_0f           ;82A0AE|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A0AE|22EA8E84|848EEA;
                        RTS                                  ;82A0B2|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A0B3:
                        JSL.L CODE_82825D                    ;82A0B3|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;82A0B7|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A0B7|22EA8E84|848EEA;
                        RTS                                  ;82A0BB|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5245,7 +5245,7 @@ eventID_bombBeen_19_main:
           CODE_82A0D1:
                        LDA.B #$00                           ;82A0D1|A900    |      ;
                        ORA.B ($85,X)                        ;82A0D3|0185    |000F2D;
-                       TRB.W r_1a64                         ;82A0D5|1C641A  |861A64;
+                       TRB.W r6_1a64                        ;82A0D5|1C641A  |861A64;
                        SEP #$20                             ;82A0D8|E220    |      ;
                        LDA.B #$0A                           ;82A0DA|A90A    |      ;
                        STA.B $01                            ;82A0DC|8501    |000EA9;
@@ -5295,7 +5295,7 @@ eventID_bombBeen_19_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A126:
-                       JSL.L updateEv_13_14_17_0f           ;82A126|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A126|22EA8E84|848EEA;
                        LDA.B $0F                            ;82A12A|A50F    |000F37;
                        BPL CODE_82A11F                      ;82A12C|10F1    |82A11F;
                        LDA.B #$04                           ;82A12E|A904    |      ;
@@ -5307,7 +5307,7 @@ eventID_bombBeen_19_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A13C:
-                       JSL.L updateEv_13_14_17_0f           ;82A13C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A13C|22EA8E84|848EEA;
                        LDA.B $0F                            ;82A140|A50F    |000F37;
                        BPL CODE_82A14E                      ;82A142|100A    |82A14E;
                        LDA.B #$02                           ;82A144|A902    |      ;
@@ -5323,7 +5323,7 @@ eventID_bombBeen_19_main:
           CODE_82A155:
                        LDA.B $02                            ;82A155|A502    |000F2A;
                        BNE CODE_82A167                      ;82A157|D00E    |82A167;
-                       JSL.L updateEv_13_14_17_0f           ;82A159|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A159|22EA8E84|848EEA;
                        LDA.B $0F                            ;82A15D|A50F    |000F37;
                        BPL CODE_82A171                      ;82A15F|1010    |82A171;
                        INC.B $02                            ;82A161|E602    |000F2A;
@@ -5334,7 +5334,7 @@ eventID_bombBeen_19_main:
                        DEC.B $35                            ;82A167|C635    |000F5D;
                        DEC.B $37                            ;82A169|C637    |000F5F;
                        BNE CODE_82A171                      ;82A16B|D004    |82A171;
-                       JML.L clearStates_00_02_0E           ;82A16D|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82A16D|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A171:
@@ -5346,9 +5346,9 @@ eventID_bombBeen_19_main:
                        PHP                                  ;82A178|08      |      ;
                        REP #$30                             ;82A179|C230    |      ;
                        LDX.B $0C                            ;82A17B|A60C    |000F34;
-                       LDA.W r_0005,X                       ;82A17D|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;82A17D|BD0500  |860005;
                        STA.B $05                            ;82A180|8505    |000F2D;
-                       LDA.W r_0008,X                       ;82A182|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;82A182|BD0800  |860008;
                        SEC                                  ;82A185|38      |      ;
                        SBC.W #$0021                         ;82A186|E92100  |      ;
                        CLC                                  ;82A189|18      |      ;
@@ -5396,7 +5396,7 @@ eventID_seaAttacker_1c_main:
                        JSL.L checkPlayerGear                ;82A1C5|22B48082|8280B4;
                        JSL.L initPosAllign                  ;82A1C9|226E8082|82806E;
                        BCC CODE_82A1D3                      ;82A1CD|9004    |82A1D3;
-                       JSL.L clearStates_00_02_0E           ;82A1CF|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;82A1CF|22988382|828398;
                                                             ;      |        |      ;
           CODE_82A1D3:
                        RTL                                  ;82A1D3|6B      |      ;
@@ -5483,7 +5483,7 @@ seaAttacker_1c_state_00:
                                                             ;      |        |      ;
           CODE_82A254:
                        SEP #$20                             ;82A254|E220    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;82A256|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A256|22EA8E84|848EEA;
                        RTS                                  ;82A25A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5522,9 +5522,9 @@ seaAttacker_1c_state_00:
           CODE_82A289:
                        REP #$20                             ;82A289|C220    |      ;
                        LDA.W #$0080                         ;82A28B|A98000  |      ;
-                       STA.W r_0000                         ;82A28E|8D0000  |860000;
+                       STA.W r6_0000                        ;82A28E|8D0000  |860000;
                        LDA.B r_ev_3c-$E68                   ;82A291|A53C    |000EA4;
-                       STA.W r_0002                         ;82A293|8D0200  |860002;
+                       STA.W r6_0002                        ;82A293|8D0200  |860002;
                        SEP #$20                             ;82A296|E220    |      ;
                        JSL.L CODE_87A3EC                    ;82A298|22ECA387|87A3EC;
                        BEQ CODE_82A2A1                      ;82A29C|F003    |82A2A1;
@@ -5533,7 +5533,7 @@ seaAttacker_1c_state_00:
           CODE_82A2A1:
                        JSL.L CODE_82823E                    ;82A2A1|223E8282|82823E;
                        JSL.L CODE_82825D                    ;82A2A5|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;82A2A9|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A2A9|22EA8E84|848EEA;
                        RTS                                  ;82A2AD|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5558,7 +5558,7 @@ seaAttacker_1c_state_00:
                        JSL.L playerGrabedRoutine            ;82A2CD|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82A2D1:
-                       JSL.L updateEv_13_14_17_0f           ;82A2D1|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A2D1|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82A2D5:
                        RTS                                  ;82A2D5|60      |      ;
@@ -5566,7 +5566,7 @@ seaAttacker_1c_state_00:
                                                             ;      |        |      ;
           CODE_82A2D6:
                        JSL.L CODE_84A4B5                    ;82A2D6|22B5A484|84A4B5;
-                       JSL.L clearStates_00_02_0E           ;82A2DA|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;82A2DA|22988382|828398;
                        SEP #$10                             ;82A2DE|E210    |      ;
                        LDA.B #$01                           ;82A2E0|A901    |      ;
                        JSL.L CODE_84A384                    ;82A2E2|2284A384|84A384;
@@ -5575,7 +5575,7 @@ seaAttacker_1c_state_00:
                                                             ;      |        |      ;
           CODE_82A2E7:
                        REP #$20                             ;82A2E7|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82A2E9|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82A2E9|ADAD0B  |860BAD;
                        SEC                                  ;82A2EC|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;82A2ED|E505    |000E6D;
                        BCS CODE_82A2F6                      ;82A2EF|B005    |82A2F6;
@@ -5647,7 +5647,7 @@ eventID_gulpferd_1d_main:
           CODE_82A354:
                        LDA.B $3D                            ;82A354|A53D    |000EE5;
                        BEQ CODE_82A363                      ;82A356|F00B    |82A363;
-                       LDA.W r_curShotFired                 ;82A358|AD0D1F  |861F0D;
+                       LDA.W r6_curShotFired                ;82A358|AD0D1F  |861F0D;
                        BEQ CODE_82A363                      ;82A35B|F006    |82A363;
                        JSL.L CODE_849DCD                    ;82A35D|22CD9D84|849DCD;
                        BRA CODE_82A369                      ;82A361|8006    |82A369;
@@ -5676,15 +5676,15 @@ eventID_gulpferd_1d_main:
           CODE_82A38B:
                        LDA.B $3B                            ;82A38B|A53B    |000EE3;
                        BEQ CODE_82A392                      ;82A38D|F003    |82A392;
-                       STZ.W r_d_0bd8                       ;82A38F|9CD80B  |860BD8;
+                       STZ.W r6_player_invinsCounter        ;82A38F|9CD80B  |860BD8;
                                                             ;      |        |      ;
           CODE_82A392:
                        LDA.B $3D                            ;82A392|A53D    |000EE5;
                        BEQ CODE_82A3A0                      ;82A394|F00A    |82A3A0;
                        LDA.B #$01                           ;82A396|A901    |      ;
-                       STA.W r_d_r_player_activSpr          ;82A398|8DB60B  |860BB6;
+                       STA.W r6_player_activSpr             ;82A398|8DB60B  |860BB6;
                        STZ.B $3D                            ;82A39B|643D    |000EE5;
-                       STZ.W r_d_0be5                       ;82A39D|9CE50B  |860BE5;
+                       STZ.W $0BE5                          ;82A39D|9CE50B  |860BE5;
                                                             ;      |        |      ;
           CODE_82A3A0:
                        LDA.B #$0E                           ;82A3A0|A90E    |      ;
@@ -5735,7 +5735,7 @@ eventID_gulpferd_1d_main:
                        BNE CODE_82A415                      ;82A3EC|D027    |82A415;
                        INC.B $02                            ;82A3EE|E602    |000EAA;
                        REP #$20                             ;82A3F0|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82A3F2|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82A3F2|ADAD0B  |860BAD;
                        CMP.B $05                            ;82A3F5|C505    |000EAD;
                        SEP #$20                             ;82A3F7|E220    |      ;
                        LDA.B #$00                           ;82A3F9|A900    |      ;
@@ -5760,7 +5760,7 @@ eventID_gulpferd_1d_main:
                                                             ;      |        |      ;
           CODE_82A415:
                        JSL.L CODE_82823E                    ;82A415|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;82A419|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A419|22EA8E84|848EEA;
                        DEC.B $33                            ;82A41D|C633    |000EDB;
                        BNE CODE_82A424                      ;82A41F|D003    |82A424;
                        JSR.W CODE_82A732                    ;82A421|2032A7  |82A732;
@@ -5787,7 +5787,7 @@ eventID_gulpferd_1d_main:
                        STA.B $33                            ;82A43A|8533    |000EDB;
                                                             ;      |        |      ;
           CODE_82A43C:
-                       JSL.L updateEv_13_14_17_0f           ;82A43C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A43C|22EA8E84|848EEA;
                        DEC.B $33                            ;82A440|C633    |000EDB;
                        BNE CODE_82A44F                      ;82A442|D00B    |82A44F;
                        LDA.B #$06                           ;82A444|A906    |      ;
@@ -5799,12 +5799,12 @@ eventID_gulpferd_1d_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A44F:
-                       LDA.W r_d_0bd8                       ;82A44F|ADD80B  |860BD8;
-                       ORA.W r_bossDefeatInvFlag            ;82A452|0D0C1F  |861F0C;
+                       LDA.W r6_player_invinsCounter        ;82A44F|ADD80B  |860BD8;
+                       ORA.W r6_bossDefeatInvFlag           ;82A452|0D0C1F  |861F0C;
                        BNE CODE_82A461                      ;82A455|D00A    |82A461;
-                       LDA.W r_d_0bcf                       ;82A457|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82A457|ADCF0B  |860BCF;
                        BEQ CODE_82A461                      ;82A45A|F005    |82A461;
-                       LDA.W r_d_r_player_activSpr          ;82A45C|ADB60B  |860BB6;
+                       LDA.W r6_player_activSpr             ;82A45C|ADB60B  |860BB6;
                        BNE CODE_82A464                      ;82A45F|D003    |82A464;
                                                             ;      |        |      ;
           CODE_82A461:
@@ -5813,7 +5813,7 @@ eventID_gulpferd_1d_main:
                                                             ;      |        |      ;
           CODE_82A464:
                        REP #$20                             ;82A464|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82A466|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82A466|ADAD0B  |860BAD;
                        SEC                                  ;82A469|38      |      ;
                        SBC.B $05                            ;82A46A|E505    |000EAD;
                        BCC CODE_82A495                      ;82A46C|9027    |82A495;
@@ -5835,7 +5835,7 @@ eventID_gulpferd_1d_main:
           CODE_82A488:
                        BCS CODE_82A500                      ;82A488|B076    |82A500;
                        STA.B $35                            ;82A48A|8535    |000EDD;
-                       LDA.W r_d_0bd3                       ;82A48C|ADD30B  |860BD3;
+                       LDA.W r6_player_bd3                  ;82A48C|ADD30B  |860BD3;
                        AND.B #$04                           ;82A48F|2904    |      ;
                        BEQ CODE_82A4BC                      ;82A491|F029    |82A4BC;
                        BRA CODE_82A4B7                      ;82A493|8022    |82A4B7;
@@ -5854,7 +5854,7 @@ eventID_gulpferd_1d_main:
                        CMP.B #$1B                           ;82A4AA|C91B    |      ;
                        BCS CODE_82A500                      ;82A4AC|B052    |82A500;
                        STA.B r_ev_35-$E68                   ;82A4AE|8535    |000E9D;
-                       LDA.W r_d_0bd3                       ;82A4B0|ADD30B  |860BD3;
+                       LDA.W r6_player_bd3                  ;82A4B0|ADD30B  |860BD3;
                        AND.B #$04                           ;82A4B3|2904    |      ;
                        BEQ CODE_82A4BC                      ;82A4B5|F005    |82A4BC;
                                                             ;      |        |      ;
@@ -5881,14 +5881,14 @@ eventID_gulpferd_1d_main:
                        SEP #$30                             ;82A4D7|E230    |      ;
                        BCC CODE_82A500                      ;82A4D9|9025    |82A500;
                        LDA.B #$01                           ;82A4DB|A901    |      ;
-                       STA.W r_d_0bd8                       ;82A4DD|8DD80B  |860BD8;
+                       STA.W r6_player_invinsCounter        ;82A4DD|8DD80B  |860BD8;
                        STA.B $3B                            ;82A4E0|853B    |000EE3;
                        LDA.B #$04                           ;82A4E2|A904    |      ;
                        STA.B $02                            ;82A4E4|8502    |000EAA;
                        STZ.B $03                            ;82A4E6|6403    |000EAB;
                        LDA.B #$10                           ;82A4E8|A910    |      ;
-                       STA.W r_0000                         ;82A4EA|8D0000  |860000;
-                       STZ.W r_0001                         ;82A4ED|9C0100  |860001;
+                       STA.W r6_0000                        ;82A4EA|8D0000  |860000;
+                       STZ.W r6_0001                        ;82A4ED|9C0100  |860001;
                        JSR.W CODE_82A765                    ;82A4F0|2065A7  |82A765;
                        LDA.B #$01                           ;82A4F3|A901    |      ;
                        JSL.L playerGrabedRoutine            ;82A4F5|22078F84|848F07;
@@ -5904,11 +5904,11 @@ eventID_gulpferd_1d_main:
                                                             ;      |        |      ;
           CODE_82A505:
                        LDA.B #$03                           ;82A505|A903    |      ;
-                       TSB.W r_d_0bd4                       ;82A507|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;82A507|0CD40B  |860BD4;
                        JSL.L CODE_84A081                    ;82A50A|2281A084|84A081;
                        STA.B $35                            ;82A50E|8535    |000EDD;
                        JSR.W CODE_82A6A8                    ;82A510|20A8A6  |82A6A8;
-                       JSL.L updateEv_13_14_17_0f           ;82A513|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A513|22EA8E84|848EEA;
                        LDA.B $0F                            ;82A517|A50F    |000EB7;
                        BPL CODE_82A53E                      ;82A519|1023    |82A53E;
                        LDA.B #$08                           ;82A51B|A908    |      ;
@@ -5916,10 +5916,10 @@ eventID_gulpferd_1d_main:
                        STZ.B $02                            ;82A51F|6402    |000EAA;
                        JSL.L CODE_849FB2                    ;82A521|22B29F84|849FB2;
                        STZ.B $3E                            ;82A525|643E    |000EE6;
-                       STZ.W r_d_r_player_activSpr          ;82A527|9CB60B  |860BB6;
+                       STZ.W r6_player_activSpr             ;82A527|9CB60B  |860BB6;
                        INC.B $3D                            ;82A52A|E63D    |000EE5;
                        LDA.B #$01                           ;82A52C|A901    |      ;
-                       STA.W r_d_0be5                       ;82A52E|8DE50B  |860BE5;
+                       STA.W $0BE5                          ;82A52E|8DE50B  |860BE5;
                        LDA.B #$B4                           ;82A531|A9B4    |      ;
                        STA.B $33                            ;82A533|8533    |000EDB;
                        REP #$20                             ;82A535|C220    |      ;
@@ -6015,13 +6015,13 @@ eventID_gulpferd_1d_main:
                        STZ.B $02                            ;82A5C0|6402    |000EAA;
                                                             ;      |        |      ;
           CODE_82A5C2:
-                       JSL.L updateEv_13_14_17_0f           ;82A5C2|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A5C2|22EA8E84|848EEA;
                        JSL.L CODE_849B03                    ;82A5C6|22039B84|849B03;
                        RTS                                  ;82A5CA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A5CB:
-                       JSL.L updateEv_13_14_17_0f           ;82A5CB|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A5CB|22EA8E84|848EEA;
                        JSR.W CODE_82A7A0                    ;82A5CF|20A0A7  |82A7A0;
                        STZ.W $0C19                          ;82A5D2|9C190C  |860C19;
                        LDA.B $11                            ;82A5D5|A511    |000EB9;
@@ -6054,14 +6054,14 @@ eventID_gulpferd_1d_main:
           CODE_82A601:
                        REP #$20                             ;82A601|C220    |      ;
                        LDA.B $05                            ;82A603|A505    |000EAD;
-                       STA.W r_d_player_xSubPos             ;82A605|8DAD0B  |860BAD;
+                       STA.W r6_player_xPos                 ;82A605|8DAD0B  |860BAD;
                        LDA.B $08                            ;82A608|A508    |000EB0;
-                       STA.W r_d_player_yPos                ;82A60A|8DB00B  |860BB0;
+                       STA.W r6_player_yPos                 ;82A60A|8DB00B  |860BB0;
                        SEP #$30                             ;82A60D|E230    |      ;
                        DEC.B $33                            ;82A60F|C633    |000EDB;
                        BNE CODE_82A620                      ;82A611|D00D    |82A620;
                        LDA.B #$02                           ;82A613|A902    |      ;
-                       STA.W r_d_0bce                       ;82A615|8DCE0B  |860BCE;
+                       STA.W r6_player_bce                  ;82A615|8DCE0B  |860BCE;
                        JSL.L CODE_849F2A                    ;82A618|222A9F84|849F2A;
                        LDA.B #$B4                           ;82A61C|A9B4    |      ;
                        STA.B r_ev_33-$E68                   ;82A61E|8533    |000E9B;
@@ -6078,8 +6078,8 @@ eventID_gulpferd_1d_main:
                                                             ;      |        |      ;
           CODE_82A62B:
                        LDA.B #$07                           ;82A62B|A907    |      ;
-                       TSB.W r_d_0bd4                       ;82A62D|0CD40B  |860BD4;
-                       LDA.W r_d_joy1_buttonPressedHi       ;82A630|ADE30B  |860BE3;
+                       TSB.W r6_player_bd4                  ;82A62D|0CD40B  |860BD4;
+                       LDA.W r6_joy1_mirror_buttonPressedHi ;82A630|ADE30B  |860BE3;
                        BIT.B #$80                           ;82A633|8980    |      ;
                        BEQ CODE_82A645                      ;82A635|F00E    |82A645;
                        LDA.B #$04                           ;82A637|A904    |      ;
@@ -6091,7 +6091,7 @@ eventID_gulpferd_1d_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A645:
-                       LDA.W r_d_joy1_buttonHoldHi_0        ;82A645|ADDF0B  |860BDF;
+                       LDA.W r6_joy1_mirror_buttonHoldHi_0  ;82A645|ADDF0B  |860BDF;
                        AND.B #$03                           ;82A648|2903    |      ;
                        BEQ CODE_82A656                      ;82A64A|F00A    |82A656;
                        LDA.B #$02                           ;82A64C|A902    |      ;
@@ -6105,8 +6105,8 @@ eventID_gulpferd_1d_main:
                                                             ;      |        |      ;
           CODE_82A657:
                        LDA.B #$07                           ;82A657|A907    |      ;
-                       TSB.W r_d_0bd4                       ;82A659|0CD40B  |860BD4;
-                       LDA.W r_d_joy1_buttonPressedHi       ;82A65C|ADE30B  |860BE3;
+                       TSB.W r6_player_bd4                  ;82A659|0CD40B  |860BD4;
+                       LDA.W r6_joy1_mirror_buttonPressedHi ;82A65C|ADE30B  |860BE3;
                        AND.B #$80                           ;82A65F|2980    |      ;
                        BEQ CODE_82A671                      ;82A661|F00E    |82A671;
                        LDA.B #$04                           ;82A663|A904    |      ;
@@ -6120,7 +6120,7 @@ eventID_gulpferd_1d_main:
           CODE_82A671:
                        LDA.B r_ev_0f_waitCount-$E68         ;82A671|A50F    |000E77;
                        BPL CODE_82A684                      ;82A673|100F    |82A684;
-                       LDA.W r_d_joy1_buttonHoldHi_0        ;82A675|ADDF0B  |860BDF;
+                       LDA.W r6_joy1_mirror_buttonHoldHi_0  ;82A675|ADDF0B  |860BDF;
                        AND.B #$03                           ;82A678|2903    |      ;
                        BNE CODE_82A684                      ;82A67A|D008    |82A684;
                        STZ.B r_ev_02_action-$E68            ;82A67C|6402    |000E6A;
@@ -6140,17 +6140,17 @@ eventID_gulpferd_1d_main:
                                                             ;      |        |      ;
           CODE_82A68C:
                        LDA.B #$08                           ;82A68C|A908    |      ;
-                       TSB.W r_d_0bd4                       ;82A68E|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;82A68E|0CD40B  |860BD4;
                        RTS                                  ;82A691|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A692:
-                       JSL.L updateEv_13_14_17_0f           ;82A692|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A692|22EA8E84|848EEA;
                        LDA.B $0F                            ;82A696|A50F    |000EB7;
                        BPL CODE_82A6A7                      ;82A698|100D    |82A6A7;
                        JSL.L clearStateIf_0cEqual           ;82A69A|22878382|828387;
-                       STZ.W r_0000                         ;82A69E|9C0000  |860000;
-                       STZ.W r_0001                         ;82A6A1|9C0100  |860001;
+                       STZ.W r6_0000                        ;82A69E|9C0000  |860000;
+                       STZ.W r6_0001                        ;82A6A1|9C0100  |860001;
                        JSR.W CODE_82A765                    ;82A6A4|2065A7  |82A765;
                                                             ;      |        |      ;
           CODE_82A6A7:
@@ -6165,31 +6165,31 @@ eventID_gulpferd_1d_main:
                        ASL A                                ;82A6AE|0A      |      ;
                        TAX                                  ;82A6AF|AA      |      ;
                        REP #$20                             ;82A6B0|C220    |      ;
-                       LDA.W r_d_player_xSubSpd             ;82A6B2|ADC20B  |860BC2;
+                       LDA.W r6_player_xSubSpd              ;82A6B2|ADC20B  |860BC2;
                        STA.B $37                            ;82A6B5|8537    |000EDF;
-                       LDA.W r_d_player_ySubSpd             ;82A6B7|ADC40B  |860BC4;
+                       LDA.W r6_player_ySubSpd              ;82A6B7|ADC40B  |860BC4;
                        STA.B $39                            ;82A6BA|8539    |000EE1;
                        LDA.W DATA8_86EE37,X                 ;82A6BC|BD37EE  |86EE37;
                        EOR.W #$FFFF                         ;82A6BF|49FFFF  |      ;
                        INC A                                ;82A6C2|1A      |      ;
-                       STA.W r_d_player_xSubSpd             ;82A6C3|8DC20B  |860BC2;
+                       STA.W r6_player_xSubSpd              ;82A6C3|8DC20B  |860BC2;
                        LDA.W DATA8_86EE39,X                 ;82A6C6|BD39EE  |86EE39;
                        EOR.W #$FFFF                         ;82A6C9|49FFFF  |      ;
                        INC A                                ;82A6CC|1A      |      ;
-                       STA.W r_d_player_ySubSpd             ;82A6CD|8DC40B  |860BC4;
+                       STA.W r6_player_ySubSpd              ;82A6CD|8DC40B  |860BC4;
                        PHD                                  ;82A6D0|0B      |      ;
-                       PEA.W r_d_player_FauxExist           ;82A6D1|F4A80B  |860BA8;
+                       PEA.W r6_player_Exist                ;82A6D1|F4A80B  |860BA8;
                        PLD                                  ;82A6D4|2B      |      ;
                        JSL.L CODE_82820A                    ;82A6D5|220A8282|82820A;
                        PLD                                  ;82A6D9|2B      |      ;
                        LDA.B $37                            ;82A6DA|A537    |000EDF;
-                       STA.W r_d_player_xSubSpd             ;82A6DC|8DC20B  |860BC2;
+                       STA.W r6_player_xSubSpd              ;82A6DC|8DC20B  |860BC2;
                        LDA.B $39                            ;82A6DF|A539    |000EE1;
                        BPL CODE_82A6E6                      ;82A6E1|1003    |82A6E6;
                        LDA.W #$0000                         ;82A6E3|A90000  |      ;
                                                             ;      |        |      ;
           CODE_82A6E6:
-                       STA.W r_d_player_ySubSpd             ;82A6E6|8DC40B  |860BC4;
+                       STA.W r6_player_ySubSpd              ;82A6E6|8DC40B  |860BC4;
                        PLP                                  ;82A6E9|28      |      ;
                        RTS                                  ;82A6EA|60      |      ;
                                                             ;      |        |      ;
@@ -6220,15 +6220,15 @@ eventID_gulpferd_1d_main:
           CODE_82A716:
                        LDA.B $3B                            ;82A716|A53B    |000EE3;
                        BEQ CODE_82A71F                      ;82A718|F005    |82A71F;
-                       STZ.W r_d_0bd8                       ;82A71A|9CD80B  |860BD8;
+                       STZ.W r6_player_invinsCounter        ;82A71A|9CD80B  |860BD8;
                        STZ.B $3B                            ;82A71D|643B    |000EE3;
                                                             ;      |        |      ;
           CODE_82A71F:
                        LDA.B $3D                            ;82A71F|A53D    |000EE5;
                        BEQ CODE_82A72D                      ;82A721|F00A    |82A72D;
                        LDA.B #$01                           ;82A723|A901    |      ;
-                       STA.W r_d_r_player_activSpr          ;82A725|8DB60B  |860BB6;
-                       STZ.W r_d_0be5                       ;82A728|9CE50B  |860BE5;
+                       STA.W r6_player_activSpr             ;82A725|8DB60B  |860BB6;
+                       STZ.W $0BE5                          ;82A728|9CE50B  |860BE5;
                        STZ.B $3D                            ;82A72B|643D    |000EE5;
                                                             ;      |        |      ;
           CODE_82A72D:
@@ -6244,20 +6244,20 @@ eventID_gulpferd_1d_main:
                        INC.B $03                            ;82A738|E603    |000EAB;
                        JSL.L CODE_8282D3                    ;82A73A|22D38282|8282D3;
                        BNE CODE_82A762                      ;82A73E|D022    |82A762;
-                       INC.W r_0000,X                       ;82A740|FE0000  |860000;
-                       STZ.W r_000b,X                       ;82A743|9E0B00  |86000B;
+                       INC.W r6_0000,X                      ;82A740|FE0000  |860000;
+                       STZ.W r6_000b,X                      ;82A743|9E0B00  |86000B;
                        LDA.B #$17                           ;82A746|A917    |      ;
-                       STA.W r_000a,X                       ;82A748|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82A748|9D0A00  |86000A;
                        LDA.B $11                            ;82A74B|A511    |000EB9;
                        AND.B #$40                           ;82A74D|2940    |      ;
-                       STA.W r_0011,X                       ;82A74F|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82A74F|9D1100  |860011;
                        REP #$20                             ;82A752|C220    |      ;
                        LDA.B $05                            ;82A754|A505    |000EAD;
-                       STA.W r_0005,X                       ;82A756|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82A756|9D0500  |860005;
                        LDA.B $08                            ;82A759|A508    |000EB0;
-                       STA.W r_0008,X                       ;82A75B|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82A75B|9D0800  |860008;
                        TDC                                  ;82A75E|7B      |      ;
-                       STA.W r_000c,X                       ;82A75F|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82A75F|9D0C00  |86000C;
                                                             ;      |        |      ;
           CODE_82A762:
                        SEP #$30                             ;82A762|E230    |      ;
@@ -6267,33 +6267,33 @@ eventID_gulpferd_1d_main:
           CODE_82A765:
                        JSL.L CODE_8282D3                    ;82A765|22D38282|8282D3;
                        BNE CODE_82A79D                      ;82A769|D032    |82A79D;
-                       INC.W r_0000,X                       ;82A76B|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82A76B|FE0000  |860000;
                        LDA.B #$17                           ;82A76E|A917    |      ;
-                       STA.W r_000a,X                       ;82A770|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82A770|9D0A00  |86000A;
                        LDA.B #$01                           ;82A773|A901    |      ;
-                       STA.W r_000b,X                       ;82A775|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82A775|9D0B00  |86000B;
                        LDA.B $11                            ;82A778|A511    |000EB9;
                        AND.B #$40                           ;82A77A|2940    |      ;
-                       STA.W r_0011,X                       ;82A77C|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82A77C|9D1100  |860011;
                        REP #$20                             ;82A77F|C220    |      ;
                        BNE CODE_82A78B                      ;82A781|D008    |82A78B;
                        LDA.B r_ev_05_xPos-$E68              ;82A783|A505    |000E6D;
                        SEC                                  ;82A785|38      |      ;
-                       SBC.W r_0000                         ;82A786|ED0000  |860000;
+                       SBC.W r6_0000                        ;82A786|ED0000  |860000;
                        BRA CODE_82A791                      ;82A789|8006    |82A791;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A78B:
                        LDA.B $05                            ;82A78B|A505    |000EAD;
                        CLC                                  ;82A78D|18      |      ;
-                       ADC.W r_0000                         ;82A78E|6D0000  |860000;
+                       ADC.W r6_0000                        ;82A78E|6D0000  |860000;
                                                             ;      |        |      ;
           CODE_82A791:
-                       STA.W r_0005,X                       ;82A791|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82A791|9D0500  |860005;
                        LDA.B $08                            ;82A794|A508    |000EB0;
-                       STA.W r_0008,X                       ;82A796|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82A796|9D0800  |860008;
                        TDC                                  ;82A799|7B      |      ;
-                       STA.W r_000c,X                       ;82A79A|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82A79A|9D0C00  |86000C;
                                                             ;      |        |      ;
           CODE_82A79D:
                        SEP #$30                             ;82A79D|E230    |      ;
@@ -6389,7 +6389,7 @@ eventID_madPeker_1e_main:
                        REP #$20                             ;82A82B|C220    |      ;
                        LDA.W #$CB46                         ;82A82D|A946CB  |      ;
                        STA.B $20                            ;82A830|8520    |000EC8;
-                       LDA.W r_d_player_xSubPos             ;82A832|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82A832|ADAD0B  |860BAD;
                        SEC                                  ;82A835|38      |      ;
                        SBC.B $05                            ;82A836|E505    |000EAD;
                        STZ.B $31                            ;82A838|6431    |000ED9;
@@ -6414,7 +6414,7 @@ eventID_madPeker_1e_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A856:
-                       JSL.L updateEv_13_14_17_0f           ;82A856|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A856|22EA8E84|848EEA;
                        JSR.W CODE_82A958                    ;82A85A|2058A9  |82A958;
                        BCS CODE_82A86F                      ;82A85D|B010    |82A86F;
                        LDA.B #$01                           ;82A85F|A901    |      ;
@@ -6435,7 +6435,7 @@ eventID_madPeker_1e_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A87A:
-                       JSL.L updateEv_13_14_17_0f           ;82A87A|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A87A|22EA8E84|848EEA;
                        LDA.B $02                            ;82A87E|A502    |000EAA;
                        BNE CODE_82A8D1                      ;82A880|D04F    |82A8D1;
                        DEC.B $33                            ;82A882|C633    |000EDB;
@@ -6453,9 +6453,9 @@ eventID_madPeker_1e_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A89B:
-                       INC.W r_0000,X                       ;82A89B|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82A89B|FE0000  |860000;
                        LDA.B #$1F                           ;82A89E|A91F    |      ;
-                       STA.W r_000a,X                       ;82A8A0|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82A8A0|9D0A00  |86000A;
                        JSL.L mainPlayer_00                  ;82A8A3|22869084|849086;
                        XBA                                  ;82A8A7|EB      |      ;
                        LDA.B #$00                           ;82A8A8|A900    |      ;
@@ -6463,18 +6463,18 @@ eventID_madPeker_1e_main:
                        AND.B #$0F                           ;82A8AB|290F    |      ;
                        TAY                                  ;82A8AD|A8      |      ;
                        LDA.W UNREACH_86CB4A,Y               ;82A8AE|B94ACB  |86CB4A;
-                       STA.W r_000b,X                       ;82A8B1|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82A8B1|9D0B00  |86000B;
                        REP #$20                             ;82A8B4|C220    |      ;
                        LDA.B $05                            ;82A8B6|A505    |000EAD;
-                       STA.W r_0005,X                       ;82A8B8|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82A8B8|9D0500  |860005;
                        LDA.B $08                            ;82A8BB|A508    |000EB0;
                        SEC                                  ;82A8BD|38      |      ;
                        SBC.W #$0009                         ;82A8BE|E90900  |      ;
-                       STA.W r_0008,X                       ;82A8C1|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82A8C1|9D0800  |860008;
                        SEP #$20                             ;82A8C4|E220    |      ;
                        LDA.B $11                            ;82A8C6|A511    |000EB9;
                        AND.B #$40                           ;82A8C8|2940    |      ;
-                       STA.W r_0011,X                       ;82A8CA|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82A8CA|9D1100  |860011;
                        STX.B $31                            ;82A8CD|8631    |000ED9;
                        SEP #$10                             ;82A8CF|E210    |      ;
                                                             ;      |        |      ;
@@ -6498,11 +6498,11 @@ eventID_madPeker_1e_main:
                                                             ;      |        |      ;
           CODE_82A8EB:
                        LDX.B $31                            ;82A8EB|A631    |000ED9;
-                       STA.W r_0005,X                       ;82A8ED|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82A8ED|9D0500  |860005;
                        STZ.B $31                            ;82A8F0|6431    |000ED9;
                        SEP #$20                             ;82A8F2|E220    |      ;
                        LDA.B #$04                           ;82A8F4|A904    |      ;
-                       STA.W r_0001,X                       ;82A8F6|9D0100  |860001;
+                       STA.W r6_0001,X                      ;82A8F6|9D0100  |860001;
                        SEP #$10                             ;82A8F9|E210    |      ;
                        LDA.B #$3C                           ;82A8FB|A93C    |      ;
                        STA.B $33                            ;82A8FD|8533    |000EDB;
@@ -6514,7 +6514,7 @@ eventID_madPeker_1e_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A904:
-                       JSL.L updateEv_13_14_17_0f           ;82A904|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82A904|22EA8E84|848EEA;
                        JSR.W CODE_82A958                    ;82A908|2058A9  |82A958;
                        BCC CODE_82A911                      ;82A90B|9004    |82A911;
                                                             ;      |        |      ;
@@ -6555,7 +6555,7 @@ eventID_madPeker_1e_main:
                        LDX.B $31                            ;82A948|A631    |000ED9;
                        BEQ CODE_82A951                      ;82A94A|F005    |82A951;
                        LDA.B #$04                           ;82A94C|A904    |      ;
-                       STA.W r_0001,X                       ;82A94E|9D0100  |860001;
+                       STA.W r6_0001,X                      ;82A94E|9D0100  |860001;
                                                             ;      |        |      ;
           CODE_82A951:
                        JSL.L clearStateIf_0cEqual           ;82A951|22878382|828387;
@@ -6565,7 +6565,7 @@ eventID_madPeker_1e_main:
                                                             ;      |        |      ;
           CODE_82A958:
                        REP #$20                             ;82A958|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82A95A|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82A95A|ADAD0B  |860BAD;
                        SEC                                  ;82A95D|38      |      ;
                        SBC.B $05                            ;82A95E|E505    |000EAD;
                        SEP #$20                             ;82A960|E220    |      ;
@@ -6575,7 +6575,7 @@ eventID_madPeker_1e_main:
                        AND.B #$40                           ;82A966|2940    |      ;
                        BNE CODE_82A98E                      ;82A968|D024    |82A98E;
                        REP #$20                             ;82A96A|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82A96C|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82A96C|ADAD0B  |860BAD;
                        SEC                                  ;82A96F|38      |      ;
                        SBC.B $05                            ;82A970|E505    |000EAD;
                        BCS CODE_82A978                      ;82A972|B004    |82A978;
@@ -6623,7 +6623,7 @@ eventID_creeper_1f_main:
                                                             ;      |        |      ;
           CODE_82A9B4:
                        JSL.L CODE_84A4B5                    ;82A9B4|22B5A484|84A4B5;
-                       JML.L clearStates_00_02_0E           ;82A9B8|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82A9B8|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82A9BC:
@@ -6721,7 +6721,7 @@ eventID_creeper_1f_main:
                        LDA.B #$40                           ;82AA5C|A940    |      ;
                        TRB.B r_ev_11_sprAtri-$E68           ;82AA5E|1411    |000E79;
                        REP #$20                             ;82AA60|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82AA62|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82AA62|ADAD0B  |860BAD;
                        SEC                                  ;82AA65|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;82AA66|E505    |000E6D;
                        SEP #$20                             ;82AA68|E220    |      ;
@@ -6743,10 +6743,10 @@ eventID_creeper_1f_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AA81:
-                       JSL.L updateEv_13_14_17_0f           ;82AA81|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82AA81|22EA8E84|848EEA;
                        JSL.L initPosAllign                  ;82AA85|226E8082|82806E;
                        BCC CODE_82AA8F                      ;82AA89|9004    |82AA8F;
-                       JSL.L clearStates_00_02_0E           ;82AA8B|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;82AA8B|22988382|828398;
                                                             ;      |        |      ;
           CODE_82AA8F:
                        RTS                                  ;82AA8F|60      |      ;
@@ -6782,10 +6782,10 @@ eventID_creeper_1f_main:
                        STA.B r_ev_2f-$E68                   ;82AAC6|852F    |000E97;
                                                             ;      |        |      ;
           CODE_82AAC8:
-                       JSL.L updateEv_13_14_17_0f           ;82AAC8|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82AAC8|22EA8E84|848EEA;
                        JSL.L initPosAllign                  ;82AACC|226E8082|82806E;
                        BCC CODE_82AAD6                      ;82AAD0|9004    |82AAD6;
-                       JSL.L clearStates_00_02_0E           ;82AAD2|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;82AAD2|22988382|828398;
                                                             ;      |        |      ;
           CODE_82AAD6:
                        RTS                                  ;82AAD6|60      |      ;
@@ -6875,7 +6875,7 @@ amenHopper_20_state_00:
                        STA.B r_ev_02_action-$E68            ;82AB69|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_82AB6B:
-                       JSL.L updateEv_13_14_17_0f           ;82AB6B|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82AB6B|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;82AB6F|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;82AB73|22BE9184|8491BE;
                        REP #$20                             ;82AB77|C220    |      ;
@@ -6914,27 +6914,27 @@ amenHopper_20_state_00:
                        CLC                                  ;82ABB0|18      |      ;
                        ADC.W #$0007                         ;82ABB1|690700  |      ;
                        AND.W #$FFF0                         ;82ABB4|29F0FF  |      ;
-                       STA.W r_0000                         ;82ABB7|8D0000  |860000;
-                       LDA.W r_1f2d                         ;82ABBA|AD2D1F  |861F2D;
+                       STA.W r6_0000                        ;82ABB7|8D0000  |860000;
+                       LDA.W r6_1f2d                        ;82ABBA|AD2D1F  |861F2D;
                        AND.W #$00FF                         ;82ABBD|29FF00  |      ;
                        CLC                                  ;82ABC0|18      |      ;
-                       ADC.W r_0000                         ;82ABC1|6D0000  |860000;
+                       ADC.W r6_0000                        ;82ABC1|6D0000  |860000;
                        SEC                                  ;82ABC4|38      |      ;
                        SBC.W #$0007                         ;82ABC5|E90700  |      ;
                        STA.B r_ev_08_yPos-$E68              ;82ABC8|8508    |000E70;
                        SEP #$20                             ;82ABCA|E220    |      ;
                        JSL.L CODE_8282D3                    ;82ABCC|22D38282|8282D3;
                        BNE CODE_82ABEC                      ;82ABD0|D01A    |82ABEC;
-                       INC.W r_0000,X                       ;82ABD2|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82ABD2|FE0000  |860000;
                        LDA.B #$0C                           ;82ABD5|A90C    |      ;
-                       STA.W r_000a,X                       ;82ABD7|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82ABD7|9D0A00  |86000A;
                        LDA.B #$01                           ;82ABDA|A901    |      ;
-                       STA.W r_000b,X                       ;82ABDC|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82ABDC|9D0B00  |86000B;
                        REP #$20                             ;82ABDF|C220    |      ;
-                       LDA.W r_0000                         ;82ABE1|AD0000  |860000;
-                       STA.W r_0008,X                       ;82ABE4|9D0800  |860008;
+                       LDA.W r6_0000                        ;82ABE1|AD0000  |860000;
+                       STA.W r6_0008,X                      ;82ABE4|9D0800  |860008;
                        LDA.B r_ev_05_xPos-$E68              ;82ABE7|A505    |000E6D;
-                       STA.W r_0005,X                       ;82ABE9|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82ABE9|9D0500  |860005;
                                                             ;      |        |      ;
           CODE_82ABEC:
                        SEP #$30                             ;82ABEC|E230    |      ;
@@ -6944,7 +6944,7 @@ amenHopper_20_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82ABEF:
-                       JSL.L updateEv_13_14_17_0f           ;82ABEF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82ABEF|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;82ABF3|A50F    |000E77;
                        BPL CODE_82ABFD                      ;82ABF5|1006    |82ABFD;
                        LDA.B #$04                           ;82ABF7|A904    |      ;
@@ -6956,7 +6956,7 @@ amenHopper_20_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82ABFE:
-                       JSL.L updateEv_13_14_17_0f           ;82ABFE|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82ABFE|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;82AC02|A50F    |000E77;
                        BPL CODE_82AC16                      ;82AC04|1010    |82AC16;
                        LDA.B #$06                           ;82AC06|A906    |      ;
@@ -6980,11 +6980,11 @@ amenHopper_20_state_00:
                        CLC                                  ;82AC1B|18      |      ;
                        ADC.W #$0007                         ;82AC1C|690700  |      ;
                        AND.W #$FFF0                         ;82AC1F|29F0FF  |      ;
-                       STA.W r_0000                         ;82AC22|8D0000  |860000;
-                       LDA.W r_1f2d                         ;82AC25|AD2D1F  |861F2D;
+                       STA.W r6_0000                        ;82AC22|8D0000  |860000;
+                       LDA.W r6_1f2d                        ;82AC25|AD2D1F  |861F2D;
                        AND.W #$00FF                         ;82AC28|29FF00  |      ;
                        CLC                                  ;82AC2B|18      |      ;
-                       ADC.W r_0000                         ;82AC2C|6D0000  |860000;
+                       ADC.W r6_0000                        ;82AC2C|6D0000  |860000;
                        SEC                                  ;82AC2F|38      |      ;
                        SBC.W #$0007                         ;82AC30|E90700  |      ;
                        STA.B r_ev_08_yPos-$E68              ;82AC33|8508    |000E70;
@@ -7026,7 +7026,7 @@ amenHopper_20_state_00:
                        SEP #$20                             ;82AC6B|E220    |      ;
                                                             ;      |        |      ;
           CODE_82AC6D:
-                       JSL.L updateEv_13_14_17_0f           ;82AC6D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82AC6D|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;82AC71|A50F    |000E77;
                        BPL CODE_82AC87                      ;82AC73|1012    |82AC87;
                        LDA.B #$02                           ;82AC75|A902    |      ;
@@ -7046,7 +7046,7 @@ amenHopper_20_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AC88:
-                       JSL.L updateEv_13_14_17_0f           ;82AC88|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82AC88|22EA8E84|848EEA;
                        JSL.L CODE_828195                    ;82AC8C|22958182|828195;
                        JSR.W CODE_82ADE9                    ;82AC90|20E9AD  |82ADE9;
                        JSL.L CODE_8491BE                    ;82AC93|22BE9184|8491BE;
@@ -7090,7 +7090,7 @@ amenHopper_20_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82ACD3:
-                       JSL.L updateEv_13_14_17_0f           ;82ACD3|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82ACD3|22EA8E84|848EEA;
                        JSL.L CODE_828174                    ;82ACD7|22748182|828174;
                        JSR.W CODE_82ADE9                    ;82ACDB|20E9AD  |82ADE9;
                        JSL.L CODE_8491BE                    ;82ACDE|22BE9184|8491BE;
@@ -7126,7 +7126,7 @@ amenHopper_20_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AD15:
-                       JSL.L updateEv_13_14_17_0f           ;82AD15|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82AD15|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;82AD19|C634    |000E9C;
                        BNE CODE_82AD29                      ;82AD1B|D00C    |82AD29;
                        JSR.W CODE_82ADBD                    ;82AD1D|20BDAD  |82ADBD;
@@ -7181,7 +7181,7 @@ amenHopper_20_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82AD65:
-                       JSL.L updateEv_13_14_17_0f           ;82AD65|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82AD65|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;82AD69|A50F    |000E77;
                        BPL CODE_82AD7D                      ;82AD6B|1010    |82AD7D;
                        REP #$20                             ;82AD6D|C220    |      ;
@@ -7201,11 +7201,11 @@ amenHopper_20_state_00:
                        CLC                                  ;82AD85|18      |      ;
                        ADC.W #$0007                         ;82AD86|690700  |      ;
                        AND.W #$FFF0                         ;82AD89|29F0FF  |      ;
-                       STA.W r_0000                         ;82AD8C|8D0000  |860000;
-                       LDA.W r_1f2d                         ;82AD8F|AD2D1F  |861F2D;
+                       STA.W r6_0000                        ;82AD8C|8D0000  |860000;
+                       LDA.W r6_1f2d                        ;82AD8F|AD2D1F  |861F2D;
                        AND.W #$00FF                         ;82AD92|29FF00  |      ;
                        CLC                                  ;82AD95|18      |      ;
-                       ADC.W r_0000                         ;82AD96|6D0000  |860000;
+                       ADC.W r6_0000                        ;82AD96|6D0000  |860000;
                        SEC                                  ;82AD99|38      |      ;
                        SBC.W #$0007                         ;82AD9A|E90700  |      ;
                        STA.B r_ev_08_yPos-$E68              ;82AD9D|8508    |000E70;
@@ -7217,7 +7217,7 @@ amenHopper_20_state_00:
                                                             ;      |        |      ;
           CODE_82ADA2:
                        JSL.L CODE_8281E8                    ;82ADA2|22E88182|8281E8;
-                       JSL.L updateEv_13_14_17_0f           ;82ADA6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82ADA6|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;82ADAA|22BE9184|8491BE;
                        REP #$20                             ;82ADAE|C220    |      ;
                        LDA.B r_ev_1c_ySpdSub-$E68           ;82ADB0|A51C    |000E84;
@@ -7252,7 +7252,7 @@ amenHopper_20_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82ADDA:
-                       LDA.W r_d_player_xSubPos             ;82ADDA|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82ADDA|ADAD0B  |860BAD;
                        SEC                                  ;82ADDD|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;82ADDE|E505    |000E6D;
                                                             ;      |        |      ;
@@ -7278,14 +7278,14 @@ amenHopper_20_state_00:
                        BCS CODE_82AE15                      ;82ADF9|B01A    |82AE15;
                        JSL.L findEnemyShotEmptySlot         ;82ADFB|22588382|828358;
                        BNE CODE_82AE15                      ;82ADFF|D014    |82AE15;
-                       INC.W r_0000,X                       ;82AE01|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82AE01|FE0000  |860000;
                        LDA.B #$0C                           ;82AE04|A90C    |      ;
-                       STA.W r_000a,X                       ;82AE06|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82AE06|9D0A00  |86000A;
                        REP #$20                             ;82AE09|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82AE0B|A505    |000E6D;
-                       STA.W r_0005,X                       ;82AE0D|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82AE0D|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82AE10|A508    |000E70;
-                       STA.W r_0008,X                       ;82AE12|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82AE12|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82AE15:
                        SEP #$30                             ;82AE15|E230    |      ;
@@ -7358,30 +7358,30 @@ eventID_angler_21_main:
           CODE_82AE81:
                        LDA.B #$02                           ;82AE81|A902    |      ;
                        STA.B r_ev_02_action-$E68            ;82AE83|8502    |000E6A;
-                       STA.W r_0ba1                         ;82AE85|8DA10B  |860BA1;
+                       STA.W r6_0ba1                        ;82AE85|8DA10B  |860BA1;
                        REP #$31                             ;82AE88|C231    |      ;
                        LDX.B r_ev_1a_xSpdSub-$E68           ;82AE8A|A61A    |000E82;
-                       LDA.W r_0008,X                       ;82AE8C|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;82AE8C|BD0800  |860008;
                        ADC.W #$0050                         ;82AE8F|695000  |      ;
-                       STA.W r_0008,X                       ;82AE92|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82AE92|9D0800  |860008;
                        LDX.B r_ev_1c_ySpdSub-$E68           ;82AE95|A61C    |000E84;
-                       LDA.W r_0008,X                       ;82AE97|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;82AE97|BD0800  |860008;
                        CLC                                  ;82AE9A|18      |      ;
                        ADC.W #$0050                         ;82AE9B|695000  |      ;
-                       STA.W r_0008,X                       ;82AE9E|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82AE9E|9D0800  |860008;
                        LDX.B r_ev_0f_waitCount-$E68         ;82AEA1|A60F    |000E77;
-                       LDA.W r_0008,X                       ;82AEA3|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;82AEA3|BD0800  |860008;
                        CLC                                  ;82AEA6|18      |      ;
                        ADC.W #$0050                         ;82AEA7|695000  |      ;
-                       STA.W r_0008,X                       ;82AEAA|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82AEAA|9D0800  |860008;
                        LDA.B r_ev_0b_subID-$E68             ;82AEAD|A50B    |000E73;
                        AND.W #$007F                         ;82AEAF|297F00  |      ;
                        ASL A                                ;82AEB2|0A      |      ;
                        TAX                                  ;82AEB3|AA      |      ;
                        LDA.W UNREACH_86CBEC,X               ;82AEB4|BDECCB  |86CBEC;
-                       STA.W r_1f28                         ;82AEB7|8D281F  |861F28;
+                       STA.W r6_1f28                        ;82AEB7|8D281F  |861F28;
                        LDA.W UNREACH_86CBF2,X               ;82AEBA|BDF2CB  |86CBF2;
-                       STA.W r_1f2a                         ;82AEBD|8D2A1F  |861F2A;
+                       STA.W r6_1f2a                        ;82AEBD|8D2A1F  |861F2A;
                        LDA.W #$0050                         ;82AEC0|A95000  |      ;
                        STA.B r_ev_34-$E68                   ;82AEC3|8534    |000E9C;
                        JSR.W CODE_82B414                    ;82AEC5|2014B4  |82B414;
@@ -7395,10 +7395,10 @@ eventID_angler_21_main:
                        LDA.B r_ev_05_xPos-$E68              ;82AED0|A505    |000E6D;
                        CLC                                  ;82AED2|18      |      ;
                        ADC.W #$FEE0                         ;82AED3|69E0FE  |      ;
-                       CMP.W r_cam_BG0_xPos_target          ;82AED6|CD4D1E  |861E4D;
+                       CMP.W r6_cam_BG0_xPos_target         ;82AED6|CD4D1E  |861E4D;
                        BCC CODE_82AEE5                      ;82AED9|900A    |82AEE5;
                        LDX.B #$00                           ;82AEDB|A200    |      ;
-                       STX.W r_0ba1                         ;82AEDD|8EA10B  |860BA1;
+                       STX.W r6_0ba1                        ;82AEDD|8EA10B  |860BA1;
                        LDX.B #$06                           ;82AEE0|A206    |      ;
                        STX.B r_ev_02_action-$E68            ;82AEE2|8602    |000E6A;
                        RTL                                  ;82AEE4|6B      |      ;
@@ -7408,32 +7408,32 @@ eventID_angler_21_main:
                        LDA.B r_ev_05_xPos-$E68              ;82AEE5|A505    |000E6D;
                        CLC                                  ;82AEE7|18      |      ;
                        ADC.W #$FF00                         ;82AEE8|6900FF  |      ;
-                       CMP.W r_cam_BG0_xPos_target          ;82AEEB|CD4D1E  |861E4D;
+                       CMP.W r6_cam_BG0_xPos_target         ;82AEEB|CD4D1E  |861E4D;
                        BCS CODE_82AF42                      ;82AEEE|B052    |82AF42;
-                       LDA.W r_levelSpecFlag                ;82AEF0|AD5E1E  |861E5E;
+                       LDA.W r6_levelSpecFlag               ;82AEF0|AD5E1E  |861E5E;
                        STA.L $7FD61A                        ;82AEF3|8F1AD67F|7FD61A;
-                       LDA.W r_cam_BG0_xPos_lock            ;82AEF7|AD601E  |861E60;
+                       LDA.W r6_cam_BG0_xPos_lock           ;82AEF7|AD601E  |861E60;
                        STA.L $7FD61C                        ;82AEFA|8F1CD67F|7FD61C;
-                       LDA.W r_1e68                         ;82AEFE|AD681E  |861E68;
+                       LDA.W r6_1e68                        ;82AEFE|AD681E  |861E68;
                        STA.L $7FD61E                        ;82AF01|8F1ED67F|7FD61E;
-                       LDA.W r_cam_BG0_yPos_lock_Set        ;82AF05|AD6E1E  |861E6E;
+                       LDA.W r6_cam_BG0_yPos_lock_Set       ;82AF05|AD6E1E  |861E6E;
                        STA.L $7FD620                        ;82AF08|8F20D67F|7FD620;
                        LDA.B r_ev_05_xPos-$E68              ;82AF0C|A505    |000E6D;
                        CLC                                  ;82AF0E|18      |      ;
                        ADC.W #$FF60                         ;82AF0F|6960FF  |      ;
-                       STA.W r_levelSpecFlag                ;82AF12|8D5E1E  |861E5E;
+                       STA.W r6_levelSpecFlag               ;82AF12|8D5E1E  |861E5E;
                        LDA.B r_ev_05_xPos-$E68              ;82AF15|A505    |000E6D;
                        CLC                                  ;82AF17|18      |      ;
                        ADC.W #$FF70                         ;82AF18|6970FF  |      ;
-                       STA.W r_cam_BG0_xPos_lock            ;82AF1B|8D601E  |861E60;
+                       STA.W r6_cam_BG0_xPos_lock           ;82AF1B|8D601E  |861E60;
                        LDA.B r_ev_08_yPos-$E68              ;82AF1E|A508    |000E70;
                        CLC                                  ;82AF20|18      |      ;
                        ADC.W #$FF30                         ;82AF21|6930FF  |      ;
-                       STA.W r_1e68                         ;82AF24|8D681E  |861E68;
+                       STA.W r6_1e68                        ;82AF24|8D681E  |861E68;
                        LDA.B r_ev_08_yPos-$E68              ;82AF27|A508    |000E70;
                        CLC                                  ;82AF29|18      |      ;
                        ADC.W #$FF80                         ;82AF2A|6980FF  |      ;
-                       STA.W r_cam_BG0_yPos_lock_Set        ;82AF2D|8D6E1E  |861E6E;
+                       STA.W r6_cam_BG0_yPos_lock_Set       ;82AF2D|8D6E1E  |861E6E;
                        SEP #$20                             ;82AF30|E220    |      ;
                        LDA.B #$04                           ;82AF32|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;82AF34|8502    |000E6A;
@@ -7450,13 +7450,13 @@ eventID_angler_21_main:
                        REP #$21                             ;82AF43|C221    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82AF45|A505    |000E6D;
                        ADC.W #$FEE0                         ;82AF47|69E0FE  |      ;
-                       CMP.W r_cam_BG0_xPos_target          ;82AF4A|CD4D1E  |861E4D;
+                       CMP.W r6_cam_BG0_xPos_target         ;82AF4A|CD4D1E  |861E4D;
                        SEP #$20                             ;82AF4D|E220    |      ;
                        BCS CODE_82AF5A                      ;82AF4F|B009    |82AF5A;
                        LDA.B #$02                           ;82AF51|A902    |      ;
                        STA.B r_ev_02_action-$E68            ;82AF53|8502    |000E6A;
                        LDA.B #$02                           ;82AF55|A902    |      ;
-                       STA.W r_0ba1                         ;82AF57|8DA10B  |860BA1;
+                       STA.W r6_0ba1                        ;82AF57|8DA10B  |860BA1;
                                                             ;      |        |      ;
           CODE_82AF5A:
                        RTL                                  ;82AF5A|6B      |      ;
@@ -7480,14 +7480,14 @@ eventID_angler_21_main:
                        LDA.B r_ev_08_yPos-$E68              ;82AF79|A508    |000E70;
                        CLC                                  ;82AF7B|18      |      ;
                        ADC.B #$08                           ;82AF7C|6908    |      ;
-                       STA.W r_0008,X                       ;82AF7E|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82AF7E|9D0800  |860008;
                        LDX.B r_ev_1c_ySpdSub-$E68           ;82AF81|A61C    |000E84;
-                       STZ.W r_002b,X                       ;82AF83|9E2B00  |86002B;
+                       STZ.W r6_002b,X                      ;82AF83|9E2B00  |86002B;
                        SEP #$10                             ;82AF86|E210    |      ;
                        LDA.B #$02                           ;82AF88|A902    |      ;
                        STA.B r_ev_01_state-$E68             ;82AF8A|8501    |000E69;
                        STZ.B r_ev_02_action-$E68            ;82AF8C|6402    |000E6A;
-                       STZ.W r_0ba1                         ;82AF8E|9CA10B  |860BA1;
+                       STZ.W r6_0ba1                        ;82AF8E|9CA10B  |860BA1;
                        RTL                                  ;82AF91|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7601,7 +7601,7 @@ eventID_angler_21_main:
                        TAX                                  ;82B021|AA      |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82B022|A505    |000E6D;
                        ADC.W #$FFC0                         ;82B024|69C0FF  |      ;
-                       CMP.W r_d_player_xSubPos             ;82B027|CDAD0B  |860BAD;
+                       CMP.W r6_player_xPos                 ;82B027|CDAD0B  |860BAD;
                        BCC CODE_82B02E                      ;82B02A|9002    |82B02E;
                        INX                                  ;82B02C|E8      |      ;
                        INX                                  ;82B02D|E8      |      ;
@@ -7634,10 +7634,10 @@ eventID_angler_21_main:
                        BNE CODE_82B06B                      ;82B056|D013    |82B06B;
                        LDA.B r_ev_29-$E68                   ;82B058|A529    |000E91;
                        BEQ CODE_82B068                      ;82B05A|F00C    |82B068;
-                       BIT.W r_1f2c                         ;82B05C|2C2C1F  |861F2C;
+                       BIT.W r6_1f2c                        ;82B05C|2C2C1F  |861F2C;
                        BVS CODE_82B068                      ;82B05F|7007    |82B068;
                        LDA.B #$40                           ;82B061|A940    |      ;
-                       TSB.W r_1f2c                         ;82B063|0C2C1F  |861F2C;
+                       TSB.W r6_1f2c                        ;82B063|0C2C1F  |861F2C;
                        BRA CODE_82B06B                      ;82B066|8003    |82B06B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7680,16 +7680,16 @@ eventID_angler_21_main:
                        LDA.B r_ev_02_action-$E68            ;82B094|A502    |000E6A;
                        CMP.B #$06                           ;82B096|C906    |      ;
                        BNE CODE_82B0BB                      ;82B098|D021    |82B0BB;
-                       STZ.W r_0000                         ;82B09A|9C0000  |860000;
+                       STZ.W r6_0000                        ;82B09A|9C0000  |860000;
                        LDA.B r_ev_3a-$E68                   ;82B09D|A53A    |000EA2;
                        BNE CODE_82B0A6                      ;82B09F|D005    |82B0A6;
                        LDA.B #$03                           ;82B0A1|A903    |      ;
-                       STA.W r_0000                         ;82B0A3|8D0000  |860000;
+                       STA.W r6_0000                        ;82B0A3|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_82B0A6:
                        STZ.B r_ev_3a-$E68                   ;82B0A6|643A    |000EA2;
                        JSL.L mainPlayer_00                  ;82B0A8|22869084|849086;
-                       AND.W r_0000                         ;82B0AC|2D0000  |860000;
+                       AND.W r6_0000                        ;82B0AC|2D0000  |860000;
                        STA.B r_ev_1f-$E68                   ;82B0AF|851F    |000E87;
                        BNE CODE_82B0BB                      ;82B0B1|D008    |82B0BB;
                        LDA.B r_ev_3b-$E68                   ;82B0B3|A53B    |000EA3;
@@ -7706,7 +7706,7 @@ eventID_angler_21_main:
           CODE_82B0BC:
                        STZ.B r_ev_2c-$E68                   ;82B0BC|642C    |000E94;
                        JSR.W CODE_82B637                    ;82B0BE|2037B6  |82B637;
-                       LDA.W r_frameCounter1                ;82B0C1|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82B0C1|AD9C0B  |860B9C;
                        AND.B #$1F                           ;82B0C4|291F    |      ;
                        BNE CODE_82B0D6                      ;82B0C6|D00E    |82B0D6;
                        LDA.B #$31                           ;82B0C8|A931    |      ;
@@ -7726,7 +7726,7 @@ eventID_angler_21_main:
                        REP #$10                             ;82B0DA|C210    |      ;
                        LDX.B r_ev_36-$E68                   ;82B0DC|A636    |000E9E;
                        BEQ CODE_82B0E3                      ;82B0DE|F003    |82B0E3;
-                       INC.W r_000b,X                       ;82B0E0|FE0B00  |86000B;
+                       INC.W r6_000b,X                      ;82B0E0|FE0B00  |86000B;
                                                             ;      |        |      ;
           CODE_82B0E3:
                        SEP #$10                             ;82B0E3|E210    |      ;
@@ -7746,7 +7746,7 @@ eventID_angler_21_main:
                        CMP.B #$06                           ;82B0F5|C906    |      ;
                        BEQ CODE_82B108                      ;82B0F7|F00F    |82B108;
                        LDY.W #$0200                         ;82B0F9|A00002  |      ;
-                       LDA.W r_d_0bd3                       ;82B0FC|ADD30B  |860BD3;
+                       LDA.W r6_player_bd3                  ;82B0FC|ADD30B  |860BD3;
                        BIT.B #$04                           ;82B0FF|8904    |      ;
                        BEQ CODE_82B11E                      ;82B101|F01B    |82B11E;
                        LDY.W #$01C0                         ;82B103|A0C001  |      ;
@@ -7755,7 +7755,7 @@ eventID_angler_21_main:
                                                             ;      |        |      ;
           CODE_82B108:
                        LDX.W #$0000                         ;82B108|A20000  |      ;
-                       LDA.W r_d_0bd3                       ;82B10B|ADD30B  |860BD3;
+                       LDA.W r6_player_bd3                  ;82B10B|ADD30B  |860BD3;
                        BIT.B #$04                           ;82B10E|8904    |      ;
                        BEQ CODE_82B115                      ;82B110|F003    |82B115;
                        LDX.W #$0004                         ;82B112|A20400  |      ;
@@ -7773,19 +7773,19 @@ eventID_angler_21_main:
                        STY.B r_ev_1a_xSpdSub-$E68           ;82B11E|841A    |000E82;
                        SEP #$10                             ;82B120|E210    |      ;
                        REP #$21                             ;82B122|C221    |      ;
-                       LDA.W r_d_0bac                       ;82B124|ADAC0B  |860BAC;
+                       LDA.W r6_player_xSubPos              ;82B124|ADAC0B  |860BAC;
                        ADC.B r_ev_1a_xSpdSub-$E68           ;82B127|651A    |000E82;
-                       STA.W r_d_0bac                       ;82B129|8DAC0B  |860BAC;
+                       STA.W r6_player_xSubPos              ;82B129|8DAC0B  |860BAC;
                        SEP #$20                             ;82B12C|E220    |      ;
-                       STZ.W r_0000                         ;82B12E|9C0000  |860000;
+                       STZ.W r6_0000                        ;82B12E|9C0000  |860000;
                        LDA.B r_ev_1b_xSpd-$E68              ;82B131|A51B    |000E83;
                        BPL CODE_82B138                      ;82B133|1003    |82B138;
-                       DEC.W r_0000                         ;82B135|CE0000  |860000;
+                       DEC.W r6_0000                        ;82B135|CE0000  |860000;
                                                             ;      |        |      ;
           CODE_82B138:
-                       LDA.W r_d_player_xPos                ;82B138|ADAE0B  |860BAE;
-                       ADC.W r_0000                         ;82B13B|6D0000  |860000;
-                       STA.W r_d_player_xPos                ;82B13E|8DAE0B  |860BAE;
+                       LDA.W $0BAE                          ;82B138|ADAE0B  |860BAE;
+                       ADC.W r6_0000                        ;82B13B|6D0000  |860000;
+                       STA.W $0BAE                          ;82B13E|8DAE0B  |860BAE;
                        RTS                                  ;82B141|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7854,8 +7854,8 @@ eventID_angler_21_main:
           CODE_82B1BB:
                        LDA.B #$02                           ;82B1BB|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;82B1BD|8503    |000E6B;
-                       INC.W r_0aa1                         ;82B1BF|EEA10A  |860AA1;
-                       INC.W r_0aa8                         ;82B1C2|EEA80A  |860AA8;
+                       INC.W r6_0aa1                        ;82B1BF|EEA10A  |860AA1;
+                       INC.W r6_0aa8                        ;82B1C2|EEA80A  |860AA8;
                        STZ.B r_ev_17_sprIdx-$E68            ;82B1C5|6417    |000E7F;
                        STZ.B r_ev_3a-$E68                   ;82B1C7|643A    |000EA2;
                        REP #$20                             ;82B1C9|C220    |      ;
@@ -7868,15 +7868,15 @@ eventID_angler_21_main:
                        SEC                                  ;82B1D9|38      |      ;
                        SBC.W #$0020                         ;82B1DA|E92000  |      ;
                        SEC                                  ;82B1DD|38      |      ;
-                       SBC.W r_cam_BG0_yPos_target          ;82B1DE|ED501E  |861E50;
+                       SBC.W r6_cam_BG0_yPos_target         ;82B1DE|ED501E  |861E50;
                        CLC                                  ;82B1E1|18      |      ;
                        ADC.B r_ev_12-$E68                   ;82B1E2|6512    |000E7A;
                        STA.B r_ev_0f_waitCount-$E68         ;82B1E4|850F    |000E77;
-                       LDA.W r_d_0bcf                       ;82B1E6|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82B1E6|ADCF0B  |860BCF;
                        AND.W #$007F                         ;82B1E9|297F00  |      ;
                        BEQ CODE_82B1F4                      ;82B1EC|F006    |82B1F4;
                        LDA.W #$231D                         ;82B1EE|A91D23  |      ;
-                       STA.W r_pal_updateData_BG            ;82B1F1|8D0003  |860300;
+                       STA.W r6_pal_updateData_BG           ;82B1F1|8D0003  |860300;
                                                             ;      |        |      ;
           CODE_82B1F4:
                        SEP #$20                             ;82B1F4|E220    |      ;
@@ -7887,19 +7887,19 @@ eventID_angler_21_main:
           CODE_82B1FC:
                        LDA.B #$88                           ;82B1FC|A988    |      ;
                        STA.W W12SEL                         ;82B1FE|8D2321  |862123;
-                       STA.W r_00c6                         ;82B201|8DC600  |8600C6;
+                       STA.W r6_00c6                        ;82B201|8DC600  |8600C6;
                        LDA.B #$08                           ;82B204|A908    |      ;
                        STA.W W34SEL                         ;82B206|8D2421  |862124;
-                       STA.W r_00c7                         ;82B209|8DC700  |8600C7;
+                       STA.W r6_00c7                        ;82B209|8DC700  |8600C7;
                        STZ.W WOBJSEL                        ;82B20C|9C2521  |862125;
-                       STZ.W r_00c8                         ;82B20F|9CC800  |8600C8;
+                       STZ.W r6_00c8                        ;82B20F|9CC800  |8600C8;
                        STZ.W WBGLOG                         ;82B212|9C2A21  |86212A;
                        STZ.W WOBJLOG                        ;82B215|9C2B21  |86212B;
                        LDA.B #$07                           ;82B218|A907    |      ;
                        STA.W TMW                            ;82B21A|8D2E21  |86212E;
-                       STA.W r_00ce                         ;82B21D|8DCE00  |8600CE;
+                       STA.W r6_00ce                        ;82B21D|8DCE00  |8600CE;
                        STZ.W TSW                            ;82B220|9C2F21  |86212F;
-                       STZ.W r_00cf                         ;82B223|9CCF00  |8600CF;
+                       STZ.W r6_00cf                        ;82B223|9CCF00  |8600CF;
                        LDA.B #$04                           ;82B226|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;82B228|8503    |000E6B;
                        RTS                                  ;82B22A|60      |      ;
@@ -7923,7 +7923,7 @@ eventID_angler_21_main:
                        SEC                                  ;82B242|38      |      ;
                        SBC.W #$0020                         ;82B243|E92000  |      ;
                        SEC                                  ;82B246|38      |      ;
-                       SBC.W r_cam_BG0_yPos_target          ;82B247|ED501E  |861E50;
+                       SBC.W r6_cam_BG0_yPos_target         ;82B247|ED501E  |861E50;
                        CLC                                  ;82B24A|18      |      ;
                        ADC.B r_ev_12-$E68                   ;82B24B|6512    |000E7A;
                        STA.B r_ev_0f_waitCount-$E68         ;82B24D|850F    |000E77;
@@ -8024,10 +8024,10 @@ eventID_angler_21_main:
                        LDA.W #$0004                         ;82B2E2|A90400  |      ;
                                                             ;      |        |      ;
           CODE_82B2E5:
-                       STA.W r_0000                         ;82B2E5|8D0000  |860000;
+                       STA.W r6_0000                        ;82B2E5|8D0000  |860000;
                        LDA.B r_ev_1a_xSpdSub-$E68           ;82B2E8|A51A    |000E82;
                        CLC                                  ;82B2EA|18      |      ;
-                       ADC.W r_0000                         ;82B2EB|6D0000  |860000;
+                       ADC.W r6_0000                        ;82B2EB|6D0000  |860000;
                        CMP.W #$FE70                         ;82B2EE|C970FE  |      ;
                        BMI CODE_82B2F5                      ;82B2F1|3002    |82B2F5;
                        STA.B r_ev_1a_xSpdSub-$E68           ;82B2F3|851A    |000E82;
@@ -8043,10 +8043,10 @@ eventID_angler_21_main:
                        LDA.W #$0003                         ;82B2FD|A90300  |      ;
                                                             ;      |        |      ;
           CODE_82B300:
-                       STA.W r_0000                         ;82B300|8D0000  |860000;
+                       STA.W r6_0000                        ;82B300|8D0000  |860000;
                        LDA.B r_ev_1c_ySpdSub-$E68           ;82B303|A51C    |000E84;
                        CLC                                  ;82B305|18      |      ;
-                       ADC.W r_0000                         ;82B306|6D0000  |860000;
+                       ADC.W r6_0000                        ;82B306|6D0000  |860000;
                        BPL CODE_82B30D                      ;82B309|1002    |82B30D;
                        STA.B r_ev_1c_ySpdSub-$E68           ;82B30B|851C    |000E84;
                                                             ;      |        |      ;
@@ -8119,38 +8119,38 @@ eventID_angler_21_main:
                        BNE CODE_82B3A1                      ;82B365|D03A    |82B3A1;
                        REP #$21                             ;82B367|C221    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82B369|A505    |000E6D;
-                       STA.W r_002c                         ;82B36B|8D2C00  |86002C;
+                       STA.W r6_002c                        ;82B36B|8D2C00  |86002C;
                        LDA.B r_ev_08_yPos-$E68              ;82B36E|A508    |000E70;
                        ADC.W #$FFE0                         ;82B370|69E0FF  |      ;
-                       STA.W r_002e                         ;82B373|8D2E00  |86002E;
+                       STA.W r6_002e                        ;82B373|8D2E00  |86002E;
                        LDA.L $7FD61A                        ;82B376|AF1AD67F|7FD61A;
-                       STA.W r_levelSpecFlag                ;82B37A|8D5E1E  |861E5E;
+                       STA.W r6_levelSpecFlag               ;82B37A|8D5E1E  |861E5E;
                        LDA.L $7FD61C                        ;82B37D|AF1CD67F|7FD61C;
-                       STA.W r_cam_BG0_xPos_lock            ;82B381|8D601E  |861E60;
+                       STA.W r6_cam_BG0_xPos_lock           ;82B381|8D601E  |861E60;
                        LDA.L $7FD61E                        ;82B384|AF1ED67F|7FD61E;
-                       STA.W r_1e68                         ;82B388|8D681E  |861E68;
+                       STA.W r6_1e68                        ;82B388|8D681E  |861E68;
                        LDA.L $7FD620                        ;82B38B|AF20D67F|7FD620;
-                       STA.W r_cam_BG0_yPos_lock_Set        ;82B38F|8D6E1E  |861E6E;
+                       STA.W r6_cam_BG0_yPos_lock_Set       ;82B38F|8D6E1E  |861E6E;
                        SEP #$20                             ;82B392|E220    |      ;
                        LDA.B #$00                           ;82B394|A900    |      ;
                        JSL.L CODE_848011                    ;82B396|22118084|848011;
                        JSR.W CODE_82B807                    ;82B39A|2007B8  |82B807;
-                       JML.L clearStates_00_02_0E           ;82B39D|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82B39D|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B3A1:
                        REP #$21                             ;82B3A1|C221    |      ;
-                       LDA.W r_1f25                         ;82B3A3|AD251F  |861F25;
+                       LDA.W r6_1f25                        ;82B3A3|AD251F  |861F25;
                        AND.W #$00FF                         ;82B3A6|29FF00  |      ;
                        CMP.W #$0020                         ;82B3A9|C92000  |      ;
                        BCS CODE_82B3CC                      ;82B3AC|B01E    |82B3CC;
                        LDA.B r_ev_05_xPos-$E68              ;82B3AE|A505    |000E6D;
-                       STA.W r_002c                         ;82B3B0|8D2C00  |86002C;
+                       STA.W r6_002c                        ;82B3B0|8D2C00  |86002C;
                        LDA.B r_ev_08_yPos-$E68              ;82B3B3|A508    |000E70;
                        ADC.W #$FFE0                         ;82B3B5|69E0FF  |      ;
-                       STA.W r_002e                         ;82B3B8|8D2E00  |86002E;
+                       STA.W r6_002e                        ;82B3B8|8D2E00  |86002E;
                        LDX.B #$00                           ;82B3BB|A200    |      ;
-                       LDA.W r_frameCounter1                ;82B3BD|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82B3BD|AD9C0B  |860B9C;
                        BIT.W #$0002                         ;82B3C0|890200  |      ;
                        BEQ CODE_82B3C7                      ;82B3C3|F002    |82B3C7;
                        LDX.B #$05                           ;82B3C5|A205    |      ;
@@ -8160,32 +8160,32 @@ eventID_angler_21_main:
                        JSL.L CODE_848011                    ;82B3C8|22118084|848011;
                                                             ;      |        |      ;
           CODE_82B3CC:
-                       STZ.W r_0000                         ;82B3CC|9C0000  |860000;
+                       STZ.W r6_0000                        ;82B3CC|9C0000  |860000;
                        LDA.W #$FFE0                         ;82B3CF|A9E0FF  |      ;
-                       STA.W r_0002                         ;82B3D2|8D0200  |860002;
+                       STA.W r6_0002                        ;82B3D2|8D0200  |860002;
                        LDA.W #$003F                         ;82B3D5|A93F00  |      ;
-                       STA.W r_0004                         ;82B3D8|8D0400  |860004;
-                       STA.W r_0006                         ;82B3DB|8D0600  |860006;
+                       STA.W r6_0004                        ;82B3D8|8D0400  |860004;
+                       STA.W r6_0006                        ;82B3DB|8D0600  |860006;
                        SEP #$20                             ;82B3DE|E220    |      ;
                        LDA.B #$07                           ;82B3E0|A907    |      ;
-                       STA.W r_0008                         ;82B3E2|8D0800  |860008;
+                       STA.W r6_0008                        ;82B3E2|8D0800  |860008;
                        JSL.L CODE_84A4D0                    ;82B3E5|22D0A484|84A4D0;
                        RTL                                  ;82B3E9|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B3EA:
-                       STZ.W r_0aa1                         ;82B3EA|9CA10A  |860AA1;
-                       STZ.W r_0aa8                         ;82B3ED|9CA80A  |860AA8;
+                       STZ.W r6_0aa1                        ;82B3EA|9CA10A  |860AA1;
+                       STZ.W r6_0aa8                        ;82B3ED|9CA80A  |860AA8;
                        STZ.W W12SEL                         ;82B3F0|9C2321  |862123;
-                       STZ.W r_00c6                         ;82B3F3|9CC600  |8600C6;
+                       STZ.W r6_00c6                        ;82B3F3|9CC600  |8600C6;
                        STZ.W W34SEL                         ;82B3F6|9C2421  |862124;
-                       STZ.W r_00c7                         ;82B3F9|9CC700  |8600C7;
+                       STZ.W r6_00c7                        ;82B3F9|9CC700  |8600C7;
                        LDA.B #$40                           ;82B3FC|A940    |      ;
-                       TRB.W r_1f2c                         ;82B3FE|1C2C1F  |861F2C;
-                       LDA.W r_d_0bcf                       ;82B401|ADCF0B  |860BCF;
+                       TRB.W r6_1f2c                        ;82B3FE|1C2C1F  |861F2C;
+                       LDA.W r6_player_health               ;82B401|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82B404|297F    |      ;
                        BEQ CODE_82B413                      ;82B406|F00B    |82B413;
-                       STZ.W r_pal_updateData_BG            ;82B408|9C0003  |860300;
+                       STZ.W r6_pal_updateData_BG           ;82B408|9C0003  |860300;
                        LDA.B #$28                           ;82B40B|A928    |      ;
                        STA.W $0301                          ;82B40D|8D0103  |860301;
                        INC.W $00A1                          ;82B410|EEA100  |8600A1;
@@ -8195,10 +8195,10 @@ eventID_angler_21_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B414:
-                       LDA.W r_cam_BG0_yPos_target          ;82B414|AD501E  |861E50;
+                       LDA.W r6_cam_BG0_yPos_target         ;82B414|AD501E  |861E50;
                        SEC                                  ;82B417|38      |      ;
                        SBC.B r_ev_34-$E68                   ;82B418|E534    |000E9C;
-                       STA.W r_00c4                         ;82B41A|8DC400  |8600C4;
+                       STA.W r6_00c4                        ;82B41A|8DC400  |8600C4;
                        RTS                                  ;82B41D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8219,22 +8219,22 @@ eventID_angler_21_main:
                        LDY.W #$000A                         ;82B433|A00A00  |      ;
                                                             ;      |        |      ;
           CODE_82B436:
-                       STX.W r_0000                         ;82B436|8E0000  |860000;
-                       STY.W r_0002                         ;82B439|8C0200  |860002;
+                       STX.W r6_0000                        ;82B436|8E0000  |860000;
+                       STY.W r6_0002                        ;82B439|8C0200  |860002;
                        STZ.B r_ev_33-$E68                   ;82B43C|6433    |000E9B;
                        LDA.B r_ev_05_xPos-$E68              ;82B43E|A505    |000E6D;
                        SEC                                  ;82B440|38      |      ;
-                       SBC.W r_cam_BG0_xPos_target          ;82B441|ED4D1E  |861E4D;
+                       SBC.W r6_cam_BG0_xPos_target         ;82B441|ED4D1E  |861E4D;
                        CLC                                  ;82B444|18      |      ;
-                       ADC.W r_0000                         ;82B445|6D0000  |860000;
+                       ADC.W r6_0000                        ;82B445|6D0000  |860000;
                        STA.B r_ev_34-$E68                   ;82B448|8534    |000E9C;
                        LDA.B r_ev_08_yPos-$E68              ;82B44A|A508    |000E70;
                        SEC                                  ;82B44C|38      |      ;
                        SBC.W #$0020                         ;82B44D|E92000  |      ;
                        SEC                                  ;82B450|38      |      ;
-                       SBC.W r_cam_BG0_yPos_target          ;82B451|ED501E  |861E50;
+                       SBC.W r6_cam_BG0_yPos_target         ;82B451|ED501E  |861E50;
                        CLC                                  ;82B454|18      |      ;
-                       ADC.W r_0002                         ;82B455|6D0200  |860002;
+                       ADC.W r6_0002                        ;82B455|6D0200  |860002;
                        STA.B r_ev_36-$E68                   ;82B458|8536    |000E9E;
                        BMI CODE_82B41E                      ;82B45A|30C2    |82B41E;
                        CMP.W #$00E8                         ;82B45C|C9E800  |      ;
@@ -8299,9 +8299,9 @@ eventID_angler_21_main:
                        STZ.B r_ev_33-$E68                   ;82B4CD|6433    |000E9B;
                        LDA.B r_ev_05_xPos-$E68              ;82B4CF|A505    |000E6D;
                        SEC                                  ;82B4D1|38      |      ;
-                       SBC.W r_cam_BG0_xPos_target          ;82B4D2|ED4D1E  |861E4D;
+                       SBC.W r6_cam_BG0_xPos_target         ;82B4D2|ED4D1E  |861E4D;
                        CLC                                  ;82B4D5|18      |      ;
-                       ADC.W r_0000                         ;82B4D6|6D0000  |860000;
+                       ADC.W r6_0000                        ;82B4D6|6D0000  |860000;
                        STA.B r_ev_34-$E68                   ;82B4D9|8534    |000E9C;
                        LDX.B r_ev_36-$E68                   ;82B4DB|A636    |000E9E;
                                                             ;      |        |      ;
@@ -8349,25 +8349,25 @@ eventID_angler_21_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B523:
-                       LDA.W $0C32                          ;82B523|AD320C  |860C32;
+                       LDA.W r6_powerUp_actionInv           ;82B523|AD320C  |860C32;
                        BNE CODE_82B58F                      ;82B526|D067    |82B58F;
                        REP #$20                             ;82B528|C220    |      ;
                        JSR.W CODE_82B592                    ;82B52A|2092B5  |82B592;
                        JSR.W CODE_82B5BD                    ;82B52D|20BDB5  |82B5BD;
                        LDA.B r_ev_05_xPos-$E68              ;82B530|A505    |000E6D;
-                       STA.W r_0000                         ;82B532|8D0000  |860000;
+                       STA.W r6_0000                        ;82B532|8D0000  |860000;
                        LDA.B r_ev_08_yPos-$E68              ;82B535|A508    |000E70;
                        CLC                                  ;82B537|18      |      ;
                        ADC.W #$FFE0                         ;82B538|69E0FF  |      ;
-                       STA.W r_0002                         ;82B53B|8D0200  |860002;
-                       LDA.W r_d_player_xSubPos             ;82B53E|ADAD0B  |860BAD;
+                       STA.W r6_0002                        ;82B53B|8D0200  |860002;
+                       LDA.W r6_player_xPos                 ;82B53E|ADAD0B  |860BAD;
                        CLC                                  ;82B541|18      |      ;
                        ADC.W #$0008                         ;82B542|690800  |      ;
-                       STA.W r_0004                         ;82B545|8D0400  |860004;
-                       LDA.W r_d_player_yPos                ;82B548|ADB00B  |860BB0;
+                       STA.W r6_0004                        ;82B545|8D0400  |860004;
+                       LDA.W r6_player_yPos                 ;82B548|ADB00B  |860BB0;
                        CLC                                  ;82B54B|18      |      ;
                        ADC.W #$0010                         ;82B54C|691000  |      ;
-                       STA.W r_0006                         ;82B54F|8D0600  |860006;
+                       STA.W r6_0006                        ;82B54F|8D0600  |860006;
                        SEP #$20                             ;82B552|E220    |      ;
                        JSL.L CODE_84A09C                    ;82B554|229CA084|84A09C;
                        CMP.B r_ev_38-$E68                   ;82B558|C538    |000EA0;
@@ -8376,21 +8376,21 @@ eventID_angler_21_main:
                                                             ;      |        |      ;
           CODE_82B55E:
                        REP #$21                             ;82B55E|C221    |      ;
-                       LDA.W r_d_player_xSubPos             ;82B560|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82B560|ADAD0B  |860BAD;
                        ADC.W #$FFF8                         ;82B563|69F8FF  |      ;
-                       STA.W r_0004                         ;82B566|8D0400  |860004;
-                       LDA.W r_d_player_yPos                ;82B569|ADB00B  |860BB0;
+                       STA.W r6_0004                        ;82B566|8D0400  |860004;
+                       LDA.W r6_player_yPos                 ;82B569|ADB00B  |860BB0;
                        CLC                                  ;82B56C|18      |      ;
                        ADC.W #$FFF0                         ;82B56D|69F0FF  |      ;
-                       STA.W r_0006                         ;82B570|8D0600  |860006;
+                       STA.W r6_0006                        ;82B570|8D0600  |860006;
                        SEP #$20                             ;82B573|E220    |      ;
                        JSL.L CODE_84A09C                    ;82B575|229CA084|84A09C;
                        CMP.B r_ev_39-$E68                   ;82B579|C539    |000EA1;
                        BCC CODE_82B58F                      ;82B57B|9012    |82B58F;
                        REP #$20                             ;82B57D|C220    |      ;
-                       LDA.W r_d_player_yPos                ;82B57F|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;82B57F|ADB00B  |860BB0;
                        SEC                                  ;82B582|38      |      ;
-                       SBC.W r_cam_BG0_yPos_target          ;82B583|ED501E  |861E50;
+                       SBC.W r6_cam_BG0_yPos_target         ;82B583|ED501E  |861E50;
                        CMP.B r_ev_0f_waitCount-$E68         ;82B586|C50F    |000E77;
                        SEP #$20                             ;82B588|E220    |      ;
                        BCS CODE_82B58F                      ;82B58A|B003    |82B58F;
@@ -8479,26 +8479,26 @@ eventID_angler_21_main:
                                                             ;      |        |      ;
           CODE_82B5E8:
                        REP #$21                             ;82B5E8|C221    |      ;
-                       LDX.W $0C32                          ;82B5EA|AE320C  |860C32;
+                       LDX.W r6_powerUp_actionInv           ;82B5EA|AE320C  |860C32;
                        BNE CODE_82B62D                      ;82B5ED|D03E    |82B62D;
-                       LDX.W r_bossDefeatInvFlag            ;82B5EF|AE0C1F  |861F0C;
+                       LDX.W r6_bossDefeatInvFlag           ;82B5EF|AE0C1F  |861F0C;
                        BNE CODE_82B62D                      ;82B5F2|D039    |82B62D;
                        LDA.B r_ev_05_xPos-$E68              ;82B5F4|A505    |000E6D;
                        ADC.W #$FF60                         ;82B5F6|6960FF  |      ;
-                       CMP.W r_d_player_xSubPos             ;82B5F9|CDAD0B  |860BAD;
+                       CMP.W r6_player_xPos                 ;82B5F9|CDAD0B  |860BAD;
                        BCS CODE_82B632                      ;82B5FC|B034    |82B632;
                        LDA.B r_ev_05_xPos-$E68              ;82B5FE|A505    |000E6D;
                        CLC                                  ;82B600|18      |      ;
                        ADC.W #$0010                         ;82B601|691000  |      ;
-                       STA.W r_0000                         ;82B604|8D0000  |860000;
+                       STA.W r6_0000                        ;82B604|8D0000  |860000;
                        LDA.B r_ev_08_yPos-$E68              ;82B607|A508    |000E70;
                        CLC                                  ;82B609|18      |      ;
                        ADC.W #$0009                         ;82B60A|690900  |      ;
-                       STA.W r_0002                         ;82B60D|8D0200  |860002;
-                       LDA.W r_d_player_xSubPos             ;82B610|ADAD0B  |860BAD;
-                       STA.W r_0004                         ;82B613|8D0400  |860004;
-                       LDA.W r_d_player_yPos                ;82B616|ADB00B  |860BB0;
-                       STA.W r_0006                         ;82B619|8D0600  |860006;
+                       STA.W r6_0002                        ;82B60D|8D0200  |860002;
+                       LDA.W r6_player_xPos                 ;82B610|ADAD0B  |860BAD;
+                       STA.W r6_0004                        ;82B613|8D0400  |860004;
+                       LDA.W r6_player_yPos                 ;82B616|ADB00B  |860BB0;
+                       STA.W r6_0006                        ;82B619|8D0600  |860006;
                        SEP #$20                             ;82B61C|E220    |      ;
                        JSL.L CODE_84A09C                    ;82B61E|229CA084|84A09C;
                        CMP.B #$1C                           ;82B622|C91C    |      ;
@@ -8522,14 +8522,14 @@ eventID_angler_21_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B637:
-                       LDA.W r_frameCounter1                ;82B637|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82B637|AD9C0B  |860B9C;
                        AND.B #$03                           ;82B63A|2903    |      ;
                        BNE CODE_82B683                      ;82B63C|D045    |82B683;
                        JSL.L CODE_8282D3                    ;82B63E|22D38282|8282D3;
                        BNE CODE_82B681                      ;82B642|D03D    |82B681;
-                       INC.W r_0000,X                       ;82B644|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82B644|FE0000  |860000;
                        LDA.B #$1B                           ;82B647|A91B    |      ;
-                       STA.W r_000a,X                       ;82B649|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82B649|9D0A00  |86000A;
                        LDY.W #$FFFF                         ;82B64C|A0FFFF  |      ;
                        LDA.B r_ev_02_action-$E68            ;82B64F|A502    |000E6A;
                        CMP.B #$06                           ;82B651|C906    |      ;
@@ -8540,19 +8540,19 @@ eventID_angler_21_main:
                                                             ;      |        |      ;
           CODE_82B65C:
                        TYA                                  ;82B65C|98      |      ;
-                       STA.W r_000b,X                       ;82B65D|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82B65D|9D0B00  |86000B;
                        REP #$21                             ;82B660|C221    |      ;
                        JSL.L mainPlayer_00                  ;82B662|22869084|849086;
                        AND.W #$000F                         ;82B666|290F00  |      ;
                        ADC.B r_ev_08_yPos-$E68              ;82B669|6508    |000E70;
-                       STA.W r_0008,X                       ;82B66B|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82B66B|9D0800  |860008;
                        JSL.L mainPlayer_00                  ;82B66E|22869084|849086;
                        AND.W #$0007                         ;82B672|290700  |      ;
                        CLC                                  ;82B675|18      |      ;
                        ADC.W #$FFF4                         ;82B676|69F4FF  |      ;
                        CLC                                  ;82B679|18      |      ;
                        ADC.B r_ev_05_xPos-$E68              ;82B67A|6505    |000E6D;
-                       STA.W r_0005,X                       ;82B67C|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82B67C|9D0500  |860005;
                        SEP #$20                             ;82B67F|E220    |      ;
                                                             ;      |        |      ;
           CODE_82B681:
@@ -8564,20 +8564,20 @@ eventID_angler_21_main:
                                                             ;      |        |      ;
           CODE_82B684:
                        JSL.L CODE_8282D3                    ;82B684|22D38282|8282D3;
-                       INC.W r_0000,X                       ;82B688|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82B688|FE0000  |860000;
                        LDA.B #$1C                           ;82B68B|A91C    |      ;
-                       STA.W r_000a,X                       ;82B68D|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82B68D|9D0A00  |86000A;
                        STX.B r_ev_1a_xSpdSub-$E68           ;82B690|861A    |000E82;
                        REP #$21                             ;82B692|C221    |      ;
                        TDC                                  ;82B694|7B      |      ;
-                       STA.W r_000c,X                       ;82B695|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82B695|9D0C00  |86000C;
                        LDA.B r_ev_05_xPos-$E68              ;82B698|A505    |000E6D;
                        ADC.W #$0032                         ;82B69A|693200  |      ;
-                       STA.W r_0005,X                       ;82B69D|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82B69D|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82B6A0|A508    |000E70;
                        CLC                                  ;82B6A2|18      |      ;
                        ADC.W #$0008                         ;82B6A3|690800  |      ;
-                       STA.W r_0008,X                       ;82B6A6|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82B6A6|9D0800  |860008;
                        SEP #$30                             ;82B6A9|E230    |      ;
                        RTS                                  ;82B6AB|60      |      ;
                                                             ;      |        |      ;
@@ -8587,24 +8587,24 @@ eventID_angler_21_main:
                        AND.B #$07                           ;82B6B0|2907    |      ;
                        TAY                                  ;82B6B2|A8      |      ;
                        LDA.W UNREACH_86CBCD,Y               ;82B6B3|B9CDCB  |86CBCD;
-                       STA.W r_0000                         ;82B6B6|8D0000  |860000;
+                       STA.W r6_0000                        ;82B6B6|8D0000  |860000;
                        LDA.B #$03                           ;82B6B9|A903    |      ;
-                       STA.W r_0001                         ;82B6BB|8D0100  |860001;
+                       STA.W r6_0001                        ;82B6BB|8D0100  |860001;
                                                             ;      |        |      ;
           CODE_82B6BE:
                        JSL.L findEnemyShotEmptySlot         ;82B6BE|22588382|828358;
                        BNE CODE_82B70A                      ;82B6C2|D046    |82B70A;
                        REP #$20                             ;82B6C4|C220    |      ;
                        TDC                                  ;82B6C6|7B      |      ;
-                       STA.W r_000c,X                       ;82B6C7|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82B6C7|9D0C00  |86000C;
                        SEP #$20                             ;82B6CA|E220    |      ;
-                       INC.W r_0000,X                       ;82B6CC|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82B6CC|FE0000  |860000;
                        LDA.B #$0F                           ;82B6CF|A90F    |      ;
-                       STA.W r_000a,X                       ;82B6D1|9D0A00  |86000A;
-                       LDA.W r_0000                         ;82B6D4|AD0000  |860000;
-                       STA.W r_0002,X                       ;82B6D7|9D0200  |860002;
-                       LDA.W r_0001                         ;82B6DA|AD0100  |860001;
-                       STA.W r_000b,X                       ;82B6DD|9D0B00  |86000B;
+                       STA.W r6_000a,X                      ;82B6D1|9D0A00  |86000A;
+                       LDA.W r6_0000                        ;82B6D4|AD0000  |860000;
+                       STA.W r6_0002,X                      ;82B6D7|9D0200  |860002;
+                       LDA.W r6_0001                        ;82B6DA|AD0100  |860001;
+                       STA.W r6_000b,X                      ;82B6DD|9D0B00  |86000B;
                        REP #$20                             ;82B6E0|C220    |      ;
                        AND.W #$00FF                         ;82B6E2|29FF00  |      ;
                        ASL A                                ;82B6E5|0A      |      ;
@@ -8613,16 +8613,16 @@ eventID_angler_21_main:
                        AND.W #$00FF                         ;82B6EA|29FF00  |      ;
                        CLC                                  ;82B6ED|18      |      ;
                        ADC.B r_ev_05_xPos-$E68              ;82B6EE|6505    |000E6D;
-                       STA.W r_0005,X                       ;82B6F0|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82B6F0|9D0500  |860005;
                        LDA.W UNREACH_86CBD6,Y               ;82B6F3|B9D6CB  |86CBD6;
                        AND.W #$00FF                         ;82B6F6|29FF00  |      ;
                        CLC                                  ;82B6F9|18      |      ;
                        ADC.B r_ev_08_yPos-$E68              ;82B6FA|6508    |000E70;
                        SEC                                  ;82B6FC|38      |      ;
                        SBC.W #$0020                         ;82B6FD|E92000  |      ;
-                       STA.W r_0008,X                       ;82B700|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82B700|9D0800  |860008;
                        SEP #$20                             ;82B703|E220    |      ;
-                       DEC.W r_0001                         ;82B705|CE0100  |860001;
+                       DEC.W r6_0001                        ;82B705|CE0100  |860001;
                        BPL CODE_82B6BE                      ;82B708|10B4    |82B6BE;
                                                             ;      |        |      ;
           CODE_82B70A:
@@ -8632,41 +8632,41 @@ eventID_angler_21_main:
                                                             ;      |        |      ;
           CODE_82B70D:
                        JSL.L CODE_8282B9                    ;82B70D|22B98282|8282B9;
-                       INC.W r_0000,X                       ;82B711|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82B711|FE0000  |860000;
                        LDA.B #$0A                           ;82B714|A90A    |      ;
-                       STA.W r_000a,X                       ;82B716|9D0A00  |86000A;
-                       STA.W r_002b,X                       ;82B719|9D2B00  |86002B;
+                       STA.W r6_000a,X                      ;82B716|9D0A00  |86000A;
+                       STA.W r6_002b,X                      ;82B719|9D2B00  |86002B;
                        STX.B r_ev_1c_ySpdSub-$E68           ;82B71C|861C    |000E84;
                        REP #$21                             ;82B71E|C221    |      ;
                        TDC                                  ;82B720|7B      |      ;
-                       STA.W r_000c,X                       ;82B721|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82B721|9D0C00  |86000C;
                        LDA.B r_ev_05_xPos-$E68              ;82B724|A505    |000E6D;
                        ADC.W #$000E                         ;82B726|690E00  |      ;
-                       STA.W r_0005,X                       ;82B729|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82B729|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82B72C|A508    |000E70;
                        CLC                                  ;82B72E|18      |      ;
                        ADC.W #$FFEF                         ;82B72F|69EFFF  |      ;
-                       STA.W r_0008,X                       ;82B732|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82B732|9D0800  |860008;
                        SEP #$30                             ;82B735|E230    |      ;
                        RTS                                  ;82B737|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B738:
                        JSL.L CODE_8282D3                    ;82B738|22D38282|8282D3;
-                       INC.W r_0000,X                       ;82B73C|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82B73C|FE0000  |860000;
                        LDA.B #$1E                           ;82B73F|A91E    |      ;
-                       STA.W r_000a,X                       ;82B741|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82B741|9D0A00  |86000A;
                        STX.B r_ev_0f_waitCount-$E68         ;82B744|860F    |000E77;
                        REP #$21                             ;82B746|C221    |      ;
                        TDC                                  ;82B748|7B      |      ;
-                       STA.W r_000c,X                       ;82B749|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82B749|9D0C00  |86000C;
                        LDA.B r_ev_05_xPos-$E68              ;82B74C|A505    |000E6D;
                        ADC.W #$0000                         ;82B74E|690000  |      ;
-                       STA.W r_0005,X                       ;82B751|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82B751|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82B754|A508    |000E70;
                        CLC                                  ;82B756|18      |      ;
                        ADC.W #$0004                         ;82B757|690400  |      ;
-                       STA.W r_0008,X                       ;82B75A|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82B75A|9D0800  |860008;
                        SEP #$30                             ;82B75D|E230    |      ;
                        RTS                                  ;82B75F|60      |      ;
                                                             ;      |        |      ;
@@ -8674,39 +8674,39 @@ eventID_angler_21_main:
           CODE_82B760:
                        REP #$30                             ;82B760|C230    |      ;
                        LDX.B r_ev_1a_xSpdSub-$E68           ;82B762|A61A    |000E82;
-                       LDA.W r_0007,X                       ;82B764|BD0700  |860007;
+                       LDA.W r6_0007,X                      ;82B764|BD0700  |860007;
                        SEC                                  ;82B767|38      |      ;
                        SBC.W #$0108                         ;82B768|E90801  |      ;
-                       STA.W r_0007,X                       ;82B76B|9D0700  |860007;
+                       STA.W r6_0007,X                      ;82B76B|9D0700  |860007;
                        SEP #$30                             ;82B76E|E230    |      ;
-                       LDA.W r_0009,X                       ;82B770|BD0900  |860009;
+                       LDA.W r6_0009,X                      ;82B770|BD0900  |860009;
                        SBC.B #$00                           ;82B773|E900    |      ;
-                       STA.W r_0009,X                       ;82B775|9D0900  |860009;
+                       STA.W r6_0009,X                      ;82B775|9D0900  |860009;
                        REP #$30                             ;82B778|C230    |      ;
                        LDX.B r_ev_1c_ySpdSub-$E68           ;82B77A|A61C    |000E84;
-                       LDA.W r_0007,X                       ;82B77C|BD0700  |860007;
+                       LDA.W r6_0007,X                      ;82B77C|BD0700  |860007;
                        SEC                                  ;82B77F|38      |      ;
                        SBC.W #$0108                         ;82B780|E90801  |      ;
-                       STA.W r_0007,X                       ;82B783|9D0700  |860007;
+                       STA.W r6_0007,X                      ;82B783|9D0700  |860007;
                        SEP #$30                             ;82B786|E230    |      ;
-                       LDA.W r_0009,X                       ;82B788|BD0900  |860009;
+                       LDA.W r6_0009,X                      ;82B788|BD0900  |860009;
                        SBC.B #$00                           ;82B78B|E900    |      ;
-                       STA.W r_0009,X                       ;82B78D|9D0900  |860009;
+                       STA.W r6_0009,X                      ;82B78D|9D0900  |860009;
                        REP #$30                             ;82B790|C230    |      ;
                        LDX.B r_ev_0f_waitCount-$E68         ;82B792|A60F    |000E77;
-                       LDA.W r_0007,X                       ;82B794|BD0700  |860007;
+                       LDA.W r6_0007,X                      ;82B794|BD0700  |860007;
                        SEC                                  ;82B797|38      |      ;
                        SBC.W #$0108                         ;82B798|E90801  |      ;
-                       STA.W r_0007,X                       ;82B79B|9D0700  |860007;
+                       STA.W r6_0007,X                      ;82B79B|9D0700  |860007;
                        SEP #$30                             ;82B79E|E230    |      ;
-                       LDA.W r_0009,X                       ;82B7A0|BD0900  |860009;
+                       LDA.W r6_0009,X                      ;82B7A0|BD0900  |860009;
                        SBC.B #$00                           ;82B7A3|E900    |      ;
-                       STA.W r_0009,X                       ;82B7A5|9D0900  |860009;
+                       STA.W r6_0009,X                      ;82B7A5|9D0900  |860009;
                        RTS                                  ;82B7A8|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B7A9:
-                       LDA.W r_d_0bcf                       ;82B7A9|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82B7A9|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82B7AC|297F    |      ;
                        BEQ CODE_82B7C7                      ;82B7AE|F017    |82B7C7;
                        REP #$20                             ;82B7B0|C220    |      ;
@@ -8715,7 +8715,7 @@ eventID_angler_21_main:
           CODE_82B7B4:
                        CPX.B #$02                           ;82B7B4|E002    |      ;
                        BEQ CODE_82B7BE                      ;82B7B6|F006    |82B7BE;
-                       LDA.W r_pal_updateData_SP,X          ;82B7B8|BD0004  |860400;
+                       LDA.W r6_pal_updateData_SP,X         ;82B7B8|BD0004  |860400;
                        STA.W $0320,X                        ;82B7BB|9D2003  |860320;
                                                             ;      |        |      ;
           CODE_82B7BE:
@@ -8810,23 +8810,23 @@ eventID_angler_21_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82B836:
-                       LDA.W r_frameCounter1                ;82B836|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82B836|AD9C0B  |860B9C;
                        AND.B #$03                           ;82B839|2903    |      ;
                        BNE CODE_82B866                      ;82B83B|D029    |82B866;
                        JSL.L CODE_8282D3                    ;82B83D|22D38282|8282D3;
                        BNE CODE_82B864                      ;82B841|D021    |82B864;
-                       INC.W r_0000,X                       ;82B843|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82B843|FE0000  |860000;
                        LDA.B #$20                           ;82B846|A920    |      ;
-                       STA.W r_000a,X                       ;82B848|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82B848|9D0A00  |86000A;
                        REP #$21                             ;82B84B|C221    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;82B84D|A508    |000E70;
                        ADC.W #$0030                         ;82B84F|693000  |      ;
-                       STA.W r_0008,X                       ;82B852|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82B852|9D0800  |860008;
                        JSL.L mainPlayer_00                  ;82B855|22869084|849086;
                        AND.W #$003F                         ;82B859|293F00  |      ;
                        CLC                                  ;82B85C|18      |      ;
                        ADC.B r_ev_05_xPos-$E68              ;82B85D|6505    |000E6D;
-                       STA.W r_0005,X                       ;82B85F|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82B85F|9D0500  |860005;
                        SEP #$20                             ;82B862|E220    |      ;
                                                             ;      |        |      ;
           CODE_82B864:
@@ -8837,21 +8837,21 @@ eventID_angler_21_main:
                                                             ;      |        |      ;
                        JSL.L findEnemyShotEmptySlot         ;82B867|22588382|828358;
                        BNE CODE_82B893                      ;82B86B|D026    |82B893;
-                       INC.W r_0000,X                       ;82B86D|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82B86D|FE0000  |860000;
                        LDA.B #$12                           ;82B870|A912    |      ;
-                       STA.W r_000a,X                       ;82B872|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;82B875|9E0B00  |86000B;
+                       STA.W r6_000a,X                      ;82B872|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;82B875|9E0B00  |86000B;
                        STX.B r_ev_36-$E68                   ;82B878|8636    |000E9E;
                        REP #$21                             ;82B87A|C221    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82B87C|A505    |000E6D;
                        ADC.W #$FFF8                         ;82B87E|69F8FF  |      ;
-                       STA.W r_0005,X                       ;82B881|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82B881|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82B884|A508    |000E70;
                        CLC                                  ;82B886|18      |      ;
                        ADC.W #$0007                         ;82B887|690700  |      ;
-                       STA.W r_0008,X                       ;82B88A|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82B88A|9D0800  |860008;
                        TDC                                  ;82B88D|7B      |      ;
-                       STA.W r_000c,X                       ;82B88E|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82B88E|9D0C00  |86000C;
                        SEP #$22                             ;82B891|E222    |      ;
                                                             ;      |        |      ;
           CODE_82B893:
@@ -8875,7 +8875,7 @@ eventID_beeBlader_22_main:
                        CMP.B #$0E                           ;82B8A7|C90E    |      ;
                        BEQ CODE_82B8A0                      ;82B8A9|F0F5    |82B8A0;
                        REP #$20                             ;82B8AB|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82B8AD|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82B8AD|ADAD0B  |860BAD;
                        SEC                                  ;82B8B0|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;82B8B1|E505    |000E6D;
                        BCC CODE_82B8D2                      ;82B8B3|901D    |82B8D2;
@@ -8883,12 +8883,12 @@ eventID_beeBlader_22_main:
                        BCC CODE_82B8D2                      ;82B8B8|9018    |82B8D2;
                        REP #$30                             ;82B8BA|C230    |      ;
                        LDX.B r_ev_39-$E68                   ;82B8BC|A639    |000EA1;
-                       STZ.W r_0000,X                       ;82B8BE|9E0000  |860000;
-                       STZ.W r_0002,X                       ;82B8C1|9E0200  |860002;
+                       STZ.W r6_0000,X                      ;82B8BE|9E0000  |860000;
+                       STZ.W r6_0002,X                      ;82B8C1|9E0200  |860002;
                        LDA.B r_ev_3b-$E68                   ;82B8C4|A53B    |000EA3;
-                       STA.W r_levelSpecFlag                ;82B8C6|8D5E1E  |861E5E;
+                       STA.W r6_levelSpecFlag               ;82B8C6|8D5E1E  |861E5E;
                        LDA.B r_ev_31-$E68                   ;82B8C9|A531    |000E99;
-                       STA.W r_cam_BG0_xPos_lock            ;82B8CB|8D601E  |861E60;
+                       STA.W r6_cam_BG0_xPos_lock           ;82B8CB|8D601E  |861E60;
                        JML.L clearStateIf_0cEqual           ;82B8CE|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8916,7 +8916,7 @@ beeBlader_22_state_00:
                        STZ.B r_ev_3e-$E68                   ;82B8EA|643E    |000EA6;
                        REP #$20                             ;82B8EC|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82B8EE|A505    |000E6D;
-                       CMP.W r_d_player_xSubPos             ;82B8F0|CDAD0B  |860BAD;
+                       CMP.W r6_player_xPos                 ;82B8F0|CDAD0B  |860BAD;
                        SEP #$20                             ;82B8F3|E220    |      ;
                        BCS CODE_82B8FB                      ;82B8F5|B004    |82B8FB;
                        JML.L clearStateIf_0cEqual           ;82B8F7|5C878382|828387;
@@ -8925,15 +8925,15 @@ beeBlader_22_state_00:
           CODE_82B8FB:
                        JSL.L CODE_8282D3                    ;82B8FB|22D38282|8282D3;
                        BNE beeBlader_22_state_00            ;82B8FF|D0E2    |82B8E3;
-                       INC.W r_0000,X                       ;82B901|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82B901|FE0000  |860000;
                        LDA.B #$1F                           ;82B904|A91F    |      ;
-                       STA.W r_000a,X                       ;82B906|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82B906|9D0A00  |86000A;
                        REP #$20                             ;82B909|C220    |      ;
                        TDC                                  ;82B90B|7B      |      ;
-                       STA.W r_000c,X                       ;82B90C|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82B90C|9D0C00  |86000C;
                        STX.B r_ev_39-$E68                   ;82B90F|8639    |000EA1;
-                       STZ.W r_0005,X                       ;82B911|9E0500  |860005;
-                       STZ.W r_0008,X                       ;82B914|9E0800  |860008;
+                       STZ.W r6_0005,X                      ;82B911|9E0500  |860005;
+                       STZ.W r6_0008,X                      ;82B914|9E0800  |860008;
                        SEP #$30                             ;82B917|E230    |      ;
                        LDA.B r_ev_11_sprAtri-$E68           ;82B919|A511    |000E79;
                        AND.B #$0E                           ;82B91B|290E    |      ;
@@ -8953,15 +8953,15 @@ beeBlader_22_state_00:
                        STA.B r_ev_1c_ySpdSub-$E68           ;82B939|851C    |000E84;
                        LDA.W #$00F0                         ;82B93B|A9F000  |      ;
                        STA.B r_ev_08_yPos-$E68              ;82B93E|8508    |000E70;
-                       LDA.W r_levelSpecFlag                ;82B940|AD5E1E  |861E5E;
+                       LDA.W r6_levelSpecFlag               ;82B940|AD5E1E  |861E5E;
                        STA.B r_ev_3b-$E68                   ;82B943|853B    |000EA3;
-                       LDA.W r_cam_BG0_xPos_lock            ;82B945|AD601E  |861E60;
+                       LDA.W r6_cam_BG0_xPos_lock           ;82B945|AD601E  |861E60;
                        STA.B r_ev_31-$E68                   ;82B948|8531    |000E99;
                        LDA.B r_ev_05_xPos-$E68              ;82B94A|A505    |000E6D;
                        SEC                                  ;82B94C|38      |      ;
                        SBC.W #$00F0                         ;82B94D|E9F000  |      ;
-                       STA.W r_levelSpecFlag                ;82B950|8D5E1E  |861E5E;
-                       STA.W r_cam_BG0_xPos_lock            ;82B953|8D601E  |861E60;
+                       STA.W r6_levelSpecFlag               ;82B950|8D5E1E  |861E5E;
+                       STA.W r6_cam_BG0_xPos_lock           ;82B953|8D601E  |861E60;
                        SEP #$20                             ;82B956|E220    |      ;
                        STZ.B r_ev_07_ySubPos-$E68           ;82B958|6407    |000E6F;
                        LDA.B #$18                           ;82B95A|A918    |      ;
@@ -8976,7 +8976,7 @@ beeBlader_22_state_00:
                        SEC                                  ;82B968|38      |      ;
                        SBC.W #$0080                         ;82B969|E98000  |      ;
                        SEC                                  ;82B96C|38      |      ;
-                       SBC.W r_d_player_xSubPos             ;82B96D|EDAD0B  |860BAD;
+                       SBC.W r6_player_xPos                 ;82B96D|EDAD0B  |860BAD;
                        SEP #$20                             ;82B970|E220    |      ;
                        BCS CODE_82B978                      ;82B972|B004    |82B978;
                        LDA.B #$04                           ;82B974|A904    |      ;
@@ -9008,7 +9008,7 @@ beeBlader_22_state_00:
                                                             ;      |        |      ;
           CODE_82B9A2:
                        SEP #$20                             ;82B9A2|E220    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;82B9A4|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82B9A4|22EA8E84|848EEA;
                        JML.L CODE_82808F                    ;82B9A8|5C8F8082|82808F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9024,7 +9024,7 @@ beeBlader_22_state_00:
                                                             ;      |        |      ;
           CODE_82B9BE:
                        JSR.W CODE_82BBD8                    ;82B9BE|20D8BB  |82BBD8;
-                       JSL.L updateEv_13_14_17_0f           ;82B9C1|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82B9C1|22EA8E84|848EEA;
                        JMP.W CODE_82BC51                    ;82B9C5|4C51BC  |82BC51;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9044,19 +9044,19 @@ beeBlader_22_state_00:
                        JSL.L lunchSFX                       ;82B9DC|22A28880|8088A2;
                        JSL.L findEnemyShotEmptySlot         ;82B9E0|22588382|828358;
                        BNE CODE_82BA05                      ;82B9E4|D01F    |82BA05;
-                       INC.W r_0000,X                       ;82B9E6|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82B9E6|FE0000  |860000;
                        LDA.B #$0D                           ;82B9E9|A90D    |      ;
-                       STA.W r_000a,X                       ;82B9EB|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;82B9EE|9E0B00  |86000B;
+                       STA.W r6_000a,X                      ;82B9EB|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;82B9EE|9E0B00  |86000B;
                        REP #$20                             ;82B9F1|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82B9F3|A505    |000E6D;
                        SEC                                  ;82B9F5|38      |      ;
                        SBC.W #$0034                         ;82B9F6|E93400  |      ;
-                       STA.W r_0005,X                       ;82B9F9|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82B9F9|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82B9FC|A508    |000E70;
                        CLC                                  ;82B9FE|18      |      ;
                        ADC.W #$001C                         ;82B9FF|691C00  |      ;
-                       STA.W r_0008,X                       ;82BA02|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82BA02|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82BA05:
                        SEP #$30                             ;82BA05|E230    |      ;
@@ -9069,7 +9069,7 @@ beeBlader_22_state_00:
                                                             ;      |        |      ;
           CODE_82BA13:
                        JSR.W CODE_82BBD8                    ;82BA13|20D8BB  |82BBD8;
-                       JSL.L updateEv_13_14_17_0f           ;82BA16|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82BA16|22EA8E84|848EEA;
                        JMP.W CODE_82BC51                    ;82BA1A|4C51BC  |82BC51;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9096,7 +9096,7 @@ beeBlader_22_state_00:
                                                             ;      |        |      ;
           CODE_82BA45:
                        JSR.W CODE_82BBD8                    ;82BA45|20D8BB  |82BBD8;
-                       JSL.L updateEv_13_14_17_0f           ;82BA48|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82BA48|22EA8E84|848EEA;
                        JMP.W CODE_82BC51                    ;82BA4C|4C51BC  |82BC51;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9136,7 +9136,7 @@ beeBlader_22_state_00:
                                                             ;      |        |      ;
           CODE_82BA8D:
                        JSR.W CODE_82BBD8                    ;82BA8D|20D8BB  |82BBD8;
-                       JSL.L updateEv_13_14_17_0f           ;82BA90|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82BA90|22EA8E84|848EEA;
                        JMP.W CODE_82BC51                    ;82BA94|4C51BC  |82BC51;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9179,15 +9179,15 @@ beeBlader_22_state_00:
                        LDX.B #$03                           ;82BAD9|A203    |      ;
                        LDY.B #$01                           ;82BADB|A001    |      ;
                        JSL.L CODE_84A341                    ;82BADD|2241A384|84A341;
-                       LDA.W r_level_current                ;82BAE1|AD7A1F  |861F7A;
+                       LDA.W r6_level_current               ;82BAE1|AD7A1F  |861F7A;
                        BEQ CODE_82BAFA                      ;82BAE4|F014    |82BAFA;
                        JSL.L CODE_84A4B5                    ;82BAE6|22B5A484|84A4B5;
                        REP #$20                             ;82BAEA|C220    |      ;
                        LDA.B r_ev_3b-$E68                   ;82BAEC|A53B    |000EA3;
-                       STA.W r_levelSpecFlag                ;82BAEE|8D5E1E  |861E5E;
+                       STA.W r6_levelSpecFlag               ;82BAEE|8D5E1E  |861E5E;
                        LDA.B r_ev_31-$E68                   ;82BAF1|A531    |000E99;
-                       STA.W r_cam_BG0_xPos_lock            ;82BAF3|8D601E  |861E60;
-                       JML.L clearStates_00_02_0E           ;82BAF6|5C988382|828398;
+                       STA.W r6_cam_BG0_xPos_lock           ;82BAF3|8D601E  |861E60;
+                       JML.L despawnEvent_clear_00_02_0E    ;82BAF6|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BAFA:
@@ -9203,12 +9203,12 @@ beeBlader_22_state_00:
                        JSL.L playerGrabedRoutine            ;82BB0D|22078F84|848F07;
                        JSL.L CODE_8282B9                    ;82BB11|22B98282|8282B9;
                        BNE CODE_82BB27                      ;82BB15|D010    |82BB27;
-                       INC.W r_0000,X                       ;82BB17|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82BB17|FE0000  |860000;
                        LDA.B #$08                           ;82BB1A|A908    |      ;
-                       STA.W r_000a,X                       ;82BB1C|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82BB1C|9D0A00  |86000A;
                        LDA.B r_ev_0b_subID-$E68             ;82BB1F|A50B    |000E73;
                        ASL A                                ;82BB21|0A      |      ;
-                       STA.W r_000b,X                       ;82BB22|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82BB22|9D0B00  |86000B;
                        STX.B r_ev_37-$E68                   ;82BB25|8637    |000E9F;
                                                             ;      |        |      ;
           CODE_82BB27:
@@ -9227,7 +9227,7 @@ beeBlader_22_state_00:
                        STA.B r_ev_02_action-$E68            ;82BB3D|8502    |000E6A;
                        LDA.B #$01                           ;82BB3F|A901    |      ;
                        JSL.L playerGrabedRoutine            ;82BB41|22078F84|848F07;
-                       STZ.W r_0000                         ;82BB45|9C0000  |860000;
+                       STZ.W r6_0000                        ;82BB45|9C0000  |860000;
                        LDY.B #$05                           ;82BB48|A005    |      ;
                        JSR.W CODE_82BD11                    ;82BB4A|2011BD  |82BD11;
                                                             ;      |        |      ;
@@ -9243,43 +9243,43 @@ beeBlader_22_state_00:
                        LDA.B r_ev_05_xPos-$E68              ;82BB5A|A505    |000E6D;
                        SEC                                  ;82BB5C|38      |      ;
                        SBC.W #$0044                         ;82BB5D|E94400  |      ;
-                       STA.W r_002c                         ;82BB60|8D2C00  |86002C;
+                       STA.W r6_002c                        ;82BB60|8D2C00  |86002C;
                        LDA.B r_ev_08_yPos-$E68              ;82BB63|A508    |000E70;
                        SEC                                  ;82BB65|38      |      ;
                        SBC.W #$0020                         ;82BB66|E92000  |      ;
-                       STA.W r_002e                         ;82BB69|8D2E00  |86002E;
+                       STA.W r6_002e                        ;82BB69|8D2E00  |86002E;
                        SEP #$20                             ;82BB6C|E220    |      ;
                        LDA.B #$02                           ;82BB6E|A902    |      ;
-                       STA.W r_0001                         ;82BB70|8D0100  |860001;
-                       STZ.W r_0000                         ;82BB73|9C0000  |860000;
+                       STA.W r6_0001                        ;82BB70|8D0100  |860001;
+                       STZ.W r6_0000                        ;82BB73|9C0000  |860000;
                        JSL.L CODE_83FE75                    ;82BB76|2275FE83|83FE75;
                        JSL.L CODE_8282D3                    ;82BB7A|22D38282|8282D3;
                        BNE CODE_82BBAB                      ;82BB7E|D02B    |82BBAB;
-                       INC.W r_0000,X                       ;82BB80|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82BB80|FE0000  |860000;
                        LDA.B #$22                           ;82BB83|A922    |      ;
-                       STA.W r_000a,X                       ;82BB85|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82BB85|9D0A00  |86000A;
                        LDA.B #$04                           ;82BB88|A904    |      ;
-                       STA.W r_000b,X                       ;82BB8A|9D0B00  |86000B;
-                       STZ.W r_0011,X                       ;82BB8D|9E1100  |860011;
+                       STA.W r6_000b,X                      ;82BB8A|9D0B00  |86000B;
+                       STZ.W r6_0011,X                      ;82BB8D|9E1100  |860011;
                        REP #$20                             ;82BB90|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82BB92|A505    |000E6D;
-                       STA.W r_0005,X                       ;82BB94|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82BB94|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82BB97|A508    |000E70;
                        CLC                                  ;82BB99|18      |      ;
                        ADC.W #$0010                         ;82BB9A|691000  |      ;
-                       STA.W r_0008,X                       ;82BB9D|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82BB9D|9D0800  |860008;
                        SEP #$20                             ;82BBA0|E220    |      ;
                        LDY.W #$0006                         ;82BBA2|A00600  |      ;
-                       STY.W r_0000                         ;82BBA5|8C0000  |860000;
+                       STY.W r6_0000                        ;82BBA5|8C0000  |860000;
                        JSR.W CODE_82BD11                    ;82BBA8|2011BD  |82BD11;
                                                             ;      |        |      ;
           CODE_82BBAB:
                        REP #$20                             ;82BBAB|C220    |      ;
                        LDA.B r_ev_3b-$E68                   ;82BBAD|A53B    |000EA3;
-                       STA.W r_levelSpecFlag                ;82BBAF|8D5E1E  |861E5E;
+                       STA.W r6_levelSpecFlag               ;82BBAF|8D5E1E  |861E5E;
                        LDA.B r_ev_31-$E68                   ;82BBB2|A531    |000E99;
-                       STA.W r_cam_BG0_xPos_lock            ;82BBB4|8D601E  |861E60;
-                       JML.L clearStates_00_02_0E           ;82BBB7|5C988382|828398;
+                       STA.W r6_cam_BG0_xPos_lock           ;82BBB4|8D601E  |861E60;
+                       JML.L despawnEvent_clear_00_02_0E    ;82BBB7|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BBBB:
@@ -9328,21 +9328,21 @@ beeBlader_22_state_00:
           CODE_82BBFD:
                        JSL.L findEnemyShotEmptySlot         ;82BBFD|22588382|828358;
                        BNE CODE_82BC26                      ;82BC01|D023    |82BC26;
-                       INC.W r_0000,X                       ;82BC03|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82BC03|FE0000  |860000;
                        LDA.B #$0D                           ;82BC06|A90D    |      ;
-                       STA.W r_000a,X                       ;82BC08|9D0A00  |86000A;
-                       STA.W r_000b,X                       ;82BC0B|9D0B00  |86000B;
+                       STA.W r6_000a,X                      ;82BC08|9D0A00  |86000A;
+                       STA.W r6_000b,X                      ;82BC0B|9D0B00  |86000B;
                        REP #$20                             ;82BC0E|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82BC10|A505    |000E6D;
                        SEC                                  ;82BC12|38      |      ;
                        SBC.W #$0018                         ;82BC13|E91800  |      ;
-                       STA.W r_0005,X                       ;82BC16|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82BC16|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82BC19|A508    |000E70;
                        CLC                                  ;82BC1B|18      |      ;
                        ADC.W #$000B                         ;82BC1C|690B00  |      ;
-                       STA.W r_0008,X                       ;82BC1F|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82BC1F|9D0800  |860008;
                        TDC                                  ;82BC22|7B      |      ;
-                       STA.W r_000c,X                       ;82BC23|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82BC23|9D0C00  |86000C;
                                                             ;      |        |      ;
           CODE_82BC26:
                        SEP #$30                             ;82BC26|E230    |      ;
@@ -9352,19 +9352,19 @@ beeBlader_22_state_00:
           CODE_82BC29:
                        JSL.L loadEnitySlotBase              ;82BC29|22218382|828321;
                        BNE CODE_82BC4E                      ;82BC2D|D01F    |82BC4E;
-                       INC.W r_0000,X                       ;82BC2F|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82BC2F|FE0000  |860000;
                        LDA.B #$27                           ;82BC32|A927    |      ;
-                       STA.W r_000a,X                       ;82BC34|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;82BC37|9E0B00  |86000B;
+                       STA.W r6_000a,X                      ;82BC34|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;82BC37|9E0B00  |86000B;
                        REP #$20                             ;82BC3A|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82BC3C|A505    |000E6D;
                        CLC                                  ;82BC3E|18      |      ;
                        ADC.W #$001D                         ;82BC3F|691D00  |      ;
-                       STA.W r_0005,X                       ;82BC42|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82BC42|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82BC45|A508    |000E70;
                        CLC                                  ;82BC47|18      |      ;
                        ADC.W #$001B                         ;82BC48|691B00  |      ;
-                       STA.W r_0008,X                       ;82BC4B|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82BC4B|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82BC4E:
                        SEP #$20                             ;82BC4E|E220    |      ;
@@ -9381,13 +9381,13 @@ beeBlader_22_state_00:
                        LDA.B #$80                           ;82BC62|A980    |      ;
                        TRB.B r_ev_27_health-$E68            ;82BC64|1427    |000E8F;
                        LDA.B #$01                           ;82BC66|A901    |      ;
-                       STA.W r_1f30                         ;82BC68|8D301F  |861F30;
+                       STA.W r6_1f30                        ;82BC68|8D301F  |861F30;
                        LDA.B r_ev_3d-$E68                   ;82BC6B|A53D    |000EA5;
                        SEC                                  ;82BC6D|38      |      ;
                        SBC.B r_ev_27_health-$E68            ;82BC6E|E527    |000E8F;
-                       STA.W r_0000                         ;82BC70|8D0000  |860000;
+                       STA.W r6_0000                        ;82BC70|8D0000  |860000;
                        ASL A                                ;82BC73|0A      |      ;
-                       ADC.W r_0000                         ;82BC74|6D0000  |860000;
+                       ADC.W r6_0000                        ;82BC74|6D0000  |860000;
                        CLC                                  ;82BC77|18      |      ;
                        ADC.B r_ev_3e-$E68                   ;82BC78|653E    |000EA6;
                        STA.B r_ev_3e-$E68                   ;82BC7A|853E    |000EA6;
@@ -9401,7 +9401,7 @@ beeBlader_22_state_00:
                                                             ;      |        |      ;
           CODE_82BC8A:
                        JSL.L CODE_82808F                    ;82BC8A|228F8082|82808F;
-                       LDA.W r_level_current                ;82BC8E|AD7A1F  |861F7A;
+                       LDA.W r6_level_current               ;82BC8E|AD7A1F  |861F7A;
                        BEQ CODE_82BCAF                      ;82BC91|F01C    |82BCAF;
                        JSL.L initPosAllign                  ;82BC93|226E8082|82806E;
                        BCC CODE_82BCAF                      ;82BC97|9016    |82BCAF;
@@ -9410,9 +9410,9 @@ beeBlader_22_state_00:
                        BEQ CODE_82BCAF                      ;82BC9D|F010    |82BCAF;
                        REP #$20                             ;82BC9F|C220    |      ;
                        LDA.B r_ev_3b-$E68                   ;82BCA1|A53B    |000EA3;
-                       STA.W r_levelSpecFlag                ;82BCA3|8D5E1E  |861E5E;
+                       STA.W r6_levelSpecFlag               ;82BCA3|8D5E1E  |861E5E;
                        LDA.B r_ev_31-$E68                   ;82BCA6|A531    |000E99;
-                       STA.W r_cam_BG0_xPos_lock            ;82BCA8|8D601E  |861E60;
+                       STA.W r6_cam_BG0_xPos_lock           ;82BCA8|8D601E  |861E60;
                        JML.L clearStateIf_0cEqual           ;82BCAB|5C878382|828387;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9421,24 +9421,24 @@ beeBlader_22_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BCB0:
-                       STA.W r_0008                         ;82BCB0|8D0800  |860008;
+                       STA.W r6_0008                        ;82BCB0|8D0800  |860008;
                        REP #$20                             ;82BCB3|C220    |      ;
                        LDA.W #$FFE0                         ;82BCB5|A9E0FF  |      ;
-                       STA.W r_0000                         ;82BCB8|8D0000  |860000;
+                       STA.W r6_0000                        ;82BCB8|8D0000  |860000;
                        LDA.W #$FFF0                         ;82BCBB|A9F0FF  |      ;
-                       STA.W r_0002                         ;82BCBE|8D0200  |860002;
+                       STA.W r6_0002                        ;82BCBE|8D0200  |860002;
                        LDA.W #$003F                         ;82BCC1|A93F00  |      ;
-                       STA.W r_0004                         ;82BCC4|8D0400  |860004;
+                       STA.W r6_0004                        ;82BCC4|8D0400  |860004;
                        LDA.W #$001F                         ;82BCC7|A91F00  |      ;
-                       STA.W r_0006                         ;82BCCA|8D0600  |860006;
+                       STA.W r6_0006                        ;82BCCA|8D0600  |860006;
                        SEP #$20                             ;82BCCD|E220    |      ;
                        JSL.L CODE_84A4D0                    ;82BCCF|22D0A484|84A4D0;
                        RTS                                  ;82BCD3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BCD4:
-                       LDA.W r_d_0bd3                       ;82BCD4|ADD30B  |860BD3;
-                       ORA.W r_d_0bd4                       ;82BCD7|0DD40B  |860BD4;
+                       LDA.W r6_player_bd3                  ;82BCD4|ADD30B  |860BD3;
+                       ORA.W r6_player_bd4                  ;82BCD7|0DD40B  |860BD4;
                        AND.B #$04                           ;82BCDA|2904    |      ;
                        BEQ CODE_82BD0E                      ;82BCDC|F030    |82BD0E;
                        REP #$30                             ;82BCDE|C230    |      ;
@@ -9456,11 +9456,11 @@ beeBlader_22_state_00:
                        STA.B r_ev_20_hitBoxAddr-$E68        ;82BCF8|8520    |000E88;
                        BCC CODE_82BD0E                      ;82BCFA|9012    |82BD0E;
                        SEP #$20                             ;82BCFC|E220    |      ;
-                       LDA.W r_d_0bcf                       ;82BCFE|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82BCFE|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82BD01|297F    |      ;
                        BEQ CODE_82BD0E                      ;82BD03|F009    |82BD0E;
                        LDA.B #$1F                           ;82BD05|A91F    |      ;
-                       STA.W r_d_0bce                       ;82BD07|8DCE0B  |860BCE;
+                       STA.W r6_player_bce                  ;82BD07|8DCE0B  |860BCE;
                        JSL.L CODE_849F2F                    ;82BD0A|222F9F84|849F2F;
                                                             ;      |        |      ;
           CODE_82BD0E:
@@ -9472,21 +9472,21 @@ beeBlader_22_state_00:
                        SEP #$20                             ;82BD11|E220    |      ;
                        JSL.L CODE_8282D3                    ;82BD13|22D38282|8282D3;
                        BNE CODE_82BD3F                      ;82BD17|D026    |82BD3F;
-                       INC.W r_0000,X                       ;82BD19|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82BD19|FE0000  |860000;
                        LDA.B #$25                           ;82BD1C|A925    |      ;
-                       STA.W r_000a,X                       ;82BD1E|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82BD1E|9D0A00  |86000A;
                        TYA                                  ;82BD21|98      |      ;
                        CLC                                  ;82BD22|18      |      ;
-                       ADC.W r_0000                         ;82BD23|6D0000  |860000;
-                       STA.W r_000b,X                       ;82BD26|9D0B00  |86000B;
+                       ADC.W r6_0000                        ;82BD23|6D0000  |860000;
+                       STA.W r6_000b,X                      ;82BD26|9D0B00  |86000B;
                        LDA.B r_ev_11_sprAtri-$E68           ;82BD29|A511    |000E79;
                        AND.B #$FE                           ;82BD2B|29FE    |      ;
-                       STA.W r_0011,X                       ;82BD2D|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82BD2D|9D1100  |860011;
                        REP #$20                             ;82BD30|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82BD32|A505    |000E6D;
-                       STA.W r_0005,X                       ;82BD34|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82BD34|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82BD37|A508    |000E70;
-                       STA.W r_0008,X                       ;82BD39|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82BD39|9D0800  |860008;
                        DEY                                  ;82BD3C|88      |      ;
                        BPL CODE_82BD11                      ;82BD3D|10D2    |82BD11;
                                                             ;      |        |      ;
@@ -9507,7 +9507,7 @@ beeBlader_22_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82BD58:
-                       LDA.W r_frameCounter1                ;82BD58|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82BD58|AD9C0B  |860B9C;
                        LSR A                                ;82BD5B|4A      |      ;
                        BCC CODE_82BD6A                      ;82BD5C|900C    |82BD6A;
                        LDA.B r_ev_3e-$E68                   ;82BD5E|A53E    |000EA6;
@@ -9539,9 +9539,9 @@ utuborosHead_23_state_00:
                        TYA                                  ;82BD82|98      |      ;
                        BEQ CODE_82BD92                      ;82BD83|F00D    |82BD92;
                        REP #$30                             ;82BD85|C230    |      ;
-                       LDX.W r_0000                         ;82BD87|AE0000  |860000;
-                       STZ.W r_0000,X                       ;82BD8A|9E0000  |860000;
-                       STZ.W r_0002,X                       ;82BD8D|9E0200  |860002;
+                       LDX.W r6_0000                        ;82BD87|AE0000  |860000;
+                       STZ.W r6_0000,X                      ;82BD8A|9E0000  |860000;
+                       STZ.W r6_0002,X                      ;82BD8D|9E0200  |860002;
                        SEP #$30                             ;82BD90|E230    |      ;
                                                             ;      |        |      ;
           CODE_82BD92:
@@ -9561,13 +9561,13 @@ utuborosHead_23_state_00:
                        STZ.B r_ev_3e-$E68                   ;82BDAC|643E    |000EA6;
                        REP #$20                             ;82BDAE|C220    |      ;
                        STZ.B r_ev_34-$E68                   ;82BDB0|6434    |000E9C;
-                       LDA.W r_levelSpecFlag                ;82BDB2|AD5E1E  |861E5E;
+                       LDA.W r6_levelSpecFlag               ;82BDB2|AD5E1E  |861E5E;
                        STA.L $7FD700                        ;82BDB5|8F00D77F|7FD700;
-                       LDA.W r_cam_BG0_xPos_lock            ;82BDB9|AD601E  |861E60;
+                       LDA.W r6_cam_BG0_xPos_lock           ;82BDB9|AD601E  |861E60;
                        STA.L $7FD702                        ;82BDBC|8F02D77F|7FD702;
-                       LDA.W r_1e68                         ;82BDC0|AD681E  |861E68;
+                       LDA.W r6_1e68                        ;82BDC0|AD681E  |861E68;
                        STA.L $7FD704                        ;82BDC3|8F04D77F|7FD704;
-                       LDA.W r_cam_BG0_yPos_lock_Set        ;82BDC7|AD6E1E  |861E6E;
+                       LDA.W r6_cam_BG0_yPos_lock_Set       ;82BDC7|AD6E1E  |861E6E;
                        STA.L $7FD706                        ;82BDCA|8F06D77F|7FD706;
                        LDA.B r_ev_0b_subID-$E68             ;82BDCE|A50B    |000E73;
                        AND.W #$00FF                         ;82BDD0|29FF00  |      ;
@@ -9576,13 +9576,13 @@ utuborosHead_23_state_00:
                        LDA.W UNREACH_86CCA2,X               ;82BDD5|BDA2CC  |86CCA2;
                        STA.B r_ev_05_xPos-$E68              ;82BDD8|8505    |000E6D;
                        LDA.W UNREACH_86CCA6,X               ;82BDDA|BDA6CC  |86CCA6;
-                       STA.W r_levelSpecFlag                ;82BDDD|8D5E1E  |861E5E;
+                       STA.W r6_levelSpecFlag               ;82BDDD|8D5E1E  |861E5E;
                        LDA.W UNREACH_86CCAA,X               ;82BDE0|BDAACC  |86CCAA;
-                       STA.W r_cam_BG0_xPos_lock            ;82BDE3|8D601E  |861E60;
+                       STA.W r6_cam_BG0_xPos_lock           ;82BDE3|8D601E  |861E60;
                        LDA.W UNREACH_86CCAE,X               ;82BDE6|BDAECC  |86CCAE;
-                       STA.W r_1e68                         ;82BDE9|8D681E  |861E68;
+                       STA.W r6_1e68                        ;82BDE9|8D681E  |861E68;
                        LDA.W UNREACH_86CCB2,X               ;82BDEC|BDB2CC  |86CCB2;
-                       STA.W r_cam_BG0_yPos_lock_Set        ;82BDEF|8D6E1E  |861E6E;
+                       STA.W r6_cam_BG0_yPos_lock_Set       ;82BDEF|8D6E1E  |861E6E;
                        LDA.W #$CC30                         ;82BDF2|A930CC  |      ;
                        STA.B r_ev_20_hitBoxAddr-$E68        ;82BDF5|8520    |000E88;
                        LDA.B r_ev_0b_subID-$E68             ;82BDF7|A50B    |000E73;
@@ -9591,7 +9591,7 @@ utuborosHead_23_state_00:
                        LDA.W #$0006                         ;82BDFE|A90600  |      ;
                        STA.B r_ev_02_action-$E68            ;82BE01|8502    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;82BE03|6403    |000E6B;
-                       LDA.W r_d_player_xSubPos             ;82BE05|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82BE05|ADAD0B  |860BAD;
                        STA.B r_ev_05_xPos-$E68              ;82BE08|8505    |000E6D;
                        LDA.W #$02E0                         ;82BE0A|A9E002  |      ;
                        STA.B r_ev_08_yPos-$E68              ;82BE0D|8508    |000E70;
@@ -9655,9 +9655,9 @@ utuborosHead_23_state_00:
                        INC.B r_ev_3c-$E68                   ;82BE6E|E63C    |000EA4;
                        REP #$10                             ;82BE70|C210    |      ;
                        LDX.B r_ev_3a-$E68                   ;82BE72|A63A    |000EA2;
-                       STA.W r_003c,X                       ;82BE74|9D3C00  |86003C;
+                       STA.W r6_003c,X                      ;82BE74|9D3C00  |86003C;
                        LDA.B r_ev_27_health-$E68            ;82BE77|A527    |000E8F;
-                       STA.W r_0027,X                       ;82BE79|9D2700  |860027;
+                       STA.W r6_0027,X                      ;82BE79|9D2700  |860027;
                        SEP #$10                             ;82BE7C|E210    |      ;
                        LDA.B r_ev_27_health-$E68            ;82BE7E|A527    |000E8F;
                        AND.B #$7F                           ;82BE80|297F    |      ;
@@ -9711,7 +9711,7 @@ utuborosHead_23_state_00:
                        LDA.W #$FE80                         ;82BEC3|A980FE  |      ;
                        STA.B r_ev_1c_ySpdSub-$E68           ;82BEC6|851C    |000E84;
                        LDA.W #$0010                         ;82BEC8|A91000  |      ;
-                       STA.W r_0000                         ;82BECB|8D0000  |860000;
+                       STA.W r6_0000                        ;82BECB|8D0000  |860000;
                        SEP #$20                             ;82BECE|E220    |      ;
                        JSR.W CODE_82C363                    ;82BED0|2063C3  |82C363;
                        LDA.B #$06                           ;82BED3|A906    |      ;
@@ -9736,7 +9736,7 @@ utuborosHead_23_state_00:
                                                             ;      |        |      ;
           CODE_82BEF4:
                        JSL.L CODE_82825D                    ;82BEF4|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;82BEF8|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82BEF8|22EA8E84|848EEA;
                        JMP.W CODE_82C385                    ;82BEFC|4C85C3  |82C385;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9748,7 +9748,7 @@ utuborosHead_23_state_00:
                        STZ.B r_ev_03_do-$E68                ;82BF07|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_82BF09:
-                       LDA.W r_frameCounter1                ;82BF09|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82BF09|AD9C0B  |860B9C;
                        LSR A                                ;82BF0C|4A      |      ;
                        BCC CODE_82BF1B                      ;82BF0D|900C    |82BF1B;
                        REP #$20                             ;82BF0F|C220    |      ;
@@ -9760,7 +9760,7 @@ utuborosHead_23_state_00:
                                                             ;      |        |      ;
           CODE_82BF1B:
                        JSL.L CODE_82825D                    ;82BF1B|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;82BF1F|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82BF1F|22EA8E84|848EEA;
                        JMP.W CODE_82C385                    ;82BF23|4C85C3  |82C385;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9786,24 +9786,24 @@ utuborosHead_23_state_00:
                        LDX.W #$FFC0                         ;82BF43|A2C0FF  |      ;
                                                             ;      |        |      ;
           CODE_82BF46:
-                       STX.W r_0000                         ;82BF46|8E0000  |860000;
-                       LDA.W r_cam_BG0_xPos_target          ;82BF49|AD4D1E  |861E4D;
+                       STX.W r6_0000                        ;82BF46|8E0000  |860000;
+                       LDA.W r6_cam_BG0_xPos_target         ;82BF49|AD4D1E  |861E4D;
                        CLC                                  ;82BF4C|18      |      ;
                        ADC.W #$0080                         ;82BF4D|698000  |      ;
                        STA.B r_ev_05_xPos-$E68              ;82BF50|8505    |000E6D;
                        LDA.W #$0100                         ;82BF52|A90001  |      ;
                        STA.B r_ev_1c_ySpdSub-$E68           ;82BF55|851C    |000E84;
-                       LDA.W r_cam_BG0_LeftBorder           ;82BF57|AD561E  |861E56;
+                       LDA.W r6_cam_BG0_LeftBorder          ;82BF57|AD561E  |861E56;
                        CLC                                  ;82BF5A|18      |      ;
-                       ADC.W r_cam_BG0_RightBorder          ;82BF5B|6D581E  |861E58;
+                       ADC.W r6_cam_BG0_RightBorder         ;82BF5B|6D581E  |861E58;
                        CLC                                  ;82BF5E|18      |      ;
                        ADC.W #$0100                         ;82BF5F|690001  |      ;
                        LSR A                                ;82BF62|4A      |      ;
-                       STA.W r_0000                         ;82BF63|8D0000  |860000;
+                       STA.W r6_0000                        ;82BF63|8D0000  |860000;
                        SEP #$20                             ;82BF66|E220    |      ;
                        LDA.B #$00                           ;82BF68|A900    |      ;
                        LDY.W #$FE9E                         ;82BF6A|A09EFE  |      ;
-                       LDX.W r_0000                         ;82BF6D|AE0000  |860000;
+                       LDX.W r6_0000                        ;82BF6D|AE0000  |860000;
                        CPX.B r_ev_05_xPos-$E68              ;82BF70|E405    |000E6D;
                        BCC CODE_82BF79                      ;82BF72|9005    |82BF79;
                        LDA.B #$40                           ;82BF74|A940    |      ;
@@ -9830,9 +9830,9 @@ utuborosHead_23_state_00:
                        LDA.B #$3C                           ;82BF98|A93C    |      ;
                        STA.B r_ev_36-$E68                   ;82BF9A|8536    |000E9E;
                        LDA.B #$E8                           ;82BF9C|A9E8    |      ;
-                       STA.W r_0000                         ;82BF9E|8D0000  |860000;
+                       STA.W r6_0000                        ;82BF9E|8D0000  |860000;
                        LDA.B #$FF                           ;82BFA1|A9FF    |      ;
-                       STA.W r_0001                         ;82BFA3|8D0100  |860001;
+                       STA.W r6_0001                        ;82BFA3|8D0100  |860001;
                        JSR.W CODE_82C363                    ;82BFA6|2063C3  |82C363;
                                                             ;      |        |      ;
           CODE_82BFA9:
@@ -9923,10 +9923,10 @@ utuborosHead_23_state_00:
                                                             ;      |        |      ;
           CODE_82C01E:
                        ADC.B r_ev_05_xPos-$E68              ;82C01E|6505    |000E6D;
-                       CMP.W r_cam_BG0_LeftBorder           ;82C020|CD561E  |861E56;
+                       CMP.W r6_cam_BG0_LeftBorder          ;82C020|CD561E  |861E56;
                        BCC CODE_82C033                      ;82C023|900E    |82C033;
                        SBC.W #$0100                         ;82C025|E90001  |      ;
-                       CMP.W r_cam_BG0_RightBorder          ;82C028|CD581E  |861E58;
+                       CMP.W r6_cam_BG0_RightBorder         ;82C028|CD581E  |861E58;
                        BCS CODE_82C033                      ;82C02B|B006    |82C033;
                        DEC.B r_ev_36-$E68                   ;82C02D|C636    |000E9E;
                        BNE CODE_82C040                      ;82C02F|D00F    |82C040;
@@ -9951,7 +9951,7 @@ utuborosHead_23_state_00:
                        LDA.B r_ev_08_yPos-$E68              ;82C044|A508    |000E70;
                        CLC                                  ;82C046|18      |      ;
                        ADC.W #$FFB0                         ;82C047|69B0FF  |      ;
-                       CMP.W r_cam_BG0_TopBorder            ;82C04A|CD5A1E  |861E5A;
+                       CMP.W r6_cam_BG0_TopBorder           ;82C04A|CD5A1E  |861E5A;
                        BCS CODE_82C05B                      ;82C04D|B00C    |82C05B;
                        LDA.B r_ev_1c_ySpdSub-$E68           ;82C04F|A51C    |000E84;
                        BMI CODE_82C070                      ;82C051|301D    |82C070;
@@ -9965,7 +9965,7 @@ utuborosHead_23_state_00:
                        LDA.B r_ev_08_yPos-$E68              ;82C05B|A508    |000E70;
                        CLC                                  ;82C05D|18      |      ;
                        ADC.W #$FFB0                         ;82C05E|69B0FF  |      ;
-                       CMP.W r_cam_BG0_BottomBorder         ;82C061|CD5C1E  |861E5C;
+                       CMP.W r6_cam_BG0_BottomBorder        ;82C061|CD5C1E  |861E5C;
                        BCC CODE_82C070                      ;82C064|900A    |82C070;
                        LDA.B r_ev_1c_ySpdSub-$E68           ;82C066|A51C    |000E84;
                        BPL CODE_82C070                      ;82C068|1006    |82C070;
@@ -10028,7 +10028,7 @@ utuborosHead_23_state_00:
                        BNE CODE_82C0D3                      ;82C0C2|D00F    |82C0D3;
                        LDX.B #$07                           ;82C0C4|A207    |      ;
                        REP #$10                             ;82C0C6|C210    |      ;
-                       LDY.W r_d_player_yPos                ;82C0C8|ACB00B  |860BB0;
+                       LDY.W r6_player_yPos                 ;82C0C8|ACB00B  |860BB0;
                        CPY.B r_ev_08_yPos-$E68              ;82C0CB|C408    |000E70;
                        BCC CODE_82C0D1                      ;82C0CD|9002    |82C0D1;
                        INX                                  ;82C0CF|E8      |      ;
@@ -10075,7 +10075,7 @@ utuborosHead_23_state_00:
                        BNE CODE_82C113                      ;82C102|D00F    |82C113;
                        LDX.B #$17                           ;82C104|A217    |      ;
                        REP #$10                             ;82C106|C210    |      ;
-                       LDY.W r_d_player_yPos                ;82C108|ACB00B  |860BB0;
+                       LDY.W r6_player_yPos                 ;82C108|ACB00B  |860BB0;
                        CPY.B r_ev_08_yPos-$E68              ;82C10B|C408    |000E70;
                        BCS CODE_82C111                      ;82C10D|B002    |82C111;
                        INX                                  ;82C10F|E8      |      ;
@@ -10125,7 +10125,7 @@ utuborosHead_23_state_00:
                                                             ;      |        |      ;
           CODE_82C156:
                        JSL.L CODE_82820A                    ;82C156|220A8282|82820A;
-                       JSL.L updateEv_13_14_17_0f           ;82C15A|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82C15A|22EA8E84|848EEA;
                        RTS                                  ;82C15E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10133,7 +10133,7 @@ utuborosHead_23_state_00:
                        INC.B r_ev_03_do-$E68                ;82C15F|E603    |000E6B;
                        REP #$20                             ;82C161|C220    |      ;
                        LDX.B #$40                           ;82C163|A240    |      ;
-                       LDA.W r_d_player_xSubPos             ;82C165|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82C165|ADAD0B  |860BAD;
                        CMP.B r_ev_05_xPos-$E68              ;82C168|C505    |000E6D;
                        BCS CODE_82C16E                      ;82C16A|B002    |82C16E;
                        LDX.B #$00                           ;82C16C|A200    |      ;
@@ -10161,15 +10161,15 @@ utuborosHead_23_state_00:
                        ASL A                                ;82C18C|0A      |      ;
                        TAY                                  ;82C18D|A8      |      ;
                        LDA.W UNREACH_86CCB6,Y               ;82C18E|B9B6CC  |86CCB6;
-                       STA.W r_0000                         ;82C191|8D0000  |860000;
+                       STA.W r6_0000                        ;82C191|8D0000  |860000;
                        LDA.W UNREACH_86CCBA,Y               ;82C194|B9BACC  |86CCBA;
-                       STA.W r_0002                         ;82C197|8D0200  |860002;
+                       STA.W r6_0002                        ;82C197|8D0200  |860002;
                        LDA.B r_ev_27_health-$E68            ;82C19A|A527    |000E8F;
                        AND.W #$00FF                         ;82C19C|29FF00  |      ;
                        CMP.W #$0024                         ;82C19F|C92400  |      ;
                        BCC CODE_82C1AA                      ;82C1A2|9006    |82C1AA;
                        LDA.W #$7F00                         ;82C1A4|A9007F  |      ;
-                       STA.W r_0002                         ;82C1A7|8D0200  |860002;
+                       STA.W r6_0002                        ;82C1A7|8D0200  |860002;
                                                             ;      |        |      ;
           CODE_82C1AA:
                        LDY.B #$00                           ;82C1AA|A000    |      ;
@@ -10179,9 +10179,9 @@ utuborosHead_23_state_00:
                                                             ;      |        |      ;
           CODE_82C1B2:
                        LDA.B r_ev_08_yPos-$E68              ;82C1B2|A508    |000E70;
-                       CMP.W r_d_player_yPos                ;82C1B4|CDB00B  |860BB0;
+                       CMP.W r6_player_yPos                 ;82C1B4|CDB00B  |860BB0;
                        BCC CODE_82C1C7                      ;82C1B7|900E    |82C1C7;
-                       CMP.W r_0000                         ;82C1B9|CD0000  |860000;
+                       CMP.W r6_0000                        ;82C1B9|CD0000  |860000;
                        BCC CODE_82C1C7                      ;82C1BC|9009    |82C1C7;
                                                             ;      |        |      ;
           CODE_82C1BE:
@@ -10198,7 +10198,7 @@ utuborosHead_23_state_00:
                        BNE CODE_82C1D3                      ;82C1CC|D005    |82C1D3;
                                                             ;      |        |      ;
           CODE_82C1CE:
-                       CMP.W r_0002                         ;82C1CE|CD0200  |860002;
+                       CMP.W r6_0002                        ;82C1CE|CD0200  |860002;
                        BCS CODE_82C1BE                      ;82C1D1|B0EB    |82C1BE;
                                                             ;      |        |      ;
           CODE_82C1D3:
@@ -10268,14 +10268,14 @@ utuborosHead_23_state_00:
                        BNE CODE_82C25B                      ;82C237|D022    |82C25B;
                        REP #$20                             ;82C239|C220    |      ;
                        LDA.L $7FD700                        ;82C23B|AF00D77F|7FD700;
-                       STA.W r_levelSpecFlag                ;82C23F|8D5E1E  |861E5E;
+                       STA.W r6_levelSpecFlag               ;82C23F|8D5E1E  |861E5E;
                        LDA.L $7FD702                        ;82C242|AF02D77F|7FD702;
-                       STA.W r_cam_BG0_xPos_lock            ;82C246|8D601E  |861E60;
+                       STA.W r6_cam_BG0_xPos_lock           ;82C246|8D601E  |861E60;
                        LDA.L $7FD704                        ;82C249|AF04D77F|7FD704;
-                       STA.W r_1e68                         ;82C24D|8D681E  |861E68;
+                       STA.W r6_1e68                        ;82C24D|8D681E  |861E68;
                        LDA.L $7FD706                        ;82C250|AF06D77F|7FD706;
-                       STA.W r_cam_BG0_yPos_lock_Set        ;82C254|8D6E1E  |861E6E;
-                       JSL.L clearStates_00_02_0E           ;82C257|22988382|828398;
+                       STA.W r6_cam_BG0_yPos_lock_Set       ;82C254|8D6E1E  |861E6E;
+                       JSL.L despawnEvent_clear_00_02_0E    ;82C257|22988382|828398;
                                                             ;      |        |      ;
           CODE_82C25B:
                        RTL                                  ;82C25B|6B      |      ;
@@ -10354,35 +10354,35 @@ utuborosHead_23_state_00:
                                                             ;      |        |      ;
           CODE_82C2C2:
                        JSL.L loadEnitySlotBase              ;82C2C2|22218382|828321;
-                       INC.W r_0000,X                       ;82C2C6|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82C2C6|FE0000  |860000;
                        LDA.B #$24                           ;82C2C9|A924    |      ;
-                       STA.W r_000a,X                       ;82C2CB|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82C2CB|9D0A00  |86000A;
                        TYA                                  ;82C2CE|98      |      ;
                        ASL A                                ;82C2CF|0A      |      ;
-                       STA.W r_000b,X                       ;82C2D0|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82C2D0|9D0B00  |86000B;
                        REP #$20                             ;82C2D3|C220    |      ;
                        TDC                                  ;82C2D5|7B      |      ;
-                       STA.W r_000c,X                       ;82C2D6|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82C2D6|9D0C00  |86000C;
                        LDA.B r_ev_05_xPos-$E68              ;82C2D9|A505    |000E6D;
-                       STA.W r_0005,X                       ;82C2DB|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82C2DB|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82C2DE|A508    |000E70;
-                       STA.W r_0008,X                       ;82C2E0|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82C2E0|9D0800  |860008;
                        SEP #$20                             ;82C2E3|E220    |      ;
                        INY                                  ;82C2E5|C8      |      ;
                        CPY.W #$0006                         ;82C2E6|C00600  |      ;
                        BNE CODE_82C2C2                      ;82C2E9|D0D7    |82C2C2;
                        JSL.L loadEnitySlotBase              ;82C2EB|22218382|828321;
-                       INC.W r_0000,X                       ;82C2EF|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82C2EF|FE0000  |860000;
                        LDA.B #$25                           ;82C2F2|A925    |      ;
-                       STA.W r_000a,X                       ;82C2F4|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82C2F4|9D0A00  |86000A;
                        STX.B r_ev_3a-$E68                   ;82C2F7|863A    |000EA2;
                        REP #$20                             ;82C2F9|C220    |      ;
                        TDC                                  ;82C2FB|7B      |      ;
-                       STA.W r_000c,X                       ;82C2FC|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82C2FC|9D0C00  |86000C;
                        LDA.B r_ev_05_xPos-$E68              ;82C2FF|A505    |000E6D;
-                       STA.W r_0005,X                       ;82C301|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82C301|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82C304|A508    |000E70;
-                       STA.W r_0008,X                       ;82C306|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82C306|9D0800  |860008;
                        SEP #$30                             ;82C309|E230    |      ;
                        RTS                                  ;82C30B|60      |      ;
                                                             ;      |        |      ;
@@ -10414,22 +10414,22 @@ utuborosHead_23_state_00:
                                                             ;      |        |      ;
           CODE_82C331:
                        JSL.L CODE_8282D3                    ;82C331|22D38282|8282D3;
-                       INC.W r_0000,X                       ;82C335|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82C335|FE0000  |860000;
                        LDA.B #$1A                           ;82C338|A91A    |      ;
-                       STA.W r_000a,X                       ;82C33A|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82C33A|9D0A00  |86000A;
                        LDA.L $7F832E                        ;82C33D|AF2E837F|7F832E;
                        ORA.B r_ev_33-$E68                   ;82C341|0533    |000E9B;
-                       STA.W r_0011,X                       ;82C343|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82C343|9D1100  |860011;
                        LDA.B r_ev_18_gfxSlot-$E68           ;82C346|A518    |000E80;
-                       STA.W r_0018,X                       ;82C348|9D1800  |860018;
+                       STA.W r6_0018,X                      ;82C348|9D1800  |860018;
                        LDA.B r_ev_0f_waitCount-$E68         ;82C34B|A50F    |000E77;
                        AND.B #$7F                           ;82C34D|297F    |      ;
-                       STA.W r_0017,X                       ;82C34F|9D1700  |860017;
+                       STA.W r6_0017,X                      ;82C34F|9D1700  |860017;
                        REP #$20                             ;82C352|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82C354|A505    |000E6D;
-                       STA.W r_0005,X                       ;82C356|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82C356|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82C359|A508    |000E70;
-                       STA.W r_0008,X                       ;82C35B|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82C35B|9D0800  |860008;
                        SEP #$20                             ;82C35E|E220    |      ;
                        SEP #$10                             ;82C360|E210    |      ;
                        RTS                                  ;82C362|60      |      ;
@@ -10438,15 +10438,15 @@ utuborosHead_23_state_00:
           CODE_82C363:
                        JSL.L CODE_828307                    ;82C363|22078382|828307;
                        BNE CODE_82C382                      ;82C367|D019    |82C382;
-                       INC.W r_0000,X                       ;82C369|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82C369|FE0000  |860000;
                        LDA.B #$12                           ;82C36C|A912    |      ;
-                       STA.W r_000a,X                       ;82C36E|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82C36E|9D0A00  |86000A;
                        REP #$21                             ;82C371|C221    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;82C373|A508    |000E70;
-                       ADC.W r_0000                         ;82C375|6D0000  |860000;
-                       STA.W r_0008,X                       ;82C378|9D0800  |860008;
+                       ADC.W r6_0000                        ;82C375|6D0000  |860000;
+                       STA.W r6_0008,X                      ;82C378|9D0800  |860008;
                        LDA.B r_ev_05_xPos-$E68              ;82C37B|A505    |000E6D;
-                       STA.W r_0005,X                       ;82C37D|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82C37D|9D0500  |860005;
                        SEP #$20                             ;82C380|E220    |      ;
                                                             ;      |        |      ;
           CODE_82C382:
@@ -10455,7 +10455,7 @@ utuborosHead_23_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C385:
-                       LDA.W r_frameCounter1                ;82C385|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82C385|AD9C0B  |860B9C;
                        AND.B #$0F                           ;82C388|290F    |      ;
                        BNE CODE_82C392                      ;82C38A|D006    |82C392;
                        LDA.B #$35                           ;82C38C|A935    |      ;
@@ -10498,7 +10498,7 @@ utuborosBody_24_state_00:
                        STA.B $11                            ;82C3C4|8511    |000FF9;
                        REP #$10                             ;82C3C6|C210    |      ;
                        LDX.B $0C                            ;82C3C8|A60C    |000FF4;
-                       LDA.W r_0027,X                       ;82C3CA|BD2700  |860027;
+                       LDA.W r6_0027,X                      ;82C3CA|BD2700  |860027;
                        AND.B #$7F                           ;82C3CD|297F    |      ;
                        BNE CODE_82C3D6                      ;82C3CF|D005    |82C3D6;
                        LDA.B #$04                           ;82C3D1|A904    |      ;
@@ -10507,7 +10507,7 @@ utuborosBody_24_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C3D6:
-                       LDA.W r_003c,X                       ;82C3D6|BD3C00  |86003C;
+                       LDA.W r6_003c,X                      ;82C3D6|BD3C00  |86003C;
                        BEQ CODE_82C3DB                      ;82C3D9|F000    |82C3DB;
                                                             ;      |        |      ;
           CODE_82C3DB:
@@ -10537,7 +10537,7 @@ utuborosBody_24_state_00:
           CODE_82C409:
                        LDX.B $02                            ;82C409|A602    |00102A;
                        JSR.W (PTR16_82C430,X)               ;82C40B|FC30C4  |82C430;
-                       LDA.W r_frameCounter1                ;82C40E|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82C40E|AD9C0B  |860B9C;
                        LSR A                                ;82C411|4A      |      ;
                        BCC CODE_82C41C                      ;82C412|9008    |82C41C;
                        LDA.B $00                            ;82C414|A500    |001028;
@@ -10624,7 +10624,7 @@ utuborosBody_24_state_00:
                        JSR.W CODE_82C4EC                    ;82C499|20ECC4  |82C4EC;
                                                             ;      |        |      ;
           CODE_82C49C:
-                       JSL.L clearStates_00_02_0E           ;82C49C|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;82C49C|22988382|828398;
                                                             ;      |        |      ;
           CODE_82C4A0:
                        JMP.W CODE_82C6C0                    ;82C4A0|4CC0C6  |82C6C0;
@@ -10649,7 +10649,7 @@ utuborosBody_24_state_00:
                        STA.B $1C                            ;82C4BB|851C    |001044;
                                                             ;      |        |      ;
           CODE_82C4BD:
-                       LDA.W r_cam_BG0_BottomBorder         ;82C4BD|AD5C1E  |861E5C;
+                       LDA.W r6_cam_BG0_BottomBorder        ;82C4BD|AD5C1E  |861E5C;
                        CLC                                  ;82C4C0|18      |      ;
                        ADC.W #$0140                         ;82C4C1|694001  |      ;
                        CMP.B $08                            ;82C4C4|C508    |001030;
@@ -10670,7 +10670,7 @@ utuborosBody_24_state_00:
                        JSR.W CODE_82C4EC                    ;82C4E4|20ECC4  |82C4EC;
                                                             ;      |        |      ;
           CODE_82C4E7:
-                       JSL.L clearStates_00_02_0E           ;82C4E7|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;82C4E7|22988382|828398;
                                                             ;      |        |      ;
           CODE_82C4EB:
                        RTS                                  ;82C4EB|60      |      ;
@@ -10699,22 +10699,22 @@ utuborosBody_24_state_00:
           CODE_82C507:
                        JSL.L CODE_8282D3                    ;82C507|22D38282|8282D3;
                        BNE CODE_82C537                      ;82C50B|D02A    |82C537;
-                       INC.W r_0000,X                       ;82C50D|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82C50D|FE0000  |860000;
                        LDA.B #$0C                           ;82C510|A90C    |      ;
-                       STA.W r_000a,X                       ;82C512|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82C512|9D0A00  |86000A;
                        LDA.B #$03                           ;82C515|A903    |      ;
-                       STA.W r_000b,X                       ;82C517|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82C517|9D0B00  |86000B;
                        REP #$21                             ;82C51A|C221    |      ;
                        LDA.B $08                            ;82C51C|A508    |001030;
                        ADC.W #$0010                         ;82C51E|691000  |      ;
-                       STA.W r_0008,X                       ;82C521|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82C521|9D0800  |860008;
                        JSL.L mainPlayer_00                  ;82C524|22869084|849086;
                        AND.W #$001F                         ;82C528|291F00  |      ;
                        CLC                                  ;82C52B|18      |      ;
                        ADC.B $05                            ;82C52C|6505    |00102D;
                        SEC                                  ;82C52E|38      |      ;
                        SBC.W #$0010                         ;82C52F|E91000  |      ;
-                       STA.W r_0005,X                       ;82C532|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82C532|9D0500  |860005;
                        SEP #$20                             ;82C535|E220    |      ;
                                                             ;      |        |      ;
           CODE_82C537:
@@ -10723,7 +10723,7 @@ utuborosBody_24_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C53A:
-                       LDA.W r_d_0bcf                       ;82C53A|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82C53A|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82C53D|297F    |      ;
                        BNE CODE_82C542                      ;82C53F|D001    |82C542;
                        RTS                                  ;82C541|60      |      ;
@@ -10731,26 +10731,26 @@ utuborosBody_24_state_00:
                                                             ;      |        |      ;
           CODE_82C542:
                        REP #$30                             ;82C542|C230    |      ;
-                       LDA.W r_d_player_xSubPos             ;82C544|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82C544|ADAD0B  |860BAD;
                        SEC                                  ;82C547|38      |      ;
-                       SBC.W r_d_0bca                       ;82C548|EDCA0B  |860BCA;
-                       STA.W r_0008                         ;82C54B|8D0800  |860008;
-                       LDA.W r_d_player_yPos                ;82C54E|ADB00B  |860BB0;
+                       SBC.W r6_player_xPosOld              ;82C548|EDCA0B  |860BCA;
+                       STA.W r6_0008                        ;82C54B|8D0800  |860008;
+                       LDA.W r6_player_yPos                 ;82C54E|ADB00B  |860BB0;
                        CLC                                  ;82C551|18      |      ;
                        ADC.W #$0009                         ;82C552|690900  |      ;
                        CMP.B $08                            ;82C555|C508    |000EF0;
                        BCC CODE_82C5A7                      ;82C557|904E    |82C5A7;
-                       LDA.W r_d_player_yPos                ;82C559|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;82C559|ADB00B  |860BB0;
                        CLC                                  ;82C55C|18      |      ;
                        ADC.W #$FFE5                         ;82C55D|69E5FF  |      ;
                        CMP.B $08                            ;82C560|C508    |000EB0;
                        BCS CODE_82C5A7                      ;82C562|B043    |82C5A7;
-                       LDA.W r_0008                         ;82C564|AD0800  |860008;
-                       STA.W r_000a                         ;82C567|8D0A00  |86000A;
+                       LDA.W r6_0008                        ;82C564|AD0800  |860008;
+                       STA.W r6_000a                        ;82C567|8D0A00  |86000A;
                        BPL CODE_82C57B                      ;82C56A|100F    |82C57B;
                        JSR.W CODE_82C6A6                    ;82C56C|20A6C6  |82C6A6;
                        BEQ CODE_82C58B                      ;82C56F|F01A    |82C58B;
-                       STZ.W r_000a                         ;82C571|9C0A00  |86000A;
+                       STZ.W r6_000a                        ;82C571|9C0A00  |86000A;
                        JSR.W CODE_82C68C                    ;82C574|208CC6  |82C68C;
                        BEQ CODE_82C58B                      ;82C577|F012    |82C58B;
                        BRA CODE_82C5A7                      ;82C579|802C    |82C5A7;
@@ -10760,35 +10760,35 @@ utuborosBody_24_state_00:
                        JSR.W CODE_82C68C                    ;82C57B|208CC6  |82C68C;
                        BEQ CODE_82C58B                      ;82C57E|F00B    |82C58B;
                        LDA.W #$FFFF                         ;82C580|A9FFFF  |      ;
-                       STA.W r_000a                         ;82C583|8D0A00  |86000A;
+                       STA.W r6_000a                        ;82C583|8D0A00  |86000A;
                        JSR.W CODE_82C6A6                    ;82C586|20A6C6  |82C6A6;
                        BNE CODE_82C5A7                      ;82C589|D01C    |82C5A7;
                                                             ;      |        |      ;
           CODE_82C58B:
                        LDX.W #$0002                         ;82C58B|A20200  |      ;
                        LDA.W #$0001                         ;82C58E|A90100  |      ;
-                       LDY.W r_000a                         ;82C591|AC0A00  |86000A;
+                       LDY.W r6_000a                        ;82C591|AC0A00  |86000A;
                        BMI CODE_82C59C                      ;82C594|3006    |82C59C;
                        LDA.W #$FFFF                         ;82C596|A9FFFF  |      ;
                        LDX.W #$0001                         ;82C599|A20100  |      ;
                                                             ;      |        |      ;
           CODE_82C59C:
                        CLC                                  ;82C59C|18      |      ;
-                       ADC.W r_d_player_xSubPos             ;82C59D|6DAD0B  |860BAD;
-                       STA.W r_d_player_xSubPos             ;82C5A0|8DAD0B  |860BAD;
+                       ADC.W r6_player_xPos                 ;82C59D|6DAD0B  |860BAD;
+                       STA.W r6_player_xPos                 ;82C5A0|8DAD0B  |860BAD;
                        TXA                                  ;82C5A3|8A      |      ;
-                       TSB.W r_d_0bd4                       ;82C5A4|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;82C5A4|0CD40B  |860BD4;
                                                             ;      |        |      ;
           CODE_82C5A7:
-                       LDA.W r_d_player_yPos                ;82C5A7|ADB00B  |860BB0;
-                       CMP.W r_d_r_player_bdc               ;82C5AA|CDCC0B  |860BCC;
+                       LDA.W r6_player_yPos                 ;82C5A7|ADB00B  |860BB0;
+                       CMP.W r6_player_yPosOld              ;82C5AA|CDCC0B  |860BCC;
                        BEQ CODE_82C5B3                      ;82C5AD|F004    |82C5B3;
                        BPL CODE_82C5E5                      ;82C5AF|1034    |82C5E5;
                        BRA CODE_82C5BC                      ;82C5B1|8009    |82C5BC;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C5B3:
-                       LDA.W r_d_player_ySubSpd             ;82C5B3|ADC40B  |860BC4;
+                       LDA.W r6_player_ySubSpd              ;82C5B3|ADC40B  |860BC4;
                        BEQ CODE_82C5E5                      ;82C5B6|F02D    |82C5E5;
                        BPL CODE_82C5BC                      ;82C5B8|1002    |82C5BC;
                        BRA CODE_82C5E5                      ;82C5BA|8029    |82C5E5;
@@ -10797,12 +10797,12 @@ utuborosBody_24_state_00:
           CODE_82C5BC:
                        LDA.B $05                            ;82C5BC|A505    |000EED;
                        SEC                                  ;82C5BE|38      |      ;
-                       SBC.W r_d_player_xSubPos             ;82C5BF|EDAD0B  |860BAD;
+                       SBC.W r6_player_xPos                 ;82C5BF|EDAD0B  |860BAD;
                        CLC                                  ;82C5C2|18      |      ;
                        ADC.W #$0017                         ;82C5C3|691700  |      ;
                        CMP.W #$002E                         ;82C5C6|C92E00  |      ;
                        BCS CODE_82C5E5                      ;82C5C9|B01A    |82C5E5;
-                       LDA.W r_d_player_yPos                ;82C5CB|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;82C5CB|ADB00B  |860BB0;
                        CLC                                  ;82C5CE|18      |      ;
                        ADC.W #$FFEE                         ;82C5CF|69EEFF  |      ;
                        CMP.B $08                            ;82C5D2|C508    |000EF0;
@@ -10810,27 +10810,27 @@ utuborosBody_24_state_00:
                        LDA.B $08                            ;82C5D6|A508    |000EF0;
                        CLC                                  ;82C5D8|18      |      ;
                        ADC.W #$0010                         ;82C5D9|691000  |      ;
-                       STA.W r_d_player_yPos                ;82C5DC|8DB00B  |860BB0;
+                       STA.W r6_player_yPos                 ;82C5DC|8DB00B  |860BB0;
                        LDA.W #$0008                         ;82C5DF|A90800  |      ;
-                       TSB.W r_d_0bd4                       ;82C5E2|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;82C5E2|0CD40B  |860BD4;
                                                             ;      |        |      ;
           CODE_82C5E5:
                        LDX.W #$0004                         ;82C5E5|A20400  |      ;
-                       LDA.W r_d_0bd7                       ;82C5E8|ADD70B  |860BD7;
+                       LDA.W r6_player_jumpFlag             ;82C5E8|ADD70B  |860BD7;
                        AND.W #$00FF                         ;82C5EB|29FF00  |      ;
                        BEQ CODE_82C5F3                      ;82C5EE|F003    |82C5F3;
                        LDX.W #$0000                         ;82C5F0|A20000  |      ;
                                                             ;      |        |      ;
           CODE_82C5F3:
-                       STX.W r_000e                         ;82C5F3|8E0E00  |86000E;
-                       LDA.W r_d_player_xSubPos             ;82C5F6|ADAD0B  |860BAD;
+                       STX.W r6_000e                        ;82C5F3|8E0E00  |86000E;
+                       LDA.W r6_player_xPos                 ;82C5F6|ADAD0B  |860BAD;
                        SEC                                  ;82C5F9|38      |      ;
                        SBC.B $05                            ;82C5FA|E505    |000EED;
                        CLC                                  ;82C5FC|18      |      ;
                        ADC.W #$000F                         ;82C5FD|690F00  |      ;
                        CMP.W #$001E                         ;82C600|C91E00  |      ;
                        BCS CODE_82C64C                      ;82C603|B047    |82C64C;
-                       LDA.W r_d_player_xSubPos             ;82C605|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82C605|ADAD0B  |860BAD;
                        SEC                                  ;82C608|38      |      ;
                        SBC.B $05                            ;82C609|E505    |000EED;
                        CLC                                  ;82C60B|18      |      ;
@@ -10840,26 +10840,26 @@ utuborosBody_24_state_00:
                        ORA.W #$FF00                         ;82C613|0900FF  |      ;
                        CLC                                  ;82C616|18      |      ;
                        ADC.B $08                            ;82C617|6508    |000EF0;
-                       STA.W r_000a                         ;82C619|8D0A00  |86000A;
-                       LDA.W r_d_player_yPos                ;82C61C|ADB00B  |860BB0;
+                       STA.W r6_000a                        ;82C619|8D0A00  |86000A;
+                       LDA.W r6_player_yPos                 ;82C61C|ADB00B  |860BB0;
                        CLC                                  ;82C61F|18      |      ;
                        ADC.W #$0010                         ;82C620|691000  |      ;
                        CLC                                  ;82C623|18      |      ;
-                       ADC.W r_000e                         ;82C624|6D0E00  |86000E;
-                       STA.W r_0000                         ;82C627|8D0000  |860000;
-                       CMP.W r_000a                         ;82C62A|CD0A00  |86000A;
+                       ADC.W r6_000e                        ;82C624|6D0E00  |86000E;
+                       STA.W r6_0000                        ;82C627|8D0000  |860000;
+                       CMP.W r6_000a                        ;82C62A|CD0A00  |86000A;
                        BCC CODE_82C64C                      ;82C62D|901D    |82C64C;
                        LDA.B $08                            ;82C62F|A508    |000EF0;
                        CLC                                  ;82C631|18      |      ;
                        ADC.W #$0010                         ;82C632|691000  |      ;
-                       CMP.W r_0000                         ;82C635|CD0000  |860000;
+                       CMP.W r6_0000                        ;82C635|CD0000  |860000;
                        BCC CODE_82C64C                      ;82C638|9012    |82C64C;
-                       LDA.W r_000a                         ;82C63A|AD0A00  |86000A;
+                       LDA.W r6_000a                        ;82C63A|AD0A00  |86000A;
                        SEC                                  ;82C63D|38      |      ;
                        SBC.W #$000F                         ;82C63E|E90F00  |      ;
-                       STA.W r_d_player_yPos                ;82C641|8DB00B  |860BB0;
+                       STA.W r6_player_yPos                 ;82C641|8DB00B  |860BB0;
                        LDA.W #$0004                         ;82C644|A90400  |      ;
-                       TSB.W r_d_0bd4                       ;82C647|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;82C647|0CD40B  |860BD4;
                        TSB.B $2C                            ;82C64A|042C    |000F14;
                                                             ;      |        |      ;
           CODE_82C64C:
@@ -10868,36 +10868,36 @@ utuborosBody_24_state_00:
                                                             ;      |        |      ;
                        LDA.B $05                            ;82C64F|A505    |000EED;
                        SEC                                  ;82C651|38      |      ;
-                       SBC.W r_d_player_xSubPos             ;82C652|EDAD0B  |860BAD;
+                       SBC.W r6_player_xPos                 ;82C652|EDAD0B  |860BAD;
                        CLC                                  ;82C655|18      |      ;
                        ADC.W #$0017                         ;82C656|691700  |      ;
                        CMP.W #$002E                         ;82C659|C92E00  |      ;
                        BCS CODE_82C64C                      ;82C65C|B0EE    |82C64C;
-                       LDA.W r_d_player_yPos                ;82C65E|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;82C65E|ADB00B  |860BB0;
                        CLC                                  ;82C661|18      |      ;
                        ADC.W #$0010                         ;82C662|691000  |      ;
                        CLC                                  ;82C665|18      |      ;
-                       ADC.W r_000e                         ;82C666|6D0E00  |86000E;
-                       STA.W r_0000                         ;82C669|8D0000  |860000;
+                       ADC.W r6_000e                        ;82C666|6D0E00  |86000E;
+                       STA.W r6_0000                        ;82C669|8D0000  |860000;
                        LDA.B $08                            ;82C66C|A508    |000EF0;
                        CLC                                  ;82C66E|18      |      ;
                        ADC.W #$0010                         ;82C66F|691000  |      ;
-                       CMP.W r_0000                         ;82C672|CD0000  |860000;
+                       CMP.W r6_0000                        ;82C672|CD0000  |860000;
                        BCC CODE_82C64C                      ;82C675|90D5    |82C64C;
                        LDA.B $08                            ;82C677|A508    |000EF0;
-                       CMP.W r_0000                         ;82C679|CD0000  |860000;
+                       CMP.W r6_0000                        ;82C679|CD0000  |860000;
                        BCS CODE_82C64C                      ;82C67C|B0CE    |82C64C;
                        ADC.W #$FFF1                         ;82C67E|69F1FF  |      ;
-                       STA.W r_d_player_yPos                ;82C681|8DB00B  |860BB0;
+                       STA.W r6_player_yPos                 ;82C681|8DB00B  |860BB0;
                        LDA.W #$0004                         ;82C684|A90400  |      ;
-                       TSB.W r_d_0bd4                       ;82C687|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;82C687|0CD40B  |860BD4;
                        BRA CODE_82C64C                      ;82C68A|80C0    |82C64C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C68C:
                        LDA.W #$000A                         ;82C68C|A90A00  |      ;
                        CLC                                  ;82C68F|18      |      ;
-                       ADC.W r_d_player_xSubPos             ;82C690|6DAD0B  |860BAD;
+                       ADC.W r6_player_xPos                 ;82C690|6DAD0B  |860BAD;
                        SEC                                  ;82C693|38      |      ;
                        SBC.B $05                            ;82C694|E505    |000EAD;
                        CLC                                  ;82C696|18      |      ;
@@ -10916,7 +10916,7 @@ utuborosBody_24_state_00:
           CODE_82C6A6:
                        LDA.W #$FFF6                         ;82C6A6|A9F6FF  |      ;
                        CLC                                  ;82C6A9|18      |      ;
-                       ADC.W r_d_player_xSubPos             ;82C6AA|6DAD0B  |860BAD;
+                       ADC.W r6_player_xPos                 ;82C6AA|6DAD0B  |860BAD;
                        SEC                                  ;82C6AD|38      |      ;
                        SBC.B $05                            ;82C6AE|E505    |000FED;
                        CLC                                  ;82C6B0|18      |      ;
@@ -10938,7 +10938,7 @@ utuborosBody_24_state_00:
                        AND.W #$00FF                         ;82C6C4|29FF00  |      ;
                        TAY                                  ;82C6C7|A8      |      ;
                        LDX.B $0C                            ;82C6C8|A60C    |001034;
-                       LDA.W r_0034,X                       ;82C6CA|BD3400  |860034;
+                       LDA.W r6_0034,X                      ;82C6CA|BD3400  |860034;
                        SEC                                  ;82C6CD|38      |      ;
                        SBC.W UNREACH_86CCF0,Y               ;82C6CE|F9F0CC  |86CCF0;
                        AND.W #$03FF                         ;82C6D1|29FF03  |      ;
@@ -10950,10 +10950,10 @@ utuborosBody_24_state_00:
                        SEP #$20                             ;82C6E1|E220    |      ;
                        LDA.L $7FD204,X                      ;82C6E3|BF04D27F|7FD204;
                        AND.B #$40                           ;82C6E7|2940    |      ;
-                       STA.W r_0000                         ;82C6E9|8D0000  |860000;
+                       STA.W r6_0000                        ;82C6E9|8D0000  |860000;
                        LDA.B $11                            ;82C6EC|A511    |001039;
                        AND.B #$3F                           ;82C6EE|293F    |      ;
-                       ORA.W r_0000                         ;82C6F0|0D0000  |860000;
+                       ORA.W r6_0000                        ;82C6F0|0D0000  |860000;
                        STA.B $11                            ;82C6F3|8511    |001039;
                        LDY.W #$0012                         ;82C6F5|A01200  |      ;
                        LDA.B $0B                            ;82C6F8|A50B    |001033;
@@ -10962,11 +10962,11 @@ utuborosBody_24_state_00:
                        LDY.W #$0009                         ;82C6FE|A00900  |      ;
                                                             ;      |        |      ;
           CODE_82C701:
-                       STY.W r_0000                         ;82C701|8C0000  |860000;
+                       STY.W r6_0000                        ;82C701|8C0000  |860000;
                        LDA.L $7FD204,X                      ;82C704|BF04D27F|7FD204;
                        AND.B #$3F                           ;82C708|293F    |      ;
                        CLC                                  ;82C70A|18      |      ;
-                       ADC.W r_0000                         ;82C70B|6D0000  |860000;
+                       ADC.W r6_0000                        ;82C70B|6D0000  |860000;
                        JSL.L playerGrabedRoutine            ;82C70E|22078F84|848F07;
                        SEP #$10                             ;82C712|E210    |      ;
                        RTS                                  ;82C714|60      |      ;
@@ -10979,14 +10979,14 @@ utuborosBody_24_state_00:
                        SEC                                  ;82C71A|38      |      ;
                        SBC.B r_ev_22_xPosOld-$E68           ;82C71B|E522    |000E8A;
                        CLC                                  ;82C71D|18      |      ;
-                       ADC.W r_d_player_xSubPos             ;82C71E|6DAD0B  |860BAD;
-                       STA.W r_d_player_xSubPos             ;82C721|8DAD0B  |860BAD;
+                       ADC.W r6_player_xPos                 ;82C71E|6DAD0B  |860BAD;
+                       STA.W r6_player_xPos                 ;82C721|8DAD0B  |860BAD;
                        LDA.B r_ev_08_yPos-$E68              ;82C724|A508    |000E70;
                        SEC                                  ;82C726|38      |      ;
                        SBC.B r_ev_24_yPosOld-$E68           ;82C727|E524    |000E8C;
                        CLC                                  ;82C729|18      |      ;
-                       ADC.W r_d_player_yPos                ;82C72A|6DB00B  |860BB0;
-                       STA.W r_d_player_yPos                ;82C72D|8DB00B  |860BB0;
+                       ADC.W r6_player_yPos                 ;82C72A|6DB00B  |860BB0;
+                       STA.W r6_player_yPos                 ;82C72D|8DB00B  |860BB0;
                        SEP #$20                             ;82C730|E220    |      ;
                        PLP                                  ;82C732|28      |      ;
                        RTL                                  ;82C733|6B      |      ;
@@ -11030,7 +11030,7 @@ utuborosTail_state_00:
                        STA.B $11                            ;82C76F|8511    |001039;
                        REP #$10                             ;82C771|C210    |      ;
                        LDX.B $0C                            ;82C773|A60C    |001034;
-                       LDA.W r_0027,X                       ;82C775|BD2700  |860027;
+                       LDA.W r6_0027,X                      ;82C775|BD2700  |860027;
                        AND.B #$7F                           ;82C778|297F    |      ;
                        BNE CODE_82C785                      ;82C77A|D009    |82C785;
                        LDA.B #$04                           ;82C77C|A904    |      ;
@@ -11041,9 +11041,9 @@ utuborosTail_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C785:
-                       LDA.W r_003c,X                       ;82C785|BD3C00  |86003C;
+                       LDA.W r6_003c,X                      ;82C785|BD3C00  |86003C;
                        BEQ CODE_82C791                      ;82C788|F007    |82C791;
-                       STZ.W r_003c,X                       ;82C78A|9E3C00  |86003C;
+                       STZ.W r6_003c,X                      ;82C78A|9E3C00  |86003C;
                        LDA.B #$0E                           ;82C78D|A90E    |      ;
                        TRB.B $11                            ;82C78F|1411    |001039;
                                                             ;      |        |      ;
@@ -11072,8 +11072,8 @@ utuborosTail_state_00:
                        REP #$10                             ;82C7BB|C210    |      ;
                        LDX.B $0C                            ;82C7BD|A60C    |001034;
                        LDA.B $27                            ;82C7BF|A527    |00104F;
-                       STA.W r_0027,X                       ;82C7C1|9D2700  |860027;
-                       STA.W r_003c,X                       ;82C7C4|9D3C00  |86003C;
+                       STA.W r6_0027,X                      ;82C7C1|9D2700  |860027;
+                       STA.W r6_003c,X                      ;82C7C4|9D3C00  |86003C;
                        SEP #$10                             ;82C7C7|E210    |      ;
                                                             ;      |        |      ;
           CODE_82C7C9:
@@ -11110,7 +11110,7 @@ utuborosTail_state_00:
                        STA.B $36                            ;82C7F3|8536    |00105E;
                        REP #$30                             ;82C7F5|C230    |      ;
                        LDA.W #$0508                         ;82C7F7|A90805  |      ;
-                       STA.W r_0004                         ;82C7FA|8D0400  |860004;
+                       STA.W r6_0004                        ;82C7FA|8D0400  |860004;
                        LDX.B $0C                            ;82C7FD|A60C    |001034;
                        LDA.B $34                            ;82C7FF|A534    |00105C;
                        SEC                                  ;82C801|38      |      ;
@@ -11119,23 +11119,23 @@ utuborosTail_state_00:
                        BPL CODE_82C81B                      ;82C807|1012    |82C81B;
                        SEP #$20                             ;82C809|E220    |      ;
                        LDA.B #$04                           ;82C80B|A904    |      ;
-                       STA.W r_0001,X                       ;82C80D|9D0100  |860001;
-                       STZ.W r_0002,X                       ;82C810|9E0200  |860002;
-                       STZ.W r_0003,X                       ;82C813|9E0300  |860003;
-                       STZ.W r_0027,X                       ;82C816|9E2700  |860027;
+                       STA.W r6_0001,X                      ;82C80D|9D0100  |860001;
+                       STZ.W r6_0002,X                      ;82C810|9E0200  |860002;
+                       STZ.W r6_0003,X                      ;82C813|9E0300  |860003;
+                       STZ.W r6_0027,X                      ;82C816|9E2700  |860027;
                        BRA CODE_82C837                      ;82C819|801C    |82C837;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C81B:
-                       LDA.W r_0034,X                       ;82C81B|BD3400  |860034;
+                       LDA.W r6_0034,X                      ;82C81B|BD3400  |860034;
                        SEC                                  ;82C81E|38      |      ;
                        SBC.B $34                            ;82C81F|E534    |00105C;
                        AND.W #$03FF                         ;82C821|29FF03  |      ;
                        TAX                                  ;82C824|AA      |      ;
                        LDA.L $7FD200,X                      ;82C825|BF00D27F|7FD200;
-                       STA.W r_0000                         ;82C829|8D0000  |860000;
+                       STA.W r6_0000                        ;82C829|8D0000  |860000;
                        LDA.L $7FD202,X                      ;82C82C|BF02D27F|7FD202;
-                       STA.W r_0002                         ;82C830|8D0200  |860002;
+                       STA.W r6_0002                        ;82C830|8D0200  |860002;
                        JSL.L CODE_84A467                    ;82C833|2267A484|84A467;
                                                             ;      |        |      ;
           CODE_82C837:
@@ -11215,7 +11215,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C8A1:
-                       LDA.W $1F3F                          ;82C8A1|AD3F1F  |001F3F;
+                       LDA.W r_1f3f                         ;82C8A1|AD3F1F  |001F3F;
                        BEQ CODE_82C8BA                      ;82C8A4|F014    |82C8BA;
                        JSL.L CODE_849FEB                    ;82C8A6|22EB9F84|849FEB;
                        LDA.B #$02                           ;82C8AA|A902    |      ;
@@ -11232,14 +11232,14 @@ velguarder_26_state_00:
           CODE_82C8BB:
                        LDA.B $0F                            ;82C8BB|A50F    |000EB7;
                        BMI CODE_82C8C6                      ;82C8BD|3007    |82C8C6;
-                       JSL.L updateEv_13_14_17_0f           ;82C8BF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82C8BF|22EA8E84|848EEA;
                        JMP.W CODE_82C8DA                    ;82C8C3|4CDAC8  |82C8DA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C8C6:
                        REP #$20                             ;82C8C6|C220    |      ;
                        TDC                                  ;82C8C8|7B      |      ;
-                       STA.W r_1f0e                         ;82C8C9|8D0E1F  |861F0E;
+                       STA.W r6_1f0e                        ;82C8C9|8D0E1F  |861F0E;
                        SEP #$20                             ;82C8CC|E220    |      ;
                        STZ.B $27                            ;82C8CE|6427    |000ECF;
                        LDA.B #$04                           ;82C8D0|A904    |      ;
@@ -11252,7 +11252,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82C8DB:
-                       LDA.W r_frameCounter1                ;82C8DB|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82C8DB|AD9C0B  |860B9C;
                        LSR A                                ;82C8DE|4A      |      ;
                        BCC CODE_82C90E                      ;82C8DF|902D    |82C90E;
                        LDA.B $27                            ;82C8E1|A527    |000ECF;
@@ -11273,13 +11273,13 @@ velguarder_26_state_00:
                        STZ.B $02                            ;82C8FB|6402    |000EAA;
                        STZ.B $03                            ;82C8FD|6403    |000EAB;
                        STZ.B $38                            ;82C8FF|6438    |000EE0;
-                       STZ.W r_1f1d                         ;82C901|9C1D1F  |861F1D;
+                       STZ.W r6_1f1d                        ;82C901|9C1D1F  |861F1D;
                        LDA.B #$1E                           ;82C904|A91E    |      ;
                        JSL.L CODE_8087A2                    ;82C906|22A28780|8087A2;
                        JSL.L CODE_84A003                    ;82C90A|2203A084|84A003;
                                                             ;      |        |      ;
           CODE_82C90E:
-                       JSL.L updateEv_13_14_17_0f           ;82C90E|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82C90E|22EA8E84|848EEA;
                        RTS                                  ;82C912|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11307,7 +11307,7 @@ velguarder_26_state_00:
                        LDA.B $27                            ;82C930|A527    |000ECF;
                        AND.B #$7F                           ;82C932|297F    |      ;
                        BNE CODE_82C961                      ;82C934|D02B    |82C961;
-                       LDA.W r_d_0bcf                       ;82C936|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82C936|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82C939|297F    |      ;
                        BEQ CODE_82C965                      ;82C93B|F028    |82C965;
                        LDA.B #$06                           ;82C93D|A906    |      ;
@@ -11316,13 +11316,13 @@ velguarder_26_state_00:
                        LDA.B #$20                           ;82C943|A920    |      ;
                        STA.B $35                            ;82C945|8535    |000EDD;
                        LDA.B #$01                           ;82C947|A901    |      ;
-                       STA.W r_d_0bd8                       ;82C949|8DD80B  |860BD8;
-                       STA.W r_bossDefeatInvFlag            ;82C94C|8D0C1F  |861F0C;
+                       STA.W r6_player_invinsCounter        ;82C949|8DD80B  |860BD8;
+                       STA.W r6_bossDefeatInvFlag           ;82C94C|8D0C1F  |861F0C;
                        JSL.L CODE_849FEB                    ;82C94F|22EB9F84|849FEB;
                        LDA.B #$01                           ;82C953|A901    |      ;
-                       STA.W r_1f13                         ;82C955|8D131F  |861F13;
-                       STA.W r_1f14                         ;82C958|8D141F  |861F14;
-                       STA.W r_1f17                         ;82C95B|8D171F  |861F17;
+                       STA.W r6_1f13                        ;82C955|8D131F  |861F13;
+                       STA.W r6_1f14                        ;82C958|8D141F  |861F14;
+                       STA.W r6_1f17                        ;82C95B|8D171F  |861F17;
                        JMP.W CODE_82C9A8                    ;82C95E|4CA8C9  |82C9A8;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11339,7 +11339,7 @@ velguarder_26_state_00:
                        STA.B $3D                            ;82C96F|853D    |000EE5;
                                                             ;      |        |      ;
           CODE_82C971:
-                       LDA.W r_1f1d                         ;82C971|AD1D1F  |861F1D;
+                       LDA.W r6_1f1d                        ;82C971|AD1D1F  |861F1D;
                        CMP.B #$02                           ;82C974|C902    |      ;
                        BEQ CODE_82C980                      ;82C976|F008    |82C980;
                        CMP.B #$1D                           ;82C978|C91D    |      ;
@@ -11491,7 +11491,7 @@ velguarder_26_state_00:
                        LDA.B $0F                            ;82CA56|A50F    |000EB7;
                        AND.B #$01                           ;82CA58|2901    |      ;
                        BEQ CODE_82CA60                      ;82CA5A|F004    |82CA60;
-                       JSL.L updateEv_13_14_17_0f           ;82CA5C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CA5C|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82CA60:
                        LDA.B $0F                            ;82CA60|A50F    |000EB7;
@@ -11548,7 +11548,7 @@ velguarder_26_state_00:
           CODE_82CAB5:
                        LDA.B $0F                            ;82CAB5|A50F    |000EB7;
                        BMI CODE_82CAC0                      ;82CAB7|3007    |82CAC0;
-                       JSL.L updateEv_13_14_17_0f           ;82CAB9|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CAB9|22EA8E84|848EEA;
                        JMP.W CODE_82CADA                    ;82CABD|4CDACA  |82CADA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11556,7 +11556,7 @@ velguarder_26_state_00:
                        REP #$20                             ;82CAC0|C220    |      ;
                        LDA.B $08                            ;82CAC2|A508    |000EB0;
                        SEC                                  ;82CAC4|38      |      ;
-                       SBC.W r_d_player_yPos                ;82CAC5|EDB00B  |860BB0;
+                       SBC.W r6_player_yPos                 ;82CAC5|EDB00B  |860BB0;
                        BMI CODE_82CAD0                      ;82CAC8|3006    |82CAD0;
                        SEP #$20                             ;82CACA|E220    |      ;
                        LDA.B $3A                            ;82CACC|A53A    |000EE2;
@@ -11627,7 +11627,7 @@ velguarder_26_state_00:
           CODE_82CB30:
                        LDA.B $0F                            ;82CB30|A50F    |000EB7;
                        BMI CODE_82CB3B                      ;82CB32|3007    |82CB3B;
-                       JSL.L updateEv_13_14_17_0f           ;82CB34|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CB34|22EA8E84|848EEA;
                        JMP.W CODE_82CB3E                    ;82CB38|4C3ECB  |82CB3E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11639,7 +11639,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CB3F:
-                       JSL.L updateEv_13_14_17_0f           ;82CB3F|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CB3F|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;82CB43|22E88182|8281E8;
                        REP #$20                             ;82CB47|C220    |      ;
                        LDA.B $1C                            ;82CB49|A51C    |000EC4;
@@ -11666,7 +11666,7 @@ velguarder_26_state_00:
           CODE_82CB6C:
                        LDA.B $0F                            ;82CB6C|A50F    |000EB7;
                        BMI CODE_82CB77                      ;82CB6E|3007    |82CB77;
-                       JSL.L updateEv_13_14_17_0f           ;82CB70|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CB70|22EA8E84|848EEA;
                        JMP.W CODE_82CB7A                    ;82CB74|4C7ACB  |82CB7A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11691,7 +11691,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CB92:
-                       JSL.L updateEv_13_14_17_0f           ;82CB92|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CB92|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82CB96:
                        RTS                                  ;82CB96|60      |      ;
@@ -11761,26 +11761,26 @@ velguarder_26_state_00:
           CODE_82CBEA:
                        LDA.B #$01                           ;82CBEA|A901    |      ;
                        STA.B $39                            ;82CBEC|8539    |000EE1;
-                       INC.W r_0000,X                       ;82CBEE|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82CBEE|FE0000  |860000;
                        LDA.B #$13                           ;82CBF1|A913    |      ;
-                       STA.W r_000b,X                       ;82CBF3|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82CBF3|9D0B00  |86000B;
                        LDA.B #$29                           ;82CBF6|A929    |      ;
-                       STA.W r_000a,X                       ;82CBF8|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82CBF8|9D0A00  |86000A;
                        LDA.B $11                            ;82CBFB|A511    |000EB9;
                        ORA.B $34                            ;82CBFD|0534    |000EDC;
-                       STA.W r_0011,X                       ;82CBFF|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82CBFF|9D1100  |860011;
                        LDA.B $18                            ;82CC02|A518    |000EC0;
-                       STA.W r_0018,X                       ;82CC04|9D1800  |860018;
+                       STA.W r6_0018,X                      ;82CC04|9D1800  |860018;
                        LDA.B $16                            ;82CC07|A516    |000EBE;
-                       STA.W r_0016,X                       ;82CC09|9D1600  |860016;
+                       STA.W r6_0016,X                      ;82CC09|9D1600  |860016;
                        LDA.B $11                            ;82CC0C|A511    |000EB9;
                        AND.B #$40                           ;82CC0E|2940    |      ;
                        BEQ CODE_82CC23                      ;82CC10|F011    |82CC23;
                        REP #$20                             ;82CC12|C220    |      ;
                        LDA.W UNREACH_86CD2F,Y               ;82CC14|B92FCD  |86CD2F;
-                       STA.W r_001a,X                       ;82CC17|9D1A00  |86001A;
+                       STA.W r6_001a,X                      ;82CC17|9D1A00  |86001A;
                        LDA.W #$0017                         ;82CC1A|A91700  |      ;
-                       STA.W r_0000                         ;82CC1D|8D0000  |860000;
+                       STA.W r6_0000                        ;82CC1D|8D0000  |860000;
                        JMP.W CODE_82CC35                    ;82CC20|4C35CC  |82CC35;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11789,23 +11789,23 @@ velguarder_26_state_00:
                        LDA.W UNREACH_86CD2F,Y               ;82CC25|B92FCD  |86CD2F;
                        EOR.W #$FFFF                         ;82CC28|49FFFF  |      ;
                        INC A                                ;82CC2B|1A      |      ;
-                       STA.W r_001a,X                       ;82CC2C|9D1A00  |86001A;
+                       STA.W r6_001a,X                      ;82CC2C|9D1A00  |86001A;
                        LDA.W #$FFE9                         ;82CC2F|A9E9FF  |      ;
-                       STA.W r_0000                         ;82CC32|8D0000  |860000;
+                       STA.W r6_0000                        ;82CC32|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_82CC35:
                        LDA.W #$0500                         ;82CC35|A90005  |      ;
-                       STA.W r_001c,X                       ;82CC38|9D1C00  |86001C;
+                       STA.W r6_001c,X                      ;82CC38|9D1C00  |86001C;
                        LDA.W #$FFF4                         ;82CC3B|A9F4FF  |      ;
-                       STA.W r_0002                         ;82CC3E|8D0200  |860002;
+                       STA.W r6_0002                        ;82CC3E|8D0200  |860002;
                        LDA.B $05                            ;82CC41|A505    |000EAD;
                        CLC                                  ;82CC43|18      |      ;
-                       ADC.W r_0000                         ;82CC44|6D0000  |860000;
-                       STA.W r_0005,X                       ;82CC47|9D0500  |860005;
+                       ADC.W r6_0000                        ;82CC44|6D0000  |860000;
+                       STA.W r6_0005,X                      ;82CC47|9D0500  |860005;
                        LDA.B $08                            ;82CC4A|A508    |000EB0;
                        CLC                                  ;82CC4C|18      |      ;
-                       ADC.W r_0002                         ;82CC4D|6D0200  |860002;
-                       STA.W r_0008,X                       ;82CC50|9D0800  |860008;
+                       ADC.W r6_0002                        ;82CC4D|6D0200  |860002;
+                       STA.W r6_0008,X                      ;82CC50|9D0800  |860008;
                        SEP #$20                             ;82CC53|E220    |      ;
                        JMP.W CODE_82CC5A                    ;82CC55|4C5ACC  |82CC5A;
                                                             ;      |        |      ;
@@ -11815,7 +11815,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
           CODE_82CC5A:
                        SEP #$10                             ;82CC5A|E210    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;82CC5C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CC5C|22EA8E84|848EEA;
                        JMP.W CODE_82CC75                    ;82CC60|4C75CC  |82CC75;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11859,10 +11859,10 @@ velguarder_26_state_00:
                        REP #$20                             ;82CC9A|C220    |      ;
                        LDA.B $08                            ;82CC9C|A508    |000EB0;
                        SEC                                  ;82CC9E|38      |      ;
-                       SBC.W r_d_player_yPos                ;82CC9F|EDB00B  |860BB0;
+                       SBC.W r6_player_yPos                 ;82CC9F|EDB00B  |860BB0;
                        CMP.W #$0050                         ;82CCA2|C95000  |      ;
                        BMI CODE_82CCC6                      ;82CCA5|301F    |82CCC6;
-                       LDA.W r_d_player_xSubPos             ;82CCA7|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82CCA7|ADAD0B  |860BAD;
                        SEC                                  ;82CCAA|38      |      ;
                        SBC.B $05                            ;82CCAB|E505    |000EAD;
                        BPL CODE_82CCBB                      ;82CCAD|100C    |82CCBB;
@@ -11884,7 +11884,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CCC6:
-                       LDA.W r_d_player_xSubPos             ;82CCC6|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82CCC6|ADAD0B  |860BAD;
                        SEC                                  ;82CCC9|38      |      ;
                        SBC.B $05                            ;82CCCA|E505    |000EAD;
                        ASL A                                ;82CCCC|0A      |      ;
@@ -11956,53 +11956,53 @@ velguarder_26_state_00:
                        JSL.L findEnemyShotEmptySlot         ;82CD26|22588382|828358;
                        BNE CODE_82CD8D                      ;82CD2A|D061    |82CD8D;
                        INC.B $3A                            ;82CD2C|E63A    |000EE2;
-                       INC.W r_0000,X                       ;82CD2E|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82CD2E|FE0000  |860000;
                        LDA.B #$08                           ;82CD31|A908    |      ;
-                       STA.W r_000b,X                       ;82CD33|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82CD33|9D0B00  |86000B;
                        LDA.B #$29                           ;82CD36|A929    |      ;
-                       STA.W r_000a,X                       ;82CD38|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82CD38|9D0A00  |86000A;
                        LDA.B $11                            ;82CD3B|A511    |000EB9;
                        ORA.B $34                            ;82CD3D|0534    |000EDC;
-                       STA.W r_0011,X                       ;82CD3F|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82CD3F|9D1100  |860011;
                        LDA.B $18                            ;82CD42|A518    |000EC0;
-                       STA.W r_0018,X                       ;82CD44|9D1800  |860018;
+                       STA.W r6_0018,X                      ;82CD44|9D1800  |860018;
                        LDA.B $16                            ;82CD47|A516    |000EBE;
-                       STA.W r_0016,X                       ;82CD49|9D1600  |860016;
+                       STA.W r6_0016,X                      ;82CD49|9D1600  |860016;
                        REP #$20                             ;82CD4C|C220    |      ;
                        LDA.B $11                            ;82CD4E|A511    |000EB9;
                        AND.W #$0040                         ;82CD50|294000  |      ;
                        BNE CODE_82CD5E                      ;82CD53|D009    |82CD5E;
                        LDA.W #$FFE9                         ;82CD55|A9E9FF  |      ;
-                       STA.W r_0000                         ;82CD58|8D0000  |860000;
+                       STA.W r6_0000                        ;82CD58|8D0000  |860000;
                        JMP.W CODE_82CD64                    ;82CD5B|4C64CD  |82CD64;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CD5E:
                        LDA.W #$0017                         ;82CD5E|A91700  |      ;
-                       STA.W r_0000                         ;82CD61|8D0000  |860000;
+                       STA.W r6_0000                        ;82CD61|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_82CD64:
                        LDA.W #$0010                         ;82CD64|A91000  |      ;
-                       STA.W r_0002                         ;82CD67|8D0200  |860002;
+                       STA.W r6_0002                        ;82CD67|8D0200  |860002;
                        LDA.B $05                            ;82CD6A|A505    |000EAD;
                        CLC                                  ;82CD6C|18      |      ;
-                       ADC.W r_0000                         ;82CD6D|6D0000  |860000;
-                       STA.W r_0005,X                       ;82CD70|9D0500  |860005;
+                       ADC.W r6_0000                        ;82CD6D|6D0000  |860000;
+                       STA.W r6_0005,X                      ;82CD70|9D0500  |860005;
                        LDA.B $08                            ;82CD73|A508    |000EB0;
                        CLC                                  ;82CD75|18      |      ;
-                       ADC.W r_0002                         ;82CD76|6D0200  |860002;
-                       STA.W r_0008,X                       ;82CD79|9D0800  |860008;
+                       ADC.W r6_0002                        ;82CD76|6D0200  |860002;
+                       STA.W r6_0008,X                      ;82CD79|9D0800  |860008;
                        LDA.B $1A                            ;82CD7C|A51A    |000EC2;
-                       STA.W r_001a,X                       ;82CD7E|9D1A00  |86001A;
+                       STA.W r6_001a,X                      ;82CD7E|9D1A00  |86001A;
                        LDA.B $1C                            ;82CD81|A51C    |000EC4;
-                       STA.W r_001c,X                       ;82CD83|9D1C00  |86001C;
+                       STA.W r6_001c,X                      ;82CD83|9D1C00  |86001C;
                        SEP #$20                             ;82CD86|E220    |      ;
                        LDA.B #$40                           ;82CD88|A940    |      ;
-                       STA.W r_001e                         ;82CD8A|8D1E00  |86001E;
+                       STA.W r6_001e                        ;82CD8A|8D1E00  |86001E;
                                                             ;      |        |      ;
           CODE_82CD8D:
                        SEP #$10                             ;82CD8D|E210    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;82CD8F|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CD8F|22EA8E84|848EEA;
                        JMP.W CODE_82CDBB                    ;82CD93|4CBBCD  |82CDBB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12047,7 +12047,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CDD7:
-                       JSL.L updateEv_13_14_17_0f           ;82CDD7|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CDD7|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82CDDB:
                        RTS                                  ;82CDDB|60      |      ;
@@ -12093,7 +12093,7 @@ velguarder_26_state_00:
           CODE_82CE12:
                        LDA.B $0F                            ;82CE12|A50F    |000EB7;
                        BEQ CODE_82CE1D                      ;82CE14|F007    |82CE1D;
-                       JSL.L updateEv_13_14_17_0f           ;82CE16|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CE16|22EA8E84|848EEA;
                        JMP.W CODE_82CE21                    ;82CE1A|4C21CE  |82CE21;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12107,7 +12107,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
           CODE_82CE22:
                        JSL.L CODE_82823E                    ;82CE22|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;82CE26|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CE26|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;82CE2A|22BE9184|8491BE;
                        LDA.B $2B                            ;82CE2E|A52B    |000ED3;
                        AND.B #$01                           ;82CE30|2901    |      ;
@@ -12119,7 +12119,7 @@ velguarder_26_state_00:
                        AND.B #$40                           ;82CE3C|2940    |      ;
                        BNE CODE_82CE4E                      ;82CE3E|D00E    |82CE4E;
                        REP #$20                             ;82CE40|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82CE42|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82CE42|ADAD0B  |860BAD;
                        SEC                                  ;82CE45|38      |      ;
                        SBC.W #$0020                         ;82CE46|E92000  |      ;
                        STA.B $36                            ;82CE49|8536    |000EDE;
@@ -12128,7 +12128,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
           CODE_82CE4E:
                        REP #$20                             ;82CE4E|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82CE50|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82CE50|ADAD0B  |860BAD;
                        CLC                                  ;82CE53|18      |      ;
                        ADC.W #$0020                         ;82CE54|692000  |      ;
                        STA.B $36                            ;82CE57|8536    |000EDE;
@@ -12212,7 +12212,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
           CODE_82CED9:
                        REP #$20                             ;82CED9|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82CEDB|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82CEDB|ADAD0B  |860BAD;
                        SEC                                  ;82CEDE|38      |      ;
                        SBC.B $05                            ;82CEDF|E505    |000EAD;
                        BCS CODE_82CEE7                      ;82CEE1|B004    |82CEE7;
@@ -12234,7 +12234,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
           CODE_82CEF9:
                        REP #$20                             ;82CEF9|C220    |      ;
-                       LDA.W r_d_player_yPos                ;82CEFB|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;82CEFB|ADB00B  |860BB0;
                        SEC                                  ;82CEFE|38      |      ;
                        SBC.B $08                            ;82CEFF|E508    |000EB0;
                        BCS CODE_82CF07                      ;82CF01|B004    |82CF07;
@@ -12393,12 +12393,12 @@ velguarder_26_state_00:
                        STZ.B $36                            ;82CFBB|6436    |000EDE;
                        STZ.B $37                            ;82CFBD|6437    |000EDF;
                        STZ.B $3C                            ;82CFBF|643C    |000EE4;
-                       STZ.W r_1f1d                         ;82CFC1|9C1D1F  |861F1D;
+                       STZ.W r6_1f1d                        ;82CFC1|9C1D1F  |861F1D;
                        REP #$20                             ;82CFC4|C220    |      ;
                        LDA.W #$CD11                         ;82CFC6|A911CD  |      ;
                        STA.B $20                            ;82CFC9|8520    |000EC8;
                        SEP #$20                             ;82CFCB|E220    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;82CFCD|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CFCD|22EA8E84|848EEA;
                        RTS                                  ;82CFD1|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12421,7 +12421,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82CFE6:
-                       JSL.L updateEv_13_14_17_0f           ;82CFE6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82CFE6|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;82CFEA|22E88182|8281E8;
                        JSL.L CODE_8491BE                    ;82CFEE|22BE9184|8491BE;
                        LDA.B $2B                            ;82CFF2|A52B    |000ED3;
@@ -12459,7 +12459,7 @@ velguarder_26_state_00:
           CODE_82D024:
                        LDA.B $0F                            ;82D024|A50F    |000EB7;
                        BPL CODE_82D02C                      ;82D026|1004    |82D02C;
-                       JSL.L updateEv_13_14_17_0f           ;82D028|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82D028|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82D02C:
                        LDA.B #$01                           ;82D02C|A901    |      ;
@@ -12498,9 +12498,9 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D05B:
-                       STZ.W r_1f13                         ;82D05B|9C131F  |861F13;
-                       STZ.W r_1f14                         ;82D05E|9C141F  |861F14;
-                       STZ.W r_1f17                         ;82D061|9C171F  |861F17;
+                       STZ.W r6_1f13                        ;82D05B|9C131F  |861F13;
+                       STZ.W r6_1f14                        ;82D05E|9C141F  |861F14;
+                       STZ.W r6_1f17                        ;82D061|9C171F  |861F17;
                        LDA.B #$07                           ;82D064|A907    |      ;
                        JSL.L playerGrabedRoutine            ;82D066|22078F84|848F07;
                        JSR.W CODE_82D18F                    ;82D06A|208FD1  |82D18F;
@@ -12513,7 +12513,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D074:
-                       JSL.L updateEv_13_14_17_0f           ;82D074|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82D074|22EA8E84|848EEA;
                        LDA.B $35                            ;82D078|A535    |000EDD;
                        BNE CODE_82D0B6                      ;82D07A|D03A    |82D0B6;
                        JSL.L CODE_8281E8                    ;82D07C|22E88182|8281E8;
@@ -12550,23 +12550,23 @@ velguarder_26_state_00:
           CODE_82D0B6:
                        REP #$20                             ;82D0B6|C220    |      ;
                        LDA.W #$FFE1                         ;82D0B8|A9E1FF  |      ;
-                       STA.W r_0000                         ;82D0BB|8D0000  |860000;
-                       STA.W r_0002                         ;82D0BE|8D0200  |860002;
+                       STA.W r6_0000                        ;82D0BB|8D0000  |860000;
+                       STA.W r6_0002                        ;82D0BE|8D0200  |860002;
                        LDA.W #$001F                         ;82D0C1|A91F00  |      ;
-                       STA.W r_0004                         ;82D0C4|8D0400  |860004;
-                       STA.W r_0006                         ;82D0C7|8D0600  |860006;
+                       STA.W r6_0004                        ;82D0C4|8D0400  |860004;
+                       STA.W r6_0006                        ;82D0C7|8D0600  |860006;
                        LDA.W #$0003                         ;82D0CA|A90300  |      ;
-                       STA.W r_0008                         ;82D0CD|8D0800  |860008;
+                       STA.W r6_0008                        ;82D0CD|8D0800  |860008;
                        SEP #$20                             ;82D0D0|E220    |      ;
                        JSL.L CODE_84A4D0                    ;82D0D2|22D0A484|84A4D0;
                        DEC.B $35                            ;82D0D6|C635    |000EDD;
                        BNE CODE_82D0ED                      ;82D0D8|D013    |82D0ED;
-                       STZ.W r_d_0bd8                       ;82D0DA|9CD80B  |860BD8;
-                       STZ.W r_bossDefeatInvFlag            ;82D0DD|9C0C1F  |861F0C;
+                       STZ.W r6_player_invinsCounter        ;82D0DA|9CD80B  |860BD8;
+                       STZ.W r6_bossDefeatInvFlag           ;82D0DD|9C0C1F  |861F0C;
                        JSL.L CODE_84A003                    ;82D0E0|2203A084|84A003;
                        LDA.B #$00                           ;82D0E4|A900    |      ;
-                       STA.W r_1f3f                         ;82D0E6|8D3F1F  |861F3F;
-                       JSL.L clearStates_00_02_0E           ;82D0E9|22988382|828398;
+                       STA.W r6_1f3f                        ;82D0E6|8D3F1F  |861F3F;
+                       JSL.L despawnEvent_clear_00_02_0E    ;82D0E9|22988382|828398;
                                                             ;      |        |      ;
           CODE_82D0ED:
                        RTS                                  ;82D0ED|60      |      ;
@@ -12595,7 +12595,7 @@ velguarder_26_state_00:
                        STZ.B $1C                            ;82D10D|641C    |000EC4;
                        SEP #$20                             ;82D10F|E220    |      ;
                        REP #$20                             ;82D111|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82D113|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82D113|ADAD0B  |860BAD;
                        SEC                                  ;82D116|38      |      ;
                        SBC.B $05                            ;82D117|E505    |000EAD;
                        BCS CODE_82D11F                      ;82D119|B004    |82D11F;
@@ -12652,21 +12652,21 @@ velguarder_26_state_00:
           CODE_82D15D:
                        JSL.L CODE_8282D3                    ;82D15D|22D38282|8282D3;
                        BNE CODE_82D18C                      ;82D161|D029    |82D18C;
-                       INC.W r_0000,X                       ;82D163|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82D163|FE0000  |860000;
                        LDA.B #$2B                           ;82D166|A92B    |      ;
-                       STA.W r_000a,X                       ;82D168|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82D168|9D0A00  |86000A;
                        REP #$20                             ;82D16B|C220    |      ;
                        LDA.B $05                            ;82D16D|A505    |000EAD;
-                       STA.W r_0005,X                       ;82D16F|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82D16F|9D0500  |860005;
                        LDA.B $08                            ;82D172|A508    |000EB0;
-                       STA.W r_0008,X                       ;82D174|9D0800  |860008;
-                       STZ.W r_000c,X                       ;82D177|9E0C00  |86000C;
+                       STA.W r6_0008,X                      ;82D174|9D0800  |860008;
+                       STZ.W r6_000c,X                      ;82D177|9E0C00  |86000C;
                        SEP #$20                             ;82D17A|E220    |      ;
                        LDA.W UNREACH_86CD37,Y               ;82D17C|B937CD  |86CD37;
-                       STA.W r_000b,X                       ;82D17F|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82D17F|9D0B00  |86000B;
                        LDA.B $11                            ;82D182|A511    |000EB9;
                        ORA.B $34                            ;82D184|0534    |000EDC;
-                       STA.W r_0011,X                       ;82D186|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82D186|9D1100  |860011;
                        DEY                                  ;82D189|88      |      ;
                        BNE CODE_82D15D                      ;82D18A|D0D1    |82D15D;
                                                             ;      |        |      ;
@@ -12677,7 +12677,7 @@ velguarder_26_state_00:
                                                             ;      |        |      ;
           CODE_82D18F:
                        REP #$20                             ;82D18F|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82D191|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82D191|ADAD0B  |860BAD;
                        SEC                                  ;82D194|38      |      ;
                        SBC.B $05                            ;82D195|E505    |000EAD;
                        BCS CODE_82D1B4                      ;82D197|B01B    |82D1B4;
@@ -12753,7 +12753,7 @@ eventID_deerball_27_main:
                        BNE CODE_82D226                      ;82D20E|D016    |82D226;
                                                             ;      |        |      ;
           CODE_82D210:
-                       JML.L clearStates_00_02_0E           ;82D210|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82D210|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D214:
@@ -12803,7 +12803,7 @@ eventID_deerball_27_main:
                        LDA.B $0B                            ;82D261|A50B    |000EF3;
                        BEQ CODE_82D292                      ;82D263|F02D    |82D292;
                        REP #$20                             ;82D265|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82D267|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82D267|ADAD0B  |860BAD;
                        SEC                                  ;82D26A|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;82D26B|E505    |000E6D;
                        SEP #$20                             ;82D26D|E220    |      ;
@@ -12839,7 +12839,7 @@ eventID_deerball_27_main:
                        dw CODE_82D2F8                       ;82D29A|        |82D2F8;
                                                             ;      |        |      ;
           CODE_82D29C:
-                       JSL.L updateEv_13_14_17_0f           ;82D29C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82D29C|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;82D2A0|22E88182|8281E8;
                        REP #$20                             ;82D2A4|C220    |      ;
                        LDA.W #$001C                         ;82D2A6|A91C00  |      ;
@@ -12934,7 +12934,7 @@ eventID_deerball_27_main:
                        TRB.B $17                            ;82D340|1417    |000EFF;
                                                             ;      |        |      ;
           CODE_82D342:
-                       JSL.L updateEv_13_14_17_0f           ;82D342|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82D342|22EA8E84|848EEA;
                        RTS                                  ;82D346|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12988,7 +12988,7 @@ eventID_deerball_27_main:
                        STA.B $11                            ;82D392|8511    |000EF9;
                                                             ;      |        |      ;
           CODE_82D394:
-                       JSL.L updateEv_13_14_17_0f           ;82D394|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82D394|22EA8E84|848EEA;
                        LDA.B $17                            ;82D398|A517    |000EFF;
                        BPL CODE_82D407                      ;82D39A|106B    |82D407;
                        AND.B #$7F                           ;82D39C|297F    |      ;
@@ -13100,7 +13100,7 @@ eventID_deerball_27_main:
                        dw CODE_82D4F4                       ;82D451|        |82D4F4;
                                                             ;      |        |      ;
           CODE_82D453:
-                       JSL.L updateEv_13_14_17_0f           ;82D453|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82D453|22EA8E84|848EEA;
                        LDA.B $17                            ;82D457|A517    |000EBF;
                        BPL CODE_82D474                      ;82D459|1019    |82D474;
                        LDA.B #$80                           ;82D45B|A980    |      ;
@@ -13200,7 +13200,7 @@ eventID_deerball_27_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D4F4:
-                       JSL.L updateEv_13_14_17_0f           ;82D4F4|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82D4F4|22EA8E84|848EEA;
                        LDA.B $0F                            ;82D4F8|A50F    |000EB7;
                        BPL CODE_82D50E                      ;82D4FA|1012    |82D50E;
                        LDA.B $11                            ;82D4FC|A511    |000EB9;
@@ -13592,12 +13592,12 @@ eventID_cruizler_28_main:
                        LDA.B r_ev_10-$E68                   ;82D7BE|A510    |000E78;
                        BEQ CODE_82D7D6                      ;82D7C0|F014    |82D7D6;
                        REP #$20                             ;82D7C2|C220    |      ;
-                       LDA.W r_cam_BG0_xPos_ff              ;82D7C4|AD8D1E  |861E8D;
-                       STA.W r_1eaa                         ;82D7C7|8DAA1E  |861EAA;
-                       LDA.W r_cam_BG1_slot                 ;82D7CA|AD901E  |861E90;
-                       STA.W r_1eac                         ;82D7CD|8DAC1E  |861EAC;
+                       LDA.W r6_cam_BG0_xPos_ff             ;82D7C4|AD8D1E  |861E8D;
+                       STA.W r6_1eaa                        ;82D7C7|8DAA1E  |861EAA;
+                       LDA.W r6_cam_BG1_slot                ;82D7CA|AD901E  |861E90;
+                       STA.W r6_1eac                        ;82D7CD|8DAC1E  |861EAC;
                        TDC                                  ;82D7D0|7B      |      ;
-                       STA.W r_1f2e                         ;82D7D1|8D2E1F  |861F2E;
+                       STA.W r6_1f2e                        ;82D7D1|8D2E1F  |861F2E;
                        SEP #$20                             ;82D7D4|E220    |      ;
                                                             ;      |        |      ;
           CODE_82D7D6:
@@ -13608,7 +13608,7 @@ eventID_cruizler_28_main:
                        PHP                                  ;82D7D7|08      |      ;
                        SEP #$20                             ;82D7D8|E220    |      ;
                        REP #$10                             ;82D7DA|C210    |      ;
-                       LDA.W r_d_0bcf                       ;82D7DC|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82D7DC|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82D7DF|297F    |      ;
                        BEQ CODE_82D7EC                      ;82D7E1|F009    |82D7EC;
                        LDX.W #$0BA8                         ;82D7E3|A2A80B  |      ;
@@ -13622,22 +13622,22 @@ eventID_cruizler_28_main:
                                                             ;      |        |      ;
           CODE_82D7EE:
                        REP #$20                             ;82D7EE|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82D7F0|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82D7F0|ADAD0B  |860BAD;
                        SEC                                  ;82D7F3|38      |      ;
-                       SBC.W r_d_0bca                       ;82D7F4|EDCA0B  |860BCA;
-                       STA.W r_0008                         ;82D7F7|8D0800  |860008;
-                       LDA.W r_0006                         ;82D7FA|AD0600  |860006;
+                       SBC.W r6_player_xPosOld              ;82D7F4|EDCA0B  |860BCA;
+                       STA.W r6_0008                        ;82D7F7|8D0800  |860008;
+                       LDA.W r6_0006                        ;82D7FA|AD0600  |860006;
                        CMP.W #$0008                         ;82D7FD|C90800  |      ;
                        BCC CODE_82D82A                      ;82D800|9028    |82D82A;
                        LDX.W #$0002                         ;82D802|A20200  |      ;
-                       LDA.W r_0004                         ;82D805|AD0400  |860004;
+                       LDA.W r6_0004                        ;82D805|AD0400  |860004;
                        CMP.W #$0008                         ;82D808|C90800  |      ;
                        BCC CODE_82D810                      ;82D80B|9003    |82D810;
                        LDA.W #$0007                         ;82D80D|A90700  |      ;
                                                             ;      |        |      ;
           CODE_82D810:
                        DEC A                                ;82D810|3A      |      ;
-                       LDY.W r_0000                         ;82D811|AC0000  |860000;
+                       LDY.W r6_0000                        ;82D811|AC0000  |860000;
                        BPL CODE_82D81D                      ;82D814|1007    |82D81D;
                        LDX.W #$0001                         ;82D816|A20100  |      ;
                        EOR.W #$FFFF                         ;82D819|49FFFF  |      ;
@@ -13645,21 +13645,21 @@ eventID_cruizler_28_main:
                                                             ;      |        |      ;
           CODE_82D81D:
                        CLC                                  ;82D81D|18      |      ;
-                       ADC.W r_d_player_xSubPos             ;82D81E|6DAD0B  |860BAD;
-                       STA.W r_d_player_xSubPos             ;82D821|8DAD0B  |860BAD;
+                       ADC.W r6_player_xPos                 ;82D81E|6DAD0B  |860BAD;
+                       STA.W r6_player_xPos                 ;82D821|8DAD0B  |860BAD;
                        TXA                                  ;82D824|8A      |      ;
-                       TSB.W r_d_0bd4                       ;82D825|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;82D825|0CD40B  |860BD4;
                        BRA CODE_82D87A                      ;82D828|8050    |82D87A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D82A:
                        LDX.W #$0008                         ;82D82A|A20800  |      ;
-                       LDY.W r_0002                         ;82D82D|AC0200  |860002;
+                       LDY.W r6_0002                        ;82D82D|AC0200  |860002;
                        BPL CODE_82D84C                      ;82D830|101A    |82D84C;
                        LDA.W #$0001                         ;82D832|A90100  |      ;
                        TSB.B r_ev_2c-$E68                   ;82D835|042C    |000E94;
                        LDX.W #$0004                         ;82D837|A20400  |      ;
-                       LDA.W r_0006                         ;82D83A|AD0600  |860006;
+                       LDA.W r6_0006                        ;82D83A|AD0600  |860006;
                        CMP.W #$0004                         ;82D83D|C90400  |      ;
                        BCC CODE_82D845                      ;82D840|9003    |82D845;
                        LDA.W #$0003                         ;82D842|A90300  |      ;
@@ -13675,26 +13675,26 @@ eventID_cruizler_28_main:
                        SEP #$20                             ;82D84C|E220    |      ;
                        LDA.B $2C                            ;82D84E|A52C    |000ED4;
                        BMI CODE_82D862                      ;82D850|3010    |82D862;
-                       LDA.W r_d_0bd3                       ;82D852|ADD30B  |860BD3;
+                       LDA.W r6_player_bd3                  ;82D852|ADD30B  |860BD3;
                        BIT.B #$04                           ;82D855|8904    |      ;
                        BEQ CODE_82D862                      ;82D857|F009    |82D862;
                        LDA.B #$7F                           ;82D859|A97F    |      ;
-                       STA.W r_d_0bce                       ;82D85B|8DCE0B  |860BCE;
+                       STA.W r6_player_bce                  ;82D85B|8DCE0B  |860BCE;
                        JSL.L CODE_849F2F                    ;82D85E|222F9F84|849F2F;
                                                             ;      |        |      ;
           CODE_82D862:
                        REP #$20                             ;82D862|C220    |      ;
-                       LDA.W r_0006                         ;82D864|AD0600  |860006;
+                       LDA.W r6_0006                        ;82D864|AD0600  |860006;
                        CMP.W #$0004                         ;82D867|C90400  |      ;
                        BCC CODE_82D86F                      ;82D86A|9003    |82D86F;
                        LDA.W #$0003                         ;82D86C|A90300  |      ;
                                                             ;      |        |      ;
           CODE_82D86F:
                        CLC                                  ;82D86F|18      |      ;
-                       ADC.W r_d_player_yPos                ;82D870|6DB00B  |860BB0;
-                       STA.W r_d_player_yPos                ;82D873|8DB00B  |860BB0;
+                       ADC.W r6_player_yPos                 ;82D870|6DB00B  |860BB0;
+                       STA.W r6_player_yPos                 ;82D873|8DB00B  |860BB0;
                        TXA                                  ;82D876|8A      |      ;
-                       TSB.W r_d_0bd4                       ;82D877|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;82D877|0CD40B  |860BD4;
                                                             ;      |        |      ;
           CODE_82D87A:
                        PLP                                  ;82D87A|28      |      ;
@@ -13712,13 +13712,13 @@ eventID_cruizler_28_main:
                        JSL.L CODE_849C0E                    ;82D88A|220E9C84|849C0E;
                        BCC CODE_82D8A4                      ;82D88E|9014    |82D8A4;
                        LDA.B #$80                           ;82D890|A980    |      ;
-                       TSB.W r_d_0bd4                       ;82D892|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;82D892|0CD40B  |860BD4;
                        LDA.B #$40                           ;82D895|A940    |      ;
-                       TSB.W r_d_0bd4                       ;82D897|0CD40B  |860BD4;
-                       LDY.W r_0000                         ;82D89A|AC0000  |860000;
+                       TSB.W r6_player_bd4                  ;82D897|0CD40B  |860BD4;
+                       LDY.W r6_0000                        ;82D89A|AC0000  |860000;
                        BPL CODE_82D8A4                      ;82D89D|1005    |82D8A4;
                        LDA.B #$40                           ;82D89F|A940    |      ;
-                       TRB.W r_d_0bd4                       ;82D8A1|1CD40B  |860BD4;
+                       TRB.W r6_player_bd4                  ;82D8A1|1CD40B  |860BD4;
                                                             ;      |        |      ;
           CODE_82D8A4:
                        PLX                                  ;82D8A4|FA      |      ;
@@ -13728,7 +13728,7 @@ eventID_cruizler_28_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82D8A9:
-                       LDA.W $0B9C                          ;82D8A9|AD9C0B  |000B9C;
+                       LDA.W r_frameCounter1                ;82D8A9|AD9C0B  |000B9C;
                        AND.B #$03                           ;82D8AC|2903    |      ;
                        BNE CODE_82D8E6                      ;82D8AE|D036    |82D8E6;
                        JSL.L CODE_8282D3                    ;82D8B0|22D38282|8282D3;
@@ -13765,14 +13765,14 @@ eventID_cruizler_28_main:
           CODE_82D8EE:
                        JSL.L CODE_8282D3                    ;82D8EE|22D38282|8282D3;
                        BNE CODE_82D90B                      ;82D8F2|D017    |82D90B;
-                       INC.W r_0000,X                       ;82D8F4|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82D8F4|FE0000  |860000;
                        LDA.B #$26                           ;82D8F7|A926    |      ;
-                       STA.W r_000a,X                       ;82D8F9|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82D8F9|9D0A00  |86000A;
                        TYA                                  ;82D8FC|98      |      ;
-                       STA.W r_000b,X                       ;82D8FD|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82D8FD|9D0B00  |86000B;
                        REP #$21                             ;82D900|C221    |      ;
                        TDC                                  ;82D902|7B      |      ;
-                       STA.W r_000c,X                       ;82D903|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82D903|9D0C00  |86000C;
                        SEP #$20                             ;82D906|E220    |      ;
                        DEY                                  ;82D908|88      |      ;
                        BPL CODE_82D8EE                      ;82D909|10E3    |82D8EE;
@@ -13850,19 +13850,19 @@ eventID_cruizler_28_main:
                        STA.B r_ev_34-$E68                   ;82D987|8534    |000E9C;
                        JSL.L loadEnitySlotBase              ;82D989|22218382|828321;
                        BNE CODE_82D9AF                      ;82D98D|D020    |82D9AF;
-                       INC.W r_0000,X                       ;82D98F|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82D98F|FE0000  |860000;
                        LDA.B #$49                           ;82D992|A949    |      ;
-                       STA.W r_000a,X                       ;82D994|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82D994|9D0A00  |86000A;
                        LDA.B #$81                           ;82D997|A981    |      ;
-                       STA.W r_000b,X                       ;82D999|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82D999|9D0B00  |86000B;
                        REP #$21                             ;82D99C|C221    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82D99E|A505    |000E6D;
                        ADC.W #$0014                         ;82D9A0|691400  |      ;
-                       STA.W r_0005,X                       ;82D9A3|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82D9A3|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82D9A6|A508    |000E70;
                        CLC                                  ;82D9A8|18      |      ;
                        ADC.W #$0000                         ;82D9A9|690000  |      ;
-                       STA.W r_0008,X                       ;82D9AC|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82D9AC|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82D9AF:
                        SEP #$30                             ;82D9AF|E230    |      ;
@@ -13876,16 +13876,16 @@ eventID_cruizler_28_main:
                        LDY.W #$0005                         ;82D9B4|A00500  |      ;
                                                             ;      |        |      ;
           CODE_82D9B7:
-                       LDA.W r_1f3f,Y                       ;82D9B7|B93F1F  |861F3F;
+                       LDA.W r6_1f3f,Y                      ;82D9B7|B93F1F  |861F3F;
                        BNE CODE_82D9E9                      ;82D9BA|D02D    |82D9E9;
                        JSL.L loadEnitySlotBase              ;82D9BC|22218382|828321;
                        BNE CODE_82D9EC                      ;82D9C0|D02A    |82D9EC;
-                       INC.W r_0000,X                       ;82D9C2|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82D9C2|FE0000  |860000;
                        LDA.B #$4B                           ;82D9C5|A94B    |      ;
-                       STA.W r_000a,X                       ;82D9C7|9D0A00  |86000A;
-                       STA.W r_1f3f,Y                       ;82D9CA|993F1F  |861F3F;
+                       STA.W r6_000a,X                      ;82D9C7|9D0A00  |86000A;
+                       STA.W r6_1f3f,Y                      ;82D9CA|993F1F  |861F3F;
                        TYA                                  ;82D9CD|98      |      ;
-                       STA.W r_000b,X                       ;82D9CE|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82D9CE|9D0B00  |86000B;
                        PHY                                  ;82D9D1|5A      |      ;
                        REP #$20                             ;82D9D2|C220    |      ;
                        AND.W #$00FF                         ;82D9D4|29FF00  |      ;
@@ -13893,9 +13893,9 @@ eventID_cruizler_28_main:
                        ASL A                                ;82D9D8|0A      |      ;
                        TAY                                  ;82D9D9|A8      |      ;
                        LDA.W UNREACH_86CDDA,Y               ;82D9DA|B9DACD  |86CDDA;
-                       STA.W r_0005,X                       ;82D9DD|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82D9DD|9D0500  |860005;
                        LDA.W UNREACH_86CDDC,Y               ;82D9E0|B9DCCD  |86CDDC;
-                       STA.W r_0008,X                       ;82D9E3|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82D9E3|9D0800  |860008;
                        SEP #$20                             ;82D9E6|E220    |      ;
                        PLY                                  ;82D9E8|7A      |      ;
                                                             ;      |        |      ;
@@ -13922,7 +13922,7 @@ eventID_gunVolt_29_main:
                        JSL.L CODE_84A4B5                    ;82DA08|22B5A484|84A4B5;
                        LDA.B #$01                           ;82DA0C|A901    |      ;
                        JSL.L CODE_84A384                    ;82DA0E|2284A384|84A384;
-                       JML.L clearStates_00_02_0E           ;82DA12|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82DA12|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DA16:
@@ -13973,7 +13973,7 @@ eventID_gunVolt_29_main:
                        BMI CODE_82DA6E                      ;82DA61|300B    |82DA6E;
                        REP #$20                             ;82DA63|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;82DA65|A505    |000E6D;
-                       CMP.W r_d_player_xSubPos             ;82DA67|CDAD0B  |860BAD;
+                       CMP.W r6_player_xPos                 ;82DA67|CDAD0B  |860BAD;
                        BCC CODE_82DA6F                      ;82DA6A|9003    |82DA6F;
                        SEP #$20                             ;82DA6C|E220    |      ;
                                                             ;      |        |      ;
@@ -13987,7 +13987,7 @@ eventID_gunVolt_29_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DA74:
-                       JSL.L updateEv_13_14_17_0f           ;82DA74|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82DA74|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;82DA78|C634    |000E9C;
                        BNE CODE_82DAA7                      ;82DA7A|D02B    |82DAA7;
                        LDA.B r_ev_37-$E68                   ;82DA7C|A537    |000E9F;
@@ -14022,7 +14022,7 @@ eventID_gunVolt_29_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DAAD:
-                       JSL.L updateEv_13_14_17_0f           ;82DAAD|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82DAAD|22EA8E84|848EEA;
                        LDA.B r_ev_17_sprIdx-$E68            ;82DAB1|A517    |000E7F;
                        BPL CODE_82DADE                      ;82DAB3|1029    |82DADE;
                        AND.B #$7F                           ;82DAB5|297F    |      ;
@@ -14051,7 +14051,7 @@ eventID_gunVolt_29_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DADF:
-                       JSL.L updateEv_13_14_17_0f           ;82DADF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82DADF|22EA8E84|848EEA;
                        LDA.B $17                            ;82DAE3|A517    |000EFF;
                        BPL CODE_82DB1F                      ;82DAE5|1038    |82DB1F;
                        AND.B #$7F                           ;82DAE7|297F    |      ;
@@ -14062,12 +14062,12 @@ eventID_gunVolt_29_main:
                        LDA.B #$44                           ;82DAF1|A944    |      ;
                        JSL.L lunchSFX                       ;82DAF3|22A28880|8088A2;
                        LDA.B #$FF                           ;82DAF7|A9FF    |      ;
-                       STA.W r_0001                         ;82DAF9|8D0100  |860001;
+                       STA.W r6_0001                        ;82DAF9|8D0100  |860001;
                        LDA.B #$EF                           ;82DAFC|A9EF    |      ;
-                       STA.W r_0000                         ;82DAFE|8D0000  |860000;
+                       STA.W r6_0000                        ;82DAFE|8D0000  |860000;
                        JSR.W CODE_82DB53                    ;82DB01|2053DB  |82DB53;
-                       STZ.W r_0000                         ;82DB04|9C0000  |860000;
-                       STZ.W r_0001                         ;82DB07|9C0100  |860001;
+                       STZ.W r6_0000                        ;82DB04|9C0000  |860000;
+                       STZ.W r6_0001                        ;82DB07|9C0100  |860001;
                        JSR.W CODE_82DB53                    ;82DB0A|2053DB  |82DB53;
                                                             ;      |        |      ;
           CODE_82DB0D:
@@ -14094,19 +14094,19 @@ eventID_gunVolt_29_main:
                        TAY                                  ;82DB2A|A8      |      ;
                        JSL.L findEnemyShotEmptySlot         ;82DB2B|22588382|828358;
                        BNE CODE_82DB50                      ;82DB2F|D01F    |82DB50;
-                       INC.W r_0000,X                       ;82DB31|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82DB31|FE0000  |860000;
                        LDA.B #$0E                           ;82DB34|A90E    |      ;
-                       STA.W r_000a,X                       ;82DB36|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;82DB39|9E0B00  |86000B;
+                       STA.W r6_000a,X                      ;82DB36|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;82DB39|9E0B00  |86000B;
                        REP #$20                             ;82DB3C|C220    |      ;
                        LDA.W UNREACH_86CE06,Y               ;82DB3E|B906CE  |86CE06;
                        CLC                                  ;82DB41|18      |      ;
                        ADC.B r_ev_05_xPos-$E68              ;82DB42|6505    |000E6D;
-                       STA.W r_0005,X                       ;82DB44|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82DB44|9D0500  |860005;
                        LDA.W UNREACH_86CE0E,Y               ;82DB47|B90ECE  |86CE0E;
                        CLC                                  ;82DB4A|18      |      ;
                        ADC.B r_ev_08_yPos-$E68              ;82DB4B|6508    |000E70;
-                       STA.W r_0008,X                       ;82DB4D|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82DB4D|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82DB50:
                        SEP #$30                             ;82DB50|E230    |      ;
@@ -14116,20 +14116,20 @@ eventID_gunVolt_29_main:
           CODE_82DB53:
                        JSL.L findEnemyShotEmptySlot         ;82DB53|22588382|828358;
                        BNE CODE_82DB7A                      ;82DB57|D021    |82DB7A;
-                       INC.W r_0000,X                       ;82DB59|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82DB59|FE0000  |860000;
                        LDA.B #$0E                           ;82DB5C|A90E    |      ;
-                       STA.W r_000a,X                       ;82DB5E|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82DB5E|9D0A00  |86000A;
                        LDA.B #$01                           ;82DB61|A901    |      ;
-                       STA.W r_000b,X                       ;82DB63|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82DB63|9D0B00  |86000B;
                        REP #$20                             ;82DB66|C220    |      ;
-                       LDA.W r_0000                         ;82DB68|AD0000  |860000;
+                       LDA.W r6_0000                        ;82DB68|AD0000  |860000;
                        CLC                                  ;82DB6B|18      |      ;
                        ADC.B $05                            ;82DB6C|6505    |000EED;
-                       STA.W r_0005,X                       ;82DB6E|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82DB6E|9D0500  |860005;
                        LDA.B $08                            ;82DB71|A508    |000EF0;
                        CLC                                  ;82DB73|18      |      ;
                        ADC.W #$0006                         ;82DB74|690600  |      ;
-                       STA.W r_0008,X                       ;82DB77|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82DB77|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82DB7A:
                        SEP #$30                             ;82DB7A|E230    |      ;
@@ -14152,7 +14152,7 @@ prisonCapsule_63_state_00:
                        BNE CODE_82DBAD                      ;82DB8C|D01F    |82DBAD;
                        JSL.L bossesLevelBasedChange         ;82DB8E|22DDAA84|84AADD;
                        BEQ CODE_82DB98                      ;82DB92|F004    |82DB98;
-                       JML.L clearStates_00_02_0E           ;82DB94|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82DB94|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DB98:
@@ -14160,7 +14160,7 @@ prisonCapsule_63_state_00:
                        INC.B r_ev_02_action-$E68            ;82DB9C|E602    |000E6A;
                        LDA.B #$3C                           ;82DB9E|A93C    |      ;
                        STA.B r_ev_35-$E68                   ;82DBA0|8535    |000E9D;
-                       LDA.W r_1f26                         ;82DBA2|AD261F  |861F26;
+                       LDA.W r6_1f26                        ;82DBA2|AD261F  |861F26;
                        BEQ CODE_82DBAD                      ;82DBA5|F006    |82DBAD;
                        LDA.B #$23                           ;82DBA7|A923    |      ;
                        JSL.L CODE_8087A2                    ;82DBA9|22A28780|8087A2;
@@ -14215,14 +14215,14 @@ prisonCapsule_63_state_00:
                        dw LOOSE_OP_87DC48                   ;82DBF9|        |87DC48;
                        REP #$20                             ;82DBFB|C220    |      ;
                        TDC                                  ;82DBFD|7B      |      ;
-                       STA.W r_1f0e                         ;82DBFE|8D0E1F  |861F0E;
+                       STA.W r6_1f0e                        ;82DBFE|8D0E1F  |861F0E;
                        SEP #$20                             ;82DC01|E220    |      ;
                        STZ.B r_ev_27_health-$E68            ;82DC03|6427    |000E8F;
                        LDA.B #$02                           ;82DC05|A902    |      ;
                        STA.B r_ev_02_action-$E68            ;82DC07|8502    |000E6A;
                        RTS                                  ;82DC09|60      |      ;
                                                             ;      |        |      ;
-                       LDA.W r_frameCounter1                ;82DC0A|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82DC0A|AD9C0B  |860B9C;
                        LSR A                                ;82DC0D|4A      |      ;
                        BCC CODE_82DC47                      ;82DC0E|9037    |82DC47;
                        LDA.B r_ev_27_health-$E68            ;82DC10|A527    |000E8F;
@@ -14245,7 +14245,7 @@ prisonCapsule_63_state_00:
                        STA.B r_ev_02_action-$E68            ;82DC32|8502    |000E6A;
                        LDA.B #$10                           ;82DC34|A910    |      ;
                        STA.B r_ev_35-$E68                   ;82DC36|8535    |000E9D;
-                       LDA.W r_1f26                         ;82DC38|AD261F  |861F26;
+                       LDA.W r6_1f26                        ;82DC38|AD261F  |861F26;
                        BEQ CODE_82DC47                      ;82DC3B|F00A    |82DC47;
                        LDA.B #$24                           ;82DC3D|A924    |      ;
                        JSL.L CODE_8087A2                    ;82DC3F|22A28780|8087A2;
@@ -14268,7 +14268,7 @@ prisonCapsule_63_state_00:
           CODE_82DC5B:
                        DEC.B r_ev_35-$E68                   ;82DC5B|C635    |000E9D;
                        JSL.L CODE_82825D                    ;82DC5D|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;82DC61|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82DC61|22EA8E84|848EEA;
                        JSL.L checkPlayerGear                ;82DC65|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82DC69:
@@ -14298,7 +14298,7 @@ prisonCapsule_63_state_00:
                        LDA.B r_ev_27_health-$E68            ;82DC85|A527    |000E8F;
                        AND.B #$7F                           ;82DC87|297F    |      ;
                        BNE CODE_82DCBE                      ;82DC89|D033    |82DCBE;
-                       LDA.W r_d_0bcf                       ;82DC8B|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82DC8B|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82DC8E|297F    |      ;
                        BEQ CODE_82DCC2                      ;82DC90|F030    |82DCC2;
                        LDA.B #$13                           ;82DC92|A913    |      ;
@@ -14308,14 +14308,14 @@ prisonCapsule_63_state_00:
                        STZ.B r_ev_02_action-$E68            ;82DC9C|6402    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;82DC9E|6403    |000E6B;
                        LDA.B #$01                           ;82DCA0|A901    |      ;
-                       STA.W r_d_0bd8                       ;82DCA2|8DD80B  |860BD8;
-                       STA.W r_bossDefeatInvFlag            ;82DCA5|8D0C1F  |861F0C;
+                       STA.W r6_player_invinsCounter        ;82DCA2|8DD80B  |860BD8;
+                       STA.W r6_bossDefeatInvFlag           ;82DCA5|8D0C1F  |861F0C;
                        LDA.B #$28                           ;82DCA8|A928    |      ;
                        STA.B r_ev_35-$E68                   ;82DCAA|8535    |000E9D;
                        LDA.B #$01                           ;82DCAC|A901    |      ;
-                       STA.W r_1f13                         ;82DCAE|8D131F  |861F13;
-                       STA.W r_1f14                         ;82DCB1|8D141F  |861F14;
-                       STA.W r_1f17                         ;82DCB4|8D171F  |861F17;
+                       STA.W r6_1f13                        ;82DCAE|8D131F  |861F13;
+                       STA.W r6_1f14                        ;82DCB1|8D141F  |861F14;
+                       STA.W r6_1f17                        ;82DCB4|8D171F  |861F17;
                        JSL.L CODE_849F8A                    ;82DCB7|228A9F84|849F8A;
                        JMP.W CODE_82DCDB                    ;82DCBB|4CDBDC  |82DCDB;
                                                             ;      |        |      ;
@@ -14346,12 +14346,12 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DCDF:
-                       SBC.B ($DC),Y                        ;82DCDF|F1DC    |000F44;
+                       SBC.B (r_00dc),Y                     ;82DCDF|F1DC    |000F44;
                        SEC                                  ;82DCE1|38      |      ;
                        CMP.W UNREACH_86DDBF,X               ;82DCE2|DDBFDD  |86DDBF;
-                       ORA.B $DE                            ;82DCE5|05DE    |000F46;
-                       BIT.B $DE                            ;82DCE7|24DE    |000F46;
-                       STY.B $DE,X                          ;82DCE9|94DE    |000F46;
+                       ORA.B r_00de                         ;82DCE5|05DE    |000F46;
+                       BIT.B r_00de                         ;82DCE7|24DE    |000F46;
+                       STY.B r_00de,X                       ;82DCE9|94DE    |000F46;
                        AND.W UNREACH_86B1DF,Y               ;82DCEB|39DFB1  |86B1DF;
                        CMP.W UNREACH_86DF56,X               ;82DCEE|DD56DF  |86DF56;
                        LDA.B r_ev_27_health-$E68            ;82DCF1|A527    |000E8F;
@@ -14409,17 +14409,17 @@ prisonCapsule_63_state_00:
                        LDA.B r_ev_3a-$E68                   ;82DD41|A53A    |000EA2;
                        BPL CODE_82DD4D                      ;82DD43|1008    |82DD4D;
                        LDA.B #$03                           ;82DD45|A903    |      ;
-                       STA.W r_0000                         ;82DD47|8D0000  |860000;
+                       STA.W r6_0000                        ;82DD47|8D0000  |860000;
                        JMP.W CODE_82DD52                    ;82DD4A|4C52DD  |82DD52;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DD4D:
                        LDA.B #$01                           ;82DD4D|A901    |      ;
-                       STA.W r_0000                         ;82DD4F|8D0000  |860000;
+                       STA.W r6_0000                        ;82DD4F|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_82DD52:
                        JSL.L mainPlayer_00                  ;82DD52|22869084|849086;
-                       AND.W r_0000                         ;82DD56|2D0000  |860000;
+                       AND.W r6_0000                        ;82DD56|2D0000  |860000;
                        CMP.B #$03                           ;82DD59|C903    |      ;
                        BNE CODE_82DD5F                      ;82DD5B|D002    |82DD5F;
                        LDA.B #$00                           ;82DD5D|A900    |      ;
@@ -14507,7 +14507,7 @@ prisonCapsule_63_state_00:
           CODE_82DDCD:
                        DEC.B r_ev_2f-$E68                   ;82DDCD|C62F    |000E97;
                        JSL.L CODE_82825D                    ;82DDCF|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;82DDD3|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82DDD3|22EA8E84|848EEA;
                        REP #$20                             ;82DDD7|C220    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;82DDD9|A508    |000E70;
                        CMP.W #$01B0                         ;82DDDB|C9B001  |      ;
@@ -14544,7 +14544,7 @@ prisonCapsule_63_state_00:
           CODE_82DE13:
                        DEC.B r_ev_2f-$E68                   ;82DE13|C62F    |000E97;
                        JSL.L CODE_82823E                    ;82DE15|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;82DE19|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82DE19|22EA8E84|848EEA;
                        JSR.W CODE_82E0F6                    ;82DE1D|20F6E0  |82E0F6;
                        JSR.W CODE_82E0B9                    ;82DE20|20B9E0  |82E0B9;
                        RTS                                  ;82DE23|60      |      ;
@@ -14608,7 +14608,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82DE8D:
                        SEP #$20                             ;82DE8D|E220    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;82DE8F|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82DE8F|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82DE93:
                        RTS                                  ;82DE93|60      |      ;
@@ -14648,49 +14648,49 @@ prisonCapsule_63_state_00:
                        REP #$10                             ;82DECA|C210    |      ;
                        JSL.L findEnemyShotEmptySlot         ;82DECC|22588382|828358;
                        BNE CODE_82DF36                      ;82DED0|D064    |82DF36;
-                       INC.W r_0000,X                       ;82DED2|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82DED2|FE0000  |860000;
                        LDA.B #$2B                           ;82DED5|A92B    |      ;
-                       STA.W r_000a,X                       ;82DED7|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82DED7|9D0A00  |86000A;
                        LDA.B r_ev_18_gfxSlot-$E68           ;82DEDA|A518    |000E80;
-                       STA.W r_0018,X                       ;82DEDC|9D1800  |860018;
+                       STA.W r6_0018,X                      ;82DEDC|9D1800  |860018;
                        LDA.B r_ev_11_sprAtri-$E68           ;82DEDF|A511    |000E79;
                        ORA.B r_ev_34-$E68                   ;82DEE1|0534    |000E9C;
-                       STA.W r_0011,X                       ;82DEE3|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82DEE3|9D1100  |860011;
                        LDA.B r_ev_16_sprID-$E68             ;82DEE6|A516    |000E7E;
-                       STA.W r_0016,X                       ;82DEE8|9D1600  |860016;
+                       STA.W r6_0016,X                      ;82DEE8|9D1600  |860016;
                        REP #$20                             ;82DEEB|C220    |      ;
                        LDY.B r_ev_37-$E68                   ;82DEED|A437    |000E9F;
                        LDA.W UNREACH_86D664,Y               ;82DEEF|B964D6  |86D664;
-                       STA.W r_000b,X                       ;82DEF2|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82DEF2|9D0B00  |86000B;
                        DEY                                  ;82DEF5|88      |      ;
                        DEY                                  ;82DEF6|88      |      ;
                        LDA.W UNREACH_86D664,Y               ;82DEF7|B964D6  |86D664;
-                       STA.W r_0000                         ;82DEFA|8D0000  |860000;
+                       STA.W r6_0000                        ;82DEFA|8D0000  |860000;
                        DEY                                  ;82DEFD|88      |      ;
                        DEY                                  ;82DEFE|88      |      ;
                        LDA.W UNREACH_86D664,Y               ;82DEFF|B964D6  |86D664;
-                       STA.W r_0002                         ;82DF02|8D0200  |860002;
+                       STA.W r6_0002                        ;82DF02|8D0200  |860002;
                        DEY                                  ;82DF05|88      |      ;
                        DEY                                  ;82DF06|88      |      ;
                        LDA.W UNREACH_86D664,Y               ;82DF07|B964D6  |86D664;
-                       STA.W r_001a,X                       ;82DF0A|9D1A00  |86001A;
+                       STA.W r6_001a,X                      ;82DF0A|9D1A00  |86001A;
                        DEY                                  ;82DF0D|88      |      ;
                        DEY                                  ;82DF0E|88      |      ;
                        LDA.W UNREACH_86D664,Y               ;82DF0F|B964D6  |86D664;
-                       STA.W r_001c,X                       ;82DF12|9D1C00  |86001C;
+                       STA.W r6_001c,X                      ;82DF12|9D1C00  |86001C;
                        DEY                                  ;82DF15|88      |      ;
                        DEY                                  ;82DF16|88      |      ;
                        STY.B r_ev_37-$E68                   ;82DF17|8437    |000E9F;
                        LDA.B r_ev_05_xPos-$E68              ;82DF19|A505    |000E6D;
                        CLC                                  ;82DF1B|18      |      ;
-                       ADC.W r_0000                         ;82DF1C|6D0000  |860000;
-                       STA.W r_0005,X                       ;82DF1F|9D0500  |860005;
+                       ADC.W r6_0000                        ;82DF1C|6D0000  |860000;
+                       STA.W r6_0005,X                      ;82DF1F|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;82DF22|A508    |000E70;
                        CLC                                  ;82DF24|18      |      ;
-                       ADC.W r_0002                         ;82DF25|6D0200  |860002;
-                       STA.W r_0008,X                       ;82DF28|9D0800  |860008;
+                       ADC.W r6_0002                        ;82DF25|6D0200  |860002;
+                       STA.W r6_0008,X                      ;82DF28|9D0800  |860008;
                        TDC                                  ;82DF2B|7B      |      ;
-                       STA.W r_000c,X                       ;82DF2C|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82DF2C|9D0C00  |86000C;
                        SEP #$20                             ;82DF2F|E220    |      ;
                        CPY.W #$FFFE                         ;82DF31|C0FEFF  |      ;
                        BNE CODE_82DEB9                      ;82DF34|D083    |82DEB9;
@@ -14714,7 +14714,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82DF4F:
                        SEP #$20                             ;82DF4F|E220    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;82DF51|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82DF51|22EA8E84|848EEA;
                        RTS                                  ;82DF55|60      |      ;
                                                             ;      |        |      ;
                        LDA.B r_ev_0f_waitCount-$E68         ;82DF56|A50F    |000E77;
@@ -14743,7 +14743,7 @@ prisonCapsule_63_state_00:
                        JSL.L playerGrabedRoutine            ;82DF7D|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82DF81:
-                       JSL.L updateEv_13_14_17_0f           ;82DF81|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82DF81|22EA8E84|848EEA;
                        RTS                                  ;82DF85|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14764,15 +14764,15 @@ prisonCapsule_63_state_00:
                        LDA.B r_ev_35-$E68                   ;82DF97|A535    |000E9D;
                        BEQ CODE_82DFA5                      ;82DF99|F00A    |82DFA5;
                        LDA.B #$01                           ;82DF9B|A901    |      ;
-                       STA.W r_1f13                         ;82DF9D|8D131F  |861F13;
+                       STA.W r6_1f13                        ;82DF9D|8D131F  |861F13;
                        DEC.B r_ev_35-$E68                   ;82DFA0|C635    |000E9D;
                        JMP.W CODE_82DFC7                    ;82DFA2|4CC7DF  |82DFC7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DFA5:
-                       STZ.W r_1f13                         ;82DFA5|9C131F  |861F13;
-                       STZ.W r_1f14                         ;82DFA8|9C141F  |861F14;
-                       STZ.W r_1f17                         ;82DFAB|9C171F  |861F17;
+                       STZ.W r6_1f13                        ;82DFA5|9C131F  |861F13;
+                       STZ.W r6_1f14                        ;82DFA8|9C141F  |861F14;
+                       STZ.W r6_1f17                        ;82DFAB|9C171F  |861F17;
                        LDA.B #$02                           ;82DFAE|A902    |      ;
                        STA.B r_ev_02_action-$E68            ;82DFB0|8502    |000E6A;
                        LDY.B #$02                           ;82DFB2|A002    |      ;
@@ -14780,7 +14780,7 @@ prisonCapsule_63_state_00:
                        JSL.L CODE_80887F                    ;82DFB6|227F8880|80887F;
                        JSL.L CODE_849FEB                    ;82DFBA|22EB9F84|849FEB;
                        LDA.B #$30                           ;82DFBE|A930    |      ;
-                       TSB.W r_d_0bb9                       ;82DFC0|0CB90B  |860BB9;
+                       TSB.W r6_player_sprPal               ;82DFC0|0CB90B  |860BB9;
                        LDA.B #$FF                           ;82DFC3|A9FF    |      ;
                        STA.B r_ev_35-$E68                   ;82DFC5|8535    |000E9D;
                                                             ;      |        |      ;
@@ -14789,7 +14789,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82DFCB:
-                       LDA.W r_frameCounter1                ;82DFCB|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82DFCB|AD9C0B  |860B9C;
                        AND.B #$1F                           ;82DFCE|291F    |      ;
                        BNE CODE_82DFD8                      ;82DFD0|D006    |82DFD8;
                        LDA.B #$20                           ;82DFD2|A920    |      ;
@@ -14804,14 +14804,14 @@ prisonCapsule_63_state_00:
           CODE_82DFE0:
                        REP #$20                             ;82DFE0|C220    |      ;
                        LDA.W #$FFC0                         ;82DFE2|A9C0FF  |      ;
-                       STA.W r_0000                         ;82DFE5|8D0000  |860000;
-                       STA.W r_0002                         ;82DFE8|8D0200  |860002;
+                       STA.W r6_0000                        ;82DFE5|8D0000  |860000;
+                       STA.W r6_0002                        ;82DFE8|8D0200  |860002;
                        LDA.W #$007F                         ;82DFEB|A97F00  |      ;
-                       STA.W r_0004                         ;82DFEE|8D0400  |860004;
-                       STA.W r_0006                         ;82DFF1|8D0600  |860006;
+                       STA.W r6_0004                        ;82DFEE|8D0400  |860004;
+                       STA.W r6_0006                        ;82DFF1|8D0600  |860006;
                        SEP #$20                             ;82DFF4|E220    |      ;
                        LDA.B #$03                           ;82DFF6|A903    |      ;
-                       STA.W r_0008                         ;82DFF8|8D0800  |860008;
+                       STA.W r6_0008                        ;82DFF8|8D0800  |860008;
                        JSL.L checkPlayerGear                ;82DFFB|22B48082|8280B4;
                        JML.L CODE_84A4D0                    ;82DFFF|5CD0A484|84A4D0;
                                                             ;      |        |      ;
@@ -14833,8 +14833,8 @@ prisonCapsule_63_state_00:
                        SEP #$30                             ;82E025|E230    |      ;
                        PLB                                  ;82E027|AB      |      ;
                        LDA.B #$3F                           ;82E028|A93F    |      ;
-                       STA.W r_colorV_ca                    ;82E02A|8DCA00  |8600CA;
-                       STZ.W r_colorV_cb                    ;82E02D|9CCB00  |8600CB;
+                       STA.W r6_colorV_ca                   ;82E02A|8DCA00  |8600CA;
+                       STZ.W r6_colorV_cb                   ;82E02D|9CCB00  |8600CB;
                        LDA.B #$01                           ;82E030|A901    |      ;
                        STA.B r_ev_0c_parent-$E68            ;82E032|850C    |000E74;
                        JSR.W CODE_82E219                    ;82E034|2019E2  |82E219;
@@ -14844,7 +14844,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E03F:
-                       LDA.W r_frameCounter1                ;82E03F|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82E03F|AD9C0B  |860B9C;
                        AND.B #$01                           ;82E042|2901    |      ;
                        BNE CODE_82E04E                      ;82E044|D008    |82E04E;
                        LDA.B r_ev_0c_parent-$E68            ;82E046|A50C    |000E74;
@@ -14866,10 +14866,10 @@ prisonCapsule_63_state_00:
                        LDA.B #$08                           ;82E060|A908    |      ;
                        STA.B r_ev_02_action-$E68            ;82E062|8502    |000E6A;
                        LDA.B #$1F                           ;82E064|A91F    |      ;
-                       STA.W r_colorV_cb                    ;82E066|8DCB00  |8600CB;
-                       STA.W r_colorV_cc                    ;82E069|8DCC00  |8600CC;
-                       STA.W r_colorV_cd                    ;82E06C|8DCD00  |8600CD;
-                       STZ.W r_0aa1                         ;82E06F|9CA10A  |860AA1;
+                       STA.W r6_colorV_cb                   ;82E066|8DCB00  |8600CB;
+                       STA.W r6_colorV_cc                   ;82E069|8DCC00  |8600CC;
+                       STA.W r6_colorV_cd                   ;82E06C|8DCD00  |8600CD;
+                       STZ.W r6_0aa1                        ;82E06F|9CA10A  |860AA1;
                        RTL                                  ;82E072|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14886,15 +14886,15 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E085:
-                       LDA.W r_frameCounter1                ;82E085|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82E085|AD9C0B  |860B9C;
                        AND.B #$01                           ;82E088|2901    |      ;
                        BNE CODE_82E0A0                      ;82E08A|D014    |82E0A0;
-                       DEC.W r_colorV_cb                    ;82E08C|CECB00  |8600CB;
-                       DEC.W r_colorV_cc                    ;82E08F|CECC00  |8600CC;
-                       DEC.W r_colorV_cd                    ;82E092|CECD00  |8600CD;
+                       DEC.W r6_colorV_cb                   ;82E08C|CECB00  |8600CB;
+                       DEC.W r6_colorV_cc                   ;82E08F|CECC00  |8600CC;
+                       DEC.W r6_colorV_cd                   ;82E092|CECD00  |8600CD;
                        BNE CODE_82E0A0                      ;82E095|D009    |82E0A0;
                        LDA.B #$01                           ;82E097|A901    |      ;
-                       STA.W r_1f23                         ;82E099|8D231F  |861F23;
+                       STA.W r6_1f23                        ;82E099|8D231F  |861F23;
                        LDA.B #$0A                           ;82E09C|A90A    |      ;
                        STA.B r_ev_02_action-$E68            ;82E09E|8502    |000E6A;
                                                             ;      |        |      ;
@@ -14903,14 +14903,14 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E0A1:
-                       STZ.W r_bossDefeatInvFlag            ;82E0A1|9C0C1F  |861F0C;
-                       STZ.W r_d_0bd8                       ;82E0A4|9CD80B  |860BD8;
+                       STZ.W r6_bossDefeatInvFlag           ;82E0A1|9C0C1F  |861F0C;
+                       STZ.W r6_player_invinsCounter        ;82E0A4|9CD80B  |860BD8;
                        JSL.L CODE_84A003                    ;82E0A7|2203A084|84A003;
                        LDA.B #$04                           ;82E0AB|A904    |      ;
-                       STA.W r_1f10                         ;82E0AD|8D101F  |861F10;
+                       STA.W r6_1f10                        ;82E0AD|8D101F  |861F10;
                        LDA.B #$01                           ;82E0B0|A901    |      ;
-                       STA.W r_1f7b                         ;82E0B2|8D7B1F  |861F7B;
-                       JML.L clearStates_00_02_0E           ;82E0B5|5C988382|828398;
+                       STA.W r6_1f7b                        ;82E0B2|8D7B1F  |861F7B;
+                       JML.L despawnEvent_clear_00_02_0E    ;82E0B5|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E0B9:
@@ -14925,7 +14925,7 @@ prisonCapsule_63_state_00:
                        LDA.B r_ev_08_yPos-$E68              ;82E0CA|A508    |000E70;
                        CMP.W #$017A                         ;82E0CC|C97A01  |      ;
                        BPL CODE_82E0F3                      ;82E0CF|1022    |82E0F3;
-                       LDA.W r_d_player_yPos                ;82E0D1|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;82E0D1|ADB00B  |860BB0;
                        SEC                                  ;82E0D4|38      |      ;
                        SBC.B r_ev_08_yPos-$E68              ;82E0D5|E508    |000E70;
                        BCS CODE_82E0DD                      ;82E0D7|B004    |82E0DD;
@@ -15049,18 +15049,18 @@ prisonCapsule_63_state_00:
                        LDX.W #$1428                         ;82E189|A22814  |      ;
                                                             ;      |        |      ;
           CODE_82E18C:
-                       LDA.W r_0000,X                       ;82E18C|BD0000  |860000;
+                       LDA.W r6_0000,X                      ;82E18C|BD0000  |860000;
                        BEQ CODE_82E1AB                      ;82E18F|F01A    |82E1AB;
                        SEP #$20                             ;82E191|E220    |      ;
-                       LDA.W r_000a,X                       ;82E193|BD0A00  |86000A;
+                       LDA.W r6_000a,X                      ;82E193|BD0A00  |86000A;
                        CMP.B r_ev_0a_ID-$E68                ;82E196|C50A    |000E72;
                        REP #$20                             ;82E198|C220    |      ;
                        BNE CODE_82E1AB                      ;82E19A|D00F    |82E1AB;
                        TXA                                  ;82E19C|8A      |      ;
-                       STA.W r_0000,Y                       ;82E19D|990000  |860000;
+                       STA.W r6_0000,Y                      ;82E19D|990000  |860000;
                        TDC                                  ;82E1A0|7B      |      ;
-                       STA.W r_002c                         ;82E1A1|8D2C00  |86002C;
-                       CPX.W r_002c                         ;82E1A4|EC2C00  |86002C;
+                       STA.W r6_002c                        ;82E1A1|8D2C00  |86002C;
+                       CPX.W r6_002c                        ;82E1A4|EC2C00  |86002C;
                        BEQ CODE_82E1AB                      ;82E1A7|F002    |82E1AB;
                        INY                                  ;82E1A9|C8      |      ;
                        INY                                  ;82E1AA|C8      |      ;
@@ -15080,41 +15080,41 @@ prisonCapsule_63_state_00:
                        REP #$10                             ;82E1B9|C210    |      ;
                        JSL.L CODE_8282D3                    ;82E1BB|22D38282|8282D3;
                        BNE CODE_82E203                      ;82E1BF|D042    |82E203;
-                       INC.W r_0000,X                       ;82E1C1|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82E1C1|FE0000  |860000;
                        LDA.B #$3C                           ;82E1C4|A93C    |      ;
-                       STA.W r_000a,X                       ;82E1C6|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82E1C6|9D0A00  |86000A;
                        REP #$20                             ;82E1C9|C220    |      ;
                        LDA.B r_ev_3a-$E68                   ;82E1CB|A53A    |000EA2;
                        AND.W #$00FF                         ;82E1CD|29FF00  |      ;
                        ASL A                                ;82E1D0|0A      |      ;
                        TAY                                  ;82E1D1|A8      |      ;
                        LDA.W UNREACH_86D68C,Y               ;82E1D2|B98CD6  |86D68C;
-                       STA.W r_0005,X                       ;82E1D5|9D0500  |860005;
+                       STA.W r6_0005,X                      ;82E1D5|9D0500  |860005;
                        LDA.B r_ev_3b-$E68                   ;82E1D8|A53B    |000EA3;
                        AND.W #$00FF                         ;82E1DA|29FF00  |      ;
                        ASL A                                ;82E1DD|0A      |      ;
                        TAY                                  ;82E1DE|A8      |      ;
                        LDA.W UNREACH_86D692,Y               ;82E1DF|B992D6  |86D692;
-                       STA.W r_0008,X                       ;82E1E2|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82E1E2|9D0800  |860008;
                        TDC                                  ;82E1E5|7B      |      ;
-                       STA.W r_000c,X                       ;82E1E6|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;82E1E6|9D0C00  |86000C;
                        SEP #$20                             ;82E1E9|E220    |      ;
                        LDA.B r_ev_16_sprID-$E68             ;82E1EB|A516    |000E7E;
-                       STA.W r_0016,X                       ;82E1ED|9D1600  |860016;
+                       STA.W r6_0016,X                      ;82E1ED|9D1600  |860016;
                        LDA.B r_ev_11_sprAtri-$E68           ;82E1F0|A511    |000E79;
                        ORA.B r_ev_34-$E68                   ;82E1F2|0534    |000E9C;
                        ORA.B #$0A                           ;82E1F4|090A    |      ;
-                       STA.W r_0011,X                       ;82E1F6|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82E1F6|9D1100  |860011;
                        LDA.B r_ev_18_gfxSlot-$E68           ;82E1F9|A518    |000E80;
-                       STA.W r_0018,X                       ;82E1FB|9D1800  |860018;
+                       STA.W r6_0018,X                      ;82E1FB|9D1800  |860018;
                        LDA.B #$06                           ;82E1FE|A906    |      ;
-                       STA.W r_0012,X                       ;82E200|9D1200  |860012;
+                       STA.W r6_0012,X                      ;82E200|9D1200  |860012;
                                                             ;      |        |      ;
           CODE_82E203:
                        SEP #$10                             ;82E203|E210    |      ;
                        RTS                                  ;82E205|60      |      ;
                                                             ;      |        |      ;
-                       LDA.W r_d_0bcf                       ;82E206|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82E206|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82E209|297F    |      ;
                        BEQ CODE_82E218                      ;82E20B|F00B    |82E218;
                        REP #$10                             ;82E20D|C210    |      ;
@@ -15184,15 +15184,15 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E292:
-                       LDX.B $01                            ;82E292|A601    |001A69;
+                       LDX.B r_1a69-$1A68                   ;82E292|A601    |001A69;
                        JSR.W (PTR16_82E2AB,X)               ;82E294|FCABE2  |82E2AB;
                        REP #$10                             ;82E297|C210    |      ;
-                       LDX.B $0C                            ;82E299|A60C    |001A74;
-                       LDA.W r_0001,X                       ;82E29B|BD0100  |860001;
+                       LDX.B r_1a74-$1A68                   ;82E299|A60C    |001A74;
+                       LDA.W r6_0001,X                      ;82E29B|BD0100  |860001;
                        CMP.B #$06                           ;82E29E|C906    |      ;
                        BNE CODE_82E2A8                      ;82E2A0|D006    |82E2A8;
                        SEP #$10                             ;82E2A2|E210    |      ;
-                       JSL.L clearStates_00_02_0E           ;82E2A4|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;82E2A4|22988382|828398;
                                                             ;      |        |      ;
           CODE_82E2A8:
                        SEP #$10                             ;82E2A8|E210    |      ;
@@ -15209,33 +15209,33 @@ prisonCapsule_63_state_00:
                        LDA.B #$07                           ;82E2B3|A907    |      ;
                        JSL.L playerGrabedRoutine            ;82E2B5|22078F84|848F07;
                        LDA.B #$02                           ;82E2B9|A902    |      ;
-                       STA.B $01                            ;82E2BB|8501    |001A69;
+                       STA.B r_1a69-$1A68                   ;82E2BB|8501    |001A69;
                        JSL.L checkPlayerGear                ;82E2BD|22B48082|8280B4;
                        RTS                                  ;82E2C1|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E2C2:
-                       LDA.B $0F                            ;82E2C2|A50F    |001A77;
+                       LDA.B r_1a77-$1A68                   ;82E2C2|A50F    |001A77;
                        BMI CODE_82E2CD                      ;82E2C4|3007    |82E2CD;
-                       JSL.L updateEv_13_14_17_0f           ;82E2C6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82E2C6|22EA8E84|848EEA;
                        JMP.W CODE_82E2F2                    ;82E2CA|4CF2E2  |82E2F2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E2CD:
                        LDA.B #$04                           ;82E2CD|A904    |      ;
-                       STA.B $01                            ;82E2CF|8501    |001A49;
+                       STA.B r_1a49-$1A48                   ;82E2CF|8501    |001A49;
                        REP #$20                             ;82E2D1|C220    |      ;
-                       LDA.B $05                            ;82E2D3|A505    |001A4D;
+                       LDA.B r_1a4d-$1A48                   ;82E2D3|A505    |001A4D;
                        SEC                                  ;82E2D5|38      |      ;
                        SBC.W #$0020                         ;82E2D6|E92000  |      ;
-                       STA.W r_002c                         ;82E2D9|8D2C00  |86002C;
-                       STA.B $1A                            ;82E2DC|851A    |001A62;
-                       LDA.B $08                            ;82E2DE|A508    |001A50;
-                       STA.W r_002e                         ;82E2E0|8D2E00  |86002E;
-                       STA.B $1C                            ;82E2E3|851C    |001A64;
+                       STA.W r6_002c                        ;82E2D9|8D2C00  |86002C;
+                       STA.B r_1a62-$1A48                   ;82E2DC|851A    |001A62;
+                       LDA.B r_1a50-$1A48                   ;82E2DE|A508    |001A50;
+                       STA.W r6_002e                        ;82E2E0|8D2E00  |86002E;
+                       STA.B r_1a64-$1A48                   ;82E2E3|851C    |001A64;
                        SEP #$20                             ;82E2E5|E220    |      ;
                        LDA.B #$00                           ;82E2E7|A900    |      ;
-                       STA.B $0B                            ;82E2E9|850B    |001A53;
+                       STA.B r_1a53-$1A48                   ;82E2E9|850B    |001A53;
                        JSL.L CODE_848011                    ;82E2EB|22118084|848011;
                        JMP.W CODE_82E2F6                    ;82E2EF|4CF6E2  |82E2F6;
                                                             ;      |        |      ;
@@ -15249,8 +15249,8 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E2F7:
                        REP #$10                             ;82E2F7|C210    |      ;
-                       LDX.B $0C                            ;82E2F9|A60C    |001A74;
-                       LDA.W r_0002,X                       ;82E2FB|BD0200  |860002;
+                       LDX.B r_1a74-$1A68                   ;82E2F9|A60C    |001A74;
+                       LDA.W r6_0002,X                      ;82E2FB|BD0200  |860002;
                        CMP.B #$0C                           ;82E2FE|C90C    |      ;
                        BEQ CODE_82E305                      ;82E300|F003    |82E305;
                        JMP.W CODE_82E32B                    ;82E302|4C2BE3  |82E32B;
@@ -15261,15 +15261,15 @@ prisonCapsule_63_state_00:
                        LDA.B #$08                           ;82E307|A908    |      ;
                        JSL.L playerGrabedRoutine            ;82E309|22078F84|848F07;
                        LDA.B #$06                           ;82E30D|A906    |      ;
-                       STA.B $01                            ;82E30F|8501    |001989;
+                       STA.B r_1989-$1988                   ;82E30F|8501    |001989;
                        REP #$20                             ;82E311|C220    |      ;
-                       LDA.B $1A                            ;82E313|A51A    |0019A2;
-                       STA.W r_002c                         ;82E315|8D2C00  |86002C;
-                       LDA.B $1C                            ;82E318|A51C    |0019A4;
-                       STA.W r_002e                         ;82E31A|8D2E00  |86002E;
+                       LDA.B r_19a2-$1988                   ;82E313|A51A    |0019A2;
+                       STA.W r6_002c                        ;82E315|8D2C00  |86002C;
+                       LDA.B r_19a4-$1988                   ;82E318|A51C    |0019A4;
+                       STA.W r6_002e                        ;82E31A|8D2E00  |86002E;
                        SEP #$20                             ;82E31D|E220    |      ;
                        LDA.B #$01                           ;82E31F|A901    |      ;
-                       STA.B $0B                            ;82E321|850B    |001993;
+                       STA.B r_1993-$1988                   ;82E321|850B    |001993;
                        JSL.L CODE_848011                    ;82E323|22118084|848011;
                        JSL.L checkPlayerGear                ;82E327|22B48082|8280B4;
                                                             ;      |        |      ;
@@ -15279,22 +15279,22 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E32E:
-                       LDA.B $0F                            ;82E32E|A50F    |001A77;
+                       LDA.B r_1a77-$1A68                   ;82E32E|A50F    |001A77;
                        BMI CODE_82E33D                      ;82E330|300B    |82E33D;
-                       JSL.L updateEv_13_14_17_0f           ;82E332|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82E332|22EA8E84|848EEA;
                        JSL.L checkPlayerGear                ;82E336|22B48082|8280B4;
                        JMP.W CODE_82E341                    ;82E33A|4C41E3  |82E341;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E33D:
-                       JSL.L clearStates_00_02_0E           ;82E33D|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;82E33D|22988382|828398;
                                                             ;      |        |      ;
           CODE_82E341:
                        RTS                                  ;82E341|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E342:
-                       LDX.B $01                            ;82E342|A601    |001629;
+                       LDX.B r_1629-$1628                   ;82E342|A601    |001629;
                        JSR.W (DATA8_82E348,X)               ;82E344|FC48E3  |82E348;
                        RTL                                  ;82E347|6B      |      ;
                                                             ;      |        |      ;
@@ -15302,31 +15302,31 @@ prisonCapsule_63_state_00:
          DATA8_82E348:
                        db $4E,$E3,$8B,$E3,$D1,$E5           ;82E348|        |      ;
                        LDA.B #$02                           ;82E34E|A902    |      ;
-                       STA.B $01                            ;82E350|8501    |001629;
-                       STZ.B $12                            ;82E352|6412    |00163A;
-                       STZ.B $18                            ;82E354|6418    |001640;
-                       STZ.B $28                            ;82E356|6428    |001650;
+                       STA.B r_1629-$1628                   ;82E350|8501    |001629;
+                       STZ.B r_163a-$1628                   ;82E352|6412    |00163A;
+                       STZ.B r_1640-$1628                   ;82E354|6418    |001640;
+                       STZ.B r_1650-$1628                   ;82E356|6428    |001650;
                        LDA.B #$FF                           ;82E358|A9FF    |      ;
-                       STA.B $26                            ;82E35A|8526    |00164E;
-                       LDA.W r_d_0bb9                       ;82E35C|ADB90B  |860BB9;
+                       STA.B r_164e-$1628                   ;82E35A|8526    |00164E;
+                       LDA.W r6_player_sprPal               ;82E35C|ADB90B  |860BB9;
                        AND.B #$30                           ;82E35F|2930    |      ;
                        ORA.B #$04                           ;82E361|0904    |      ;
-                       STA.B $11                            ;82E363|8511    |001639;
-                       STA.B $2F                            ;82E365|852F    |001657;
+                       STA.B r_1639-$1628                   ;82E363|8511    |001639;
+                       STA.B r_1657-$1628                   ;82E365|852F    |001657;
                        REP #$10                             ;82E367|C210    |      ;
                        LDX.W #$D8A5                         ;82E369|A2A5D8  |      ;
-                       LDA.B $0B                            ;82E36C|A50B    |001633;
+                       LDA.B r_1633-$1628                   ;82E36C|A50B    |001633;
                        AND.B #$7F                           ;82E36E|297F    |      ;
                        BEQ CODE_82E375                      ;82E370|F003    |82E375;
                        LDX.W #$D89B                         ;82E372|A29BD8  |      ;
                                                             ;      |        |      ;
           CODE_82E375:
-                       STX.B $20                            ;82E375|8620    |001648;
+                       STX.B r_1648-$1628                   ;82E375|8620    |001648;
                        SEP #$10                             ;82E377|E210    |      ;
                        JSL.L checkPlayerGear                ;82E379|22B48082|8280B4;
                        LDA.B #$12                           ;82E37D|A912    |      ;
-                       STA.B $16                            ;82E37F|8516    |00163E;
-                       LDA.B $0B                            ;82E381|A50B    |001633;
+                       STA.B r_163e-$1628                   ;82E37F|8516    |00163E;
+                       LDA.B r_1633-$1628                   ;82E381|A50B    |001633;
                        AND.B #$7F                           ;82E383|297F    |      ;
                        INC A                                ;82E385|1A      |      ;
                        JSL.L playerGrabedRoutine            ;82E386|22078F84|848F07;
@@ -15334,7 +15334,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                        JSL.L initPosAllign                  ;82E38B|226E8082|82806E;
                        BCC CODE_82E39F                      ;82E38F|900E    |82E39F;
-                       LDA.B $0B                            ;82E391|A50B    |001633;
+                       LDA.B r_1633-$1628                   ;82E391|A50B    |001633;
                        BPL CODE_82E39A                      ;82E393|1005    |82E39A;
                        JSL.L clearStateIf_0cEqual           ;82E395|22878382|828387;
                        RTS                                  ;82E399|60      |      ;
@@ -15342,56 +15342,56 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E39A:
                        LDA.B #$04                           ;82E39A|A904    |      ;
-                       STA.B $01                            ;82E39C|8501    |001629;
+                       STA.B r_1629-$1628                   ;82E39C|8501    |001629;
                        RTS                                  ;82E39E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E39F:
-                       LDX.B $02                            ;82E39F|A602    |00162A;
+                       LDX.B r_162a-$1628                   ;82E39F|A602    |00162A;
                        JMP.W (DATA8_82E3A4,X)               ;82E3A1|7CA4E3  |82E3A4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          DATA8_82E3A4:
                        db $AC,$E3,$07,$E4,$6E,$E4,$D5,$E4   ;82E3A4|        |      ;
-                       LDX.B $03                            ;82E3AC|A603    |00162B;
+                       LDX.B r_162b-$1628                   ;82E3AC|A603    |00162B;
                        BNE CODE_82E3CA                      ;82E3AE|D01A    |82E3CA;
-                       INC.B $03                            ;82E3B0|E603    |00162B;
+                       INC.B r_162b-$1628                   ;82E3B0|E603    |00162B;
                        REP #$20                             ;82E3B2|C220    |      ;
-                       STZ.B $1A                            ;82E3B4|641A    |001642;
+                       STZ.B r_1642-$1628                   ;82E3B4|641A    |001642;
                        LDA.W #$02F5                         ;82E3B6|A9F502  |      ;
-                       STA.B $1C                            ;82E3B9|851C    |001644;
-                       LDY.B $0B                            ;82E3BB|A40B    |001633;
+                       STA.B r_1644-$1628                   ;82E3B9|851C    |001644;
+                       LDY.B r_1633-$1628                   ;82E3BB|A40B    |001633;
                        BPL CODE_82E3C1                      ;82E3BD|1002    |82E3C1;
-                       STZ.B $1C                            ;82E3BF|641C    |001644;
+                       STZ.B r_1644-$1628                   ;82E3BF|641C    |001644;
                                                             ;      |        |      ;
           CODE_82E3C1:
                        SEP #$20                             ;82E3C1|E220    |      ;
                        LDA.B #$37                           ;82E3C3|A937    |      ;
-                       STA.B $1E                            ;82E3C5|851E    |001646;
-                       STZ.B $1F                            ;82E3C7|641F    |001647;
+                       STA.B r_1646-$1628                   ;82E3C5|851E    |001646;
+                       STZ.B r_1647-$1628                   ;82E3C7|641F    |001647;
                        RTS                                  ;82E3C9|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E3CA:
-                       LDA.B $2B                            ;82E3CA|A52B    |001653;
+                       LDA.B r_1653-$1628                   ;82E3CA|A52B    |001653;
                        BIT.B #$08                           ;82E3CC|8908    |      ;
                        BNE CODE_82E3DC                      ;82E3CE|D00C    |82E3DC;
                        JSL.L CODE_828174                    ;82E3D0|22748182|828174;
                        JSL.L checkPlayerGear                ;82E3D4|22B48082|8280B4;
-                       LDA.B $1D                            ;82E3D8|A51D    |001645;
+                       LDA.B r_1645-$1628                   ;82E3D8|A51D    |001645;
                        BPL CODE_82E3E5                      ;82E3DA|1009    |82E3E5;
                                                             ;      |        |      ;
           CODE_82E3DC:
                        LDA.B #$02                           ;82E3DC|A902    |      ;
-                       STA.B $02                            ;82E3DE|8502    |00162A;
-                       STZ.B $1C                            ;82E3E0|641C    |001644;
-                       STZ.B $1D                            ;82E3E2|641D    |001645;
+                       STA.B r_162a-$1628                   ;82E3DE|8502    |00162A;
+                       STZ.B r_1644-$1628                   ;82E3E0|641C    |001644;
+                       STZ.B r_1645-$1628                   ;82E3E2|641D    |001645;
                        RTS                                  ;82E3E4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E3E5:
                        JSL.L CODE_81E109                    ;82E3E5|2209E181|81E109;
-                       LDA.W r_d_0bcf                       ;82E3E9|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82E3E9|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82E3EC|297F    |      ;
                        BEQ CODE_82E406                      ;82E3EE|F016    |82E406;
                        REP #$10                             ;82E3F0|C210    |      ;
@@ -15400,48 +15400,48 @@ prisonCapsule_63_state_00:
                        SEP #$10                             ;82E3F9|E210    |      ;
                        BCC CODE_82E406                      ;82E3FB|9009    |82E406;
                        LDA.B #$06                           ;82E3FD|A906    |      ;
-                       STA.B $02                            ;82E3FF|8502    |00162A;
-                       STZ.B $03                            ;82E401|6403    |00162B;
+                       STA.B r_162a-$1628                   ;82E3FF|8502    |00162A;
+                       STZ.B r_162b-$1628                   ;82E401|6403    |00162B;
                        JMP.W CODE_82E4D5                    ;82E403|4CD5E4  |82E4D5;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E406:
                        RTS                                  ;82E406|60      |      ;
                                                             ;      |        |      ;
-                       LDA.B $2B                            ;82E407|A52B    |001653;
+                       LDA.B r_1653-$1628                   ;82E407|A52B    |001653;
                        BIT.B #$04                           ;82E409|8904    |      ;
                        BEQ CODE_82E428                      ;82E40B|F01B    |82E428;
-                       STZ.B $2F                            ;82E40D|642F    |001657;
+                       STZ.B r_1657-$1628                   ;82E40D|642F    |001657;
                        LDA.B #$04                           ;82E40F|A904    |      ;
-                       STA.B $02                            ;82E411|8502    |00162A;
-                       STZ.B $03                            ;82E413|6403    |00162B;
-                       LDA.B $26                            ;82E415|A526    |00164E;
+                       STA.B r_162a-$1628                   ;82E411|8502    |00162A;
+                       STZ.B r_162b-$1628                   ;82E413|6403    |00162B;
+                       LDA.B r_164e-$1628                   ;82E415|A526    |00164E;
                        BPL CODE_82E426                      ;82E417|100D    |82E426;
                        LDA.B #$F0                           ;82E419|A9F0    |      ;
-                       STA.B $26                            ;82E41B|8526    |00164E;
-                       LDA.W r_1f9d                         ;82E41D|AD9D1F  |861F9D;
+                       STA.B r_164e-$1628                   ;82E41B|8526    |00164E;
+                       LDA.W r6_1f9d                        ;82E41D|AD9D1F  |861F9D;
                        BPL CODE_82E426                      ;82E420|1004    |82E426;
                        LDA.B #$06                           ;82E422|A906    |      ;
-                       STA.B $26                            ;82E424|8526    |00164E;
+                       STA.B r_164e-$1628                   ;82E424|8526    |00164E;
                                                             ;      |        |      ;
           CODE_82E426:
-                       STZ.B $27                            ;82E426|6427    |00164F;
+                       STZ.B r_164f-$1628                   ;82E426|6427    |00164F;
                                                             ;      |        |      ;
           CODE_82E428:
                        JSL.L CODE_828174                    ;82E428|22748182|828174;
                        REP #$20                             ;82E42C|C220    |      ;
-                       LDA.B $1C                            ;82E42E|A51C    |001644;
+                       LDA.B r_1644-$1628                   ;82E42E|A51C    |001644;
                        CMP.W #$FB00                         ;82E430|C900FB  |      ;
                        BPL CODE_82E43A                      ;82E433|1005    |82E43A;
                        LDA.W #$FB00                         ;82E435|A900FB  |      ;
-                       STA.B $1C                            ;82E438|851C    |001674;
+                       STA.B r_1674-$1658                   ;82E438|851C    |001674;
                                                             ;      |        |      ;
           CODE_82E43A:
                        SEP #$20                             ;82E43A|E220    |      ;
-                       LDA.B $26                            ;82E43C|A526    |00164E;
+                       LDA.B r_164e-$1628                   ;82E43C|A526    |00164E;
                        CMP.B #$3C                           ;82E43E|C93C    |      ;
                        BCS CODE_82E448                      ;82E440|B006    |82E448;
-                       LDA.W r_frameCounter1                ;82E442|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82E442|AD9C0B  |860B9C;
                        LSR A                                ;82E445|4A      |      ;
                        BCC CODE_82E44C                      ;82E446|9004    |82E44C;
                                                             ;      |        |      ;
@@ -15450,7 +15450,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E44C:
                        JSL.L CODE_81E109                    ;82E44C|2209E181|81E109;
-                       LDA.W r_d_0bcf                       ;82E450|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82E450|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82E453|297F    |      ;
                        BEQ CODE_82E46D                      ;82E455|F016    |82E46D;
                        REP #$10                             ;82E457|C210    |      ;
@@ -15459,18 +15459,18 @@ prisonCapsule_63_state_00:
                        SEP #$10                             ;82E460|E210    |      ;
                        BCC CODE_82E46D                      ;82E462|9009    |82E46D;
                        LDA.B #$06                           ;82E464|A906    |      ;
-                       STA.B $02                            ;82E466|8502    |00162A;
-                       STZ.B $03                            ;82E468|6403    |00162B;
+                       STA.B r_162a-$1628                   ;82E466|8502    |00162A;
+                       STZ.B r_162b-$1628                   ;82E468|6403    |00162B;
                        JMP.W CODE_82E4D5                    ;82E46A|4CD5E4  |82E4D5;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E46D:
                        RTS                                  ;82E46D|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;82E46E|A603    |00162B;
+                       LDX.B r_162b-$1628                   ;82E46E|A603    |00162B;
                        BNE CODE_82E47E                      ;82E470|D00C    |82E47E;
-                       INC.B $03                            ;82E472|E603    |00162B;
-                       LDA.B $0B                            ;82E474|A50B    |001633;
+                       INC.B r_162b-$1628                   ;82E472|E603    |00162B;
+                       LDA.B r_1633-$1628                   ;82E474|A50B    |001633;
                        AND.B #$7F                           ;82E476|297F    |      ;
                        INC A                                ;82E478|1A      |      ;
                        INC A                                ;82E479|1A      |      ;
@@ -15478,36 +15478,36 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E47E:
                        JSL.L CODE_81E109                    ;82E47E|2209E181|81E109;
-                       LDA.B $2B                            ;82E482|A52B    |001653;
+                       LDA.B r_1653-$1628                   ;82E482|A52B    |001653;
                        BIT.B #$04                           ;82E484|8904    |      ;
                        BNE CODE_82E491                      ;82E486|D009    |82E491;
                        LDA.B #$02                           ;82E488|A902    |      ;
-                       STA.B $02                            ;82E48A|8502    |00162A;
-                       STZ.B $1C                            ;82E48C|641C    |001644;
-                       STZ.B $1D                            ;82E48E|641D    |001645;
+                       STA.B r_162a-$1628                   ;82E48A|8502    |00162A;
+                       STZ.B r_1644-$1628                   ;82E48C|641C    |001644;
+                       STZ.B r_1645-$1628                   ;82E48E|641D    |001645;
                        RTS                                  ;82E490|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E491:
-                       LDA.B $28                            ;82E491|A528    |001650;
+                       LDA.B r_1650-$1628                   ;82E491|A528    |001650;
                        BNE CODE_82E4B0                      ;82E493|D01B    |82E4B0;
-                       LDA.B $0B                            ;82E495|A50B    |001633;
+                       LDA.B r_1633-$1628                   ;82E495|A50B    |001633;
                        BMI CODE_82E4B0                      ;82E497|3017    |82E4B0;
-                       LDA.B $26                            ;82E499|A526    |00164E;
+                       LDA.B r_164e-$1628                   ;82E499|A526    |00164E;
                        CMP.B #$3C                           ;82E49B|C93C    |      ;
                        BCS CODE_82E4A1                      ;82E49D|B002    |82E4A1;
-                       DEC.B $27                            ;82E49F|C627    |00164F;
+                       DEC.B r_164f-$1628                   ;82E49F|C627    |00164F;
                                                             ;      |        |      ;
           CODE_82E4A1:
-                       DEC.B $26                            ;82E4A1|C626    |00164E;
+                       DEC.B r_164e-$1628                   ;82E4A1|C626    |00164E;
                        BNE CODE_82E4AA                      ;82E4A3|D005    |82E4AA;
                        LDA.B #$04                           ;82E4A5|A904    |      ;
-                       STA.B $01                            ;82E4A7|8501    |001629;
+                       STA.B r_1629-$1628                   ;82E4A7|8501    |001629;
                        RTS                                  ;82E4A9|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E4AA:
-                       LDA.B $27                            ;82E4AA|A527    |00164F;
+                       LDA.B r_164f-$1628                   ;82E4AA|A527    |00164F;
                        BIT.B #$01                           ;82E4AC|8901    |      ;
                        BNE CODE_82E4B4                      ;82E4AE|D004    |82E4B4;
                                                             ;      |        |      ;
@@ -15515,7 +15515,7 @@ prisonCapsule_63_state_00:
                        JSL.L checkPlayerGear                ;82E4B0|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82E4B4:
-                       LDA.W r_d_0bcf                       ;82E4B4|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82E4B4|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82E4B7|297F    |      ;
                        BEQ CODE_82E4D0                      ;82E4B9|F015    |82E4D0;
                        REP #$10                             ;82E4BB|C210    |      ;
@@ -15524,34 +15524,34 @@ prisonCapsule_63_state_00:
                        SEP #$10                             ;82E4C4|E210    |      ;
                        BCC CODE_82E4D0                      ;82E4C6|9008    |82E4D0;
                        LDA.B #$06                           ;82E4C8|A906    |      ;
-                       STA.B $02                            ;82E4CA|8502    |00162A;
-                       STZ.B $03                            ;82E4CC|6403    |00162B;
+                       STA.B r_162a-$1628                   ;82E4CA|8502    |00162A;
+                       STZ.B r_162b-$1628                   ;82E4CC|6403    |00162B;
                        BRA CODE_82E4D5                      ;82E4CE|8005    |82E4D5;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E4D0:
-                       JSL.L updateEv_13_14_17_0f           ;82E4D0|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82E4D0|22EA8E84|848EEA;
                        RTS                                  ;82E4D4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E4D5:
-                       LDX.B $03                            ;82E4D5|A603    |00162B;
+                       LDX.B r_162b-$1628                   ;82E4D5|A603    |00162B;
                        JMP.W (DATA8_82E4DA,X)               ;82E4D7|7CDAE4  |82E4DA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
          DATA8_82E4DA:
                        db $E2,$E4,$6D,$E5,$A2,$E5,$C4,$E5   ;82E4DA|        |      ;
-                       LDA.W r_d_0bcf                       ;82E4E2|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82E4E2|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82E4E5|297F    |      ;
-                       CMP.W r_player_healthCap             ;82E4E7|CD9A1F  |861F9A;
+                       CMP.W r6_player_healthCap            ;82E4E7|CD9A1F  |861F9A;
                        BNE CODE_82E536                      ;82E4EA|D04A    |82E536;
-                       LDA.B $0B                            ;82E4EC|A50B    |001633;
+                       LDA.B r_1633-$1628                   ;82E4EC|A50B    |001633;
                        AND.B #$7F                           ;82E4EE|297F    |      ;
-                       STA.W r_0000                         ;82E4F0|8D0000  |860000;
+                       STA.W r6_0000                        ;82E4F0|8D0000  |860000;
                        LDX.B #$00                           ;82E4F3|A200    |      ;
                                                             ;      |        |      ;
           CODE_82E4F5:
-                       LDA.W r_player_tankEnergie_01,X      ;82E4F5|BD831F  |861F83;
+                       LDA.W r6_player_tankEnergie_01,X     ;82E4F5|BD831F  |861F83;
                        BPL CODE_82E524                      ;82E4F8|102A    |82E524;
                        CMP.B #$8E                           ;82E4FA|C98E    |      ;
                        BCS CODE_82E524                      ;82E4FC|B026    |82E524;
@@ -15560,19 +15560,19 @@ prisonCapsule_63_state_00:
                        JSL.L lunchWeaponSFX                 ;82E501|22CD8880|8088CD;
                        PLA                                  ;82E505|68      |      ;
                        INC A                                ;82E506|1A      |      ;
-                       STA.W r_player_tankEnergie_01,X      ;82E507|9D831F  |861F83;
+                       STA.W r6_player_tankEnergie_01,X     ;82E507|9D831F  |861F83;
                        CMP.B #$8E                           ;82E50A|C98E    |      ;
                        BEQ CODE_82E52E                      ;82E50C|F020    |82E52E;
-                       LDY.W r_0000                         ;82E50E|AC0000  |860000;
+                       LDY.W r6_0000                        ;82E50E|AC0000  |860000;
                        BNE CODE_82E529                      ;82E511|D016    |82E529;
                        INC A                                ;82E513|1A      |      ;
-                       STA.W r_player_tankEnergie_01,X      ;82E514|9D831F  |861F83;
+                       STA.W r6_player_tankEnergie_01,X     ;82E514|9D831F  |861F83;
                        CMP.B #$8E                           ;82E517|C98E    |      ;
                        BEQ CODE_82E52E                      ;82E519|F013    |82E52E;
                        LDA.B #$06                           ;82E51B|A906    |      ;
-                       STA.B $03                            ;82E51D|8503    |00162B;
+                       STA.B r_162b-$1628                   ;82E51D|8503    |00162B;
                        LDA.B #$04                           ;82E51F|A904    |      ;
-                       STA.B $26                            ;82E521|8526    |00164E;
+                       STA.B r_164e-$1628                   ;82E521|8526    |00164E;
                        RTS                                  ;82E523|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15583,7 +15583,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E529:
                        LDA.B #$04                           ;82E529|A904    |      ;
-                       STA.B $01                            ;82E52B|8501    |001629;
+                       STA.B r_1629-$1628                   ;82E52B|8501    |001629;
                        RTS                                  ;82E52D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15595,77 +15595,77 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E536:
                        LDA.B #$02                           ;82E536|A902    |      ;
-                       STA.B $03                            ;82E538|8503    |00162B;
+                       STA.B r_162b-$1628                   ;82E538|8503    |00162B;
                        LDA.B #$01                           ;82E53A|A901    |      ;
-                       STA.W r_1f13                         ;82E53C|8D131F  |861F13;
-                       STA.W r_1f14                         ;82E53F|8D141F  |861F14;
-                       STA.W r_1f15                         ;82E542|8D151F  |861F15;
-                       STA.W r_1f16                         ;82E545|8D161F  |861F16;
-                       STA.W r_1f17                         ;82E548|8D171F  |861F17;
-                       STA.W r_1f18                         ;82E54B|8D181F  |861F18;
-                       STA.W r_1f19                         ;82E54E|8D191F  |861F19;
-                       STA.W r_d_r_player_activSpr          ;82E551|8DB60B  |860BB6;
+                       STA.W r6_1f13                        ;82E53C|8D131F  |861F13;
+                       STA.W r6_1f14                        ;82E53F|8D141F  |861F14;
+                       STA.W r6_1f15                        ;82E542|8D151F  |861F15;
+                       STA.W r6_1f16                        ;82E545|8D161F  |861F16;
+                       STA.W r6_1f17                        ;82E548|8D171F  |861F17;
+                       STA.W r6_1f18                        ;82E54B|8D181F  |861F18;
+                       STA.W r6_1f19                        ;82E54E|8D191F  |861F19;
+                       STA.W r6_player_activSpr             ;82E551|8DB60B  |860BB6;
                        LDA.B #$80                           ;82E554|A980    |      ;
-                       TSB.B $00                            ;82E556|0400    |001628;
+                       TSB.B r_1628-$1628                   ;82E556|0400    |001628;
                        LDA.B #$04                           ;82E558|A904    |      ;
-                       STA.B $26                            ;82E55A|8526    |00164E;
+                       STA.B r_164e-$1628                   ;82E55A|8526    |00164E;
                        LDX.B #$08                           ;82E55C|A208    |      ;
-                       LDA.B $0B                            ;82E55E|A50B    |001633;
+                       LDA.B r_1633-$1628                   ;82E55E|A50B    |001633;
                        AND.B #$7F                           ;82E560|297F    |      ;
                        BEQ CODE_82E566                      ;82E562|F002    |82E566;
                        LDX.B #$02                           ;82E564|A202    |      ;
                                                             ;      |        |      ;
           CODE_82E566:
-                       STX.B $27                            ;82E566|8627    |00164F;
+                       STX.B r_164f-$1628                   ;82E566|8627    |00164F;
                        JSL.L CODE_849F8A                    ;82E568|228A9F84|849F8A;
                        RTS                                  ;82E56C|60      |      ;
                                                             ;      |        |      ;
-                       LDA.W r_d_0bcf                       ;82E56D|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82E56D|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82E570|297F    |      ;
                        BEQ CODE_82E59D                      ;82E572|F029    |82E59D;
-                       DEC.B $26                            ;82E574|C626    |00164E;
+                       DEC.B r_164e-$1628                   ;82E574|C626    |00164E;
                        BNE CODE_82E5A1                      ;82E576|D029    |82E5A1;
                        LDA.B #$04                           ;82E578|A904    |      ;
-                       STA.B $26                            ;82E57A|8526    |00164E;
-                       LDA.W r_d_0bcf                       ;82E57C|ADCF0B  |860BCF;
+                       STA.B r_164e-$1628                   ;82E57A|8526    |00164E;
+                       LDA.W r6_player_health               ;82E57C|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82E57F|297F    |      ;
                        INC A                                ;82E581|1A      |      ;
-                       CMP.W r_player_healthCap             ;82E582|CD9A1F  |861F9A;
+                       CMP.W r6_player_healthCap            ;82E582|CD9A1F  |861F9A;
                        BCC CODE_82E58E                      ;82E585|9007    |82E58E;
                        LDA.B #$04                           ;82E587|A904    |      ;
-                       STA.B $03                            ;82E589|8503    |00165B;
-                       LDA.W r_player_healthCap             ;82E58B|AD9A1F  |861F9A;
+                       STA.B r_165b-$1658                   ;82E589|8503    |00165B;
+                       LDA.W r6_player_healthCap            ;82E58B|AD9A1F  |861F9A;
                                                             ;      |        |      ;
           CODE_82E58E:
                        ORA.B #$80                           ;82E58E|0980    |      ;
-                       STA.W r_d_0bcf                       ;82E590|8DCF0B  |860BCF;
+                       STA.W r6_player_health               ;82E590|8DCF0B  |860BCF;
                        LDA.B #$0C                           ;82E593|A90C    |      ;
                        JSL.L lunchWeaponSFX                 ;82E595|22CD8880|8088CD;
-                       DEC.B $27                            ;82E599|C627    |00164F;
+                       DEC.B r_164f-$1628                   ;82E599|C627    |00164F;
                        BNE CODE_82E5A1                      ;82E59B|D004    |82E5A1;
                                                             ;      |        |      ;
           CODE_82E59D:
                        LDA.B #$04                           ;82E59D|A904    |      ;
-                       STA.B $03                            ;82E59F|8503    |00162B;
+                       STA.B r_162b-$1628                   ;82E59F|8503    |00162B;
                                                             ;      |        |      ;
           CODE_82E5A1:
                        RTS                                  ;82E5A1|60      |      ;
                                                             ;      |        |      ;
-                       STZ.W r_1f13                         ;82E5A2|9C131F  |861F13;
-                       STZ.W r_1f14                         ;82E5A5|9C141F  |861F14;
-                       STZ.W r_1f15                         ;82E5A8|9C151F  |861F15;
-                       STZ.W r_1f16                         ;82E5AB|9C161F  |861F16;
-                       STZ.W r_1f17                         ;82E5AE|9C171F  |861F17;
-                       STZ.W r_1f18                         ;82E5B1|9C181F  |861F18;
-                       STZ.W r_1f19                         ;82E5B4|9C191F  |861F19;
+                       STZ.W r6_1f13                        ;82E5A2|9C131F  |861F13;
+                       STZ.W r6_1f14                        ;82E5A5|9C141F  |861F14;
+                       STZ.W r6_1f15                        ;82E5A8|9C151F  |861F15;
+                       STZ.W r6_1f16                        ;82E5AB|9C161F  |861F16;
+                       STZ.W r6_1f17                        ;82E5AE|9C171F  |861F17;
+                       STZ.W r6_1f18                        ;82E5B1|9C181F  |861F18;
+                       STZ.W r6_1f19                        ;82E5B4|9C191F  |861F19;
                        LDA.B #$04                           ;82E5B7|A904    |      ;
-                       STA.B $01                            ;82E5B9|8501    |001629;
+                       STA.B r_1629-$1628                   ;82E5B9|8501    |001629;
                        LDA.B #$80                           ;82E5BB|A980    |      ;
-                       TRB.B $00                            ;82E5BD|1400    |001628;
+                       TRB.B r_1628-$1628                   ;82E5BD|1400    |001628;
                        JSL.L CODE_849FB2                    ;82E5BF|22B29F84|849FB2;
                        RTS                                  ;82E5C3|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $26                            ;82E5C4|C626    |00164E;
+                       DEC.B r_164e-$1628                   ;82E5C4|C626    |00164E;
                        BNE CODE_82E5D0                      ;82E5C6|D008    |82E5D0;
                        LDA.B #$0D                           ;82E5C8|A90D    |      ;
                        JSL.L lunchWeaponSFX                 ;82E5CA|22CD8880|8088CD;
@@ -15677,12 +15677,12 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E5D1:
-                       JSL.L clearStates_00_02_0E           ;82E5D1|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;82E5D1|22988382|828398;
                        RTS                                  ;82E5D5|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E5D6:
-                       LDX.B $01                            ;82E5D6|A601    |001629;
+                       LDX.B r_1629-$1628                   ;82E5D6|A601    |001629;
                        JMP.W (PTR16_82E5DB,X)               ;82E5D8|7CDBE5  |82E5DB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15693,67 +15693,67 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E5E1:
                        LDA.B #$02                           ;82E5E1|A902    |      ;
-                       STA.B $01                            ;82E5E3|8501    |001629;
-                       STZ.B $18                            ;82E5E5|6418    |001640;
+                       STA.B r_1629-$1628                   ;82E5E3|8501    |001629;
+                       STZ.B r_1640-$1628                   ;82E5E5|6418    |001640;
                        LDA.L $7F8323                        ;82E5E7|AF23837F|7F8323;
                        AND.B #$FE                           ;82E5EB|29FE    |      ;
-                       STA.B $11                            ;82E5ED|8511    |001639;
+                       STA.B r_1639-$1628                   ;82E5ED|8511    |001639;
                        LDA.B #$27                           ;82E5EF|A927    |      ;
-                       STA.B $16                            ;82E5F1|8516    |00163E;
+                       STA.B r_163e-$1628                   ;82E5F1|8516    |00163E;
                        LDA.B #$04                           ;82E5F3|A904    |      ;
-                       STA.B $12                            ;82E5F5|8512    |00163A;
+                       STA.B r_163a-$1628                   ;82E5F5|8512    |00163A;
                        LDA.B #$01                           ;82E5F7|A901    |      ;
-                       STA.B $27                            ;82E5F9|8527    |00164F;
+                       STA.B r_164f-$1628                   ;82E5F9|8527    |00164F;
                        LDA.B #$7F                           ;82E5FB|A97F    |      ;
-                       STA.B $26                            ;82E5FD|8526    |00164E;
-                       STZ.B $2C                            ;82E5FF|642C    |001654;
+                       STA.B r_164e-$1628                   ;82E5FD|8526    |00164E;
+                       STZ.B r_1654-$1628                   ;82E5FF|642C    |001654;
                        REP #$20                             ;82E601|C220    |      ;
-                       LDX.B $0B                            ;82E603|A60B    |001633;
+                       LDX.B r_1633-$1628                   ;82E603|A60B    |001633;
                        LDA.W UNREACH_86DA31,X               ;82E605|BD31DA  |86DA31;
-                       STA.B $05                            ;82E608|8505    |00162D;
+                       STA.B r_162d-$1628                   ;82E608|8505    |00162D;
                        LDA.W UNREACH_86DA35,X               ;82E60A|BD35DA  |86DA35;
-                       STA.B $08                            ;82E60D|8508    |001630;
-                       STZ.B $1A                            ;82E60F|641A    |001642;
-                       STZ.B $1C                            ;82E611|641C    |001644;
+                       STA.B r_1630-$1628                   ;82E60D|8508    |001630;
+                       STZ.B r_1642-$1628                   ;82E60F|641A    |001642;
+                       STZ.B r_1644-$1628                   ;82E611|641C    |001644;
                        LDA.W #$DA27                         ;82E613|A927DA  |      ;
-                       STA.B $20                            ;82E616|8520    |001648;
+                       STA.B r_1648-$1628                   ;82E616|8520    |001648;
                        SEP #$20                             ;82E618|E220    |      ;
                        LDA.B #$38                           ;82E61A|A938    |      ;
-                       STA.B $1E                            ;82E61C|851E    |001646;
-                       STZ.B $1A                            ;82E61E|641A    |001642;
+                       STA.B r_1646-$1628                   ;82E61C|851E    |001646;
+                       STZ.B r_1642-$1628                   ;82E61E|641A    |001642;
                        LDA.B #$18                           ;82E620|A918    |      ;
-                       STA.B $28                            ;82E622|8528    |001650;
+                       STA.B r_1650-$1628                   ;82E622|8528    |001650;
                        LDA.B #$00                           ;82E624|A900    |      ;
                        JML.L playerGrabedRoutine            ;82E626|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E62A:
-                       DEC.B $28                            ;82E62A|C628    |001650;
+                       DEC.B r_1650-$1628                   ;82E62A|C628    |001650;
                        BEQ CODE_82E66A                      ;82E62C|F03C    |82E66A;
                        LDA.B #$04                           ;82E62E|A904    |      ;
-                       STA.B $01                            ;82E630|8501    |001629;
+                       STA.B r_1629-$1628                   ;82E630|8501    |001629;
                        REP #$20                             ;82E632|C220    |      ;
-                       LDA.B $05                            ;82E634|A505    |00162D;
+                       LDA.B r_162d-$1628                   ;82E634|A505    |00162D;
                        SEC                                  ;82E636|38      |      ;
                        SBC.W #$0080                         ;82E637|E98000  |      ;
-                       STA.W r_002c                         ;82E63A|8D2C00  |86002C;
-                       LDA.B $08                            ;82E63D|A508    |001630;
+                       STA.W r6_002c                        ;82E63A|8D2C00  |86002C;
+                       LDA.B r_1630-$1628                   ;82E63D|A508    |001630;
                        SEC                                  ;82E63F|38      |      ;
                        SBC.W #$0028                         ;82E640|E92800  |      ;
-                       STA.W r_002e                         ;82E643|8D2E00  |86002E;
+                       STA.W r6_002e                        ;82E643|8D2E00  |86002E;
                        SEP #$20                             ;82E646|E220    |      ;
                        LDA.B #$00                           ;82E648|A900    |      ;
                        JSL.L CODE_848011                    ;82E64A|22118084|848011;
-                       LDA.W r_d_0bd3                       ;82E64E|ADD30B  |860BD3;
+                       LDA.W r6_player_bd3                  ;82E64E|ADD30B  |860BD3;
                        AND.B #$04                           ;82E651|2904    |      ;
                        BEQ CODE_82E666                      ;82E653|F011    |82E666;
                        REP #$20                             ;82E655|C220    |      ;
-                       INC.W r_d_player_yPos                ;82E657|EEB00B  |860BB0;
-                       INC.W r_d_player_yPos                ;82E65A|EEB00B  |860BB0;
+                       INC.W r6_player_yPos                 ;82E657|EEB00B  |860BB0;
+                       INC.W r6_player_yPos                 ;82E65A|EEB00B  |860BB0;
                        SEP #$20                             ;82E65D|E220    |      ;
                        LDA.B #$04                           ;82E65F|A904    |      ;
-                       TSB.W r_d_0bd4                       ;82E661|0CD40B  |860BD4;
-                       INC.B $2C                            ;82E664|E62C    |001684;
+                       TSB.W r6_player_bd4                  ;82E661|0CD40B  |860BD4;
+                       INC.B r_1684-$1658                   ;82E664|E62C    |001684;
                                                             ;      |        |      ;
           CODE_82E666:
                        JML.L CODE_82808F                    ;82E666|5C8F8082|82808F;
@@ -15766,36 +15766,36 @@ prisonCapsule_63_state_00:
           CODE_82E66B:
                        JSL.L CODE_8281E8                    ;82E66B|22E88182|8281E8;
                        REP #$20                             ;82E66F|C220    |      ;
-                       LDA.B $1C                            ;82E671|A51C    |001644;
+                       LDA.B r_1644-$1628                   ;82E671|A51C    |001644;
                        CMP.W #$FB00                         ;82E673|C900FB  |      ;
                        BPL CODE_82E67F                      ;82E676|1007    |82E67F;
                        LDA.W #$FB00                         ;82E678|A900FB  |      ;
-                       STA.B $1C                            ;82E67B|851C    |001644;
-                       STZ.B $1E                            ;82E67D|641E    |001646;
+                       STA.B r_1644-$1628                   ;82E67B|851C    |001644;
+                       STZ.B r_1646-$1628                   ;82E67D|641E    |001646;
                                                             ;      |        |      ;
           CODE_82E67F:
                        SEP #$20                             ;82E67F|E220    |      ;
                        JSL.L CODE_84AB81                    ;82E681|2281AB84|84AB81;
                        JSL.L CODE_8491BE                    ;82E685|22BE9184|8491BE;
-                       LDA.B $2B                            ;82E689|A52B    |001653;
+                       LDA.B r_1653-$1628                   ;82E689|A52B    |001653;
                        BEQ CODE_82E6D0                      ;82E68B|F043    |82E6D0;
                        LDA.B #$30                           ;82E68D|A930    |      ;
                        LDX.B #$03                           ;82E68F|A203    |      ;
                        LDY.B #$01                           ;82E691|A001    |      ;
                        JSL.L CODE_84A341                    ;82E693|2241A384|84A341;
                        REP #$20                             ;82E697|C220    |      ;
-                       LDA.B $05                            ;82E699|A505    |00162D;
+                       LDA.B r_162d-$1628                   ;82E699|A505    |00162D;
                        SEC                                  ;82E69B|38      |      ;
                        SBC.W #$0070                         ;82E69C|E97000  |      ;
-                       STA.W r_002c                         ;82E69F|8D2C00  |86002C;
-                       LDA.B $08                            ;82E6A2|A508    |001630;
+                       STA.W r6_002c                        ;82E69F|8D2C00  |86002C;
+                       LDA.B r_1630-$1628                   ;82E6A2|A508    |001630;
                        SEC                                  ;82E6A4|38      |      ;
                        SBC.W #$0018                         ;82E6A5|E91800  |      ;
-                       STA.W r_002e                         ;82E6A8|8D2E00  |86002E;
+                       STA.W r6_002e                        ;82E6A8|8D2E00  |86002E;
                        SEP #$20                             ;82E6AB|E220    |      ;
                        LDA.B #$01                           ;82E6AD|A901    |      ;
-                       STA.W r_0001                         ;82E6AF|8D0100  |860001;
-                       STZ.W r_0000                         ;82E6B2|9C0000  |860000;
+                       STA.W r6_0001                        ;82E6AF|8D0100  |860001;
+                       STZ.W r6_0000                        ;82E6B2|9C0000  |860000;
                        JSL.L CODE_83FE75                    ;82E6B5|2275FE83|83FE75;
                        LDA.B #$25                           ;82E6B9|A925    |      ;
                        JSL.L lunchWeaponSFX                 ;82E6BB|22CD8880|8088CD;
@@ -15804,7 +15804,7 @@ prisonCapsule_63_state_00:
                        LDY.B #$40                           ;82E6C4|A040    |      ;
                        JSR.W CODE_82E6D4                    ;82E6C6|20D4E6  |82E6D4;
                        JSR.W CODE_82E6FA                    ;82E6C9|20FAE6  |82E6FA;
-                       JML.L clearStates_00_02_0E           ;82E6CC|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82E6CC|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E6D0:
@@ -15814,18 +15814,18 @@ prisonCapsule_63_state_00:
           CODE_82E6D4:
                        JSL.L CODE_8282D3                    ;82E6D4|22D38282|8282D3;
                        BNE CODE_82E6F7                      ;82E6D8|D01D    |82E6F7;
-                       INC.W r_0000,X                       ;82E6DA|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82E6DA|FE0000  |860000;
                        LDA.B #$22                           ;82E6DD|A922    |      ;
-                       STA.W r_000a,X                       ;82E6DF|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82E6DF|9D0A00  |86000A;
                        LDA.B #$03                           ;82E6E2|A903    |      ;
-                       STA.W r_000b,X                       ;82E6E4|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82E6E4|9D0B00  |86000B;
                        TYA                                  ;82E6E7|98      |      ;
-                       STA.W r_0011,X                       ;82E6E8|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82E6E8|9D1100  |860011;
                        REP #$20                             ;82E6EB|C220    |      ;
-                       LDA.B $05                            ;82E6ED|A505    |00162D;
-                       STA.W r_0005,X                       ;82E6EF|9D0500  |860005;
-                       LDA.B $08                            ;82E6F2|A508    |001630;
-                       STA.W r_0008,X                       ;82E6F4|9D0800  |860008;
+                       LDA.B r_162d-$1628                   ;82E6ED|A505    |00162D;
+                       STA.W r6_0005,X                      ;82E6EF|9D0500  |860005;
+                       LDA.B r_1630-$1628                   ;82E6F2|A508    |001630;
+                       STA.W r6_0008,X                      ;82E6F4|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82E6F7:
                        SEP #$30                             ;82E6F7|E230    |      ;
@@ -15839,18 +15839,18 @@ prisonCapsule_63_state_00:
                        SEP #$20                             ;82E6FC|E220    |      ;
                        JSL.L CODE_8282D3                    ;82E6FE|22D38282|8282D3;
                        BNE CODE_82E724                      ;82E702|D020    |82E724;
-                       INC.W r_0000,X                       ;82E704|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82E704|FE0000  |860000;
                        LDA.B #$24                           ;82E707|A924    |      ;
-                       STA.W r_000a,X                       ;82E709|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82E709|9D0A00  |86000A;
                        TYA                                  ;82E70C|98      |      ;
-                       STA.W r_000b,X                       ;82E70D|9D0B00  |86000B;
-                       LDA.B $11                            ;82E710|A511    |001639;
-                       STA.W r_0011,X                       ;82E712|9D1100  |860011;
+                       STA.W r6_000b,X                      ;82E70D|9D0B00  |86000B;
+                       LDA.B r_1639-$1628                   ;82E710|A511    |001639;
+                       STA.W r6_0011,X                      ;82E712|9D1100  |860011;
                        REP #$20                             ;82E715|C220    |      ;
-                       LDA.B $05                            ;82E717|A505    |00162D;
-                       STA.W r_0005,X                       ;82E719|9D0500  |860005;
-                       LDA.B $08                            ;82E71C|A508    |001630;
-                       STA.W r_0008,X                       ;82E71E|9D0800  |860008;
+                       LDA.B r_162d-$1628                   ;82E717|A505    |00162D;
+                       STA.W r6_0005,X                      ;82E719|9D0500  |860005;
+                       LDA.B r_1630-$1628                   ;82E71C|A508    |001630;
+                       STA.W r6_0008,X                      ;82E71E|9D0800  |860008;
                        DEY                                  ;82E721|88      |      ;
                        BPL CODE_82E6FC                      ;82E722|10D8    |82E6FC;
                                                             ;      |        |      ;
@@ -15860,7 +15860,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E727:
-                       LDX.B $01                            ;82E727|A601    |001629;
+                       LDX.B r_1629-$1628                   ;82E727|A601    |001629;
                        JMP.W (UNREACH_82E72C,X)             ;82E729|7C2CE7  |82E72C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15868,44 +15868,44 @@ prisonCapsule_63_state_00:
                        db $3E,$E7,$77,$E7,$9A,$E7,$C2,$E7   ;82E72C|        |0077E7;
                        db $9A,$E7,$6B,$E8,$9A,$E7,$EB,$E8   ;82E734|        |      ;
                        db $9A,$E7                           ;82E73C|        |      ;
-                       LDX.B $0B                            ;82E73E|A60B    |001633;
+                       LDX.B r_1633-$1628                   ;82E73E|A60B    |001633;
                        LDA.W UNREACH_86DA44,X               ;82E740|BD44DA  |86DA44;
-                       STA.B $01                            ;82E743|8501    |001629;
-                       STZ.B $2F                            ;82E745|642F    |001657;
+                       STA.B r_1629-$1628                   ;82E743|8501    |001629;
+                       STZ.B r_1657-$1628                   ;82E745|642F    |001657;
                        LDA.L $7F8235                        ;82E747|AF35827F|7F8235;
-                       STA.B $18                            ;82E74B|8518    |001640;
+                       STA.B r_1640-$1628                   ;82E74B|8518    |001640;
                        LDA.L $7F8335                        ;82E74D|AF35837F|7F8335;
-                       STA.B $11                            ;82E751|8511    |001639;
+                       STA.B r_1639-$1628                   ;82E751|8511    |001639;
                        LDA.B #$37                           ;82E753|A937    |      ;
-                       STA.B $16                            ;82E755|8516    |00163E;
-                       STZ.B $2C                            ;82E757|642C    |001654;
+                       STA.B r_163e-$1628                   ;82E755|8516    |00163E;
+                       STZ.B r_1654-$1628                   ;82E757|642C    |001654;
                        LDA.B #$04                           ;82E759|A904    |      ;
-                       STA.B $12                            ;82E75B|8512    |00163A;
+                       STA.B r_163a-$1628                   ;82E75B|8512    |00163A;
                        LDA.B #$00                           ;82E75D|A900    |      ;
                        JSL.L playerGrabedRoutine            ;82E75F|22078F84|848F07;
                        REP #$20                             ;82E763|C220    |      ;
-                       STZ.B $1A                            ;82E765|641A    |001642;
-                       STZ.B $1C                            ;82E767|641C    |001644;
+                       STZ.B r_1642-$1628                   ;82E765|641A    |001642;
+                       STZ.B r_1644-$1628                   ;82E767|641C    |001644;
                        LDA.W #$DA55                         ;82E769|A955DA  |      ;
-                       STA.B $20                            ;82E76C|8520    |001648;
+                       STA.B r_1648-$1628                   ;82E76C|8520    |001648;
                        SEP #$20                             ;82E76E|E220    |      ;
                        LDA.B #$30                           ;82E770|A930    |      ;
-                       STA.B $1E                            ;82E772|851E    |001646;
-                       STZ.B $1A                            ;82E774|641A    |001642;
+                       STA.B r_1646-$1628                   ;82E772|851E    |001646;
+                       STZ.B r_1642-$1628                   ;82E774|641A    |001642;
                        RTL                                  ;82E776|6B      |      ;
                                                             ;      |        |      ;
-                       LDA.B $2F                            ;82E777|A52F    |001657;
+                       LDA.B r_1657-$1628                   ;82E777|A52F    |001657;
                        BEQ CODE_82E77E                      ;82E779|F003    |82E77E;
                        JMP.W CODE_82E96B                    ;82E77B|4C6BE9  |82E96B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E77E:
                        JSR.W CODE_82E9ED                    ;82E77E|20EDE9  |82E9ED;
-                       LDA.B $2F                            ;82E781|A52F    |001657;
+                       LDA.B r_1657-$1628                   ;82E781|A52F    |001657;
                        BEQ CODE_82E78F                      ;82E783|F00A    |82E78F;
-                       LDY.B $0B                            ;82E785|A40B    |001633;
+                       LDY.B r_1633-$1628                   ;82E785|A40B    |001633;
                        JSR.W CODE_82EA2E                    ;82E787|202EEA  |82EA2E;
-                       LDY.B $0B                            ;82E78A|A40B    |001633;
+                       LDY.B r_1633-$1628                   ;82E78A|A40B    |001633;
                        JSR.W CODE_82EA5C                    ;82E78C|205CEA  |82EA5C;
                                                             ;      |        |      ;
           CODE_82E78F:
@@ -15920,10 +15920,10 @@ prisonCapsule_63_state_00:
                        JSL.L CODE_8281E8                    ;82E79A|22E88182|8281E8;
                        REP #$20                             ;82E79E|C220    |      ;
                        LDA.W #$DA55                         ;82E7A0|A955DA  |      ;
-                       STA.B $20                            ;82E7A3|8520    |001648;
+                       STA.B r_1648-$1628                   ;82E7A3|8520    |001648;
                        JSL.L CODE_84AB81                    ;82E7A5|2281AB84|84AB81;
                        LDA.W #$DA5A                         ;82E7A9|A95ADA  |      ;
-                       STA.B $20                            ;82E7AC|8520    |001648;
+                       STA.B r_1648-$1628                   ;82E7AC|8520    |001648;
                        JSL.L CODE_84AB56                    ;82E7AE|2256AB84|84AB56;
                        SEP #$20                             ;82E7B2|E220    |      ;
                        JSL.L initPosAllign                  ;82E7B4|226E8082|82806E;
@@ -15932,13 +15932,13 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E7BE:
-                       JML.L clearStates_00_02_0E           ;82E7BE|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82E7BE|5C988382|828398;
                                                             ;      |        |      ;
-                       LDA.B $2F                            ;82E7C2|A52F    |001717;
+                       LDA.B r_1717-$16E8                   ;82E7C2|A52F    |001717;
                        BNE CODE_82E809                      ;82E7C4|D043    |82E809;
-                       STZ.B $2A                            ;82E7C6|642A    |001712;
+                       STZ.B r_1712-$16E8                   ;82E7C6|642A    |001712;
                        LDA.B #$20                           ;82E7C8|A920    |      ;
-                       STA.B $29                            ;82E7CA|8529    |001711;
+                       STA.B r_1711-$16E8                   ;82E7CA|8529    |001711;
                        JSL.L CODE_8490A0                    ;82E7CC|22A09084|8490A0;
                        CMP.B #$34                           ;82E7D0|C934    |      ;
                        BCS CODE_82E7E2                      ;82E7D2|B00E    |82E7E2;
@@ -15951,8 +15951,8 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E7E5:
                        JSL.L checkPlayerGear                ;82E7E5|22B48082|8280B4;
-                       INC.B $01                            ;82E7E9|E601    |0016E9;
-                       INC.B $01                            ;82E7EB|E601    |0016E9;
+                       INC.B r_16e9-$16E8                   ;82E7E9|E601    |0016E9;
+                       INC.B r_16e9-$16E8                   ;82E7EB|E601    |0016E9;
                        JSL.L CODE_849C0E                    ;82E7ED|220E9C84|849C0E;
                        BCC CODE_82E7FD                      ;82E7F1|900A    |82E7FD;
                        db $AD,$D3,$0B,$29,$04,$85,$2C,$0C   ;82E7F3|        |000BD3;
@@ -15972,29 +15972,29 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E809:
-                       STZ.B $29                            ;82E809|6429    |001711;
-                       STZ.B $2A                            ;82E80B|642A    |001712;
+                       STZ.B r_1711-$16E8                   ;82E809|6429    |001711;
+                       STZ.B r_1712-$16E8                   ;82E80B|642A    |001712;
                        JSL.L CODE_8490A0                    ;82E80D|22A09084|8490A0;
                        CMP.B #$34                           ;82E811|C934    |      ;
                        BCC CODE_82E7E5                      ;82E813|90D0    |82E7E5;
-                       DEC.B $2F                            ;82E815|C62F    |001717;
+                       DEC.B r_1717-$16E8                   ;82E815|C62F    |001717;
                        BNE CODE_82E7FE                      ;82E817|D0E5    |82E7FE;
-                       STZ.B $1F                            ;82E819|641F    |001707;
-                       STZ.B $2A                            ;82E81B|642A    |001712;
+                       STZ.B r_1707-$16E8                   ;82E819|641F    |001707;
+                       STZ.B r_1712-$16E8                   ;82E81B|642A    |001712;
                        LDA.B #$20                           ;82E81D|A920    |      ;
-                       STA.B $29                            ;82E81F|8529    |001711;
+                       STA.B r_1711-$16E8                   ;82E81F|8529    |001711;
                        JSL.L CODE_8490A0                    ;82E821|22A09084|8490A0;
                        CMP.B #$34                           ;82E825|C934    |      ;
                        BCC CODE_82E832                      ;82E827|9009    |82E832;
                        LDY.B #$02                           ;82E829|A002    |      ;
                        JSR.W CODE_82EA5C                    ;82E82B|205CEA  |82EA5C;
                        LDA.B #$01                           ;82E82E|A901    |      ;
-                       TSB.B $1F                            ;82E830|041F    |001707;
+                       TSB.B r_1707-$16E8                   ;82E830|041F    |001707;
                                                             ;      |        |      ;
           CODE_82E832:
-                       STZ.B $2A                            ;82E832|642A    |001712;
+                       STZ.B r_1712-$16E8                   ;82E832|642A    |001712;
                        LDA.B #$E0                           ;82E834|A9E0    |      ;
-                       STA.B $29                            ;82E836|8529    |001711;
+                       STA.B r_1711-$16E8                   ;82E836|8529    |001711;
                        JSL.L CODE_8490A0                    ;82E838|22A09084|8490A0;
                        CMP.B #$34                           ;82E83C|C934    |      ;
                        BCC CODE_82E849                      ;82E83E|9009    |82E849;
@@ -16003,29 +16003,29 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E849:
                        REP #$20                             ;82E849|C220    |      ;
-                       LDA.B $05                            ;82E84B|A505    |0016ED;
+                       LDA.B r_16ed-$16E8                   ;82E84B|A505    |0016ED;
                        SEC                                  ;82E84D|38      |      ;
                        SBC.W #$0040                         ;82E84E|E94000  |      ;
-                       STA.W r_002c                         ;82E851|8D2C00  |86002C;
-                       LDA.B $08                            ;82E854|A508    |0016F0;
+                       STA.W r6_002c                        ;82E851|8D2C00  |86002C;
+                       LDA.B r_16f0-$16E8                   ;82E854|A508    |0016F0;
                        SEC                                  ;82E856|38      |      ;
                        SBC.W #$0022                         ;82E857|E92200  |      ;
-                       STA.W r_002e                         ;82E85A|8D2E00  |86002E;
+                       STA.W r6_002e                        ;82E85A|8D2E00  |86002E;
                        SEP #$20                             ;82E85D|E220    |      ;
-                       LDY.B $1F                            ;82E85F|A41F    |001707;
+                       LDY.B r_1707-$16E8                   ;82E85F|A41F    |001707;
                        LDA.W UNREACH_86DA3C,Y               ;82E861|B93CDA  |86DA3C;
                        JSL.L CODE_848011                    ;82E864|22118084|848011;
                        JMP.W CODE_82E7E5                    ;82E868|4CE5E7  |82E7E5;
                                                             ;      |        |      ;
-                       LDA.B $2F                            ;82E86B|A52F    |0016B7;
+                       LDA.B r_16b7-$1688                   ;82E86B|A52F    |0016B7;
                        BNE CODE_82E896                      ;82E86D|D027    |82E896;
                        JMP.W CODE_82E9AB                    ;82E86F|4CABE9  |82E9AB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E872:
                        JSL.L checkPlayerGear                ;82E872|22B48082|8280B4;
-                       INC.B $01                            ;82E876|E601    |001689;
-                       INC.B $01                            ;82E878|E601    |001689;
+                       INC.B r_1689-$1688                   ;82E876|E601    |001689;
+                       INC.B r_1689-$1688                   ;82E878|E601    |001689;
                        JSL.L CODE_849C0E                    ;82E87A|220E9C84|849C0E;
                        BCC CODE_82E88A                      ;82E87E|900A    |82E88A;
                        db $AD,$D3,$0B,$29,$04,$85,$2C,$0C   ;82E880|        |000BD3;
@@ -16045,14 +16045,14 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E896:
-                       DEC.B $2F                            ;82E896|C62F    |0016B7;
+                       DEC.B r_16b7-$1688                   ;82E896|C62F    |0016B7;
                        BNE CODE_82E88B                      ;82E898|D0F1    |82E88B;
                        LDY.B #$02                           ;82E89A|A002    |      ;
                        JSR.W CODE_82EA5C                    ;82E89C|205CEA  |82EA5C;
-                       STZ.B $1F                            ;82E89F|641F    |0016A7;
-                       STZ.B $2A                            ;82E8A1|642A    |0016B2;
+                       STZ.B r_16a7-$1688                   ;82E89F|641F    |0016A7;
+                       STZ.B r_16b2-$1688                   ;82E8A1|642A    |0016B2;
                        LDA.B #$E0                           ;82E8A3|A9E0    |      ;
-                       STA.B $29                            ;82E8A5|8529    |0016B1;
+                       STA.B r_16b1-$1688                   ;82E8A5|8529    |0016B1;
                        JSL.L CODE_8490A0                    ;82E8A7|22A09084|8490A0;
                        CMP.B #$34                           ;82E8AB|C934    |      ;
                        BCC CODE_82E8B8                      ;82E8AD|9009    |82E8B8;
@@ -16060,9 +16060,9 @@ prisonCapsule_63_state_00:
                        db $1F                               ;82E8B7|        |A92A64;
                                                             ;      |        |      ;
           CODE_82E8B8:
-                       STZ.B $2A                            ;82E8B8|642A    |0016B2;
+                       STZ.B r_16b2-$1688                   ;82E8B8|642A    |0016B2;
                        LDA.B #$C0                           ;82E8BA|A9C0    |      ;
-                       STA.B $29                            ;82E8BC|8529    |0016B1;
+                       STA.B r_16b1-$1688                   ;82E8BC|8529    |0016B1;
                        JSL.L CODE_8490A0                    ;82E8BE|22A09084|8490A0;
                        CMP.B #$34                           ;82E8C2|C934    |      ;
                        BCC CODE_82E8CA                      ;82E8C4|9004    |82E8CA;
@@ -16070,29 +16070,29 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E8CA:
                        REP #$20                             ;82E8CA|C220    |      ;
-                       LDA.B $05                            ;82E8CC|A505    |00168D;
+                       LDA.B r_168d-$1688                   ;82E8CC|A505    |00168D;
                        SEC                                  ;82E8CE|38      |      ;
                        SBC.W #$0060                         ;82E8CF|E96000  |      ;
-                       STA.W r_002c                         ;82E8D2|8D2C00  |86002C;
-                       LDA.B $08                            ;82E8D5|A508    |001690;
+                       STA.W r6_002c                        ;82E8D2|8D2C00  |86002C;
+                       LDA.B r_1690-$1688                   ;82E8D5|A508    |001690;
                        SEC                                  ;82E8D7|38      |      ;
                        SBC.W #$0022                         ;82E8D8|E92200  |      ;
-                       STA.W r_002e                         ;82E8DB|8D2E00  |86002E;
+                       STA.W r6_002e                        ;82E8DB|8D2E00  |86002E;
                        SEP #$20                             ;82E8DE|E220    |      ;
-                       LDY.B $1F                            ;82E8E0|A41F    |0016A7;
+                       LDY.B r_16a7-$1688                   ;82E8E0|A41F    |0016A7;
                        LDA.W UNREACH_86DA3C,Y               ;82E8E2|B93CDA  |86DA3C;
                        JSL.L CODE_848011                    ;82E8E5|22118084|848011;
                        BRA CODE_82E872                      ;82E8E9|8087    |82E872;
                                                             ;      |        |      ;
-                       LDA.B $2F                            ;82E8EB|A52F    |001687;
+                       LDA.B r_1687-$1658                   ;82E8EB|A52F    |001687;
                        BNE CODE_82E916                      ;82E8ED|D027    |82E916;
                        JMP.W CODE_82E9AB                    ;82E8EF|4CABE9  |82E9AB;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E8F2:
                        JSL.L checkPlayerGear                ;82E8F2|22B48082|8280B4;
-                       INC.B $01                            ;82E8F6|E601    |001659;
-                       INC.B $01                            ;82E8F8|E601    |001659;
+                       INC.B r_1659-$1658                   ;82E8F6|E601    |001659;
+                       INC.B r_1659-$1658                   ;82E8F8|E601    |001659;
                        JSL.L CODE_849C0E                    ;82E8FA|220E9C84|849C0E;
                        BCC CODE_82E90A                      ;82E8FE|900A    |82E90A;
                        db $AD,$D3,$0B,$29,$04,$85,$2C,$0C   ;82E900|        |000BD3;
@@ -16112,68 +16112,68 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E916:
-                       DEC.B $2F                            ;82E916|C62F    |001687;
+                       DEC.B r_1687-$1658                   ;82E916|C62F    |001687;
                        BNE CODE_82E90B                      ;82E918|D0F1    |82E90B;
                        LDY.B #$00                           ;82E91A|A000    |      ;
                        JSR.W CODE_82EA5C                    ;82E91C|205CEA  |82EA5C;
-                       STZ.B $1F                            ;82E91F|641F    |001677;
-                       STZ.B $2A                            ;82E921|642A    |001682;
+                       STZ.B r_1677-$1658                   ;82E91F|641F    |001677;
+                       STZ.B r_1682-$1658                   ;82E921|642A    |001682;
                        LDA.B #$20                           ;82E923|A920    |      ;
-                       STA.B $29                            ;82E925|8529    |001681;
+                       STA.B r_1681-$1658                   ;82E925|8529    |001681;
                        JSL.L CODE_8490A0                    ;82E927|22A09084|8490A0;
                        CMP.B #$34                           ;82E92B|C934    |      ;
                        BCC CODE_82E938                      ;82E92D|9009    |82E938;
                        LDY.B #$02                           ;82E92F|A002    |      ;
                        JSR.W CODE_82EA5C                    ;82E931|205CEA  |82EA5C;
                        LDA.B #$02                           ;82E934|A902    |      ;
-                       TSB.B $1F                            ;82E936|041F    |001677;
+                       TSB.B r_1677-$1658                   ;82E936|041F    |001677;
                                                             ;      |        |      ;
           CODE_82E938:
-                       STZ.B $2A                            ;82E938|642A    |001682;
+                       STZ.B r_1682-$1658                   ;82E938|642A    |001682;
                        LDA.B #$40                           ;82E93A|A940    |      ;
-                       STA.B $29                            ;82E93C|8529    |001681;
+                       STA.B r_1681-$1658                   ;82E93C|8529    |001681;
                        JSL.L CODE_8490A0                    ;82E93E|22A09084|8490A0;
                        CMP.B #$34                           ;82E942|C934    |      ;
                        BCC CODE_82E94A                      ;82E944|9004    |82E94A;
                        LDA.B #$01                           ;82E946|A901    |      ;
-                       TSB.B $1F                            ;82E948|041F    |001677;
+                       TSB.B r_1677-$1658                   ;82E948|041F    |001677;
                                                             ;      |        |      ;
           CODE_82E94A:
                        REP #$20                             ;82E94A|C220    |      ;
-                       LDA.B $05                            ;82E94C|A505    |00165D;
+                       LDA.B r_165d-$1658                   ;82E94C|A505    |00165D;
                        SEC                                  ;82E94E|38      |      ;
                        SBC.W #$0020                         ;82E94F|E92000  |      ;
-                       STA.W r_002c                         ;82E952|8D2C00  |86002C;
-                       LDA.B $08                            ;82E955|A508    |001660;
+                       STA.W r6_002c                        ;82E952|8D2C00  |86002C;
+                       LDA.B r_1660-$1658                   ;82E955|A508    |001660;
                        SEC                                  ;82E957|38      |      ;
                        SBC.W #$0022                         ;82E958|E92200  |      ;
-                       STA.W r_002e                         ;82E95B|8D2E00  |86002E;
+                       STA.W r6_002e                        ;82E95B|8D2E00  |86002E;
                        SEP #$20                             ;82E95E|E220    |      ;
-                       LDY.B $1F                            ;82E960|A41F    |001677;
+                       LDY.B r_1677-$1658                   ;82E960|A41F    |001677;
                        LDA.W UNREACH_86DA3C,Y               ;82E962|B93CDA  |86DA3C;
                        JSL.L CODE_848011                    ;82E965|22118084|848011;
                        BRA CODE_82E8F2                      ;82E969|8087    |82E8F2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82E96B:
-                       DEC.B $2F                            ;82E96B|C62F    |001657;
+                       DEC.B r_1657-$1628                   ;82E96B|C62F    |001657;
                        BNE CODE_82E9AA                      ;82E96D|D03B    |82E9AA;
                        REP #$20                             ;82E96F|C220    |      ;
-                       LDA.B $05                            ;82E971|A505    |00162D;
+                       LDA.B r_162d-$1628                   ;82E971|A505    |00162D;
                        SEC                                  ;82E973|38      |      ;
                        SBC.W #$0020                         ;82E974|E92000  |      ;
-                       STA.W r_002c                         ;82E977|8D2C00  |86002C;
-                       LDA.B $08                            ;82E97A|A508    |001630;
+                       STA.W r6_002c                        ;82E977|8D2C00  |86002C;
+                       LDA.B r_1630-$1628                   ;82E97A|A508    |001630;
                        SEC                                  ;82E97C|38      |      ;
                        SBC.W #$0020                         ;82E97D|E92000  |      ;
-                       STA.W r_002e                         ;82E980|8D2E00  |86002E;
-                       LDX.B $0B                            ;82E983|A60B    |001633;
+                       STA.W r6_002e                        ;82E980|8D2E00  |86002E;
+                       LDX.B r_1633-$1628                   ;82E983|A60B    |001633;
                        LDA.W UNREACH_86DA39,X               ;82E985|BD39DA  |86DA39;
                        JSL.L CODE_848011                    ;82E988|22118084|848011;
                        JSL.L checkPlayerGear                ;82E98C|22B48082|8280B4;
-                       INC.B $01                            ;82E990|E601    |001629;
-                       INC.B $01                            ;82E992|E601    |001629;
-                       LDY.B $0B                            ;82E994|A40B    |001633;
+                       INC.B r_1629-$1628                   ;82E990|E601    |001629;
+                       INC.B r_1629-$1628                   ;82E992|E601    |001629;
+                       LDY.B r_1633-$1628                   ;82E994|A40B    |001633;
                        JSR.W CODE_82EA5C                    ;82E996|205CEA  |82EA5C;
                        JSL.L CODE_849C0E                    ;82E999|220E9C84|849C0E;
                        BCC CODE_82E9AA                      ;82E99D|900B    |82E9AA;
@@ -16186,11 +16186,11 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82E9AB:
                        JSR.W CODE_82E9ED                    ;82E9AB|20EDE9  |82E9ED;
-                       LDA.B $2F                            ;82E9AE|A52F    |0016B7;
+                       LDA.B r_16b7-$1688                   ;82E9AE|A52F    |0016B7;
                        BEQ CODE_82E9E3                      ;82E9B0|F031    |82E9E3;
-                       STZ.B $2A                            ;82E9B2|642A    |0016B2;
+                       STZ.B r_16b2-$1688                   ;82E9B2|642A    |0016B2;
                        LDA.B #$20                           ;82E9B4|A920    |      ;
-                       STA.B $29                            ;82E9B6|8529    |0016B1;
+                       STA.B r_16b1-$1688                   ;82E9B6|8529    |0016B1;
                        JSL.L CODE_8490A0                    ;82E9B8|22A09084|8490A0;
                        CMP.B #$34                           ;82E9BC|C934    |      ;
                        BCC CODE_82E9CA                      ;82E9BE|900A    |82E9CA;
@@ -16200,9 +16200,9 @@ prisonCapsule_63_state_00:
                        JSR.W CODE_82EA5C                    ;82E9C7|205CEA  |82EA5C;
                                                             ;      |        |      ;
           CODE_82E9CA:
-                       STZ.B $2A                            ;82E9CA|642A    |0016B2;
+                       STZ.B r_16b2-$1688                   ;82E9CA|642A    |0016B2;
                        LDA.B #$E0                           ;82E9CC|A9E0    |      ;
-                       STA.B $29                            ;82E9CE|8529    |0016B1;
+                       STA.B r_16b1-$1688                   ;82E9CE|8529    |0016B1;
                        JSL.L CODE_8490A0                    ;82E9D0|22A09084|8490A0;
                        CMP.B #$34                           ;82E9D4|C934    |      ;
                        BCC CODE_82E9E2                      ;82E9D6|900A    |82E9E2;
@@ -16225,15 +16225,15 @@ prisonCapsule_63_state_00:
                        LDX.W #$0BA8                         ;82E9EF|A2A80B  |      ;
                        JSL.L CODE_849C0E                    ;82E9F2|220E9C84|849C0E;
                        BCC CODE_82EA2B                      ;82E9F6|9033    |82EA2B;
-                       LDA.W r_d_0bd3                       ;82E9F8|ADD30B  |860BD3;
+                       LDA.W r6_player_bd3                  ;82E9F8|ADD30B  |860BD3;
                        AND.B #$04                           ;82E9FB|2904    |      ;
                        BEQ CODE_82EA2B                      ;82E9FD|F02C    |82EA2B;
                        REP #$20                             ;82E9FF|C220    |      ;
-                       LDA.W r_0002                         ;82EA01|AD0200  |860002;
+                       LDA.W r6_0002                        ;82EA01|AD0200  |860002;
                        BPL CODE_82EA2B                      ;82EA04|1025    |82EA2B;
-                       LDA.W r_d_player_xSubPos             ;82EA06|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82EA06|ADAD0B  |860BAD;
                        SEC                                  ;82EA09|38      |      ;
-                       SBC.B $05                            ;82EA0A|E505    |00162D;
+                       SBC.B r_162d-$1628                   ;82EA0A|E505    |00162D;
                        BCS CODE_82EA12                      ;82EA0C|B004    |82EA12;
                        EOR.W #$FFFF                         ;82EA0E|49FFFF  |      ;
                        INC A                                ;82EA11|1A      |      ;
@@ -16241,13 +16241,13 @@ prisonCapsule_63_state_00:
           CODE_82EA12:
                        CMP.W #$0010                         ;82EA12|C91000  |      ;
                        BCS CODE_82EA2B                      ;82EA15|B014    |82EA2B;
-                       STZ.B $1A                            ;82EA17|641A    |001642;
-                       STZ.B $1C                            ;82EA19|641C    |001644;
+                       STZ.B r_1642-$1628                   ;82EA17|641A    |001642;
+                       STZ.B r_1644-$1628                   ;82EA19|641C    |001644;
                        SEP #$30                             ;82EA1B|E230    |      ;
                        LDA.B #$30                           ;82EA1D|A930    |      ;
-                       STA.B $1F                            ;82EA1F|851F    |001647;
+                       STA.B r_1647-$1628                   ;82EA1F|851F    |001647;
                        LDA.B #$1E                           ;82EA21|A91E    |      ;
-                       STA.B $2F                            ;82EA23|852F    |001657;
+                       STA.B r_1657-$1628                   ;82EA23|852F    |001657;
                        LDA.B #$22                           ;82EA25|A922    |      ;
                        JSL.L lunchSFX                       ;82EA27|22A28880|8088A2;
                                                             ;      |        |      ;
@@ -16258,21 +16258,21 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82EA2E:
                        LDA.W UNREACH_86DA4A,Y               ;82EA2E|B94ADA  |86DA4A;
-                       STA.W r_0000                         ;82EA31|8D0000  |860000;
+                       STA.W r6_0000                        ;82EA31|8D0000  |860000;
                        JSL.L CODE_8282D3                    ;82EA34|22D38282|8282D3;
                        BNE CODE_82EA59                      ;82EA38|D01F    |82EA59;
-                       INC.W r_0000,X                       ;82EA3A|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82EA3A|FE0000  |860000;
                        LDA.B #$22                           ;82EA3D|A922    |      ;
-                       STA.W r_000a,X                       ;82EA3F|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82EA3F|9D0A00  |86000A;
                        LDA.B #$02                           ;82EA42|A902    |      ;
-                       STA.W r_000b,X                       ;82EA44|9D0B00  |86000B;
-                       LDA.W r_0000                         ;82EA47|AD0000  |860000;
-                       STA.W r_0011,X                       ;82EA4A|9D1100  |860011;
+                       STA.W r6_000b,X                      ;82EA44|9D0B00  |86000B;
+                       LDA.W r6_0000                        ;82EA47|AD0000  |860000;
+                       STA.W r6_0011,X                      ;82EA4A|9D1100  |860011;
                        REP #$20                             ;82EA4D|C220    |      ;
-                       LDA.B $05                            ;82EA4F|A505    |00162D;
-                       STA.W r_0005,X                       ;82EA51|9D0500  |860005;
-                       LDA.B $08                            ;82EA54|A508    |001630;
-                       STA.W r_0008,X                       ;82EA56|9D0800  |860008;
+                       LDA.B r_162d-$1628                   ;82EA4F|A505    |00162D;
+                       STA.W r6_0005,X                      ;82EA51|9D0500  |860005;
+                       LDA.B r_1630-$1628                   ;82EA54|A508    |001630;
+                       STA.W r6_0008,X                      ;82EA56|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82EA59:
                        SEP #$30                             ;82EA59|E230    |      ;
@@ -16289,169 +16289,169 @@ prisonCapsule_63_state_00:
                        LDA.W #$FFF0                         ;82EA68|A9F0FF  |      ;
                                                             ;      |        |      ;
           CODE_82EA6B:
-                       STA.B $29                            ;82EA6B|8529    |001651;
+                       STA.B r_1651-$1628                   ;82EA6B|8529    |001651;
                        LDA.W #$FFF0                         ;82EA6D|A9F0FF  |      ;
-                       STA.B $2D                            ;82EA70|852D    |001655;
+                       STA.B r_1655-$1628                   ;82EA70|852D    |001655;
                        JSL.L mainPlayer_00                  ;82EA72|22869084|849086;
                        AND.W #$0007                         ;82EA76|290700  |      ;
                        ASL A                                ;82EA79|0A      |      ;
                        ASL A                                ;82EA7A|0A      |      ;
                        ASL A                                ;82EA7B|0A      |      ;
                        ADC.W #$DA5F                         ;82EA7C|695FDA  |      ;
-                       STA.B $26                            ;82EA7F|8526    |00164E;
+                       STA.B r_164e-$1628                   ;82EA7F|8526    |00164E;
                        LDY.B #$07                           ;82EA81|A007    |      ;
                                                             ;      |        |      ;
           CODE_82EA83:
                        SEP #$20                             ;82EA83|E220    |      ;
                        JSL.L CODE_8282D3                    ;82EA85|22D38282|8282D3;
                        BNE CODE_82EABF                      ;82EA89|D034    |82EABF;
-                       INC.W r_0000,X                       ;82EA8B|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82EA8B|FE0000  |860000;
                        LDA.B #$23                           ;82EA8E|A923    |      ;
-                       STA.W r_000a,X                       ;82EA90|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82EA90|9D0A00  |86000A;
                        LDA.B ($26),Y                        ;82EA93|B126    |00164E;
-                       STA.W r_000b,X                       ;82EA95|9D0B00  |86000B;
-                       LDA.B $11                            ;82EA98|A511    |001639;
-                       STA.W r_0011,X                       ;82EA9A|9D1100  |860011;
-                       LDA.B $18                            ;82EA9D|A518    |001640;
-                       STA.W r_0018,X                       ;82EA9F|9D1800  |860018;
+                       STA.W r6_000b,X                      ;82EA95|9D0B00  |86000B;
+                       LDA.B r_1639-$1628                   ;82EA98|A511    |001639;
+                       STA.W r6_0011,X                      ;82EA9A|9D1100  |860011;
+                       LDA.B r_1640-$1628                   ;82EA9D|A518    |001640;
+                       STA.W r6_0018,X                      ;82EA9F|9D1800  |860018;
                        REP #$20                             ;82EAA2|C220    |      ;
-                       LDA.B $05                            ;82EAA4|A505    |00162D;
+                       LDA.B r_162d-$1628                   ;82EAA4|A505    |00162D;
                        CLC                                  ;82EAA6|18      |      ;
-                       ADC.B $29                            ;82EAA7|6529    |001651;
-                       STA.W r_0005,X                       ;82EAA9|9D0500  |860005;
-                       LDA.B $08                            ;82EAAC|A508    |001630;
+                       ADC.B r_1651-$1628                   ;82EAA7|6529    |001651;
+                       STA.W r6_0005,X                      ;82EAA9|9D0500  |860005;
+                       LDA.B r_1630-$1628                   ;82EAAC|A508    |001630;
                        CLC                                  ;82EAAE|18      |      ;
-                       ADC.B $2D                            ;82EAAF|652D    |001655;
-                       STA.W r_0008,X                       ;82EAB1|9D0800  |860008;
-                       LDA.B $2D                            ;82EAB4|A52D    |001655;
+                       ADC.B r_1655-$1628                   ;82EAAF|652D    |001655;
+                       STA.W r6_0008,X                      ;82EAB1|9D0800  |860008;
+                       LDA.B r_1655-$1628                   ;82EAB4|A52D    |001655;
                        CLC                                  ;82EAB6|18      |      ;
                        ADC.W #$0004                         ;82EAB7|690400  |      ;
-                       STA.B $2D                            ;82EABA|852D    |001655;
+                       STA.B r_1655-$1628                   ;82EABA|852D    |001655;
                        DEY                                  ;82EABC|88      |      ;
                        BPL CODE_82EA83                      ;82EABD|10C4    |82EA83;
                                                             ;      |        |      ;
           CODE_82EABF:
                        SEP #$30                             ;82EABF|E230    |      ;
-                       STZ.B $19                            ;82EAC1|6419    |001641;
+                       STZ.B r_1641-$1628                   ;82EAC1|6419    |001641;
                        RTS                                  ;82EAC3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EAC4:
-                       LDX.B $01                            ;82EAC4|A601    |001629;
+                       LDX.B r_1629-$1628                   ;82EAC4|A601    |001629;
                        JMP.W (UNREACH_82EAC9,X)             ;82EAC6|7CC9EA  |82EAC9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_82EAC9:
                        db $CF,$EA,$FE,$EA,$8A,$EB           ;82EAC9|        |EAFEEA;
                        LDA.B #$02                           ;82EACF|A902    |      ;
-                       STA.B $01                            ;82EAD1|8501    |001629;
+                       STA.B r_1629-$1628                   ;82EAD1|8501    |001629;
                        LDA.B #$04                           ;82EAD3|A904    |      ;
-                       STA.B $12                            ;82EAD5|8512    |00163A;
+                       STA.B r_163a-$1628                   ;82EAD5|8512    |00163A;
                        LDA.B #$03                           ;82EAD7|A903    |      ;
-                       STA.B $28                            ;82EAD9|8528    |001650;
+                       STA.B r_1650-$1628                   ;82EAD9|8528    |001650;
                        LDA.B #$06                           ;82EADB|A906    |      ;
-                       STA.B $27                            ;82EADD|8527    |00164F;
+                       STA.B r_164f-$1628                   ;82EADD|8527    |00164F;
                        LDA.B #$04                           ;82EADF|A904    |      ;
-                       STA.B $26                            ;82EAE1|8526    |00164E;
+                       STA.B r_164e-$1628                   ;82EAE1|8526    |00164E;
                        REP #$20                             ;82EAE3|C220    |      ;
                        LDA.W #$DA9F                         ;82EAE5|A99FDA  |      ;
-                       STA.B $20                            ;82EAE8|8520    |001648;
+                       STA.B r_1648-$1628                   ;82EAE8|8520    |001648;
                        SEP #$20                             ;82EAEA|E220    |      ;
                        LDA.L $7F8231                        ;82EAEC|AF31827F|7F8231;
-                       STA.B $18                            ;82EAF0|8518    |001640;
+                       STA.B r_1640-$1628                   ;82EAF0|8518    |001640;
                        LDA.B #$33                           ;82EAF2|A933    |      ;
-                       STA.B $16                            ;82EAF4|8516    |00163E;
+                       STA.B r_163e-$1628                   ;82EAF4|8516    |00163E;
                        LDA.B #$04                           ;82EAF6|A904    |      ;
-                       STA.B $29                            ;82EAF8|8529    |001651;
+                       STA.B r_1651-$1628                   ;82EAF8|8529    |001651;
                        JSL.L playerGrabedRoutine            ;82EAFA|22078F84|848F07;
                        LDA.L $7F8331                        ;82EAFE|AF31837F|7F8331;
-                       STA.B $11                            ;82EB02|8511    |001639;
+                       STA.B r_1639-$1628                   ;82EB02|8511    |001639;
                        REP #$10                             ;82EB04|C210    |      ;
-                       LDX.B $0C                            ;82EB06|A60C    |001634;
-                       LDA.W r_0027,X                       ;82EB08|BD2700  |860027;
+                       LDX.B r_1634-$1628                   ;82EB06|A60C    |001634;
+                       LDA.W r6_0027,X                      ;82EB08|BD2700  |860027;
                        AND.B #$7F                           ;82EB0B|297F    |      ;
                        BNE CODE_82EB17                      ;82EB0D|D008    |82EB17;
                        db $A9,$04,$85,$01,$E2,$10,$80,$63   ;82EB0F|        |      ;
                                                             ;      |        |      ;
           CODE_82EB17:
-                       LDA.W r_0001,X                       ;82EB17|BD0100  |860001;
+                       LDA.W r6_0001,X                      ;82EB17|BD0100  |860001;
                        CMP.B #$02                           ;82EB1A|C902    |      ;
                        BNE CODE_82EB3C                      ;82EB1C|D01E    |82EB3C;
-                       LDA.W r_0002,X                       ;82EB1E|BD0200  |860002;
+                       LDA.W r6_0002,X                      ;82EB1E|BD0200  |860002;
                        CMP.B #$02                           ;82EB21|C902    |      ;
                        BNE CODE_82EB3C                      ;82EB23|D017    |82EB3C;
                        LDA.B #$05                           ;82EB25|A905    |      ;
-                       LDY.W r_001a,X                       ;82EB27|BC1A00  |86001A;
+                       LDY.W r6_001a,X                      ;82EB27|BC1A00  |86001A;
                        CPY.W #$FF00                         ;82EB2A|C000FF  |      ;
                        BCC CODE_82EB30                      ;82EB2D|9001    |82EB30;
                        INC A                                ;82EB2F|1A      |      ;
                                                             ;      |        |      ;
           CODE_82EB30:
-                       CMP.B $29                            ;82EB30|C529    |001651;
+                       CMP.B r_1651-$1628                   ;82EB30|C529    |001651;
                        BEQ CODE_82EB48                      ;82EB32|F014    |82EB48;
-                       STA.B $29                            ;82EB34|8529    |001651;
+                       STA.B r_1651-$1628                   ;82EB34|8529    |001651;
                        JSL.L playerGrabedRoutine            ;82EB36|22078F84|848F07;
                        BRA CODE_82EB48                      ;82EB3A|800C    |82EB48;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EB3C:
                        LDA.B #$04                           ;82EB3C|A904    |      ;
-                       CMP.B $29                            ;82EB3E|C529    |001651;
+                       CMP.B r_1651-$1628                   ;82EB3E|C529    |001651;
                        BEQ CODE_82EB48                      ;82EB40|F006    |82EB48;
-                       STA.B $29                            ;82EB42|8529    |001651;
+                       STA.B r_1651-$1628                   ;82EB42|8529    |001651;
                        JSL.L playerGrabedRoutine            ;82EB44|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82EB48:
-                       LDX.B $0C                            ;82EB48|A60C    |001634;
-                       LDA.W r_002a,X                       ;82EB4A|BD2A00  |86002A;
+                       LDX.B r_1634-$1628                   ;82EB48|A60C    |001634;
+                       LDA.W r6_002a,X                      ;82EB4A|BD2A00  |86002A;
                        SEP #$10                             ;82EB4D|E210    |      ;
                        BPL CODE_82EB55                      ;82EB4F|1004    |82EB55;
                        db $A9,$0E,$14,$11                   ;82EB51|        |      ;
                                                             ;      |        |      ;
           CODE_82EB55:
-                       LDA.B $30                            ;82EB55|A530    |001658;
-                       STA.B $2A                            ;82EB57|852A    |001652;
-                       STZ.B $30                            ;82EB59|6430    |001658;
-                       LDA.B $2B                            ;82EB5B|A52B    |001653;
+                       LDA.B r_1658-$1628                   ;82EB55|A530    |001658;
+                       STA.B r_1652-$1628                   ;82EB57|852A    |001652;
+                       STZ.B r_1658-$1628                   ;82EB59|6430    |001658;
+                       LDA.B r_1653-$1628                   ;82EB5B|A52B    |001653;
                        BNE CODE_82EB7A                      ;82EB5D|D01B    |82EB7A;
                        JSL.L CODE_849B43                    ;82EB5F|22439B84|849B43;
                        BEQ CODE_82EB7A                      ;82EB63|F015    |82EB7A;
                        BMI CODE_82EB6D                      ;82EB65|3006    |82EB6D;
                        LDA.B #$0E                           ;82EB67|A90E    |      ;
-                       TRB.B $11                            ;82EB69|1411    |001639;
+                       TRB.B r_1639-$1628                   ;82EB69|1411    |001639;
                        BRA CODE_82EB7A                      ;82EB6B|800D    |82EB7A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EB6D:
                        LDA.B #$04                           ;82EB6D|A904    |      ;
-                       STA.B $01                            ;82EB6F|8501    |001629;
+                       STA.B r_1629-$1628                   ;82EB6F|8501    |001629;
                        REP #$10                             ;82EB71|C210    |      ;
-                       LDX.B $0C                            ;82EB73|A60C    |001634;
-                       STZ.W r_0029,X                       ;82EB75|9E2900  |860029;
+                       LDX.B r_1634-$1628                   ;82EB73|A60C    |001634;
+                       STZ.W r6_0029,X                      ;82EB75|9E2900  |860029;
                        SEP #$10                             ;82EB78|E210    |      ;
                                                             ;      |        |      ;
           CODE_82EB7A:
-                       LDA.B $2A                            ;82EB7A|A52A    |001652;
-                       STA.B $30                            ;82EB7C|8530    |001658;
+                       LDA.B r_1652-$1628                   ;82EB7A|A52A    |001652;
+                       STA.B r_1658-$1628                   ;82EB7C|8530    |001658;
                        JSL.L CODE_849B03                    ;82EB7E|22039B84|849B03;
-                       JSL.L updateEv_13_14_17_0f           ;82EB82|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82EB82|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82EB86:
                        JML.L checkPlayerGear                ;82EB86|5CB48082|8280B4;
                                                             ;      |        |      ;
-                       LDX.B $02                            ;82EB8A|A602    |00162A;
+                       LDX.B r_162a-$1628                   ;82EB8A|A602    |00162A;
                        BNE CODE_82EBB3                      ;82EB8C|D025    |82EBB3;
                        REP #$10                             ;82EB8E|C210    |      ;
-                       INC.B $02                            ;82EB90|E602    |00162A;
+                       INC.B r_162a-$1628                   ;82EB90|E602    |00162A;
                        LDX.W #$FF00                         ;82EB92|A200FF  |      ;
-                       STX.B $1A                            ;82EB95|861A    |001642;
+                       STX.B r_1642-$1628                   ;82EB95|861A    |001642;
                        LDX.W #$0100                         ;82EB97|A20001  |      ;
-                       STX.B $1C                            ;82EB9A|861C    |001644;
-                       STZ.B $1F                            ;82EB9C|641F    |001647;
+                       STX.B r_1644-$1628                   ;82EB9A|861C    |001644;
+                       STZ.B r_1647-$1628                   ;82EB9C|641F    |001647;
                        LDA.B #$10                           ;82EB9E|A910    |      ;
-                       STA.B $1E                            ;82EBA0|851E    |001646;
+                       STA.B r_1646-$1628                   ;82EBA0|851E    |001646;
                        LDA.L $7F8331                        ;82EBA2|AF31837F|7F8331;
-                       STA.B $11                            ;82EBA6|8511    |001639;
+                       STA.B r_1639-$1628                   ;82EBA6|8511    |001639;
                        JSL.L initPosAllign                  ;82EBA8|226E8082|82806E;
                        BCS CODE_82EBB2                      ;82EBAC|B004    |82EBB2;
                        JML.L CODE_84A4B5                    ;82EBAE|5CB5A484|84A4B5;
@@ -16464,19 +16464,19 @@ prisonCapsule_63_state_00:
           CODE_82EBB3:
                        JSL.L initPosAllign                  ;82EBB3|226E8082|82806E;
                        BCC CODE_82EBBD                      ;82EBB7|9004    |82EBBD;
-                       JML.L clearStates_00_02_0E           ;82EBB9|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82EBB9|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EBBD:
                        JSL.L CODE_828174                    ;82EBBD|22748182|828174;
-                       LDA.W r_frameCounter0                ;82EBC1|AD9B0B  |860B9B;
+                       LDA.W r6_frameCounter0               ;82EBC1|AD9B0B  |860B9B;
                        LSR A                                ;82EBC4|4A      |      ;
                        BCC CODE_82EB86                      ;82EBC5|90BF    |82EB86;
                        RTL                                  ;82EBC7|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EBC8:
-                       LDX.B $01                            ;82EBC8|A601    |001659;
+                       LDX.B r_1659-$1658                   ;82EBC8|A601    |001659;
                        JMP.W (PTR16_82EBCD,X)               ;82EBCA|7CCDEB  |82EBCD;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16487,21 +16487,21 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82EBD3:
                        LDA.B #$02                           ;82EBD3|A902    |      ;
-                       STA.B $01                            ;82EBD5|8501    |001659;
+                       STA.B r_1659-$1658                   ;82EBD5|8501    |001659;
                        REP #$20                             ;82EBD7|C220    |      ;
-                       STZ.B $1A                            ;82EBD9|641A    |001672;
-                       STZ.B $1C                            ;82EBDB|641C    |001674;
+                       STZ.B r_1672-$1658                   ;82EBD9|641A    |001672;
+                       STZ.B r_1674-$1658                   ;82EBDB|641C    |001674;
                        SEP #$20                             ;82EBDD|E220    |      ;
                        LDA.B #$02                           ;82EBDF|A902    |      ;
-                       STA.B $0F                            ;82EBE1|850F    |001667;
-                       STA.B $10                            ;82EBE3|8510    |001668;
+                       STA.B r_1667-$1658                   ;82EBE1|850F    |001667;
+                       STA.B r_1668-$1658                   ;82EBE3|8510    |001668;
                        JSL.L loadEnitySlotBase              ;82EBE5|22218382|828321;
                        BNE CODE_82EBF8                      ;82EBE9|D00D    |82EBF8;
-                       INC.W r_0000,X                       ;82EBEB|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82EBEB|FE0000  |860000;
                        LDA.B #$28                           ;82EBEE|A928    |      ;
-                       STA.W r_000a,X                       ;82EBF0|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;82EBF3|9E0B00  |86000B;
-                       STX.B $1A                            ;82EBF6|861A    |001672;
+                       STA.W r6_000a,X                      ;82EBF0|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;82EBF3|9E0B00  |86000B;
+                       STX.B r_1672-$1658                   ;82EBF6|861A    |001672;
                                                             ;      |        |      ;
           CODE_82EBF8:
                        SEP #$10                             ;82EBF8|E210    |      ;
@@ -16510,14 +16510,14 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82EBFB:
                        JSR.W CODE_82ED26                    ;82EBFB|2026ED  |82ED26;
-                       LDX.B $02                            ;82EBFE|A602    |00165A;
+                       LDX.B r_165a-$1658                   ;82EBFE|A602    |00165A;
                        JSR.W (UNREACH_82EC04,X)             ;82EC00|FC04EC  |82EC04;
                        RTL                                  ;82EC03|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_82EC04:
                        db $FA,$EC,$D4,$EC,$0C,$EC,$FB,$EC   ;82EC04|        |      ;
-                       LDX.B $03                            ;82EC0C|A603    |00165B;
+                       LDX.B r_165b-$1658                   ;82EC0C|A603    |00165B;
                        JMP.W (UNREACH_82EC11,X)             ;82EC0E|7C11EC  |82EC11;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16525,59 +16525,59 @@ prisonCapsule_63_state_00:
                        db $1D,$EC,$3B,$EC,$4C,$EC,$67,$EC   ;82EC11|        |003BEC;
                        db $7E,$EC,$8E,$EC                   ;82EC19|        |008EEC;
                        LDA.B #$02                           ;82EC1D|A902    |      ;
-                       STA.B $03                            ;82EC1F|8503    |00165B;
+                       STA.B r_165b-$1658                   ;82EC1F|8503    |00165B;
                        JSR.W CODE_82ED62                    ;82EC21|2062ED  |82ED62;
                        JSL.L CODE_80E008                    ;82EC24|2208E080|80E008;
                        REP #$20                             ;82EC28|C220    |      ;
                        LDA.W #$0A08                         ;82EC2A|A9080A  |      ;
-                       STA.W r_cam_BG0_xPos_ff              ;82EC2D|8D8D1E  |861E8D;
+                       STA.W r6_cam_BG0_xPos_ff             ;82EC2D|8D8D1E  |861E8D;
                        LDA.W #$0098                         ;82EC30|A99800  |      ;
-                       STA.W r_cam_BG1_slot                 ;82EC33|8D901E  |861E90;
+                       STA.W r6_cam_BG1_slot                ;82EC33|8D901E  |861E90;
                        SEP #$20                             ;82EC36|E220    |      ;
                        JMP.W CODE_82ED6B                    ;82EC38|4C6BED  |82ED6B;
                                                             ;      |        |      ;
                        LDA.B #$04                           ;82EC3B|A904    |      ;
-                       STA.B $03                            ;82EC3D|8503    |00165B;
-                       INC.W r_1e88                         ;82EC3F|EE881E  |861E88;
-                       STZ.W r_1e9a                         ;82EC42|9C9A1E  |861E9A;
+                       STA.B r_165b-$1658                   ;82EC3D|8503    |00165B;
+                       INC.W r6_1e88                        ;82EC3F|EE881E  |861E88;
+                       STZ.W r6_1e9a                        ;82EC42|9C9A1E  |861E9A;
                        JSL.L CODE_80E018                    ;82EC45|2218E080|80E018;
                        JMP.W CODE_82ED79                    ;82EC49|4C79ED  |82ED79;
                                                             ;      |        |      ;
-                       LDA.W r_1f27                         ;82EC4C|AD271F  |861F27;
+                       LDA.W r6_1f27                        ;82EC4C|AD271F  |861F27;
                        BNE CODE_82EC66                      ;82EC4F|D015    |82EC66;
                        LDA.B #$06                           ;82EC51|A906    |      ;
-                       STA.B $03                            ;82EC53|8503    |00165B;
+                       STA.B r_165b-$1658                   ;82EC53|8503    |00165B;
                        REP #$21                             ;82EC55|C221    |      ;
-                       LDA.W r_cam_BG0_xPos_ff              ;82EC57|AD8D1E  |861E8D;
+                       LDA.W r6_cam_BG0_xPos_ff             ;82EC57|AD8D1E  |861E8D;
                        ADC.W #$0100                         ;82EC5A|690001  |      ;
-                       STA.W r_cam_BG0_xPos_ff              ;82EC5D|8D8D1E  |861E8D;
+                       STA.W r6_cam_BG0_xPos_ff             ;82EC5D|8D8D1E  |861E8D;
                        SEP #$20                             ;82EC60|E220    |      ;
                        JSL.L CODE_80E018                    ;82EC62|2218E080|80E018;
                                                             ;      |        |      ;
           CODE_82EC66:
                        RTS                                  ;82EC66|60      |      ;
                                                             ;      |        |      ;
-                       LDA.W r_1f27                         ;82EC67|AD271F  |861F27;
+                       LDA.W r6_1f27                        ;82EC67|AD271F  |861F27;
                        BNE CODE_82EC7D                      ;82EC6A|D011    |82EC7D;
                        LDA.B #$08                           ;82EC6C|A908    |      ;
-                       STA.B $03                            ;82EC6E|8503    |00165B;
+                       STA.B r_165b-$1658                   ;82EC6E|8503    |00165B;
                        REP #$21                             ;82EC70|C221    |      ;
-                       LDA.W r_cam_BG0_xPos_ff              ;82EC72|AD8D1E  |861E8D;
+                       LDA.W r6_cam_BG0_xPos_ff             ;82EC72|AD8D1E  |861E8D;
                        ADC.W #$FF00                         ;82EC75|6900FF  |      ;
-                       STA.W r_cam_BG0_xPos_ff              ;82EC78|8D8D1E  |861E8D;
+                       STA.W r6_cam_BG0_xPos_ff             ;82EC78|8D8D1E  |861E8D;
                        SEP #$20                             ;82EC7B|E220    |      ;
                                                             ;      |        |      ;
           CODE_82EC7D:
                        RTS                                  ;82EC7D|60      |      ;
                                                             ;      |        |      ;
                        LDA.B #$0A                           ;82EC7E|A90A    |      ;
-                       STA.B $03                            ;82EC80|8503    |00165B;
+                       STA.B r_165b-$1658                   ;82EC80|8503    |00165B;
                        JSL.L CODE_80E008                    ;82EC82|2208E080|80E008;
                        LDA.B #$01                           ;82EC86|A901    |      ;
-                       STA.W r_1e88                         ;82EC88|8D881E  |861E88;
+                       STA.W r6_1e88                        ;82EC88|8D881E  |861E88;
                        JMP.W CODE_82ED6B                    ;82EC8B|4C6BED  |82ED6B;
                                                             ;      |        |      ;
-                       STZ.B $02                            ;82EC8E|6402    |00165A;
+                       STZ.B r_165a-$1658                   ;82EC8E|6402    |00165A;
                        JMP.W CODE_82ED59                    ;82EC90|4C59ED  |82ED59;
                                                             ;      |        |      ;
                        db $A6,$03,$7C,$98,$EC,$9E,$EC,$AC   ;82EC93|        |000003;
@@ -16595,25 +16595,25 @@ prisonCapsule_63_state_00:
                        db $D0,$05,$20,$4E,$ED,$64,$02       ;82ECF3|        |82ECFA;
                        RTS                                  ;82ECFA|60      |      ;
                                                             ;      |        |      ;
-                       LDX.B $03                            ;82ECFB|A603    |00165B;
+                       LDX.B r_165b-$1658                   ;82ECFB|A603    |00165B;
                        BNE CODE_82ED18                      ;82ECFD|D019    |82ED18;
-                       INC.B $03                            ;82ECFF|E603    |00165B;
+                       INC.B r_165b-$1658                   ;82ECFF|E603    |00165B;
                        LDA.B #$0E                           ;82ED01|A90E    |      ;
-                       STA.W r_1e89                         ;82ED03|8D891E  |861E89;
+                       STA.W r6_1e89                        ;82ED03|8D891E  |861E89;
                        LDA.B #$12                           ;82ED06|A912    |      ;
-                       STA.B $12                            ;82ED08|8512    |00166A;
+                       STA.B r_166a-$1658                   ;82ED08|8512    |00166A;
                        LDA.B #$01                           ;82ED0A|A901    |      ;
-                       STA.W r_1e88                         ;82ED0C|8D881E  |861E88;
-                       STZ.W r_1e9a                         ;82ED0F|9C9A1E  |861E9A;
+                       STA.W r6_1e88                        ;82ED0C|8D881E  |861E88;
+                       STZ.W r6_1e9a                        ;82ED0F|9C9A1E  |861E9A;
                        JSR.W CODE_82ED62                    ;82ED12|2062ED  |82ED62;
                        JMP.W CODE_82ED79                    ;82ED15|4C79ED  |82ED79;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82ED18:
-                       DEC.B $12                            ;82ED18|C612    |00166A;
+                       DEC.B r_166a-$1658                   ;82ED18|C612    |00166A;
                        BNE CODE_82ED21                      ;82ED1A|D005    |82ED21;
                        JSR.W CODE_82ED4E                    ;82ED1C|204EED  |82ED4E;
-                       STZ.B $02                            ;82ED1F|6402    |00165A;
+                       STZ.B r_165a-$1658                   ;82ED1F|6402    |00165A;
                                                             ;      |        |      ;
           CODE_82ED21:
                        RTS                                  ;82ED21|60      |      ;
@@ -16624,10 +16624,10 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82ED26:
                        REP #$20                             ;82ED26|C220    |      ;
-                       LDX.B $0F                            ;82ED28|A60F    |001667;
-                       STX.B $10                            ;82ED2A|8610    |001668;
+                       LDX.B r_1667-$1658                   ;82ED28|A60F    |001667;
+                       STX.B r_1668-$1658                   ;82ED2A|8610    |001668;
                        LDX.B #$02                           ;82ED2C|A202    |      ;
-                       LDA.W r_d_player_xSubPos             ;82ED2E|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82ED2E|ADAD0B  |860BAD;
                        CMP.W #$1400                         ;82ED31|C90014  |      ;
                        BCC CODE_82ED3F                      ;82ED34|9009    |82ED3F;
                        INX                                  ;82ED36|E8      |      ;
@@ -16638,13 +16638,13 @@ prisonCapsule_63_state_00:
                        INX                                  ;82ED3E|E8      |      ;
                                                             ;      |        |      ;
           CODE_82ED3F:
-                       STX.B $0F                            ;82ED3F|860F    |001667;
+                       STX.B r_1667-$1658                   ;82ED3F|860F    |001667;
                        SEP #$20                             ;82ED41|E220    |      ;
-                       LDA.B $0F                            ;82ED43|A50F    |001667;
-                       CMP.B $10                            ;82ED45|C510    |001668;
+                       LDA.B r_1667-$1658                   ;82ED43|A50F    |001667;
+                       CMP.B r_1668-$1658                   ;82ED45|C510    |001668;
                        BEQ CODE_82ED4D                      ;82ED47|F004    |82ED4D;
-                       STA.B $02                            ;82ED49|8502    |00165A;
-                       STZ.B $03                            ;82ED4B|6403    |00165B;
+                       STA.B r_165a-$1658                   ;82ED49|8502    |00165A;
+                       STZ.B r_165b-$1658                   ;82ED4B|6403    |00165B;
                                                             ;      |        |      ;
           CODE_82ED4D:
                        RTS                                  ;82ED4D|60      |      ;
@@ -16652,32 +16652,32 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82ED4E:
                        LDA.B #$17                           ;82ED4E|A917    |      ;
-                       STA.W r_BG_enableMask                ;82ED50|8DC000  |8600C0;
+                       STA.W r6_BG_enableMask               ;82ED50|8DC000  |8600C0;
                        LDA.B #$13                           ;82ED53|A913    |      ;
-                       STA.W r_00c1                         ;82ED55|8DC100  |8600C1;
+                       STA.W r6_00c1                        ;82ED55|8DC100  |8600C1;
                        RTS                                  ;82ED58|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82ED59:
                        LDA.B #$02                           ;82ED59|A902    |      ;
-                       TSB.W r_BG_enableMask                ;82ED5B|0CC000  |8600C0;
-                       TSB.W r_00c1                         ;82ED5E|0CC100  |8600C1;
+                       TSB.W r6_BG_enableMask               ;82ED5B|0CC000  |8600C0;
+                       TSB.W r6_00c1                        ;82ED5E|0CC100  |8600C1;
                        RTS                                  ;82ED61|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82ED62:
                        LDA.B #$02                           ;82ED62|A902    |      ;
-                       TRB.W r_BG_enableMask                ;82ED64|1CC000  |8600C0;
-                       TRB.W r_00c1                         ;82ED67|1CC100  |8600C1;
+                       TRB.W r6_BG_enableMask               ;82ED64|1CC000  |8600C0;
+                       TRB.W r6_00c1                        ;82ED67|1CC100  |8600C1;
                        RTS                                  ;82ED6A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82ED6B:
                        REP #$10                             ;82ED6B|C210    |      ;
-                       LDX.B $1A                            ;82ED6D|A61A    |001672;
+                       LDX.B r_1672-$1658                   ;82ED6D|A61A    |001672;
                        BEQ CODE_82ED76                      ;82ED6F|F005    |82ED76;
                        LDA.B #$01                           ;82ED71|A901    |      ;
-                       STA.W r_0010,X                       ;82ED73|9D1000  |860010;
+                       STA.W r6_0010,X                      ;82ED73|9D1000  |860010;
                                                             ;      |        |      ;
           CODE_82ED76:
                        SEP #$10                             ;82ED76|E210    |      ;
@@ -16686,8 +16686,8 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82ED79:
                        REP #$10                             ;82ED79|C210    |      ;
-                       LDX.B $1A                            ;82ED7B|A61A    |001672;
-                       STZ.W r_0010,X                       ;82ED7D|9E1000  |860010;
+                       LDX.B r_1672-$1658                   ;82ED7B|A61A    |001672;
+                       STZ.W r6_0010,X                      ;82ED7D|9E1000  |860010;
                        SEP #$10                             ;82ED80|E210    |      ;
                        RTS                                  ;82ED82|60      |      ;
                                                             ;      |        |      ;
@@ -16698,33 +16698,33 @@ prisonCapsule_63_state_00:
                        db $10,$60                           ;82EDA3|        |82EE05;
                                                             ;      |        |      ;
           CODE_82EDA5:
-                       LDA.B $01                            ;82EDA5|A501    |001989;
+                       LDA.B r_1989-$1988                   ;82EDA5|A501    |001989;
                        BNE CODE_82EDD9                      ;82EDA7|D030    |82EDD9;
-                       INC.B $01                            ;82EDA9|E601    |001989;
-                       LDA.B $0B                            ;82EDAB|A50B    |001993;
+                       INC.B r_1989-$1988                   ;82EDA9|E601    |001989;
+                       LDA.B r_1993-$1988                   ;82EDAB|A50B    |001993;
                        ASL A                                ;82EDAD|0A      |      ;
                        ASL A                                ;82EDAE|0A      |      ;
                        TAY                                  ;82EDAF|A8      |      ;
                        LDA.W UNREACH_86DD21,Y               ;82EDB0|B921DD  |86DD21;
                        TAX                                  ;82EDB3|AA      |      ;
                        LDA.L gfxSlotOffsetLockup,X          ;82EDB4|BF00827F|7F8200;
-                       STA.B $18                            ;82EDB8|8518    |0019A0;
-                       LDA.B $11                            ;82EDBA|A511    |001999;
+                       STA.B r_19a0-$1988                   ;82EDB8|8518    |0019A0;
+                       LDA.B r_1999-$1988                   ;82EDBA|A511    |001999;
                        AND.B #$70                           ;82EDBC|2970    |      ;
-                       STA.B $11                            ;82EDBE|8511    |001999;
+                       STA.B r_1999-$1988                   ;82EDBE|8511    |001999;
                        LDA.L $7F8300,X                      ;82EDC0|BF00837F|7F8300;
                        AND.B #$0F                           ;82EDC4|290F    |      ;
-                       TSB.B $11                            ;82EDC6|0411    |001999;
+                       TSB.B r_1999-$1988                   ;82EDC6|0411    |001999;
                        LDA.W UNREACH_86DD24,Y               ;82EDC8|B924DD  |86DD24;
-                       STA.B $12                            ;82EDCB|8512    |00199A;
+                       STA.B r_199a-$1988                   ;82EDCB|8512    |00199A;
                        LDA.W UNREACH_86DD22,Y               ;82EDCD|B922DD  |86DD22;
-                       STA.B $16                            ;82EDD0|8516    |00199E;
+                       STA.B r_199e-$1988                   ;82EDD0|8516    |00199E;
                        LDA.W UNREACH_86DD23,Y               ;82EDD2|B923DD  |86DD23;
                        JML.L playerGrabedRoutine            ;82EDD5|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EDD9:
-                       LDX.B $02                            ;82EDD9|A602    |00198A;
+                       LDX.B r_198a-$1988                   ;82EDD9|A602    |00198A;
                        JMP.W (PTR16_82EDDE,X)               ;82EDDB|7CDEED  |82EDDE;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16735,14 +16735,14 @@ prisonCapsule_63_state_00:
                        dw CODE_82EE14                       ;82EDE4|        |82EE14;
                                                             ;      |        |      ;
           CODE_82EDE6:
-                       LDA.B $0F                            ;82EDE6|A50F    |001997;
+                       LDA.B r_1997-$1988                   ;82EDE6|A50F    |001997;
                        BPL CODE_82EDEE                      ;82EDE8|1004    |82EDEE;
-                       JML.L clearStates_00_02_0E           ;82EDEA|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82EDEA|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EDEE:
-                       JSL.L updateEv_13_14_17_0f           ;82EDEE|22EA8E84|848EEA;
-                       LDA.B $0B                            ;82EDF2|A50B    |001993;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82EDEE|22EA8E84|848EEA;
+                       LDA.B r_1993-$1988                   ;82EDF2|A50B    |001993;
                        CMP.B #$1D                           ;82EDF4|C91D    |      ;
                        BEQ CODE_82EDFC                      ;82EDF6|F004    |82EDFC;
                        JML.L checkPlayerGear                ;82EDF8|5CB48082|8280B4;
@@ -16753,30 +16753,30 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE00:
-                       LDA.B $0F                            ;82EE00|A50F    |001937;
+                       LDA.B r_1937-$1928                   ;82EE00|A50F    |001937;
                        BMI CODE_82EE08                      ;82EE02|3004    |82EE08;
-                       JSL.L updateEv_13_14_17_0f           ;82EE04|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82EE04|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82EE08:
                        JML.L checkPlayerGear                ;82EE08|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE0C:
-                       JSL.L updateEv_13_14_17_0f           ;82EE0C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82EE0C|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;82EE10|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE14:
-                       LDA.B $0F                            ;82EE14|A50F    |001997;
+                       LDA.B r_1997-$1988                   ;82EE14|A50F    |001997;
                        BMI CODE_82EE1C                      ;82EE16|3004    |82EE1C;
-                       JSL.L updateEv_13_14_17_0f           ;82EE18|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82EE18|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82EE1C:
                        JML.L CODE_82808F                    ;82EE1C|5C8F8082|82808F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE20:
-                       LDX.B $01                            ;82EE20|A601    |001989;
+                       LDX.B r_1989-$1988                   ;82EE20|A601    |001989;
                        JMP.W (PTR16_82EE25,X)               ;82EE22|7C25EE  |82EE25;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16809,10 +16809,10 @@ prisonCapsule_63_state_00:
                        JSL.L CODE_8281E8                    ;82EE55|22E88182|8281E8;
                                                             ;      |        |      ;
           CODE_82EE59:
-                       JSL.L updateEv_13_14_17_0f           ;82EE59|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82EE59|22EA8E84|848EEA;
                        LDA.B $0F                            ;82EE5D|A50F    |00000F;
                        BPL CODE_82EE65                      ;82EE5F|1004    |82EE65;
-                       JML.L clearStates_00_02_0E           ;82EE61|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82EE61|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE65:
@@ -16820,7 +16820,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE69:
-                       LDX.B $01                            ;82EE69|A601    |001949;
+                       LDX.B r_1949-$1948                   ;82EE69|A601    |001949;
                        JMP.W (PTR16_82EE6E,X)               ;82EE6B|7C6EEE  |82EE6E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16831,43 +16831,43 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82EE74:
                        LDA.B #$02                           ;82EE74|A902    |      ;
-                       STA.B $01                            ;82EE76|8501    |001949;
+                       STA.B r_1949-$1948                   ;82EE76|8501    |001949;
                        LDA.B #$2B                           ;82EE78|A92B    |      ;
-                       STA.B $16                            ;82EE7A|8516    |00195E;
+                       STA.B r_195e-$1948                   ;82EE7A|8516    |00195E;
                        LDA.L $7F8229                        ;82EE7C|AF29827F|7F8229;
-                       STA.B $18                            ;82EE80|8518    |001960;
+                       STA.B r_1960-$1948                   ;82EE80|8518    |001960;
                        LDA.B #$25                           ;82EE82|A925    |      ;
-                       TSB.B $11                            ;82EE84|0411    |001959;
-                       LDA.B $0B                            ;82EE86|A50B    |001953;
+                       TSB.B r_1959-$1948                   ;82EE84|0411    |001959;
+                       LDA.B r_1953-$1948                   ;82EE86|A50B    |001953;
                        JSL.L playerGrabedRoutine            ;82EE88|22078F84|848F07;
-                       LDA.B $0B                            ;82EE8C|A50B    |001953;
+                       LDA.B r_1953-$1948                   ;82EE8C|A50B    |001953;
                        BNE CODE_82EE98                      ;82EE8E|D008    |82EE98;
                        LDA.B #$02                           ;82EE90|A902    |      ;
-                       STA.B $01                            ;82EE92|8501    |001969;
+                       STA.B r_1969-$1968                   ;82EE92|8501    |001969;
                        JML.L checkPlayerGear                ;82EE94|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EE98:
                        LDA.B #$04                           ;82EE98|A904    |      ;
-                       STA.B $01                            ;82EE9A|8501    |001949;
+                       STA.B r_1949-$1948                   ;82EE9A|8501    |001949;
                        REP #$20                             ;82EE9C|C220    |      ;
                        LDA.W #$0100                         ;82EE9E|A90001  |      ;
-                       STA.B $1C                            ;82EEA1|851C    |001964;
+                       STA.B r_1964-$1948                   ;82EEA1|851C    |001964;
                        SEP #$20                             ;82EEA3|E220    |      ;
                        JML.L checkPlayerGear                ;82EEA5|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EEA9:
                        REP #$10                             ;82EEA9|C210    |      ;
-                       LDX.B $0C                            ;82EEAB|A60C    |001974;
-                       LDA.W r_0003,X                       ;82EEAD|BD0300  |860003;
+                       LDX.B r_1974-$1968                   ;82EEAB|A60C    |001974;
+                       LDA.W r6_0003,X                      ;82EEAD|BD0300  |860003;
                        SEP #$10                             ;82EEB0|E210    |      ;
                        BNE CODE_82EEB8                      ;82EEB2|D004    |82EEB8;
-                       JML.L clearStates_00_02_0E           ;82EEB4|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82EEB4|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EEB8:
-                       JSL.L updateEv_13_14_17_0f           ;82EEB8|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82EEB8|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;82EEBC|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16880,35 +16880,35 @@ prisonCapsule_63_state_00:
                        BNE CODE_82EEDC                      ;82EECD|D00D    |82EEDC;
                                                             ;      |        |      ;
           CODE_82EECF:
-                       JSL.L updateEv_13_14_17_0f           ;82EECF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82EECF|22EA8E84|848EEA;
                        JSL.L checkPlayerGear                ;82EED3|22B48082|8280B4;
-                       LDA.B $0E                            ;82EED7|A50E    |001956;
+                       LDA.B r_1956-$1948                   ;82EED7|A50E    |001956;
                        BEQ CODE_82EEDC                      ;82EED9|F001    |82EEDC;
                        RTL                                  ;82EEDB|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EEDC:
-                       JML.L clearStates_00_02_0E           ;82EEDC|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82EEDC|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EEE0:
                        REP #$30                             ;82EEE0|C230    |      ;
-                       LDA.B $05                            ;82EEE2|A505    |00194D;
-                       STA.W r_0000                         ;82EEE4|8D0000  |860000;
-                       LDA.B $08                            ;82EEE7|A508    |001950;
+                       LDA.B r_194d-$1948                   ;82EEE2|A505    |00194D;
+                       STA.W r6_0000                        ;82EEE4|8D0000  |860000;
+                       LDA.B r_1950-$1948                   ;82EEE7|A508    |001950;
                        SEC                                  ;82EEE9|38      |      ;
                        SBC.W #$0012                         ;82EEEA|E91200  |      ;
-                       STA.W r_0002                         ;82EEED|8D0200  |860002;
+                       STA.W r6_0002                        ;82EEED|8D0200  |860002;
                        PHD                                  ;82EEF0|0B      |      ;
                        LDA.W #$0000                         ;82EEF1|A90000  |      ;
                        TCD                                  ;82EEF4|5B      |      ;
                        JSL.L CODE_849156                    ;82EEF5|22569184|849156;
                        LDA.L blockMap,X                     ;82EEF9|BF00207E|7E2000;
                        TAY                                  ;82EEFD|A8      |      ;
-                       LDA.W r_0b92                         ;82EEFE|AD920B  |860B92;
+                       LDA.W r6_0b92                        ;82EEFE|AD920B  |860B92;
                        STA.B $10                            ;82EF01|8510    |000010;
-                       LDA.W r_0b94                         ;82EF03|AD940B  |860B94;
-                       LDA.W r_0b94                         ;82EF06|AD940B  |860B94;
+                       LDA.W r6_0b94                        ;82EF03|AD940B  |860B94;
+                       LDA.W r6_0b94                        ;82EF06|AD940B  |860B94;
                        STA.B $12                            ;82EF09|8512    |000012;
                        LDA.B [$10],Y                        ;82EF0B|B710    |000010;
                        AND.W #$00FF                         ;82EF0D|29FF00  |      ;
@@ -16918,23 +16918,23 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EF14:
-                       LDA.B $01                            ;82EF14|A501    |001949;
+                       LDA.B r_1949-$1948                   ;82EF14|A501    |001949;
                        BNE CODE_82EF3C                      ;82EF16|D024    |82EF3C;
                        JSL.L CODE_84A23F                    ;82EF18|223FA284|84A23F;
                        TYA                                  ;82EF1C|98      |      ;
                        BEQ CODE_82EF23                      ;82EF1D|F004    |82EF23;
-                       JML.L clearStates_00_02_0E           ;82EF1F|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82EF1F|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EF23:
-                       INC.B $01                            ;82EF23|E601    |001949;
+                       INC.B r_1949-$1948                   ;82EF23|E601    |001949;
                        LDA.L $7F8229                        ;82EF25|AF29827F|7F8229;
-                       STA.B $18                            ;82EF29|8518    |001960;
-                       STZ.B $12                            ;82EF2B|6412    |00195A;
+                       STA.B r_1960-$1948                   ;82EF29|8518    |001960;
+                       STZ.B r_195a-$1948                   ;82EF2B|6412    |00195A;
                        LDA.B #$FF                           ;82EF2D|A9FF    |      ;
-                       STA.B $1F                            ;82EF2F|851F    |001967;
+                       STA.B r_1967-$1948                   ;82EF2F|851F    |001967;
                        LDA.B #$2B                           ;82EF31|A92B    |      ;
-                       STA.B $16                            ;82EF33|8516    |00195E;
+                       STA.B r_195e-$1948                   ;82EF33|8516    |00195E;
                        LDA.B #$03                           ;82EF35|A903    |      ;
                        JSL.L playerGrabedRoutine            ;82EF37|22078F84|848F07;
                        RTL                                  ;82EF3B|6B      |      ;
@@ -16942,152 +16942,152 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82EF3C:
                        REP #$21                             ;82EF3C|C221    |      ;
-                       LDA.W r_d_player_xSubPos             ;82EF3E|ADAD0B  |860BAD;
-                       STA.B $05                            ;82EF41|8505    |00194D;
-                       LDA.W r_d_player_yPos                ;82EF43|ADB00B  |860BB0;
+                       LDA.W r6_player_xPos                 ;82EF3E|ADAD0B  |860BAD;
+                       STA.B r_194d-$1948                   ;82EF41|8505    |00194D;
+                       LDA.W r6_player_yPos                 ;82EF43|ADB00B  |860BB0;
                        ADC.W #$0008                         ;82EF46|690800  |      ;
                        AND.W #$FFF0                         ;82EF49|29F0FF  |      ;
-                       STA.B $08                            ;82EF4C|8508    |001950;
-                       LDA.B $29                            ;82EF4E|A529    |001971;
+                       STA.B r_1950-$1948                   ;82EF4C|8508    |001950;
+                       LDA.B r_1971-$1948                   ;82EF4E|A529    |001971;
                        PHA                                  ;82EF50|48      |      ;
                        LDA.W #$0800                         ;82EF51|A90008  |      ;
-                       STA.B $29                            ;82EF54|8529    |001971;
+                       STA.B r_1971-$1948                   ;82EF54|8529    |001971;
                        JSL.L CODE_8490A0                    ;82EF56|22A09084|8490A0;
                        TAX                                  ;82EF5A|AA      |      ;
                        PLA                                  ;82EF5B|68      |      ;
-                       STA.B $29                            ;82EF5C|8529    |001971;
+                       STA.B r_1971-$1948                   ;82EF5C|8529    |001971;
                        SEP #$20                             ;82EF5E|E220    |      ;
                        CPX.B #$0E                           ;82EF60|E00E    |      ;
                        BNE CODE_82EFAF                      ;82EF62|D04B    |82EFAF;
                        LDA.B #$04                           ;82EF64|A904    |      ;
-                       CMP.W $0BAA                          ;82EF66|CDAA0B  |860BAA;
+                       CMP.W r6_player_action               ;82EF66|CDAA0B  |860BAA;
                        BNE CODE_82EF71                      ;82EF69|D006    |82EF71;
-                       CMP.B $1F                            ;82EF6B|C51F    |001967;
+                       CMP.B r_1967-$1948                   ;82EF6B|C51F    |001967;
                        BEQ CODE_82EFD5                      ;82EF6D|F066    |82EFD5;
                        BRA CODE_82EFC7                      ;82EF6F|8056    |82EFC7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EF71:
                        LDA.B #$02                           ;82EF71|A902    |      ;
-                       CMP.W $0BAA                          ;82EF73|CDAA0B  |860BAA;
+                       CMP.W r6_player_action               ;82EF73|CDAA0B  |860BAA;
                        BNE CODE_82EF7E                      ;82EF76|D006    |82EF7E;
-                       CMP.B $1F                            ;82EF78|C51F    |001967;
+                       CMP.B r_1967-$1948                   ;82EF78|C51F    |001967;
                        BEQ CODE_82EFD5                      ;82EF7A|F059    |82EFD5;
                        BRA CODE_82EFC7                      ;82EF7C|8049    |82EFC7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EF7E:
                        LDA.B #$14                           ;82EF7E|A914    |      ;
-                       CMP.W $0BAA                          ;82EF80|CDAA0B  |860BAA;
+                       CMP.W r6_player_action               ;82EF80|CDAA0B  |860BAA;
                        BNE CODE_82EF8B                      ;82EF83|D006    |82EF8B;
-                       CMP.B $1F                            ;82EF85|C51F    |001947;
+                       CMP.B r_1947-$1928                   ;82EF85|C51F    |001947;
                        BEQ CODE_82EFD5                      ;82EF87|F04C    |82EFD5;
                        BRA CODE_82EFC7                      ;82EF89|803C    |82EFC7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EF8B:
-                       LDA.W $0BAA                          ;82EF8B|ADAA0B  |860BAA;
+                       LDA.W r6_player_action               ;82EF8B|ADAA0B  |860BAA;
                        BNE CODE_82EFAF                      ;82EF8E|D01F    |82EFAF;
-                       LDA.B $1F                            ;82EF90|A51F    |001967;
+                       LDA.B r_1967-$1948                   ;82EF90|A51F    |001967;
                        BNE CODE_82EFE5                      ;82EF92|D051    |82EFE5;
-                       LDA.B $02                            ;82EF94|A502    |00194A;
+                       LDA.B r_194a-$1948                   ;82EF94|A502    |00194A;
                        CMP.B #$04                           ;82EF96|C904    |      ;
                        BEQ CODE_82EFF3                      ;82EF98|F059    |82EFF3;
-                       LDX.B $03                            ;82EF9A|A603    |00194B;
+                       LDX.B r_194b-$1948                   ;82EF9A|A603    |00194B;
                        BNE CODE_82EFC1                      ;82EF9C|D023    |82EFC1;
                        BRA CODE_82EFB5                      ;82EF9E|8015    |82EFB5;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EFA0:
                        LDA.B #$25                           ;82EFA0|A925    |      ;
-                       BIT.W r_d_0bb9                       ;82EFA2|2CB90B  |860BB9;
+                       BIT.W r6_player_sprPal               ;82EFA2|2CB90B  |860BB9;
                        BVC CODE_82EFA9                      ;82EFA5|5002    |82EFA9;
                        LDA.B #$65                           ;82EFA7|A965    |      ;
                                                             ;      |        |      ;
           CODE_82EFA9:
-                       STA.B $11                            ;82EFA9|8511    |001959;
+                       STA.B r_1959-$1948                   ;82EFA9|8511    |001959;
                        JSL.L checkPlayerGear                ;82EFAB|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82EFAF:
-                       LDA.W $0BAA                          ;82EFAF|ADAA0B  |860BAA;
-                       STA.B $1F                            ;82EFB2|851F    |001967;
+                       LDA.W r6_player_action               ;82EFAF|ADAA0B  |860BAA;
+                       STA.B r_1967-$1948                   ;82EFB2|851F    |001967;
                        RTL                                  ;82EFB4|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EFB5:
-                       STZ.B $02                            ;82EFB5|6402    |00194A;
-                       INC.B $03                            ;82EFB7|E603    |00194B;
+                       STZ.B r_194a-$1948                   ;82EFB5|6402    |00194A;
+                       INC.B r_194b-$1948                   ;82EFB7|E603    |00194B;
                        LDA.B #$04                           ;82EFB9|A904    |      ;
                        JSL.L playerGrabedRoutine            ;82EFBB|22078F84|848F07;
                        BRA CODE_82EFA0                      ;82EFBF|80DF    |82EFA0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EFC1:
-                       JSL.L updateEv_13_14_17_0f           ;82EFC1|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82EFC1|22EA8E84|848EEA;
                        BRA CODE_82EFA0                      ;82EFC5|80D9    |82EFA0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EFC7:
                        LDA.B #$02                           ;82EFC7|A902    |      ;
-                       STA.B $02                            ;82EFC9|8502    |00194A;
-                       INC.B $03                            ;82EFCB|E603    |00194B;
+                       STA.B r_194a-$1948                   ;82EFC9|8502    |00194A;
+                       INC.B r_194b-$1948                   ;82EFCB|E603    |00194B;
                        LDA.B #$03                           ;82EFCD|A903    |      ;
                        JSL.L playerGrabedRoutine            ;82EFCF|22078F84|848F07;
                        BRA CODE_82EFA0                      ;82EFD3|80CB    |82EFA0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EFD5:
-                       LDA.W r_frameCounter1                ;82EFD5|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82EFD5|AD9C0B  |860B9C;
                        BIT.B #$03                           ;82EFD8|8903    |      ;
                        BNE CODE_82EFDF                      ;82EFDA|D003    |82EFDF;
                        JSR.W CODE_82F001                    ;82EFDC|2001F0  |82F001;
                                                             ;      |        |      ;
           CODE_82EFDF:
-                       JSL.L updateEv_13_14_17_0f           ;82EFDF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82EFDF|22EA8E84|848EEA;
                        BRA CODE_82EFA0                      ;82EFE3|80BB    |82EFA0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EFE5:
                        LDA.B #$04                           ;82EFE5|A904    |      ;
-                       STA.B $02                            ;82EFE7|8502    |00194A;
-                       INC.B $03                            ;82EFE9|E603    |00194B;
+                       STA.B r_194a-$1948                   ;82EFE7|8502    |00194A;
+                       INC.B r_194b-$1948                   ;82EFE9|E603    |00194B;
                        LDA.B #$05                           ;82EFEB|A905    |      ;
                        JSL.L playerGrabedRoutine            ;82EFED|22078F84|848F07;
                        BRA CODE_82EFA0                      ;82EFF1|80AD    |82EFA0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82EFF3:
-                       LDA.B $0F                            ;82EFF3|A50F    |001957;
+                       LDA.B r_1957-$1948                   ;82EFF3|A50F    |001957;
                        BPL CODE_82EFFB                      ;82EFF5|1004    |82EFFB;
-                       STZ.B $02                            ;82EFF7|6402    |00194A;
-                       STZ.B $03                            ;82EFF9|6403    |00194B;
+                       STZ.B r_194a-$1948                   ;82EFF7|6402    |00194A;
+                       STZ.B r_194b-$1948                   ;82EFF9|6403    |00194B;
                                                             ;      |        |      ;
           CODE_82EFFB:
-                       JSL.L updateEv_13_14_17_0f           ;82EFFB|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82EFFB|22EA8E84|848EEA;
                        BRA CODE_82EFA0                      ;82EFFF|809F    |82EFA0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F001:
                        JSL.L CODE_8282D3                    ;82F001|22D38282|8282D3;
                        BNE CODE_82F037                      ;82F005|D030    |82F037;
-                       INC.W r_0000,X                       ;82F007|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82F007|FE0000  |860000;
                        LDA.B #$0C                           ;82F00A|A90C    |      ;
-                       STA.W r_000a,X                       ;82F00C|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82F00C|9D0A00  |86000A;
                        LDA.B #$83                           ;82F00F|A983    |      ;
-                       STA.W r_000b,X                       ;82F011|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82F011|9D0B00  |86000B;
                        REP #$21                             ;82F014|C221    |      ;
-                       LDA.B $08                            ;82F016|A508    |001950;
+                       LDA.B r_1950-$1948                   ;82F016|A508    |001950;
                        ADC.W #$0010                         ;82F018|691000  |      ;
-                       STA.W r_0008,X                       ;82F01B|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82F01B|9D0800  |860008;
                        JSL.L mainPlayer_00                  ;82F01E|22869084|849086;
                        AND.W #$000F                         ;82F022|290F00  |      ;
-                       STA.W r_0000                         ;82F025|8D0000  |860000;
-                       LDA.B $05                            ;82F028|A505    |00194D;
+                       STA.W r6_0000                        ;82F025|8D0000  |860000;
+                       LDA.B r_194d-$1948                   ;82F028|A505    |00194D;
                        SEC                                  ;82F02A|38      |      ;
                        SBC.W #$0008                         ;82F02B|E90800  |      ;
                        CLC                                  ;82F02E|18      |      ;
-                       ADC.W r_0000                         ;82F02F|6D0000  |860000;
-                       STA.W r_0005,X                       ;82F032|9D0500  |860005;
+                       ADC.W r6_0000                        ;82F02F|6D0000  |860000;
+                       STA.W r6_0005,X                      ;82F032|9D0500  |860005;
                        SEP #$20                             ;82F035|E220    |      ;
                                                             ;      |        |      ;
           CODE_82F037:
@@ -17096,18 +17096,18 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F03A:
-                       LDA.W r_level_current                ;82F03A|AD7A1F  |861F7A;
+                       LDA.W r6_level_current               ;82F03A|AD7A1F  |861F7A;
                        BNE CODE_82F042                      ;82F03D|D003    |82F042;
                        JMP.W CODE_82F0D9                    ;82F03F|4CD9F0  |82F0D9;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F042:
                        LDA.B #$10                           ;82F042|A910    |      ;
-                       STA.B $0A                            ;82F044|850A    |001932;
+                       STA.B r_1932-$1928                   ;82F044|850A    |001932;
                        JSL.L CODE_84A20A                    ;82F046|220AA284|84A20A;
                        CPY.B #$00                           ;82F04A|C000    |      ;
                        BEQ CODE_82F052                      ;82F04C|F004    |82F052;
-                       JML.L clearStates_00_02_0E           ;82F04E|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F04E|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F052:
@@ -17134,29 +17134,29 @@ prisonCapsule_63_state_00:
                        PLB                                  ;82F06F|AB      |      ;
                        LDX.W $00A3                          ;82F070|AEA300  |8600A3;
                        LDA.B #$80                           ;82F073|A980    |      ;
-                       STA.W r_0500,X                       ;82F075|9D0005  |860500;
+                       STA.W r6_0500,X                      ;82F075|9D0005  |860500;
                        REP #$20                             ;82F078|C220    |      ;
                        LDA.W #$0BC0                         ;82F07A|A9C00B  |      ;
-                       STA.W r_0501,X                       ;82F07D|9D0105  |860501;
+                       STA.W r6_0501,X                      ;82F07D|9D0105  |860501;
                        LDA.W #$0880                         ;82F080|A98008  |      ;
-                       STA.W r_0503,X                       ;82F083|9D0305  |860503;
+                       STA.W r6_0503,X                      ;82F083|9D0305  |860503;
                        LDA.W #$D000                         ;82F086|A900D0  |      ;
-                       STA.W r_0505,X                       ;82F089|9D0505  |860505;
+                       STA.W r6_0505,X                      ;82F089|9D0505  |860505;
                        SEP #$20                             ;82F08C|E220    |      ;
                        LDA.B #$7F                           ;82F08E|A97F    |      ;
-                       STA.W r_0507,X                       ;82F090|9D0705  |860507;
+                       STA.W r6_0507,X                      ;82F090|9D0705  |860507;
                        TXA                                  ;82F093|8A      |      ;
                        CLC                                  ;82F094|18      |      ;
                        ADC.B #$08                           ;82F095|6908    |      ;
                        STA.W $00A3                          ;82F097|8DA300  |8600A3;
                        LDA.B #$17                           ;82F09A|A917    |      ;
-                       STA.W r_BG_enableMask                ;82F09C|8DC000  |8600C0;
+                       STA.W r6_BG_enableMask               ;82F09C|8DC000  |8600C0;
                        LDA.B #$13                           ;82F09F|A913    |      ;
-                       STA.W r_00c1                         ;82F0A1|8DC100  |8600C1;
+                       STA.W r6_00c1                        ;82F0A1|8DC100  |8600C1;
                        LDA.B #$02                           ;82F0A4|A902    |      ;
-                       STA.W r_colorV_c9                    ;82F0A6|8DC900  |8600C9;
+                       STA.W r6_colorV_c9                   ;82F0A6|8DC900  |8600C9;
                        LDA.B #$7F                           ;82F0A9|A97F    |      ;
-                       STA.W r_colorV_ca                    ;82F0AB|8DCA00  |8600CA;
+                       STA.W r6_colorV_ca                   ;82F0AB|8DCA00  |8600CA;
                        LDA.B #$55                           ;82F0AE|A955    |      ;
                        STA.W $0303                          ;82F0B0|8D0303  |860303;
                        LDA.B #$65                           ;82F0B3|A965    |      ;
@@ -17165,9 +17165,9 @@ prisonCapsule_63_state_00:
                        TSB.W $00A1                          ;82F0BA|0CA100  |8600A1;
                        JSL.L CODE_828307                    ;82F0BD|22078382|828307;
                        BNE CODE_82F0D5                      ;82F0C1|D012    |82F0D5;
-                       INC.W r_0000,X                       ;82F0C3|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82F0C3|FE0000  |860000;
                        LDA.B #$10                           ;82F0C6|A910    |      ;
-                       STA.W r_000a,X                       ;82F0C8|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82F0C8|9D0A00  |86000A;
                        PHD                                  ;82F0CB|0B      |      ;
                        PHX                                  ;82F0CC|DA      |      ;
                        PLD                                  ;82F0CD|2B      |      ;
@@ -17176,50 +17176,50 @@ prisonCapsule_63_state_00:
                        PLD                                  ;82F0D4|2B      |      ;
                                                             ;      |        |      ;
           CODE_82F0D5:
-                       JML.L clearStates_00_02_0E           ;82F0D5|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F0D5|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F0D9:
                        LDA.B #$11                           ;82F0D9|A911    |      ;
-                       STA.B $0A                            ;82F0DB|850A    |001932;
+                       STA.B r_1932-$1928                   ;82F0DB|850A    |001932;
                        JSL.L CODE_84A20A                    ;82F0DD|220AA284|84A20A;
                        CPY.B #$00                           ;82F0E1|C000    |      ;
                        BNE CODE_82F112                      ;82F0E3|D02D    |82F112;
-                       STZ.W r_colorV_c9                    ;82F0E5|9CC900  |8600C9;
-                       STZ.W r_colorV_cb                    ;82F0E8|9CCB00  |8600CB;
-                       STZ.W r_colorV_cc                    ;82F0EB|9CCC00  |8600CC;
-                       STZ.W r_colorV_cd                    ;82F0EE|9CCD00  |8600CD;
+                       STZ.W r6_colorV_c9                   ;82F0E5|9CC900  |8600C9;
+                       STZ.W r6_colorV_cb                   ;82F0E8|9CCB00  |8600CB;
+                       STZ.W r6_colorV_cc                   ;82F0EB|9CCC00  |8600CC;
+                       STZ.W r6_colorV_cd                   ;82F0EE|9CCD00  |8600CD;
                        LDA.B #$13                           ;82F0F1|A913    |      ;
                        STA.W TM                             ;82F0F3|8D2C21  |86212C;
-                       STA.W r_BG_enableMask                ;82F0F6|8DC000  |8600C0;
+                       STA.W r6_BG_enableMask               ;82F0F6|8DC000  |8600C0;
                        LDA.B #$BD                           ;82F0F9|A9BD    |      ;
-                       STA.W r_colorV_ca                    ;82F0FB|8DCA00  |8600CA;
+                       STA.W r6_colorV_ca                   ;82F0FB|8DCA00  |8600CA;
                        JSL.L CODE_828307                    ;82F0FE|22078382|828307;
-                       INC.W r_0000,X                       ;82F102|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82F102|FE0000  |860000;
                        LDA.B #$11                           ;82F105|A911    |      ;
-                       STA.W r_000a,X                       ;82F107|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82F107|9D0A00  |86000A;
                        LDA.B #$04                           ;82F10A|A904    |      ;
-                       STA.W r_000b,X                       ;82F10C|9D0B00  |86000B;
-                       STZ.W r_0004,X                       ;82F10F|9E0400  |860004;
+                       STA.W r6_000b,X                      ;82F10C|9D0B00  |86000B;
+                       STZ.W r6_0004,X                      ;82F10F|9E0400  |860004;
                                                             ;      |        |      ;
           CODE_82F112:
-                       JML.L clearStates_00_02_0E           ;82F112|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F112|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F116:
-                       LDX.B $01                            ;82F116|A601    |0019E9;
+                       LDX.B r_19e9-$19E8                   ;82F116|A601    |0019E9;
                        BNE CODE_82F134                      ;82F118|D01A    |82F134;
-                       INC.B $01                            ;82F11A|E601    |0019E9;
+                       INC.B r_19e9-$19E8                   ;82F11A|E601    |0019E9;
                        LDA.B #$30                           ;82F11C|A930    |      ;
-                       STA.B $16                            ;82F11E|8516    |0019FE;
-                       STZ.B $1F                            ;82F120|641F    |001A07;
+                       STA.B r_19fe-$19E8                   ;82F11E|8516    |0019FE;
+                       STZ.B r_1a07-$19E8                   ;82F120|641F    |001A07;
                        LDA.B #$08                           ;82F122|A908    |      ;
-                       STA.B $1E                            ;82F124|851E    |001A06;
+                       STA.B r_1a06-$19E8                   ;82F124|851E    |001A06;
                        REP #$20                             ;82F126|C220    |      ;
-                       STZ.B $1A                            ;82F128|641A    |001A02;
-                       STZ.B $1C                            ;82F12A|641C    |001A04;
+                       STZ.B r_1a02-$19E8                   ;82F128|641A    |001A02;
+                       STZ.B r_1a04-$19E8                   ;82F12A|641C    |001A04;
                        SEP #$20                             ;82F12C|E220    |      ;
-                       LDA.B $17                            ;82F12E|A517    |0019FF;
+                       LDA.B r_19ff-$19E8                   ;82F12E|A517    |0019FF;
                        JML.L playerGrabedRoutine            ;82F130|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -17227,49 +17227,49 @@ prisonCapsule_63_state_00:
                        JSL.L CODE_828174                    ;82F134|22748182|828174;
                        REP #$20                             ;82F138|C220    |      ;
                        LDA.W #$FE00                         ;82F13A|A900FE  |      ;
-                       CMP.B $1C                            ;82F13D|C51C    |001A04;
+                       CMP.B r_1a04-$19E8                   ;82F13D|C51C    |001A04;
                        BMI CODE_82F143                      ;82F13F|3002    |82F143;
-                       STA.B $1C                            ;82F141|851C    |001A04;
+                       STA.B r_1a04-$19E8                   ;82F141|851C    |001A04;
                                                             ;      |        |      ;
           CODE_82F143:
-                       LDA.W r_cam_BG0_BottomBorder         ;82F143|AD5C1E  |861E5C;
+                       LDA.W r6_cam_BG0_BottomBorder        ;82F143|AD5C1E  |861E5C;
                        CLC                                  ;82F146|18      |      ;
                        ADC.W #$0140                         ;82F147|694001  |      ;
-                       CMP.B $08                            ;82F14A|C508    |0019F0;
+                       CMP.B r_19f0-$19E8                   ;82F14A|C508    |0019F0;
                        BCC CODE_82F166                      ;82F14C|9018    |82F166;
-                       LDA.B $29                            ;82F14E|A529    |001A11;
+                       LDA.B r_1a11-$19E8                   ;82F14E|A529    |001A11;
                        PHA                                  ;82F150|48      |      ;
                        SEP #$20                             ;82F151|E220    |      ;
-                       STZ.B $29                            ;82F153|6429    |001A11;
+                       STZ.B r_1a11-$19E8                   ;82F153|6429    |001A11;
                        LDA.B #$10                           ;82F155|A910    |      ;
-                       STA.B $2A                            ;82F157|852A    |001A12;
+                       STA.B r_1a12-$19E8                   ;82F157|852A    |001A12;
                        JSL.L CODE_8490A0                    ;82F159|22A09084|8490A0;
                        CMP.B #$0D                           ;82F15D|C90D    |      ;
                        BEQ CODE_82F176                      ;82F15F|F015    |82F176;
                        REP #$20                             ;82F161|C220    |      ;
                        PLA                                  ;82F163|68      |      ;
-                       STA.B $29                            ;82F164|8529    |001A11;
+                       STA.B r_1a11-$19E8                   ;82F164|8529    |001A11;
                                                             ;      |        |      ;
           CODE_82F166:
                        SEP #$20                             ;82F166|E220    |      ;
                        JSL.L CODE_84A4B5                    ;82F168|22B5A484|84A4B5;
                        LDA.B #$3C                           ;82F16C|A93C    |      ;
                        JSL.L CODE_84A338                    ;82F16E|2238A384|84A338;
-                       JML.L clearStates_00_02_0E           ;82F172|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F172|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F176:
                        REP #$20                             ;82F176|C220    |      ;
                        PLA                                  ;82F178|68      |      ;
-                       STA.B $29                            ;82F179|8529    |001A11;
+                       STA.B r_1a11-$19E8                   ;82F179|8529    |001A11;
                        SEP #$20                             ;82F17B|E220    |      ;
-                       LDA.W r_frameCounter1                ;82F17D|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82F17D|AD9C0B  |860B9C;
                        BIT.B #$1F                           ;82F180|891F    |      ;
                        BNE CODE_82F187                      ;82F182|D003    |82F187;
                        JSR.W CODE_82C507                    ;82F184|2007C5  |82C507;
                                                             ;      |        |      ;
           CODE_82F187:
-                       LDA.W r_frameCounter1                ;82F187|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82F187|AD9C0B  |860B9C;
                        LSR A                                ;82F18A|4A      |      ;
                        BCC CODE_82F191                      ;82F18B|9004    |82F191;
                        JML.L checkPlayerGear                ;82F18D|5CB48082|8280B4;
@@ -17280,7 +17280,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F192:
-                       LDX.B $01                            ;82F192|A601    |0019C9;
+                       LDX.B r_19c9-$19C8                   ;82F192|A601    |0019C9;
                        JMP.W (PTR16_82F197,X)               ;82F194|7C97F1  |82F197;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -17291,38 +17291,38 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F19D:
                        LDA.B #$02                           ;82F19D|A902    |      ;
-                       STA.B $01                            ;82F19F|8501    |001A89;
-                       STZ.B $12                            ;82F1A1|6412    |001A9A;
+                       STA.B r_1a89-$1A88                   ;82F19F|8501    |001A89;
+                       STZ.B r_1a9a-$1A88                   ;82F1A1|6412    |001A9A;
                        LDA.B #$25                           ;82F1A3|A925    |      ;
-                       STA.B $11                            ;82F1A5|8511    |001A99;
+                       STA.B r_1a99-$1A88                   ;82F1A5|8511    |001A99;
                        LDA.L $7F8218                        ;82F1A7|AF18827F|7F8218;
-                       STA.B $18                            ;82F1AB|8518    |001AA0;
-                       LDA.B $0B                            ;82F1AD|A50B    |001A93;
+                       STA.B r_1aa0-$1A88                   ;82F1AB|8518    |001AA0;
+                       LDA.B r_1a93-$1A88                   ;82F1AD|A50B    |001A93;
                        CMP.B #$80                           ;82F1AF|C980    |      ;
                        BNE CODE_82F1CD                      ;82F1B1|D01A    |82F1CD;
                        LDA.B #$0F                           ;82F1B3|A90F    |      ;
-                       STA.B $10                            ;82F1B5|8510    |001A98;
-                       STZ.B $03                            ;82F1B7|6403    |001A8B;
+                       STA.B r_1a98-$1A88                   ;82F1B5|8510    |001A98;
+                       STZ.B r_1a8b-$1A88                   ;82F1B7|6403    |001A8B;
                        LDA.B #$50                           ;82F1B9|A950    |      ;
-                       STA.B $1F                            ;82F1BB|851F    |001AA7;
-                       STZ.B $1E                            ;82F1BD|641E    |001AA6;
+                       STA.B r_1aa7-$1A88                   ;82F1BB|851F    |001AA7;
+                       STZ.B r_1aa6-$1A88                   ;82F1BD|641E    |001AA6;
                        REP #$20                             ;82F1BF|C220    |      ;
                        LDA.W #$047D                         ;82F1C1|A97D04  |      ;
-                       STA.B $1A                            ;82F1C4|851A    |001AA2;
+                       STA.B r_1aa2-$1A88                   ;82F1C4|851A    |001AA2;
                        LDA.W #$0100                         ;82F1C6|A90001  |      ;
-                       STA.B $1C                            ;82F1C9|851C    |001AA4;
+                       STA.B r_1aa4-$1A88                   ;82F1C9|851C    |001AA4;
                        SEP #$20                             ;82F1CB|E220    |      ;
                                                             ;      |        |      ;
           CODE_82F1CD:
                        LDA.B #$1A                           ;82F1CD|A91A    |      ;
-                       STA.B $16                            ;82F1CF|8516    |001A9E;
+                       STA.B r_1a9e-$1A88                   ;82F1CF|8516    |001A9E;
                        LDA.B #$03                           ;82F1D1|A903    |      ;
                        JSL.L playerGrabedRoutine            ;82F1D3|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82F1D7:
-                       LDA.B $0B                            ;82F1D7|A50B    |0019D3;
+                       LDA.B r_19d3-$19C8                   ;82F1D7|A50B    |0019D3;
                        BMI CODE_82F1E2                      ;82F1D9|3007    |82F1E2;
-                       LDX.B $02                            ;82F1DB|A602    |00198A;
+                       LDX.B r_198a-$1988                   ;82F1DB|A602    |00198A;
                        JSR.W (PTR16_82F245,X)               ;82F1DD|FC45F2  |82F245;
                        BRA CODE_82F23D                      ;82F1E0|805B    |82F23D;
                                                             ;      |        |      ;
@@ -17330,15 +17330,15 @@ prisonCapsule_63_state_00:
           CODE_82F1E2:
                        CMP.B #$80                           ;82F1E2|C980    |      ;
                        BEQ CODE_82F1ED                      ;82F1E4|F007    |82F1ED;
-                       LDX.B $02                            ;82F1E6|A602    |001B6A;
+                       LDX.B r_1b6a-$1B68                   ;82F1E6|A602    |001B6A;
                        JSR.W (PTR16_82F249,X)               ;82F1E8|FC49F2  |82F249;
                        BRA CODE_82F23D                      ;82F1EB|8050    |82F23D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F1ED:
                        REP #$10                             ;82F1ED|C210    |      ;
-                       LDX.B $0C                            ;82F1EF|A60C    |0019D4;
-                       LDA.W r_0002,X                       ;82F1F1|BD0200  |860002;
+                       LDX.B r_19d4-$19C8                   ;82F1EF|A60C    |0019D4;
+                       LDA.W r6_0002,X                      ;82F1F1|BD0200  |860002;
                        BEQ CODE_82F200                      ;82F1F4|F00A    |82F200;
                        SEP #$10                             ;82F1F6|E210    |      ;
                        JSR.W CODE_82F2E3                    ;82F1F8|20E3F2  |82F2E3;
@@ -17347,43 +17347,43 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F200:
-                       LDA.W r_000b,X                       ;82F200|BD0B00  |86000B;
+                       LDA.W r6_000b,X                      ;82F200|BD0B00  |86000B;
                        SEP #$10                             ;82F203|E210    |      ;
                        CMP.B #$EE                           ;82F205|C9EE    |      ;
                        BCC CODE_82F217                      ;82F207|900E    |82F217;
                        LDA.B #$25                           ;82F209|A925    |      ;
-                       STA.B $11                            ;82F20B|8511    |001A99;
+                       STA.B r_1a99-$1A88                   ;82F20B|8511    |001A99;
                        LDA.B #$08                           ;82F20D|A908    |      ;
-                       STA.B $1F                            ;82F20F|851F    |001AA7;
-                       STZ.B $1A                            ;82F211|641A    |001AA2;
-                       STZ.B $1B                            ;82F213|641B    |001AA3;
-                       STZ.B $12                            ;82F215|6412    |001A9A;
+                       STA.B r_1aa7-$1A88                   ;82F20F|851F    |001AA7;
+                       STZ.B r_1aa2-$1A88                   ;82F211|641A    |001AA2;
+                       STZ.B r_1aa3-$1A88                   ;82F213|641B    |001AA3;
+                       STZ.B r_1a9a-$1A88                   ;82F215|6412    |001A9A;
                                                             ;      |        |      ;
           CODE_82F217:
                        JSR.W CODE_82F315                    ;82F217|2015F3  |82F315;
                                                             ;      |        |      ;
           CODE_82F21A:
                        REP #$20                             ;82F21A|C220    |      ;
-                       LDA.B $29                            ;82F21C|A529    |0019F1;
+                       LDA.B r_19f1-$19C8                   ;82F21C|A529    |0019F1;
                        PHA                                  ;82F21E|48      |      ;
-                       STZ.B $29                            ;82F21F|6429    |0019F1;
+                       STZ.B r_19f1-$19C8                   ;82F21F|6429    |0019F1;
                        JSL.L CODE_8490A0                    ;82F221|22A09084|8490A0;
                        CMP.W #$000E                         ;82F225|C90E00  |      ;
                        BNE CODE_82F22E                      ;82F228|D004    |82F22E;
                        LDX.B #$04                           ;82F22A|A204    |      ;
-                       STX.B $01                            ;82F22C|8601    |001A09;
+                       STX.B r_1a09-$1A08                   ;82F22C|8601    |001A09;
                                                             ;      |        |      ;
           CODE_82F22E:
                        PLA                                  ;82F22E|68      |      ;
-                       STA.B $29                            ;82F22F|8529    |0019F1;
+                       STA.B r_19f1-$19C8                   ;82F22F|8529    |0019F1;
                        SEP #$20                             ;82F231|E220    |      ;
                        JSL.L initPosAllign                  ;82F233|226E8082|82806E;
                        BCC CODE_82F23D                      ;82F237|9004    |82F23D;
                        LDA.B #$04                           ;82F239|A904    |      ;
-                       STA.B $01                            ;82F23B|8501    |0019C9;
+                       STA.B r_19c9-$19C8                   ;82F23B|8501    |0019C9;
                                                             ;      |        |      ;
           CODE_82F23D:
-                       JSL.L updateEv_13_14_17_0f           ;82F23D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82F23D|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;82F241|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -17397,108 +17397,108 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F24D:
                        REP #$21                             ;82F24D|C221    |      ;
-                       LDX.B $0B                            ;82F24F|A60B    |001A73;
-                       LDA.B $08                            ;82F251|A508    |001A70;
+                       LDX.B r_1a73-$1A68                   ;82F24F|A60B    |001A73;
+                       LDA.B r_1a70-$1A68                   ;82F251|A508    |001A70;
                        ADC.W UNREACH_86DE2D,X               ;82F253|7D2DDE  |86DE2D;
-                       STA.B $08                            ;82F256|8508    |001A70;
-                       LDA.B $05                            ;82F258|A505    |001A6D;
+                       STA.B r_1a70-$1A68                   ;82F256|8508    |001A70;
+                       LDA.B r_1a6d-$1A68                   ;82F258|A505    |001A6D;
                        SEC                                  ;82F25A|38      |      ;
                        SBC.W UNREACH_86DE2B,X               ;82F25B|FD2BDE  |86DE2B;
-                       STA.B $05                            ;82F25E|8505    |001A6D;
-                       STA.B $0C                            ;82F260|850C    |001A74;
+                       STA.B r_1a6d-$1A68                   ;82F25E|8505    |001A6D;
+                       STA.B r_1a74-$1A68                   ;82F260|850C    |001A74;
                        LDA.W UNREACH_86DE4B,X               ;82F262|BD4BDE  |86DE4B;
-                       STA.B $1A                            ;82F265|851A    |001A82;
+                       STA.B r_1a82-$1A68                   ;82F265|851A    |001A82;
                        LDA.W UNREACH_86DE4D,X               ;82F267|BD4DDE  |86DE4D;
-                       STA.B $1C                            ;82F26A|851C    |001A84;
+                       STA.B r_1a84-$1A68                   ;82F26A|851C    |001A84;
                        SEP #$20                             ;82F26C|E220    |      ;
                        LDA.B #$10                           ;82F26E|A910    |      ;
-                       STA.B $1F                            ;82F270|851F    |001A87;
-                       STZ.B $1E                            ;82F272|641E    |001A86;
+                       STA.B r_1a87-$1A68                   ;82F270|851F    |001A87;
+                       STZ.B r_1a86-$1A68                   ;82F272|641E    |001A86;
                        LDA.B #$02                           ;82F274|A902    |      ;
-                       STA.B $02                            ;82F276|8502    |001A6A;
+                       STA.B r_1a6a-$1A68                   ;82F276|8502    |001A6A;
                        RTS                                  ;82F278|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F279:
                        REP #$20                             ;82F279|C220    |      ;
-                       LDA.B $05                            ;82F27B|A505    |00198D;
+                       LDA.B r_198d-$1988                   ;82F27B|A505    |00198D;
                        SEC                                  ;82F27D|38      |      ;
-                       SBC.B $0C                            ;82F27E|E50C    |001994;
+                       SBC.B r_1994-$1988                   ;82F27E|E50C    |001994;
                        SEP #$20                             ;82F280|E220    |      ;
-                       LDX.B $0B                            ;82F282|A60B    |001993;
+                       LDX.B r_1993-$1988                   ;82F282|A60B    |001993;
                        CMP.W UNREACH_86DE2B,X               ;82F284|DD2BDE  |86DE2B;
                        BCC CODE_82F28D                      ;82F287|9004    |82F28D;
                        LDA.B #$04                           ;82F289|A904    |      ;
-                       STA.B $01                            ;82F28B|8501    |001989;
+                       STA.B r_1989-$1988                   ;82F28B|8501    |001989;
                                                             ;      |        |      ;
           CODE_82F28D:
                        JSL.L CODE_828195                    ;82F28D|22958182|828195;
-                       JSL.L updateEv_13_14_17_0f           ;82F291|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82F291|22EA8E84|848EEA;
                        RTS                                  ;82F295|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F296:
                        LDA.B #$02                           ;82F296|A902    |      ;
-                       STA.B $02                            ;82F298|8502    |001ACA;
+                       STA.B r_1aca-$1AC8                   ;82F298|8502    |001ACA;
                        JSL.L mainPlayer_00                  ;82F29A|22869084|849086;
                        AND.B #$1C                           ;82F29E|291C    |      ;
                        TAX                                  ;82F2A0|AA      |      ;
                        REP #$20                             ;82F2A1|C220    |      ;
                        LDA.W UNREACH_86DE6B,X               ;82F2A3|BD6BDE  |86DE6B;
-                       STA.B $1A                            ;82F2A6|851A    |001AE2;
+                       STA.B r_1ae2-$1AC8                   ;82F2A6|851A    |001AE2;
                        JSL.L mainPlayer_00                  ;82F2A8|22869084|849086;
                        AND.W #$001C                         ;82F2AC|291C00  |      ;
                        TAX                                  ;82F2AF|AA      |      ;
                        LDA.W UNREACH_86DE6D,X               ;82F2B0|BD6DDE  |86DE6D;
-                       STA.B $1C                            ;82F2B3|851C    |001AE4;
+                       STA.B r_1ae4-$1AC8                   ;82F2B3|851C    |001AE4;
                        SEP #$20                             ;82F2B5|E220    |      ;
                        LDA.B #$3C                           ;82F2B7|A93C    |      ;
-                       STA.B $10                            ;82F2B9|8510    |001AD8;
+                       STA.B r_1ad8-$1AC8                   ;82F2B9|8510    |001AD8;
                        LDA.B #$10                           ;82F2BB|A910    |      ;
-                       STA.B $1F                            ;82F2BD|851F    |001AE7;
+                       STA.B r_1ae7-$1AC8                   ;82F2BD|851F    |001AE7;
                        LDA.B #$10                           ;82F2BF|A910    |      ;
-                       STA.B $1E                            ;82F2C1|851E    |001AE6;
+                       STA.B r_1ae6-$1AC8                   ;82F2C1|851E    |001AE6;
                        RTS                                  ;82F2C3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F2C4:
-                       DEC.B $10                            ;82F2C4|C610    |001B78;
+                       DEC.B r_1b78-$1B68                   ;82F2C4|C610    |001B78;
                        BNE CODE_82F2CC                      ;82F2C6|D004    |82F2CC;
                        LDA.B #$04                           ;82F2C8|A904    |      ;
-                       STA.B $01                            ;82F2CA|8501    |001B69;
+                       STA.B r_1b69-$1B68                   ;82F2CA|8501    |001B69;
                                                             ;      |        |      ;
           CODE_82F2CC:
                        JSL.L CODE_8281CF                    ;82F2CC|22CF8182|8281CF;
-                       LDA.B $1B                            ;82F2D0|A51B    |001B83;
+                       LDA.B r_1b83-$1B68                   ;82F2D0|A51B    |001B83;
                        BMI CODE_82F2D6                      ;82F2D2|3002    |82F2D6;
-                       STZ.B $1B                            ;82F2D4|641B    |001B83;
+                       STZ.B r_1b83-$1B68                   ;82F2D4|641B    |001B83;
                                                             ;      |        |      ;
           CODE_82F2D6:
                        LDA.B #$02                           ;82F2D6|A902    |      ;
-                       CMP.B $1D                            ;82F2D8|C51D    |001B85;
+                       CMP.B r_1b85-$1B68                   ;82F2D8|C51D    |001B85;
                        BPL CODE_82F2DE                      ;82F2DA|1002    |82F2DE;
-                       STA.B $1D                            ;82F2DC|851D    |001B65;
+                       STA.B r_1b65-$1B48                   ;82F2DC|851D    |001B65;
                                                             ;      |        |      ;
           CODE_82F2DE:
                        RTS                                  ;82F2DE|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F2DF:
-                       JML.L clearStates_00_02_0E           ;82F2DF|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F2DF|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F2E3:
-                       LDX.B $03                            ;82F2E3|A603    |001A8B;
+                       LDX.B r_1a8b-$1A88                   ;82F2E3|A603    |001A8B;
                        BNE CODE_82F2FE                      ;82F2E5|D017    |82F2FE;
-                       DEC.B $10                            ;82F2E7|C610    |001A98;
+                       DEC.B r_1a98-$1A88                   ;82F2E7|C610    |001A98;
                        BNE CODE_82F2F9                      ;82F2E9|D00E    |82F2F9;
                        LDA.B #$0F                           ;82F2EB|A90F    |      ;
-                       STA.B $10                            ;82F2ED|8510    |001A98;
-                       INC.B $03                            ;82F2EF|E603    |001A8B;
+                       STA.B r_1a98-$1A88                   ;82F2ED|8510    |001A98;
+                       INC.B r_1a8b-$1A88                   ;82F2EF|E603    |001A8B;
                        LDA.B #$83                           ;82F2F1|A983    |      ;
-                       STA.B $1A                            ;82F2F3|851A    |001AA2;
+                       STA.B r_1aa2-$1A88                   ;82F2F3|851A    |001AA2;
                        LDA.B #$FB                           ;82F2F5|A9FB    |      ;
-                       STA.B $1B                            ;82F2F7|851B    |001AA3;
+                       STA.B r_1aa3-$1A88                   ;82F2F7|851B    |001AA3;
                                                             ;      |        |      ;
           CODE_82F2F9:
                        JSL.L CODE_828174                    ;82F2F9|22748182|828174;
@@ -17506,15 +17506,15 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F2FE:
-                       DEC.B $10                            ;82F2FE|C610    |001A78;
+                       DEC.B r_1a78-$1A68                   ;82F2FE|C610    |001A78;
                        BNE CODE_82F310                      ;82F300|D00E    |82F310;
                        LDA.B #$0F                           ;82F302|A90F    |      ;
-                       STA.B $10                            ;82F304|8510    |001A78;
-                       STZ.B $03                            ;82F306|6403    |001A6B;
+                       STA.B r_1a78-$1A68                   ;82F304|8510    |001A78;
+                       STZ.B r_1a6b-$1A68                   ;82F306|6403    |001A6B;
                        LDA.B #$7D                           ;82F308|A97D    |      ;
-                       STA.B $1A                            ;82F30A|851A    |001A82;
+                       STA.B r_1a82-$1A68                   ;82F30A|851A    |001A82;
                        LDA.B #$04                           ;82F30C|A904    |      ;
-                       STA.B $1B                            ;82F30E|851B    |001A83;
+                       STA.B r_1a83-$1A68                   ;82F30E|851B    |001A83;
                                                             ;      |        |      ;
           CODE_82F310:
                        JSL.L CODE_828195                    ;82F310|22958182|828195;
@@ -17522,17 +17522,17 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F315:
-                       LDX.B $03                            ;82F315|A603    |0019CB;
+                       LDX.B r_19cb-$19C8                   ;82F315|A603    |0019CB;
                        BNE CODE_82F330                      ;82F317|D017    |82F330;
-                       DEC.B $10                            ;82F319|C610    |001A78;
+                       DEC.B r_1a78-$1A68                   ;82F319|C610    |001A78;
                        BNE CODE_82F32B                      ;82F31B|D00E    |82F32B;
                        LDA.B #$39                           ;82F31D|A939    |      ;
-                       STA.B $10                            ;82F31F|8510    |001A98;
-                       INC.B $03                            ;82F321|E603    |001A8B;
+                       STA.B r_1a98-$1A88                   ;82F31F|8510    |001A98;
+                       INC.B r_1a8b-$1A88                   ;82F321|E603    |001A8B;
                        LDA.B #$40                           ;82F323|A940    |      ;
-                       STA.B $1A                            ;82F325|851A    |001AA2;
+                       STA.B r_1aa2-$1A88                   ;82F325|851A    |001AA2;
                        LDA.B #$FE                           ;82F327|A9FE    |      ;
-                       STA.B $1B                            ;82F329|851B    |001AA3;
+                       STA.B r_1aa3-$1A88                   ;82F329|851B    |001AA3;
                                                             ;      |        |      ;
           CODE_82F32B:
                        JSL.L CODE_828174                    ;82F32B|22748182|828174;
@@ -17540,15 +17540,15 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F330:
-                       DEC.B $10                            ;82F330|C610    |0019D8;
+                       DEC.B r_19d8-$19C8                   ;82F330|C610    |0019D8;
                        BNE CODE_82F342                      ;82F332|D00E    |82F342;
                        LDA.B #$39                           ;82F334|A939    |      ;
-                       STA.B $10                            ;82F336|8510    |001A78;
-                       STZ.B $03                            ;82F338|6403    |001A6B;
+                       STA.B r_1a78-$1A68                   ;82F336|8510    |001A78;
+                       STZ.B r_1a6b-$1A68                   ;82F338|6403    |001A6B;
                        LDA.B #$C0                           ;82F33A|A9C0    |      ;
-                       STA.B $1A                            ;82F33C|851A    |001A82;
+                       STA.B r_1a82-$1A68                   ;82F33C|851A    |001A82;
                        LDA.B #$01                           ;82F33E|A901    |      ;
-                       STA.B $1B                            ;82F340|851B    |001A83;
+                       STA.B r_1a83-$1A68                   ;82F340|851B    |001A83;
                                                             ;      |        |      ;
           CODE_82F342:
                        JSL.L CODE_828195                    ;82F342|22958182|828195;
@@ -17557,21 +17557,21 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F347:
                        LDA.B #$25                           ;82F347|A925    |      ;
-                       STA.B $11                            ;82F349|8511    |001A99;
-                       STZ.B $12                            ;82F34B|6412    |001A9A;
-                       LDA.B $1B                            ;82F34D|A51B    |001AA3;
+                       STA.B r_1a99-$1A88                   ;82F349|8511    |001A99;
+                       STZ.B r_1a9a-$1A88                   ;82F34B|6412    |001A9A;
+                       LDA.B r_1aa3-$1A88                   ;82F34D|A51B    |001AA3;
                        BPL CODE_82F359                      ;82F34F|1008    |82F359;
                        LDA.B #$05                           ;82F351|A905    |      ;
-                       STA.B $11                            ;82F353|8511    |001A79;
+                       STA.B r_1a79-$1A68                   ;82F353|8511    |001A79;
                        LDA.B #$04                           ;82F355|A904    |      ;
-                       STA.B $12                            ;82F357|8512    |001A7A;
+                       STA.B r_1a7a-$1A68                   ;82F357|8512    |001A7A;
                                                             ;      |        |      ;
           CODE_82F359:
                        RTS                                  ;82F359|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F35A:
-                       LDX.B $01                            ;82F35A|A601    |0019A9;
+                       LDX.B r_19a9-$19A8                   ;82F35A|A601    |0019A9;
                        JMP.W (PTR16_82F35F,X)               ;82F35C|7C5FF3  |82F35F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -17582,45 +17582,45 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F365:
                        LDA.B #$02                           ;82F365|A902    |      ;
-                       STA.B $01                            ;82F367|8501    |0019A9;
+                       STA.B r_19a9-$19A8                   ;82F367|8501    |0019A9;
                        LDA.B #$04                           ;82F369|A904    |      ;
-                       STA.B $12                            ;82F36B|8512    |0019BA;
+                       STA.B r_19ba-$19A8                   ;82F36B|8512    |0019BA;
                        LDA.L $7F8231                        ;82F36D|AF31827F|7F8231;
-                       STA.B $18                            ;82F371|8518    |0019C0;
+                       STA.B r_19c0-$19A8                   ;82F371|8518    |0019C0;
                        LDA.B #$33                           ;82F373|A933    |      ;
-                       STA.B $16                            ;82F375|8516    |0019BE;
+                       STA.B r_19be-$19A8                   ;82F375|8516    |0019BE;
                        LDA.B #$02                           ;82F377|A902    |      ;
                        JSL.L playerGrabedRoutine            ;82F379|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82F37D:
                        LDA.L $7F8331                        ;82F37D|AF31837F|7F8331;
-                       STA.B $11                            ;82F381|8511    |0019B9;
+                       STA.B r_19b9-$19A8                   ;82F381|8511    |0019B9;
                        REP #$10                             ;82F383|C210    |      ;
-                       LDX.B $0C                            ;82F385|A60C    |0019B4;
-                       LDA.W r_002a,X                       ;82F387|BD2A00  |86002A;
+                       LDX.B r_19b4-$19A8                   ;82F385|A60C    |0019B4;
+                       LDA.W r6_002a,X                      ;82F387|BD2A00  |86002A;
                        BEQ CODE_82F390                      ;82F38A|F004    |82F390;
                        LDA.B #$0E                           ;82F38C|A90E    |      ;
-                       TRB.B $11                            ;82F38E|1411    |0019B9;
+                       TRB.B r_19b9-$19A8                   ;82F38E|1411    |0019B9;
                                                             ;      |        |      ;
           CODE_82F390:
-                       LDA.W r_0027,X                       ;82F390|BD2700  |860027;
+                       LDA.W r6_0027,X                      ;82F390|BD2700  |860027;
                        AND.B #$7F                           ;82F393|297F    |      ;
                        BNE CODE_82F3B1                      ;82F395|D01A    |82F3B1;
                        LDA.B #$04                           ;82F397|A904    |      ;
-                       STA.B $01                            ;82F399|8501    |0019A9;
+                       STA.B r_19a9-$19A8                   ;82F399|8501    |0019A9;
                        LDA.L $7F8331                        ;82F39B|AF31837F|7F8331;
-                       STA.B $11                            ;82F39F|8511    |0019B9;
+                       STA.B r_19b9-$19A8                   ;82F39F|8511    |0019B9;
                        LDX.W #$0100                         ;82F3A1|A20001  |      ;
-                       STX.B $1A                            ;82F3A4|861A    |0019C2;
+                       STX.B r_19c2-$19A8                   ;82F3A4|861A    |0019C2;
                        LDX.W #$0200                         ;82F3A6|A20002  |      ;
-                       STX.B $1C                            ;82F3A9|861C    |0019C4;
-                       STZ.B $1F                            ;82F3AB|641F    |0019C7;
+                       STX.B r_19c4-$19A8                   ;82F3A9|861C    |0019C4;
+                       STZ.B r_19c7-$19A8                   ;82F3AB|641F    |0019C7;
                        LDA.B #$10                           ;82F3AD|A910    |      ;
-                       STA.B $1E                            ;82F3AF|851E    |0019C6;
+                       STA.B r_19c6-$19A8                   ;82F3AF|851E    |0019C6;
                                                             ;      |        |      ;
           CODE_82F3B1:
                        SEP #$10                             ;82F3B1|E210    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;82F3B3|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82F3B3|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82F3B7:
                        JML.L checkPlayerGear                ;82F3B7|5CB48082|8280B4;
@@ -17629,19 +17629,19 @@ prisonCapsule_63_state_00:
           CODE_82F3BB:
                        JSL.L initPosAllign                  ;82F3BB|226E8082|82806E;
                        BCC CODE_82F3C5                      ;82F3BF|9004    |82F3C5;
-                       JML.L clearStates_00_02_0E           ;82F3C1|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F3C1|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F3C5:
                        JSL.L CODE_828174                    ;82F3C5|22748182|828174;
-                       LDA.W r_frameCounter0                ;82F3C9|AD9B0B  |860B9B;
+                       LDA.W r6_frameCounter0               ;82F3C9|AD9B0B  |860B9B;
                        LSR A                                ;82F3CC|4A      |      ;
                        BCC CODE_82F3B7                      ;82F3CD|90E8    |82F3B7;
                        RTL                                  ;82F3CF|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F3D0:
-                       LDX.B $01                            ;82F3D0|A601    |0019C9;
+                       LDX.B r_19c9-$19C8                   ;82F3D0|A601    |0019C9;
                        JMP.W (PTR16_82F3D5,X)               ;82F3D2|7CD5F3  |82F3D5;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -17652,48 +17652,48 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F3DB:
                        LDA.B #$02                           ;82F3DB|A902    |      ;
-                       STA.B $01                            ;82F3DD|8501    |0019C9;
+                       STA.B r_19c9-$19C8                   ;82F3DD|8501    |0019C9;
                        LDA.B #$04                           ;82F3DF|A904    |      ;
-                       STA.B $12                            ;82F3E1|8512    |0019DA;
+                       STA.B r_19da-$19C8                   ;82F3E1|8512    |0019DA;
                        LDA.L $7F8231                        ;82F3E3|AF31827F|7F8231;
-                       STA.B $18                            ;82F3E7|8518    |0019E0;
+                       STA.B r_19e0-$19C8                   ;82F3E7|8518    |0019E0;
                        LDA.B #$33                           ;82F3E9|A933    |      ;
-                       STA.B $16                            ;82F3EB|8516    |0019DE;
+                       STA.B r_19de-$19C8                   ;82F3EB|8516    |0019DE;
                        LDA.B #$03                           ;82F3ED|A903    |      ;
                        JSL.L playerGrabedRoutine            ;82F3EF|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82F3F3:
                        LDA.L $7F8331                        ;82F3F3|AF31837F|7F8331;
-                       STA.B $11                            ;82F3F7|8511    |0019D9;
+                       STA.B r_19d9-$19C8                   ;82F3F7|8511    |0019D9;
                        REP #$10                             ;82F3F9|C210    |      ;
-                       LDX.B $0C                            ;82F3FB|A60C    |0019D4;
-                       LDA.W r_0027,X                       ;82F3FD|BD2700  |860027;
+                       LDX.B r_19d4-$19C8                   ;82F3FB|A60C    |0019D4;
+                       LDA.W r6_0027,X                      ;82F3FD|BD2700  |860027;
                        BPL CODE_82F406                      ;82F400|1004    |82F406;
                        LDA.B #$0E                           ;82F402|A90E    |      ;
-                       TRB.B $11                            ;82F404|1411    |0019D9;
+                       TRB.B r_19d9-$19C8                   ;82F404|1411    |0019D9;
                                                             ;      |        |      ;
           CODE_82F406:
-                       LDA.W r_0000,X                       ;82F406|BD0000  |860000;
+                       LDA.W r6_0000,X                      ;82F406|BD0000  |860000;
                        BNE CODE_82F425                      ;82F409|D01A    |82F425;
                        LDA.B #$04                           ;82F40B|A904    |      ;
-                       STA.B $01                            ;82F40D|8501    |0019C9;
+                       STA.B r_19c9-$19C8                   ;82F40D|8501    |0019C9;
                        LDA.L $7F8331                        ;82F40F|AF31837F|7F8331;
-                       STA.B $11                            ;82F413|8511    |0019D9;
+                       STA.B r_19d9-$19C8                   ;82F413|8511    |0019D9;
                        LDX.W #$FEE0                         ;82F415|A2E0FE  |      ;
-                       STX.B $1A                            ;82F418|861A    |0019E2;
+                       STX.B r_19e2-$19C8                   ;82F418|861A    |0019E2;
                        LDX.W #$0200                         ;82F41A|A20002  |      ;
-                       STX.B $1C                            ;82F41D|861C    |0019E4;
-                       STZ.B $1F                            ;82F41F|641F    |0019E7;
+                       STX.B r_19e4-$19C8                   ;82F41D|861C    |0019E4;
+                       STZ.B r_19e7-$19C8                   ;82F41F|641F    |0019E7;
                        LDA.B #$10                           ;82F421|A910    |      ;
-                       STA.B $1E                            ;82F423|851E    |0019E6;
+                       STA.B r_19e6-$19C8                   ;82F423|851E    |0019E6;
                                                             ;      |        |      ;
           CODE_82F425:
-                       LDA.W r_0001,X                       ;82F425|BD0100  |860001;
+                       LDA.W r6_0001,X                      ;82F425|BD0100  |860001;
                        BEQ CODE_82F45B                      ;82F428|F031    |82F45B;
-                       LDA.W r_0002,X                       ;82F42A|BD0200  |860002;
+                       LDA.W r6_0002,X                      ;82F42A|BD0200  |860002;
                        CMP.B #$04                           ;82F42D|C904    |      ;
                        BNE CODE_82F43E                      ;82F42F|D00D    |82F43E;
-                       LDA.W r_002c,X                       ;82F431|BD2C00  |86002C;
+                       LDA.W r6_002c,X                      ;82F431|BD2C00  |86002C;
                        BEQ CODE_82F457                      ;82F434|F021    |82F457;
                        LDA.B #$03                           ;82F436|A903    |      ;
                        JSL.L playerGrabedRoutine            ;82F438|22078F84|848F07;
@@ -17703,10 +17703,10 @@ prisonCapsule_63_state_00:
           CODE_82F43E:
                        CMP.B #$06                           ;82F43E|C906    |      ;
                        BNE CODE_82F45B                      ;82F440|D019    |82F45B;
-                       LDA.W r_002c,X                       ;82F442|BD2C00  |86002C;
+                       LDA.W r6_002c,X                      ;82F442|BD2C00  |86002C;
                        BEQ CODE_82F457                      ;82F445|F010    |82F457;
                        LDY.W #$0003                         ;82F447|A00300  |      ;
-                       LDA.W r_001f,X                       ;82F44A|BD1F00  |86001F;
+                       LDA.W r6_001f,X                      ;82F44A|BD1F00  |86001F;
                        BNE CODE_82F452                      ;82F44D|D003    |82F452;
                        LDY.W #$0007                         ;82F44F|A00700  |      ;
                                                             ;      |        |      ;
@@ -17715,7 +17715,7 @@ prisonCapsule_63_state_00:
                        JSL.L playerGrabedRoutine            ;82F453|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82F457:
-                       JSL.L updateEv_13_14_17_0f           ;82F457|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82F457|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_82F45B:
                        SEP #$10                             ;82F45B|E210    |      ;
@@ -17723,22 +17723,22 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F461:
-                       JML.L clearStates_00_02_0E           ;82F461|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F461|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F465:
                        JSL.L initPosAllign                  ;82F465|226E8082|82806E;
                        BCS CODE_82F47B                      ;82F469|B010    |82F47B;
-                       INC.B $0B                            ;82F46B|E60B    |001933;
-                       LDA.B $0B                            ;82F46D|A50B    |001933;
+                       INC.B r_1933-$1928                   ;82F46B|E60B    |001933;
+                       LDA.B r_1933-$1928                   ;82F46D|A50B    |001933;
                        CMP.B #$06                           ;82F46F|C906    |      ;
                        BNE CODE_82F47B                      ;82F471|D008    |82F47B;
-                       STZ.B $0B                            ;82F473|640B    |001933;
+                       STZ.B r_1933-$1928                   ;82F473|640B    |001933;
                        LDA.B #$1C                           ;82F475|A91C    |      ;
                        JSL.L lunchSFX                       ;82F477|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_82F47B:
-                       LDX.B $01                            ;82F47B|A601    |001929;
+                       LDX.B r_1929-$1928                   ;82F47B|A601    |001929;
                        JMP.W (PTR16_82F480,X)               ;82F47D|7C80F4  |82F480;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -17749,51 +17749,51 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F486:
                        LDA.B #$02                           ;82F486|A902    |      ;
-                       STA.B $01                            ;82F488|8501    |001929;
-                       STZ.B $0B                            ;82F48A|640B    |001933;
-                       STZ.B $18                            ;82F48C|6418    |001940;
+                       STA.B r_1929-$1928                   ;82F488|8501    |001929;
+                       STZ.B r_1933-$1928                   ;82F48A|640B    |001933;
+                       STZ.B r_1940-$1928                   ;82F48C|6418    |001940;
                        LDA.L $7F832D                        ;82F48E|AF2D837F|7F832D;
                        AND.B #$FE                           ;82F492|29FE    |      ;
-                       STA.B $11                            ;82F494|8511    |001939;
+                       STA.B r_1939-$1928                   ;82F494|8511    |001939;
                        LDA.B #$36                           ;82F496|A936    |      ;
-                       STA.B $16                            ;82F498|8516    |00193E;
+                       STA.B r_193e-$1928                   ;82F498|8516    |00193E;
                        LDA.B #$00                           ;82F49A|A900    |      ;
                        JML.L playerGrabedRoutine            ;82F49C|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F4A0:
                        REP #$30                             ;82F4A0|C230    |      ;
-                       LDX.B $0C                            ;82F4A2|A60C    |001934;
-                       LDA.W r_0005,X                       ;82F4A4|BD0500  |860005;
-                       STA.B $05                            ;82F4A7|8505    |00192D;
-                       LDA.W r_0008,X                       ;82F4A9|BD0800  |860008;
-                       STA.B $08                            ;82F4AC|8508    |001930;
+                       LDX.B r_1934-$1928                   ;82F4A2|A60C    |001934;
+                       LDA.W r6_0005,X                      ;82F4A4|BD0500  |860005;
+                       STA.B r_192d-$1928                   ;82F4A7|8505    |00192D;
+                       LDA.W r6_0008,X                      ;82F4A9|BD0800  |860008;
+                       STA.B r_1930-$1928                   ;82F4AC|8508    |001930;
                        SEP #$20                             ;82F4AE|E220    |      ;
-                       LDA.W r_0027,X                       ;82F4B0|BD2700  |860027;
+                       LDA.W r6_0027,X                      ;82F4B0|BD2700  |860027;
                        AND.B #$7F                           ;82F4B3|297F    |      ;
                        BNE CODE_82F4C8                      ;82F4B5|D011    |82F4C8;
                        LDA.B #$04                           ;82F4B7|A904    |      ;
-                       STA.B $01                            ;82F4B9|8501    |001929;
+                       STA.B r_1929-$1928                   ;82F4B9|8501    |001929;
                        LDX.W #$0200                         ;82F4BB|A20002  |      ;
-                       STX.B $1C                            ;82F4BE|861C    |001944;
+                       STX.B r_1944-$1928                   ;82F4BE|861C    |001944;
                        LDA.B #$20                           ;82F4C0|A920    |      ;
-                       STA.B $1E                            ;82F4C2|851E    |001946;
-                       STZ.B $1A                            ;82F4C4|641A    |001942;
-                       STZ.B $1B                            ;82F4C6|641B    |001943;
+                       STA.B r_1946-$1928                   ;82F4C2|851E    |001946;
+                       STZ.B r_1942-$1928                   ;82F4C4|641A    |001942;
+                       STZ.B r_1943-$1928                   ;82F4C6|641B    |001943;
                                                             ;      |        |      ;
           CODE_82F4C8:
                        SEP #$10                             ;82F4C8|E210    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;82F4CA|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82F4CA|22EA8E84|848EEA;
                        JML.L CODE_82808F                    ;82F4CE|5C8F8082|82808F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F4D2:
-                       JSL.L updateEv_13_14_17_0f           ;82F4D2|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82F4D2|22EA8E84|848EEA;
                        JSL.L CODE_8281FB                    ;82F4D6|22FB8182|8281FB;
                        JSL.L CODE_82808F                    ;82F4DA|228F8082|82808F;
-                       LDA.B $0E                            ;82F4DE|A50E    |001936;
+                       LDA.B r_1936-$1928                   ;82F4DE|A50E    |001936;
                        BNE CODE_82F4E6                      ;82F4E0|D004    |82F4E6;
-                       JML.L clearStates_00_02_0E           ;82F4E2|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F4E2|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F4E6:
@@ -17801,7 +17801,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F4E7:
-                       LDX.B $01                            ;82F4E7|A601    |001A89;
+                       LDX.B r_1a89-$1A88                   ;82F4E7|A601    |001A89;
                        JMP.W (PTR16_82F4EC,X)               ;82F4E9|7CECF4  |82F4EC;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -17812,103 +17812,103 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F4F2:
                        LDA.B #$02                           ;82F4F2|A902    |      ;
-                       STA.B $01                            ;82F4F4|8501    |001A89;
-                       STZ.B $12                            ;82F4F6|6412    |001A9A;
+                       STA.B r_1a89-$1A88                   ;82F4F4|8501    |001A89;
+                       STZ.B r_1a9a-$1A88                   ;82F4F6|6412    |001A9A;
                        LDA.L $7F8238                        ;82F4F8|AF38827F|7F8238;
-                       STA.B $18                            ;82F4FC|8518    |001AA0;
+                       STA.B r_1aa0-$1A88                   ;82F4FC|8518    |001AA0;
                        LDA.L $7F8338                        ;82F4FE|AF38837F|7F8338;
-                       STA.B $11                            ;82F502|8511    |001A99;
+                       STA.B r_1a99-$1A88                   ;82F502|8511    |001A99;
                        REP #$20                             ;82F504|C220    |      ;
                        JSL.L mainPlayer_00                  ;82F506|22869084|849086;
                        AND.W #$0006                         ;82F50A|290600  |      ;
                        TAX                                  ;82F50D|AA      |      ;
                        LDA.W UNREACH_86DE8B,X               ;82F50E|BD8BDE  |86DE8B;
-                       STA.B $1A                            ;82F511|851A    |001AA2;
+                       STA.B r_1aa2-$1A88                   ;82F511|851A    |001AA2;
                        JSL.L mainPlayer_00                  ;82F513|22869084|849086;
                        AND.W #$0006                         ;82F517|290600  |      ;
                        TAX                                  ;82F51A|AA      |      ;
                        LDA.W UNREACH_86DE93,X               ;82F51B|BD93DE  |86DE93;
-                       STA.B $1C                            ;82F51E|851C    |001AA4;
+                       STA.B r_1aa4-$1A88                   ;82F51E|851C    |001AA4;
                        SEP #$20                             ;82F520|E220    |      ;
                        LDA.B #$04                           ;82F522|A904    |      ;
-                       STA.B $1E                            ;82F524|851E    |001AA6;
-                       STZ.B $1F                            ;82F526|641F    |001AA7;
+                       STA.B r_1aa6-$1A88                   ;82F524|851E    |001AA6;
+                       STZ.B r_1aa7-$1A88                   ;82F526|641F    |001AA7;
                        LDA.B #$78                           ;82F528|A978    |      ;
-                       STA.B $10                            ;82F52A|8510    |001A98;
+                       STA.B r_1a98-$1A88                   ;82F52A|8510    |001A98;
                        LDA.B #$39                           ;82F52C|A939    |      ;
-                       STA.B $16                            ;82F52E|8516    |001A9E;
+                       STA.B r_1a9e-$1A88                   ;82F52E|8516    |001A9E;
                        LDA.B #$00                           ;82F530|A900    |      ;
                        JSL.L playerGrabedRoutine            ;82F532|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82F536:
-                       DEC.B $10                            ;82F536|C610    |001A98;
+                       DEC.B r_1a98-$1A88                   ;82F536|C610    |001A98;
                        BNE CODE_82F53E                      ;82F538|D004    |82F53E;
                        LDA.B #$04                           ;82F53A|A904    |      ;
-                       STA.B $01                            ;82F53C|8501    |001A89;
+                       STA.B r_1a89-$1A88                   ;82F53C|8501    |001A89;
                                                             ;      |        |      ;
           CODE_82F53E:
                        JSL.L CODE_828174                    ;82F53E|22748182|828174;
-                       LDA.W r_frameCounter1                ;82F542|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82F542|AD9C0B  |860B9C;
                        LSR A                                ;82F545|4A      |      ;
                        BCC CODE_82F54C                      ;82F546|9004    |82F54C;
                        JSL.L checkPlayerGear                ;82F548|22B48082|8280B4;
                                                             ;      |        |      ;
           CODE_82F54C:
-                       JML.L updateEv_13_14_17_0f           ;82F54C|5CEA8E84|848EEA;
+                       JML.L updateTimerEv_13_14_17_0f      ;82F54C|5CEA8E84|848EEA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F550:
-                       JML.L clearStates_00_02_0E           ;82F550|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F550|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F554:
-                       LDX.B $01                            ;82F554|A601    |001969;
+                       LDX.B r_1969-$1968                   ;82F554|A601    |001969;
                        BNE CODE_82F5A9                      ;82F556|D051    |82F5A9;
                        REP #$20                             ;82F558|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82F55A|ADAD0B  |860BAD;
-                       CMP.B $05                            ;82F55D|C505    |00192D;
+                       LDA.W r6_player_xPos                 ;82F55A|ADAD0B  |860BAD;
+                       CMP.B r_192d-$1928                   ;82F55D|C505    |00192D;
                        SEP #$20                             ;82F55F|E220    |      ;
                        BCC CODE_82F567                      ;82F561|9004    |82F567;
-                       JML.L clearStates_00_02_0E           ;82F563|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F563|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F567:
-                       INC.B $01                            ;82F567|E601    |001929;
-                       LDA.B $0B                            ;82F569|A50B    |001933;
+                       INC.B r_1929-$1928                   ;82F567|E601    |001929;
+                       LDA.B r_1933-$1928                   ;82F569|A50B    |001933;
                        AND.B #$07                           ;82F56B|2907    |      ;
                        TAX                                  ;82F56D|AA      |      ;
                        LDA.W UNREACH_86DE9E,X               ;82F56E|BD9EDE  |86DE9E;
-                       STA.B $12                            ;82F571|8512    |00193A;
+                       STA.B r_193a-$1928                   ;82F571|8512    |00193A;
                        TXA                                  ;82F573|8A      |      ;
                        ASL A                                ;82F574|0A      |      ;
                        TAX                                  ;82F575|AA      |      ;
                        REP #$20                             ;82F576|C220    |      ;
                        LDA.W UNREACH_86DEA6,X               ;82F578|BDA6DE  |86DEA6;
-                       STA.B $1A                            ;82F57B|851A    |001942;
+                       STA.B r_1942-$1928                   ;82F57B|851A    |001942;
                        SEP #$20                             ;82F57D|E220    |      ;
-                       LDA.B $0B                            ;82F57F|A50B    |001933;
+                       LDA.B r_1933-$1928                   ;82F57F|A50B    |001933;
                        AND.B #$30                           ;82F581|2930    |      ;
                        LSR A                                ;82F583|4A      |      ;
                        LSR A                                ;82F584|4A      |      ;
                        LSR A                                ;82F585|4A      |      ;
                        LSR A                                ;82F586|4A      |      ;
-                       STA.W r_0000                         ;82F587|8D0000  |860000;
+                       STA.W r6_0000                        ;82F587|8D0000  |860000;
                        TAX                                  ;82F58A|AA      |      ;
                        LDA.W UNREACH_86DE9B,X               ;82F58B|BD9BDE  |86DE9B;
                        TAX                                  ;82F58E|AA      |      ;
                        LDA.L gfxSlotOffsetLockup,X          ;82F58F|BF00827F|7F8200;
-                       STA.B $18                            ;82F593|8518    |001940;
+                       STA.B r_1940-$1928                   ;82F593|8518    |001940;
                        LDA.L $7F8300,X                      ;82F595|BF00837F|7F8300;
-                       STA.B $11                            ;82F599|8511    |001939;
+                       STA.B r_1939-$1928                   ;82F599|8511    |001939;
                        LDA.B #$3A                           ;82F59B|A93A    |      ;
                        CLC                                  ;82F59D|18      |      ;
-                       ADC.W r_0000                         ;82F59E|6D0000  |860000;
-                       STA.B $16                            ;82F5A1|8516    |00193E;
+                       ADC.W r6_0000                        ;82F59E|6D0000  |860000;
+                       STA.B r_193e-$1928                   ;82F5A1|8516    |00193E;
                        LDA.B #$00                           ;82F5A3|A900    |      ;
                        JSL.L playerGrabedRoutine            ;82F5A5|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82F5A9:
-                       LDA.B $16                            ;82F5A9|A516    |00197E;
+                       LDA.B r_197e-$1968                   ;82F5A9|A516    |00197E;
                        AND.B #$7F                           ;82F5AB|297F    |      ;
                        CMP.B #$3C                           ;82F5AD|C93C    |      ;
                        BNE CODE_82F5B4                      ;82F5AF|D003    |82F5B4;
@@ -17917,46 +17917,46 @@ prisonCapsule_63_state_00:
           CODE_82F5B4:
                        JSL.L CODE_82823E                    ;82F5B4|223E8282|82823E;
                        JSL.L CODE_82808F                    ;82F5B8|228F8082|82808F;
-                       LDA.B $0E                            ;82F5BC|A50E    |001976;
+                       LDA.B r_1976-$1968                   ;82F5BC|A50E    |001976;
                        BNE CODE_82F5C4                      ;82F5BE|D004    |82F5C4;
-                       JML.L clearStates_00_02_0E           ;82F5C0|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F5C0|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F5C4:
-                       JML.L updateEv_13_14_17_0f           ;82F5C4|5CEA8E84|848EEA;
+                       JML.L updateTimerEv_13_14_17_0f      ;82F5C4|5CEA8E84|848EEA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F5C8:
-                       LDA.W r_frameCounter1                ;82F5C8|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82F5C8|AD9C0B  |860B9C;
                        AND.B #$07                           ;82F5CB|2907    |      ;
                        BNE CODE_82F617                      ;82F5CD|D048    |82F617;
                        JSL.L CODE_8282D3                    ;82F5CF|22D38282|8282D3;
                        BNE CODE_82F615                      ;82F5D3|D040    |82F615;
-                       INC.W r_0000,X                       ;82F5D5|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82F5D5|FE0000  |860000;
                        LDA.B #$09                           ;82F5D8|A909    |      ;
-                       STA.W r_000a,X                       ;82F5DA|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82F5DA|9D0A00  |86000A;
                        LDA.B #$80                           ;82F5DD|A980    |      ;
-                       STA.W r_000b,X                       ;82F5DF|9D0B00  |86000B;
-                       STZ.W r_000c,X                       ;82F5E2|9E0C00  |86000C;
+                       STA.W r6_000b,X                      ;82F5DF|9D0B00  |86000B;
+                       STZ.W r6_000c,X                      ;82F5E2|9E0C00  |86000C;
                        REP #$20                             ;82F5E5|C220    |      ;
                        JSL.L mainPlayer_00                  ;82F5E7|22869084|849086;
                        AND.W #$000F                         ;82F5EB|290F00  |      ;
-                       STA.W r_0000                         ;82F5EE|8D0000  |860000;
+                       STA.W r6_0000                        ;82F5EE|8D0000  |860000;
                        JSL.L mainPlayer_00                  ;82F5F1|22869084|849086;
                        AND.W #$000F                         ;82F5F5|290F00  |      ;
-                       STA.W r_0002                         ;82F5F8|8D0200  |860002;
-                       LDA.B $05                            ;82F5FB|A505    |00192D;
+                       STA.W r6_0002                        ;82F5F8|8D0200  |860002;
+                       LDA.B r_192d-$1928                   ;82F5FB|A505    |00192D;
                        CLC                                  ;82F5FD|18      |      ;
                        ADC.W #$0011                         ;82F5FE|691100  |      ;
                        CLC                                  ;82F601|18      |      ;
-                       ADC.W r_0000                         ;82F602|6D0000  |860000;
-                       STA.W r_0005,X                       ;82F605|9D0500  |860005;
-                       LDA.B $08                            ;82F608|A508    |001930;
+                       ADC.W r6_0000                        ;82F602|6D0000  |860000;
+                       STA.W r6_0005,X                      ;82F605|9D0500  |860005;
+                       LDA.B r_1930-$1928                   ;82F608|A508    |001930;
                        CLC                                  ;82F60A|18      |      ;
                        ADC.W #$FFED                         ;82F60B|69EDFF  |      ;
                        CLC                                  ;82F60E|18      |      ;
-                       ADC.W r_0002                         ;82F60F|6D0200  |860002;
-                       STA.W r_0008,X                       ;82F612|9D0800  |860008;
+                       ADC.W r6_0002                        ;82F60F|6D0200  |860002;
+                       STA.W r6_0008,X                      ;82F612|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82F615:
                        SEP #$30                             ;82F615|E230    |      ;
@@ -17966,22 +17966,22 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F618:
-                       LDA.B $01                            ;82F618|A501    |001929;
+                       LDA.B r_1929-$1928                   ;82F618|A501    |001929;
                        BNE CODE_82F62E                      ;82F61A|D012    |82F62E;
-                       INC.B $01                            ;82F61C|E601    |001929;
+                       INC.B r_1929-$1928                   ;82F61C|E601    |001929;
                        LDA.B #$34                           ;82F61E|A934    |      ;
-                       TSB.B $11                            ;82F620|0411    |001939;
-                       STZ.B $18                            ;82F622|6418    |001940;
+                       TSB.B r_1939-$1928                   ;82F620|0411    |001939;
+                       STZ.B r_1940-$1928                   ;82F622|6418    |001940;
                        LDA.B #$17                           ;82F624|A917    |      ;
-                       STA.B $16                            ;82F626|8516    |00193E;
-                       LDA.B $0B                            ;82F628|A50B    |001933;
+                       STA.B r_193e-$1928                   ;82F626|8516    |00193E;
+                       LDA.B r_1933-$1928                   ;82F628|A50B    |001933;
                        JSL.L playerGrabedRoutine            ;82F62A|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82F62E:
-                       JSL.L updateEv_13_14_17_0f           ;82F62E|22EA8E84|848EEA;
-                       LDA.B $0F                            ;82F632|A50F    |001937;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82F62E|22EA8E84|848EEA;
+                       LDA.B r_1937-$1928                   ;82F632|A50F    |001937;
                        BPL CODE_82F63A                      ;82F634|1004    |82F63A;
-                       JML.L clearStates_00_02_0E           ;82F636|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F636|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F63A:
@@ -17989,43 +17989,43 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F63E:
-                       LDA.B $01                            ;82F63E|A501    |001949;
+                       LDA.B r_1949-$1948                   ;82F63E|A501    |001949;
                        BNE CODE_82F673                      ;82F640|D031    |82F673;
-                       INC.B $01                            ;82F642|E601    |001A29;
+                       INC.B r_1a29-$1A28                   ;82F642|E601    |001A29;
                        LDA.B #$37                           ;82F644|A937    |      ;
-                       STA.B $16                            ;82F646|8516    |001A3E;
-                       LDA.B $0B                            ;82F648|A50B    |001A33;
+                       STA.B r_1a3e-$1A28                   ;82F646|8516    |001A3E;
+                       LDA.B r_1a33-$1A28                   ;82F648|A50B    |001A33;
                        BPL CODE_82F650                      ;82F64A|1004    |82F650;
                        LDA.B #$49                           ;82F64C|A949    |      ;
-                       STA.B $16                            ;82F64E|8516    |00197E;
+                       STA.B r_197e-$1968                   ;82F64E|8516    |00197E;
                                                             ;      |        |      ;
           CODE_82F650:
-                       LDA.B $0B                            ;82F650|A50B    |001A33;
+                       LDA.B r_1a33-$1A28                   ;82F650|A50B    |001A33;
                        AND.B #$7F                           ;82F652|297F    |      ;
                        TAX                                  ;82F654|AA      |      ;
                        LDA.W DATA8_86DF06,X                 ;82F655|BD06DF  |86DF06;
-                       STA.B $1E                            ;82F658|851E    |001A46;
+                       STA.B r_1a46-$1A28                   ;82F658|851E    |001A46;
                        LDA.W DATA8_86DEB6,X                 ;82F65A|BDB6DE  |86DEB6;
                        JSL.L playerGrabedRoutine            ;82F65D|22078F84|848F07;
-                       LDA.B $0B                            ;82F661|A50B    |001A33;
+                       LDA.B r_1a33-$1A28                   ;82F661|A50B    |001A33;
                        ASL A                                ;82F663|0A      |      ;
                        TAX                                  ;82F664|AA      |      ;
                        REP #$20                             ;82F665|C220    |      ;
                        LDA.W DATA8_86DEC6,X                 ;82F667|BDC6DE  |86DEC6;
-                       STA.B $1A                            ;82F66A|851A    |001A42;
+                       STA.B r_1a42-$1A28                   ;82F66A|851A    |001A42;
                        LDA.W DATA8_86DEE6,X                 ;82F66C|BDE6DE  |86DEE6;
-                       STA.B $1C                            ;82F66F|851C    |001A44;
+                       STA.B r_1a44-$1A28                   ;82F66F|851C    |001A44;
                        SEP #$20                             ;82F671|E220    |      ;
                                                             ;      |        |      ;
           CODE_82F673:
-                       JSL.L updateEv_13_14_17_0f           ;82F673|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82F673|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;82F677|22E88182|8281E8;
-                       LDA.B $0B                            ;82F67B|A50B    |001953;
-                       EOR.W r_frameCounter1                ;82F67D|4D9C0B  |860B9C;
+                       LDA.B r_1953-$1948                   ;82F67B|A50B    |001953;
+                       EOR.W r6_frameCounter1               ;82F67D|4D9C0B  |860B9C;
                        LSR A                                ;82F680|4A      |      ;
                        BCC CODE_82F68B                      ;82F681|9008    |82F68B;
                        JSL.L checkPlayerGear                ;82F683|22B48082|8280B4;
-                       LDA.B $0E                            ;82F687|A50E    |001956;
+                       LDA.B r_1956-$1948                   ;82F687|A50E    |001956;
                        BEQ CODE_82F68C                      ;82F689|F001    |82F68C;
                                                             ;      |        |      ;
           CODE_82F68B:
@@ -18033,28 +18033,28 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F68C:
-                       JML.L clearStates_00_02_0E           ;82F68C|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F68C|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F690:
-                       LDA.B $01                            ;82F690|A501    |001AA9;
+                       LDA.B r_1aa9-$1AA8                   ;82F690|A501    |001AA9;
                        BNE CODE_82F6E4                      ;82F692|D050    |82F6E4;
-                       INC.B $01                            ;82F694|E601    |001AA9;
-                       STZ.B $18                            ;82F696|6418    |001AC0;
+                       INC.B r_1aa9-$1AA8                   ;82F694|E601    |001AA9;
+                       STZ.B r_1ac0-$1AA8                   ;82F696|6418    |001AC0;
                        LDA.B #$27                           ;82F698|A927    |      ;
-                       STA.B $16                            ;82F69A|8516    |001ABE;
-                       LDX.B $0B                            ;82F69C|A60B    |001AB3;
+                       STA.B r_1abe-$1AA8                   ;82F69A|8516    |001ABE;
+                       LDX.B r_1ab3-$1AA8                   ;82F69C|A60B    |001AB3;
                        LDA.W UNREACH_86DF16,X               ;82F69E|BD16DF  |86DF16;
                        JSL.L playerGrabedRoutine            ;82F6A1|22078F84|848F07;
-                       LDX.B $0B                            ;82F6A5|A60B    |001AB3;
+                       LDX.B r_1ab3-$1AA8                   ;82F6A5|A60B    |001AB3;
                        LDA.W UNREACH_86DF43,X               ;82F6A7|BD43DF  |86DF43;
-                       STA.B $1E                            ;82F6AA|851E    |001AC6;
+                       STA.B r_1ac6-$1AA8                   ;82F6AA|851E    |001AC6;
                        LDA.W UNREACH_86DF31,X               ;82F6AC|BD31DF  |86DF31;
-                       STA.B $1B                            ;82F6AF|851B    |001AC3;
-                       STZ.B $1A                            ;82F6B1|641A    |001AC2;
+                       STA.B r_1ac3-$1AA8                   ;82F6AF|851B    |001AC3;
+                       STZ.B r_1ac2-$1AA8                   ;82F6B1|641A    |001AC2;
                        LDA.W UNREACH_86DF3A,X               ;82F6B3|BD3ADF  |86DF3A;
-                       STA.B $1D                            ;82F6B6|851D    |001AC5;
-                       STZ.B $1C                            ;82F6B8|641C    |001AC4;
+                       STA.B r_1ac5-$1AA8                   ;82F6B6|851D    |001AC5;
+                       STZ.B r_1ac4-$1AA8                   ;82F6B8|641C    |001AC4;
                        REP #$20                             ;82F6BA|C220    |      ;
                        LDA.W UNREACH_86DF1F,X               ;82F6BC|BD1FDF  |86DF1F;
                        AND.W #$00FF                         ;82F6BF|29FF00  |      ;
@@ -18064,8 +18064,8 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F6CA:
                        CLC                                  ;82F6CA|18      |      ;
-                       ADC.B $05                            ;82F6CB|6505    |001AAD;
-                       STA.B $05                            ;82F6CD|8505    |001AAD;
+                       ADC.B r_1aad-$1AA8                   ;82F6CB|6505    |001AAD;
+                       STA.B r_1aad-$1AA8                   ;82F6CD|8505    |001AAD;
                        LDA.W UNREACH_86DF28,X               ;82F6CF|BD28DF  |86DF28;
                        AND.W #$00FF                         ;82F6D2|29FF00  |      ;
                        BIT.W #$0080                         ;82F6D5|898000  |      ;
@@ -18074,8 +18074,8 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F6DD:
                        CLC                                  ;82F6DD|18      |      ;
-                       ADC.B $08                            ;82F6DE|6508    |001AB0;
-                       STA.B $08                            ;82F6E0|8508    |001AB0;
+                       ADC.B r_1ab0-$1AA8                   ;82F6DE|6508    |001AB0;
+                       STA.B r_1ab0-$1AA8                   ;82F6E0|8508    |001AB0;
                        SEP #$20                             ;82F6E2|E220    |      ;
                                                             ;      |        |      ;
           CODE_82F6E4:
@@ -18086,28 +18086,28 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F6F2:
-                       JML.L clearStates_00_02_0E           ;82F6F2|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F6F2|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F6F6:
-                       LDA.B $01                            ;82F6F6|A501    |001A29;
+                       LDA.B r_1a29-$1A28                   ;82F6F6|A501    |001A29;
                        BNE CODE_82F74A                      ;82F6F8|D050    |82F74A;
-                       INC.B $01                            ;82F6FA|E601    |001A89;
-                       STZ.B $18                            ;82F6FC|6418    |001AA0;
+                       INC.B r_1a89-$1A88                   ;82F6FA|E601    |001A89;
+                       STZ.B r_1aa0-$1A88                   ;82F6FC|6418    |001AA0;
                        LDA.B #$36                           ;82F6FE|A936    |      ;
-                       STA.B $16                            ;82F700|8516    |001A9E;
-                       LDX.B $0B                            ;82F702|A60B    |001A93;
+                       STA.B r_1a9e-$1A88                   ;82F700|8516    |001A9E;
+                       LDX.B r_1a93-$1A88                   ;82F702|A60B    |001A93;
                        LDA.W UNREACH_86DF4C,X               ;82F704|BD4CDF  |86DF4C;
                        JSL.L playerGrabedRoutine            ;82F707|22078F84|848F07;
-                       LDX.B $0B                            ;82F70B|A60B    |001A93;
+                       LDX.B r_1a93-$1A88                   ;82F70B|A60B    |001A93;
                        LDA.W UNREACH_86DF8D,X               ;82F70D|BD8DDF  |86DF8D;
-                       STA.B $1E                            ;82F710|851E    |001AA6;
+                       STA.B r_1aa6-$1A88                   ;82F710|851E    |001AA6;
                        LDA.W UNREACH_86DF73,X               ;82F712|BD73DF  |86DF73;
-                       STA.B $1B                            ;82F715|851B    |001AA3;
-                       STZ.B $1A                            ;82F717|641A    |001AA2;
+                       STA.B r_1aa3-$1A88                   ;82F715|851B    |001AA3;
+                       STZ.B r_1aa2-$1A88                   ;82F717|641A    |001AA2;
                        LDA.W UNREACH_86DF80,X               ;82F719|BD80DF  |86DF80;
-                       STA.B $1D                            ;82F71C|851D    |001AA5;
-                       STZ.B $1C                            ;82F71E|641C    |001AA4;
+                       STA.B r_1aa5-$1A88                   ;82F71C|851D    |001AA5;
+                       STZ.B r_1aa4-$1A88                   ;82F71E|641C    |001AA4;
                        REP #$20                             ;82F720|C220    |      ;
                        LDA.W UNREACH_86DF59,X               ;82F722|BD59DF  |86DF59;
                        AND.W #$00FF                         ;82F725|29FF00  |      ;
@@ -18117,8 +18117,8 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F730:
                        CLC                                  ;82F730|18      |      ;
-                       ADC.B $05                            ;82F731|6505    |001A8D;
-                       STA.B $05                            ;82F733|8505    |001A8D;
+                       ADC.B r_1a8d-$1A88                   ;82F731|6505    |001A8D;
+                       STA.B r_1a8d-$1A88                   ;82F733|8505    |001A8D;
                        LDA.W UNREACH_86DF66,X               ;82F735|BD66DF  |86DF66;
                        AND.W #$00FF                         ;82F738|29FF00  |      ;
                        BIT.W #$0080                         ;82F73B|898000  |      ;
@@ -18127,23 +18127,23 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F743:
                        CLC                                  ;82F743|18      |      ;
-                       ADC.B $08                            ;82F744|6508    |001A90;
-                       STA.B $08                            ;82F746|8508    |001A90;
+                       ADC.B r_1a90-$1A88                   ;82F744|6508    |001A90;
+                       STA.B r_1a90-$1A88                   ;82F746|8508    |001A90;
                        SEP #$20                             ;82F748|E220    |      ;
                                                             ;      |        |      ;
           CODE_82F74A:
                        JSL.L CODE_8281E8                    ;82F74A|22E88182|8281E8;
                        JSL.L initPosAllign                  ;82F74E|226E8082|82806E;
                        BCS CODE_82F760                      ;82F752|B00C    |82F760;
-                       LDA.W r_frameCounter1                ;82F754|AD9C0B  |860B9C;
-                       EOR.B $0B                            ;82F757|450B    |001A33;
+                       LDA.W r6_frameCounter1               ;82F754|AD9C0B  |860B9C;
+                       EOR.B r_1a33-$1A28                   ;82F757|450B    |001A33;
                        LSR A                                ;82F759|4A      |      ;
                        BCC CODE_82F764                      ;82F75A|9008    |82F764;
                        JML.L checkPlayerGear                ;82F75C|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F760:
-                       JML.L clearStates_00_02_0E           ;82F760|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F760|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F764:
@@ -18151,59 +18151,59 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F765:
-                       LDX.B $01                            ;82F765|A601    |0019A9;
+                       LDX.B r_19a9-$19A8                   ;82F765|A601    |0019A9;
                        JMP.W (UNREACH_82F76A,X)             ;82F767|7C6AF7  |82F76A;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_82F76A:
                        db $70,$F7,$88,$F7,$C4,$F7           ;82F76A|        |82F763;
                        LDA.B #$02                           ;82F770|A902    |      ;
-                       STA.B $01                            ;82F772|8501    |0019A9;
+                       STA.B r_19a9-$19A8                   ;82F772|8501    |0019A9;
                        LDA.L $7F823F                        ;82F774|AF3F827F|7F823F;
-                       STA.B $18                            ;82F778|8518    |0019C0;
+                       STA.B r_19c0-$19A8                   ;82F778|8518    |0019C0;
                        LDA.B #$04                           ;82F77A|A904    |      ;
-                       STA.B $12                            ;82F77C|8512    |0019BA;
+                       STA.B r_19ba-$19A8                   ;82F77C|8512    |0019BA;
                        LDA.B #$3F                           ;82F77E|A93F    |      ;
-                       STA.B $16                            ;82F780|8516    |0019BE;
-                       LDA.B $0B                            ;82F782|A50B    |0019B3;
+                       STA.B r_19be-$19A8                   ;82F780|8516    |0019BE;
+                       LDA.B r_19b3-$19A8                   ;82F782|A50B    |0019B3;
                        JML.L playerGrabedRoutine            ;82F784|5C078F84|848F07;
                                                             ;      |        |      ;
                        LDA.L $7F833F                        ;82F788|AF3F837F|7F833F;
                        ORA.B #$30                           ;82F78C|0930    |      ;
-                       STA.B $11                            ;82F78E|8511    |0019B9;
+                       STA.B r_19b9-$19A8                   ;82F78E|8511    |0019B9;
                        REP #$31                             ;82F790|C231    |      ;
-                       LDX.B $0C                            ;82F792|A60C    |0019B4;
-                       LDA.W r_0005,X                       ;82F794|BD0500  |860005;
+                       LDX.B r_19b4-$19A8                   ;82F792|A60C    |0019B4;
+                       LDA.W r6_0005,X                      ;82F794|BD0500  |860005;
                        ADC.W #$FFF5                         ;82F797|69F5FF  |      ;
-                       STA.B $05                            ;82F79A|8505    |0019AD;
-                       LDA.W r_0008,X                       ;82F79C|BD0800  |860008;
+                       STA.B r_19ad-$19A8                   ;82F79A|8505    |0019AD;
+                       LDA.W r6_0008,X                      ;82F79C|BD0800  |860008;
                        CLC                                  ;82F79F|18      |      ;
                        ADC.W #$002F                         ;82F7A0|692F00  |      ;
-                       STA.B $08                            ;82F7A3|8508    |0019B0;
+                       STA.B r_19b0-$19A8                   ;82F7A3|8508    |0019B0;
                        SEP #$20                             ;82F7A5|E220    |      ;
-                       LDA.W r_0027,X                       ;82F7A7|BD2700  |860027;
+                       LDA.W r6_0027,X                      ;82F7A7|BD2700  |860027;
                        BMI CODE_82F7B6                      ;82F7AA|300A    |82F7B6;
                        AND.B #$7F                           ;82F7AC|297F    |      ;
                        BNE CODE_82F7BA                      ;82F7AE|D00A    |82F7BA;
                        LDA.B #$04                           ;82F7B0|A904    |      ;
-                       STA.B $01                            ;82F7B2|8501    |0019A9;
+                       STA.B r_19a9-$19A8                   ;82F7B2|8501    |0019A9;
                        BRA CODE_82F7BA                      ;82F7B4|8004    |82F7BA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F7B6:
                        LDA.B #$0E                           ;82F7B6|A90E    |      ;
-                       TRB.B $11                            ;82F7B8|1411    |0019B9;
+                       TRB.B r_19b9-$19A8                   ;82F7B8|1411    |0019B9;
                                                             ;      |        |      ;
           CODE_82F7BA:
                        SEP #$10                             ;82F7BA|E210    |      ;
                        JSL.L checkPlayerGear                ;82F7BC|22B48082|8280B4;
-                       JML.L updateEv_13_14_17_0f           ;82F7C0|5CEA8E84|848EEA;
+                       JML.L updateTimerEv_13_14_17_0f      ;82F7C0|5CEA8E84|848EEA;
                                                             ;      |        |      ;
-                       JML.L clearStates_00_02_0E           ;82F7C4|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F7C4|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F7C8:
-                       LDX.B $01                            ;82F7C8|A601    |001949;
+                       LDX.B r_1949-$1948                   ;82F7C8|A601    |001949;
                        BNE CODE_82F7F2                      ;82F7CA|D026    |82F7F2;
                        JSL.L CODE_84A23F                    ;82F7CC|223FA284|84A23F;
                        TYA                                  ;82F7D0|98      |      ;
@@ -18211,12 +18211,12 @@ prisonCapsule_63_state_00:
                        db $5C,$98,$83,$82                   ;82F7D3|        |828398;
                                                             ;      |        |      ;
           CODE_82F7D7:
-                       INC.B $01                            ;82F7D7|E601    |001949;
-                       STZ.B $0F                            ;82F7D9|640F    |001957;
+                       INC.B r_1949-$1948                   ;82F7D7|E601    |001949;
+                       STZ.B r_1957-$1948                   ;82F7D9|640F    |001957;
                        REP #$30                             ;82F7DB|C230    |      ;
-                       STZ.B $0C                            ;82F7DD|640C    |001954;
+                       STZ.B r_1954-$1948                   ;82F7DD|640C    |001954;
                        LDA.W #$0004                         ;82F7DF|A90400  |      ;
-                       STA.B $14                            ;82F7E2|8514    |00195C;
+                       STA.B r_195c-$1948                   ;82F7E2|8514    |00195C;
                        PHB                                  ;82F7E4|8B      |      ;
                        LDX.W #$DF9A                         ;82F7E5|A29ADF  |      ;
                        LDY.W #$0AAF                         ;82F7E8|A0AF0A  |      ;
@@ -18228,26 +18228,26 @@ prisonCapsule_63_state_00:
                        REP #$30                             ;82F7F2|C230    |      ;
                        JSR.W CODE_82F8B3                    ;82F7F4|20B3F8  |82F8B3;
                        JSR.W CODE_82F804                    ;82F7F7|2004F8  |82F804;
-                       LDA.B $0F                            ;82F7FA|A50F    |001957;
+                       LDA.B r_1957-$1948                   ;82F7FA|A50F    |001957;
                        EOR.W #$0001                         ;82F7FC|490100  |      ;
-                       STA.B $0F                            ;82F7FF|850F    |001957;
+                       STA.B r_1957-$1948                   ;82F7FF|850F    |001957;
                        SEP #$30                             ;82F801|E230    |      ;
                        RTL                                  ;82F803|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F804:
                        LDX.W #$0000                         ;82F804|A20000  |      ;
-                       LDA.B $0F                            ;82F807|A50F    |001957;
+                       LDA.B r_1957-$1948                   ;82F807|A50F    |001957;
                        LSR A                                ;82F809|4A      |      ;
                        BCC CODE_82F80F                      ;82F80A|9003    |82F80F;
                        LDX.W #$0024                         ;82F80C|A22400  |      ;
                                                             ;      |        |      ;
           CODE_82F80F:
-                       STX.W r_0000                         ;82F80F|8E0000  |860000;
+                       STX.W r6_0000                        ;82F80F|8E0000  |860000;
                        LDX.W #$0014                         ;82F812|A21400  |      ;
                        LDA.W #$02F8                         ;82F815|A9F802  |      ;
                        SEC                                  ;82F818|38      |      ;
-                       SBC.W r_cam_BG1_slot                 ;82F819|ED901E  |861E90;
+                       SBC.W r6_cam_BG1_slot                ;82F819|ED901E  |861E90;
                        BEQ CODE_82F856                      ;82F81C|F038    |82F856;
                        BMI CODE_82F856                      ;82F81E|3036    |82F856;
                        CMP.W #$0071                         ;82F820|C97100  |      ;
@@ -18259,10 +18259,10 @@ prisonCapsule_63_state_00:
           CODE_82F82D:
                        TAY                                  ;82F82D|A8      |      ;
                        LDA.W #$0070                         ;82F82E|A97000  |      ;
-                       STA.W r_menuSlot_donno_bkp,X         ;82F831|9D220B  |860B22;
+                       STA.W r6_menuSlot_donno_bkp,X        ;82F831|9D220B  |860B22;
                        LDA.W #$DA3C                         ;82F834|A93CDA  |      ;
                        CLC                                  ;82F837|18      |      ;
-                       ADC.W r_0000                         ;82F838|6D0000  |860000;
+                       ADC.W r6_0000                        ;82F838|6D0000  |860000;
                        STA.W $0B23,X                        ;82F83B|9D230B  |860B23;
                        TYA                                  ;82F83E|98      |      ;
                        INX                                  ;82F83F|E8      |      ;
@@ -18272,17 +18272,17 @@ prisonCapsule_63_state_00:
                        SBC.W #$0070                         ;82F843|E97000  |      ;
                                                             ;      |        |      ;
           CODE_82F846:
-                       STA.W r_menuSlot_donno_bkp,X         ;82F846|9D220B  |860B22;
+                       STA.W r6_menuSlot_donno_bkp,X        ;82F846|9D220B  |860B22;
                        LDA.W #$DA3C                         ;82F849|A93CDA  |      ;
                        CLC                                  ;82F84C|18      |      ;
-                       ADC.W r_0000                         ;82F84D|6D0000  |860000;
+                       ADC.W r6_0000                        ;82F84D|6D0000  |860000;
                        STA.W $0B23,X                        ;82F850|9D230B  |860B23;
                        INX                                  ;82F853|E8      |      ;
                        INX                                  ;82F854|E8      |      ;
                        INX                                  ;82F855|E8      |      ;
                                                             ;      |        |      ;
           CODE_82F856:
-                       LDA.W r_cam_BG1_slot                 ;82F856|AD901E  |861E90;
+                       LDA.W r6_cam_BG1_slot                ;82F856|AD901E  |861E90;
                        CLC                                  ;82F859|18      |      ;
                        ADC.W #$00E0                         ;82F85A|69E000  |      ;
                        SEC                                  ;82F85D|38      |      ;
@@ -18298,10 +18298,10 @@ prisonCapsule_63_state_00:
           CODE_82F86E:
                        TAY                                  ;82F86E|A8      |      ;
                        LDA.W #$0090                         ;82F86F|A99000  |      ;
-                       STA.W r_menuSlot_donno_bkp,X         ;82F872|9D220B  |860B22;
+                       STA.W r6_menuSlot_donno_bkp,X        ;82F872|9D220B  |860B22;
                        LDA.W #$DA1A                         ;82F875|A91ADA  |      ;
                        CLC                                  ;82F878|18      |      ;
-                       ADC.W r_0000                         ;82F879|6D0000  |860000;
+                       ADC.W r6_0000                        ;82F879|6D0000  |860000;
                        STA.W $0B23,X                        ;82F87C|9D230B  |860B23;
                        TYA                                  ;82F87F|98      |      ;
                        INX                                  ;82F880|E8      |      ;
@@ -18314,40 +18314,40 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F889:
                        ORA.W #$0080                         ;82F889|098000  |      ;
-                       STA.W r_menuSlot_donno_bkp,X         ;82F88C|9D220B  |860B22;
+                       STA.W r6_menuSlot_donno_bkp,X        ;82F88C|9D220B  |860B22;
                        LDA.W #$DA1A                         ;82F88F|A91ADA  |      ;
                        CLC                                  ;82F892|18      |      ;
-                       ADC.W r_0000                         ;82F893|6D0000  |860000;
+                       ADC.W r6_0000                        ;82F893|6D0000  |860000;
                        STA.W $0B23,X                        ;82F896|9D230B  |860B23;
                        INX                                  ;82F899|E8      |      ;
                        INX                                  ;82F89A|E8      |      ;
                        INX                                  ;82F89B|E8      |      ;
                        LDA.W #$0001                         ;82F89C|A90100  |      ;
-                       STA.W r_menuSlot_donno_bkp,X         ;82F89F|9D220B  |860B22;
+                       STA.W r6_menuSlot_donno_bkp,X        ;82F89F|9D220B  |860B22;
                        LDA.W #$DA3C                         ;82F8A2|A93CDA  |      ;
                        CLC                                  ;82F8A5|18      |      ;
-                       ADC.W r_0000                         ;82F8A6|6D0000  |860000;
+                       ADC.W r6_0000                        ;82F8A6|6D0000  |860000;
                        STA.W $0B23,X                        ;82F8A9|9D230B  |860B23;
                        INX                                  ;82F8AC|E8      |      ;
                        INX                                  ;82F8AD|E8      |      ;
                        INX                                  ;82F8AE|E8      |      ;
-                       STZ.W r_menuSlot_donno_bkp,X         ;82F8AF|9E220B  |860B22;
+                       STZ.W r6_menuSlot_donno_bkp,X        ;82F8AF|9E220B  |860B22;
                        RTS                                  ;82F8B2|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F8B3:
                        LDX.W #$0000                         ;82F8B3|A20000  |      ;
-                       LDA.B $0F                            ;82F8B6|A50F    |001957;
+                       LDA.B r_1957-$1948                   ;82F8B6|A50F    |001957;
                        LSR A                                ;82F8B8|4A      |      ;
                        BCC CODE_82F8BE                      ;82F8B9|9003    |82F8BE;
                        LDX.W #$0024                         ;82F8BB|A22400  |      ;
                                                             ;      |        |      ;
           CODE_82F8BE:
-                       LDA.W r_cam_BG1_slot                 ;82F8BE|AD901E  |861E90;
+                       LDA.W r6_cam_BG1_slot                ;82F8BE|AD901E  |861E90;
                        STA.L $7FDA3C,X                      ;82F8C1|9F3CDA7F|7FDA3C;
                        LDA.W #$0010                         ;82F8C5|A91000  |      ;
-                       STA.W r_0000                         ;82F8C8|8D0000  |860000;
-                       LDA.W r_cam_BG1_slot                 ;82F8CB|AD901E  |861E90;
+                       STA.W r6_0000                        ;82F8C8|8D0000  |860000;
+                       LDA.W r6_cam_BG1_slot                ;82F8CB|AD901E  |861E90;
                        SEC                                  ;82F8CE|38      |      ;
                        SBC.W #$02F8                         ;82F8CF|E9F802  |      ;
                        BPL CODE_82F8D7                      ;82F8D2|1003    |82F8D7;
@@ -18355,7 +18355,7 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82F8D7:
                        CLC                                  ;82F8D7|18      |      ;
-                       ADC.B $0C                            ;82F8D8|650C    |001954;
+                       ADC.B r_1954-$1948                   ;82F8D8|650C    |001954;
                        AND.W #$000F                         ;82F8DA|290F00  |      ;
                        TAY                                  ;82F8DD|A8      |      ;
                                                             ;      |        |      ;
@@ -18363,7 +18363,7 @@ prisonCapsule_63_state_00:
                        LDA.W UNREACH_86DFA1,Y               ;82F8DE|B9A1DF  |86DFA1;
                        AND.W #$00FF                         ;82F8E1|29FF00  |      ;
                        CLC                                  ;82F8E4|18      |      ;
-                       ADC.W r_cam_BG1_slot                 ;82F8E5|6D901E  |861E90;
+                       ADC.W r6_cam_BG1_slot                ;82F8E5|6D901E  |861E90;
                        STA.L $7FDA1A,X                      ;82F8E8|9F1ADA7F|7FDA1A;
                        TYA                                  ;82F8EC|98      |      ;
                        INC A                                ;82F8ED|1A      |      ;
@@ -18371,101 +18371,101 @@ prisonCapsule_63_state_00:
                        TAY                                  ;82F8F1|A8      |      ;
                        INX                                  ;82F8F2|E8      |      ;
                        INX                                  ;82F8F3|E8      |      ;
-                       DEC.W r_0000                         ;82F8F4|CE0000  |860000;
+                       DEC.W r6_0000                        ;82F8F4|CE0000  |860000;
                        BPL CODE_82F8DE                      ;82F8F7|10E5    |82F8DE;
-                       DEC.B $14                            ;82F8F9|C614    |00195C;
+                       DEC.B r_195c-$1948                   ;82F8F9|C614    |00195C;
                        BNE CODE_82F904                      ;82F8FB|D007    |82F904;
                        LDA.W #$0004                         ;82F8FD|A90400  |      ;
-                       STA.B $14                            ;82F900|8514    |00195C;
-                       INC.B $0C                            ;82F902|E60C    |001954;
+                       STA.B r_195c-$1948                   ;82F900|8514    |00195C;
+                       INC.B r_1954-$1948                   ;82F902|E60C    |001954;
                                                             ;      |        |      ;
           CODE_82F904:
                        RTS                                  ;82F904|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F905:
-                       LDA.B $01                            ;82F905|A501    |0019C9;
+                       LDA.B r_19c9-$19C8                   ;82F905|A501    |0019C9;
                        BNE CODE_82F935                      ;82F907|D02C    |82F935;
-                       INC.B $01                            ;82F909|E601    |0019C9;
-                       STZ.B $18                            ;82F90B|6418    |0019E0;
-                       LDA.B $11                            ;82F90D|A511    |0019D9;
+                       INC.B r_19c9-$19C8                   ;82F909|E601    |0019C9;
+                       STZ.B r_19e0-$19C8                   ;82F90B|6418    |0019E0;
+                       LDA.B r_19d9-$19C8                   ;82F90D|A511    |0019D9;
                        AND.B #$70                           ;82F90F|2970    |      ;
                        ORA.B #$04                           ;82F911|0904    |      ;
-                       STA.B $11                            ;82F913|8511    |0019D9;
-                       STZ.B $12                            ;82F915|6412    |0019DA;
+                       STA.B r_19d9-$19C8                   ;82F913|8511    |0019D9;
+                       STZ.B r_19da-$19C8                   ;82F915|6412    |0019DA;
                        REP #$20                             ;82F917|C220    |      ;
-                       STZ.B $1A                            ;82F919|641A    |0019E2;
-                       STZ.B $1C                            ;82F91B|641C    |0019E4;
+                       STZ.B r_19e2-$19C8                   ;82F919|641A    |0019E2;
+                       STZ.B r_19e4-$19C8                   ;82F91B|641C    |0019E4;
                        LDA.W #$0010                         ;82F91D|A91000  |      ;
-                       LDX.B $0B                            ;82F920|A60B    |0019D3;
+                       LDX.B r_19d3-$19C8                   ;82F920|A60B    |0019D3;
                        BEQ CODE_82F927                      ;82F922|F003    |82F927;
                        LDA.W #$0008                         ;82F924|A90800  |      ;
                                                             ;      |        |      ;
           CODE_82F927:
-                       STA.B $1E                            ;82F927|851E    |0019E6;
+                       STA.B r_19e6-$19C8                   ;82F927|851E    |0019E6;
                        SEP #$20                             ;82F929|E220    |      ;
                        LDA.B #$17                           ;82F92B|A917    |      ;
-                       STA.B $16                            ;82F92D|8516    |0019DE;
-                       LDA.B $0B                            ;82F92F|A50B    |0019D3;
+                       STA.B r_19de-$19C8                   ;82F92D|8516    |0019DE;
+                       LDA.B r_19d3-$19C8                   ;82F92F|A50B    |0019D3;
                        JML.L playerGrabedRoutine            ;82F931|5C078F84|848F07;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F935:
-                       LDA.B $0F                            ;82F935|A50F    |0019D7;
+                       LDA.B r_19d7-$19C8                   ;82F935|A50F    |0019D7;
                        BPL CODE_82F93D                      ;82F937|1004    |82F93D;
-                       JML.L clearStates_00_02_0E           ;82F939|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F939|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F93D:
-                       JSL.L updateEv_13_14_17_0f           ;82F93D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82F93D|22EA8E84|848EEA;
                        JSL.L CODE_8281B2                    ;82F941|22B28182|8281B2;
                        JML.L checkPlayerGear                ;82F945|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F949:
-                       LDX.B $01                            ;82F949|A601    |0019E9;
+                       LDX.B r_19e9-$19E8                   ;82F949|A601    |0019E9;
                        JMP.W (UNREACH_82F94E,X)             ;82F94B|7C4EF9  |82F94E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_82F94E:
                        db $54,$F9,$66,$F9,$BF,$F9           ;82F94E|        |      ;
                        LDA.B #$02                           ;82F954|A902    |      ;
-                       STA.B $01                            ;82F956|8501    |0019E9;
+                       STA.B r_19e9-$19E8                   ;82F956|8501    |0019E9;
                        LDA.B #$04                           ;82F958|A904    |      ;
-                       STA.B $12                            ;82F95A|8512    |0019FA;
+                       STA.B r_19fa-$19E8                   ;82F95A|8512    |0019FA;
                        LDA.L $7F825C                        ;82F95C|AF5C827F|7F825C;
-                       STA.B $18                            ;82F960|8518    |001A00;
+                       STA.B r_1a00-$19E8                   ;82F960|8518    |001A00;
                        LDA.B #$61                           ;82F962|A961    |      ;
-                       STA.B $16                            ;82F964|8516    |0019FE;
+                       STA.B r_19fe-$19E8                   ;82F964|8516    |0019FE;
                        LDA.L $7F835C                        ;82F966|AF5C837F|7F835C;
                        ORA.B #$02                           ;82F96A|0902    |      ;
                        STA.L $7F835C                        ;82F96C|8F5C837F|7F835C;
                        LDA.L $7F835C                        ;82F970|AF5C837F|7F835C;
                        ORA.B #$20                           ;82F974|0920    |      ;
                        AND.B #$FD                           ;82F976|29FD    |      ;
-                       STA.B $11                            ;82F978|8511    |0019F9;
-                       LDX.B $02                            ;82F97A|A602    |0019EA;
+                       STA.B r_19f9-$19E8                   ;82F978|8511    |0019F9;
+                       LDX.B r_19ea-$19E8                   ;82F97A|A602    |0019EA;
                        JSR.W (UNREACH_82F9AC,X)             ;82F97C|FCACF9  |82F9AC;
                        REP #$30                             ;82F97F|C230    |      ;
-                       LDX.B $0C                            ;82F981|A60C    |0019F4;
-                       LDA.W r_0005,X                       ;82F983|BD0500  |860005;
-                       STA.B $05                            ;82F986|8505    |0019ED;
-                       LDA.W r_0008,X                       ;82F988|BD0800  |860008;
-                       STA.B $08                            ;82F98B|8508    |0019F0;
+                       LDX.B r_19f4-$19E8                   ;82F981|A60C    |0019F4;
+                       LDA.W r6_0005,X                      ;82F983|BD0500  |860005;
+                       STA.B r_19ed-$19E8                   ;82F986|8505    |0019ED;
+                       LDA.W r6_0008,X                      ;82F988|BD0800  |860008;
+                       STA.B r_19f0-$19E8                   ;82F98B|8508    |0019F0;
                        SEP #$20                             ;82F98D|E220    |      ;
-                       LDA.W r_0038,X                       ;82F98F|BD3800  |860038;
+                       LDA.W r6_0038,X                      ;82F98F|BD3800  |860038;
                        LSR A                                ;82F992|4A      |      ;
                        BCC CODE_82F999                      ;82F993|9004    |82F999;
                        LDA.B #$0E                           ;82F995|A90E    |      ;
-                       TRB.B $11                            ;82F997|1411    |0019F9;
+                       TRB.B r_19f9-$19E8                   ;82F997|1411    |0019F9;
                                                             ;      |        |      ;
           CODE_82F999:
-                       LDA.W r_0027,X                       ;82F999|BD2700  |860027;
+                       LDA.W r6_0027,X                      ;82F999|BD2700  |860027;
                        CMP.B #$FF                           ;82F99C|C9FF    |      ;
                        BNE CODE_82F9A6                      ;82F99E|D006    |82F9A6;
                        LDA.B #$04                           ;82F9A0|A904    |      ;
-                       STA.B $01                            ;82F9A2|8501    |0019E9;
-                       STZ.B $02                            ;82F9A4|6402    |0019EA;
+                       STA.B r_19e9-$19E8                   ;82F9A2|8501    |0019E9;
+                       STZ.B r_19ea-$19E8                   ;82F9A4|6402    |0019EA;
                                                             ;      |        |      ;
           CODE_82F9A6:
                        SEP #$10                             ;82F9A6|E210    |      ;
@@ -18475,24 +18475,24 @@ prisonCapsule_63_state_00:
        UNREACH_82F9AC:
                        db $B0,$F9,$BA,$F9                   ;82F9AC|        |82F9A7;
                        LDA.B #$02                           ;82F9B0|A902    |      ;
-                       STA.B $02                            ;82F9B2|8502    |0019EA;
-                       LDA.B $10                            ;82F9B4|A510    |0019F8;
+                       STA.B r_19ea-$19E8                   ;82F9B2|8502    |0019EA;
+                       LDA.B r_19f8-$19E8                   ;82F9B4|A510    |0019F8;
                        JSL.L playerGrabedRoutine            ;82F9B6|22078F84|848F07;
-                       JSL.L updateEv_13_14_17_0f           ;82F9BA|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82F9BA|22EA8E84|848EEA;
                        RTS                                  ;82F9BE|60      |      ;
                                                             ;      |        |      ;
                        REP #$10                             ;82F9BF|C210    |      ;
                        LDA.L $7F835C                        ;82F9C1|AF5C837F|7F835C;
                        ORA.B #$02                           ;82F9C5|0902    |      ;
                        STA.L $7F835C                        ;82F9C7|8F5C837F|7F835C;
-                       LDX.B $0C                            ;82F9CB|A60C    |0019F4;
-                       LDA.W r_0027,X                       ;82F9CD|BD2700  |860027;
+                       LDX.B r_19f4-$19E8                   ;82F9CB|A60C    |0019F4;
+                       LDA.W r6_0027,X                      ;82F9CD|BD2700  |860027;
                        BNE CODE_82F9D6                      ;82F9D0|D004    |82F9D6;
-                       JML.L clearStates_00_02_0E           ;82F9D2|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82F9D2|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F9D6:
-                       LDA.W r_frameCounter1                ;82F9D6|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82F9D6|AD9C0B  |860B9C;
                        LSR A                                ;82F9D9|4A      |      ;
                        BCC CODE_82F9E0                      ;82F9DA|9004    |82F9E0;
                        JML.L checkPlayerGear                ;82F9DC|5CB48082|8280B4;
@@ -18503,20 +18503,20 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82F9E1:
-                       LDX.B $01                            ;82F9E1|A601    |001969;
+                       LDX.B r_1969-$1968                   ;82F9E1|A601    |001969;
                        BNE CODE_82FA4B                      ;82F9E3|D066    |82FA4B;
                        REP #$30                             ;82F9E5|C230    |      ;
                        LDX.W #$1928                         ;82F9E7|A22819  |      ;
                                                             ;      |        |      ;
           CODE_82F9EA:
-                       LDA.W r_0000,X                       ;82F9EA|BD0000  |860000;
+                       LDA.W r6_0000,X                      ;82F9EA|BD0000  |860000;
                        BEQ CODE_82FA03                      ;82F9ED|F014    |82FA03;
                        TDC                                  ;82F9EF|7B      |      ;
-                       STA.W r_0000                         ;82F9F0|8D0000  |860000;
-                       CPX.W r_0000                         ;82F9F3|EC0000  |860000;
+                       STA.W r6_0000                        ;82F9F0|8D0000  |860000;
+                       CPX.W r6_0000                        ;82F9F3|EC0000  |860000;
                        BEQ CODE_82FA03                      ;82F9F6|F00B    |82FA03;
-                       LDA.W r_000a,X                       ;82F9F8|BD0A00  |86000A;
-                       CMP.B $0A                            ;82F9FB|C50A    |001952;
+                       LDA.W r6_000a,X                      ;82F9F8|BD0A00  |86000A;
+                       CMP.B r_1952-$1948                   ;82F9FB|C50A    |001952;
                        BNE CODE_82FA03                      ;82F9FD|D004    |82FA03;
                        JML.L clearStateIf_0cEqual           ;82F9FF|5C878382|828387;
                                                             ;      |        |      ;
@@ -18530,47 +18530,47 @@ prisonCapsule_63_state_00:
                        BCC CODE_82F9EA                      ;82FA0C|90DC    |82F9EA;
                        SEP #$30                             ;82FA0E|E230    |      ;
                        LDA.B #$80                           ;82FA10|A980    |      ;
-                       TSB.B $00                            ;82FA12|0400    |001948;
-                       INC.B $01                            ;82FA14|E601    |001949;
-                       STZ.W r_0000                         ;82FA16|9C0000  |860000;
-                       LDA.W r_gameLoop_idx_d2              ;82FA19|ADD200  |8600D2;
+                       TSB.B r_1948-$1948                   ;82FA12|0400    |001948;
+                       INC.B r_1949-$1948                   ;82FA14|E601    |001949;
+                       STZ.W r6_0000                        ;82FA16|9C0000  |860000;
+                       LDA.W r6_gameLoop_idx_d2             ;82FA19|ADD200  |8600D2;
                        CMP.B #$02                           ;82FA1C|C902    |      ;
                        BEQ CODE_82FA41                      ;82FA1E|F021    |82FA41;
-                       LDA.W r_level_current                ;82FA20|AD7A1F  |861F7A;
+                       LDA.W r6_level_current               ;82FA20|AD7A1F  |861F7A;
                        CMP.B #$04                           ;82FA23|C904    |      ;
                        BEQ CODE_82FA37                      ;82FA25|F010    |82FA37;
                        CMP.B #$06                           ;82FA27|C906    |      ;
                        BNE CODE_82FA41                      ;82FA29|D016    |82FA41;
-                       BIT.W r_1f90                         ;82FA2B|2C901F  |861F90;
+                       BIT.W r6_player_weaponStorm_04       ;82FA2B|2C901F  |861F90;
                        BVC CODE_82FA41                      ;82FA2E|5011    |82FA41;
                        LDA.B #$0E                           ;82FA30|A90E    |      ;
-                       STA.W r_0000                         ;82FA32|8D0000  |860000;
+                       STA.W r6_0000                        ;82FA32|8D0000  |860000;
                        BRA CODE_82FA41                      ;82FA35|800A    |82FA41;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FA37:
-                       BIT.W r_1f96                         ;82FA37|2C961F  |861F96;
+                       BIT.W r6_player_weaponIce_07         ;82FA37|2C961F  |861F96;
                        BVC CODE_82FA41                      ;82FA3A|5005    |82FA41;
                        LDA.B #$0A                           ;82FA3C|A90A    |      ;
-                       STA.W r_0000                         ;82FA3E|8D0000  |860000;
+                       STA.W r6_0000                        ;82FA3E|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_82FA41:
-                       LDA.B $0B                            ;82FA41|A50B    |001953;
+                       LDA.B r_1953-$1948                   ;82FA41|A50B    |001953;
                        CLC                                  ;82FA43|18      |      ;
-                       ADC.W r_0000                         ;82FA44|6D0000  |860000;
+                       ADC.W r6_0000                        ;82FA44|6D0000  |860000;
                        JML.L CODE_848F7D                    ;82FA47|5C7D8F84|848F7D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FA4B:
-                       LDA.W r_d_0bcf                       ;82FA4B|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82FA4B|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82FA4E|297F    |      ;
                        BEQ CODE_82FA6C                      ;82FA50|F01A    |82FA6C;
                        REP #$30                             ;82FA52|C230    |      ;
-                       LDA.B $0B                            ;82FA54|A50B    |001973;
+                       LDA.B r_1973-$1968                   ;82FA54|A50B    |001973;
                        AND.W #$00FF                         ;82FA56|29FF00  |      ;
                        ASL A                                ;82FA59|0A      |      ;
                        TAX                                  ;82FA5A|AA      |      ;
-                       LDA.W r_d_player_xSubPos             ;82FA5B|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82FA5B|ADAD0B  |860BAD;
                        CMP.W UNREACH_86E324,X               ;82FA5E|DD24E3  |86E324;
                        BCC CODE_82FA6D                      ;82FA61|900A    |82FA6D;
                        CMP.W UNREACH_86E360,X               ;82FA63|DD60E3  |86E360;
@@ -18587,26 +18587,26 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FA71:
-                       LDX.B $01                            ;82FA71|A601    |0019C9;
+                       LDX.B r_19c9-$19C8                   ;82FA71|A601    |0019C9;
                        JMP.W (UNREACH_82FA76,X)             ;82FA73|7C76FA  |82FA76;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        UNREACH_82FA76:
                        db $7C,$FA,$98,$FA,$ED,$FA           ;82FA76|        |8298FA;
                        LDA.B #$02                           ;82FA7C|A902    |      ;
-                       STA.B $01                            ;82FA7E|8501    |001A09;
+                       STA.B r_1a09-$1A08                   ;82FA7E|8501    |001A09;
                        LDA.B #$02                           ;82FA80|A902    |      ;
-                       STA.B $12                            ;82FA82|8512    |001A1A;
-                       STZ.B $18                            ;82FA84|6418    |001A20;
+                       STA.B r_1a1a-$1A08                   ;82FA82|8512    |001A1A;
+                       STZ.B r_1a20-$1A08                   ;82FA84|6418    |001A20;
                        LDA.L $7F8325                        ;82FA86|AF25837F|7F8325;
-                       STA.B $11                            ;82FA8A|8511    |001A19;
+                       STA.B r_1a19-$1A08                   ;82FA8A|8511    |001A19;
                        REP #$20                             ;82FA8C|C220    |      ;
-                       STZ.B $1A                            ;82FA8E|641A    |001A22;
-                       STZ.B $1E                            ;82FA90|641E    |001A26;
+                       STZ.B r_1a22-$1A08                   ;82FA8E|641A    |001A22;
+                       STZ.B r_1a26-$1A08                   ;82FA90|641E    |001A26;
                        SEP #$20                             ;82FA92|E220    |      ;
                        LDA.B #$26                           ;82FA94|A926    |      ;
-                       STA.B $16                            ;82FA96|8516    |001A1E;
-                       LDX.B $02                            ;82FA98|A602    |0019CA;
+                       STA.B r_1a1e-$1A08                   ;82FA96|8516    |001A1E;
+                       LDX.B r_19ca-$19C8                   ;82FA98|A602    |0019CA;
                        JSR.W (UNREACH_82FAA1,X)             ;82FA9A|FCA1FA  |82FAA1;
                        JML.L checkPlayerGear                ;82FA9D|5CB48082|8280B4;
                                                             ;      |        |      ;
@@ -18614,93 +18614,93 @@ prisonCapsule_63_state_00:
        UNREACH_82FAA1:
                        db $A5,$FA,$DA,$FA                   ;82FAA1|        |0000FA;
                        LDA.B #$02                           ;82FAA5|A902    |      ;
-                       STA.B $02                            ;82FAA7|8502    |001A0A;
+                       STA.B r_1a0a-$1A08                   ;82FAA7|8502    |001A0A;
                        REP #$20                             ;82FAA9|C220    |      ;
                        JSL.L mainPlayer_00                  ;82FAAB|22869084|849086;
                        AND.W #$07FF                         ;82FAAF|29FF07  |      ;
-                       STA.W r_0000                         ;82FAB2|8D0000  |860000;
-                       LDA.B $0B                            ;82FAB5|A50B    |001A13;
+                       STA.W r6_0000                        ;82FAB2|8D0000  |860000;
+                       LDA.B r_1a13-$1A08                   ;82FAB5|A50B    |001A13;
                        AND.W #$00FF                         ;82FAB7|29FF00  |      ;
                        ASL A                                ;82FABA|0A      |      ;
                        TAX                                  ;82FABB|AA      |      ;
                        LDA.W UNREACH_86E3EA,X               ;82FABC|BDEAE3  |86E3EA;
                        SEC                                  ;82FABF|38      |      ;
-                       SBC.W r_0000                         ;82FAC0|ED0000  |860000;
-                       STA.B $1C                            ;82FAC3|851C    |001A24;
-                       LDA.B $08                            ;82FAC5|A508    |001A10;
+                       SBC.W r6_0000                        ;82FAC0|ED0000  |860000;
+                       STA.B r_1a24-$1A08                   ;82FAC3|851C    |001A24;
+                       LDA.B r_1a10-$1A08                   ;82FAC5|A508    |001A10;
                        CLC                                  ;82FAC7|18      |      ;
                        ADC.W #$0028                         ;82FAC8|692800  |      ;
-                       STA.B $0C                            ;82FACB|850C    |001A14;
+                       STA.B r_1a14-$1A08                   ;82FACB|850C    |001A14;
                        LDA.W #$0040                         ;82FACD|A94000  |      ;
-                       STA.B $1E                            ;82FAD0|851E    |001A26;
+                       STA.B r_1a26-$1A08                   ;82FAD0|851E    |001A26;
                        SEP #$20                             ;82FAD2|E220    |      ;
                        LDA.B #$03                           ;82FAD4|A903    |      ;
                        JSL.L playerGrabedRoutine            ;82FAD6|22078F84|848F07;
                        REP #$20                             ;82FADA|C220    |      ;
-                       LDA.B $08                            ;82FADC|A508    |0019D0;
-                       CMP.B $0C                            ;82FADE|C50C    |0019D4;
+                       LDA.B r_19d0-$19C8                   ;82FADC|A508    |0019D0;
+                       CMP.B r_19d4-$19C8                   ;82FADE|C50C    |0019D4;
                        SEP #$20                             ;82FAE0|E220    |      ;
                        BCC CODE_82FAE8                      ;82FAE2|9004    |82FAE8;
                        LDA.B #$04                           ;82FAE4|A904    |      ;
-                       STA.B $01                            ;82FAE6|8501    |0019C9;
+                       STA.B r_19c9-$19C8                   ;82FAE6|8501    |0019C9;
                                                             ;      |        |      ;
           CODE_82FAE8:
                        JSL.L CODE_828174                    ;82FAE8|22748182|828174;
                        RTS                                  ;82FAEC|60      |      ;
                                                             ;      |        |      ;
-                       JML.L clearStates_00_02_0E           ;82FAED|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82FAED|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FAF1:
-                       LDX.B $01                            ;82FAF1|A601    |0019E9;
+                       LDX.B r_19e9-$19E8                   ;82FAF1|A601    |0019E9;
                        BNE CODE_82FB16                      ;82FAF3|D021    |82FB16;
                        LDA.B #$02                           ;82FAF5|A902    |      ;
-                       STA.B $01                            ;82FAF7|8501    |0019E9;
+                       STA.B r_19e9-$19E8                   ;82FAF7|8501    |0019E9;
                        LDA.B #$04                           ;82FAF9|A904    |      ;
-                       STA.B $12                            ;82FAFB|8512    |0019FA;
+                       STA.B r_19fa-$19E8                   ;82FAFB|8512    |0019FA;
                        LDA.L $7F838F                        ;82FAFD|AF8F837F|7F838F;
-                       STA.B $11                            ;82FB01|8511    |0019F9;
+                       STA.B r_19f9-$19E8                   ;82FB01|8511    |0019F9;
                        LDA.L $7F828F                        ;82FB03|AF8F827F|7F828F;
-                       STA.B $18                            ;82FB07|8518    |001A00;
+                       STA.B r_1a00-$19E8                   ;82FB07|8518    |001A00;
                        LDA.B #$9B                           ;82FB09|A99B    |      ;
-                       STA.B $16                            ;82FB0B|8516    |0019FE;
-                       LDA.B $0B                            ;82FB0D|A50B    |0019F3;
+                       STA.B r_19fe-$19E8                   ;82FB0B|8516    |0019FE;
+                       LDA.B r_19f3-$19E8                   ;82FB0D|A50B    |0019F3;
                        CLC                                  ;82FB0F|18      |      ;
                        ADC.B #$05                           ;82FB10|6905    |      ;
                        JSL.L playerGrabedRoutine            ;82FB12|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_82FB16:
-                       JSL.L updateEv_13_14_17_0f           ;82FB16|22EA8E84|848EEA;
-                       LDA.B $0F                            ;82FB1A|A50F    |0019F7;
+                       JSL.L updateTimerEv_13_14_17_0f      ;82FB16|22EA8E84|848EEA;
+                       LDA.B r_19f7-$19E8                   ;82FB1A|A50F    |0019F7;
                        BPL CODE_82FB22                      ;82FB1C|1004    |82FB22;
-                       JML.L clearStates_00_02_0E           ;82FB1E|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82FB1E|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FB22:
                        REP #$30                             ;82FB22|C230    |      ;
-                       LDX.B $0C                            ;82FB24|A60C    |0019F4;
-                       LDA.W r_0005,X                       ;82FB26|BD0500  |860005;
-                       STA.B $05                            ;82FB29|8505    |0019ED;
-                       LDA.W r_0008,X                       ;82FB2B|BD0800  |860008;
-                       STA.B $08                            ;82FB2E|8508    |0019F0;
+                       LDX.B r_19f4-$19E8                   ;82FB24|A60C    |0019F4;
+                       LDA.W r6_0005,X                      ;82FB26|BD0500  |860005;
+                       STA.B r_19ed-$19E8                   ;82FB29|8505    |0019ED;
+                       LDA.W r6_0008,X                      ;82FB2B|BD0800  |860008;
+                       STA.B r_19f0-$19E8                   ;82FB2E|8508    |0019F0;
                        SEP #$30                             ;82FB30|E230    |      ;
                        JML.L checkPlayerGear                ;82FB32|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FB36:
-                       LDX.B $01                            ;82FB36|A601    |001D29;
+                       LDX.B r_1d29-$1D28                   ;82FB36|A601    |001D29;
                        BNE CODE_82FB58                      ;82FB38|D01E    |82FB58;
                        REP #$20                             ;82FB3A|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82FB3C|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82FB3C|ADAD0B  |860BAD;
                        CMP.W #$1B60                         ;82FB3F|C9601B  |      ;
                        BCC CODE_82FB57                      ;82FB42|9013    |82FB57;
                        LDA.W #$1B40                         ;82FB44|A9401B  |      ;
-                       STA.W r_levelSpecFlag                ;82FB47|8D5E1E  |861E5E;
+                       STA.W r6_levelSpecFlag               ;82FB47|8D5E1E  |861E5E;
                        LDA.W #$1D00                         ;82FB4A|A9001D  |      ;
-                       STA.W r_cam_BG0_xPos_lock            ;82FB4D|8D601E  |861E60;
+                       STA.W r6_cam_BG0_xPos_lock           ;82FB4D|8D601E  |861E60;
                        LDX.B #$02                           ;82FB50|A202    |      ;
-                       STX.W r_player_checkpoint            ;82FB52|8E811F  |861F81;
-                       INC.B $01                            ;82FB55|E601    |001D29;
+                       STX.W r6_player_checkpoint           ;82FB52|8E811F  |861F81;
+                       INC.B r_1d29-$1D28                   ;82FB55|E601    |001D29;
                                                             ;      |        |      ;
           CODE_82FB57:
                        RTL                                  ;82FB57|6B      |      ;
@@ -18708,19 +18708,19 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82FB58:
                        REP #$10                             ;82FB58|C210    |      ;
-                       LDX.W r_cam_BG0_xPos_target          ;82FB5A|AE4D1E  |861E4D;
+                       LDX.W r6_cam_BG0_xPos_target         ;82FB5A|AE4D1E  |861E4D;
                        CPX.W #$1AE0                         ;82FB5D|E0E01A  |      ;
                        BCC CODE_82FB57                      ;82FB60|90F5    |82FB57;
                        JSL.L loadEnitySlotBase              ;82FB62|22218382|828321;
                        BNE CODE_82FB57                      ;82FB66|D0EF    |82FB57;
-                       INC.W r_0000,X                       ;82FB68|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82FB68|FE0000  |860000;
                        LDA.B #$1A                           ;82FB6B|A91A    |      ;
-                       STA.W r_000a,X                       ;82FB6D|9D0A00  |86000A;
-                       JML.L clearStates_00_02_0E           ;82FB70|5C988382|828398;
+                       STA.W r6_000a,X                      ;82FB6D|9D0A00  |86000A;
+                       JML.L despawnEvent_clear_00_02_0E    ;82FB70|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FB74:
-                       LDX.B $01                            ;82FB74|A601    |001D39;
+                       LDX.B r_1d39-$1D38                   ;82FB74|A601    |001D39;
                        JSR.W (UNREACH_82FB84,X)             ;82FB76|FC84FB  |82FB84;
                        LDX.B #$00                           ;82FB79|A200    |      ;
                        LDY.B #$00                           ;82FB7B|A000    |      ;
@@ -18731,23 +18731,23 @@ prisonCapsule_63_state_00:
        UNREACH_82FB84:
                        db $8C,$FB,$A7,$FB,$F4,$FB,$FD,$FB   ;82FB84|        |00A7FB;
                        LDA.B #$02                           ;82FB8C|A902    |      ;
-                       STA.B $01                            ;82FB8E|8501    |001D39;
+                       STA.B r_1d39-$1D38                   ;82FB8E|8501    |001D39;
                        LDA.B #$01                           ;82FB90|A901    |      ;
-                       STA.B $03                            ;82FB92|8503    |001D3B;
-                       LDA.B $0B                            ;82FB94|A50B    |001D43;
+                       STA.B r_1d3b-$1D38                   ;82FB92|8503    |001D3B;
+                       LDA.B r_1d43-$1D38                   ;82FB94|A50B    |001D43;
                        BEQ CODE_82FB9E                      ;82FB96|F006    |82FB9E;
                        LDA.B #$04                           ;82FB98|A904    |      ;
-                       STA.B $02                            ;82FB9A|8502    |001D3A;
+                       STA.B r_1d3a-$1D38                   ;82FB9A|8502    |001D3A;
                        BRA CODE_82FBA2                      ;82FB9C|8004    |82FBA2;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FB9E:
                        LDA.B #$06                           ;82FB9E|A906    |      ;
-                       STA.B $02                            ;82FBA0|8502    |001D1A;
+                       STA.B r_1d1a-$1D18                   ;82FBA0|8502    |001D1A;
                                                             ;      |        |      ;
           CODE_82FBA2:
                        LDA.B #$01                           ;82FBA2|A901    |      ;
-                       STA.B $0F                            ;82FBA4|850F    |001D47;
+                       STA.B r_1d47-$1D38                   ;82FBA4|850F    |001D47;
                        RTS                                  ;82FBA6|60      |      ;
                                                             ;      |        |      ;
                        LDX.B #$00                           ;82FBA7|A200    |      ;
@@ -18758,41 +18758,41 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FBB4:
-                       LDA.B $02                            ;82FBB4|A502    |001D3A;
+                       LDA.B r_1d3a-$1D38                   ;82FBB4|A502    |001D3A;
                        BEQ CODE_82FBF3                      ;82FBB6|F03B    |82FBF3;
-                       LDA.B $0B                            ;82FBB8|A50B    |001D43;
+                       LDA.B r_1d43-$1D38                   ;82FBB8|A50B    |001D43;
                        BEQ CODE_82FBC4                      ;82FBBA|F008    |82FBC4;
-                       LDA.B $02                            ;82FBBC|A502    |001D3A;
+                       LDA.B r_1d3a-$1D38                   ;82FBBC|A502    |001D3A;
                        CMP.B #$04                           ;82FBBE|C904    |      ;
                        BNE CODE_82FBE4                      ;82FBC0|D022    |82FBE4;
                        BRA CODE_82FBCA                      ;82FBC2|8006    |82FBCA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FBC4:
-                       LDA.B $02                            ;82FBC4|A502    |001D1A;
+                       LDA.B r_1d1a-$1D18                   ;82FBC4|A502    |001D1A;
                        CMP.B #$06                           ;82FBC6|C906    |      ;
                        BNE CODE_82FBE4                      ;82FBC8|D01A    |82FBE4;
                                                             ;      |        |      ;
           CODE_82FBCA:
-                       DEC.B $03                            ;82FBCA|C603    |001D3B;
+                       DEC.B r_1d3b-$1D38                   ;82FBCA|C603    |001D3B;
                        BNE CODE_82FBF3                      ;82FBCC|D025    |82FBF3;
                        LDA.B #$80                           ;82FBCE|A980    |      ;
-                       STA.B $03                            ;82FBD0|8503    |001D3B;
+                       STA.B r_1d3b-$1D38                   ;82FBD0|8503    |001D3B;
                        JSL.L mainPlayer_00                  ;82FBD2|22869084|849086;
                        AND.B #$0F                           ;82FBD6|290F    |      ;
                        CMP.B #$0D                           ;82FBD8|C90D    |      ;
                        BPL CODE_82FBE4                      ;82FBDA|1008    |82FBE4;
-                       DEC.B $0F                            ;82FBDC|C60F    |001D47;
+                       DEC.B r_1d47-$1D38                   ;82FBDC|C60F    |001D47;
                        BNE CODE_82FBF3                      ;82FBDE|D013    |82FBF3;
                        LDA.B #$03                           ;82FBE0|A903    |      ;
-                       STA.B $0F                            ;82FBE2|850F    |001D47;
+                       STA.B r_1d47-$1D38                   ;82FBE2|850F    |001D47;
                                                             ;      |        |      ;
           CODE_82FBE4:
                        LDA.B #$04                           ;82FBE4|A904    |      ;
-                       STA.B $01                            ;82FBE6|8501    |001D39;
+                       STA.B r_1d39-$1D38                   ;82FBE6|8501    |001D39;
                        JSR.W CODE_82FC85                    ;82FBE8|2085FC  |82FC85;
                        LDA.B #$24                           ;82FBEB|A924    |      ;
-                       STA.B $03                            ;82FBED|8503    |001D3B;
+                       STA.B r_1d3b-$1D38                   ;82FBED|8503    |001D3B;
                        BRA CODE_82FBF3                      ;82FBEF|8002    |82FBF3;
                                                             ;      |        |      ;
                        db $C6,$0F                           ;82FBF1|        |00000F;
@@ -18800,10 +18800,10 @@ prisonCapsule_63_state_00:
           CODE_82FBF3:
                        RTS                                  ;82FBF3|60      |      ;
                                                             ;      |        |      ;
-                       DEC.B $03                            ;82FBF4|C603    |001D3B;
+                       DEC.B r_1d3b-$1D38                   ;82FBF4|C603    |001D3B;
                        BNE CODE_82FBFC                      ;82FBF6|D004    |82FBFC;
                        LDA.B #$06                           ;82FBF8|A906    |      ;
-                       STA.B $01                            ;82FBFA|8501    |001D39;
+                       STA.B r_1d39-$1D38                   ;82FBFA|8501    |001D39;
                                                             ;      |        |      ;
           CODE_82FBFC:
                        RTS                                  ;82FBFC|60      |      ;
@@ -18812,44 +18812,44 @@ prisonCapsule_63_state_00:
           CODE_82FBFD:
                        JSL.L loadEnitySlotBase              ;82FBFD|22218382|828321;
                        BNE CODE_82FC2F                      ;82FC01|D02C    |82FC2F;
-                       DEC.B $02                            ;82FC03|C602    |001D3A;
-                       DEC.B $02                            ;82FC05|C602    |001D3A;
-                       LDA.B $02                            ;82FC07|A502    |001D3A;
-                       STA.W r_0033,X                       ;82FC09|9D3300  |860033;
+                       DEC.B r_1d3a-$1D38                   ;82FC03|C602    |001D3A;
+                       DEC.B r_1d3a-$1D38                   ;82FC05|C602    |001D3A;
+                       LDA.B r_1d3a-$1D38                   ;82FC07|A502    |001D3A;
+                       STA.W r6_0033,X                      ;82FC09|9D3300  |860033;
                        REP #$20                             ;82FC0C|C220    |      ;
                        TDC                                  ;82FC0E|7B      |      ;
-                       STA.W r_000c,X                       ;82FC0F|9D0C00  |86000C;
-                       LDA.B $05                            ;82FC12|A505    |001D3D;
-                       STA.W r_0005,X                       ;82FC14|9D0500  |860005;
-                       LDA.B $08                            ;82FC17|A508    |001D40;
-                       STA.W r_0008,X                       ;82FC19|9D0800  |860008;
+                       STA.W r6_000c,X                      ;82FC0F|9D0C00  |86000C;
+                       LDA.B r_1d3d-$1D38                   ;82FC12|A505    |001D3D;
+                       STA.W r6_0005,X                      ;82FC14|9D0500  |860005;
+                       LDA.B r_1d40-$1D38                   ;82FC17|A508    |001D40;
+                       STA.W r6_0008,X                      ;82FC19|9D0800  |860008;
                        SEP #$20                             ;82FC1C|E220    |      ;
                        LDA.B #$1C                           ;82FC1E|A91C    |      ;
-                       STA.W r_000a,X                       ;82FC20|9D0A00  |86000A;
-                       INC.W r_0000,X                       ;82FC23|FE0000  |860000;
-                       LDA.B $0B                            ;82FC26|A50B    |001D43;
-                       STA.W r_000b,X                       ;82FC28|9D0B00  |86000B;
-                       LDA.B $02                            ;82FC2B|A502    |001D3A;
+                       STA.W r6_000a,X                      ;82FC20|9D0A00  |86000A;
+                       INC.W r6_0000,X                      ;82FC23|FE0000  |860000;
+                       LDA.B r_1d43-$1D38                   ;82FC26|A50B    |001D43;
+                       STA.W r6_000b,X                      ;82FC28|9D0B00  |86000B;
+                       LDA.B r_1d3a-$1D38                   ;82FC2B|A502    |001D3A;
                        BNE CODE_82FBFD                      ;82FC2D|D0CE    |82FBFD;
                                                             ;      |        |      ;
           CODE_82FC2F:
                        SEP #$10                             ;82FC2F|E210    |      ;
                        LDA.B #$3C                           ;82FC31|A93C    |      ;
-                       STA.B $03                            ;82FC33|8503    |001D3B;
-                       LDA.B $0B                            ;82FC35|A50B    |001D43;
+                       STA.B r_1d3b-$1D38                   ;82FC33|8503    |001D3B;
+                       LDA.B r_1d43-$1D38                   ;82FC35|A50B    |001D43;
                        BEQ CODE_82FC3F                      ;82FC37|F006    |82FC3F;
                        LDA.B #$04                           ;82FC39|A904    |      ;
-                       STA.B $02                            ;82FC3B|8502    |001D3A;
+                       STA.B r_1d3a-$1D38                   ;82FC3B|8502    |001D3A;
                        BRA CODE_82FC43                      ;82FC3D|8004    |82FC43;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FC3F:
                        LDA.B #$06                           ;82FC3F|A906    |      ;
-                       STA.B $02                            ;82FC41|8502    |001D1A;
+                       STA.B r_1d1a-$1D18                   ;82FC41|8502    |001D1A;
                                                             ;      |        |      ;
           CODE_82FC43:
                        LDA.B #$02                           ;82FC43|A902    |      ;
-                       STA.B $01                            ;82FC45|8501    |001D39;
+                       STA.B r_1d39-$1D38                   ;82FC45|8501    |001D39;
                        RTS                                  ;82FC47|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -18857,7 +18857,7 @@ prisonCapsule_63_state_00:
                        REP #$20                             ;82FC48|C220    |      ;
                        LDA.B $05                            ;82FC4A|A505    |000EAD;
                        SEC                                  ;82FC4C|38      |      ;
-                       SBC.W r_d_player_xSubPos             ;82FC4D|EDAD0B  |860BAD;
+                       SBC.W r6_player_xPos                 ;82FC4D|EDAD0B  |860BAD;
                        BCS CODE_82FC56                      ;82FC50|B004    |82FC56;
                        EOR.W #$FFFF                         ;82FC52|49FFFF  |      ;
                        INC A                                ;82FC55|1A      |      ;
@@ -18897,19 +18897,19 @@ prisonCapsule_63_state_00:
                        REP #$10                             ;82FC85|C210    |      ;
                        JSL.L CODE_8282D3                    ;82FC87|22D38282|8282D3;
                        BNE CODE_82FCAD                      ;82FC8B|D020    |82FCAD;
-                       INC.W r_0000,X                       ;82FC8D|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82FC8D|FE0000  |860000;
                        LDA.B #$17                           ;82FC90|A917    |      ;
-                       STA.W r_000a,X                       ;82FC92|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82FC92|9D0A00  |86000A;
                        LDA.B #$01                           ;82FC95|A901    |      ;
-                       STA.W r_000b,X                       ;82FC97|9D0B00  |86000B;
-                       LDA.B $11                            ;82FC9A|A511    |001D49;
+                       STA.W r6_000b,X                      ;82FC97|9D0B00  |86000B;
+                       LDA.B r_1d49-$1D38                   ;82FC9A|A511    |001D49;
                        AND.B #$40                           ;82FC9C|2940    |      ;
-                       STA.W r_0011,X                       ;82FC9E|9D1100  |860011;
+                       STA.W r6_0011,X                      ;82FC9E|9D1100  |860011;
                        REP #$20                             ;82FCA1|C220    |      ;
-                       LDA.B $05                            ;82FCA3|A505    |001D3D;
-                       STA.W r_0005,X                       ;82FCA5|9D0500  |860005;
-                       LDA.B $08                            ;82FCA8|A508    |001D40;
-                       STA.W r_0008,X                       ;82FCAA|9D0800  |860008;
+                       LDA.B r_1d3d-$1D38                   ;82FCA3|A505    |001D3D;
+                       STA.W r6_0005,X                      ;82FCA5|9D0500  |860005;
+                       LDA.B r_1d40-$1D38                   ;82FCA8|A508    |001D40;
+                       STA.W r6_0008,X                      ;82FCAA|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_82FCAD:
                        SEP #$30                             ;82FCAD|E230    |      ;
@@ -18917,38 +18917,38 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FCB0:
-                       LDA.B $01                            ;82FCB0|A501    |001D09;
+                       LDA.B r_1d09-$1D08                   ;82FCB0|A501    |001D09;
                        BNE CODE_82FCC5                      ;82FCB2|D011    |82FCC5;
-                       INC.B $01                            ;82FCB4|E601    |001D29;
-                       STZ.B $06                            ;82FCB6|6406    |001D2E;
+                       INC.B r_1d29-$1D28                   ;82FCB4|E601    |001D29;
+                       STZ.B r_1d2e-$1D28                   ;82FCB6|6406    |001D2E;
                        LDX.B #$00                           ;82FCB8|A200    |      ;
                        LDA.W UNREACH_86E47F,X               ;82FCBA|BD7FE4  |86E47F;
-                       STA.W r_1f2d                         ;82FCBD|8D2D1F  |861F2D;
+                       STA.W r6_1f2d                        ;82FCBD|8D2D1F  |861F2D;
                        LDA.W UNREACH_86E480                 ;82FCC0|AD80E4  |86E480;
-                       STA.B $07                            ;82FCC3|8507    |001D2F;
+                       STA.B r_1d2f-$1D28                   ;82FCC3|8507    |001D2F;
                                                             ;      |        |      ;
           CODE_82FCC5:
                        REP #$20                             ;82FCC5|C220    |      ;
-                       LDA.W r_cam_BG0_yPos_target          ;82FCC7|AD501E  |861E50;
+                       LDA.W r6_cam_BG0_yPos_target         ;82FCC7|AD501E  |861E50;
                        SEC                                  ;82FCCA|38      |      ;
-                       SBC.W r_1f2d                         ;82FCCB|ED2D1F  |861F2D;
+                       SBC.W r6_1f2d                        ;82FCCB|ED2D1F  |861F2D;
                        SEC                                  ;82FCCE|38      |      ;
                        SBC.W #$00B0                         ;82FCCF|E9B000  |      ;
-                       STA.B $04                            ;82FCD2|8504    |001D0C;
+                       STA.B r_1d0c-$1D08                   ;82FCD2|8504    |001D0C;
                        BMI CODE_82FCE2                      ;82FCD4|300C    |82FCE2;
                        CMP.W #$0100                         ;82FCD6|C90001  |      ;
                        BCC CODE_82FCE4                      ;82FCD9|9009    |82FCE4;
                        LDA.W #$0100                         ;82FCDB|A90001  |      ;
-                       STA.B $04                            ;82FCDE|8504    |001D0C;
+                       STA.B r_1d0c-$1D08                   ;82FCDE|8504    |001D0C;
                        BRA CODE_82FCE4                      ;82FCE0|8002    |82FCE4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FCE2:
-                       STZ.B $04                            ;82FCE2|6404    |001D0C;
+                       STZ.B r_1d0c-$1D08                   ;82FCE2|6404    |001D0C;
                                                             ;      |        |      ;
           CODE_82FCE4:
-                       LDA.B $04                            ;82FCE4|A504    |001D0C;
-                       STA.W r_job_BG3_Y_addr               ;82FCE6|8DBE00  |8600BE;
+                       LDA.B r_1d0c-$1D08                   ;82FCE4|A504    |001D0C;
+                       STA.W r6_job_BG3_Y_addr              ;82FCE6|8DBE00  |8600BE;
                        SEP #$30                             ;82FCE9|E230    |      ;
                        BRA CODE_82FD09                      ;82FCEB|801C    |82FD09;
                                                             ;      |        |      ;
@@ -18962,14 +18962,14 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FD0A:
-                       LDA.B $01                            ;82FD0A|A501    |001D09;
+                       LDA.B r_1d09-$1D08                   ;82FD0A|A501    |001D09;
                        BNE CODE_82FD20                      ;82FD0C|D012    |82FD20;
-                       LDA.W r_d_0bcf                       ;82FD0E|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;82FD0E|ADCF0B  |860BCF;
                        AND.B #$7F                           ;82FD11|297F    |      ;
                        BNE CODE_82FD1B                      ;82FD13|D006    |82FD1B;
-                       INC.B $01                            ;82FD15|E601    |001D09;
+                       INC.B r_1d09-$1D08                   ;82FD15|E601    |001D09;
                        LDA.B #$3C                           ;82FD17|A93C    |      ;
-                       STA.B $09                            ;82FD19|8509    |001D11;
+                       STA.B r_1d11-$1D08                   ;82FD19|8509    |001D11;
                                                             ;      |        |      ;
           CODE_82FD1B:
                        JSR.W CODE_82FD52                    ;82FD1B|2052FD  |82FD52;
@@ -18977,50 +18977,50 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FD20:
-                       LDA.B $09                            ;82FD20|A509    |001D11;
+                       LDA.B r_1d11-$1D08                   ;82FD20|A509    |001D11;
                        BEQ CODE_82FD28                      ;82FD22|F004    |82FD28;
-                       DEC.B $09                            ;82FD24|C609    |001D11;
+                       DEC.B r_1d11-$1D08                   ;82FD24|C609    |001D11;
                        BRA CODE_82FD35                      ;82FD26|800D    |82FD35;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FD28:
-                       LDA.W r_frameCounter1                ;82FD28|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82FD28|AD9C0B  |860B9C;
                        AND.B #$03                           ;82FD2B|2903    |      ;
                        BNE CODE_82FD35                      ;82FD2D|D006    |82FD35;
-                       DEC.B $0B                            ;82FD2F|C60B    |001D13;
+                       DEC.B r_1d13-$1D08                   ;82FD2F|C60B    |001D13;
                        BPL CODE_82FD35                      ;82FD31|1002    |82FD35;
-                       STZ.B $0B                            ;82FD33|640B    |001D13;
+                       STZ.B r_1d13-$1D08                   ;82FD33|640B    |001D13;
                                                             ;      |        |      ;
           CODE_82FD35:
-                       LDA.B $0B                            ;82FD35|A50B    |001D13;
-                       CMP.B $04                            ;82FD37|C504    |001D0C;
+                       LDA.B r_1d13-$1D08                   ;82FD35|A50B    |001D13;
+                       CMP.B r_1d0c-$1D08                   ;82FD37|C504    |001D0C;
                        BEQ CODE_82FD4D                      ;82FD39|F012    |82FD4D;
-                       STZ.B $05                            ;82FD3B|6405    |001D0D;
-                       STZ.B $06                            ;82FD3D|6406    |001D0E;
-                       LDA.B $0B                            ;82FD3F|A50B    |001D13;
-                       STA.W r_colorV_cb                    ;82FD41|8DCB00  |8600CB;
-                       STA.W r_colorV_cc                    ;82FD44|8DCC00  |8600CC;
-                       LDA.B $0B                            ;82FD47|A50B    |001D13;
+                       STZ.B r_1d0d-$1D08                   ;82FD3B|6405    |001D0D;
+                       STZ.B r_1d0e-$1D08                   ;82FD3D|6406    |001D0E;
+                       LDA.B r_1d13-$1D08                   ;82FD3F|A50B    |001D13;
+                       STA.W r6_colorV_cb                   ;82FD41|8DCB00  |8600CB;
+                       STA.W r6_colorV_cc                   ;82FD44|8DCC00  |8600CC;
+                       LDA.B r_1d13-$1D08                   ;82FD47|A50B    |001D13;
                        LSR A                                ;82FD49|4A      |      ;
-                       STA.W r_colorV_cd                    ;82FD4A|8DCD00  |8600CD;
+                       STA.W r6_colorV_cd                   ;82FD4A|8DCD00  |8600CD;
                                                             ;      |        |      ;
           CODE_82FD4D:
-                       LDA.B $0B                            ;82FD4D|A50B    |001D13;
-                       STA.B $04                            ;82FD4F|8504    |001D0C;
+                       LDA.B r_1d13-$1D08                   ;82FD4D|A50B    |001D13;
+                       STA.B r_1d0c-$1D08                   ;82FD4F|8504    |001D0C;
                        RTL                                  ;82FD51|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FD52:
                        REP #$20                             ;82FD52|C220    |      ;
-                       STZ.B $05                            ;82FD54|6405    |001D0D;
+                       STZ.B r_1d0d-$1D08                   ;82FD54|6405    |001D0D;
                        LDX.B #$00                           ;82FD56|A200    |      ;
                                                             ;      |        |      ;
           CODE_82FD58:
-                       LDA.W UNREACH_86E4BC,X               ;82FD58|BDBCE4  |86E4BC;
-                       CMP.W r_cam_BG0_xPos_target          ;82FD5B|CD4D1E  |861E4D;
+                       LDA.W shootSpriteStuff,X             ;82FD58|BDBCE4  |86E4BC;
+                       CMP.W r6_cam_BG0_xPos_target         ;82FD5B|CD4D1E  |861E4D;
                        BEQ CODE_82FD6A                      ;82FD5E|F00A    |82FD6A;
                        BCS CODE_82FD70                      ;82FD60|B00E    |82FD70;
-                       STA.B $05                            ;82FD62|8505    |001D0D;
+                       STA.B r_1d0d-$1D08                   ;82FD62|8505    |001D0D;
                        INX                                  ;82FD64|E8      |      ;
                        INX                                  ;82FD65|E8      |      ;
                        CPX.B #$20                           ;82FD66|E020    |      ;
@@ -19028,30 +19028,30 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82FD6A:
                        LDX.B #$00                           ;82FD6A|A200    |      ;
-                       STX.B $0B                            ;82FD6C|860B    |001D13;
+                       STX.B r_1d13-$1D08                   ;82FD6C|860B    |001D13;
                        BRA CODE_82FDCA                      ;82FD6E|805A    |82FDCA;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FD70:
-                       STA.B $07                            ;82FD70|8507    |001D0F;
+                       STA.B r_1d0f-$1D08                   ;82FD70|8507    |001D0F;
                        SEC                                  ;82FD72|38      |      ;
-                       SBC.W r_cam_BG0_xPos_target          ;82FD73|ED4D1E  |861E4D;
+                       SBC.W r6_cam_BG0_xPos_target         ;82FD73|ED4D1E  |861E4D;
                        BCS CODE_82FD7C                      ;82FD76|B004    |82FD7C;
                        db $49,$FF,$FF,$1A                   ;82FD78|        |      ;
                                                             ;      |        |      ;
           CODE_82FD7C:
-                       STA.B $07                            ;82FD7C|8507    |001D0F;
-                       LDA.B $05                            ;82FD7E|A505    |001D0D;
+                       STA.B r_1d0f-$1D08                   ;82FD7C|8507    |001D0F;
+                       LDA.B r_1d0d-$1D08                   ;82FD7E|A505    |001D0D;
                        SEC                                  ;82FD80|38      |      ;
-                       SBC.W r_cam_BG0_xPos_target          ;82FD81|ED4D1E  |861E4D;
+                       SBC.W r6_cam_BG0_xPos_target         ;82FD81|ED4D1E  |861E4D;
                        BCS CODE_82FD8A                      ;82FD84|B004    |82FD8A;
                        EOR.W #$FFFF                         ;82FD86|49FFFF  |      ;
                        INC A                                ;82FD89|1A      |      ;
                                                             ;      |        |      ;
           CODE_82FD8A:
-                       CMP.B $07                            ;82FD8A|C507    |001D0F;
+                       CMP.B r_1d0f-$1D08                   ;82FD8A|C507    |001D0F;
                        BCC CODE_82FD9F                      ;82FD8C|9011    |82FD9F;
-                       LDA.B $07                            ;82FD8E|A507    |001D0F;
+                       LDA.B r_1d0f-$1D08                   ;82FD8E|A507    |001D0F;
                        BRA CODE_82FD9F                      ;82FD90|800D    |82FD9F;
                                                             ;      |        |      ;
                        db $AD,$4D,$1E,$38,$ED,$BC,$E4,$B0   ;82FD92|        |001E4D;
@@ -19087,7 +19087,7 @@ prisonCapsule_63_state_00:
                        LDA.B #$07                           ;82FDC6|A907    |      ;
                                                             ;      |        |      ;
           CODE_82FDC8:
-                       STA.B $0B                            ;82FDC8|850B    |001D13;
+                       STA.B r_1d13-$1D08                   ;82FDC8|850B    |001D13;
                                                             ;      |        |      ;
           CODE_82FDCA:
                        SEP #$30                             ;82FDCA|E230    |      ;
@@ -19095,37 +19095,37 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FDCD:
-                       LDX.B $01                            ;82FDCD|A601    |001D19;
+                       LDX.B r_1d19-$1D18                   ;82FDCD|A601    |001D19;
                        BNE CODE_82FDD8                      ;82FDCF|D007    |82FDD8;
-                       INC.B $01                            ;82FDD1|E601    |001D19;
+                       INC.B r_1d19-$1D18                   ;82FDD1|E601    |001D19;
                        LDA.B #$78                           ;82FDD3|A978    |      ;
-                       STA.B $0E                            ;82FDD5|850E    |001D26;
+                       STA.B r_1d26-$1D18                   ;82FDD5|850E    |001D26;
                        RTL                                  ;82FDD7|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FDD8:
-                       DEC.B $0E                            ;82FDD8|C60E    |001D26;
+                       DEC.B r_1d26-$1D18                   ;82FDD8|C60E    |001D26;
                        BNE CODE_82FDE0                      ;82FDDA|D004    |82FDE0;
-                       JML.L clearStates_00_02_0E           ;82FDDC|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82FDDC|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FDE0:
-                       LDA.W r_frameCounter1                ;82FDE0|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;82FDE0|AD9C0B  |860B9C;
                        AND.B #$07                           ;82FDE3|2907    |      ;
                        BNE CODE_82FE0D                      ;82FDE5|D026    |82FE0D;
                        JSL.L CODE_8282D3                    ;82FDE7|22D38282|8282D3;
                        BNE CODE_82FE0B                      ;82FDEB|D01E    |82FE0B;
-                       INC.W r_0000,X                       ;82FDED|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82FDED|FE0000  |860000;
                        LDA.B #$20                           ;82FDF0|A920    |      ;
-                       STA.W r_000a,X                       ;82FDF2|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82FDF2|9D0A00  |86000A;
                        REP #$21                             ;82FDF5|C221    |      ;
-                       LDA.B $08                            ;82FDF7|A508    |001D20;
-                       STA.W r_0008,X                       ;82FDF9|9D0800  |860008;
+                       LDA.B r_1d20-$1D18                   ;82FDF7|A508    |001D20;
+                       STA.W r6_0008,X                      ;82FDF9|9D0800  |860008;
                        JSL.L mainPlayer_00                  ;82FDFC|22869084|849086;
                        AND.W #$001F                         ;82FE00|291F00  |      ;
                        CLC                                  ;82FE03|18      |      ;
-                       ADC.B $05                            ;82FE04|6505    |001D1D;
-                       STA.W r_0005,X                       ;82FE06|9D0500  |860005;
+                       ADC.B r_1d1d-$1D18                   ;82FE04|6505    |001D1D;
+                       STA.W r6_0005,X                      ;82FE06|9D0500  |860005;
                        SEP #$20                             ;82FE09|E220    |      ;
                                                             ;      |        |      ;
           CODE_82FE0B:
@@ -19136,29 +19136,29 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE0E:
-                       LDA.B $01                            ;82FE0E|A501    |001D29;
+                       LDA.B r_1d29-$1D28                   ;82FE0E|A501    |001D29;
                        BNE CODE_82FE1F                      ;82FE10|D00D    |82FE1F;
-                       INC.B $01                            ;82FE12|E601    |001D29;
-                       LDA.W r_1f90                         ;82FE14|AD901F  |861F90;
+                       INC.B r_1d29-$1D28                   ;82FE12|E601    |001D29;
+                       LDA.W r6_player_weaponStorm_04       ;82FE14|AD901F  |861F90;
                        AND.B #$40                           ;82FE17|2940    |      ;
                        BNE CODE_82FE1F                      ;82FE19|D004    |82FE1F;
-                       JML.L clearStates_00_02_0E           ;82FE1B|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82FE1B|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE1F:
                        REP #$20                             ;82FE1F|C220    |      ;
-                       LDA.B $05                            ;82FE21|A505    |001D2D;
-                       CMP.W r_d_player_xSubPos             ;82FE23|CDAD0B  |860BAD;
+                       LDA.B r_1d2d-$1D28                   ;82FE21|A505    |001D2D;
+                       CMP.W r6_player_xPos                 ;82FE23|CDAD0B  |860BAD;
                        BCS CODE_82FE43                      ;82FE26|B01B    |82FE43;
-                       LDA.W r_cam_BG0_xPos_target          ;82FE28|AD4D1E  |861E4D;
-                       STA.W r_cam_BG0_xPos_lock            ;82FE2B|8D601E  |861E60;
-                       STA.W r_levelSpecFlag                ;82FE2E|8D5E1E  |861E5E;
-                       LDA.W r_cam_BG0_yPos_target          ;82FE31|AD501E  |861E50;
-                       STA.W r_cam_BG0_yPos_lock_Set        ;82FE34|8D6E1E  |861E6E;
-                       STA.W r_1e68                         ;82FE37|8D681E  |861E68;
+                       LDA.W r6_cam_BG0_xPos_target         ;82FE28|AD4D1E  |861E4D;
+                       STA.W r6_cam_BG0_xPos_lock           ;82FE2B|8D601E  |861E60;
+                       STA.W r6_levelSpecFlag               ;82FE2E|8D5E1E  |861E5E;
+                       LDA.W r6_cam_BG0_yPos_target         ;82FE31|AD501E  |861E50;
+                       STA.W r6_cam_BG0_yPos_lock_Set       ;82FE34|8D6E1E  |861E6E;
+                       STA.W r6_1e68                        ;82FE37|8D681E  |861E68;
                        SEP #$20                             ;82FE3A|E220    |      ;
-                       INC.W r_1f23                         ;82FE3C|EE231F  |861F23;
-                       JML.L clearStates_00_02_0E           ;82FE3F|5C988382|828398;
+                       INC.W r6_1f23                        ;82FE3C|EE231F  |861F23;
+                       JML.L despawnEvent_clear_00_02_0E    ;82FE3F|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE43:
@@ -19173,33 +19173,33 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE50:
-                       LDX.B $01                            ;82FE50|A601    |001D19;
+                       LDX.B r_1d19-$1D18                   ;82FE50|A601    |001D19;
                        BNE CODE_82FE5A                      ;82FE52|D006    |82FE5A;
-                       INC.B $01                            ;82FE54|E601    |001D19;
+                       INC.B r_1d19-$1D18                   ;82FE54|E601    |001D19;
                        JML.L CODE_84A18C                    ;82FE56|5C8CA184|84A18C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE5A:
                        JSL.L loadEnitySlotBase              ;82FE5A|22218382|828321;
-                       INC.W r_0000,X                       ;82FE5E|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82FE5E|FE0000  |860000;
                        LDA.B #$23                           ;82FE61|A923    |      ;
-                       STA.W r_000a,X                       ;82FE63|9D0A00  |86000A;
-                       LDA.B $0B                            ;82FE66|A50B    |001D23;
-                       STA.W r_000b,X                       ;82FE68|9D0B00  |86000B;
+                       STA.W r6_000a,X                      ;82FE63|9D0A00  |86000A;
+                       LDA.B r_1d23-$1D18                   ;82FE66|A50B    |001D23;
+                       STA.W r6_000b,X                      ;82FE68|9D0B00  |86000B;
                        BEQ CODE_82FE75                      ;82FE6B|F008    |82FE75;
                        db $C2,$20,$A9,$A0,$04,$9D,$08,$00   ;82FE6D|        |      ;
                                                             ;      |        |      ;
           CODE_82FE75:
                        SEP #$30                             ;82FE75|E230    |      ;
-                       JML.L clearStates_00_02_0E           ;82FE77|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82FE77|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE7B:
-                       LDX.B $01                            ;82FE7B|A601    |001D19;
+                       LDX.B r_1d19-$1D18                   ;82FE7B|A601    |001D19;
                        BNE CODE_82FE85                      ;82FE7D|D006    |82FE85;
                        LDA.B #$02                           ;82FE7F|A902    |      ;
-                       STA.B $02                            ;82FE81|8502    |001D0A;
-                       STZ.B $0F                            ;82FE83|640F    |001D17;
+                       STA.B r_1d0a-$1D08                   ;82FE81|8502    |001D0A;
+                       STZ.B r_1d17-$1D08                   ;82FE83|640F    |001D17;
                                                             ;      |        |      ;
           CODE_82FE85:
                        JSL.L initPosAllign                  ;82FE85|226E8082|82806E;
@@ -19209,112 +19209,112 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
           CODE_82FE8F:
                        LDA.B #$02                           ;82FE8F|A902    |      ;
-                       STA.B $01                            ;82FE91|8501    |001D19;
-                       LDA.B $02                            ;82FE93|A502    |001D1A;
+                       STA.B r_1d19-$1D18                   ;82FE91|8501    |001D19;
+                       LDA.B r_1d1a-$1D18                   ;82FE93|A502    |001D1A;
                        BNE CODE_82FE9A                      ;82FE95|D003    |82FE9A;
                        JMP.W CODE_82FF1E                    ;82FE97|4C1EFF  |82FF1E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FE9A:
-                       DEC.B $02                            ;82FE9A|C602    |001D0A;
+                       DEC.B r_1d0a-$1D08                   ;82FE9A|C602    |001D0A;
                        REP #$10                             ;82FE9C|C210    |      ;
                        JSL.L loadEnitySlotBase              ;82FE9E|22218382|828321;
                        BNE CODE_82FF1E                      ;82FEA2|D07A    |82FF1E;
                        REP #$20                             ;82FEA4|C220    |      ;
-                       LDA.B $0B                            ;82FEA6|A50B    |001D13;
+                       LDA.B r_1d13-$1D08                   ;82FEA6|A50B    |001D13;
                        AND.W #$00FF                         ;82FEA8|29FF00  |      ;
                        BEQ CODE_82FEC6                      ;82FEAB|F019    |82FEC6;
-                       LDA.B $02                            ;82FEAD|A502    |001D0A;
+                       LDA.B r_1d0a-$1D08                   ;82FEAD|A502    |001D0A;
                        AND.W #$00FF                         ;82FEAF|29FF00  |      ;
                        BEQ CODE_82FEBD                      ;82FEB2|F009    |82FEBD;
                        LDA.W #$FFE0                         ;82FEB4|A9E0FF  |      ;
-                       STA.W r_0000                         ;82FEB7|8D0000  |860000;
+                       STA.W r6_0000                        ;82FEB7|8D0000  |860000;
                        JMP.W CODE_82FEDC                    ;82FEBA|4CDCFE  |82FEDC;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FEBD:
                        LDA.W #$FFD0                         ;82FEBD|A9D0FF  |      ;
-                       STA.W r_0000                         ;82FEC0|8D0000  |860000;
+                       STA.W r6_0000                        ;82FEC0|8D0000  |860000;
                        JMP.W CODE_82FEDC                    ;82FEC3|4CDCFE  |82FEDC;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FEC6:
-                       LDA.B $02                            ;82FEC6|A502    |001D0A;
+                       LDA.B r_1d0a-$1D08                   ;82FEC6|A502    |001D0A;
                        AND.W #$00FF                         ;82FEC8|29FF00  |      ;
                        BEQ CODE_82FED6                      ;82FECB|F009    |82FED6;
                        LDA.W #$0020                         ;82FECD|A92000  |      ;
-                       STA.W r_0000                         ;82FED0|8D0000  |860000;
+                       STA.W r6_0000                        ;82FED0|8D0000  |860000;
                        JMP.W CODE_82FEDC                    ;82FED3|4CDCFE  |82FEDC;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FED6:
                        LDA.W #$0030                         ;82FED6|A93000  |      ;
-                       STA.W r_0000                         ;82FED9|8D0000  |860000;
+                       STA.W r6_0000                        ;82FED9|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_82FEDC:
-                       LDA.B $02                            ;82FEDC|A502    |001D0A;
+                       LDA.B r_1d0a-$1D08                   ;82FEDC|A502    |001D0A;
                        AND.W #$00FF                         ;82FEDE|29FF00  |      ;
                        BEQ CODE_82FEE9                      ;82FEE1|F006    |82FEE9;
-                       STZ.W r_0002                         ;82FEE3|9C0200  |860002;
+                       STZ.W r6_0002                        ;82FEE3|9C0200  |860002;
                        JMP.W CODE_82FEEF                    ;82FEE6|4CEFFE  |82FEEF;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FEE9:
                        LDA.W #$0010                         ;82FEE9|A91000  |      ;
-                       STA.W r_0002                         ;82FEEC|8D0200  |860002;
+                       STA.W r6_0002                        ;82FEEC|8D0200  |860002;
                                                             ;      |        |      ;
           CODE_82FEEF:
-                       LDA.B $05                            ;82FEEF|A505    |001D0D;
+                       LDA.B r_1d0d-$1D08                   ;82FEEF|A505    |001D0D;
                        CLC                                  ;82FEF1|18      |      ;
-                       ADC.W r_0000                         ;82FEF2|6D0000  |860000;
-                       STA.W r_0005,X                       ;82FEF5|9D0500  |860005;
-                       LDA.B $08                            ;82FEF8|A508    |001D10;
+                       ADC.W r6_0000                        ;82FEF2|6D0000  |860000;
+                       STA.W r6_0005,X                      ;82FEF5|9D0500  |860005;
+                       LDA.B r_1d10-$1D08                   ;82FEF8|A508    |001D10;
                        SEC                                  ;82FEFA|38      |      ;
-                       SBC.W r_0002                         ;82FEFB|ED0200  |860002;
-                       STA.W r_0008,X                       ;82FEFE|9D0800  |860008;
+                       SBC.W r6_0002                        ;82FEFB|ED0200  |860002;
+                       STA.W r6_0008,X                      ;82FEFE|9D0800  |860008;
                        TDC                                  ;82FF01|7B      |      ;
-                       STA.W r_0036,X                       ;82FF02|9D3600  |860036;
+                       STA.W r6_0036,X                      ;82FF02|9D3600  |860036;
                        SEP #$20                             ;82FF05|E220    |      ;
                        LDA.B #$3F                           ;82FF07|A93F    |      ;
-                       STA.W r_000a,X                       ;82FF09|9D0A00  |86000A;
-                       INC.W r_0000,X                       ;82FF0C|FE0000  |860000;
-                       LDA.B $02                            ;82FF0F|A502    |001D0A;
-                       STA.W r_0038,X                       ;82FF11|9D3800  |860038;
-                       LDA.B $0B                            ;82FF14|A50B    |001D13;
-                       STA.W r_000b,X                       ;82FF16|9D0B00  |86000B;
+                       STA.W r6_000a,X                      ;82FF09|9D0A00  |86000A;
+                       INC.W r6_0000,X                      ;82FF0C|FE0000  |860000;
+                       LDA.B r_1d0a-$1D08                   ;82FF0F|A502    |001D0A;
+                       STA.W r6_0038,X                      ;82FF11|9D3800  |860038;
+                       LDA.B r_1d13-$1D08                   ;82FF14|A50B    |001D13;
+                       STA.W r6_000b,X                      ;82FF16|9D0B00  |86000B;
                        SEP #$10                             ;82FF19|E210    |      ;
                        JMP.W CODE_82FE8F                    ;82FF1B|4C8FFE  |82FE8F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FF1E:
-                       LDA.B $0F                            ;82FF1E|A50F    |001D27;
+                       LDA.B r_1d27-$1D18                   ;82FF1E|A50F    |001D27;
                        BNE CODE_82FF60                      ;82FF20|D03E    |82FF60;
                        REP #$10                             ;82FF22|C210    |      ;
                        JSL.L CODE_8282D3                    ;82FF24|22D38282|8282D3;
                        BNE CODE_82FF60                      ;82FF28|D036    |82FF60;
-                       INC.W r_0000,X                       ;82FF2A|FE0000  |860000;
+                       INC.W r6_0000,X                      ;82FF2A|FE0000  |860000;
                        LDA.B #$38                           ;82FF2D|A938    |      ;
-                       STA.W r_000a,X                       ;82FF2F|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;82FF2F|9D0A00  |86000A;
                        LDA.B #$03                           ;82FF32|A903    |      ;
-                       STA.W r_000b,X                       ;82FF34|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;82FF34|9D0B00  |86000B;
                        LDA.B #$01                           ;82FF37|A901    |      ;
-                       STA.B $0F                            ;82FF39|850F    |001D17;
+                       STA.B r_1d17-$1D08                   ;82FF39|850F    |001D17;
                        LDA.B #$00                           ;82FF3B|A900    |      ;
-                       STA.W r_0011,X                       ;82FF3D|9D1100  |860011;
-                       STA.W r_000c,X                       ;82FF40|9D0C00  |86000C;
+                       STA.W r6_0011,X                      ;82FF3D|9D1100  |860011;
+                       STA.W r6_000c,X                      ;82FF40|9D0C00  |86000C;
                        LDA.B #$02                           ;82FF43|A902    |      ;
-                       STA.W r_0002,X                       ;82FF45|9D0200  |860002;
+                       STA.W r6_0002,X                      ;82FF45|9D0200  |860002;
                        REP #$20                             ;82FF48|C220    |      ;
-                       LDA.B $05                            ;82FF4A|A505    |001D0D;
+                       LDA.B r_1d0d-$1D08                   ;82FF4A|A505    |001D0D;
                        SEC                                  ;82FF4C|38      |      ;
                        SBC.W #$0024                         ;82FF4D|E92400  |      ;
-                       STA.W r_0005,X                       ;82FF50|9D0500  |860005;
-                       LDA.B $08                            ;82FF53|A508    |001D10;
+                       STA.W r6_0005,X                      ;82FF50|9D0500  |860005;
+                       LDA.B r_1d10-$1D08                   ;82FF53|A508    |001D10;
                        SEC                                  ;82FF55|38      |      ;
                        SBC.W #$0008                         ;82FF56|E90800  |      ;
-                       STA.W r_0008,X                       ;82FF59|9D0800  |860008;
+                       STA.W r6_0008,X                      ;82FF59|9D0800  |860008;
                        TDC                                  ;82FF5C|7B      |      ;
-                       STA.W r_001e,X                       ;82FF5D|9D1E00  |86001E;
+                       STA.W r6_001e,X                      ;82FF5D|9D1E00  |86001E;
                                                             ;      |        |      ;
           CODE_82FF60:
                        SEP #$30                             ;82FF60|E230    |      ;
@@ -19322,50 +19322,50 @@ prisonCapsule_63_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FF63:
-                       LDA.B $01                            ;82FF63|A501    |001D09;
+                       LDA.B r_1d09-$1D08                   ;82FF63|A501    |001D09;
                        BNE CODE_82FF7E                      ;82FF65|D017    |82FF7E;
                        REP #$20                             ;82FF67|C220    |      ;
-                       LDA.B $05                            ;82FF69|A505    |001D0D;
+                       LDA.B r_1d0d-$1D08                   ;82FF69|A505    |001D0D;
                        SEC                                  ;82FF6B|38      |      ;
-                       SBC.W r_d_player_xSubPos             ;82FF6C|EDAD0B  |860BAD;
+                       SBC.W r6_player_xPos                 ;82FF6C|EDAD0B  |860BAD;
                        SEP #$20                             ;82FF6F|E220    |      ;
                        BCC CODE_82FFA6                      ;82FF71|9033    |82FFA6;
-                       INC.B $01                            ;82FF73|E601    |001D09;
+                       INC.B r_1d09-$1D08                   ;82FF73|E601    |001D09;
                        LDA.B #$A6                           ;82FF75|A9A6    |      ;
-                       STA.B $03                            ;82FF77|8503    |001D0B;
+                       STA.B r_1d0b-$1D08                   ;82FF77|8503    |001D0B;
                        LDA.B #$01                           ;82FF79|A901    |      ;
-                       STA.B $02                            ;82FF7B|8502    |001D0A;
+                       STA.B r_1d0a-$1D08                   ;82FF7B|8502    |001D0A;
                        RTL                                  ;82FF7D|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FF7E:
                        REP #$20                             ;82FF7E|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;82FF80|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;82FF80|ADAD0B  |860BAD;
                        SEC                                  ;82FF83|38      |      ;
-                       SBC.B $05                            ;82FF84|E505    |001D0D;
+                       SBC.B r_1d0d-$1D08                   ;82FF84|E505    |001D0D;
                        BMI CODE_82FFA5                      ;82FF86|301D    |82FFA5;
                        ASL A                                ;82FF88|0A      |      ;
                        SEP #$20                             ;82FF89|E220    |      ;
                        LDA.B #$00                           ;82FF8B|A900    |      ;
                        XBA                                  ;82FF8D|EB      |      ;
                        SEC                                  ;82FF8E|38      |      ;
-                       SBC.B $02                            ;82FF8F|E502    |001D0A;
+                       SBC.B r_1d0a-$1D08                   ;82FF8F|E502    |001D0A;
                        BMI CODE_82FFA5                      ;82FF91|3012    |82FFA5;
-                       LDY.B $03                            ;82FF93|A403    |001D0B;
+                       LDY.B r_1d0b-$1D08                   ;82FF93|A403    |001D0B;
                        JSL.L lunchMusic                     ;82FF95|22118082|828011;
-                       INC.B $03                            ;82FF99|E603    |001D0B;
-                       INC.B $03                            ;82FF9B|E603    |001D0B;
-                       LDA.B $02                            ;82FF9D|A502    |001D0A;
+                       INC.B r_1d0b-$1D08                   ;82FF99|E603    |001D0B;
+                       INC.B r_1d0b-$1D08                   ;82FF9B|E603    |001D0B;
+                       LDA.B r_1d0a-$1D08                   ;82FF9D|A502    |001D0A;
                        CMP.B #$09                           ;82FF9F|C909    |      ;
                        BEQ CODE_82FFA6                      ;82FFA1|F003    |82FFA6;
-                       INC.B $02                            ;82FFA3|E602    |001D0A;
+                       INC.B r_1d0a-$1D08                   ;82FFA3|E602    |001D0A;
                                                             ;      |        |      ;
           CODE_82FFA5:
                        RTL                                  ;82FFA5|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_82FFA6:
-                       JML.L clearStates_00_02_0E           ;82FFA6|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;82FFA6|5C988382|828398;
                                                             ;      |        |      ;
                        db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;82FFAA|        |FFFFFF;
                        db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF   ;82FFB2|        |FFFFFF;

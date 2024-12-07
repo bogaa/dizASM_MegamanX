@@ -22,7 +22,7 @@
                        JSL.L playerGrabedRoutine            ;888020|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_888024:
-                       JSL.L updateEv_13_14_17_0f           ;888024|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888024|22EA8E84|848EEA;
                        JSL.L CODE_82820A                    ;888028|220A8282|82820A;
                        JSL.L checkPlayerGear                ;88802C|22B48082|8280B4;
                        LDA.B $0E                            ;888030|A50E    |001476;
@@ -141,7 +141,7 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8880FC:
-                       JSL.L updateEv_13_14_17_0f           ;8880FC|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8880FC|22EA8E84|848EEA;
                        JSL.L CODE_849B03                    ;888100|22039B84|849B03;
                        JML.L checkPlayerGear                ;888104|5CB48082|8280B4;
                                                             ;      |        |      ;
@@ -191,7 +191,7 @@
                        JSL.L CODE_8281FB                    ;88814D|22FB8182|8281FB;
                                                             ;      |        |      ;
           CODE_888151:
-                       JSL.L updateEv_13_14_17_0f           ;888151|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888151|22EA8E84|848EEA;
                        JSL.L checkPlayerGear                ;888155|22B48082|8280B4;
                        LDA.B $0E                            ;888159|A50E    |001576;
                        BNE CODE_888161                      ;88815B|D004    |888161;
@@ -206,7 +206,7 @@
                        JSR.W (PTR16_888195,X)               ;888164|FC9581  |888195;
                        REP #$10                             ;888167|C210    |      ;
                        LDX.B $0C                            ;888169|A60C    |0014F4;
-                       LDA.W r_0001,X                       ;88816B|BD0100  |860001;
+                       LDA.W r6_0001,X                      ;88816B|BD0100  |860001;
                        CMP.B #$06                           ;88816E|C906    |      ;
                        BEQ CODE_888182                      ;888170|F010    |888182;
                        JSL.L CODE_849B03                    ;888172|22039B84|849B03;
@@ -288,7 +288,7 @@
                        SEP #$20                             ;8881F5|E220    |      ;
                                                             ;      |        |      ;
           CODE_8881F7:
-                       JSL.L updateEv_13_14_17_0f           ;8881F7|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8881F7|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_8881FB:
                        RTS                                  ;8881FB|60      |      ;
@@ -351,7 +351,7 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888254:
-                       JSL.L updateEv_13_14_17_0f           ;888254|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888254|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_888258:
                        RTS                                  ;888258|60      |      ;
@@ -418,13 +418,13 @@
                                                             ;      |        |      ;
           CODE_8882B4:
                        SEP #$20                             ;8882B4|E220    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;8882B6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8882B6|22EA8E84|848EEA;
                        RTS                                  ;8882BA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8882BB:
                        JSL.L CODE_82825D                    ;8882BB|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;8882BF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8882BF|22EA8E84|848EEA;
                        RTS                                  ;8882C3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -554,7 +554,7 @@
           CODE_88839B:
                        LDA.B $0F                            ;88839B|A50F    |001437;
                        BMI CODE_8883A7                      ;88839D|3008    |8883A7;
-                       JSL.L updateEv_13_14_17_0f           ;88839F|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88839F|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;8883A3|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -647,38 +647,38 @@
                        JSL.L findEnemyShotEmptySlot         ;888437|22588382|828358;
                        BNE CODE_888494                      ;88843B|D057    |888494;
                        LDA.B #$2E                           ;88843D|A92E    |      ;
-                       STA.W r_000a,X                       ;88843F|9D0A00  |86000A;
-                       INC.W r_0000,X                       ;888442|FE0000  |860000;
+                       STA.W r6_000a,X                      ;88843F|9D0A00  |86000A;
+                       INC.W r6_0000,X                      ;888442|FE0000  |860000;
                        LDA.B $11                            ;888445|A511    |001479;
                        AND.B #$F1                           ;888447|29F1    |      ;
                        ORA.B #$04                           ;888449|0904    |      ;
-                       STA.W r_0011,X                       ;88844B|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88844B|9D1100  |860011;
                        LDA.B $16                            ;88844E|A516    |00147E;
-                       STA.W r_0016,X                       ;888450|9D1600  |860016;
+                       STA.W r6_0016,X                      ;888450|9D1600  |860016;
                        LDA.B $18                            ;888453|A518    |001480;
-                       STA.W r_0018,X                       ;888455|9D1800  |860018;
+                       STA.W r6_0018,X                      ;888455|9D1800  |860018;
                        LDA.B #$01                           ;888458|A901    |      ;
-                       STA.W r_000b,X                       ;88845A|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88845A|9D0B00  |86000B;
                        REP #$20                             ;88845D|C220    |      ;
                        LDA.B $05                            ;88845F|A505    |00146D;
-                       STA.W r_0005,X                       ;888461|9D0500  |860005;
+                       STA.W r6_0005,X                      ;888461|9D0500  |860005;
                        LDA.B $08                            ;888464|A508    |001470;
-                       STA.W r_0008,X                       ;888466|9D0800  |860008;
-                       STZ.W r_001c,X                       ;888469|9E1C00  |86001C;
+                       STA.W r6_0008,X                      ;888466|9D0800  |860008;
+                       STZ.W r6_001c,X                      ;888469|9E1C00  |86001C;
                        SEP #$20                             ;88846C|E220    |      ;
                        LDA.B $37                            ;88846E|A537    |00149F;
                        CMP.B #$01                           ;888470|C901    |      ;
                        BEQ CODE_88847F                      ;888472|F00B    |88847F;
                        REP #$20                             ;888474|C220    |      ;
                        LDA.W #$0400                         ;888476|A90004  |      ;
-                       STA.W r_001a,X                       ;888479|9D1A00  |86001A;
+                       STA.W r6_001a,X                      ;888479|9D1A00  |86001A;
                        JMP.W CODE_888487                    ;88847C|4C8784  |888487;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88847F:
                        REP #$20                             ;88847F|C220    |      ;
                        LDA.W #$FC00                         ;888481|A900FC  |      ;
-                       STA.W r_001a,X                       ;888484|9D1A00  |86001A;
+                       STA.W r6_001a,X                      ;888484|9D1A00  |86001A;
                                                             ;      |        |      ;
           CODE_888487:
                        SEP #$20                             ;888487|E220    |      ;
@@ -688,7 +688,7 @@
                                                             ;      |        |      ;
           CODE_88848E:
                        SEP #$10                             ;88848E|E210    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;888490|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888490|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_888494:
                        SEP #$10                             ;888494|E210    |      ;
@@ -697,7 +697,7 @@
                                                             ;      |        |      ;
           CODE_888497:
                        JSL.L CODE_82823E                    ;888497|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;88849B|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88849B|22EA8E84|848EEA;
                        RTS                                  ;88849F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -709,7 +709,7 @@
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8884AB:
-                       JSL.L updateEv_13_14_17_0f           ;8884AB|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8884AB|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_8884AF:
                        RTS                                  ;8884AF|60      |      ;
@@ -719,11 +719,11 @@
                        LDX.B $01                            ;8884B0|A601    |001469;
                        JSR.W (PTR16_88851F,X)               ;8884B2|FC1F85  |88851F;
                        REP #$10                             ;8884B5|C210    |      ;
-                       LDA.W $0C16                          ;8884B7|AD160C  |860C16;
+                       LDA.W r6_getItem                     ;8884B7|AD160C  |860C16;
                        BNE CODE_88850C                      ;8884BA|D050    |88850C;
-                       LDA.W r_bossDefeatInvFlag            ;8884BC|AD0C1F  |861F0C;
+                       LDA.W r6_bossDefeatInvFlag           ;8884BC|AD0C1F  |861F0C;
                        BNE CODE_88850C                      ;8884BF|D04B    |88850C;
-                       LDA.W $0C32                          ;8884C1|AD320C  |860C32;
+                       LDA.W r6_powerUp_actionInv           ;8884C1|AD320C  |860C32;
                        BNE CODE_88850C                      ;8884C4|D046    |88850C;
                        LDX.W #$0BA8                         ;8884C6|A2A80B  |      ;
                        JSL.L CODE_849C0E                    ;8884C9|220E9C84|849C0E;
@@ -739,20 +739,20 @@
           CODE_8884D8:
                        JSL.L CODE_8282D3                    ;8884D8|22D38282|8282D3;
                        BNE CODE_88850C                      ;8884DC|D02E    |88850C;
-                       INC.W r_0000,X                       ;8884DE|FE0000  |860000;
+                       INC.W r6_0000,X                      ;8884DE|FE0000  |860000;
                        LDA.B #$3F                           ;8884E1|A93F    |      ;
-                       STA.W r_000a,X                       ;8884E3|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;8884E3|9D0A00  |86000A;
                        LDA.B $16                            ;8884E6|A516    |00147E;
-                       STA.W r_0016,X                       ;8884E8|9D1600  |860016;
+                       STA.W r6_0016,X                      ;8884E8|9D1600  |860016;
                        LDA.B $11                            ;8884EB|A511    |001479;
-                       STA.W r_0011,X                       ;8884ED|9D1100  |860011;
+                       STA.W r6_0011,X                      ;8884ED|9D1100  |860011;
                        LDA.B $18                            ;8884F0|A518    |001480;
-                       STA.W r_0018,X                       ;8884F2|9D1800  |860018;
+                       STA.W r6_0018,X                      ;8884F2|9D1800  |860018;
                        REP #$20                             ;8884F5|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;8884F7|ADAD0B  |860BAD;
-                       STA.W r_0005,X                       ;8884FA|9D0500  |860005;
-                       LDA.W r_d_player_yPos                ;8884FD|ADB00B  |860BB0;
-                       STA.W r_0008,X                       ;888500|9D0800  |860008;
+                       LDA.W r6_player_xPos                 ;8884F7|ADAD0B  |860BAD;
+                       STA.W r6_0005,X                      ;8884FA|9D0500  |860005;
+                       LDA.W r6_player_yPos                 ;8884FD|ADB00B  |860BB0;
+                       STA.W r6_0008,X                      ;888500|9D0800  |860008;
                        SEP #$20                             ;888503|E220    |      ;
                        JSL.L CODE_849FEB                    ;888505|22EB9F84|849FEB;
                        JMP.W CODE_8884D2                    ;888509|4CD284  |8884D2;
@@ -760,7 +760,7 @@
                                                             ;      |        |      ;
           CODE_88850C:
                        SEP #$10                             ;88850C|E210    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;88850E|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88850E|22EA8E84|848EEA;
                        JSL.L checkPlayerGear                ;888512|22B48082|8280B4;
                        LDA.B $0E                            ;888516|A50E    |001476;
                        BNE CODE_88851E                      ;888518|D004    |88851E;
@@ -794,21 +794,21 @@
                                                             ;      |        |      ;
 eventID_stingCameleon_0a_main:
                        LDX.B r_ev_01_state-$E68             ;88853E|A601    |000E69;
-                       JMP.W (PTR16_888543,X)               ;888540|7C4385  |888543;
+                       JMP.W (stingCameleon_0a_state,X)     ;888540|7C4385  |888543;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-         PTR16_888543:
-                       dw CODE_88854B                       ;888543|        |88854B;
-                       dw CODE_8885F0                       ;888545|        |8885F0;
-                       dw CODE_88870A                       ;888547|        |88870A;
-                       dw CODE_888CF3                       ;888549|        |888CF3;
+stingCameleon_0a_state:
+                       dw stingCameleon_0a_state00          ;888543|        |88854B;
+                       dw stingCameleon_0a_state01          ;888545|        |8885F0;
+                       dw stingCameleon_0a_state02          ;888547|        |88870A;
+                       dw stingCameleon_0a_explosion_state04;888549|        |888CF3;
                                                             ;      |        |      ;
-          CODE_88854B:
+stingCameleon_0a_state00:
                        LDA.B r_ev_02_action-$E68            ;88854B|A502    |000E6A;
                        BNE CODE_88859C                      ;88854D|D04D    |88859C;
                        JSL.L bossesLevelBasedChange         ;88854F|22DDAA84|84AADD;
                        BEQ CODE_888559                      ;888553|F004    |888559;
-                       JML.L clearStates_00_02_0E           ;888555|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;888555|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888559:
@@ -818,25 +818,25 @@ eventID_stingCameleon_0a_main:
                        STA.B r_ev_34-$E68                   ;888561|8534    |000E9C;
                        LDA.B #$FF                           ;888563|A9FF    |      ;
                        STA.B r_ev_2f-$E68                   ;888565|852F    |000E97;
-                       LDA.W r_1e89                         ;888567|AD891E  |861E89;
+                       LDA.W r6_1e89                        ;888567|AD891E  |861E89;
                        STA.B r_ev_3b-$E68                   ;88856A|853B    |000EA3;
                        LDA.B #$0C                           ;88856C|A90C    |      ;
-                       STA.W r_1e89                         ;88856E|8D891E  |861E89;
+                       STA.W r6_1e89                        ;88856E|8D891E  |861E89;
                        LDA.B #$15                           ;888571|A915    |      ;
-                       STA.W r_BG_enableMask                ;888573|8DC000  |8600C0;
+                       STA.W r6_BG_enableMask               ;888573|8DC000  |8600C0;
                        REP #$20                             ;888576|C220    |      ;
-                       STZ.W r_cam_BG0_xPos_ff              ;888578|9C8D1E  |861E8D;
+                       STZ.W r6_cam_BG0_xPos_ff             ;888578|9C8D1E  |861E8D;
                        LDA.W #$0200                         ;88857B|A90002  |      ;
-                       LDX.W r_level_current                ;88857E|AE7A1F  |861F7A;
+                       LDX.W r6_level_current               ;88857E|AE7A1F  |861F7A;
                        CPX.B #$09                           ;888581|E009    |      ;
                        BCC CODE_888588                      ;888583|9003    |888588;
                        LDA.W #$0100                         ;888585|A90001  |      ;
                                                             ;      |        |      ;
           CODE_888588:
-                       STA.W r_cam_BG1_slot                 ;888588|8D901E  |861E90;
+                       STA.W r6_cam_BG1_slot                ;888588|8D901E  |861E90;
                        SEP #$20                             ;88858B|E220    |      ;
                        JSL.L CODE_80E018                    ;88858D|2218E080|80E018;
-                       LDA.W r_1f26                         ;888591|AD261F  |861F26;
+                       LDA.W r6_1f26                        ;888591|AD261F  |861F26;
                        BEQ CODE_88859C                      ;888594|F006    |88859C;
                        LDA.B #$2E                           ;888596|A92E    |      ;
                        JSL.L CODE_8087A2                    ;888598|22A28780|8087A2;
@@ -873,19 +873,19 @@ eventID_stingCameleon_0a_main:
                        JSR.W CODE_888D79                    ;8885CE|20798D  |888D79;
                        JSR.W CODE_888D2F                    ;8885D1|202F8D  |888D2F;
                        LDA.B #$15                           ;8885D4|A915    |      ;
-                       STA.W r_BG_enableMask                ;8885D6|8DC000  |8600C0;
+                       STA.W r6_BG_enableMask               ;8885D6|8DC000  |8600C0;
                        LDA.B #$02                           ;8885D9|A902    |      ;
-                       STA.W r_00c1                         ;8885DB|8DC100  |8600C1;
+                       STA.W r6_00c1                        ;8885DB|8DC100  |8600C1;
                        LDA.B #$10                           ;8885DE|A910    |      ;
-                       STA.W r_colorV_ca                    ;8885E0|8DCA00  |8600CA;
+                       STA.W r6_colorV_ca                   ;8885E0|8DCA00  |8600CA;
                        LDA.B #$02                           ;8885E3|A902    |      ;
-                       STA.W r_colorV_c9                    ;8885E5|8DC900  |8600C9;
+                       STA.W r6_colorV_c9                   ;8885E5|8DC900  |8600C9;
                        LDA.B #$1E                           ;8885E8|A91E    |      ;
                        STA.B r_ev_34-$E68                   ;8885EA|8534    |000E9C;
                        JML.L checkPlayerGear                ;8885EC|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_8885F0:
+stingCameleon_0a_state01:
                        JSR.W CODE_888D2F                    ;8885F0|202F8D  |888D2F;
                        LDX.B r_ev_02_action-$E68            ;8885F3|A602    |000E6A;
                        JSR.W (PTR16_8885FC,X)               ;8885F5|FCFC85  |8885FC;
@@ -920,7 +920,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
           CODE_888622:
                        JSL.L CODE_82825D                    ;888622|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;888626|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888626|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;88862A|C634    |000E9C;
                        BNE CODE_88863C                      ;88862C|D00E    |88863C;
                        LDA.B #$04                           ;88862E|A904    |      ;
@@ -935,7 +935,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88863D:
-                       LDA.W r_frameCounter1                ;88863D|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88863D|AD9C0B  |860B9C;
                        LSR A                                ;888640|4A      |      ;
                        BCC CODE_888646                      ;888641|9003    |888646;
                        JSR.W CODE_888DAB                    ;888643|20AB8D  |888DAB;
@@ -945,7 +945,7 @@ eventID_stingCameleon_0a_main:
                        BNE CODE_888668                      ;888648|D01E    |888668;
                        LDA.B #$06                           ;88864A|A906    |      ;
                        STA.B r_ev_02_action-$E68            ;88864C|8502    |000E6A;
-                       STZ.W r_00c1                         ;88864E|9CC100  |8600C1;
+                       STZ.W r6_00c1                        ;88864E|9CC100  |8600C1;
                        REP #$20                             ;888651|C220    |      ;
                        STZ.B r_ev_1c_ySpdSub-$E68           ;888653|641C    |000E84;
                        STZ.B r_ev_1a_xSpdSub-$E68           ;888655|641A    |000E82;
@@ -963,7 +963,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
           CODE_888669:
                        JSL.L CODE_8281E8                    ;888669|22E88182|8281E8;
-                       JSL.L updateEv_13_14_17_0f           ;88866D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88866D|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;888671|22BE9184|8491BE;
                        LDA.B r_ev_2b-$E68                   ;888675|A52B    |000E93;
                        AND.B #$04                           ;888677|2904    |      ;
@@ -975,7 +975,7 @@ eventID_stingCameleon_0a_main:
                        STZ.B r_ev_2f-$E68                   ;888685|642F    |000E97;
                        REP #$20                             ;888687|C220    |      ;
                        TDC                                  ;888689|7B      |      ;
-                       STA.W r_1f0e                         ;88868A|8D0E1F  |861F0E;
+                       STA.W r6_1f0e                        ;88868A|8D0E1F  |861F0E;
                        SEP #$20                             ;88868D|E220    |      ;
                        LDA.B #$80                           ;88868F|A980    |      ;
                        STA.B r_ev_27_health-$E68            ;888691|8527    |000E8F;
@@ -985,7 +985,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888694:
-                       JSL.L updateEv_13_14_17_0f           ;888694|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888694|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;888698|A50F    |000E77;
                        BPL CODE_8886A6                      ;88869A|100A    |8886A6;
                        LDA.B #$0A                           ;88869C|A90A    |      ;
@@ -998,7 +998,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8886A7:
-                       JSL.L updateEv_13_14_17_0f           ;8886A7|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8886A7|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;8886AB|A50F    |000E77;
                        BEQ CODE_8886B3                      ;8886AD|F004    |8886B3;
                        LDA.B #$0C                           ;8886AF|A90C    |      ;
@@ -1033,12 +1033,12 @@ eventID_stingCameleon_0a_main:
           CODE_8886D5:
                        LDA.B r_ev_0f_waitCount-$E68         ;8886D5|A50F    |000E77;
                        BMI CODE_8886F1                      ;8886D7|3018    |8886F1;
-                       JSL.L updateEv_13_14_17_0f           ;8886D9|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8886D9|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;8886DD|A50F    |000E77;
                        BPL CODE_8886F0                      ;8886DF|100F    |8886F0;
                        LDA.B #$1E                           ;8886E1|A91E    |      ;
                        STA.B r_ev_34-$E68                   ;8886E3|8534    |000E9C;
-                       LDA.W r_1f26                         ;8886E5|AD261F  |861F26;
+                       LDA.W r6_1f26                        ;8886E5|AD261F  |861F26;
                        BEQ CODE_8886F0                      ;8886E8|F006    |8886F0;
                        LDA.B #$1E                           ;8886EA|A91E    |      ;
                        JSL.L CODE_8087A2                    ;8886EC|22A28780|8087A2;
@@ -1063,7 +1063,7 @@ eventID_stingCameleon_0a_main:
                        RTS                                  ;888709|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_88870A:
+stingCameleon_0a_state02:
                        LDA.B r_ev_3a-$E68                   ;88870A|A53A    |000EA2;
                        TSB.B r_ev_11_sprAtri-$E68           ;88870C|0411    |000E79;
                        LDX.B r_ev_02_action-$E68            ;88870E|A602    |000E6A;
@@ -1094,7 +1094,7 @@ eventID_stingCameleon_0a_main:
           CODE_888739:
                        STX.B r_ev_28-$E68                   ;888739|8628    |000E90;
                        STZ.B r_ev_30-$E68                   ;88873B|6430    |000E98;
-                       LDA.W r_d_0bcf                       ;88873D|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;88873D|ADCF0B  |860BCF;
                        AND.B #$7F                           ;888740|297F    |      ;
                        BEQ CODE_88879A                      ;888742|F056    |88879A;
                        JSL.L CODE_849B43                    ;888744|22439B84|849B43;
@@ -1107,13 +1107,13 @@ eventID_stingCameleon_0a_main:
                        LDA.B #$15                           ;888754|A915    |      ;
                        JSL.L playerGrabedRoutine            ;888756|22078F84|848F07;
                        STZ.B r_ev_37-$E68                   ;88875A|6437    |000E9F;
-                       STZ.W r_00c1                         ;88875C|9CC100  |8600C1;
+                       STZ.W r6_00c1                        ;88875C|9CC100  |8600C1;
                        LDA.B #$29                           ;88875F|A929    |      ;
                        STA.B r_ev_11_sprAtri-$E68           ;888761|8511    |000E79;
                        LDA.B r_ev_3b-$E68                   ;888763|A53B    |000EA3;
-                       STA.W r_1e89                         ;888765|8D891E  |861E89;
+                       STA.W r6_1e89                        ;888765|8D891E  |861E89;
                        LDX.B r_ev_35-$E68                   ;888768|A635    |000E9D;
-                       STZ.W r_0aa1,X                       ;88876A|9EA10A  |860AA1;
+                       STZ.W r6_0aa1,X                      ;88876A|9EA10A  |860AA1;
                        LDA.B #$13                           ;88876D|A913    |      ;
                        JSL.L lunchSFX                       ;88876F|22A28880|8088A2;
                        JSL.L CODE_84ACA5                    ;888773|22A5AC84|84ACA5;
@@ -1127,7 +1127,7 @@ eventID_stingCameleon_0a_main:
                        JSL.L lunchSFX                       ;888781|22A28880|8088A2;
                        LDA.B #$3C                           ;888785|A93C    |      ;
                        STA.B r_ev_33-$E68                   ;888787|8533    |000E9B;
-                       LDA.W r_1f1d                         ;888789|AD1D1F  |861F1D;
+                       LDA.W r6_1f1d                        ;888789|AD1D1F  |861F1D;
                        CMP.B #$0D                           ;88878C|C90D    |      ;
                        BEQ CODE_888794                      ;88878E|F004    |888794;
                        CMP.B #$16                           ;888790|C916    |      ;
@@ -1212,7 +1212,7 @@ eventID_stingCameleon_0a_main:
                        CMP.B #$04                           ;88880D|C904    |      ;
                        BCC CODE_888845                      ;88880F|9034    |888845;
                        REP #$20                             ;888811|C220    |      ;
-                       LDA.W r_cam_BG0_xPos_target          ;888813|AD4D1E  |861E4D;
+                       LDA.W r6_cam_BG0_xPos_target         ;888813|AD4D1E  |861E4D;
                        CLC                                  ;888816|18      |      ;
                        ADC.W #$0080                         ;888817|698000  |      ;
                        CMP.B r_ev_05_xPos-$E68              ;88881A|C505    |000E6D;
@@ -1223,7 +1223,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
           CODE_888826:
                        CLC                                  ;888826|18      |      ;
-                       ADC.W r_cam_BG0_xPos_target          ;888827|6D4D1E  |861E4D;
+                       ADC.W r6_cam_BG0_xPos_target         ;888827|6D4D1E  |861E4D;
                        SEC                                  ;88882A|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88882B|E505    |000E6D;
                        ASL A                                ;88882D|0A      |      ;
@@ -1244,7 +1244,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
           CODE_888845:
                        REP #$20                             ;888845|C220    |      ;
-                       LDA.W r_cam_BG0_xPos_target          ;888847|AD4D1E  |861E4D;
+                       LDA.W r6_cam_BG0_xPos_target         ;888847|AD4D1E  |861E4D;
                        CLC                                  ;88884A|18      |      ;
                        ADC.W #$0080                         ;88884B|698000  |      ;
                        CMP.B r_ev_05_xPos-$E68              ;88884E|C505    |000E6D;
@@ -1255,7 +1255,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
           CODE_88885A:
                        CLC                                  ;88885A|18      |      ;
-                       ADC.W r_cam_BG0_xPos_target          ;88885B|6D4D1E  |861E4D;
+                       ADC.W r6_cam_BG0_xPos_target         ;88885B|6D4D1E  |861E4D;
                        SEC                                  ;88885E|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88885F|E505    |000E6D;
                        ASL A                                ;888861|0A      |      ;
@@ -1295,7 +1295,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88889D:
-                       JSL.L updateEv_13_14_17_0f           ;88889D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88889D|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;8888A1|A50F    |000E77;
                        BPL CODE_8888A8                      ;8888A3|1003    |8888A8;
                        JMP.W CODE_8887F7                    ;8888A5|4CF787  |8887F7;
@@ -1348,7 +1348,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8888F0:
-                       JSL.L updateEv_13_14_17_0f           ;8888F0|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8888F0|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;8888F4|A50F    |000E77;
                        BPL CODE_8888FE                      ;8888F6|1006    |8888FE;
                        LDA.B #$08                           ;8888F8|A908    |      ;
@@ -1377,7 +1377,7 @@ eventID_stingCameleon_0a_main:
                        LDA.B #$20                           ;888913|A920    |      ;
                        STA.B r_ev_34-$E68                   ;888915|8534    |000E9C;
                        LDA.B #$02                           ;888917|A902    |      ;
-                       STA.W r_00c1                         ;888919|8DC100  |8600C1;
+                       STA.W r6_00c1                        ;888919|8DC100  |8600C1;
                        INC.B r_ev_37-$E68                   ;88891C|E637    |000E9F;
                        LDA.B #$76                           ;88891E|A976    |      ;
                        JSL.L lunchSFX                       ;888920|22A28880|8088A2;
@@ -1397,7 +1397,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888932:
-                       LDA.W r_frameCounter1                ;888932|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;888932|AD9C0B  |860B9C;
                        LSR A                                ;888935|4A      |      ;
                        BCC CODE_888947                      ;888936|900F    |888947;
                        JSR.W CODE_888E0F                    ;888938|200F8E  |888E0F;
@@ -1453,7 +1453,7 @@ eventID_stingCameleon_0a_main:
                        LDA.B #$02                           ;888984|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;888986|8503    |000E6B;
                        REP #$20                             ;888988|C220    |      ;
-                       LDA.W r_cam_BG0_xPos_target          ;88898A|AD4D1E  |861E4D;
+                       LDA.W r6_cam_BG0_xPos_target         ;88898A|AD4D1E  |861E4D;
                        CLC                                  ;88898D|18      |      ;
                        ADC.W #$0080                         ;88898E|698000  |      ;
                        CMP.B r_ev_05_xPos-$E68              ;888991|C505    |000E6D;
@@ -1463,16 +1463,16 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
           CODE_88899B:
                        CLC                                  ;88899B|18      |      ;
-                       ADC.W r_cam_BG0_xPos_target          ;88899C|6D4D1E  |861E4D;
-                       STA.W r_0004                         ;88899F|8D0400  |860004;
-                       LDA.W r_cam_BG0_yPos_target          ;8889A2|AD501E  |861E50;
+                       ADC.W r6_cam_BG0_xPos_target         ;88899C|6D4D1E  |861E4D;
+                       STA.W r6_0004                        ;88899F|8D0400  |860004;
+                       LDA.W r6_cam_BG0_yPos_target         ;8889A2|AD501E  |861E50;
                        CLC                                  ;8889A5|18      |      ;
                        ADC.W #$0030                         ;8889A6|693000  |      ;
-                       STA.W r_0006                         ;8889A9|8D0600  |860006;
+                       STA.W r6_0006                        ;8889A9|8D0600  |860006;
                        LDA.B r_ev_05_xPos-$E68              ;8889AC|A505    |000E6D;
-                       STA.W r_0000                         ;8889AE|8D0000  |860000;
+                       STA.W r6_0000                        ;8889AE|8D0000  |860000;
                        LDA.B r_ev_08_yPos-$E68              ;8889B1|A508    |000E70;
-                       STA.W r_0002                         ;8889B3|8D0200  |860002;
+                       STA.W r6_0002                        ;8889B3|8D0200  |860002;
                        JSL.L CODE_84A09C                    ;8889B6|229CA084|84A09C;
                        AND.W #$00FF                         ;8889BA|29FF00  |      ;
                        ASL A                                ;8889BD|0A      |      ;
@@ -1484,7 +1484,7 @@ eventID_stingCameleon_0a_main:
                        STA.B r_ev_1c_ySpdSub-$E68           ;8889C8|851C    |000E84;
                        JSL.L CODE_80CE9A                    ;8889CA|229ACE80|80CE9A;
                        SEP #$20                             ;8889CE|E220    |      ;
-                       LDA.W r_0000                         ;8889D0|AD0000  |860000;
+                       LDA.W r6_0000                        ;8889D0|AD0000  |860000;
                        INC A                                ;8889D3|1A      |      ;
                        STA.B r_ev_34-$E68                   ;8889D4|8534    |000E9C;
                        LDA.B #$40                           ;8889D6|A940    |      ;
@@ -1500,7 +1500,7 @@ eventID_stingCameleon_0a_main:
           CODE_8889E1:
                        REP #$20                             ;8889E1|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;8889E3|A505    |000E6D;
-                       CMP.W r_d_player_xSubPos             ;8889E5|CDAD0B  |860BAD;
+                       CMP.W r6_player_xPos                 ;8889E5|CDAD0B  |860BAD;
                        LDA.W #$FE00                         ;8889E8|A900FE  |      ;
                        BCS CODE_8889F2                      ;8889EB|B005    |8889F2;
                        LDA.W #$0200                         ;8889ED|A90002  |      ;
@@ -1510,7 +1510,7 @@ eventID_stingCameleon_0a_main:
                        STA.B r_ev_1a_xSpdSub-$E68           ;8889F2|851A    |000E82;
                        LDA.B r_ev_08_yPos-$E68              ;8889F4|A508    |000E70;
                        SEC                                  ;8889F6|38      |      ;
-                       SBC.W r_cam_BG0_yPos_target          ;8889F7|ED501E  |861E50;
+                       SBC.W r6_cam_BG0_yPos_target         ;8889F7|ED501E  |861E50;
                        SEC                                  ;8889FA|38      |      ;
                        SBC.W #$0080                         ;8889FB|E98000  |      ;
                        ASL A                                ;8889FE|0A      |      ;
@@ -1534,7 +1534,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
           CODE_888A18:
                        JSL.L CODE_82820A                    ;888A18|220A8282|82820A;
-                       JSL.L updateEv_13_14_17_0f           ;888A1C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888A1C|22EA8E84|848EEA;
                        REP #$20                             ;888A20|C220    |      ;
                        LDA.W #$C771                         ;888A22|A971C7  |      ;
                        STA.B r_ev_20_hitBoxAddr-$E68        ;888A25|8520    |000E88;
@@ -1578,7 +1578,7 @@ eventID_stingCameleon_0a_main:
                        LDA.B #$08                           ;888A5E|A908    |      ;
                        STA.B r_ev_02_action-$E68            ;888A60|8502    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;888A62|6403    |000E6B;
-                       STZ.W r_00c1                         ;888A64|9CC100  |8600C1;
+                       STZ.W r6_00c1                        ;888A64|9CC100  |8600C1;
                        STZ.B r_ev_37-$E68                   ;888A67|6437    |000E9F;
                                                             ;      |        |      ;
           CODE_888A69:
@@ -1606,7 +1606,7 @@ eventID_stingCameleon_0a_main:
                        JSL.L CODE_8491BE                    ;888A84|22BE9184|8491BE;
                        JSR.W CODE_888E4F                    ;888A88|204F8E  |888E4F;
                        BNE CODE_888AAF                      ;888A8B|D022    |888AAF;
-                       JSL.L updateEv_13_14_17_0f           ;888A8D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888A8D|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;888A91|C634    |000E9C;
                        BNE CODE_888ABF                      ;888A93|D02A    |888ABF;
                        INC.B r_ev_38-$E68                   ;888A95|E638    |000EA0;
@@ -1652,7 +1652,7 @@ eventID_stingCameleon_0a_main:
                        LDA.B #$0A                           ;888AD1|A90A    |      ;
                        STA.B r_ev_02_action-$E68            ;888AD3|8502    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;888AD5|6403    |000E6B;
-                       STZ.W r_00c1                         ;888AD7|9CC100  |8600C1;
+                       STZ.W r6_00c1                        ;888AD7|9CC100  |8600C1;
                        STZ.B r_ev_37-$E68                   ;888ADA|6437    |000E9F;
                                                             ;      |        |      ;
           CODE_888ADC:
@@ -1662,7 +1662,7 @@ eventID_stingCameleon_0a_main:
           CODE_888ADD:
                        STZ.B r_ev_02_action-$E68            ;888ADD|6402    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;888ADF|6403    |000E6B;
-                       STZ.W r_00c1                         ;888AE1|9CC100  |8600C1;
+                       STZ.W r6_00c1                        ;888AE1|9CC100  |8600C1;
                        STZ.B r_ev_37-$E68                   ;888AE4|6437    |000E9F;
                        RTS                                  ;888AE6|60      |      ;
                                                             ;      |        |      ;
@@ -1704,7 +1704,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888B17:
-                       JSL.L updateEv_13_14_17_0f           ;888B17|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888B17|22EA8E84|848EEA;
                        LDA.B r_ev_34-$E68                   ;888B1B|A534    |000E9C;
                        BNE CODE_888B30                      ;888B1D|D011    |888B30;
                        LDA.B r_ev_17_sprIdx-$E68            ;888B1F|A517    |000E7F;
@@ -1728,13 +1728,13 @@ eventID_stingCameleon_0a_main:
                        STA.B r_ev_17_sprIdx-$E68            ;888B38|8517    |000E7F;
                        JSL.L findEnemyShotEmptySlot         ;888B3A|22588382|828358;
                        BNE CODE_888B51                      ;888B3E|D011    |888B51;
-                       INC.W r_0000,X                       ;888B40|FE0000  |860000;
+                       INC.W r6_0000,X                      ;888B40|FE0000  |860000;
                        LDA.B #$11                           ;888B43|A911    |      ;
-                       STA.W r_000a,X                       ;888B45|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;888B48|9E0B00  |86000B;
+                       STA.W r6_000a,X                      ;888B45|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;888B48|9E0B00  |86000B;
                        REP #$20                             ;888B4B|C220    |      ;
                        TDC                                  ;888B4D|7B      |      ;
-                       STA.W r_000c,X                       ;888B4E|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;888B4E|9D0C00  |86000C;
                                                             ;      |        |      ;
           CODE_888B51:
                        SEP #$30                             ;888B51|E230    |      ;
@@ -1775,7 +1775,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888B7B:
-                       JSL.L updateEv_13_14_17_0f           ;888B7B|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888B7B|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;888B7F|A50F    |000E77;
                        BEQ CODE_888B99                      ;888B81|F016    |888B99;
                        BPL CODE_888B8E                      ;888B83|1009    |888B8E;
@@ -1868,7 +1868,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888C09:
-                       JSL.L updateEv_13_14_17_0f           ;888C09|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888C09|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;888C0D|A50F    |000E77;
                        BEQ CODE_888C56                      ;888C0F|F045    |888C56;
                        BPL CODE_888C43                      ;888C11|1030    |888C43;
@@ -1919,7 +1919,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888C57:
-                       JSL.L updateEv_13_14_17_0f           ;888C57|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888C57|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;888C5B|A50F    |000E77;
                        BEQ CODE_888C8E                      ;888C5D|F02F    |888C8E;
                        BPL CODE_888C81                      ;888C5F|1020    |888C81;
@@ -1991,7 +1991,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
           CODE_888CC4:
                        JSL.L CODE_8281E8                    ;888CC4|22E88182|8281E8;
-                       JSL.L updateEv_13_14_17_0f           ;888CC8|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888CC8|22EA8E84|848EEA;
                        REP #$20                             ;888CCC|C220    |      ;
                        LDA.W #$C771                         ;888CCE|A971C7  |      ;
                        STA.B r_ev_20_hitBoxAddr-$E68        ;888CD1|8520    |000E88;
@@ -2009,7 +2009,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888CE6:
-                       JSL.L updateEv_13_14_17_0f           ;888CE6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888CE6|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;888CEA|A50F    |000E77;
                        BPL CODE_888CF2                      ;888CEC|1004    |888CF2;
                        STZ.B r_ev_02_action-$E68            ;888CEE|6402    |000E6A;
@@ -2019,10 +2019,10 @@ eventID_stingCameleon_0a_main:
                        RTS                                  ;888CF2|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
-          CODE_888CF3:
+stingCameleon_0a_explosion_state04:
                        JSL.L CODE_84A677                    ;888CF3|2277A684|84A677;
                        BPL CODE_888D20                      ;888CF7|1027    |888D20;
-                       LDA.W r_level_current                ;888CF9|AD7A1F  |861F7A;
+                       LDA.W r6_level_current               ;888CF9|AD7A1F  |861F7A;
                        CMP.B #$09                           ;888CFC|C909    |      ;
                        BCC CODE_888D1C                      ;888CFE|901C    |888D1C;
                        LDA.B #$1C                           ;888D00|A91C    |      ;
@@ -2031,20 +2031,20 @@ eventID_stingCameleon_0a_main:
                        LDY.B #$03                           ;888D08|A003    |      ;
                        JSL.L CODE_80887F                    ;888D0A|227F8880|80887F;
                        LDA.B #$17                           ;888D0E|A917    |      ;
-                       STA.W r_BG_enableMask                ;888D10|8DC000  |8600C0;
-                       STZ.W r_00c1                         ;888D13|9CC100  |8600C1;
+                       STA.W r6_BG_enableMask               ;888D10|8DC000  |8600C0;
+                       STZ.W r6_00c1                        ;888D13|9CC100  |8600C1;
                        STZ.W CGADSUB                        ;888D16|9C3121  |862131;
                        STZ.W CGSWSEL                        ;888D19|9C3021  |862130;
                                                             ;      |        |      ;
           CODE_888D1C:
-                       JML.L clearStates_00_02_0E           ;888D1C|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;888D1C|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888D20:
                        LDA.B r_ev_03_do-$E68                ;888D20|A503    |000E6B;
                        CMP.B #$14                           ;888D22|C914    |      ;
                        BCS CODE_888D2E                      ;888D24|B008    |888D2E;
-                       JSL.L updateEv_13_14_17_0f           ;888D26|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;888D26|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;888D2A|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2054,7 +2054,7 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
           CODE_888D2F:
                        LDA.B #$A0                           ;888D2F|A9A0    |      ;
-                       STA.W r_menuSlot_donno_bkp           ;888D31|8D220B  |860B22;
+                       STA.W r6_menuSlot_donno_bkp          ;888D31|8D220B  |860B22;
                        STA.W $0B25                          ;888D34|8D250B  |860B25;
                        STA.W $0B28                          ;888D37|8D280B  |860B28;
                        STA.W $0B2B                          ;888D3A|8D2B0B  |860B2B;
@@ -2091,7 +2091,7 @@ eventID_stingCameleon_0a_main:
                        LDX.B #$00                           ;888D79|A200    |      ;
                                                             ;      |        |      ;
           CODE_888D7B:
-                       LDA.W r_0aa1,X                       ;888D7B|BDA10A  |860AA1;
+                       LDA.W r6_0aa1,X                      ;888D7B|BDA10A  |860AA1;
                        BEQ CODE_888D87                      ;888D7E|F007    |888D87;
                        TXA                                  ;888D80|8A      |      ;
                        CLC                                  ;888D81|18      |      ;
@@ -2101,19 +2101,19 @@ eventID_stingCameleon_0a_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_888D87:
-                       INC.W r_0aa1,X                       ;888D87|FEA10A  |860AA1;
+                       INC.W r6_0aa1,X                      ;888D87|FEA10A  |860AA1;
                        LDA.B #$42                           ;888D8A|A942    |      ;
-                       STA.W r_0aa2,X                       ;888D8C|9DA20A  |860AA2;
+                       STA.W r6_0aa2,X                      ;888D8C|9DA20A  |860AA2;
                        LDA.B #$0F                           ;888D8F|A90F    |      ;
-                       STA.W r_0aa3,X                       ;888D91|9DA30A  |860AA3;
+                       STA.W r6_0aa3,X                      ;888D91|9DA30A  |860AA3;
                        LDA.B #$D2                           ;888D94|A9D2    |      ;
-                       STA.W r_0aa4,X                       ;888D96|9DA40A  |860AA4;
+                       STA.W r6_0aa4,X                      ;888D96|9DA40A  |860AA4;
                        LDA.B #$0A                           ;888D99|A90A    |      ;
-                       STA.W r_0aa5,X                       ;888D9B|9DA50A  |860AA5;
+                       STA.W r6_0aa5,X                      ;888D9B|9DA50A  |860AA5;
                        LDA.B #$00                           ;888D9E|A900    |      ;
-                       STA.W r_0aa6,X                       ;888DA0|9DA60A  |860AA6;
+                       STA.W r6_0aa6,X                      ;888DA0|9DA60A  |860AA6;
                        LDA.B #$86                           ;888DA3|A986    |      ;
-                       STA.W r_0aa7,X                       ;888DA5|9DA70A  |860AA7;
+                       STA.W r6_0aa7,X                      ;888DA5|9DA70A  |860AA7;
                        STX.B r_ev_35-$E68                   ;888DA8|8635    |000E9D;
                        RTS                                  ;888DAA|60      |      ;
                                                             ;      |        |      ;
@@ -2284,15 +2284,15 @@ eventID_stingCameleon_0a_main:
           CODE_888EB9:
                        REP #$20                             ;888EB9|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;888EBB|A505    |000E6D;
-                       STA.W r_0000                         ;888EBD|8D0000  |860000;
+                       STA.W r6_0000                        ;888EBD|8D0000  |860000;
                        LDA.B r_ev_08_yPos-$E68              ;888EC0|A508    |000E70;
                        CLC                                  ;888EC2|18      |      ;
                        ADC.W #$0030                         ;888EC3|693000  |      ;
-                       STA.W r_0002                         ;888EC6|8D0200  |860002;
-                       LDA.W r_d_player_xSubPos             ;888EC9|ADAD0B  |860BAD;
-                       STA.W r_0004                         ;888ECC|8D0400  |860004;
-                       LDA.W r_d_player_yPos                ;888ECF|ADB00B  |860BB0;
-                       STA.W r_0006                         ;888ED2|8D0600  |860006;
+                       STA.W r6_0002                        ;888EC6|8D0200  |860002;
+                       LDA.W r6_player_xPos                 ;888EC9|ADAD0B  |860BAD;
+                       STA.W r6_0004                        ;888ECC|8D0400  |860004;
+                       LDA.W r6_player_yPos                 ;888ECF|ADB00B  |860BB0;
+                       STA.W r6_0006                        ;888ED2|8D0600  |860006;
                        SEP #$20                             ;888ED5|E220    |      ;
                        JSL.L CODE_84A09C                    ;888ED7|229CA084|84A09C;
                        LSR A                                ;888EDB|4A      |      ;
@@ -2310,28 +2310,28 @@ eventID_stingCameleon_0a_main:
                        LDA.B #$01                           ;888EEB|A901    |      ;
                                                             ;      |        |      ;
           CODE_888EED:
-                       STA.W r_0000                         ;888EED|8D0000  |860000;
+                       STA.W r6_0000                        ;888EED|8D0000  |860000;
                        LDY.B #$02                           ;888EF0|A002    |      ;
                                                             ;      |        |      ;
           CODE_888EF2:
                        JSL.L findEnemyShotEmptySlot         ;888EF2|22588382|828358;
                        BNE CODE_888F21                      ;888EF6|D029    |888F21;
-                       INC.W r_0000,X                       ;888EF8|FE0000  |860000;
+                       INC.W r6_0000,X                      ;888EF8|FE0000  |860000;
                        LDA.B #$11                           ;888EFB|A911    |      ;
-                       STA.W r_000a,X                       ;888EFD|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;888EFD|9D0A00  |86000A;
                        TYA                                  ;888F00|98      |      ;
                        CLC                                  ;888F01|18      |      ;
-                       ADC.W r_0000                         ;888F02|6D0000  |860000;
-                       STA.W r_000b,X                       ;888F05|9D0B00  |86000B;
+                       ADC.W r6_0000                        ;888F02|6D0000  |860000;
+                       STA.W r6_000b,X                      ;888F05|9D0B00  |86000B;
                        REP #$20                             ;888F08|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;888F0A|A505    |000E6D;
-                       STA.W r_0005,X                       ;888F0C|9D0500  |860005;
+                       STA.W r6_0005,X                      ;888F0C|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;888F0F|A508    |000E70;
                        CLC                                  ;888F11|18      |      ;
                        ADC.W #$0030                         ;888F12|693000  |      ;
-                       STA.W r_0008,X                       ;888F15|9D0800  |860008;
+                       STA.W r6_0008,X                      ;888F15|9D0800  |860008;
                        TDC                                  ;888F18|7B      |      ;
-                       STA.W r_000c,X                       ;888F19|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;888F19|9D0C00  |86000C;
                        SEP #$20                             ;888F1C|E220    |      ;
                        DEY                                  ;888F1E|88      |      ;
                        BPL CODE_888EF2                      ;888F1F|10D1    |888EF2;
@@ -2382,7 +2382,7 @@ rushRoader_0d_state_00:
                        STA.B r_ev_27_health-$E68            ;888F66|8527    |000E8F;
                        REP #$20                             ;888F68|C220    |      ;
                        LDX.B #$00                           ;888F6A|A200    |      ;
-                       LDA.W r_d_player_xSubPos             ;888F6C|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;888F6C|ADAD0B  |860BAD;
                        CMP.B r_ev_05_xPos-$E68              ;888F6F|C505    |000E6D;
                        BMI CODE_888F75                      ;888F71|3002    |888F75;
                        LDX.B #$40                           ;888F73|A240    |      ;
@@ -2579,7 +2579,7 @@ rushRoader_0d_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8890AD:
-                       JSL.L updateEv_13_14_17_0f           ;8890AD|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8890AD|22EA8E84|848EEA;
                        RTS                                  ;8890B1|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2605,7 +2605,7 @@ rushRoader_0d_state_00:
                        JSR.W CODE_889338                    ;8890D1|203893  |889338;
                        REP #$20                             ;8890D4|C220    |      ;
                        LDX.B #$00                           ;8890D6|A200    |      ;
-                       LDA.W r_d_player_xSubPos             ;8890D8|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;8890D8|ADAD0B  |860BAD;
                        CMP.B r_ev_05_xPos-$E68              ;8890DB|C505    |000E6D;
                        BPL CODE_8890E1                      ;8890DD|1002    |8890E1;
                        LDX.B #$40                           ;8890DF|A240    |      ;
@@ -2624,7 +2624,7 @@ rushRoader_0d_state_00:
                                                             ;      |        |      ;
           CODE_8890F2:
                        JSL.L CODE_82823E                    ;8890F2|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;8890F6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8890F6|22EA8E84|848EEA;
                        RTS                                  ;8890FA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2705,7 +2705,7 @@ rushRoader_0d_state_00:
           CODE_88916D:
                        LDA.B r_ev_0f_waitCount-$E68         ;88916D|A50F    |000E77;
                        BNE CODE_889175                      ;88916F|D004    |889175;
-                       JSL.L updateEv_13_14_17_0f           ;889171|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889171|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_889175:
                        RTS                                  ;889175|60      |      ;
@@ -2721,7 +2721,7 @@ rushRoader_0d_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_889189:
-                       JSL.L updateEv_13_14_17_0f           ;889189|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889189|22EA8E84|848EEA;
                        RTS                                  ;88918D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2761,7 +2761,7 @@ rushRoader_0d_state_00:
                                                             ;      |        |      ;
           CODE_8891F2:
                        JSL.L CODE_828174                    ;8891F2|22748182|828174;
-                       JSL.L updateEv_13_14_17_0f           ;8891F6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8891F6|22EA8E84|848EEA;
                        RTS                                  ;8891FA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2825,7 +2825,7 @@ rushRoader_0d_state_00:
                        STA.B r_ev_1a_xSpdSub-$E68           ;88926E|851A    |000E82;
                        SEP #$20                             ;889270|E220    |      ;
                        JSL.L CODE_82823E                    ;889272|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;889276|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889276|22EA8E84|848EEA;
                        RTS                                  ;88927A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -2881,7 +2881,7 @@ rushRoader_0d_state_00:
                                                             ;      |        |      ;
           CODE_8892CB:
                        JSL.L CODE_828174                    ;8892CB|22748182|828174;
-                       JSL.L updateEv_13_14_17_0f           ;8892CF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8892CF|22EA8E84|848EEA;
                        RTS                                  ;8892D3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3054,7 +3054,7 @@ roadAttackDeploy_action_00:
                        LDA.B #$18                           ;8893C4|A918    |      ;
                        JSL.L lunchSFX                       ;8893C6|22A28880|8088A2;
                        LDA.B #$11                           ;8893CA|A911    |      ;
-                       STA.W r_BG_enableMask                ;8893CC|8DC000  |8600C0;
+                       STA.W r6_BG_enableMask               ;8893CC|8DC000  |8600C0;
                        STZ.B r_ev_0e-$E68                   ;8893CF|640E    |000E76;
                        LDA.B #$1E                           ;8893D1|A91E    |      ;
                        STA.B r_ev_39-$E68                   ;8893D3|8539    |000EA1;
@@ -3072,12 +3072,12 @@ roadAttackDeploy_action_00:
                        LDA.W #$0150                         ;8893EF|A95001  |      ;
                        STA.B r_ev_14_sprAddr-$E68           ;8893F2|8514    |000E7C;
                        TDC                                  ;8893F4|7B      |      ;
-                       STA.W r_1f2e                         ;8893F5|8D2E1F  |861F2E;
+                       STA.W r6_1f2e                        ;8893F5|8D2E1F  |861F2E;
                        JML.L CODE_80E018                    ;8893F8|5C18E080|80E018;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_8893FC:
-                       LDA.W r_1f27                         ;8893FC|AD271F  |861F27;
+                       LDA.W r6_1f27                        ;8893FC|AD271F  |861F27;
                        BEQ CODE_889402                      ;8893FF|F001    |889402;
                        RTL                                  ;889401|6B      |      ;
                                                             ;      |        |      ;
@@ -3086,14 +3086,14 @@ roadAttackDeploy_action_00:
                        LDA.B #$04                           ;889402|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;889404|8502    |000E6A;
                        REP #$21                             ;889406|C221    |      ;
-                       LDA.W r_cam_BG0_xPos_ff              ;889408|AD8D1E  |861E8D;
+                       LDA.W r6_cam_BG0_xPos_ff             ;889408|AD8D1E  |861E8D;
                        ADC.W #$0100                         ;88940B|690001  |      ;
-                       STA.W r_cam_BG0_xPos_ff              ;88940E|8D8D1E  |861E8D;
+                       STA.W r6_cam_BG0_xPos_ff             ;88940E|8D8D1E  |861E8D;
                        JML.L CODE_80E018                    ;889411|5C18E080|80E018;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_889415:
-                       LDA.W r_1f27                         ;889415|AD271F  |861F27;
+                       LDA.W r6_1f27                        ;889415|AD271F  |861F27;
                        BEQ CODE_88941B                      ;889418|F001    |88941B;
                        RTL                                  ;88941A|6B      |      ;
                                                             ;      |        |      ;
@@ -3103,13 +3103,13 @@ roadAttackDeploy_action_00:
                        STA.B r_ev_01_state-$E68             ;88941D|8501    |000E69;
                        STZ.B r_ev_02_action-$E68            ;88941F|6402    |000E6A;
                        REP #$21                             ;889421|C221    |      ;
-                       LDA.W r_cam_BG0_xPos_ff              ;889423|AD8D1E  |861E8D;
+                       LDA.W r6_cam_BG0_xPos_ff             ;889423|AD8D1E  |861E8D;
                        ADC.W #$FF00                         ;889426|6900FF  |      ;
-                       STA.W r_cam_BG0_xPos_ff              ;889429|8D8D1E  |861E8D;
+                       STA.W r6_cam_BG0_xPos_ff             ;889429|8D8D1E  |861E8D;
                        LDX.B #$13                           ;88942C|A213    |      ;
-                       STX.W r_BG_enableMask                ;88942E|8EC000  |8600C0;
+                       STX.W r6_BG_enableMask               ;88942E|8EC000  |8600C0;
                        JSL.L CODE_80E008                    ;889431|2208E080|80E008;
-                       INC.W r_1e88                         ;889435|EE881E  |861E88;
+                       INC.W r6_1e88                        ;889435|EE881E  |861E88;
                        RTL                                  ;889438|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3145,7 +3145,7 @@ roadAttackDeploy_action_00:
           CODE_88946F:
                        REP #$20                             ;88946F|C220    |      ;
                        JSR.W CODE_889719                    ;889471|201997  |889719;
-                       LDA.W r_frameCounter1                ;889474|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;889474|AD9C0B  |860B9C;
                        LSR A                                ;889477|4A      |      ;
                        BCS CODE_889488                      ;889478|B00E    |889488;
                        LDA.B r_ev_08_yPos-$E68              ;88947A|A508    |000E70;
@@ -3157,12 +3157,12 @@ roadAttackDeploy_action_00:
                        STA.B r_ev_37-$E68                   ;889486|8537    |000E9F;
                                                             ;      |        |      ;
           CODE_889488:
-                       LDA.W r_cam_BG0_xPos_ff              ;889488|AD8D1E  |861E8D;
-                       STA.W r_1eaa                         ;88948B|8DAA1E  |861EAA;
-                       LDA.W r_cam_BG1_slot                 ;88948E|AD901E  |861E90;
-                       STA.W r_1eac                         ;889491|8DAC1E  |861EAC;
+                       LDA.W r6_cam_BG0_xPos_ff             ;889488|AD8D1E  |861E8D;
+                       STA.W r6_1eaa                        ;88948B|8DAA1E  |861EAA;
+                       LDA.W r6_cam_BG1_slot                ;88948E|AD901E  |861E90;
+                       STA.W r6_1eac                        ;889491|8DAC1E  |861EAC;
                        TDC                                  ;889494|7B      |      ;
-                       STA.W r_1f2e                         ;889495|8D2E1F  |861F2E;
+                       STA.W r6_1f2e                        ;889495|8D2E1F  |861F2E;
                        RTL                                  ;889498|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -3205,7 +3205,7 @@ roadAttackDeploy_action_00:
                        LDX.W #$0160                         ;8894CE|A26001  |      ;
                        LDA.B r_ev_05_xPos-$E68              ;8894D1|A505    |000E6D;
                        ADC.W #$FFA0                         ;8894D3|69A0FF  |      ;
-                       CMP.W r_d_player_xSubPos             ;8894D6|CDAD0B  |860BAD;
+                       CMP.W r6_player_xPos                 ;8894D6|CDAD0B  |860BAD;
                        BCC CODE_8894DE                      ;8894D9|9003    |8894DE;
                        LDX.W #$FEA0                         ;8894DB|A2A0FE  |      ;
                                                             ;      |        |      ;
@@ -3259,20 +3259,20 @@ roadAttackDeploy_action_00:
           CODE_889524:
                        JSL.L loadEnitySlotBase              ;889524|22218382|828321;
                        BNE CODE_88954D                      ;889528|D023    |88954D;
-                       INC.W r_0000,X                       ;88952A|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88952A|FE0000  |860000;
                        LDA.B #$11                           ;88952D|A911    |      ;
-                       STA.W r_000a,X                       ;88952F|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88952F|9D0A00  |86000A;
                        LDA.B #$80                           ;889532|A980    |      ;
-                       STA.W r_000b,X                       ;889534|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;889534|9D0B00  |86000B;
                        REP #$20                             ;889537|C220    |      ;
                        TDC                                  ;889539|7B      |      ;
-                       STA.W r_000c,X                       ;88953A|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;88953A|9D0C00  |86000C;
                        LDA.B r_ev_05_xPos-$E68              ;88953D|A505    |000E6D;
-                       STA.W r_0005,X                       ;88953F|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88953F|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;889542|A508    |000E70;
                        SEC                                  ;889544|38      |      ;
                        SBC.W #$0030                         ;889545|E93000  |      ;
-                       STA.W r_0008,X                       ;889548|9D0800  |860008;
+                       STA.W r6_0008,X                      ;889548|9D0800  |860008;
                        SEP #$20                             ;88954B|E220    |      ;
                                                             ;      |        |      ;
           CODE_88954D:
@@ -3293,7 +3293,7 @@ roadAttackDeploy_action_00:
                        LDA.B r_ev_08_yPos-$E68              ;889563|A508    |000E70;
                        CMP.W #$0100                         ;889565|C90001  |      ;
                        BCS CODE_88956F                      ;889568|B005    |88956F;
-                       LDA.W r_0005,X                       ;88956A|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;88956A|BD0500  |860005;
                        STA.B r_ev_05_xPos-$E68              ;88956D|8505    |000E6D;
                                                             ;      |        |      ;
           CODE_88956F:
@@ -3337,18 +3337,18 @@ roadAttackDeploy_action_00:
                        STA.B r_ev_03_do-$E68                ;8895A4|8503    |000E6B;
                        STA.B r_ev_3a-$E68                   ;8895A6|853A    |000EA2;
                        STZ.W $0C00                          ;8895A8|9C000C  |860C00;
-                       STZ.W $0C03                          ;8895AB|9C030C  |860C03;
+                       STZ.W r6_blaster_chargeState         ;8895AB|9C030C  |860C03;
                        LDA.B #$17                           ;8895AE|A917    |      ;
                        JSL.L lunchWeaponSFX                 ;8895B0|22CD8880|8088CD;
                        REP #$31                             ;8895B4|C231    |      ;
-                       LDA.W r_d_0bdb                       ;8895B6|ADDB0B  |860BDB;
+                       LDA.W r6_player_curWeapon            ;8895B6|ADDB0B  |860BDB;
                        AND.W #$00FF                         ;8895B9|29FF00  |      ;
                        ADC.W #$0100                         ;8895BC|690001  |      ;
                        TAY                                  ;8895BF|A8      |      ;
                        JSL.L lunchMusic                     ;8895C0|22118082|828011;
                        SEP #$30                             ;8895C4|E230    |      ;
                        LDA.B #$40                           ;8895C6|A940    |      ;
-                       STA.W $0C11                          ;8895C8|8D110C  |860C11;
+                       STA.W r6_blaster_direction           ;8895C8|8D110C  |860C11;
                        JSL.L CODE_849FEB                    ;8895CB|22EB9F84|849FEB;
                        LDY.B #$02                           ;8895CF|A002    |      ;
                        LDA.B #$F6                           ;8895D1|A9F6    |      ;
@@ -3363,7 +3363,7 @@ roadAttackDeploy_action_00:
                        BNE CODE_8895F0                      ;8895DE|D010    |8895F0;
                        LDA.B #$06                           ;8895E0|A906    |      ;
                        STA.B r_ev_03_do-$E68                ;8895E2|8503    |000E6B;
-                       LDA.L $001F26                        ;8895E4|AF261F00|001F26;
+                       LDA.L r_1f26                         ;8895E4|AF261F00|001F26;
                        BEQ CODE_8895F0                      ;8895E8|F006    |8895F0;
                        LDA.B #$23                           ;8895EA|A923    |      ;
                        JSL.L CODE_8087A2                    ;8895EC|22A28780|8087A2;
@@ -3373,17 +3373,17 @@ roadAttackDeploy_action_00:
                        LDX.W #$0080                         ;8895F2|A28000  |      ;
                        LDA.B r_ev_05_xPos-$E68              ;8895F5|A505    |000E6D;
                        ADC.W #$FF4C                         ;8895F7|694CFF  |      ;
-                       CMP.W r_d_player_xSubPos             ;8895FA|CDAD0B  |860BAD;
+                       CMP.W r6_player_xPos                 ;8895FA|CDAD0B  |860BAD;
                        BMI CODE_889602                      ;8895FD|3003    |889602;
                        LDX.W #$FF80                         ;8895FF|A280FF  |      ;
                                                             ;      |        |      ;
           CODE_889602:
                        STX.B r_ev_1a_xSpdSub-$E68           ;889602|861A    |000E82;
-                       LDA.W r_d_player_xSubPos             ;889604|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;889604|ADAD0B  |860BAD;
                        SEC                                  ;889607|38      |      ;
                        SBC.W #$0020                         ;889608|E92000  |      ;
-                       STA.W r_levelSpecFlag                ;88960B|8D5E1E  |861E5E;
-                       STA.W r_cam_BG0_xPos_lock            ;88960E|8D601E  |861E60;
+                       STA.W r6_levelSpecFlag               ;88960B|8D5E1E  |861E5E;
+                       STA.W r6_cam_BG0_xPos_lock           ;88960E|8D601E  |861E60;
                        SEP #$30                             ;889611|E230    |      ;
                        RTS                                  ;889613|60      |      ;
                                                             ;      |        |      ;
@@ -3393,13 +3393,13 @@ roadAttackDeploy_action_00:
                        LDA.B r_ev_05_xPos-$E68              ;889616|A505    |000E6D;
                        ADC.W #$FF4C                         ;889618|694CFF  |      ;
                        SEC                                  ;88961B|38      |      ;
-                       SBC.W r_d_player_xSubPos             ;88961C|EDAD0B  |860BAD;
+                       SBC.W r6_player_xPos                 ;88961C|EDAD0B  |860BAD;
                        CLC                                  ;88961F|18      |      ;
                        ADC.W #$0008                         ;889620|690800  |      ;
                        CMP.W #$0010                         ;889623|C91000  |      ;
                        BCS CODE_889635                      ;889626|B00D    |889635;
                        LDX.B #$08                           ;889628|A208    |      ;
-                       STX.W r_1f08                         ;88962A|8E081F  |861F08;
+                       STX.W r6_1f08                        ;88962A|8E081F  |861F08;
                        JSL.L CODE_80B071                    ;88962D|2271B080|80B071;
                        LDX.B #$08                           ;889631|A208    |      ;
                        STX.B r_ev_03_do-$E68                ;889633|8603    |000E6B;
@@ -3411,7 +3411,7 @@ roadAttackDeploy_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88963C:
-                       LDA.W r_job_flag_40                  ;88963C|AD4000  |860040;
+                       LDA.W r6_job_flag_40                 ;88963C|AD4000  |860040;
                        BNE CODE_889653                      ;88963F|D012    |889653;
                        LDA.B #$0A                           ;889641|A90A    |      ;
                        STA.B r_ev_03_do-$E68                ;889643|8503    |000E6B;
@@ -3456,7 +3456,7 @@ roadAttackDeploy_action_00:
           CODE_889678:
                        REP #$10                             ;889678|C210    |      ;
                        LDX.B r_ev_3b-$E68                   ;88967A|A63B    |000EA3;
-                       BIT.W r_0010,X                       ;88967C|3C1000  |860010;
+                       BIT.W r6_0010,X                      ;88967C|3C1000  |860010;
                        SEP #$10                             ;88967F|E210    |      ;
                        BVC CODE_88968B                      ;889681|5008    |88968B;
                        LDA.B #$10                           ;889683|A910    |      ;
@@ -3494,8 +3494,8 @@ roadAttackDeploy_action_00:
                        JSR.W CODE_889750                    ;8896AF|205097  |889750;
                        REP #$30                             ;8896B2|C230    |      ;
                        LDX.B r_ev_3b-$E68                   ;8896B4|A63B    |000EA3;
-                       LDA.W r_0000                         ;8896B6|AD0000  |860000;
-                       STA.W r_000c,X                       ;8896B9|9D0C00  |86000C;
+                       LDA.W r6_0000                        ;8896B6|AD0000  |860000;
+                       STA.W r6_000c,X                      ;8896B9|9D0C00  |86000C;
                        SEP #$30                             ;8896BC|E230    |      ;
                                                             ;      |        |      ;
           CODE_8896BE:
@@ -3506,7 +3506,7 @@ roadAttackDeploy_action_00:
           CODE_8896C3:
                        REP #$10                             ;8896C3|C210    |      ;
                        LDX.B r_ev_3b-$E68                   ;8896C5|A63B    |000EA3;
-                       LDA.W r_0010,X                       ;8896C7|BD1000  |860010;
+                       LDA.W r6_0010,X                      ;8896C7|BD1000  |860010;
                        BIT.B #$02                           ;8896CA|8902    |      ;
                        SEP #$10                             ;8896CC|E210    |      ;
                        BEQ CODE_8896E2                      ;8896CE|F012    |8896E2;
@@ -3529,14 +3529,14 @@ roadAttackDeploy_action_00:
                        LDA.B #$18                           ;8896E7|A918    |      ;
                        STA.B r_ev_03_do-$E68                ;8896E9|8503    |000E6B;
                        LDA.B #$80                           ;8896EB|A980    |      ;
-                       STA.W r_0000                         ;8896ED|8D0000  |860000;
+                       STA.W r6_0000                        ;8896ED|8D0000  |860000;
                        LDA.B #$50                           ;8896F0|A950    |      ;
-                       STA.W r_0002                         ;8896F2|8D0200  |860002;
+                       STA.W r6_0002                        ;8896F2|8D0200  |860002;
                        LDA.B #$58                           ;8896F5|A958    |      ;
-                       STA.W r_0004                         ;8896F7|8D0400  |860004;
+                       STA.W r6_0004                        ;8896F7|8D0400  |860004;
                        LDA.B #$30                           ;8896FA|A930    |      ;
-                       STA.W r_0006                         ;8896FC|8D0600  |860006;
-                       STZ.W r_0008                         ;8896FF|9C0800  |860008;
+                       STA.W r6_0006                        ;8896FC|8D0600  |860006;
+                       STZ.W r6_0008                        ;8896FF|9C0800  |860008;
                        JSL.L CODE_83F74A                    ;889702|224AF783|83F74A;
                        JMP.W CODE_88979B                    ;889706|4C9B97  |88979B;
                                                             ;      |        |      ;
@@ -3547,7 +3547,7 @@ roadAttackDeploy_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88970E:
-                       LDA.W r_1f2c                         ;88970E|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88970E|AD2C1F  |861F2C;
                        BMI CODE_889717                      ;889711|3004    |889717;
                        LDA.B #$04                           ;889713|A904    |      ;
                        STA.B r_ev_01_state-$E68             ;889715|8501    |000E69;
@@ -3563,16 +3563,16 @@ roadAttackDeploy_action_00:
           CODE_889719:
                        LDX.B r_ev_3a-$E68                   ;889719|A63A    |000EA2;
                        BNE CODE_88974F                      ;88971B|D032    |88974F;
-                       LDA.W r_cam_BG0_RightBorder          ;88971D|AD581E  |861E58;
+                       LDA.W r6_cam_BG0_RightBorder         ;88971D|AD581E  |861E58;
                        CLC                                  ;889720|18      |      ;
                        ADC.W #$0100                         ;889721|690001  |      ;
-                       STA.W r_0000                         ;889724|8D0000  |860000;
+                       STA.W r6_0000                        ;889724|8D0000  |860000;
                        LDA.B r_ev_05_xPos-$E68              ;889727|A505    |000E6D;
                        CLC                                  ;889729|18      |      ;
                        ADC.W #$FFC0                         ;88972A|69C0FF  |      ;
-                       CMP.W r_0000                         ;88972D|CD0000  |860000;
+                       CMP.W r6_0000                        ;88972D|CD0000  |860000;
                        BCC CODE_88973D                      ;889730|900B    |88973D;
-                       LDA.W r_0000                         ;889732|AD0000  |860000;
+                       LDA.W r6_0000                        ;889732|AD0000  |860000;
                        SBC.W #$FFC1                         ;889735|E9C1FF  |      ;
                        STA.B r_ev_05_xPos-$E68              ;889738|8505    |000E6D;
                        STZ.B r_ev_1a_xSpdSub-$E68           ;88973A|641A    |000E82;
@@ -3596,16 +3596,16 @@ roadAttackDeploy_action_00:
           CODE_889750:
                        JSL.L CODE_8282D3                    ;889750|22D38282|8282D3;
                        BNE CODE_889770                      ;889754|D01A    |889770;
-                       INC.W r_0000,X                       ;889756|FE0000  |860000;
+                       INC.W r6_0000,X                      ;889756|FE0000  |860000;
                        LDA.B #$2D                           ;889759|A92D    |      ;
-                       STA.W r_000a,X                       ;88975B|9D0A00  |86000A;
-                       STX.W r_0000                         ;88975E|8E0000  |860000;
+                       STA.W r6_000a,X                      ;88975B|9D0A00  |86000A;
+                       STX.W r6_0000                        ;88975E|8E0000  |860000;
                        REP #$21                             ;889761|C221    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;889763|A508    |000E70;
                        ADC.W #$FFE0                         ;889765|69E0FF  |      ;
-                       STA.W r_0008,X                       ;889768|9D0800  |860008;
+                       STA.W r6_0008,X                      ;889768|9D0800  |860008;
                        LDA.B r_ev_05_xPos-$E68              ;88976B|A505    |000E6D;
-                       STA.W r_0005,X                       ;88976D|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88976D|9D0500  |860005;
                                                             ;      |        |      ;
           CODE_889770:
                        SEP #$30                             ;889770|E230    |      ;
@@ -3615,18 +3615,18 @@ roadAttackDeploy_action_00:
           CODE_889773:
                        JSL.L loadEnitySlotBase              ;889773|22218382|828321;
                        BNE CODE_889798                      ;889777|D01F    |889798;
-                       INC.W r_0000,X                       ;889779|FE0000  |860000;
+                       INC.W r6_0000,X                      ;889779|FE0000  |860000;
                        LDA.B #$32                           ;88977C|A932    |      ;
-                       STA.W r_000a,X                       ;88977E|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88977E|9D0A00  |86000A;
                        STX.B r_ev_3b-$E68                   ;889781|863B    |000EA3;
                        REP #$21                             ;889783|C221    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;889785|A508    |000E70;
                        ADC.W #$FFC0                         ;889787|69C0FF  |      ;
-                       STA.W r_0008,X                       ;88978A|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88978A|9D0800  |860008;
                        LDA.B r_ev_05_xPos-$E68              ;88978D|A505    |000E6D;
-                       STA.W r_0005,X                       ;88978F|9D0500  |860005;
-                       LDA.W r_0000                         ;889792|AD0000  |860000;
-                       STA.W r_000c,X                       ;889795|9D0C00  |86000C;
+                       STA.W r6_0005,X                      ;88978F|9D0500  |860005;
+                       LDA.W r6_0000                        ;889792|AD0000  |860000;
+                       STA.W r6_000c,X                      ;889795|9D0C00  |86000C;
                                                             ;      |        |      ;
           CODE_889798:
                        SEP #$30                             ;889798|E230    |      ;
@@ -3640,11 +3640,11 @@ roadAttackDeploy_action_00:
           CODE_8897A0:
                        JSL.L loadEnitySlotBase              ;8897A0|22218382|828321;
                        BNE CODE_8897B7                      ;8897A4|D011    |8897B7;
-                       INC.W r_0000,X                       ;8897A6|FE0000  |860000;
+                       INC.W r6_0000,X                      ;8897A6|FE0000  |860000;
                        LDA.B #$3C                           ;8897A9|A93C    |      ;
-                       STA.W r_000a,X                       ;8897AB|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;8897AB|9D0A00  |86000A;
                        LDA.W UNREACH_86CB0E,Y               ;8897AE|B90ECB  |86CB0E;
-                       STA.W r_000b,X                       ;8897B1|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;8897B1|9D0B00  |86000B;
                        DEY                                  ;8897B4|88      |      ;
                        BPL CODE_8897A0                      ;8897B5|10E9    |8897A0;
                                                             ;      |        |      ;
@@ -3723,28 +3723,28 @@ eventID_mineCart_2b_main:
                        SEC                                  ;889839|38      |      ;
                        SBC.B r_ev_22_xPosOld-$E68           ;88983A|E522    |000E8A;
                        CLC                                  ;88983C|18      |      ;
-                       ADC.W r_d_player_xSubPos             ;88983D|6DAD0B  |860BAD;
-                       STA.W r_d_player_xSubPos             ;889840|8DAD0B  |860BAD;
+                       ADC.W r6_player_xPos                 ;88983D|6DAD0B  |860BAD;
+                       STA.W r6_player_xPos                 ;889840|8DAD0B  |860BAD;
                                                             ;      |        |      ;
           CODE_889843:
                        LDA.B r_ev_08_yPos-$E68              ;889843|A508    |000E70;
                        SEC                                  ;889845|38      |      ;
                        SBC.B r_ev_24_yPosOld-$E68           ;889846|E524    |000E8C;
                        CLC                                  ;889848|18      |      ;
-                       ADC.W r_d_player_yPos                ;889849|6DB00B  |860BB0;
-                       STA.W r_d_player_yPos                ;88984C|8DB00B  |860BB0;
+                       ADC.W r6_player_yPos                 ;889849|6DB00B  |860BB0;
+                       STA.W r6_player_yPos                 ;88984C|8DB00B  |860BB0;
                        SEP #$20                             ;88984F|E220    |      ;
-                       LDA.W r_1f9d                         ;889851|AD9D1F  |861F9D;
+                       LDA.W r6_1f9d                        ;889851|AD9D1F  |861F9D;
                        BPL CODE_88985B                      ;889854|1005    |88985B;
                        LDA.B #$0C                           ;889856|A90C    |      ;
-                       TSB.W r_d_0bd4                       ;889858|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;889858|0CD40B  |860BD4;
                                                             ;      |        |      ;
           CODE_88985B:
                        LDA.B #$20                           ;88985B|A920    |      ;
                        TSB.W $0C26                          ;88985D|0C260C  |860C26;
                        LDA.B r_ev_0f_waitCount-$E68         ;889860|A50F    |000E77;
                        AND.B #$01                           ;889862|2901    |      ;
-                       STA.W r_d_0bc1                       ;889864|8DC10B  |860BC1;
+                       STA.W r6_player_bc1                  ;889864|8DC10B  |860BC1;
                                                             ;      |        |      ;
           CODE_889867:
                        LDA.B #$4D                           ;889867|A94D    |      ;
@@ -3809,7 +3809,7 @@ eventID_mineCart_2b_main:
                        LDA.B r_ev_35-$E68                   ;8898C7|A535    |000E9D;
                        STA.B r_ev_36-$E68                   ;8898C9|8536    |000E9E;
                        JSR.W CODE_889A67                    ;8898CB|20679A  |889A67;
-                       LDA.W r_frameCounter1                ;8898CE|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;8898CE|AD9C0B  |860B9C;
                        AND.B #$03                           ;8898D1|2903    |      ;
                        BNE CODE_8898DB                      ;8898D3|D006    |8898DB;
                        LDA.B #$37                           ;8898D5|A937    |      ;
@@ -3908,11 +3908,11 @@ eventID_mineCart_2b_main:
                                                             ;      |        |      ;
           CODE_88996D:
                        SEP #$20                             ;88996D|E220    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;88996F|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88996F|22EA8E84|848EEA;
                        LDA.B r_ev_2c-$E68                   ;889973|A52C    |000E94;
                        LSR A                                ;889975|4A      |      ;
                        BCC CODE_889989                      ;889976|9011    |889989;
-                       LDA.W r_frameCounter1                ;889978|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;889978|AD9C0B  |860B9C;
                        AND.B #$0F                           ;88997B|290F    |      ;
                        BNE CODE_889989                      ;88997D|D00A    |889989;
                        LDX.B #$02                           ;88997F|A202    |      ;
@@ -3951,7 +3951,7 @@ eventID_mineCart_2b_main:
                                                             ;      |        |      ;
           CODE_8899A8:
                        JSR.W CODE_889A67                    ;8899A8|20679A  |889A67;
-                       JSL.L updateEv_13_14_17_0f           ;8899AB|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8899AB|22EA8E84|848EEA;
                        JSL.L CODE_828174                    ;8899AF|22748182|828174;
                        LDA.B r_ev_1d_ySpd-$E68              ;8899B3|A51D    |000E85;
                        BPL CODE_8899BB                      ;8899B5|1004    |8899BB;
@@ -3964,7 +3964,7 @@ eventID_mineCart_2b_main:
                                                             ;      |        |      ;
           CODE_8899BC:
                        JSR.W CODE_889A67                    ;8899BC|20679A  |889A67;
-                       JSL.L updateEv_13_14_17_0f           ;8899BF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;8899BF|22EA8E84|848EEA;
                        LDA.B r_ev_2b-$E68                   ;8899C3|A52B    |000E93;
                        BIT.B #$04                           ;8899C5|8904    |      ;
                        BEQ CODE_8899F6                      ;8899C7|F02D    |8899F6;
@@ -4022,7 +4022,7 @@ eventID_mineCart_2b_main:
           CODE_889A13:
                        LDX.B r_ev_02_action-$E68            ;889A13|A602    |000E6A;
                        JSR.W (PTR16_889A23,X)               ;889A15|FC239A  |889A23;
-                       LDA.W r_frameCounter1                ;889A18|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;889A18|AD9C0B  |860B9C;
                        LSR A                                ;889A1B|4A      |      ;
                        BCC CODE_889A22                      ;889A1C|9004    |889A22;
                        JSL.L checkPlayerGear                ;889A1E|22B48082|8280B4;
@@ -4066,7 +4066,7 @@ eventID_mineCart_2b_main:
                        STA.B r_ev_02_action-$E68            ;889A5B|8502    |000E6A;
                                                             ;      |        |      ;
           CODE_889A5D:
-                       JSL.L updateEv_13_14_17_0f           ;889A5D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889A5D|22EA8E84|848EEA;
                        RTS                                  ;889A61|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -4138,12 +4138,12 @@ eventID_mineCart_2b_main:
           CODE_889ABE:
                        CLC                                  ;889ABE|18      |      ;
                        ADC.B r_ev_05_xPos-$E68              ;889ABF|6505    |000E6D;
-                       STA.W r_0000                         ;889AC1|8D0000  |860000;
+                       STA.W r6_0000                        ;889AC1|8D0000  |860000;
                        LDA.B r_ev_39-$E68                   ;889AC4|A539    |000EA1;
                        CLC                                  ;889AC6|18      |      ;
                        ADC.B r_ev_08_yPos-$E68              ;889AC7|6508    |000E70;
-                       STA.W r_0002                         ;889AC9|8D0200  |860002;
-                       STZ.W r_0008                         ;889ACC|9C0800  |860008;
+                       STA.W r6_0002                        ;889AC9|8D0200  |860002;
+                       STZ.W r6_0008                        ;889ACC|9C0800  |860008;
                        JSL.L CODE_849111                    ;889ACF|22119184|849111;
                        JSL.L CODE_80B8C1                    ;889AD3|22C1B880|80B8C1;
                        LDA.B r_ev_39-$E68                   ;889AD7|A539    |000EA1;
@@ -4159,19 +4159,19 @@ eventID_mineCart_2b_main:
           CODE_889AE7:
                        JSL.L CODE_8282D3                    ;889AE7|22D38282|8282D3;
                        BNE CODE_889B0F                      ;889AEB|D022    |889B0F;
-                       INC.W r_0000,X                       ;889AED|FE0000  |860000;
+                       INC.W r6_0000,X                      ;889AED|FE0000  |860000;
                        LDA.B #$10                           ;889AF0|A910    |      ;
-                       STA.W r_000a,X                       ;889AF2|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;889AF2|9D0A00  |86000A;
                        LDA.B #$0A                           ;889AF5|A90A    |      ;
-                       STA.W r_000b,X                       ;889AF7|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;889AF7|9D0B00  |86000B;
                        LDA.B r_ev_33-$E68                   ;889AFA|A533    |000E9B;
                        ORA.B #$30                           ;889AFC|0930    |      ;
-                       STA.W r_0011,X                       ;889AFE|9D1100  |860011;
+                       STA.W r6_0011,X                      ;889AFE|9D1100  |860011;
                        REP #$20                             ;889B01|C220    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;889B03|A508    |000E70;
-                       STA.W r_0008,X                       ;889B05|9D0800  |860008;
+                       STA.W r6_0008,X                      ;889B05|9D0800  |860008;
                        LDA.B r_ev_05_xPos-$E68              ;889B08|A505    |000E6D;
-                       STA.W r_0005,X                       ;889B0A|9D0500  |860005;
+                       STA.W r6_0005,X                      ;889B0A|9D0500  |860005;
                        SEP #$20                             ;889B0D|E220    |      ;
                                                             ;      |        |      ;
           CODE_889B0F:
@@ -4186,34 +4186,34 @@ eventID_mineCart_2b_main:
           CODE_889B17:
                        JSL.L CODE_8282D3                    ;889B17|22D38282|8282D3;
                        BNE CODE_889B6D                      ;889B1B|D050    |889B6D;
-                       INC.W r_0000,X                       ;889B1D|FE0000  |860000;
+                       INC.W r6_0000,X                      ;889B1D|FE0000  |860000;
                        LDA.B #$2B                           ;889B20|A92B    |      ;
-                       STA.W r_000a,X                       ;889B22|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;889B22|9D0A00  |86000A;
                        LDA.W DATA8_86CE61,Y                 ;889B25|B961CE  |86CE61;
-                       STA.W r_000b,X                       ;889B28|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;889B28|9D0B00  |86000B;
                        LDA.B r_ev_11_sprAtri-$E68           ;889B2B|A511    |000E79;
-                       STA.W r_0011,X                       ;889B2D|9D1100  |860011;
-                       STZ.W r_001f,X                       ;889B30|9E1F00  |86001F;
+                       STA.W r6_0011,X                      ;889B2D|9D1100  |860011;
+                       STZ.W r6_001f,X                      ;889B30|9E1F00  |86001F;
                        LDA.B #$40                           ;889B33|A940    |      ;
-                       STA.W r_001e,X                       ;889B35|9D1E00  |86001E;
+                       STA.W r6_001e,X                      ;889B35|9D1E00  |86001E;
                        REP #$20                             ;889B38|C220    |      ;
                        LDA.W #$0C80                         ;889B3A|A9800C  |      ;
-                       STA.W r_000c,X                       ;889B3D|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;889B3D|9D0C00  |86000C;
                        LDA.B r_ev_05_xPos-$E68              ;889B40|A505    |000E6D;
-                       STA.W r_0005,X                       ;889B42|9D0500  |860005;
+                       STA.W r6_0005,X                      ;889B42|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;889B45|A508    |000E70;
-                       STA.W r_0008,X                       ;889B47|9D0800  |860008;
+                       STA.W r6_0008,X                      ;889B47|9D0800  |860008;
                        PHY                                  ;889B4A|5A      |      ;
                        JSL.L mainPlayer_00                  ;889B4B|22869084|849086;
                        AND.W #$0006                         ;889B4F|290600  |      ;
                        TAY                                  ;889B52|A8      |      ;
                        LDA.W DATA8_86CE69,Y                 ;889B53|B969CE  |86CE69;
-                       STA.W r_001a,X                       ;889B56|9D1A00  |86001A;
+                       STA.W r6_001a,X                      ;889B56|9D1A00  |86001A;
                        JSL.L mainPlayer_00                  ;889B59|22869084|849086;
                        AND.W #$0006                         ;889B5D|290600  |      ;
                        TAY                                  ;889B60|A8      |      ;
                        LDA.W DATA8_86CE71,Y                 ;889B61|B971CE  |86CE71;
-                       STA.W r_001c,X                       ;889B64|9D1C00  |86001C;
+                       STA.W r6_001c,X                      ;889B64|9D1C00  |86001C;
                        PLY                                  ;889B67|7A      |      ;
                        SEP #$20                             ;889B68|E220    |      ;
                        DEY                                  ;889B6A|88      |      ;
@@ -4231,14 +4231,14 @@ eventID_mineCart_2b_main:
           CODE_889B75:
                        JSL.L CODE_8282D3                    ;889B75|22D38282|8282D3;
                        BNE CODE_889BBF                      ;889B79|D044    |889BBF;
-                       INC.W r_0000,X                       ;889B7B|FE0000  |860000;
+                       INC.W r6_0000,X                      ;889B7B|FE0000  |860000;
                        LDA.B #$09                           ;889B7E|A909    |      ;
-                       STA.W r_000a,X                       ;889B80|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;889B83|9E0B00  |86000B;
+                       STA.W r6_000a,X                      ;889B80|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;889B83|9E0B00  |86000B;
                        REP #$20                             ;889B86|C220    |      ;
                        JSL.L mainPlayer_00                  ;889B88|22869084|849086;
                        AND.W #$0007                         ;889B8C|290700  |      ;
-                       STA.W r_0000                         ;889B8F|8D0000  |860000;
+                       STA.W r6_0000                        ;889B8F|8D0000  |860000;
                        LDA.W #$0016                         ;889B92|A91600  |      ;
                        BIT.B r_ev_1a_xSpdSub-$E68           ;889B95|241A    |000E82;
                        BPL CODE_889B9C                      ;889B97|1003    |889B9C;
@@ -4248,17 +4248,17 @@ eventID_mineCart_2b_main:
                        CLC                                  ;889B9C|18      |      ;
                        ADC.B r_ev_05_xPos-$E68              ;889B9D|6505    |000E6D;
                        CLC                                  ;889B9F|18      |      ;
-                       ADC.W r_0000                         ;889BA0|6D0000  |860000;
-                       STA.W r_0005,X                       ;889BA3|9D0500  |860005;
+                       ADC.W r6_0000                        ;889BA0|6D0000  |860000;
+                       STA.W r6_0005,X                      ;889BA3|9D0500  |860005;
                        JSL.L mainPlayer_00                  ;889BA6|22869084|849086;
                        AND.W #$001F                         ;889BAA|291F00  |      ;
-                       STA.W r_0000                         ;889BAD|8D0000  |860000;
+                       STA.W r6_0000                        ;889BAD|8D0000  |860000;
                        LDA.B r_ev_08_yPos-$E68              ;889BB0|A508    |000E70;
                        CLC                                  ;889BB2|18      |      ;
                        ADC.W #$FFF8                         ;889BB3|69F8FF  |      ;
                        CLC                                  ;889BB6|18      |      ;
-                       ADC.W r_0000                         ;889BB7|6D0000  |860000;
-                       STA.W r_0008,X                       ;889BBA|9D0800  |860008;
+                       ADC.W r6_0000                        ;889BB7|6D0000  |860000;
+                       STA.W r6_0008,X                      ;889BBA|9D0800  |860008;
                        SEP #$20                             ;889BBD|E220    |      ;
                                                             ;      |        |      ;
           CODE_889BBF:
@@ -4277,12 +4277,12 @@ eventID_mineCart_2b_main:
                        TAX                                  ;889BCF|AA      |      ;
                                                             ;      |        |      ;
           CODE_889BD0:
-                       INC.W r_0000,X                       ;889BD0|FE0000  |860000;
+                       INC.W r6_0000,X                      ;889BD0|FE0000  |860000;
                        LDA.B #$1B                           ;889BD3|A91B    |      ;
-                       STA.W r_000a,X                       ;889BD5|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;889BD5|9D0A00  |86000A;
                        REP #$20                             ;889BD8|C220    |      ;
                        TDC                                  ;889BDA|7B      |      ;
-                       STA.W r_000c,X                       ;889BDB|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;889BDB|9D0C00  |86000C;
                        SEP #$30                             ;889BDE|E230    |      ;
                        RTS                                  ;889BE0|60      |      ;
                                                             ;      |        |      ;
@@ -4303,21 +4303,21 @@ sparkMandrill_31_state_00:
                        BNE CODE_889C22                      ;889BF0|D030    |889C22;
                        JSL.L bossesLevelBasedChange         ;889BF2|22DDAA84|84AADD;
                        BEQ CODE_889BFC                      ;889BF6|F004    |889BFC;
-                       JML.L clearStates_00_02_0E           ;889BF8|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;889BF8|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_889BFC:
                        JSL.L CODE_849FEB                    ;889BFC|22EB9F84|849FEB;
-                       STZ.W r_colorV_cb                    ;889C00|9CCB00  |8600CB;
-                       STZ.W r_colorV_cc                    ;889C03|9CCC00  |8600CC;
-                       STZ.W r_colorV_cd                    ;889C06|9CCD00  |8600CD;
-                       STZ.W r_colorV_c9                    ;889C09|9CC900  |8600C9;
+                       STZ.W r6_colorV_cb                   ;889C00|9CCB00  |8600CB;
+                       STZ.W r6_colorV_cc                   ;889C03|9CCC00  |8600CC;
+                       STZ.W r6_colorV_cd                   ;889C06|9CCD00  |8600CD;
+                       STZ.W r6_colorV_c9                   ;889C09|9CC900  |8600C9;
                        LDA.B #$AF                           ;889C0C|A9AF    |      ;
-                       STA.W r_colorV_ca                    ;889C0E|8DCA00  |8600CA;
+                       STA.W r6_colorV_ca                   ;889C0E|8DCA00  |8600CA;
                        INC.B r_ev_02_action-$E68            ;889C11|E602    |000E6A;
                        LDA.B #$3C                           ;889C13|A93C    |      ;
                        STA.B r_ev_34-$E68                   ;889C15|8534    |000E9C;
-                       LDA.W r_1f26                         ;889C17|AD261F  |861F26;
+                       LDA.W r6_1f26                        ;889C17|AD261F  |861F26;
                        BEQ CODE_889C22                      ;889C1A|F006    |889C22;
                        LDA.B #$2E                           ;889C1C|A92E    |      ;
                        JSL.L CODE_8087A2                    ;889C1E|22A28780|8087A2;
@@ -4325,13 +4325,13 @@ sparkMandrill_31_state_00:
           CODE_889C22:
                        DEC.B r_ev_34-$E68                   ;889C22|C634    |000E9C;
                        BEQ CODE_889C38                      ;889C24|F012    |889C38;
-                       LDA.W r_colorV_cb                    ;889C26|ADCB00  |8600CB;
+                       LDA.W r6_colorV_cb                   ;889C26|ADCB00  |8600CB;
                        INC A                                ;889C29|1A      |      ;
                        CMP.B #$20                           ;889C2A|C920    |      ;
                        BCS CODE_889C37                      ;889C2C|B009    |889C37;
-                       STA.W r_colorV_cb                    ;889C2E|8DCB00  |8600CB;
-                       STA.W r_colorV_cc                    ;889C31|8DCC00  |8600CC;
-                       STA.W r_colorV_cd                    ;889C34|8DCD00  |8600CD;
+                       STA.W r6_colorV_cb                   ;889C2E|8DCB00  |8600CB;
+                       STA.W r6_colorV_cc                   ;889C31|8DCC00  |8600CC;
+                       STA.W r6_colorV_cd                   ;889C34|8DCD00  |8600CD;
                                                             ;      |        |      ;
           CODE_889C37:
                        RTL                                  ;889C37|6B      |      ;
@@ -4371,40 +4371,40 @@ sparkMandrill_31_state_01:
                        dw mandrill_action_06                ;889C6D|        |889D3C;
                                                             ;      |        |      ;
    mandrill_action_00:
-                       JSL.L updateEv_13_14_17_0f           ;889C6F|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889C6F|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;889C73|A50F    |000E77;
                        BEQ CODE_889C80                      ;889C75|F009    |889C80;
                        LDA.B #$02                           ;889C77|A902    |      ;
                        STA.B r_ev_02_action-$E68            ;889C79|8502    |000E6A;
                        LDA.B #$9F                           ;889C7B|A99F    |      ;
-                       STA.W r_colorV_ca                    ;889C7D|8DCA00  |8600CA;
+                       STA.W r6_colorV_ca                   ;889C7D|8DCA00  |8600CA;
                                                             ;      |        |      ;
           CODE_889C80:
                        JML.L checkPlayerGear                ;889C80|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    mandrill_action_01:
-                       JSL.L updateEv_13_14_17_0f           ;889C84|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889C84|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;889C88|A50F    |000E77;
                        BPL CODE_889CA4                      ;889C8A|1018    |889CA4;
                        LDA.B #$04                           ;889C8C|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;889C8E|8502    |000E6A;
-                       STZ.W r_colorV_ca                    ;889C90|9CCA00  |8600CA;
-                       STZ.W r_colorV_cb                    ;889C93|9CCB00  |8600CB;
-                       STZ.W r_colorV_cc                    ;889C96|9CCC00  |8600CC;
-                       STZ.W r_colorV_cd                    ;889C99|9CCD00  |8600CD;
+                       STZ.W r6_colorV_ca                   ;889C90|9CCA00  |8600CA;
+                       STZ.W r6_colorV_cb                   ;889C93|9CCB00  |8600CB;
+                       STZ.W r6_colorV_cc                   ;889C96|9CCC00  |8600CC;
+                       STZ.W r6_colorV_cd                   ;889C99|9CCD00  |8600CD;
                        LDA.B #$40                           ;889C9C|A940    |      ;
                        STA.B r_ev_1e_weight-$E68            ;889C9E|851E    |000E86;
                        JML.L checkPlayerGear                ;889CA0|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_889CA4:
-                       LDA.W r_colorV_cb                    ;889CA4|ADCB00  |8600CB;
+                       LDA.W r6_colorV_cb                   ;889CA4|ADCB00  |8600CB;
                        DEC A                                ;889CA7|3A      |      ;
                        BMI CODE_889CB3                      ;889CA8|3009    |889CB3;
-                       STA.W r_colorV_cb                    ;889CAA|8DCB00  |8600CB;
-                       STA.W r_colorV_cc                    ;889CAD|8DCC00  |8600CC;
-                       STA.W r_colorV_cd                    ;889CB0|8DCD00  |8600CD;
+                       STA.W r6_colorV_cb                   ;889CAA|8DCB00  |8600CB;
+                       STA.W r6_colorV_cc                   ;889CAD|8DCC00  |8600CC;
+                       STA.W r6_colorV_cd                   ;889CB0|8DCD00  |8600CD;
                                                             ;      |        |      ;
           CODE_889CB3:
                        JML.L checkPlayerGear                ;889CB3|5CB48082|8280B4;
@@ -4412,7 +4412,7 @@ sparkMandrill_31_state_01:
                                                             ;      |        |      ;
    mandrill_action_02:
                        JSL.L CODE_8281E8                    ;889CB7|22E88182|8281E8;
-                       JSL.L updateEv_13_14_17_0f           ;889CBB|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889CBB|22EA8E84|848EEA;
                        JSL.L CODE_8491BE                    ;889CBF|22BE9184|8491BE;
                        LDA.B r_ev_2b-$E68                   ;889CC3|A52B    |000E93;
                        AND.B #$04                           ;889CC5|2904    |      ;
@@ -4432,7 +4432,7 @@ sparkMandrill_31_state_01:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    mandrill_action_03:
-                       JSL.L updateEv_13_14_17_0f           ;889CE5|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889CE5|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;889CE9|A50F    |000E77;
                        BPL CODE_889D01                      ;889CEB|1014    |889D01;
                        LDA.B #$08                           ;889CED|A908    |      ;
@@ -4441,7 +4441,7 @@ sparkMandrill_31_state_01:
                        JSL.L playerGrabedRoutine            ;889CF3|22078F84|848F07;
                        REP #$20                             ;889CF7|C220    |      ;
                        TDC                                  ;889CF9|7B      |      ;
-                       STA.W r_1f0e                         ;889CFA|8D0E1F  |861F0E;
+                       STA.W r6_1f0e                        ;889CFA|8D0E1F  |861F0E;
                        SEP #$20                             ;889CFD|E220    |      ;
                        STZ.B r_ev_27_health-$E68            ;889CFF|6427    |000E8F;
                                                             ;      |        |      ;
@@ -4450,7 +4450,7 @@ sparkMandrill_31_state_01:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    mandrill_action_04:
-                       JSL.L updateEv_13_14_17_0f           ;889D05|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889D05|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;889D09|A50F    |000E77;
                        BPL CODE_889D11                      ;889D0B|1004    |889D11;
                        LDA.B #$0A                           ;889D0D|A90A    |      ;
@@ -4461,7 +4461,7 @@ sparkMandrill_31_state_01:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
    mandrill_action_05:
-                       LDA.W r_frameCounter1                ;889D15|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;889D15|AD9C0B  |860B9C;
                        LSR A                                ;889D18|4A      |      ;
                        BCC CODE_889D34                      ;889D19|9019    |889D34;
                        LDA.B #$0C                           ;889D1B|A90C    |      ;
@@ -4500,7 +4500,7 @@ sparkMandrill_31_state_01:
                        STZ.B r_ev_35-$E68                   ;889D59|6435    |000E9D;
                        STZ.B r_ev_30-$E68                   ;889D5B|6430    |000E98;
                        STZ.B r_ev_36-$E68                   ;889D5D|6436    |000E9E;
-                       LDA.W r_1f26                         ;889D5F|AD261F  |861F26;
+                       LDA.W r6_1f26                        ;889D5F|AD261F  |861F26;
                        BEQ CODE_889D6A                      ;889D62|F006    |889D6A;
                        LDA.B #$1E                           ;889D64|A91E    |      ;
                        JSL.L CODE_8087A2                    ;889D66|22A28780|8087A2;
@@ -4516,7 +4516,7 @@ sparkMandrill_31_state_02:
                        TSB.B r_ev_11_sprAtri-$E68           ;889D74|0411    |000E79;
                        LDX.B r_ev_02_action-$E68            ;889D76|A602    |000E6A;
                        JSR.W (mandrill_state2_jumping,X)    ;889D78|FC2C9E  |889E2C;
-                       LDA.W r_d_0bcf                       ;889D7B|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;889D7B|ADCF0B  |860BCF;
                        AND.B #$7F                           ;889D7E|297F    |      ;
                        BNE CODE_889D85                      ;889D80|D003    |889D85;
                        JMP.W CODE_889E11                    ;889D82|4C119E  |889E11;
@@ -4569,7 +4569,7 @@ sparkMandrill_31_state_02:
                        LDA.B r_ev_03_do-$E68                ;889DDD|A503    |000E6B;
                        CMP.B #$02                           ;889DDF|C902    |      ;
                        BNE CODE_889DFA                      ;889DE1|D017    |889DFA;
-                       LDA.W r_1f1d                         ;889DE3|AD1D1F  |861F1D;
+                       LDA.W r6_1f1d                        ;889DE3|AD1D1F  |861F1D;
                        CMP.B #$01                           ;889DE6|C901    |      ;
                        BEQ CODE_889DF2                      ;889DE8|F008    |889DF2;
                        CMP.B #$02                           ;889DEA|C902    |      ;
@@ -4585,7 +4585,7 @@ sparkMandrill_31_state_02:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_889DFA:
-                       LDA.W r_1f1d                         ;889DFA|AD1D1F  |861F1D;
+                       LDA.W r6_1f1d                        ;889DFA|AD1D1F  |861F1D;
                        CMP.B #$0E                           ;889DFD|C90E    |      ;
                        BEQ CODE_889E05                      ;889DFF|F004    |889E05;
                        CMP.B #$17                           ;889E01|C917    |      ;
@@ -4664,7 +4664,7 @@ mandrill_state2_jumpNormal_do:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_889E72:
-                       JSL.L updateEv_13_14_17_0f           ;889E72|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889E72|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;889E76|A50F    |000E77;
                        BEQ CODE_889EF5                      ;889E78|F07B    |889EF5;
                        LDA.B #$04                           ;889E7A|A904    |      ;
@@ -4684,40 +4684,40 @@ mandrill_state2_jumpNormal_do:
           CODE_889E96:
                        CLC                                  ;889E96|18      |      ;
                        ADC.B r_ev_05_xPos-$E68              ;889E97|6505    |000E6D;
-                       STA.W r_0000                         ;889E99|8D0000  |860000;
+                       STA.W r6_0000                        ;889E99|8D0000  |860000;
                        LDA.B r_ev_08_yPos-$E68              ;889E9C|A508    |000E70;
                        CLC                                  ;889E9E|18      |      ;
                        ADC.W #$0018                         ;889E9F|691800  |      ;
-                       STA.W r_0002                         ;889EA2|8D0200  |860002;
+                       STA.W r6_0002                        ;889EA2|8D0200  |860002;
                        JSL.L findEnemyShotEmptySlot         ;889EA5|22588382|828358;
                        BNE CODE_889EF3                      ;889EA9|D048    |889EF3;
-                       INC.W r_0000,X                       ;889EAB|FE0000  |860000;
+                       INC.W r6_0000,X                      ;889EAB|FE0000  |860000;
                        LDA.B #$28                           ;889EAE|A928    |      ;
-                       STA.W r_000a,X                       ;889EB0|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;889EB3|9E0B00  |86000B;
+                       STA.W r6_000a,X                      ;889EB0|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;889EB3|9E0B00  |86000B;
                        REP #$20                             ;889EB6|C220    |      ;
-                       LDA.W r_0000                         ;889EB8|AD0000  |860000;
-                       STA.W r_0005,X                       ;889EBB|9D0500  |860005;
-                       LDA.W r_0002                         ;889EBE|AD0200  |860002;
-                       STA.W r_0008,X                       ;889EC1|9D0800  |860008;
+                       LDA.W r6_0000                        ;889EB8|AD0000  |860000;
+                       STA.W r6_0005,X                      ;889EBB|9D0500  |860005;
+                       LDA.W r6_0002                        ;889EBE|AD0200  |860002;
+                       STA.W r6_0008,X                      ;889EC1|9D0800  |860008;
                        TDC                                  ;889EC4|7B      |      ;
-                       STA.W r_000c,X                       ;889EC5|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;889EC5|9D0C00  |86000C;
                        SEP #$30                             ;889EC8|E230    |      ;
                        LDA.B #$44                           ;889ECA|A944    |      ;
                        JSL.L lunchSFX                       ;889ECC|22A28880|8088A2;
                        JSL.L findEnemyShotEmptySlot         ;889ED0|22588382|828358;
                        BNE CODE_889EF3                      ;889ED4|D01D    |889EF3;
-                       INC.W r_0000,X                       ;889ED6|FE0000  |860000;
+                       INC.W r6_0000,X                      ;889ED6|FE0000  |860000;
                        LDA.B #$28                           ;889ED9|A928    |      ;
-                       STA.W r_000a,X                       ;889EDB|9D0A00  |86000A;
-                       STA.W r_000b,X                       ;889EDE|9D0B00  |86000B;
+                       STA.W r6_000a,X                      ;889EDB|9D0A00  |86000A;
+                       STA.W r6_000b,X                      ;889EDE|9D0B00  |86000B;
                        REP #$20                             ;889EE1|C220    |      ;
-                       LDA.W r_0000                         ;889EE3|AD0000  |860000;
-                       STA.W r_0005,X                       ;889EE6|9D0500  |860005;
-                       LDA.W r_0002                         ;889EE9|AD0200  |860002;
-                       STA.W r_0008,X                       ;889EEC|9D0800  |860008;
+                       LDA.W r6_0000                        ;889EE3|AD0000  |860000;
+                       STA.W r6_0005,X                      ;889EE6|9D0500  |860005;
+                       LDA.W r6_0002                        ;889EE9|AD0200  |860002;
+                       STA.W r6_0008,X                      ;889EEC|9D0800  |860008;
                        TDC                                  ;889EEF|7B      |      ;
-                       STA.W r_000c,X                       ;889EF0|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;889EF0|9D0C00  |86000C;
                                                             ;      |        |      ;
           CODE_889EF3:
                        SEP #$30                             ;889EF3|E230    |      ;
@@ -4727,7 +4727,7 @@ mandrill_state2_jumpNormal_do:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_889EF6:
-                       JSL.L updateEv_13_14_17_0f           ;889EF6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889EF6|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;889EFA|A50F    |000E77;
                        BEQ CODE_889F13                      ;889EFC|F015    |889F13;
                        BPL CODE_889F0F                      ;889EFE|100F    |889F0F;
@@ -4750,7 +4750,7 @@ mandrill_state2_jumpNormal_do:
                                                             ;      |        |      ;
           CODE_889F14:
                        JSL.L CODE_84ACA5                    ;889F14|22A5AC84|84ACA5;
-                       JSL.L updateEv_13_14_17_0f           ;889F18|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889F18|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;889F1C|C634    |000E9C;
                        BNE CODE_889F23                      ;889F1E|D003    |889F23;
                        JMP.W CODE_88A362                    ;889F20|4C62A3  |88A362;
@@ -4793,7 +4793,7 @@ mandrill_does_wireJump:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
   mandrill_do_wire_01:
-                       JSL.L updateEv_13_14_17_0f           ;889F59|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889F59|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;889F5D|A50F    |000E77;
                        BPL CODE_889F79                      ;889F5F|1018    |889F79;
                        JSL.L CODE_8281E8                    ;889F61|22E88182|8281E8;
@@ -4811,7 +4811,7 @@ mandrill_does_wireJump:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
   mandrill_do_wire_02:
-                       JSL.L updateEv_13_14_17_0f           ;889F7A|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889F7A|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;889F7E|A50F    |000E77;
                        BPL CODE_889F8C                      ;889F80|100A    |889F8C;
                        LDA.B #$08                           ;889F82|A908    |      ;
@@ -4841,13 +4841,13 @@ mandrill_does_wireJump:
                        SEP #$20                             ;889FA4|E220    |      ;
                                                             ;      |        |      ;
           CODE_889FA6:
-                       JSL.L updateEv_13_14_17_0f           ;889FA6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;889FA6|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;889FAA|A50F    |000E77;
                        AND.B #$0F                           ;889FAC|290F    |      ;
-                       STA.W r_0000                         ;889FAE|8D0000  |860000;
+                       STA.W r6_0000                        ;889FAE|8D0000  |860000;
                        ASL A                                ;889FB1|0A      |      ;
                        ASL A                                ;889FB2|0A      |      ;
-                       ADC.W r_0000                         ;889FB3|6D0000  |860000;
+                       ADC.W r6_0000                        ;889FB3|6D0000  |860000;
                        REP #$20                             ;889FB6|C220    |      ;
                        AND.W #$00FF                         ;889FB8|29FF00  |      ;
                        CLC                                  ;889FBB|18      |      ;
@@ -4871,7 +4871,7 @@ mandrill_does_wireJump:
                        AND.B #$03                           ;889FD5|2903    |      ;
                        BNE CODE_889FEB                      ;889FD7|D012    |889FEB;
                        REP #$20                             ;889FD9|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;889FDB|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;889FDB|ADAD0B  |860BAD;
                        SEC                                  ;889FDE|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;889FDF|E505    |000E6D;
                        SEP #$20                             ;889FE1|E220    |      ;
@@ -4922,7 +4922,7 @@ mandrill_does_wireJump:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
   mandrill_do_wire_05:
-                       JSL.L updateEv_13_14_17_0f           ;88A032|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A032|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88A036|A50F    |000E77;
                        BPL CODE_88A048                      ;88A038|100E    |88A048;
                        LDA.B #$0C                           ;88A03A|A90C    |      ;
@@ -4938,7 +4938,7 @@ mandrill_does_wireJump:
                                                             ;      |        |      ;
   mandrill_do_wire_06:
                        JSL.L CODE_84ACA5                    ;88A049|22A5AC84|84ACA5;
-                       JSL.L updateEv_13_14_17_0f           ;88A04D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A04D|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;88A051|C634    |000E9C;
                        BNE CODE_88A058                      ;88A053|D003    |88A058;
                        JMP.W CODE_88A362                    ;88A055|4C62A3  |88A362;
@@ -5022,7 +5022,7 @@ mandrill_does_wireJump:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A0CE:
-                       JSL.L updateEv_13_14_17_0f           ;88A0CE|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A0CE|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88A0D2|A50F    |000E77;
                        BPL CODE_88A0FF                      ;88A0D4|1029    |88A0FF;
                        JSL.L CODE_82823E                    ;88A0D6|223E8282|82823E;
@@ -5052,7 +5052,7 @@ mandrill_does_wireJump:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A10D:
-                       JSL.L updateEv_13_14_17_0f           ;88A10D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A10D|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88A111|A50F    |000E77;
                        BEQ CODE_88A121                      ;88A113|F00C    |88A121;
                        LDA.B #$06                           ;88A115|A906    |      ;
@@ -5071,7 +5071,7 @@ mandrill_does_wireJump:
                        STA.B r_ev_20_hitBoxAddr-$E68        ;88A127|8520    |000E88;
                        SEP #$20                             ;88A129|E220    |      ;
                        JSL.L CODE_849B03                    ;88A12B|22039B84|849B03;
-                       JSL.L updateEv_13_14_17_0f           ;88A12F|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A12F|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;88A133|C634    |000E9C;
                        BNE CODE_88A146                      ;88A135|D00F    |88A146;
                        LDA.B #$08                           ;88A137|A908    |      ;
@@ -5084,9 +5084,9 @@ mandrill_does_wireJump:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A146:
-                       LDA.W $0C32                          ;88A146|AD320C  |860C32;
+                       LDA.W r6_powerUp_actionInv           ;88A146|AD320C  |860C32;
                        BNE CODE_88A15D                      ;88A149|D012    |88A15D;
-                       LDA.W $0C06                          ;88A14B|AD060C  |860C06;
+                       LDA.W r6_stateFlag                   ;88A14B|AD060C  |860C06;
                        AND.B #$03                           ;88A14E|2903    |      ;
                        BEQ CODE_88A15D                      ;88A150|F00B    |88A15D;
                        LDA.W $0C2F                          ;88A152|AD2F0C  |860C2F;
@@ -5100,7 +5100,7 @@ mandrill_does_wireJump:
                                                             ;      |        |      ;
           CODE_88A15E:
                        JSL.L CODE_84ACA5                    ;88A15E|22A5AC84|84ACA5;
-                       JSL.L updateEv_13_14_17_0f           ;88A162|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A162|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;88A166|C634    |000E9C;
                        BNE CODE_88A16D                      ;88A168|D003    |88A16D;
                        JMP.W CODE_88A362                    ;88A16A|4C62A3  |88A362;
@@ -5129,7 +5129,7 @@ mandrill_do_jumpNormal_00:
                        JSL.L playerGrabedRoutine            ;88A183|22078F84|848F07;
                        JSL.L CODE_84ACA5                    ;88A187|22A5AC84|84ACA5;
                        REP #$20                             ;88A18B|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;88A18D|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88A18D|ADAD0B  |860BAD;
                        SEC                                  ;88A190|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88A191|E505    |000E6D;
                        ASL A                                ;88A193|0A      |      ;
@@ -5144,7 +5144,7 @@ mandrill_do_jumpNormal_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        mandrill_do_01:
-                       JSL.L updateEv_13_14_17_0f           ;88A1A3|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A1A3|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88A1A7|A50F    |000E77;
                        BPL CODE_88A1B3                      ;88A1A9|1008    |88A1B3;
                        LDA.B #$FF                           ;88A1AB|A9FF    |      ;
@@ -5181,7 +5181,7 @@ mandrill_do_jumpNormal_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
        mandrill_do_03:
-                       JSL.L updateEv_13_14_17_0f           ;88A1E4|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A1E4|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88A1E8|A50F    |000E77;
                        BPL CODE_88A1FA                      ;88A1EA|100E    |88A1FA;
                        LDA.B #$08                           ;88A1EC|A908    |      ;
@@ -5197,7 +5197,7 @@ mandrill_do_jumpNormal_00:
                                                             ;      |        |      ;
        mandrill_do_04:
                        JSL.L CODE_84ACA5                    ;88A1FB|22A5AC84|84ACA5;
-                       JSL.L updateEv_13_14_17_0f           ;88A1FF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A1FF|22EA8E84|848EEA;
                        DEC.B r_ev_34-$E68                   ;88A203|C634    |000E9C;
                        BNE CODE_88A20A                      ;88A205|D003    |88A20A;
                        JMP.W CODE_88A362                    ;88A207|4C62A3  |88A362;
@@ -5232,7 +5232,7 @@ mandrill_do_jumpNormal_00:
                        JSL.L playerGrabedRoutine            ;88A231|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88A235:
-                       JSL.L updateEv_13_14_17_0f           ;88A235|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A235|22EA8E84|848EEA;
                        LDA.B r_ev_11_sprAtri-$E68           ;88A239|A511    |000E79;
                        ASL A                                ;88A23B|0A      |      ;
                        ASL A                                ;88A23C|0A      |      ;
@@ -5344,7 +5344,7 @@ mandrill_do_jumpNormal_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A2DF:
-                       JSL.L updateEv_13_14_17_0f           ;88A2DF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A2DF|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88A2E3|A50F    |000E77;
                        BPL CODE_88A321                      ;88A2E5|103A    |88A321;
                        LDA.B #$08                           ;88A2E7|A908    |      ;
@@ -5356,19 +5356,19 @@ mandrill_do_jumpNormal_00:
           CODE_88A2F1:
                        JSL.L CODE_8282D3                    ;88A2F1|22D38282|8282D3;
                        BNE CODE_88A319                      ;88A2F5|D022    |88A319;
-                       INC.W r_0000,X                       ;88A2F7|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88A2F7|FE0000  |860000;
                        LDA.B #$06                           ;88A2FA|A906    |      ;
-                       STA.W r_000a,X                       ;88A2FC|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88A2FC|9D0A00  |86000A;
                        LDA.B r_ev_11_sprAtri-$E68           ;88A2FF|A511    |000E79;
                        AND.B #$40                           ;88A301|2940    |      ;
-                       STA.W r_0011,X                       ;88A303|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88A303|9D1100  |860011;
                        TYA                                  ;88A306|98      |      ;
-                       STA.W r_000b,X                       ;88A307|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88A307|9D0B00  |86000B;
                        REP #$20                             ;88A30A|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88A30C|A505    |000E6D;
-                       STA.W r_0005,X                       ;88A30E|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88A30E|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88A311|A508    |000E70;
-                       STA.W r_0008,X                       ;88A313|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88A313|9D0800  |860008;
                        DEY                                  ;88A316|88      |      ;
                        BPL CODE_88A2F1                      ;88A317|10D8    |88A2F1;
                                                             ;      |        |      ;
@@ -5399,7 +5399,7 @@ mandrill_do_jumpNormal_00:
 sparkMandrill_31_state_03:
                        JSL.L CODE_84A677                    ;88A334|2277A684|84A677;
                        BPL CODE_88A353                      ;88A338|1019    |88A353;
-                       LDA.W r_level_current                ;88A33A|AD7A1F  |861F7A;
+                       LDA.W r6_level_current               ;88A33A|AD7A1F  |861F7A;
                        CMP.B #$09                           ;88A33D|C909    |      ;
                        BCC CODE_88A34F                      ;88A33F|900E    |88A34F;
                        LDA.B #$1C                           ;88A341|A91C    |      ;
@@ -5409,11 +5409,11 @@ sparkMandrill_31_state_03:
                        JSL.L CODE_80887F                    ;88A34B|227F8880|80887F;
                                                             ;      |        |      ;
           CODE_88A34F:
-                       JML.L clearStates_00_02_0E           ;88A34F|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88A34F|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A353:
-                       JSL.L updateEv_13_14_17_0f           ;88A353|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A353|22EA8E84|848EEA;
                        LDA.B r_ev_03_do-$E68                ;88A357|A503    |000E6B;
                        CMP.B #$14                           ;88A359|C914    |      ;
                        BCS CODE_88A361                      ;88A35B|B004    |88A361;
@@ -5489,13 +5489,13 @@ sparkMandrill_31_state_03:
                        LDA.W #$0040                         ;88A3C4|A94000  |      ;
                        STA.B r_ev_1e_weight-$E68            ;88A3C7|851E    |000E86;
                        SEP #$20                             ;88A3C9|E220    |      ;
-                       LDA.W r_level_current                ;88A3CB|AD7A1F  |861F7A;
+                       LDA.W r6_level_current               ;88A3CB|AD7A1F  |861F7A;
                        CMP.B #$09                           ;88A3CE|C909    |      ;
                        BNE CODE_88A3EC                      ;88A3D0|D01A    |88A3EC;
-                       LDA.W r_gameSubLoop_idx_d3           ;88A3D2|ADD300  |8600D3;
+                       LDA.W r6_gameSubLoop_idx_d3          ;88A3D2|ADD300  |8600D3;
                        CMP.B #$0A                           ;88A3D5|C90A    |      ;
                        BEQ CODE_88A3E8                      ;88A3D7|F00F    |88A3E8;
-                       LDA.W r_1f7c                         ;88A3D9|AD7C1F  |861F7C;
+                       LDA.W r6_1f7c                        ;88A3D9|AD7C1F  |861F7C;
                        BPL CODE_88A3E3                      ;88A3DC|1005    |88A3E3;
                        LDA.B #$04                           ;88A3DE|A904    |      ;
                        STA.B r_ev_01_state-$E68             ;88A3E0|8501    |000E69;
@@ -5504,7 +5504,7 @@ sparkMandrill_31_state_03:
                                                             ;      |        |      ;
           CODE_88A3E3:
                        LDA.B #$80                           ;88A3E3|A980    |      ;
-                       TSB.W r_1f7c                         ;88A3E5|0C7C1F  |861F7C;
+                       TSB.W r6_1f7c                        ;88A3E5|0C7C1F  |861F7C;
                                                             ;      |        |      ;
           CODE_88A3E8:
                        LDA.B #$0C                           ;88A3E8|A90C    |      ;
@@ -5533,9 +5533,9 @@ sparkMandrill_31_state_03:
                        dw CODE_88A40B                       ;88A409|        |88A40B;
                                                             ;      |        |      ;
           CODE_88A40B:
-                       LDA.W $0BAA                          ;88A40B|ADAA0B  |860BAA;
+                       LDA.W r6_player_action               ;88A40B|ADAA0B  |860BAA;
                        BNE CODE_88A419                      ;88A40E|D009    |88A419;
-                       LDA.W r_d_0bab                       ;88A410|ADAB0B  |860BAB;
+                       LDA.W r6_player_do                   ;88A410|ADAB0B  |860BAB;
                        BNE CODE_88A419                      ;88A413|D004    |88A419;
                        JSL.L CODE_849FEB                    ;88A415|22EB9F84|849FEB;
                                                             ;      |        |      ;
@@ -5568,24 +5568,24 @@ sparkMandrill_31_state_03:
                        BNE CODE_88A46F                      ;88A43F|D02E    |88A46F;
                        LDA.B #$04                           ;88A441|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;88A443|8503    |000E6B;
-                       LDA.W r_1f3d                         ;88A445|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88A445|AD3D1F  |861F3D;
                        STA.B r_ev_3b-$E68                   ;88A448|853B    |000EA3;
                        LDA.B #$80                           ;88A44A|A980    |      ;
-                       STA.W r_0000                         ;88A44C|8D0000  |860000;
+                       STA.W r6_0000                        ;88A44C|8D0000  |860000;
                        LDA.B #$50                           ;88A44F|A950    |      ;
-                       STA.W r_0002                         ;88A451|8D0200  |860002;
+                       STA.W r6_0002                        ;88A451|8D0200  |860002;
                        LDA.B #$58                           ;88A454|A958    |      ;
-                       STA.W r_0004                         ;88A456|8D0400  |860004;
+                       STA.W r6_0004                        ;88A456|8D0400  |860004;
                        LDA.B #$30                           ;88A459|A930    |      ;
-                       STA.W r_0006                         ;88A45B|8D0600  |860006;
+                       STA.W r6_0006                        ;88A45B|8D0600  |860006;
                        LDA.B #$17                           ;88A45E|A917    |      ;
-                       LDX.W r_gameSubLoop_idx_d3           ;88A460|AED300  |8600D3;
+                       LDX.W r6_gameSubLoop_idx_d3          ;88A460|AED300  |8600D3;
                        CPX.B #$0A                           ;88A463|E00A    |      ;
                        BNE CODE_88A468                      ;88A465|D001    |88A468;
                        INC A                                ;88A467|1A      |      ;
                                                             ;      |        |      ;
           CODE_88A468:
-                       STA.W r_0008                         ;88A468|8D0800  |860008;
+                       STA.W r6_0008                        ;88A468|8D0800  |860008;
                        JSL.L CODE_83F74A                    ;88A46B|224AF783|83F74A;
                                                             ;      |        |      ;
           CODE_88A46F:
@@ -5593,7 +5593,7 @@ sparkMandrill_31_state_03:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A470:
-                       LDA.W r_1f3c                         ;88A470|AD3C1F  |861F3C;
+                       LDA.W r6_1f3c                        ;88A470|AD3C1F  |861F3C;
                        BEQ CODE_88A4A1                      ;88A473|F02C    |88A4A1;
                        CMP.B #$02                           ;88A475|C902    |      ;
                        BNE CODE_88A484                      ;88A477|D00B    |88A484;
@@ -5605,7 +5605,7 @@ sparkMandrill_31_state_03:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A484:
-                       LDA.W r_1f3d                         ;88A484|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88A484|AD3D1F  |861F3D;
                        CMP.B r_ev_3b-$E68                   ;88A487|C53B    |000EA3;
                        BEQ CODE_88A49D                      ;88A489|F012    |88A49D;
                        LDA.B r_ev_3b-$E68                   ;88A48B|A53B    |000EA3;
@@ -5620,23 +5620,23 @@ sparkMandrill_31_state_03:
                        JSL.L playerGrabedRoutine            ;88A499|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88A49D:
-                       JSL.L updateEv_13_14_17_0f           ;88A49D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A49D|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88A4A1:
-                       LDA.W r_1f3d                         ;88A4A1|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88A4A1|AD3D1F  |861F3D;
                        STA.B r_ev_3b-$E68                   ;88A4A4|853B    |000EA3;
                        RTS                                  ;88A4A6|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A4A7:
-                       LDA.W r_1f2c                         ;88A4A7|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88A4A7|AD2C1F  |861F2C;
                        BMI CODE_88A4E5                      ;88A4AA|3039    |88A4E5;
-                       LDA.W r_gameSubLoop_idx_d3           ;88A4AC|ADD300  |8600D3;
+                       LDA.W r6_gameSubLoop_idx_d3          ;88A4AC|ADD300  |8600D3;
                        CMP.B #$0A                           ;88A4AF|C90A    |      ;
                        BNE CODE_88A4C9                      ;88A4B1|D016    |88A4C9;
                        LDA.B #$0A                           ;88A4B3|A90A    |      ;
                        STA.B r_ev_03_do-$E68                ;88A4B5|8503    |000E6B;
-                       STA.W r_1f23                         ;88A4B7|8D231F  |861F23;
+                       STA.W r6_1f23                        ;88A4B7|8D231F  |861F23;
                        LDA.B #$00                           ;88A4BA|A900    |      ;
                        STA.B r_ev_1c_ySpdSub-$E68           ;88A4BC|851C    |000E84;
                        LDA.B #$08                           ;88A4BE|A908    |      ;
@@ -5675,7 +5675,7 @@ sparkMandrill_31_state_03:
                                                             ;      |        |      ;
           CODE_88A4F3:
                        JSL.L CODE_82823E                    ;88A4F3|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;88A4F7|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A4F7|22EA8E84|848EEA;
                        RTS                                  ;88A4FB|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5688,7 +5688,7 @@ sparkMandrill_31_state_03:
                        JSL.L lunchSFX                       ;88A506|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_88A50A:
-                       JSL.L updateEv_13_14_17_0f           ;88A50A|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A50A|22EA8E84|848EEA;
                        RTS                                  ;88A50E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5720,7 +5720,7 @@ sparkMandrill_31_state_03:
                        LDA.W #$F800                         ;88A52D|A900F8  |      ;
                        STA.B r_ev_1c_ySpdSub-$E68           ;88A530|851C    |000E84;
                        LDA.W #$0060                         ;88A532|A96000  |      ;
-                       STA.W r_d_player_xSubPos             ;88A535|8DAD0B  |860BAD;
+                       STA.W r6_player_xPos                 ;88A535|8DAD0B  |860BAD;
                        SEP #$20                             ;88A538|E220    |      ;
                        STZ.B r_ev_33-$E68                   ;88A53A|6433    |000E9B;
                        LDA.B #$0E                           ;88A53C|A90E    |      ;
@@ -5750,7 +5750,7 @@ sparkMandrill_31_state_03:
                        STZ.B r_ev_03_do-$E68                ;88A560|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88A562:
-                       JSL.L updateEv_13_14_17_0f           ;88A562|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A562|22EA8E84|848EEA;
                        RTS                                  ;88A566|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5794,7 +5794,7 @@ sparkMandrill_31_state_03:
                        JSR.W CODE_88A744                    ;88A5A4|2044A7  |88A744;
                                                             ;      |        |      ;
           CODE_88A5A7:
-                       JSL.L updateEv_13_14_17_0f           ;88A5A7|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A5A7|22EA8E84|848EEA;
                        RTS                                  ;88A5AB|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5826,10 +5826,10 @@ sparkMandrill_31_state_03:
                        JSL.L playerGrabedRoutine            ;88A5D3|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88A5D7:
-                       JSL.L updateEv_13_14_17_0f           ;88A5D7|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A5D7|22EA8E84|848EEA;
                        JSL.L CODE_82823E                    ;88A5DB|223E8282|82823E;
                        REP #$21                             ;88A5DF|C221    |      ;
-                       LDA.W r_d_player_xSubPos             ;88A5E1|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88A5E1|ADAD0B  |860BAD;
                        ADC.W #$0020                         ;88A5E4|692000  |      ;
                        CMP.B r_ev_05_xPos-$E68              ;88A5E7|C505    |000E6D;
                        SEP #$20                             ;88A5E9|E220    |      ;
@@ -5843,8 +5843,8 @@ sparkMandrill_31_state_03:
                        REP #$21                             ;88A5FB|C221    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88A5FD|A505    |000E6D;
                        ADC.W #$FFA0                         ;88A5FF|69A0FF  |      ;
-                       STA.W r_levelSpecFlag                ;88A602|8D5E1E  |861E5E;
-                       STA.W r_cam_BG0_xPos_lock            ;88A605|8D601E  |861E60;
+                       STA.W r6_levelSpecFlag               ;88A602|8D5E1E  |861E5E;
+                       STA.W r6_cam_BG0_xPos_lock           ;88A605|8D601E  |861E60;
                        SEP #$20                             ;88A608|E220    |      ;
                                                             ;      |        |      ;
           CODE_88A60A:
@@ -5921,7 +5921,7 @@ sparkMandrill_31_state_03:
                        STA.B r_ev_03_do-$E68                ;88A663|8503    |000E6B;
                        LDA.B #$01                           ;88A665|A901    |      ;
                        JSL.L playerGrabedRoutine            ;88A667|22078F84|848F07;
-                       LDA.L $001F26                        ;88A66B|AF261F00|001F26;
+                       LDA.L r_1f26                         ;88A66B|AF261F00|001F26;
                        BEQ CODE_88A677                      ;88A66F|F006    |88A677;
                        LDA.B #$26                           ;88A671|A926    |      ;
                        JSL.L CODE_8087A2                    ;88A673|22A28780|8087A2;
@@ -5931,7 +5931,7 @@ sparkMandrill_31_state_03:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A678:
-                       LDA.W r_1f3c                         ;88A678|AD3C1F  |861F3C;
+                       LDA.W r6_1f3c                        ;88A678|AD3C1F  |861F3C;
                        BEQ CODE_88A68D                      ;88A67B|F010    |88A68D;
                        LDA.B #$08                           ;88A67D|A908    |      ;
                        STA.B r_ev_03_do-$E68                ;88A67F|8503    |000E6B;
@@ -5946,7 +5946,7 @@ sparkMandrill_31_state_03:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A68E:
-                       LDA.W r_1f3c                         ;88A68E|AD3C1F  |861F3C;
+                       LDA.W r6_1f3c                        ;88A68E|AD3C1F  |861F3C;
                        CMP.B #$04                           ;88A691|C904    |      ;
                        BNE CODE_88A699                      ;88A693|D004    |88A699;
                        LDA.B #$0A                           ;88A695|A90A    |      ;
@@ -5957,7 +5957,7 @@ sparkMandrill_31_state_03:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A69A:
-                       LDA.W r_1f3c                         ;88A69A|AD3C1F  |861F3C;
+                       LDA.W r6_1f3c                        ;88A69A|AD3C1F  |861F3C;
                        BNE CODE_88A6AA                      ;88A69D|D00B    |88A6AA;
                        LDA.B #$0C                           ;88A69F|A90C    |      ;
                        STA.B r_ev_03_do-$E68                ;88A6A1|8503    |000E6B;
@@ -5967,9 +5967,9 @@ sparkMandrill_31_state_03:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A6AA:
-                       LDA.W r_1f3d                         ;88A6AA|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88A6AA|AD3D1F  |861F3D;
                        BNE CODE_88A6B4                      ;88A6AD|D005    |88A6B4;
-                       JSL.L updateEv_13_14_17_0f           ;88A6AF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A6AF|22EA8E84|848EEA;
                        RTS                                  ;88A6B3|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -5982,7 +5982,7 @@ sparkMandrill_31_state_03:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A6BB:
-                       LDA.W r_1f2c                         ;88A6BB|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88A6BB|AD2C1F  |861F2C;
                        BMI CODE_88A6BA                      ;88A6BE|30FA    |88A6BA;
                        LDA.B #$08                           ;88A6C0|A908    |      ;
                        JMP.W CODE_88A78E                    ;88A6C2|4C8EA7  |88A78E;
@@ -6017,7 +6017,7 @@ sparkMandrill_31_state_03:
                        JSL.L lunchSFX                       ;88A6EC|22A28880|8088A2;
                                                             ;      |        |      ;
           CODE_88A6F0:
-                       JSL.L updateEv_13_14_17_0f           ;88A6F0|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A6F0|22EA8E84|848EEA;
                        RTS                                  ;88A6F4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6026,8 +6026,8 @@ sparkMandrill_31_state_03:
                        BNE CODE_88A703                      ;88A6F7|D00A    |88A703;
                        LDA.B #$04                           ;88A6F9|A904    |      ;
                        STA.B r_ev_01_state-$E68             ;88A6FB|8501    |000E69;
-                       STA.W r_1f23                         ;88A6FD|8D231F  |861F23;
-                       STA.W r_player_state_1f9b            ;88A700|8D9B1F  |861F9B;
+                       STA.W r6_1f23                        ;88A6FD|8D231F  |861F23;
+                       STA.W r6_intro_levelClearFlag        ;88A700|8D9B1F  |861F9B;
                                                             ;      |        |      ;
           CODE_88A703:
                        JSL.L CODE_82825D                    ;88A703|225D8282|82825D;
@@ -6055,7 +6055,7 @@ sparkMandrill_31_state_03:
                        STA.B r_ev_03_do-$E68                ;88A71D|8503    |000E6B;
                        LDA.B #$3C                           ;88A71F|A93C    |      ;
                        STA.B r_ev_34-$E68                   ;88A721|8534    |000E9C;
-                       LDA.L $001F26                        ;88A723|AF261F00|001F26;
+                       LDA.L r_1f26                         ;88A723|AF261F00|001F26;
                        BEQ CODE_88A72F                      ;88A727|F006    |88A72F;
                        LDA.B #$25                           ;88A729|A925    |      ;
                        JSL.L CODE_8087A2                    ;88A72B|22A28780|8087A2;
@@ -6075,23 +6075,23 @@ sparkMandrill_31_state_03:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A73A:
-                       JSL.L clearStates_00_02_0E           ;88A73A|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;88A73A|22988382|828398;
                        RTS                                  ;88A73E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A73F:
-                       JSL.L clearStates_00_02_0E           ;88A73F|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;88A73F|22988382|828398;
                        RTS                                  ;88A743|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A744:
                        JSL.L loadProjectileSlotBase         ;88A744|223E8382|82833E;
                        BNE CODE_88A775                      ;88A748|D02B    |88A775;
-                       INC.W r_0000,X                       ;88A74A|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88A74A|FE0000  |860000;
                        LDA.B #$1C                           ;88A74D|A91C    |      ;
-                       STA.W r_000a,X                       ;88A74F|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88A74F|9D0A00  |86000A;
                        LDA.B r_ev_11_sprAtri-$E68           ;88A752|A511    |000E79;
-                       STA.W r_0011,X                       ;88A754|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88A754|9D1100  |860011;
                        REP #$21                             ;88A757|C221    |      ;
                        LDA.W #$0016                         ;88A759|A91600  |      ;
                        BIT.B r_ev_32-$E68                   ;88A75C|2432    |000E9A;
@@ -6100,13 +6100,13 @@ sparkMandrill_31_state_03:
                                                             ;      |        |      ;
           CODE_88A763:
                        ADC.B r_ev_05_xPos-$E68              ;88A763|6505    |000E6D;
-                       STA.W r_0005,X                       ;88A765|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88A765|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88A768|A508    |000E70;
                        CLC                                  ;88A76A|18      |      ;
                        ADC.W #$FFFD                         ;88A76B|69FDFF  |      ;
-                       STA.W r_0008,X                       ;88A76E|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88A76E|9D0800  |860008;
                        TDC                                  ;88A771|7B      |      ;
-                       STA.W r_000c,X                       ;88A772|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;88A772|9D0C00  |86000C;
                                                             ;      |        |      ;
           CODE_88A775:
                        SEP #$30                             ;88A775|E230    |      ;
@@ -6116,11 +6116,11 @@ sparkMandrill_31_state_03:
           CODE_88A778:
                        JSL.L loadEnitySlotBase              ;88A778|22218382|828321;
                        BNE CODE_88A78B                      ;88A77C|D00D    |88A78B;
-                       INC.W r_0000,X                       ;88A77E|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88A77E|FE0000  |860000;
                        LDA.B #$3C                           ;88A781|A93C    |      ;
-                       STA.W r_000a,X                       ;88A783|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88A783|9D0A00  |86000A;
                        LDA.B #$03                           ;88A786|A903    |      ;
-                       STA.W r_000b,X                       ;88A788|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88A788|9D0B00  |86000B;
                                                             ;      |        |      ;
           CODE_88A78B:
                        SEP #$10                             ;88A78B|E210    |      ;
@@ -6147,7 +6147,7 @@ rangdaBangdaWall_5c_state_00:
                        JSL.L mainEnemySpriteLoad            ;88A79E|227D8282|82827D;
                        LDA.B #$92                           ;88A7A2|A992    |      ;
                        STA.B r_ev_10-$E68                   ;88A7A4|8510    |000E78;
-                       LDA.W r_level_current                ;88A7A6|AD7A1F  |861F7A;
+                       LDA.W r6_level_current               ;88A7A6|AD7A1F  |861F7A;
                        CMP.B #$03                           ;88A7A9|C903    |      ;
                        BNE CODE_88A7BB                      ;88A7AB|D00E    |88A7BB;
                        LDA.B #$9E                           ;88A7AD|A99E    |      ;
@@ -6173,7 +6173,7 @@ rangdaBangdaWall_5c_state_00:
                        LDA.B #$03                           ;88A7CC|A903    |      ;
                        STA.B r_ev_34-$E68                   ;88A7CE|8534    |000E9C;
                        STZ.B r_ev_35-$E68                   ;88A7D0|6435    |000E9D;
-                       LDA.W r_level_current                ;88A7D2|AD7A1F  |861F7A;
+                       LDA.W r6_level_current               ;88A7D2|AD7A1F  |861F7A;
                        CMP.B #$04                           ;88A7D5|C904    |      ;
                        BNE CODE_88A7DF                      ;88A7D7|D006    |88A7DF;
                        LDA.B r_ev_11_sprAtri-$E68           ;88A7D9|A511    |000E79;
@@ -6184,7 +6184,7 @@ rangdaBangdaWall_5c_state_00:
                        LDA.B r_ev_11_sprAtri-$E68           ;88A7DF|A511    |000E79;
                        AND.B #$40                           ;88A7E1|2940    |      ;
                        EOR.B #$40                           ;88A7E3|4940    |      ;
-                       STA.W $0C11                          ;88A7E5|8D110C  |860C11;
+                       STA.W r6_blaster_direction           ;88A7E5|8D110C  |860C11;
                        LDY.B #$02                           ;88A7E8|A002    |      ;
                        LDA.B #$F6                           ;88A7EA|A9F6    |      ;
                        JSL.L CODE_80887F                    ;88A7EC|227F8880|80887F;
@@ -6237,7 +6237,7 @@ rangdaBangdaWall_5c_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A836:
-                       JSL.L updateEv_13_14_17_0f           ;88A836|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A836|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88A83A|A50F    |000E77;
                        BPL CODE_88A86B                      ;88A83C|102D    |88A86B;
                        LDA.B #$02                           ;88A83E|A902    |      ;
@@ -6246,16 +6246,16 @@ rangdaBangdaWall_5c_state_00:
                        LDA.B #$01                           ;88A844|A901    |      ;
                        JSL.L playerGrabedRoutine            ;88A846|22078F84|848F07;
                        LDA.B #$80                           ;88A84A|A980    |      ;
-                       STA.W r_0000                         ;88A84C|8D0000  |860000;
+                       STA.W r6_0000                        ;88A84C|8D0000  |860000;
                        LDA.B #$50                           ;88A84F|A950    |      ;
-                       STA.W r_0002                         ;88A851|8D0200  |860002;
+                       STA.W r6_0002                        ;88A851|8D0200  |860002;
                        LDA.B #$58                           ;88A854|A958    |      ;
-                       STA.W r_0004                         ;88A856|8D0400  |860004;
+                       STA.W r6_0004                        ;88A856|8D0400  |860004;
                        LDA.B #$30                           ;88A859|A930    |      ;
-                       STA.W r_0006                         ;88A85B|8D0600  |860006;
-                       LDX.W r_level_current                ;88A85E|AE7A1F  |861F7A;
+                       STA.W r6_0006                        ;88A85B|8D0600  |860006;
+                       LDX.W r6_level_current               ;88A85E|AE7A1F  |861F7A;
                        LDA.W UNREACH_86D4E3,X               ;88A861|BDE3D4  |86D4E3;
-                       STA.W r_0008                         ;88A864|8D0800  |860008;
+                       STA.W r6_0008                        ;88A864|8D0800  |860008;
                        JSL.L CODE_83F74A                    ;88A867|224AF783|83F74A;
                                                             ;      |        |      ;
           CODE_88A86B:
@@ -6265,14 +6265,14 @@ rangdaBangdaWall_5c_state_00:
           CODE_88A86C:
                        LDX.B r_ev_03_do-$E68                ;88A86C|A603    |000E6B;
                        BNE CODE_88A88C                      ;88A86E|D01C    |88A88C;
-                       LDA.W r_1f3c                         ;88A870|AD3C1F  |861F3C;
+                       LDA.W r6_1f3c                        ;88A870|AD3C1F  |861F3C;
                        BEQ CODE_88A88B                      ;88A873|F016    |88A88B;
                        LDA.B #$AE                           ;88A875|A9AE    |      ;
                        JSL.L lunchWeaponSFX                 ;88A877|22CD8880|8088CD;
                        INC.B r_ev_03_do-$E68                ;88A87B|E603    |000E6B;
                        LDA.B #$02                           ;88A87D|A902    |      ;
                        JSL.L playerGrabedRoutine            ;88A87F|22078F84|848F07;
-                       LDA.W r_1f3d                         ;88A883|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88A883|AD3D1F  |861F3D;
                        STA.B r_ev_36-$E68                   ;88A886|8536    |000E9E;
                        JMP.W CODE_88A953                    ;88A888|4C53A9  |88A953;
                                                             ;      |        |      ;
@@ -6282,7 +6282,7 @@ rangdaBangdaWall_5c_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A88C:
-                       LDA.W r_1f2c                         ;88A88C|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88A88C|AD2C1F  |861F2C;
                        BMI CODE_88A898                      ;88A88F|3007    |88A898;
                        LDA.B #$04                           ;88A891|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;88A893|8502    |000E6A;
@@ -6291,9 +6291,9 @@ rangdaBangdaWall_5c_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A898:
-                       LDA.W r_job_flag_60                  ;88A898|AD6000  |860060;
+                       LDA.W r6_job_flag_60                 ;88A898|AD6000  |860060;
                        BEQ CODE_88A8BA                      ;88A89B|F01D    |88A8BA;
-                       LDA.W r_1f3d                         ;88A89D|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88A89D|AD3D1F  |861F3D;
                        CMP.B r_ev_36-$E68                   ;88A8A0|C536    |000E9E;
                        BEQ CODE_88A8B6                      ;88A8A2|F012    |88A8B6;
                        LDA.B r_ev_36-$E68                   ;88A8A4|A536    |000E9E;
@@ -6308,10 +6308,10 @@ rangdaBangdaWall_5c_state_00:
                        JSL.L playerGrabedRoutine            ;88A8B2|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88A8B6:
-                       JSL.L updateEv_13_14_17_0f           ;88A8B6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A8B6|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88A8BA:
-                       LDA.W r_1f3d                         ;88A8BA|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88A8BA|AD3D1F  |861F3D;
                        STA.B r_ev_36-$E68                   ;88A8BD|8536    |000E9E;
                        RTS                                  ;88A8BF|60      |      ;
                                                             ;      |        |      ;
@@ -6329,7 +6329,7 @@ rangdaBangdaWall_5c_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A8D5:
-                       JSL.L updateEv_13_14_17_0f           ;88A8D5|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A8D5|22EA8E84|848EEA;
                        BIT.B r_ev_0f_waitCount-$E68         ;88A8D9|240F    |000E77;
                        BVC CODE_88A8E3                      ;88A8DB|5006    |88A8E3;
                        LDA.B #$F1                           ;88A8DD|A9F1    |      ;
@@ -6343,13 +6343,13 @@ rangdaBangdaWall_5c_state_00:
                        JSL.L CODE_84A003                    ;88A8EB|2203A084|84A003;
                        REP #$20                             ;88A8EF|C220    |      ;
                        LDA.L $7FF000                        ;88A8F1|AF00F07F|7FF000;
-                       STA.W r_levelSpecFlag                ;88A8F5|8D5E1E  |861E5E;
+                       STA.W r6_levelSpecFlag               ;88A8F5|8D5E1E  |861E5E;
                        LDA.L $7FF002                        ;88A8F8|AF02F07F|7FF002;
-                       STA.W r_cam_BG0_xPos_lock            ;88A8FC|8D601E  |861E60;
+                       STA.W r6_cam_BG0_xPos_lock           ;88A8FC|8D601E  |861E60;
                        LDA.L $7FF004                        ;88A8FF|AF04F07F|7FF004;
-                       STA.W r_1e68                         ;88A903|8D681E  |861E68;
+                       STA.W r6_1e68                        ;88A903|8D681E  |861E68;
                        LDA.L $7FF006                        ;88A906|AF06F07F|7FF006;
-                       STA.W r_cam_BG0_yPos_lock_Set        ;88A90A|8D6E1E  |861E6E;
+                       STA.W r6_cam_BG0_yPos_lock_Set       ;88A90A|8D6E1E  |861E6E;
                        SEP #$20                             ;88A90D|E220    |      ;
                                                             ;      |        |      ;
           CODE_88A90F:
@@ -6360,7 +6360,7 @@ rangdaBangdaWall_5c_state_00:
                        LDX.B r_ev_03_do-$E68                ;88A910|A603    |000E6B;
                        BNE CODE_88A922                      ;88A912|D00E    |88A922;
                        INC.B r_ev_03_do-$E68                ;88A914|E603    |000E6B;
-                       LDA.W r_1f3d                         ;88A916|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88A916|AD3D1F  |861F3D;
                        STA.B r_ev_36-$E68                   ;88A919|8536    |000E9E;
                        LDA.B #$04                           ;88A91B|A904    |      ;
                        JSL.L playerGrabedRoutine            ;88A91D|22078F84|848F07;
@@ -6368,7 +6368,7 @@ rangdaBangdaWall_5c_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A922:
-                       LDA.W r_1f3c                         ;88A922|AD3C1F  |861F3C;
+                       LDA.W r6_1f3c                        ;88A922|AD3C1F  |861F3C;
                        BNE CODE_88A92C                      ;88A925|D005    |88A92C;
                        LDA.B #$04                           ;88A927|A904    |      ;
                        STA.B r_ev_01_state-$E68             ;88A929|8501    |000E69;
@@ -6376,7 +6376,7 @@ rangdaBangdaWall_5c_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A92C:
-                       LDA.W r_1f3d                         ;88A92C|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88A92C|AD3D1F  |861F3D;
                        CMP.B r_ev_36-$E68                   ;88A92F|C536    |000E9E;
                        BEQ CODE_88A945                      ;88A931|F012    |88A945;
                        LDA.B r_ev_36-$E68                   ;88A933|A536    |000E9E;
@@ -6391,35 +6391,35 @@ rangdaBangdaWall_5c_state_00:
                        JSL.L playerGrabedRoutine            ;88A941|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88A945:
-                       JSL.L updateEv_13_14_17_0f           ;88A945|22EA8E84|848EEA;
-                       LDA.W r_1f3d                         ;88A949|AD3D1F  |861F3D;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88A945|22EA8E84|848EEA;
+                       LDA.W r6_1f3d                        ;88A949|AD3D1F  |861F3D;
                        STA.B r_ev_36-$E68                   ;88A94C|8536    |000E9E;
                        RTS                                  ;88A94E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A94F:
-                       JML.L clearStates_00_02_0E           ;88A94F|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88A94F|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88A953:
                        JSL.L loadEnitySlotBase              ;88A953|22218382|828321;
                        BNE CODE_88A982                      ;88A957|D029    |88A982;
-                       INC.W r_0000,X                       ;88A959|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88A959|FE0000  |860000;
                        LDA.B #$5C                           ;88A95C|A95C    |      ;
-                       STA.W r_000a,X                       ;88A95E|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88A95E|9D0A00  |86000A;
                        LDA.B r_ev_11_sprAtri-$E68           ;88A961|A511    |000E79;
                        AND.B #$3F                           ;88A963|293F    |      ;
-                       STA.W r_0011,X                       ;88A965|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88A965|9D1100  |860011;
                        LDA.B #$01                           ;88A968|A901    |      ;
-                       STA.W r_000b,X                       ;88A96A|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88A96A|9D0B00  |86000B;
                        REP #$21                             ;88A96D|C221    |      ;
                        LDA.W #$00C0                         ;88A96F|A9C000  |      ;
-                       ADC.W r_cam_BG0_xPos_target          ;88A972|6D4D1E  |861E4D;
-                       STA.W r_0005,X                       ;88A975|9D0500  |860005;
+                       ADC.W r6_cam_BG0_xPos_target         ;88A972|6D4D1E  |861E4D;
+                       STA.W r6_0005,X                      ;88A975|9D0500  |860005;
                        LDA.W #$0038                         ;88A978|A93800  |      ;
                        CLC                                  ;88A97B|18      |      ;
-                       ADC.W r_cam_BG0_yPos_target          ;88A97C|6D501E  |861E50;
-                       STA.W r_0008,X                       ;88A97F|9D0800  |860008;
+                       ADC.W r6_cam_BG0_yPos_target         ;88A97C|6D501E  |861E50;
+                       STA.W r6_0008,X                      ;88A97F|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_88A982:
                        SEP #$30                             ;88A982|E230    |      ;
@@ -6460,7 +6460,7 @@ rangdaBangdaEye_5d_action_00:
                        JSL.L lunchMusic                     ;88A9B0|22118082|828011;
                        SEP #$10                             ;88A9B4|E210    |      ;
                        LDA.B #$08                           ;88A9B6|A908    |      ;
-                       STA.W r_1f08                         ;88A9B8|8D081F  |861F08;
+                       STA.W r6_1f08                        ;88A9B8|8D081F  |861F08;
                        JSL.L CODE_849FEB                    ;88A9BB|22EB9F84|849FEB;
                        LDA.B #$23                           ;88A9BF|A923    |      ;
                        JML.L CODE_8087A2                    ;88A9C1|5CA28780|8087A2;
@@ -6468,15 +6468,15 @@ rangdaBangdaEye_5d_action_00:
                                                             ;      |        |      ;
           CODE_88A9C5:
                        REP #$20                             ;88A9C5|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;88A9C7|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88A9C7|ADAD0B  |860BAD;
                        CMP.W #$1400                         ;88A9CA|C90014  |      ;
                        BCC CODE_88A9DF                      ;88A9CD|9010    |88A9DF;
                        LDX.B #$04                           ;88A9CF|A204    |      ;
                        STX.B r_ev_02_action-$E68            ;88A9D1|8602    |000E6A;
                        LDA.W #$1400                         ;88A9D3|A90014  |      ;
-                       STA.W r_levelSpecFlag                ;88A9D6|8D5E1E  |861E5E;
-                       STA.W r_cam_BG0_xPos_lock            ;88A9D9|8D601E  |861E60;
-                       STZ.W r_cam_BG0_yPos_lock_Set        ;88A9DC|9C6E1E  |861E6E;
+                       STA.W r6_levelSpecFlag               ;88A9D6|8D5E1E  |861E5E;
+                       STA.W r6_cam_BG0_xPos_lock           ;88A9D9|8D601E  |861E60;
+                       STZ.W r6_cam_BG0_yPos_lock_Set       ;88A9DC|9C6E1E  |861E6E;
                                                             ;      |        |      ;
           CODE_88A9DF:
                        RTL                                  ;88A9DF|6B      |      ;
@@ -6484,7 +6484,7 @@ rangdaBangdaEye_5d_action_00:
                                                             ;      |        |      ;
           CODE_88A9E0:
                        REP #$20                             ;88A9E0|C220    |      ;
-                       LDA.W r_cam_BG0_LeftBorder           ;88A9E2|AD561E  |861E56;
+                       LDA.W r6_cam_BG0_LeftBorder          ;88A9E2|AD561E  |861E56;
                        CMP.W #$1400                         ;88A9E5|C90014  |      ;
                        SEP #$20                             ;88A9E8|E220    |      ;
                        BNE CODE_88A9FA                      ;88A9EA|D00E    |88A9FA;
@@ -6528,7 +6528,7 @@ rangdaBangdaEye_5d_action_00:
                        STA.B r_ev_3b-$E68                   ;88AA22|853B    |000EA3;
                        REP #$20                             ;88AA24|C220    |      ;
                        TDC                                  ;88AA26|7B      |      ;
-                       STA.W r_1f0e                         ;88AA27|8D0E1F  |861F0E;
+                       STA.W r6_1f0e                        ;88AA27|8D0E1F  |861F0E;
                        RTL                                  ;88AA2A|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6565,18 +6565,18 @@ rangdaBangdaEye_5d_action_00:
                        LDA.B r_ev_02_action-$E68            ;88AA57|A502    |000E6A;
                        CMP.B #$04                           ;88AA59|C904    |      ;
                        BEQ CODE_88AA80                      ;88AA5B|F023    |88AA80;
-                       LDA.W r_1f3f                         ;88AA5D|AD3F1F  |861F3F;
-                       AND.W r_1f40                         ;88AA60|2D401F  |861F40;
-                       AND.W r_1f41                         ;88AA63|2D411F  |861F41;
+                       LDA.W r6_1f3f                        ;88AA5D|AD3F1F  |861F3F;
+                       AND.W r6_1f40                        ;88AA60|2D401F  |861F40;
+                       AND.W r6_1f41                        ;88AA63|2D411F  |861F41;
                        CMP.B #$80                           ;88AA66|C980    |      ;
                        BNE CODE_88AA80                      ;88AA68|D016    |88AA80;
-                       LDA.W r_d_0bcf                       ;88AA6A|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;88AA6A|ADCF0B  |860BCF;
                        AND.B #$7F                           ;88AA6D|297F    |      ;
                        BEQ CODE_88AA80                      ;88AA6F|F00F    |88AA80;
                        LDA.B #$04                           ;88AA71|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;88AA73|8502    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;88AA75|6403    |000E6B;
-                       STA.W r_d_0bd8                       ;88AA77|8DD80B  |860BD8;
+                       STA.W r6_player_invinsCounter        ;88AA77|8DD80B  |860BD8;
                        LDA.B #$02                           ;88AA7A|A902    |      ;
                        JML.L CODE_848000                    ;88AA7C|5C008084|848000;
                                                             ;      |        |      ;
@@ -6601,9 +6601,9 @@ rangdaBangdaEye_5d_action_00:
                        STA.B r_ev_3b-$E68                   ;88AA97|853B    |000EA3;
                        JSL.L CODE_849F8A                    ;88AA99|228A9F84|849F8A;
                        LDA.B #$01                           ;88AA9D|A901    |      ;
-                       STA.W r_1f13                         ;88AA9F|8D131F  |861F13;
-                       STA.W r_1f14                         ;88AAA2|8D141F  |861F14;
-                       STA.W r_1f17                         ;88AAA5|8D171F  |861F17;
+                       STA.W r6_1f13                        ;88AA9F|8D131F  |861F13;
+                       STA.W r6_1f14                        ;88AAA2|8D141F  |861F14;
+                       STA.W r6_1f17                        ;88AAA5|8D171F  |861F17;
                        RTS                                  ;88AAA8|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6613,9 +6613,9 @@ rangdaBangdaEye_5d_action_00:
                        LDA.B #$04                           ;88AAAD|A904    |      ;
                        STA.B r_ev_01_state-$E68             ;88AAAF|8501    |000E69;
                        STZ.B r_ev_02_action-$E68            ;88AAB1|6402    |000E6A;
-                       STZ.W r_1f13                         ;88AAB3|9C131F  |861F13;
-                       STZ.W r_1f14                         ;88AAB6|9C141F  |861F14;
-                       STZ.W r_1f17                         ;88AAB9|9C171F  |861F17;
+                       STZ.W r6_1f13                        ;88AAB3|9C131F  |861F13;
+                       STZ.W r6_1f14                        ;88AAB6|9C141F  |861F14;
+                       STZ.W r6_1f17                        ;88AAB9|9C171F  |861F17;
                        JSL.L CODE_849FEB                    ;88AABC|22EB9F84|849FEB;
                                                             ;      |        |      ;
           CODE_88AAC0:
@@ -6646,8 +6646,8 @@ rangdaBangdaEye_5d_action_00:
           CODE_88AADD:
                        LDA.B #$04                           ;88AADD|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;88AADF|8503    |000E6B;
-                       LDA.W r_1f3f                         ;88AAE1|AD3F1F  |861F3F;
-                       ORA.W r_1f40                         ;88AAE4|0D401F  |861F40;
+                       LDA.W r6_1f3f                        ;88AAE1|AD3F1F  |861F3F;
+                       ORA.W r6_1f40                        ;88AAE4|0D401F  |861F40;
                        BMI CODE_88AB25                      ;88AAE7|303C    |88AB25;
                        REP #$10                             ;88AAE9|C210    |      ;
                        JSL.L mainPlayer_00                  ;88AAEB|22869084|849086;
@@ -6661,16 +6661,16 @@ rangdaBangdaEye_5d_action_00:
                        BCS CODE_88AB0A                      ;88AAFB|B00D    |88AB0A;
                        LDX.B r_ev_33-$E68                   ;88AAFD|A633    |000E9B;
                        LDA.W UNREACH_86D504,Y               ;88AAFF|B904D5  |86D504;
-                       STA.W r_0002,X                       ;88AB02|9D0200  |860002;
-                       STZ.W r_0003,X                       ;88AB05|9E0300  |860003;
+                       STA.W r6_0002,X                      ;88AB02|9D0200  |860002;
+                       STZ.W r6_0003,X                      ;88AB05|9E0300  |860003;
                        BRA CODE_88AB15                      ;88AB08|800B    |88AB15;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88AB0A:
                        LDX.B r_ev_35-$E68                   ;88AB0A|A635    |000E9D;
                        LDA.W UNREACH_86D505,Y               ;88AB0C|B905D5  |86D505;
-                       STA.W r_0002,X                       ;88AB0F|9D0200  |860002;
-                       STZ.W r_0003,X                       ;88AB12|9E0300  |860003;
+                       STA.W r6_0002,X                      ;88AB0F|9D0200  |860002;
+                       STZ.W r6_0003,X                      ;88AB12|9E0300  |860003;
                                                             ;      |        |      ;
           CODE_88AB15:
                        JSL.L mainPlayer_00                  ;88AB15|22869084|849086;
@@ -6678,7 +6678,7 @@ rangdaBangdaEye_5d_action_00:
                        INC A                                ;88AB1B|1A      |      ;
                        INC A                                ;88AB1C|1A      |      ;
                        STA.B r_ev_3a-$E68                   ;88AB1D|853A    |000EA2;
-                       STA.W r_003a,X                       ;88AB1F|9D3A00  |86003A;
+                       STA.W r6_003a,X                      ;88AB1F|9D3A00  |86003A;
                        SEP #$10                             ;88AB22|E210    |      ;
                        RTS                                  ;88AB24|60      |      ;
                                                             ;      |        |      ;
@@ -6693,27 +6693,27 @@ rangdaBangdaEye_5d_action_00:
                        TAY                                  ;88AB31|A8      |      ;
                        LDX.B r_ev_33-$E68                   ;88AB32|A633    |000E9B;
                        LDA.W UNREACH_86D524,Y               ;88AB34|B924D5  |86D524;
-                       STA.W r_0002,X                       ;88AB37|9D0200  |860002;
-                       STZ.W r_0003,X                       ;88AB3A|9E0300  |860003;
+                       STA.W r6_0002,X                      ;88AB37|9D0200  |860002;
+                       STZ.W r6_0003,X                      ;88AB3A|9E0300  |860003;
                        JSL.L mainPlayer_00                  ;88AB3D|22869084|849086;
                        AND.B #$03                           ;88AB41|2903    |      ;
                        INC A                                ;88AB43|1A      |      ;
                        INC A                                ;88AB44|1A      |      ;
                        STA.B r_ev_3a-$E68                   ;88AB45|853A    |000EA2;
-                       STA.W r_003a,X                       ;88AB47|9D3A00  |86003A;
+                       STA.W r6_003a,X                      ;88AB47|9D3A00  |86003A;
                        LDX.B r_ev_35-$E68                   ;88AB4A|A635    |000E9D;
                        LDA.W UNREACH_86D524,Y               ;88AB4C|B924D5  |86D524;
-                       STA.W r_0002,X                       ;88AB4F|9D0200  |860002;
-                       STZ.W r_0003,X                       ;88AB52|9E0300  |860003;
+                       STA.W r6_0002,X                      ;88AB4F|9D0200  |860002;
+                       STZ.W r6_0003,X                      ;88AB52|9E0300  |860003;
                        LDA.B r_ev_3a-$E68                   ;88AB55|A53A    |000EA2;
-                       STA.W r_003a,X                       ;88AB57|9D3A00  |86003A;
+                       STA.W r6_003a,X                      ;88AB57|9D3A00  |86003A;
                        SEP #$10                             ;88AB5A|E210    |      ;
                        RTS                                  ;88AB5C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88AB5D:
-                       LDA.W r_1f3f                         ;88AB5D|AD3F1F  |861F3F;
-                       ORA.W r_1f40                         ;88AB60|0D401F  |861F40;
+                       LDA.W r6_1f3f                        ;88AB5D|AD3F1F  |861F3F;
+                       ORA.W r6_1f40                        ;88AB60|0D401F  |861F40;
                        AND.B #$7F                           ;88AB63|297F    |      ;
                        BNE CODE_88AB76                      ;88AB65|D00F    |88AB76;
                        DEC.B r_ev_39-$E68                   ;88AB67|C639    |000EA1;
@@ -6744,7 +6744,7 @@ rangdaBangdaEye_5d_action_00:
                        dw CODE_88ABD6                       ;88AB82|        |88ABD6;
                                                             ;      |        |      ;
           CODE_88AB84:
-                       LDA.W r_1f41                         ;88AB84|AD411F  |861F41;
+                       LDA.W r6_1f41                        ;88AB84|AD411F  |861F41;
                        BPL CODE_88AB8E                      ;88AB87|1005    |88AB8E;
                        STZ.B r_ev_02_action-$E68            ;88AB89|6402    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;88AB8B|6403    |000E6B;
@@ -6754,21 +6754,21 @@ rangdaBangdaEye_5d_action_00:
           CODE_88AB8E:
                        LDA.B #$02                           ;88AB8E|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;88AB90|8503    |000E6B;
-                       STZ.W r_1f42                         ;88AB92|9C421F  |861F42;
+                       STZ.W r6_1f42                        ;88AB92|9C421F  |861F42;
                        LDA.B #$02                           ;88AB95|A902    |      ;
                        JMP.W CODE_88AD3B                    ;88AB97|4C3BAD  |88AD3B;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88AB9A:
-                       LDA.W r_1f42                         ;88AB9A|AD421F  |861F42;
+                       LDA.W r6_1f42                        ;88AB9A|AD421F  |861F42;
                        BEQ CODE_88ABB1                      ;88AB9D|F012    |88ABB1;
                        LDA.B #$04                           ;88AB9F|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;88ABA1|8503    |000E6B;
                        REP #$10                             ;88ABA3|C210    |      ;
                        LDX.B r_ev_37-$E68                   ;88ABA5|A637    |000E9F;
                        LDA.B #$02                           ;88ABA7|A902    |      ;
-                       STA.W r_0002,X                       ;88ABA9|9D0200  |860002;
-                       STZ.W r_0003,X                       ;88ABAC|9E0300  |860003;
+                       STA.W r6_0002,X                      ;88ABA9|9D0200  |860002;
+                       STZ.W r6_0003,X                      ;88ABAC|9E0300  |860003;
                        SEP #$10                             ;88ABAF|E210    |      ;
                                                             ;      |        |      ;
           CODE_88ABB1:
@@ -6776,10 +6776,10 @@ rangdaBangdaEye_5d_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88ABB2:
-                       LDA.W r_1f41                         ;88ABB2|AD411F  |861F41;
+                       LDA.W r6_1f41                        ;88ABB2|AD411F  |861F41;
                        BNE CODE_88ABCF                      ;88ABB5|D018    |88ABCF;
-                       LDA.W r_1f3f                         ;88ABB7|AD3F1F  |861F3F;
-                       AND.W r_1f40                         ;88ABBA|2D401F  |861F40;
+                       LDA.W r6_1f3f                        ;88ABB7|AD3F1F  |861F3F;
+                       AND.W r6_1f40                        ;88ABBA|2D401F  |861F40;
                        CMP.B #$80                           ;88ABBD|C980    |      ;
                        BNE CODE_88ABC6                      ;88ABBF|D005    |88ABC6;
                        LDA.B #$02                           ;88ABC1|A902    |      ;
@@ -6804,7 +6804,7 @@ rangdaBangdaEye_5d_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88ABD6:
-                       LDA.W r_1f42                         ;88ABD6|AD421F  |861F42;
+                       LDA.W r6_1f42                        ;88ABD6|AD421F  |861F42;
                        BEQ CODE_88ABDF                      ;88ABD9|F004    |88ABDF;
                        STZ.B r_ev_02_action-$E68            ;88ABDB|6402    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;88ABDD|6403    |000E6B;
@@ -6843,7 +6843,7 @@ rangdaBangdaEye_5d_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88AC0E:
-                       LDA.W r_frameCounter1                ;88AC0E|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88AC0E|AD9C0B  |860B9C;
                        AND.B #$1F                           ;88AC11|291F    |      ;
                        BNE CODE_88AC1B                      ;88AC13|D006    |88AC1B;
                        LDA.B #$20                           ;88AC15|A920    |      ;
@@ -6858,14 +6858,14 @@ rangdaBangdaEye_5d_action_00:
           CODE_88AC23:
                        REP #$20                             ;88AC23|C220    |      ;
                        LDA.W #$FFC0                         ;88AC25|A9C0FF  |      ;
-                       STA.W r_0000                         ;88AC28|8D0000  |860000;
-                       STA.W r_0002                         ;88AC2B|8D0200  |860002;
+                       STA.W r6_0000                        ;88AC28|8D0000  |860000;
+                       STA.W r6_0002                        ;88AC2B|8D0200  |860002;
                        LDA.W #$007F                         ;88AC2E|A97F00  |      ;
-                       STA.W r_0004                         ;88AC31|8D0400  |860004;
-                       STA.W r_0006                         ;88AC34|8D0600  |860006;
+                       STA.W r6_0004                        ;88AC31|8D0400  |860004;
+                       STA.W r6_0006                        ;88AC34|8D0600  |860006;
                        SEP #$20                             ;88AC37|E220    |      ;
                        LDA.B #$03                           ;88AC39|A903    |      ;
-                       STA.W r_0008                         ;88AC3B|8D0800  |860008;
+                       STA.W r6_0008                        ;88AC3B|8D0800  |860008;
                        JML.L CODE_84A4D0                    ;88AC3E|5CD0A484|84A4D0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6886,8 +6886,8 @@ rangdaBangdaEye_5d_action_00:
                        SEP #$30                             ;88AC64|E230    |      ;
                        PLB                                  ;88AC66|AB      |      ;
                        LDA.B #$3F                           ;88AC67|A93F    |      ;
-                       STA.W r_colorV_ca                    ;88AC69|8DCA00  |8600CA;
-                       STZ.W r_colorV_cb                    ;88AC6C|9CCB00  |8600CB;
+                       STA.W r6_colorV_ca                   ;88AC69|8DCA00  |8600CA;
+                       STZ.W r6_colorV_cb                   ;88AC6C|9CCB00  |8600CB;
                        LDA.B #$01                           ;88AC6F|A901    |      ;
                        STA.B r_ev_3d-$E68                   ;88AC71|853D    |000EA5;
                        JSR.W CODE_88AD92                    ;88AC73|2092AD  |88AD92;
@@ -6897,7 +6897,7 @@ rangdaBangdaEye_5d_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88AC7B:
-                       LDA.W r_frameCounter1                ;88AC7B|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88AC7B|AD9C0B  |860B9C;
                        AND.B #$01                           ;88AC7E|2901    |      ;
                        BNE CODE_88AC8A                      ;88AC80|D008    |88AC8A;
                        LDA.B r_ev_3d-$E68                   ;88AC82|A53D    |000EA5;
@@ -6919,10 +6919,10 @@ rangdaBangdaEye_5d_action_00:
                        LDA.B #$08                           ;88AC9C|A908    |      ;
                        STA.B r_ev_02_action-$E68            ;88AC9E|8502    |000E6A;
                        LDA.B #$1F                           ;88ACA0|A91F    |      ;
-                       STA.W r_colorV_cb                    ;88ACA2|8DCB00  |8600CB;
-                       STA.W r_colorV_cc                    ;88ACA5|8DCC00  |8600CC;
-                       STA.W r_colorV_cd                    ;88ACA8|8DCD00  |8600CD;
-                       STZ.W r_0aa1                         ;88ACAB|9CA10A  |860AA1;
+                       STA.W r6_colorV_cb                   ;88ACA2|8DCB00  |8600CB;
+                       STA.W r6_colorV_cc                   ;88ACA5|8DCC00  |8600CC;
+                       STA.W r6_colorV_cd                   ;88ACA8|8DCD00  |8600CD;
+                       STZ.W r6_0aa1                        ;88ACAB|9CA10A  |860AA1;
                        RTL                                  ;88ACAE|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -6939,17 +6939,17 @@ rangdaBangdaEye_5d_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88ACBB:
-                       LDA.W r_frameCounter1                ;88ACBB|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88ACBB|AD9C0B  |860B9C;
                        AND.B #$01                           ;88ACBE|2901    |      ;
                        BNE CODE_88ACDB                      ;88ACC0|D019    |88ACDB;
-                       DEC.W r_colorV_cb                    ;88ACC2|CECB00  |8600CB;
-                       DEC.W r_colorV_cc                    ;88ACC5|CECC00  |8600CC;
-                       DEC.W r_colorV_cd                    ;88ACC8|CECD00  |8600CD;
+                       DEC.W r6_colorV_cb                   ;88ACC2|CECB00  |8600CB;
+                       DEC.W r6_colorV_cc                   ;88ACC5|CECC00  |8600CC;
+                       DEC.W r6_colorV_cd                   ;88ACC8|CECD00  |8600CD;
                        BNE CODE_88ACDB                      ;88ACCB|D00E    |88ACDB;
                        LDA.B #$01                           ;88ACCD|A901    |      ;
-                       STA.W r_1f23                         ;88ACCF|8D231F  |861F23;
+                       STA.W r6_1f23                        ;88ACCF|8D231F  |861F23;
                        LDA.B #$02                           ;88ACD2|A902    |      ;
-                       STA.W r_1f7b                         ;88ACD4|8D7B1F  |861F7B;
+                       STA.W r6_1f7b                        ;88ACD4|8D7B1F  |861F7B;
                        LDA.B #$0A                           ;88ACD7|A90A    |      ;
                        STA.B r_ev_02_action-$E68            ;88ACD9|8502    |000E6A;
                                                             ;      |        |      ;
@@ -6968,11 +6968,11 @@ rangdaBangdaEye_5d_action_00:
           CODE_88ACE2:
                        JSL.L loadEnitySlotBase              ;88ACE2|22218382|828321;
                        BNE CODE_88AD17                      ;88ACE6|D02F    |88AD17;
-                       INC.W r_0000,X                       ;88ACE8|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88ACE8|FE0000  |860000;
                        LDA.B #$5E                           ;88ACEB|A95E    |      ;
-                       STA.W r_000a,X                       ;88ACED|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88ACED|9D0A00  |86000A;
                        TYA                                  ;88ACF0|98      |      ;
-                       STA.W r_000b,X                       ;88ACF1|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88ACF1|9D0B00  |86000B;
                        BEQ CODE_88ACFA                      ;88ACF4|F004    |88ACFA;
                        STX.B r_ev_35-$E68                   ;88ACF6|8635    |000E9D;
                        BRA CODE_88ACFC                      ;88ACF8|8002    |88ACFC;
@@ -6989,9 +6989,9 @@ rangdaBangdaEye_5d_action_00:
                        ASL A                                ;88AD03|0A      |      ;
                        TAY                                  ;88AD04|A8      |      ;
                        LDA.W UNREACH_86D4EC,Y               ;88AD05|B9ECD4  |86D4EC;
-                       STA.W r_0005,X                       ;88AD08|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88AD08|9D0500  |860005;
                        LDA.W UNREACH_86D4EE,Y               ;88AD0B|B9EED4  |86D4EE;
-                       STA.W r_0008,X                       ;88AD0E|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88AD0E|9D0800  |860008;
                        SEP #$20                             ;88AD11|E220    |      ;
                        PLY                                  ;88AD13|7A      |      ;
                        DEY                                  ;88AD14|88      |      ;
@@ -7005,15 +7005,15 @@ rangdaBangdaEye_5d_action_00:
           CODE_88AD1A:
                        JSL.L loadEnitySlotBase              ;88AD1A|22218382|828321;
                        BNE CODE_88AD38                      ;88AD1E|D018    |88AD38;
-                       INC.W r_0000,X                       ;88AD20|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88AD20|FE0000  |860000;
                        LDA.B #$5F                           ;88AD23|A95F    |      ;
-                       STA.W r_000a,X                       ;88AD25|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88AD25|9D0A00  |86000A;
                        STX.B r_ev_37-$E68                   ;88AD28|8637    |000E9F;
                        REP #$20                             ;88AD2A|C220    |      ;
                        LDA.W #$1480                         ;88AD2C|A98014  |      ;
-                       STA.W r_0005,X                       ;88AD2F|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88AD2F|9D0500  |860005;
                        LDA.W #$0088                         ;88AD32|A98800  |      ;
-                       STA.W r_0008,X                       ;88AD35|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88AD35|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_88AD38:
                        SEP #$30                             ;88AD38|E230    |      ;
@@ -7022,21 +7022,21 @@ rangdaBangdaEye_5d_action_00:
                                                             ;      |        |      ;
           CODE_88AD3B:
                        REP #$10                             ;88AD3B|C210    |      ;
-                       STA.W r_0000                         ;88AD3D|8D0000  |860000;
+                       STA.W r6_0000                        ;88AD3D|8D0000  |860000;
                        LDY.W #$0001                         ;88AD40|A00100  |      ;
                                                             ;      |        |      ;
           CODE_88AD43:
                        JSL.L loadEnitySlotBase              ;88AD43|22218382|828321;
                        BNE CODE_88AD63                      ;88AD47|D01A    |88AD63;
-                       INC.W r_0000,X                       ;88AD49|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88AD49|FE0000  |860000;
                        LDA.B #$60                           ;88AD4C|A960    |      ;
-                       STA.W r_000a,X                       ;88AD4E|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88AD4E|9D0A00  |86000A;
                        TYA                                  ;88AD51|98      |      ;
-                       STA.W r_000b,X                       ;88AD52|9D0B00  |86000B;
-                       LDA.W r_0000                         ;88AD55|AD0000  |860000;
-                       STA.W r_0002,X                       ;88AD58|9D0200  |860002;
+                       STA.W r6_000b,X                      ;88AD52|9D0B00  |86000B;
+                       LDA.W r6_0000                        ;88AD55|AD0000  |860000;
+                       STA.W r6_0002,X                      ;88AD58|9D0200  |860002;
                        LDA.B r_ev_3a-$E68                   ;88AD5B|A53A    |000EA2;
-                       STA.W r_0034,X                       ;88AD5D|9D3400  |860034;
+                       STA.W r6_0034,X                      ;88AD5D|9D3400  |860034;
                        DEY                                  ;88AD60|88      |      ;
                        BPL CODE_88AD43                      ;88AD61|10E0    |88AD43;
                                                             ;      |        |      ;
@@ -7048,20 +7048,20 @@ rangdaBangdaEye_5d_action_00:
           CODE_88AD66:
                        REP #$10                             ;88AD66|C210    |      ;
                        LDX.B r_ev_33-$E68                   ;88AD68|A633    |000E9B;
-                       LDA.W r_0027,X                       ;88AD6A|BD2700  |860027;
+                       LDA.W r6_0027,X                      ;88AD6A|BD2700  |860027;
                        AND.B #$7F                           ;88AD6D|297F    |      ;
-                       STA.W r_0000                         ;88AD6F|8D0000  |860000;
+                       STA.W r6_0000                        ;88AD6F|8D0000  |860000;
                        LDX.B r_ev_35-$E68                   ;88AD72|A635    |000E9D;
-                       LDA.W r_0027,X                       ;88AD74|BD2700  |860027;
+                       LDA.W r6_0027,X                      ;88AD74|BD2700  |860027;
                        AND.B #$7F                           ;88AD77|297F    |      ;
-                       STA.W r_0001                         ;88AD79|8D0100  |860001;
+                       STA.W r6_0001                        ;88AD79|8D0100  |860001;
                        LDX.B r_ev_37-$E68                   ;88AD7C|A637    |000E9F;
-                       LDA.W r_0027,X                       ;88AD7E|BD2700  |860027;
+                       LDA.W r6_0027,X                      ;88AD7E|BD2700  |860027;
                        AND.B #$7F                           ;88AD81|297F    |      ;
                        CLC                                  ;88AD83|18      |      ;
-                       ADC.W r_0000                         ;88AD84|6D0000  |860000;
+                       ADC.W r6_0000                        ;88AD84|6D0000  |860000;
                        CLC                                  ;88AD87|18      |      ;
-                       ADC.W r_0001                         ;88AD88|6D0100  |860001;
+                       ADC.W r6_0001                        ;88AD88|6D0100  |860001;
                        ORA.B #$80                           ;88AD8B|0980    |      ;
                        STA.B r_ev_27_health-$E68            ;88AD8D|8527    |000E8F;
                        SEP #$10                             ;88AD8F|E210    |      ;
@@ -7214,7 +7214,7 @@ rangdaBangdaMouth_5e_state_00:
                        LDA.B #$06                           ;88AE99|A906    |      ;
                        STA.B r_ev_12-$E68                   ;88AE9B|8512    |000E7A;
                        LDX.B r_ev_0b_subID-$E68             ;88AE9D|A60B    |000E73;
-                       STZ.W r_1f3f,X                       ;88AE9F|9E3F1F  |861F3F;
+                       STZ.W r6_1f3f,X                      ;88AE9F|9E3F1F  |861F3F;
                        LDA.B #$40                           ;88AEA2|A940    |      ;
                        TSB.B r_ev_33-$E68                   ;88AEA4|0433    |000E9B;
                        LDA.B #$00                           ;88AEA6|A900    |      ;
@@ -7269,22 +7269,22 @@ rangdaBangdaMouth_5e_state_00:
                        LDA.W UNREACH_86EEB9,X               ;88AEF3|BDB9EE  |86EEB9;
                        STA.B r_ev_1c_ySpdSub-$E68           ;88AEF6|851C    |000E84;
                        LDA.B r_ev_05_xPos-$E68              ;88AEF8|A505    |000E6D;
-                       STA.W r_0000                         ;88AEFA|8D0000  |860000;
+                       STA.W r6_0000                        ;88AEFA|8D0000  |860000;
                        LDA.B r_ev_08_yPos-$E68              ;88AEFD|A508    |000E70;
-                       STA.W r_0002                         ;88AEFF|8D0200  |860002;
-                       LDA.W r_d_player_xSubPos             ;88AF02|ADAD0B  |860BAD;
-                       STA.W r_0004                         ;88AF05|8D0400  |860004;
-                       LDA.W r_d_player_yPos                ;88AF08|ADB00B  |860BB0;
-                       STA.W r_0006                         ;88AF0B|8D0600  |860006;
+                       STA.W r6_0002                        ;88AEFF|8D0200  |860002;
+                       LDA.W r6_player_xPos                 ;88AF02|ADAD0B  |860BAD;
+                       STA.W r6_0004                        ;88AF05|8D0400  |860004;
+                       LDA.W r6_player_yPos                 ;88AF08|ADB00B  |860BB0;
+                       STA.W r6_0006                        ;88AF0B|8D0600  |860006;
                        JSL.L CODE_80CE9A                    ;88AF0E|229ACE80|80CE9A;
-                       LDA.W r_0000                         ;88AF12|AD0000  |860000;
+                       LDA.W r6_0000                        ;88AF12|AD0000  |860000;
                        LSR A                                ;88AF15|4A      |      ;
                        STA.B r_ev_34-$E68                   ;88AF16|8534    |000E9C;
                        STA.B r_ev_36-$E68                   ;88AF18|8536    |000E9E;
                        SEP #$20                             ;88AF1A|E220    |      ;
                                                             ;      |        |      ;
           CODE_88AF1C:
-                       JSL.L updateEv_13_14_17_0f           ;88AF1C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88AF1C|22EA8E84|848EEA;
                        RTS                                  ;88AF20|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7342,7 +7342,7 @@ rangdaBangdaMouth_5e_state_00:
                        STZ.B r_ev_03_do-$E68                ;88AF67|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88AF69:
-                       JSL.L updateEv_13_14_17_0f           ;88AF69|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88AF69|22EA8E84|848EEA;
                        RTS                                  ;88AF6D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7383,7 +7383,7 @@ rangdaBangdaMouth_5e_state_00:
                        STA.B r_ev_38-$E68                   ;88AFA4|8538    |000EA0;
                                                             ;      |        |      ;
           CODE_88AFA6:
-                       JSL.L updateEv_13_14_17_0f           ;88AFA6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88AFA6|22EA8E84|848EEA;
                        RTS                                  ;88AFAA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7422,7 +7422,7 @@ rangdaBangdaMouth_5e_state_00:
                        STZ.B r_ev_03_do-$E68                ;88AFD6|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88AFD8:
-                       JSL.L updateEv_13_14_17_0f           ;88AFD8|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88AFD8|22EA8E84|848EEA;
                        RTS                                  ;88AFDC|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7466,7 +7466,7 @@ rangdaBangdaMouth_5e_state_00:
                        STA.B r_ev_38-$E68                   ;88B019|8538    |000EA0;
                                                             ;      |        |      ;
           CODE_88B01B:
-                       JSL.L updateEv_13_14_17_0f           ;88B01B|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B01B|22EA8E84|848EEA;
                        RTS                                  ;88B01F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7559,7 +7559,7 @@ rangdaBangdaMouth_5e_state_00:
                        STZ.B r_ev_03_do-$E68                ;88B0A4|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88B0A6:
-                       JSL.L updateEv_13_14_17_0f           ;88B0A6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B0A6|22EA8E84|848EEA;
                        RTS                                  ;88B0AA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7601,7 +7601,7 @@ rangdaBangdaMouth_5e_state_00:
                        STA.B r_ev_38-$E68                   ;88B0E3|8538    |000EA0;
                                                             ;      |        |      ;
           CODE_88B0E5:
-                       JSL.L updateEv_13_14_17_0f           ;88B0E5|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B0E5|22EA8E84|848EEA;
                        RTS                                  ;88B0E9|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7655,15 +7655,15 @@ rangdaBangdaMouth_5e_state_00:
                        STZ.B r_ev_03_do-$E68                ;88B12C|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88B12E:
-                       JSL.L updateEv_13_14_17_0f           ;88B12E|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B12E|22EA8E84|848EEA;
                        RTS                                  ;88B132|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88B133:
                        LDX.B r_ev_0b_subID-$E68             ;88B133|A60B    |000E73;
                        LDA.B #$80                           ;88B135|A980    |      ;
-                       STA.W r_1f3f,X                       ;88B137|9D3F1F  |861F3F;
-                       JML.L clearStates_00_02_0E           ;88B13A|5C988382|828398;
+                       STA.W r6_1f3f,X                      ;88B137|9D3F1F  |861F3F;
+                       JML.L despawnEvent_clear_00_02_0E    ;88B13A|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88B13E:
@@ -7712,19 +7712,19 @@ rangdaBangdaMouth_5e_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88B17E:
-                       STA.W r_0000                         ;88B17E|8D0000  |860000;
+                       STA.W r6_0000                        ;88B17E|8D0000  |860000;
                        JSL.L findEnemyShotEmptySlot         ;88B181|22588382|828358;
                        BNE CODE_88B1C5                      ;88B185|D03E    |88B1C5;
-                       INC.W r_0000,X                       ;88B187|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88B187|FE0000  |860000;
                        LDA.B #$26                           ;88B18A|A926    |      ;
-                       STA.W r_000a,X                       ;88B18C|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88B18C|9D0A00  |86000A;
                        LDA.B r_ev_11_sprAtri-$E68           ;88B18F|A511    |000E79;
                        AND.B #$F9                           ;88B191|29F9    |      ;
-                       STA.W r_0011,X                       ;88B193|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88B193|9D1100  |860011;
                        LDA.B r_ev_18_gfxSlot-$E68           ;88B196|A518    |000E80;
-                       STA.W r_0018,X                       ;88B198|9D1800  |860018;
+                       STA.W r6_0018,X                      ;88B198|9D1800  |860018;
                        PHX                                  ;88B19B|DA      |      ;
-                       LDA.W r_0000                         ;88B19C|AD0000  |860000;
+                       LDA.W r6_0000                        ;88B19C|AD0000  |860000;
                        STA.B r_ev_39-$E68                   ;88B19F|8539    |000EA1;
                        JSR.W CODE_88B13E                    ;88B1A1|203EB1  |88B13E;
                        PLX                                  ;88B1A4|FA      |      ;
@@ -7734,13 +7734,13 @@ rangdaBangdaMouth_5e_state_00:
                        ASL A                                ;88B1AB|0A      |      ;
                        TAY                                  ;88B1AC|A8      |      ;
                        LDA.W UNREACH_86EEB7,Y               ;88B1AD|B9B7EE  |86EEB7;
-                       STA.W r_001a,X                       ;88B1B0|9D1A00  |86001A;
+                       STA.W r6_001a,X                      ;88B1B0|9D1A00  |86001A;
                        LDA.W UNREACH_86EEB9,Y               ;88B1B3|B9B9EE  |86EEB9;
-                       STA.W r_001c,X                       ;88B1B6|9D1C00  |86001C;
+                       STA.W r6_001c,X                      ;88B1B6|9D1C00  |86001C;
                        LDA.B r_ev_05_xPos-$E68              ;88B1B9|A505    |000E6D;
-                       STA.W r_0005,X                       ;88B1BB|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88B1BB|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88B1BE|A508    |000E70;
-                       STA.W r_0008,X                       ;88B1C0|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88B1C0|9D0800  |860008;
                        SEP #$20                             ;88B1C3|E220    |      ;
                                                             ;      |        |      ;
           CODE_88B1C5:
@@ -7751,7 +7751,7 @@ rangdaBangdaMouth_5e_state_00:
           CODE_88B1C8:
                        LDX.B r_ev_0b_subID-$E68             ;88B1C8|A60B    |000E73;
                        LDA.B #$01                           ;88B1CA|A901    |      ;
-                       STA.W r_1f3f,X                       ;88B1CC|9D3F1F  |861F3F;
+                       STA.W r6_1f3f,X                      ;88B1CC|9D3F1F  |861F3F;
                        RTS                                  ;88B1CF|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -7765,11 +7765,11 @@ rangdaBangdaMouth_5e_state_00:
           CODE_88B1DD:
                        JSL.L CODE_8282D3                    ;88B1DD|22D38282|8282D3;
                        BNE CODE_88B213                      ;88B1E1|D030    |88B213;
-                       INC.W r_0000,X                       ;88B1E3|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88B1E3|FE0000  |860000;
                        LDA.B #$2B                           ;88B1E6|A92B    |      ;
-                       STA.W r_000a,X                       ;88B1E8|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88B1E8|9D0A00  |86000A;
                        LDA.B r_ev_11_sprAtri-$E68           ;88B1EB|A511    |000E79;
-                       STA.W r_0011,X                       ;88B1ED|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88B1ED|9D1100  |860011;
                        EOR.B #$40                           ;88B1F0|4940    |      ;
                        STA.B r_ev_11_sprAtri-$E68           ;88B1F2|8511    |000E79;
                        JSL.L mainPlayer_00                  ;88B1F4|22869084|849086;
@@ -7777,12 +7777,12 @@ rangdaBangdaMouth_5e_state_00:
                        CLC                                  ;88B1FA|18      |      ;
                        ADC.B #$5B                           ;88B1FB|695B    |      ;
                        ORA.B #$80                           ;88B1FD|0980    |      ;
-                       STA.W r_000b,X                       ;88B1FF|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88B1FF|9D0B00  |86000B;
                        REP #$20                             ;88B202|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88B204|A505    |000E6D;
-                       STA.W r_0005,X                       ;88B206|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88B206|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88B209|A508    |000E70;
-                       STA.W r_0008,X                       ;88B20B|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88B20B|9D0800  |860008;
                        SEP #$20                             ;88B20E|E220    |      ;
                        DEY                                  ;88B210|88      |      ;
                        BPL CODE_88B1DD                      ;88B211|10CA    |88B1DD;
@@ -7878,7 +7878,7 @@ rangdaBangdaWallSide_5f_state_00:
                        INC.B r_ev_03_do-$E68                ;88B2A0|E603    |000E6B;
                        LDA.B #$06                           ;88B2A2|A906    |      ;
                        STA.B r_ev_12-$E68                   ;88B2A4|8512    |000E7A;
-                       STZ.W r_1f41                         ;88B2A6|9C411F  |861F41;
+                       STZ.W r6_1f41                        ;88B2A6|9C411F  |861F41;
                        LDA.B #$40                           ;88B2A9|A940    |      ;
                        TSB.B r_ev_33-$E68                   ;88B2AB|0433    |000E9B;
                        LDA.B #$02                           ;88B2AD|A902    |      ;
@@ -7904,7 +7904,7 @@ rangdaBangdaWallSide_5f_state_00:
                        LDA.B #$04                           ;88B2C3|A904    |      ;
                        STA.B r_ev_12-$E68                   ;88B2C5|8512    |000E7A;
                        LDA.B #$01                           ;88B2C7|A901    |      ;
-                       STA.W r_1f41                         ;88B2C9|8D411F  |861F41;
+                       STA.W r6_1f41                        ;88B2C9|8D411F  |861F41;
                        LDA.B #$03                           ;88B2CC|A903    |      ;
                        JSL.L playerGrabedRoutine            ;88B2CE|22078F84|848F07;
                        RTS                                  ;88B2D2|60      |      ;
@@ -7921,7 +7921,7 @@ rangdaBangdaWallSide_5f_state_00:
                        STA.B r_ev_1d_ySpd-$E68              ;88B2E1|851D    |000E85;
                                                             ;      |        |      ;
           CODE_88B2E3:
-                       JSL.L updateEv_13_14_17_0f           ;88B2E3|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B2E3|22EA8E84|848EEA;
                        RTS                                  ;88B2E7|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8073,33 +8073,33 @@ rangdaBangdaWallSide_5f_state_00:
                        STZ.B r_ev_03_do-$E68                ;88B3D3|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88B3D5:
-                       JSL.L updateEv_13_14_17_0f           ;88B3D5|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B3D5|22EA8E84|848EEA;
                        RTS                                  ;88B3D9|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88B3DA:
                        LDA.B #$80                           ;88B3DA|A980    |      ;
-                       STA.W r_1f41                         ;88B3DC|8D411F  |861F41;
-                       JML.L clearStates_00_02_0E           ;88B3DF|5C988382|828398;
+                       STA.W r6_1f41                        ;88B3DC|8D411F  |861F41;
+                       JML.L despawnEvent_clear_00_02_0E    ;88B3DF|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88B3E3:
                        JSL.L CODE_8282D3                    ;88B3E3|22D38282|8282D3;
                        BNE CODE_88B409                      ;88B3E7|D020    |88B409;
-                       INC.W r_0000,X                       ;88B3E9|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88B3E9|FE0000  |860000;
                        LDA.B #$3B                           ;88B3EC|A93B    |      ;
-                       STA.W r_000a,X                       ;88B3EE|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88B3EE|9D0A00  |86000A;
                        LDA.B r_ev_35-$E68                   ;88B3F1|A535    |000E9D;
                        CLC                                  ;88B3F3|18      |      ;
                        ADC.B #$02                           ;88B3F4|6902    |      ;
-                       STA.W r_000b,X                       ;88B3F6|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88B3F6|9D0B00  |86000B;
                        REP #$20                             ;88B3F9|C220    |      ;
                        TDC                                  ;88B3FB|7B      |      ;
-                       STA.W r_000c,X                       ;88B3FC|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;88B3FC|9D0C00  |86000C;
                        LDA.B r_ev_05_xPos-$E68              ;88B3FF|A505    |000E6D;
-                       STA.W r_0005,X                       ;88B401|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88B401|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88B404|A508    |000E70;
-                       STA.W r_0008,X                       ;88B406|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88B406|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_88B409:
                        SEP #$30                             ;88B409|E230    |      ;
@@ -8116,11 +8116,11 @@ rangdaBangdaWallSide_5f_state_00:
           CODE_88B419:
                        JSL.L CODE_8282D3                    ;88B419|22D38282|8282D3;
                        BNE CODE_88B44F                      ;88B41D|D030    |88B44F;
-                       INC.W r_0000,X                       ;88B41F|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88B41F|FE0000  |860000;
                        LDA.B #$2B                           ;88B422|A92B    |      ;
-                       STA.W r_000a,X                       ;88B424|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88B424|9D0A00  |86000A;
                        LDA.B r_ev_11_sprAtri-$E68           ;88B427|A511    |000E79;
-                       STA.W r_0011,X                       ;88B429|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88B429|9D1100  |860011;
                        EOR.B #$40                           ;88B42C|4940    |      ;
                        STA.B r_ev_11_sprAtri-$E68           ;88B42E|8511    |000E79;
                        JSL.L mainPlayer_00                  ;88B430|22869084|849086;
@@ -8128,12 +8128,12 @@ rangdaBangdaWallSide_5f_state_00:
                        CLC                                  ;88B436|18      |      ;
                        ADC.B #$5D                           ;88B437|695D    |      ;
                        ORA.B #$80                           ;88B439|0980    |      ;
-                       STA.W r_000b,X                       ;88B43B|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88B43B|9D0B00  |86000B;
                        REP #$20                             ;88B43E|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88B440|A505    |000E6D;
-                       STA.W r_0005,X                       ;88B442|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88B442|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88B445|A508    |000E70;
-                       STA.W r_0008,X                       ;88B447|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88B447|9D0800  |860008;
                        SEP #$20                             ;88B44A|E220    |      ;
                        DEY                                  ;88B44C|88      |      ;
                        BPL CODE_88B419                      ;88B44D|10CA    |88B419;
@@ -8162,7 +8162,7 @@ eventID_rexHead_60_main:
                                                             ;      |        |      ;
           CODE_88B469:
                        STA.B r_ev_11_sprAtri-$E68           ;88B469|8511    |000E79;
-                       STZ.W r_1f42                         ;88B46B|9C421F  |861F42;
+                       STZ.W r6_1f42                        ;88B46B|9C421F  |861F42;
                        LDA.B #$04                           ;88B46E|A904    |      ;
                        STA.B r_ev_12-$E68                   ;88B470|8512    |000E7A;
                        STA.B r_ev_30-$E68                   ;88B472|8530    |000E98;
@@ -8375,8 +8375,8 @@ eventID_rexHead_60_main:
                                                             ;      |        |      ;
           CODE_88B5A0:
                        LDA.B #$80                           ;88B5A0|A980    |      ;
-                       STA.W r_1f42                         ;88B5A2|8D421F  |861F42;
-                       JML.L clearStates_00_02_0E           ;88B5A5|5C988382|828398;
+                       STA.W r6_1f42                        ;88B5A2|8D421F  |861F42;
+                       JML.L despawnEvent_clear_00_02_0E    ;88B5A5|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88B5A9:
@@ -8389,13 +8389,13 @@ eventID_rexHead_60_main:
                        JSL.L CODE_849C0E                    ;88B5B6|220E9C84|849C0E;
                        BCC CODE_88B5D0                      ;88B5BA|9014    |88B5D0;
                        LDA.B #$80                           ;88B5BC|A980    |      ;
-                       TSB.W r_d_0bd4                       ;88B5BE|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;88B5BE|0CD40B  |860BD4;
                        LDA.B #$40                           ;88B5C1|A940    |      ;
-                       TSB.W r_d_0bd4                       ;88B5C3|0CD40B  |860BD4;
-                       LDY.W r_0000                         ;88B5C6|AC0000  |860000;
+                       TSB.W r6_player_bd4                  ;88B5C3|0CD40B  |860BD4;
+                       LDY.W r6_0000                        ;88B5C6|AC0000  |860000;
                        BPL CODE_88B5D0                      ;88B5C9|1005    |88B5D0;
                        LDA.B #$40                           ;88B5CB|A940    |      ;
-                       TRB.W r_d_0bd4                       ;88B5CD|1CD40B  |860BD4;
+                       TRB.W r6_player_bd4                  ;88B5CD|1CD40B  |860BD4;
                                                             ;      |        |      ;
           CODE_88B5D0:
                        PLX                                  ;88B5D0|FA      |      ;
@@ -8405,7 +8405,7 @@ eventID_rexHead_60_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88B5D6:
-                       STA.W r_0000                         ;88B5D6|8D0000  |860000;
+                       STA.W r6_0000                        ;88B5D6|8D0000  |860000;
                        REP #$20                             ;88B5D9|C220    |      ;
                        LDA.W #$0008                         ;88B5DB|A90800  |      ;
                        LDX.B r_ev_0b_subID-$E68             ;88B5DE|A60B    |000E73;
@@ -8413,21 +8413,21 @@ eventID_rexHead_60_main:
                        LDA.W #$0007                         ;88B5E2|A90700  |      ;
                                                             ;      |        |      ;
           CODE_88B5E5:
-                       STA.W r_0001                         ;88B5E5|8D0100  |860001;
+                       STA.W r6_0001                        ;88B5E5|8D0100  |860001;
                        LDA.B r_ev_05_xPos-$E68              ;88B5E8|A505    |000E6D;
                        AND.W #$000F                         ;88B5EA|290F00  |      ;
-                       CMP.W r_0001                         ;88B5ED|CD0100  |860001;
+                       CMP.W r6_0001                        ;88B5ED|CD0100  |860001;
                        BNE CODE_88B60D                      ;88B5F0|D01B    |88B60D;
                        LDA.B r_ev_05_xPos-$E68              ;88B5F2|A505    |000E6D;
-                       STA.W r_002c                         ;88B5F4|8D2C00  |86002C;
+                       STA.W r6_002c                        ;88B5F4|8D2C00  |86002C;
                        LDA.B r_ev_08_yPos-$E68              ;88B5F7|A508    |000E70;
                        CLC                                  ;88B5F9|18      |      ;
                        ADC.W #$FFB0                         ;88B5FA|69B0FF  |      ;
-                       STA.W r_002e                         ;88B5FD|8D2E00  |86002E;
+                       STA.W r6_002e                        ;88B5FD|8D2E00  |86002E;
                        SEP #$20                             ;88B600|E220    |      ;
                        LDA.B #$10                           ;88B602|A910    |      ;
                        TSB.B r_ev_11_sprAtri-$E68           ;88B604|0411    |000E79;
-                       LDA.W r_0000                         ;88B606|AD0000  |860000;
+                       LDA.W r6_0000                        ;88B606|AD0000  |860000;
                        JSL.L CODE_848011                    ;88B609|22118084|848011;
                                                             ;      |        |      ;
           CODE_88B60D:
@@ -8442,20 +8442,20 @@ eventID_rexHead_60_main:
                        LDA.B r_ev_05_xPos-$E68              ;88B616|A505    |000E6D;
                        CLC                                  ;88B618|18      |      ;
                        ADC.W #$0010                         ;88B619|691000  |      ;
-                       CMP.W r_d_player_xSubPos             ;88B61C|CDAD0B  |860BAD;
+                       CMP.W r6_player_xPos                 ;88B61C|CDAD0B  |860BAD;
                        BCC CODE_88B665                      ;88B61F|9044    |88B665;
-                       STA.W r_0000                         ;88B621|8D0000  |860000;
-                       LDA.W r_d_0bd3                       ;88B624|ADD30B  |860BD3;
+                       STA.W r6_0000                        ;88B621|8D0000  |860000;
+                       LDA.W r6_player_bd3                  ;88B624|ADD30B  |860BD3;
                        BIT.W #$0004                         ;88B627|890400  |      ;
                        BNE CODE_88B62F                      ;88B62A|D003    |88B62F;
-                       DEC.W r_0000                         ;88B62C|CE0000  |860000;
+                       DEC.W r6_0000                        ;88B62C|CE0000  |860000;
                                                             ;      |        |      ;
           CODE_88B62F:
-                       LDA.W r_0000                         ;88B62F|AD0000  |860000;
-                       STA.W r_d_player_xSubPos             ;88B632|8DAD0B  |860BAD;
+                       LDA.W r6_0000                        ;88B62F|AD0000  |860000;
+                       STA.W r6_player_xPos                 ;88B632|8DAD0B  |860BAD;
                        SEP #$20                             ;88B635|E220    |      ;
                        LDA.B #$02                           ;88B637|A902    |      ;
-                       TSB.W r_d_0bd4                       ;88B639|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;88B639|0CD40B  |860BD4;
                        RTS                                  ;88B63C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8463,23 +8463,23 @@ eventID_rexHead_60_main:
                        LDA.B r_ev_05_xPos-$E68              ;88B63D|A505    |000E6D;
                        SEC                                  ;88B63F|38      |      ;
                        SBC.W #$0010                         ;88B640|E91000  |      ;
-                       CMP.W r_d_player_xSubPos             ;88B643|CDAD0B  |860BAD;
+                       CMP.W r6_player_xPos                 ;88B643|CDAD0B  |860BAD;
                        BEQ CODE_88B64A                      ;88B646|F002    |88B64A;
                        BCS CODE_88B665                      ;88B648|B01B    |88B665;
                                                             ;      |        |      ;
           CODE_88B64A:
-                       STA.W r_0000                         ;88B64A|8D0000  |860000;
-                       LDA.W r_d_0bd3                       ;88B64D|ADD30B  |860BD3;
+                       STA.W r6_0000                        ;88B64A|8D0000  |860000;
+                       LDA.W r6_player_bd3                  ;88B64D|ADD30B  |860BD3;
                        BIT.W #$0004                         ;88B650|890400  |      ;
                        BNE CODE_88B658                      ;88B653|D003    |88B658;
-                       INC.W r_0000                         ;88B655|EE0000  |860000;
+                       INC.W r6_0000                        ;88B655|EE0000  |860000;
                                                             ;      |        |      ;
           CODE_88B658:
-                       LDA.W r_0000                         ;88B658|AD0000  |860000;
-                       STA.W r_d_player_xSubPos             ;88B65B|8DAD0B  |860BAD;
+                       LDA.W r6_0000                        ;88B658|AD0000  |860000;
+                       STA.W r6_player_xPos                 ;88B65B|8DAD0B  |860BAD;
                        SEP #$20                             ;88B65E|E220    |      ;
                        LDA.B #$01                           ;88B660|A901    |      ;
-                       TSB.W r_d_0bd4                       ;88B662|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;88B662|0CD40B  |860BD4;
                                                             ;      |        |      ;
           CODE_88B665:
                        SEP #$20                             ;88B665|E220    |      ;
@@ -8546,7 +8546,7 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88B6C7:
-                       LDA.W r_d_0bcf                       ;88B6C7|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;88B6C7|ADCF0B  |860BCF;
                        CMP.B #$80                           ;88B6CA|C980    |      ;
                        BNE CODE_88B6D9                      ;88B6CC|D00B    |88B6D9;
                        REP #$10                             ;88B6CE|C210    |      ;
@@ -8560,7 +8560,7 @@ eventID_rexBase_61_main:
                        LDA.B #$80                           ;88B6DE|A980    |      ;
                        STA.B r_ev_2c-$E68                   ;88B6E0|852C    |000E94;
                        JSL.L CODE_82D7D7                    ;88B6E2|22D7D782|82D7D7;
-                       LDA.W r_d_0bcf                       ;88B6E6|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;88B6E6|ADCF0B  |860BCF;
                        AND.B #$7F                           ;88B6E9|297F    |      ;
                        BEQ CODE_88B70B                      ;88B6EB|F01E    |88B70B;
                        JSL.L CODE_849B43                    ;88B6ED|22439B84|849B43;
@@ -8609,8 +8609,8 @@ eventID_rexBase_61_main:
                        LDA.B #$28                           ;88B732|A928    |      ;
                        STA.B r_ev_33-$E68                   ;88B734|8533    |000E9B;
                        LDA.B #$01                           ;88B736|A901    |      ;
-                       STA.W r_1f13                         ;88B738|8D131F  |861F13;
-                       STA.W r_1f14                         ;88B73B|8D141F  |861F14;
+                       STA.W r6_1f13                        ;88B738|8D131F  |861F13;
+                       STA.W r6_1f14                        ;88B73B|8D141F  |861F14;
                        JSL.L CODE_849F8A                    ;88B73E|228A9F84|849F8A;
                        RTS                                  ;88B742|60      |      ;
                                                             ;      |        |      ;
@@ -8618,14 +8618,14 @@ eventID_rexBase_61_main:
           CODE_88B743:
                        DEC.B r_ev_33-$E68                   ;88B743|C633    |000E9B;
                        BNE CODE_88B760                      ;88B745|D019    |88B760;
-                       STZ.W r_1f3f                         ;88B747|9C3F1F  |861F3F;
-                       INC.W r_1f42                         ;88B74A|EE421F  |861F42;
+                       STZ.W r6_1f3f                        ;88B747|9C3F1F  |861F3F;
+                       INC.W r6_1f42                        ;88B74A|EE421F  |861F42;
                        LDA.B #$04                           ;88B74D|A904    |      ;
                        STA.B r_ev_01_state-$E68             ;88B74F|8501    |000E69;
                        STZ.B r_ev_02_action-$E68            ;88B751|6402    |000E6A;
-                       STA.W r_d_0bd8                       ;88B753|8DD80B  |860BD8;
-                       STZ.W r_1f13                         ;88B756|9C131F  |861F13;
-                       STZ.W r_1f14                         ;88B759|9C141F  |861F14;
+                       STA.W r6_player_invinsCounter        ;88B753|8DD80B  |860BD8;
+                       STZ.W r6_1f13                        ;88B756|9C131F  |861F13;
+                       STZ.W r6_1f14                        ;88B759|9C141F  |861F14;
                        JSL.L CODE_849FEB                    ;88B75C|22EB9F84|849FEB;
                                                             ;      |        |      ;
           CODE_88B760:
@@ -8661,7 +8661,7 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88B789:
-                       LDA.W r_d_0bcf                       ;88B789|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;88B789|ADCF0B  |860BCF;
                        AND.B #$7F                           ;88B78C|297F    |      ;
                        BEQ CODE_88B794                      ;88B78E|F004    |88B794;
                        DEC.B r_ev_35-$E68                   ;88B790|C635    |000E9D;
@@ -8697,8 +8697,8 @@ eventID_rexBase_61_main:
                        LDX.B r_ev_03_do-$E68                ;88B7BA|A603    |000E6B;
                        BNE CODE_88B7D7                      ;88B7BC|D019    |88B7D7;
                        REP #$20                             ;88B7BE|C220    |      ;
-                       LDA.W r_levelSpecFlag                ;88B7C0|AD5E1E  |861E5E;
-                       CMP.W r_cam_BG0_LeftBorder           ;88B7C3|CD561E  |861E56;
+                       LDA.W r6_levelSpecFlag               ;88B7C0|AD5E1E  |861E5E;
+                       CMP.W r6_cam_BG0_LeftBorder          ;88B7C3|CD561E  |861E56;
                        BNE CODE_88B7CA                      ;88B7C6|D002    |88B7CA;
                        INC.B r_ev_03_do-$E68                ;88B7C8|E603    |000E6B;
                                                             ;      |        |      ;
@@ -8804,7 +8804,7 @@ eventID_rexBase_61_main:
                        STZ.B r_ev_03_do-$E68                ;88B861|6403    |000E6B;
                        REP #$20                             ;88B863|C220    |      ;
                        TDC                                  ;88B865|7B      |      ;
-                       STA.W r_1f0e                         ;88B866|8D0E1F  |861F0E;
+                       STA.W r6_1f0e                        ;88B866|8D0E1F  |861F0E;
                        SEP #$20                             ;88B869|E220    |      ;
                                                             ;      |        |      ;
           CODE_88B86B:
@@ -8842,7 +8842,7 @@ eventID_rexBase_61_main:
                        JSL.L playerGrabedRoutine            ;88B894|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88B898:
-                       JSL.L updateEv_13_14_17_0f           ;88B898|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B898|22EA8E84|848EEA;
                        RTS                                  ;88B89C|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8860,7 +8860,7 @@ eventID_rexBase_61_main:
           CODE_88B8B0:
                        SEP #$20                             ;88B8B0|E220    |      ;
                        JSL.L CODE_82825D                    ;88B8B2|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;88B8B6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B8B6|22EA8E84|848EEA;
                        RTS                                  ;88B8BA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8902,7 +8902,7 @@ eventID_rexBase_61_main:
                        STZ.B r_ev_39-$E68                   ;88B8EE|6439    |000EA1;
                                                             ;      |        |      ;
           CODE_88B8F0:
-                       JSL.L updateEv_13_14_17_0f           ;88B8F0|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B8F0|22EA8E84|848EEA;
                        RTS                                  ;88B8F4|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -8942,7 +8942,7 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88B929:
-                       JSL.L updateEv_13_14_17_0f           ;88B929|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B929|22EA8E84|848EEA;
                        JSL.L CODE_82823E                    ;88B92D|223E8282|82823E;
                        LDA.B r_ev_1b_xSpd-$E68              ;88B931|A51B    |000E83;
                        BMI CODE_88B94B                      ;88B933|3016    |88B94B;
@@ -9024,7 +9024,7 @@ eventID_rexBase_61_main:
           CODE_88B9A3:
                        SEP #$20                             ;88B9A3|E220    |      ;
                        JSL.L CODE_82820A                    ;88B9A5|220A8282|82820A;
-                       JSL.L updateEv_13_14_17_0f           ;88B9A9|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B9A9|22EA8E84|848EEA;
                        RTS                                  ;88B9AD|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9042,7 +9042,7 @@ eventID_rexBase_61_main:
           CODE_88B9C1:
                        SEP #$20                             ;88B9C1|E220    |      ;
                        JSL.L CODE_82825D                    ;88B9C3|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;88B9C7|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88B9C7|22EA8E84|848EEA;
                        RTS                                  ;88B9CB|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9061,11 +9061,11 @@ eventID_rexBase_61_main:
           CODE_88B9DB:
                        LDA.B #$02                           ;88B9DB|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;88B9DD|8503    |000E6B;
-                       STZ.W r_1f3f                         ;88B9DF|9C3F1F  |861F3F;
+                       STZ.W r6_1f3f                        ;88B9DF|9C3F1F  |861F3F;
                        REP #$30                             ;88B9E2|C230    |      ;
                        LDX.B r_ev_37-$E68                   ;88B9E4|A637    |000E9F;
                        LDY.W #$0100                         ;88B9E6|A00001  |      ;
-                       LDA.W r_0005,X                       ;88B9E9|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;88B9E9|BD0500  |860005;
                        CMP.B r_ev_05_xPos-$E68              ;88B9EC|C505    |000E6D;
                        BCS CODE_88B9F3                      ;88B9EE|B003    |88B9F3;
                        LDY.W #$FF00                         ;88B9F0|A000FF  |      ;
@@ -9091,7 +9091,7 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
           CODE_88BA10:
                        JSL.L CODE_82823E                    ;88BA10|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;88BA14|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BA14|22EA8E84|848EEA;
                        RTS                                  ;88BA18|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9150,7 +9150,7 @@ eventID_rexBase_61_main:
                        JSL.L playerGrabedRoutine            ;88BA77|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88BA7B:
-                       JSL.L updateEv_13_14_17_0f           ;88BA7B|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BA7B|22EA8E84|848EEA;
                        RTS                                  ;88BA7F|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9164,7 +9164,7 @@ eventID_rexBase_61_main:
                        LDA.B #$08                           ;88BA8D|A908    |      ;
                        STA.B r_ev_02_action-$E68            ;88BA8F|8502    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;88BA91|6403    |000E6B;
-                       STA.W r_1f3f                         ;88BA93|8D3F1F  |861F3F;
+                       STA.W r6_1f3f                        ;88BA93|8D3F1F  |861F3F;
                        RTS                                  ;88BA96|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9203,7 +9203,7 @@ eventID_rexBase_61_main:
                        STX.B r_ev_1a_xSpdSub-$E68           ;88BAC6|861A    |000E82;
                        SEP #$30                             ;88BAC8|E230    |      ;
                        STZ.B r_ev_3a-$E68                   ;88BACA|643A    |000EA2;
-                       STZ.W r_1f40                         ;88BACC|9C401F  |861F40;
+                       STZ.W r6_1f40                        ;88BACC|9C401F  |861F40;
                        RTS                                  ;88BACF|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9232,7 +9232,7 @@ eventID_rexBase_61_main:
           CODE_88BAF4:
                        SEP #$20                             ;88BAF4|E220    |      ;
                        JSL.L CODE_82823E                    ;88BAF6|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;88BAFA|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BAFA|22EA8E84|848EEA;
                        RTS                                  ;88BAFE|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9246,19 +9246,19 @@ eventID_rexBase_61_main:
                        LDA.B #$06                           ;88BB0C|A906    |      ;
                        STA.B r_ev_03_do-$E68                ;88BB0E|8503    |000E6B;
                        LDA.B #$80                           ;88BB10|A980    |      ;
-                       TSB.W r_1f40                         ;88BB12|0C401F  |861F40;
+                       TSB.W r6_1f40                        ;88BB12|0C401F  |861F40;
                        RTS                                  ;88BB15|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BB16:
                        SEP #$20                             ;88BB16|E220    |      ;
                        JSL.L CODE_82825D                    ;88BB18|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;88BB1C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BB1C|22EA8E84|848EEA;
                        RTS                                  ;88BB20|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BB21:
-                       LDA.W r_1f40                         ;88BB21|AD401F  |861F40;
+                       LDA.W r6_1f40                        ;88BB21|AD401F  |861F40;
                        CMP.B #$C0                           ;88BB24|C9C0    |      ;
                        BNE CODE_88BB33                      ;88BB26|D00B    |88BB33;
                        LDA.B #$08                           ;88BB28|A908    |      ;
@@ -9269,12 +9269,12 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BB33:
-                       JSL.L updateEv_13_14_17_0f           ;88BB33|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BB33|22EA8E84|848EEA;
                        RTS                                  ;88BB37|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BB38:
-                       JSL.L updateEv_13_14_17_0f           ;88BB38|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BB38|22EA8E84|848EEA;
                        DEC.B r_ev_33-$E68                   ;88BB3C|C633    |000E9B;
                        BNE CODE_88BB59                      ;88BB3E|D019    |88BB59;
                        LDA.B #$0A                           ;88BB40|A90A    |      ;
@@ -9298,7 +9298,7 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BB5C:
-                       JSL.L updateEv_13_14_17_0f           ;88BB5C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BB5C|22EA8E84|848EEA;
                        DEC.B r_ev_33-$E68                   ;88BB60|C633    |000E9B;
                        BNE CODE_88BB88                      ;88BB62|D024    |88BB88;
                        JSL.L mainPlayer_00                  ;88BB64|22869084|849086;
@@ -9336,7 +9336,7 @@ eventID_rexBase_61_main:
                        STA.B r_ev_1c_ySpdSub-$E68           ;88BB8F|851C    |000E84;
                        LDA.B #$02                           ;88BB91|A902    |      ;
                        STA.B r_ev_1d_ySpd-$E68              ;88BB93|851D    |000E85;
-                       STZ.W r_1f41                         ;88BB95|9C411F  |861F41;
+                       STZ.W r6_1f41                        ;88BB95|9C411F  |861F41;
                        RTS                                  ;88BB98|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9350,14 +9350,14 @@ eventID_rexBase_61_main:
                        LDA.B #$08                           ;88BBA6|A908    |      ;
                        STA.B r_ev_02_action-$E68            ;88BBA8|8502    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;88BBAA|6403    |000E6B;
-                       STA.W r_1f41                         ;88BBAC|8D411F  |861F41;
+                       STA.W r6_1f41                        ;88BBAC|8D411F  |861F41;
                        RTS                                  ;88BBAF|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BBB0:
                        SEP #$20                             ;88BBB0|E220    |      ;
                        JSL.L CODE_82825D                    ;88BBB2|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;88BBB6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BBB6|22EA8E84|848EEA;
                        RTS                                  ;88BBBA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9381,7 +9381,7 @@ eventID_rexBase_61_main:
                        LDA.B #$F6                           ;88BBD2|A9F6    |      ;
                        JSL.L CODE_80887F                    ;88BBD4|227F8880|80887F;
                        LDA.B #$30                           ;88BBD8|A930    |      ;
-                       TSB.W r_d_0bb9                       ;88BBDA|0CB90B  |860BB9;
+                       TSB.W r6_player_sprPal               ;88BBDA|0CB90B  |860BB9;
                        LDA.B #$FF                           ;88BBDD|A9FF    |      ;
                        STA.B r_ev_33-$E68                   ;88BBDF|8533    |000E9B;
                        JSR.W CODE_88BD71                    ;88BBE1|2071BD  |88BD71;
@@ -9393,7 +9393,7 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BBF2:
-                       LDA.W r_frameCounter1                ;88BBF2|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88BBF2|AD9C0B  |860B9C;
                        AND.B #$1F                           ;88BBF5|291F    |      ;
                        BNE CODE_88BBFF                      ;88BBF7|D006    |88BBFF;
                        LDA.B #$20                           ;88BBF9|A920    |      ;
@@ -9408,16 +9408,16 @@ eventID_rexBase_61_main:
           CODE_88BC07:
                        REP #$20                             ;88BC07|C220    |      ;
                        LDA.W #$FFE0                         ;88BC09|A9E0FF  |      ;
-                       STA.W r_0000                         ;88BC0C|8D0000  |860000;
+                       STA.W r6_0000                        ;88BC0C|8D0000  |860000;
                        LDA.W #$FFF0                         ;88BC0F|A9F0FF  |      ;
-                       STA.W r_0002                         ;88BC12|8D0200  |860002;
+                       STA.W r6_0002                        ;88BC12|8D0200  |860002;
                        LDA.W #$003F                         ;88BC15|A93F00  |      ;
-                       STA.W r_0004                         ;88BC18|8D0400  |860004;
+                       STA.W r6_0004                        ;88BC18|8D0400  |860004;
                        LDA.W #$001F                         ;88BC1B|A91F00  |      ;
-                       STA.W r_0006                         ;88BC1E|8D0600  |860006;
+                       STA.W r6_0006                        ;88BC1E|8D0600  |860006;
                        SEP #$20                             ;88BC21|E220    |      ;
                        LDA.B #$03                           ;88BC23|A903    |      ;
-                       STA.W r_0008                         ;88BC25|8D0800  |860008;
+                       STA.W r6_0008                        ;88BC25|8D0800  |860008;
                        JSL.L checkPlayerGear                ;88BC28|22B48082|8280B4;
                        JML.L CODE_84A4D0                    ;88BC2C|5CD0A484|84A4D0;
                                                             ;      |        |      ;
@@ -9439,8 +9439,8 @@ eventID_rexBase_61_main:
                        SEP #$30                             ;88BC52|E230    |      ;
                        PLB                                  ;88BC54|AB      |      ;
                        LDA.B #$3F                           ;88BC55|A93F    |      ;
-                       STA.W r_colorV_ca                    ;88BC57|8DCA00  |8600CA;
-                       STZ.W r_colorV_cb                    ;88BC5A|9CCB00  |8600CB;
+                       STA.W r6_colorV_ca                   ;88BC57|8DCA00  |8600CA;
+                       STZ.W r6_colorV_cb                   ;88BC5A|9CCB00  |8600CB;
                        LDA.B #$01                           ;88BC5D|A901    |      ;
                        STA.B r_ev_3d-$E68                   ;88BC5F|853D    |000EA5;
                        JSR.W CODE_88AD92                    ;88BC61|2092AD  |88AD92;
@@ -9450,7 +9450,7 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BC6C:
-                       LDA.W r_frameCounter1                ;88BC6C|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88BC6C|AD9C0B  |860B9C;
                        AND.B #$01                           ;88BC6F|2901    |      ;
                        BNE CODE_88BC7B                      ;88BC71|D008    |88BC7B;
                        LDA.B r_ev_3d-$E68                   ;88BC73|A53D    |000EA5;
@@ -9472,11 +9472,11 @@ eventID_rexBase_61_main:
                        LDA.B #$08                           ;88BC8D|A908    |      ;
                        STA.B r_ev_02_action-$E68            ;88BC8F|8502    |000E6A;
                        LDA.B #$1F                           ;88BC91|A91F    |      ;
-                       STA.W r_colorV_cb                    ;88BC93|8DCB00  |8600CB;
-                       STA.W r_colorV_cc                    ;88BC96|8DCC00  |8600CC;
-                       STA.W r_colorV_cd                    ;88BC99|8DCD00  |8600CD;
-                       STZ.W r_0aa1                         ;88BC9C|9CA10A  |860AA1;
-                       INC.W r_1f3f                         ;88BC9F|EE3F1F  |861F3F;
+                       STA.W r6_colorV_cb                   ;88BC93|8DCB00  |8600CB;
+                       STA.W r6_colorV_cc                   ;88BC96|8DCC00  |8600CC;
+                       STA.W r6_colorV_cd                   ;88BC99|8DCD00  |8600CD;
+                       STZ.W r6_0aa1                        ;88BC9C|9CA10A  |860AA1;
+                       INC.W r6_1f3f                        ;88BC9F|EE3F1F  |861F3F;
                        RTL                                  ;88BCA2|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9493,17 +9493,17 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BCB5:
-                       LDA.W r_frameCounter1                ;88BCB5|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88BCB5|AD9C0B  |860B9C;
                        AND.B #$01                           ;88BCB8|2901    |      ;
                        BNE CODE_88BCD5                      ;88BCBA|D019    |88BCD5;
-                       DEC.W r_colorV_cb                    ;88BCBC|CECB00  |8600CB;
-                       DEC.W r_colorV_cc                    ;88BCBF|CECC00  |8600CC;
-                       DEC.W r_colorV_cd                    ;88BCC2|CECD00  |8600CD;
+                       DEC.W r6_colorV_cb                   ;88BCBC|CECB00  |8600CB;
+                       DEC.W r6_colorV_cc                   ;88BCBF|CECC00  |8600CC;
+                       DEC.W r6_colorV_cd                   ;88BCC2|CECD00  |8600CD;
                        BNE CODE_88BCD5                      ;88BCC5|D00E    |88BCD5;
                        LDA.B #$01                           ;88BCC7|A901    |      ;
-                       STA.W r_1f23                         ;88BCC9|8D231F  |861F23;
+                       STA.W r6_1f23                        ;88BCC9|8D231F  |861F23;
                        LDA.B #$03                           ;88BCCC|A903    |      ;
-                       STA.W r_1f7b                         ;88BCCE|8D7B1F  |861F7B;
+                       STA.W r6_1f7b                        ;88BCCE|8D7B1F  |861F7B;
                        LDA.B #$0A                           ;88BCD1|A90A    |      ;
                        STA.B r_ev_02_action-$E68            ;88BCD3|8502    |000E6A;
                                                             ;      |        |      ;
@@ -9512,13 +9512,13 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BCD6:
-                       JML.L clearStates_00_02_0E           ;88BCD6|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88BCD6|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BCDA:
                        REP #$30                             ;88BCDA|C230    |      ;
                        LDX.B r_ev_37-$E68                   ;88BCDC|A637    |000E9F;
-                       LDA.W r_0005,X                       ;88BCDE|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;88BCDE|BD0500  |860005;
                        SEC                                  ;88BCE1|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88BCE2|E505    |000E6D;
                        BPL CODE_88BCEA                      ;88BCE4|1004    |88BCEA;
@@ -9528,7 +9528,7 @@ eventID_rexBase_61_main:
           CODE_88BCEA:
                        CMP.W #$0020                         ;88BCEA|C92000  |      ;
                        BCS CODE_88BD0D                      ;88BCED|B01E    |88BD0D;
-                       LDA.W r_d_player_xSubPos             ;88BCEF|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88BCEF|ADAD0B  |860BAD;
                        SEC                                  ;88BCF2|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88BCF3|E505    |000E6D;
                        BPL CODE_88BCFB                      ;88BCF5|1004    |88BCFB;
@@ -9556,7 +9556,7 @@ eventID_rexBase_61_main:
           CODE_88BD12:
                        REP #$30                             ;88BD12|C230    |      ;
                        LDX.B r_ev_37-$E68                   ;88BD14|A637    |000E9F;
-                       LDA.W r_0005,X                       ;88BD16|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;88BD16|BD0500  |860005;
                        SEC                                  ;88BD19|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88BD1A|E505    |000E6D;
                        BPL CODE_88BD22                      ;88BD1C|1004    |88BD22;
@@ -9570,38 +9570,38 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BD28:
-                       STZ.W r_0002                         ;88BD28|9C0200  |860002;
-                       STZ.W r_0003                         ;88BD2B|9C0300  |860003;
+                       STZ.W r6_0002                        ;88BD28|9C0200  |860002;
+                       STZ.W r6_0003                        ;88BD2B|9C0300  |860003;
                        LDA.B #$01                           ;88BD2E|A901    |      ;
                        BRA CODE_88BD3E                      ;88BD30|800C    |88BD3E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BD32:
                        LDA.B #$1A                           ;88BD32|A91A    |      ;
-                       STA.W r_0002                         ;88BD34|8D0200  |860002;
+                       STA.W r6_0002                        ;88BD34|8D0200  |860002;
                        LDA.B #$00                           ;88BD37|A900    |      ;
-                       STA.W r_0003                         ;88BD39|8D0300  |860003;
+                       STA.W r6_0003                        ;88BD39|8D0300  |860003;
                        LDA.B #$00                           ;88BD3C|A900    |      ;
                                                             ;      |        |      ;
           CODE_88BD3E:
-                       STA.W r_0000                         ;88BD3E|8D0000  |860000;
+                       STA.W r6_0000                        ;88BD3E|8D0000  |860000;
                        JSL.L findEnemyShotEmptySlot         ;88BD41|22588382|828358;
                        BNE CODE_88BD6E                      ;88BD45|D027    |88BD6E;
-                       INC.W r_0000,X                       ;88BD47|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88BD47|FE0000  |860000;
                        LDA.B #$2A                           ;88BD4A|A92A    |      ;
-                       STA.W r_000a,X                       ;88BD4C|9D0A00  |86000A;
-                       LDA.W r_0000                         ;88BD4F|AD0000  |860000;
-                       STA.W r_000b,X                       ;88BD52|9D0B00  |86000B;
+                       STA.W r6_000a,X                      ;88BD4C|9D0A00  |86000A;
+                       LDA.W r6_0000                        ;88BD4F|AD0000  |860000;
+                       STA.W r6_000b,X                      ;88BD52|9D0B00  |86000B;
                        LDA.B r_ev_11_sprAtri-$E68           ;88BD55|A511    |000E79;
-                       STA.W r_0011,X                       ;88BD57|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88BD57|9D1100  |860011;
                        LDA.B r_ev_18_gfxSlot-$E68           ;88BD5A|A518    |000E80;
-                       STA.W r_0018,X                       ;88BD5C|9D1800  |860018;
+                       STA.W r6_0018,X                      ;88BD5C|9D1800  |860018;
                        REP #$21                             ;88BD5F|C221    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;88BD61|A508    |000E70;
-                       ADC.W r_0002                         ;88BD63|6D0200  |860002;
-                       STA.W r_0008,X                       ;88BD66|9D0800  |860008;
+                       ADC.W r6_0002                        ;88BD63|6D0200  |860002;
+                       STA.W r6_0008,X                      ;88BD66|9D0800  |860008;
                        LDA.B r_ev_05_xPos-$E68              ;88BD69|A505    |000E6D;
-                       STA.W r_0005,X                       ;88BD6B|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88BD6B|9D0500  |860005;
                                                             ;      |        |      ;
           CODE_88BD6E:
                        SEP #$30                             ;88BD6E|E230    |      ;
@@ -9609,7 +9609,7 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BD71:
-                       LDA.W r_d_0bcf                       ;88BD71|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;88BD71|ADCF0B  |860BCF;
                        AND.B #$7F                           ;88BD74|297F    |      ;
                        BEQ CODE_88BD83                      ;88BD76|F00B    |88BD83;
                        REP #$10                             ;88BD78|C210    |      ;
@@ -9638,10 +9638,10 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BD97:
-                       LDA.W r_d_0bcf                       ;88BD97|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;88BD97|ADCF0B  |860BCF;
                        AND.B #$7F                           ;88BD9A|297F    |      ;
                        BEQ CODE_88BD96                      ;88BD9C|F0F8    |88BD96;
-                       LDA.W r_frameCounter1                ;88BD9E|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88BD9E|AD9C0B  |860B9C;
                        LSR A                                ;88BDA1|4A      |      ;
                        BCC CODE_88BDAD                      ;88BDA2|9009    |88BDAD;
                        LDA.B r_ev_36-$E68                   ;88BDA4|A536    |000E9E;
@@ -9691,7 +9691,7 @@ eventID_rexBase_61_main:
           CODE_88BDE0:
                        LDX.B r_ev_02_action-$E68            ;88BDE0|A602    |000E6A;
                        JSR.W (PTR16_88BDF6,X)               ;88BDE2|FCF6BD  |88BDF6;
-                       LDA.W r_1f42                         ;88BDE5|AD421F  |861F42;
+                       LDA.W r6_1f42                        ;88BDE5|AD421F  |861F42;
                        BEQ CODE_88BDEE                      ;88BDE8|F004    |88BDEE;
                        LDA.B #$04                           ;88BDEA|A904    |      ;
                        STA.B r_ev_01_state-$E68             ;88BDEC|8501    |000E69;
@@ -9736,7 +9736,7 @@ eventID_rexBase_61_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BE2C:
-                       JSL.L updateEv_13_14_17_0f           ;88BE2C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BE2C|22EA8E84|848EEA;
                        RTS                                  ;88BE30|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9758,7 +9758,7 @@ eventID_rexBase_61_main:
                        STA.B r_ev_01_state-$E68             ;88BE48|8501    |000E69;
                                                             ;      |        |      ;
           CODE_88BE4A:
-                       JSL.L updateEv_13_14_17_0f           ;88BE4A|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BE4A|22EA8E84|848EEA;
                        RTS                                  ;88BE4E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9782,7 +9782,7 @@ eventID_rexBase_61_main:
                        STZ.B r_ev_03_do-$E68                ;88BE6A|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88BE6C:
-                       JSL.L updateEv_13_14_17_0f           ;88BE6C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BE6C|22EA8E84|848EEA;
                        RTS                                  ;88BE70|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9805,7 +9805,7 @@ eventID_rexBase_61_main:
                        STZ.B r_ev_03_do-$E68                ;88BE8A|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88BE8C:
-                       JSL.L updateEv_13_14_17_0f           ;88BE8C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BE8C|22EA8E84|848EEA;
                        RTS                                  ;88BE90|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9833,7 +9833,7 @@ eventID_rexBase_61_main:
                        STZ.B r_ev_03_do-$E68                ;88BEB4|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88BEB6:
-                       JSL.L updateEv_13_14_17_0f           ;88BEB6|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BEB6|22EA8E84|848EEA;
                        RTS                                  ;88BEBA|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9860,7 +9860,7 @@ eventID_rexBase_61_main:
                        STZ.B r_ev_03_do-$E68                ;88BEDC|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88BEDE:
-                       JSL.L updateEv_13_14_17_0f           ;88BEDE|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BEDE|22EA8E84|848EEA;
                        RTS                                  ;88BEE2|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9875,7 +9875,7 @@ eventID_rexBase_61_main:
                        STZ.B r_ev_1e_weight-$E68            ;88BEF2|641E    |000E86;
                        LDA.B r_ev_08_yPos-$E68              ;88BEF4|A508    |000E70;
                        SEC                                  ;88BEF6|38      |      ;
-                       SBC.W r_d_player_yPos                ;88BEF7|EDB00B  |860BB0;
+                       SBC.W r6_player_yPos                 ;88BEF7|EDB00B  |860BB0;
                        BMI CODE_88BF00                      ;88BEFA|3004    |88BF00;
                        LSR A                                ;88BEFC|4A      |      ;
                        LSR A                                ;88BEFD|4A      |      ;
@@ -9904,7 +9904,7 @@ eventID_rexBase_61_main:
           CODE_88BF1D:
                        SEP #$20                             ;88BF1D|E220    |      ;
                        JSL.L CODE_8281B2                    ;88BF1F|22B28182|8281B2;
-                       JSL.L updateEv_13_14_17_0f           ;88BF23|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BF23|22EA8E84|848EEA;
                        RTS                                  ;88BF27|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9925,7 +9925,7 @@ eventID_rexBase_61_main:
                        STA.B r_ev_01_state-$E68             ;88BF3D|8501    |000E69;
                                                             ;      |        |      ;
           CODE_88BF3F:
-                       JSL.L updateEv_13_14_17_0f           ;88BF3F|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88BF3F|22EA8E84|848EEA;
                        RTS                                  ;88BF43|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -9972,32 +9972,32 @@ spiderBoss_62_action_00:
                        LDA.W #$D643                         ;88BF80|A943D6  |      ;
                        STA.B r_ev_20_hitBoxAddr-$E68        ;88BF83|8520    |000E88;
                        LDA.W #$02D2                         ;88BF85|A9D202  |      ;
-                       STA.W r_cam_BG0_xPos_ff              ;88BF88|8D8D1E  |861E8D;
+                       STA.W r6_cam_BG0_xPos_ff             ;88BF88|8D8D1E  |861E8D;
                        LDA.W #$0098                         ;88BF8B|A99800  |      ;
-                       STA.W r_cam_BG1_slot                 ;88BF8E|8D901E  |861E90;
+                       STA.W r6_cam_BG1_slot                ;88BF8E|8D901E  |861E90;
                        LDA.W #$1100                         ;88BF91|A90011  |      ;
-                       STA.W r_levelSpecFlag                ;88BF94|8D5E1E  |861E5E;
-                       STA.W r_cam_BG0_xPos_lock            ;88BF97|8D601E  |861E60;
+                       STA.W r6_levelSpecFlag               ;88BF94|8D5E1E  |861E5E;
+                       STA.W r6_cam_BG0_xPos_lock           ;88BF97|8D601E  |861E60;
                        LDA.W #$0200                         ;88BF9A|A90002  |      ;
-                       STA.W r_1e68                         ;88BF9D|8D681E  |861E68;
-                       STA.W r_cam_BG0_yPos_lock_Set        ;88BFA0|8D6E1E  |861E6E;
+                       STA.W r6_1e68                        ;88BF9D|8D681E  |861E68;
+                       STA.W r6_cam_BG0_yPos_lock_Set       ;88BFA0|8D6E1E  |861E6E;
                        SEP #$20                             ;88BFA3|E220    |      ;
                        STZ.B r_ev_34-$E68                   ;88BFA5|6434    |000E9C;
                        LDA.B #$02                           ;88BFA7|A902    |      ;
-                       TRB.W r_BG_enableMask                ;88BFA9|1CC000  |8600C0;
+                       TRB.W r6_BG_enableMask               ;88BFA9|1CC000  |8600C0;
                        JSL.L CODE_849FEB                    ;88BFAC|22EB9F84|849FEB;
                        JML.L CODE_80E018                    ;88BFB0|5C18E080|80E018;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BFB4:
-                       LDA.W r_1f27                         ;88BFB4|AD271F  |861F27;
+                       LDA.W r6_1f27                        ;88BFB4|AD271F  |861F27;
                        BNE CODE_88BFCB                      ;88BFB7|D012    |88BFCB;
                        LDA.B #$04                           ;88BFB9|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;88BFBB|8502    |000E6A;
                        LDA.B #$D2                           ;88BFBD|A9D2    |      ;
-                       STA.W r_cam_BG0_xPos_ff              ;88BFBF|8D8D1E  |861E8D;
+                       STA.W r6_cam_BG0_xPos_ff             ;88BFBF|8D8D1E  |861E8D;
                        LDA.B #$03                           ;88BFC2|A903    |      ;
-                       STA.W r_1e8e                         ;88BFC4|8D8E1E  |861E8E;
+                       STA.W r6_1e8e                        ;88BFC4|8D8E1E  |861E8E;
                        JSL.L CODE_80E018                    ;88BFC7|2218E080|80E018;
                                                             ;      |        |      ;
           CODE_88BFCB:
@@ -10005,16 +10005,16 @@ spiderBoss_62_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88BFCC:
-                       LDA.W r_1f27                         ;88BFCC|AD271F  |861F27;
+                       LDA.W r6_1f27                        ;88BFCC|AD271F  |861F27;
                        BNE CODE_88BFCB                      ;88BFCF|D0FA    |88BFCB;
                        LDA.B #$02                           ;88BFD1|A902    |      ;
                        STA.B r_ev_01_state-$E68             ;88BFD3|8501    |000E69;
                        STZ.B r_ev_02_action-$E68            ;88BFD5|6402    |000E6A;
                        LDA.B #$02                           ;88BFD7|A902    |      ;
-                       TSB.W r_BG_enableMask                ;88BFD9|0CC000  |8600C0;
+                       TSB.W r6_BG_enableMask               ;88BFD9|0CC000  |8600C0;
                        JSR.W CODE_88C310                    ;88BFDC|2010C3  |88C310;
                        JSL.L CODE_80E008                    ;88BFDF|2208E080|80E008;
-                       INC.W r_1e88                         ;88BFE3|EE881E  |861E88;
+                       INC.W r6_1e88                        ;88BFE3|EE881E  |861E88;
                                                             ;      |        |      ;
           CODE_88BFE6:
                        RTL                                  ;88BFE6|6B      |      ;
@@ -10063,8 +10063,8 @@ spiderBoss_62_action_00:
                        LDX.B r_ev_03_do-$E68                ;88C02D|A603    |000E6B;
                        BNE CODE_88C04C                      ;88C02F|D01B    |88C04C;
                        REP #$20                             ;88C031|C220    |      ;
-                       LDA.W r_levelSpecFlag                ;88C033|AD5E1E  |861E5E;
-                       CMP.W r_cam_BG0_LeftBorder           ;88C036|CD561E  |861E56;
+                       LDA.W r6_levelSpecFlag               ;88C033|AD5E1E  |861E5E;
+                       CMP.W r6_cam_BG0_LeftBorder          ;88C036|CD561E  |861E56;
                        BNE CODE_88C045                      ;88C039|D00A    |88C045;
                        SEP #$20                             ;88C03B|E220    |      ;
                        INC.B r_ev_03_do-$E68                ;88C03D|E603    |000E6B;
@@ -10178,7 +10178,7 @@ spiderBoss_62_action_00:
                        STZ.B r_ev_27_health-$E68            ;88C0D7|6427    |000E8F;
                        REP #$20                             ;88C0D9|C220    |      ;
                        TDC                                  ;88C0DB|7B      |      ;
-                       STA.W r_1f0e                         ;88C0DC|8D0E1F  |861F0E;
+                       STA.W r6_1f0e                        ;88C0DC|8D0E1F  |861F0E;
                        SEP #$20                             ;88C0DF|E220    |      ;
                        LDA.B #$02                           ;88C0E1|A902    |      ;
                        STA.B r_ev_33-$E68                   ;88C0E3|8533    |000E9B;
@@ -10262,7 +10262,7 @@ spiderBoss_62_action_00:
           CODE_88C152:
                        REP #$20                             ;88C152|C220    |      ;
                        LDY.B r_ev_35-$E68                   ;88C154|A435    |000E9D;
-                       LDA.W r_0027,Y                       ;88C156|B92700  |860027;
+                       LDA.W r6_0027,Y                      ;88C156|B92700  |860027;
                        AND.W #$007F                         ;88C159|297F00  |      ;
                        CMP.W #$0010                         ;88C15C|C91000  |      ;
                        BCS CODE_88C166                      ;88C15F|B005    |88C166;
@@ -10325,11 +10325,11 @@ spiderBoss_62_action_00:
                        STZ.B r_ev_03_do-$E68                ;88C1B0|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88C1B2:
-                       LDA.W $0C32                          ;88C1B2|AD320C  |860C32;
+                       LDA.W r6_powerUp_actionInv           ;88C1B2|AD320C  |860C32;
                        BNE CODE_88C1CD                      ;88C1B5|D016    |88C1CD;
                        LDA.W $0C2F                          ;88C1B7|AD2F0C  |860C2F;
                        BMI CODE_88C1CD                      ;88C1BA|3011    |88C1CD;
-                       LDA.W r_d_0bd3                       ;88C1BC|ADD30B  |860BD3;
+                       LDA.W r6_player_bd3                  ;88C1BC|ADD30B  |860BD3;
                        BIT.B #$03                           ;88C1BF|8903    |      ;
                        BEQ CODE_88C1CD                      ;88C1C1|F00A    |88C1CD;
                        BIT.B #$04                           ;88C1C3|8904    |      ;
@@ -10357,7 +10357,7 @@ spiderBoss_62_action_00:
                        REP #$30                             ;88C1DD|C230    |      ;
                        LDX.B r_ev_35-$E68                   ;88C1DF|A635    |000E9D;
                        LDY.W #$0100                         ;88C1E1|A00001  |      ;
-                       LDA.W r_0005,X                       ;88C1E4|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;88C1E4|BD0500  |860005;
                        CMP.B r_ev_05_xPos-$E68              ;88C1E7|C505    |000E6D;
                        BCS CODE_88C1EE                      ;88C1E9|B003    |88C1EE;
                        LDY.W #$FF00                         ;88C1EB|A000FF  |      ;
@@ -10382,10 +10382,10 @@ spiderBoss_62_action_00:
           CODE_88C201:
                        REP #$10                             ;88C201|C210    |      ;
                        LDX.B r_ev_35-$E68                   ;88C203|A635    |000E9D;
-                       LDA.W r_0005,X                       ;88C205|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;88C205|BD0500  |860005;
                        STA.B r_ev_05_xPos-$E68              ;88C208|8505    |000E6D;
                        SEP #$10                             ;88C20A|E210    |      ;
-                       LDA.W r_1f3f                         ;88C20C|AD3F1F  |861F3F;
+                       LDA.W r6_1f3f                        ;88C20C|AD3F1F  |861F3F;
                        BEQ CODE_88C217                      ;88C20F|F006    |88C217;
                        LDA.B #$08                           ;88C211|A908    |      ;
                        STA.B r_ev_02_action-$E68            ;88C213|8502    |000E6A;
@@ -10441,7 +10441,7 @@ spiderBoss_62_action_00:
                        LDA.B #$04                           ;88C259|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;88C25B|8503    |000E6B;
                        LDA.B #$40                           ;88C25D|A940    |      ;
-                       TSB.W r_1f40                         ;88C25F|0C401F  |861F40;
+                       TSB.W r6_1f40                        ;88C25F|0C401F  |861F40;
                        RTS                                  ;88C262|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -10452,7 +10452,7 @@ spiderBoss_62_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C26A:
-                       LDA.W r_1f40                         ;88C26A|AD401F  |861F40;
+                       LDA.W r6_1f40                        ;88C26A|AD401F  |861F40;
                        CMP.B #$C0                           ;88C26D|C9C0    |      ;
                        BNE CODE_88C279                      ;88C26F|D008    |88C279;
                        LDA.B #$06                           ;88C271|A906    |      ;
@@ -10475,7 +10475,7 @@ spiderBoss_62_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C283:
-                       LDA.W r_1f41                         ;88C283|AD411F  |861F41;
+                       LDA.W r6_1f41                        ;88C283|AD411F  |861F41;
                        BEQ CODE_88C28E                      ;88C286|F006    |88C28E;
                        LDA.B #$08                           ;88C288|A908    |      ;
                        STA.B r_ev_02_action-$E68            ;88C28A|8502    |000E6A;
@@ -10515,7 +10515,7 @@ spiderBoss_62_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C2B2:
-                       LDA.W r_frameCounter1                ;88C2B2|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88C2B2|AD9C0B  |860B9C;
                        AND.B #$1F                           ;88C2B5|291F    |      ;
                        BNE CODE_88C2BF                      ;88C2B7|D006    |88C2BF;
                        LDA.B #$20                           ;88C2B9|A920    |      ;
@@ -10530,25 +10530,25 @@ spiderBoss_62_action_00:
           CODE_88C2C7:
                        REP #$20                             ;88C2C7|C220    |      ;
                        LDA.W #$FFE0                         ;88C2C9|A9E0FF  |      ;
-                       STA.W r_0000                         ;88C2CC|8D0000  |860000;
+                       STA.W r6_0000                        ;88C2CC|8D0000  |860000;
                        LDA.W #$FFF0                         ;88C2CF|A9F0FF  |      ;
-                       STA.W r_0002                         ;88C2D2|8D0200  |860002;
+                       STA.W r6_0002                        ;88C2D2|8D0200  |860002;
                        LDA.W #$003F                         ;88C2D5|A93F00  |      ;
-                       STA.W r_0004                         ;88C2D8|8D0400  |860004;
+                       STA.W r6_0004                        ;88C2D8|8D0400  |860004;
                        LDA.W #$001F                         ;88C2DB|A91F00  |      ;
-                       STA.W r_0006                         ;88C2DE|8D0600  |860006;
+                       STA.W r6_0006                        ;88C2DE|8D0600  |860006;
                        SEP #$20                             ;88C2E1|E220    |      ;
                        LDA.B #$07                           ;88C2E3|A907    |      ;
-                       STA.W r_0008                         ;88C2E5|8D0800  |860008;
+                       STA.W r6_0008                        ;88C2E5|8D0800  |860008;
                        JML.L CODE_84A4D0                    ;88C2E8|5CD0A484|84A4D0;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C2EC:
-                       LDA.W r_1f3f                         ;88C2EC|AD3F1F  |861F3F;
+                       LDA.W r6_1f3f                        ;88C2EC|AD3F1F  |861F3F;
                        BEQ CODE_88C2FA                      ;88C2EF|F009    |88C2FA;
                        LDA.B #$15                           ;88C2F1|A915    |      ;
-                       STA.W r_BG_enableMask                ;88C2F3|8DC000  |8600C0;
-                       JML.L clearStates_00_02_0E           ;88C2F6|5C988382|828398;
+                       STA.W r6_BG_enableMask               ;88C2F3|8DC000  |8600C0;
+                       JML.L despawnEvent_clear_00_02_0E    ;88C2F6|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C2FA:
@@ -10557,12 +10557,12 @@ spiderBoss_62_action_00:
                                                             ;      |        |      ;
           CODE_88C2FB:
                        REP #$20                             ;88C2FB|C220    |      ;
-                       LDA.W r_cam_BG0_xPos_ff              ;88C2FD|AD8D1E  |861E8D;
-                       STA.W r_1eaa                         ;88C300|8DAA1E  |861EAA;
-                       LDA.W r_cam_BG1_slot                 ;88C303|AD901E  |861E90;
-                       STA.W r_1eac                         ;88C306|8DAC1E  |861EAC;
+                       LDA.W r6_cam_BG0_xPos_ff             ;88C2FD|AD8D1E  |861E8D;
+                       STA.W r6_1eaa                        ;88C300|8DAA1E  |861EAA;
+                       LDA.W r6_cam_BG1_slot                ;88C303|AD901E  |861E90;
+                       STA.W r6_1eac                        ;88C306|8DAC1E  |861EAC;
                        TDC                                  ;88C309|7B      |      ;
-                       STA.W r_1f2e                         ;88C30A|8D2E1F  |861F2E;
+                       STA.W r6_1f2e                        ;88C30A|8D2E1F  |861F2E;
                        SEP #$20                             ;88C30D|E220    |      ;
                        RTS                                  ;88C30F|60      |      ;
                                                             ;      |        |      ;
@@ -10570,17 +10570,17 @@ spiderBoss_62_action_00:
           CODE_88C310:
                        JSL.L loadEnitySlotBase              ;88C310|22218382|828321;
                        BNE CODE_88C330                      ;88C314|D01A    |88C330;
-                       INC.W r_0000,X                       ;88C316|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88C316|FE0000  |860000;
                        LDA.B #$61                           ;88C319|A961    |      ;
-                       STA.W r_000a,X                       ;88C31B|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88C31B|9D0A00  |86000A;
                        STX.B r_ev_35-$E68                   ;88C31E|8635    |000E9D;
                        REP #$20                             ;88C320|C220    |      ;
                        TDC                                  ;88C322|7B      |      ;
-                       STA.W r_0037,X                       ;88C323|9D3700  |860037;
+                       STA.W r6_0037,X                      ;88C323|9D3700  |860037;
                        LDA.B r_ev_05_xPos-$E68              ;88C326|A505    |000E6D;
-                       STA.W r_0005,X                       ;88C328|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88C328|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88C32B|A508    |000E70;
-                       STA.W r_0008,X                       ;88C32D|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88C32D|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_88C330:
                        SEP #$30                             ;88C330|E230    |      ;
@@ -10597,13 +10597,13 @@ spiderBoss_62_action_00:
                        JSL.L CODE_849C0E                    ;88C340|220E9C84|849C0E;
                        BCC CODE_88C35A                      ;88C344|9014    |88C35A;
                        LDA.B #$80                           ;88C346|A980    |      ;
-                       TSB.W r_d_0bd4                       ;88C348|0CD40B  |860BD4;
+                       TSB.W r6_player_bd4                  ;88C348|0CD40B  |860BD4;
                        LDA.B #$40                           ;88C34B|A940    |      ;
-                       TSB.W r_d_0bd4                       ;88C34D|0CD40B  |860BD4;
-                       LDY.W r_0000                         ;88C350|AC0000  |860000;
+                       TSB.W r6_player_bd4                  ;88C34D|0CD40B  |860BD4;
+                       LDY.W r6_0000                        ;88C350|AC0000  |860000;
                        BPL CODE_88C35A                      ;88C353|1005    |88C35A;
                        LDA.B #$40                           ;88C355|A940    |      ;
-                       TRB.W r_d_0bd4                       ;88C357|1CD40B  |860BD4;
+                       TRB.W r6_player_bd4                  ;88C357|1CD40B  |860BD4;
                                                             ;      |        |      ;
           CODE_88C35A:
                        PLX                                  ;88C35A|FA      |      ;
@@ -10615,7 +10615,7 @@ spiderBoss_62_action_00:
           CODE_88C360:
                        REP #$10                             ;88C360|C210    |      ;
                        LDX.B r_ev_35-$E68                   ;88C362|A635    |000E9D;
-                       LDA.W r_0002,X                       ;88C364|BD0200  |860002;
+                       LDA.W r6_0002,X                      ;88C364|BD0200  |860002;
                        CMP.B #$0E                           ;88C367|C90E    |      ;
                        SEP #$10                             ;88C369|E210    |      ;
                        RTS                                  ;88C36B|60      |      ;
@@ -10624,7 +10624,7 @@ spiderBoss_62_action_00:
           CODE_88C36C:
                        REP #$10                             ;88C36C|C210    |      ;
                        LDX.B r_ev_35-$E68                   ;88C36E|A635    |000E9D;
-                       LDA.W r_0002,X                       ;88C370|BD0200  |860002;
+                       LDA.W r6_0002,X                      ;88C370|BD0200  |860002;
                        CMP.B #$0C                           ;88C373|C90C    |      ;
                        SEP #$10                             ;88C375|E210    |      ;
                        RTS                                  ;88C377|60      |      ;
@@ -10633,7 +10633,7 @@ spiderBoss_62_action_00:
           CODE_88C378:
                        REP #$30                             ;88C378|C230    |      ;
                        LDX.B r_ev_35-$E68                   ;88C37A|A635    |000E9D;
-                       LDA.W r_0005,X                       ;88C37C|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;88C37C|BD0500  |860005;
                        SEC                                  ;88C37F|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88C380|E505    |000E6D;
                        BPL CODE_88C388                      ;88C382|1004    |88C388;
@@ -10647,14 +10647,14 @@ spiderBoss_62_action_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C38E:
-                       LDA.W $0C32                          ;88C38E|AD320C  |860C32;
+                       LDA.W r6_powerUp_actionInv           ;88C38E|AD320C  |860C32;
                        BNE CODE_88C3A5                      ;88C391|D012    |88C3A5;
-                       LDA.W $0C06                          ;88C393|AD060C  |860C06;
+                       LDA.W r6_stateFlag                   ;88C393|AD060C  |860C06;
                        AND.B #$03                           ;88C396|2903    |      ;
                        CMP.B #$03                           ;88C398|C903    |      ;
                        BNE CODE_88C3A5                      ;88C39A|D009    |88C3A5;
                        LDA.B #$06                           ;88C39C|A906    |      ;
-                       STA.W r_d_0bce                       ;88C39E|8DCE0B  |860BCE;
+                       STA.W r6_player_bce                  ;88C39E|8DCE0B  |860BCE;
                        JSL.L CODE_849F2F                    ;88C3A1|222F9F84|849F2F;
                                                             ;      |        |      ;
           CODE_88C3A5:
@@ -10664,7 +10664,7 @@ spiderBoss_62_action_00:
           CODE_88C3A6:
                        REP #$10                             ;88C3A6|C210    |      ;
                        LDX.B r_ev_35-$E68                   ;88C3A8|A635    |000E9D;
-                       LDA.W r_0002,X                       ;88C3AA|BD0200  |860002;
+                       LDA.W r6_0002,X                      ;88C3AA|BD0200  |860002;
                        CMP.B #$10                           ;88C3AD|C910    |      ;
                        SEP #$10                             ;88C3AF|E210    |      ;
                        RTS                                  ;88C3B1|60      |      ;
@@ -10689,7 +10689,7 @@ eventID_zeroStage1_65_main:
                                                             ;      |        |      ;
 zeroStage1_65_state_00:
                        REP #$20                             ;88C3CB|C220    |      ;
-                       LDA.W r_d_player_yPos                ;88C3CD|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;88C3CD|ADB00B  |860BB0;
                        CMP.W #$00C0                         ;88C3D0|C9C000  |      ;
                        SEP #$20                             ;88C3D3|E220    |      ;
                        BCS CODE_88C3F4                      ;88C3D5|B01D    |88C3F4;
@@ -10697,13 +10697,13 @@ zeroStage1_65_state_00:
                        STA.B r_ev_01_state-$E68             ;88C3D9|8501    |000E69;
                        JSL.L CODE_849F8A                    ;88C3DB|228A9F84|849F8A;
                        REP #$20                             ;88C3DF|C220    |      ;
-                       STZ.W r_cam_BG0_yPos_lock_Set        ;88C3E1|9C6E1E  |861E6E;
-                       STZ.W r_1e68                         ;88C3E4|9C681E  |861E68;
+                       STZ.W r6_cam_BG0_yPos_lock_Set       ;88C3E1|9C6E1E  |861E6E;
+                       STZ.W r6_1e68                        ;88C3E4|9C681E  |861E68;
                        SEP #$20                             ;88C3E7|E220    |      ;
                        LDA.B #$F6                           ;88C3E9|A9F6    |      ;
                        LDY.B #$03                           ;88C3EB|A003    |      ;
                        JSL.L CODE_80887F                    ;88C3ED|227F8880|80887F;
-                       INC.W r_1f49                         ;88C3F1|EE491F  |861F49;
+                       INC.W r6_1f49                        ;88C3F1|EE491F  |861F49;
                                                             ;      |        |      ;
           CODE_88C3F4:
                        STZ.B r_ev_27_health-$E68            ;88C3F4|6427    |000E8F;
@@ -10723,14 +10723,14 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
           CODE_88C404:
                        REP #$20                             ;88C404|C220    |      ;
-                       LDA.W r_cam_BG0_yPos_target          ;88C406|AD501E  |861E50;
+                       LDA.W r6_cam_BG0_yPos_target         ;88C406|AD501E  |861E50;
                        SEP #$20                             ;88C409|E220    |      ;
                        BNE CODE_88C418                      ;88C40B|D00B    |88C418;
                        LDA.B #$1E                           ;88C40D|A91E    |      ;
                        STA.B r_ev_33-$E68                   ;88C40F|8533    |000E9B;
                        LDA.B #$02                           ;88C411|A902    |      ;
                        STA.B r_ev_02_action-$E68            ;88C413|8502    |000E6A;
-                       STZ.W r_1f49                         ;88C415|9C491F  |861F49;
+                       STZ.W r6_1f49                        ;88C415|9C491F  |861F49;
                                                             ;      |        |      ;
           CODE_88C418:
                        RTL                                  ;88C418|6B      |      ;
@@ -10771,13 +10771,13 @@ zeroStage1_65_state_00:
                        BNE CODE_88C487                      ;88C449|D03C    |88C487;
                        JSL.L CODE_8282D3                    ;88C44B|22D38282|8282D3;
                        BNE CODE_88C488                      ;88C44F|D037    |88C488;
-                       INC.W r_0000,X                       ;88C451|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88C451|FE0000  |860000;
                        LDA.B #$3E                           ;88C454|A93E    |      ;
-                       STA.W r_000a,X                       ;88C456|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88C456|9D0A00  |86000A;
                        STX.B r_ev_0c_parent-$E68            ;88C459|860C    |000E74;
                        REP #$20                             ;88C45B|C220    |      ;
                        TDC                                  ;88C45D|7B      |      ;
-                       STA.W r_000c,X                       ;88C45E|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;88C45E|9D0C00  |86000C;
                        LDA.W #$FFE0                         ;88C461|A9E0FF  |      ;
                        STA.B r_ev_08_yPos-$E68              ;88C464|8508    |000E70;
                        LDA.W #$00D0                         ;88C466|A9D000  |      ;
@@ -10817,14 +10817,14 @@ zeroStage1_65_state_00:
           CODE_88C498:
                        JSL.L loadEnitySlotBase              ;88C498|22218382|828321;
                        BNE CODE_88C4CE                      ;88C49C|D030    |88C4CE;
-                       INC.W r_0000,X                       ;88C49E|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88C49E|FE0000  |860000;
                        LDA.B #$26                           ;88C4A1|A926    |      ;
-                       STA.W r_000a,X                       ;88C4A3|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88C4A3|9D0A00  |86000A;
                        REP #$20                             ;88C4A6|C220    |      ;
                        LDA.W #$00C0                         ;88C4A8|A9C000  |      ;
-                       STA.W r_0005,X                       ;88C4AB|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88C4AB|9D0500  |860005;
                        LDA.W #$FFFF                         ;88C4AE|A9FFFF  |      ;
-                       STA.W r_0008,X                       ;88C4B1|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88C4B1|9D0800  |860008;
                        STX.B r_ev_20_hitBoxAddr-$E68        ;88C4B4|8620    |000E88;
                        LDA.W #$FFEE                         ;88C4B6|A9EEFF  |      ;
                        STA.B r_ev_08_yPos-$E68              ;88C4B9|8508    |000E70;
@@ -10864,7 +10864,7 @@ zeroStage1_65_state_00:
                        LDX.B r_ev_20_hitBoxAddr-$E68        ;88C4EE|A620    |000E88;
                        CLC                                  ;88C4F0|18      |      ;
                        ADC.W #$0011                         ;88C4F1|691100  |      ;
-                       STA.W r_0008,X                       ;88C4F4|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88C4F4|9D0800  |860008;
                        SEP #$30                             ;88C4F7|E230    |      ;
                        JML.L checkPlayerGear                ;88C4F9|5CB48082|8280B4;
                                                             ;      |        |      ;
@@ -10873,15 +10873,15 @@ zeroStage1_65_state_00:
                        LDA.B #$04                           ;88C4FD|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;88C4FF|8502    |000E6A;
                        LDA.B #$80                           ;88C501|A980    |      ;
-                       STA.W r_0000                         ;88C503|8D0000  |860000;
+                       STA.W r6_0000                        ;88C503|8D0000  |860000;
                        LDA.B #$50                           ;88C506|A950    |      ;
-                       STA.W r_0002                         ;88C508|8D0200  |860002;
+                       STA.W r6_0002                        ;88C508|8D0200  |860002;
                        LDA.B #$58                           ;88C50B|A958    |      ;
-                       STA.W r_0004                         ;88C50D|8D0400  |860004;
+                       STA.W r6_0004                        ;88C50D|8D0400  |860004;
                        LDA.B #$30                           ;88C510|A930    |      ;
-                       STA.W r_0006                         ;88C512|8D0600  |860006;
+                       STA.W r6_0006                        ;88C512|8D0600  |860006;
                        LDA.B #$12                           ;88C515|A912    |      ;
-                       STA.W r_0008                         ;88C517|8D0800  |860008;
+                       STA.W r6_0008                        ;88C517|8D0800  |860008;
                        JSL.L CODE_83F74A                    ;88C51A|224AF783|83F74A;
                        JML.L checkPlayerGear                ;88C51E|5CB48082|8280B4;
                                                             ;      |        |      ;
@@ -10894,13 +10894,13 @@ zeroStage1_65_state_00:
                        LDA.B r_ev_08_yPos-$E68              ;88C52C|A508    |000E70;
                        CLC                                  ;88C52E|18      |      ;
                        ADC.W #$0011                         ;88C52F|691100  |      ;
-                       STA.W r_0008,X                       ;88C532|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88C532|9D0800  |860008;
                        SEP #$30                             ;88C535|E230    |      ;
                        JML.L checkPlayerGear                ;88C537|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C53B:
-                       LDA.W r_1f2c                         ;88C53B|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88C53B|AD2C1F  |861F2C;
                        BMI CODE_88C551                      ;88C53E|3011    |88C551;
                        LDA.B #$0E                           ;88C540|A90E    |      ;
                        STA.B r_ev_33-$E68                   ;88C542|8533    |000E9B;
@@ -10923,7 +10923,7 @@ zeroStage1_65_state_00:
                        STA.B r_ev_01_state-$E68             ;88C55F|8501    |000E69;
                        STZ.B r_ev_02_action-$E68            ;88C561|6402    |000E6A;
                        LDA.B #$01                           ;88C563|A901    |      ;
-                       STA.W r_1f3f                         ;88C565|8D3F1F  |861F3F;
+                       STA.W r6_1f3f                        ;88C565|8D3F1F  |861F3F;
                        JSL.L CODE_84A003                    ;88C568|2203A084|84A003;
                                                             ;      |        |      ;
           CODE_88C56C:
@@ -10931,7 +10931,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C570:
-                       LDA.W r_1f3f                         ;88C570|AD3F1F  |861F3F;
+                       LDA.W r6_1f3f                        ;88C570|AD3F1F  |861F3F;
                        BNE CODE_88C58B                      ;88C573|D016    |88C58B;
                        LDA.B #$F6                           ;88C575|A9F6    |      ;
                        LDY.B #$03                           ;88C577|A003    |      ;
@@ -10966,7 +10966,7 @@ zeroStage1_65_state_00:
                        BNE CODE_88C5B8                      ;88C5A1|D015    |88C5B8;
                        LDA.B #$02                           ;88C5A3|A902    |      ;
                        STA.B r_ev_02_action-$E68            ;88C5A5|8502    |000E6A;
-                       INC.W r_1f08                         ;88C5A7|EE081F  |861F08;
+                       INC.W r6_1f08                        ;88C5A7|EE081F  |861F08;
                        JSL.L CODE_80B071                    ;88C5AA|2271B080|80B071;
                        LDA.B #$14                           ;88C5AE|A914    |      ;
                        STA.B r_ev_33-$E68                   ;88C5B0|8533    |000E9B;
@@ -11022,15 +11022,15 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
           CODE_88C5FD:
                        LDA.B #$80                           ;88C5FD|A980    |      ;
-                       STA.W r_0000                         ;88C5FF|8D0000  |860000;
+                       STA.W r6_0000                        ;88C5FF|8D0000  |860000;
                        LDA.B #$50                           ;88C602|A950    |      ;
-                       STA.W r_0002                         ;88C604|8D0200  |860002;
+                       STA.W r6_0002                        ;88C604|8D0200  |860002;
                        LDA.B #$58                           ;88C607|A958    |      ;
-                       STA.W r_0004                         ;88C609|8D0400  |860004;
+                       STA.W r6_0004                        ;88C609|8D0400  |860004;
                        LDA.B #$30                           ;88C60C|A930    |      ;
-                       STA.W r_0006                         ;88C60E|8D0600  |860006;
+                       STA.W r6_0006                        ;88C60E|8D0600  |860006;
                        LDA.B #$13                           ;88C611|A913    |      ;
-                       STA.W r_0008                         ;88C613|8D0800  |860008;
+                       STA.W r6_0008                        ;88C613|8D0800  |860008;
                        JSL.L CODE_83F74A                    ;88C616|224AF783|83F74A;
                        LDA.B #$06                           ;88C61A|A906    |      ;
                        STA.B r_ev_02_action-$E68            ;88C61C|8502    |000E6A;
@@ -11044,13 +11044,13 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C62C:
-                       LDA.W r_1f2c                         ;88C62C|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88C62C|AD2C1F  |861F2C;
                        BMI CODE_88C649                      ;88C62F|3018    |88C649;
                        LDA.B #$02                           ;88C631|A902    |      ;
                        JSL.L playerGrabedRoutine            ;88C633|22078F84|848F07;
                        REP #$20                             ;88C637|C220    |      ;
                        TDC                                  ;88C639|7B      |      ;
-                       STA.W r_1f0e                         ;88C63A|8D0E1F  |861F0E;
+                       STA.W r6_1f0e                        ;88C63A|8D0E1F  |861F0E;
                        SEP #$20                             ;88C63D|E220    |      ;
                        LDY.B #$01                           ;88C63F|A001    |      ;
                        LDA.B #$04                           ;88C641|A904    |      ;
@@ -11063,7 +11063,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C64D:
-                       JSL.L updateEv_13_14_17_0f           ;88C64D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88C64D|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88C651|A50F    |000E77;
                        BEQ CODE_88C663                      ;88C653|F00E    |88C663;
                        BMI CODE_88C65F                      ;88C655|3008    |88C65F;
@@ -11081,7 +11081,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C667:
-                       LDA.W r_frameCounter1                ;88C667|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88C667|AD9C0B  |860B9C;
                        LSR A                                ;88C66A|4A      |      ;
                        BCC CODE_88C686                      ;88C66B|9019    |88C686;
                        LDA.B #$0C                           ;88C66D|A90C    |      ;
@@ -11149,7 +11149,7 @@ zeroStage1_65_state_00:
                        ADC.W #$D787                         ;88C6DD|6987D7  |      ;
                        STA.B r_ev_20_hitBoxAddr-$E68        ;88C6E0|8520    |000E88;
                        SEP #$20                             ;88C6E2|E220    |      ;
-                       LDA.W r_d_0bcf                       ;88C6E4|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;88C6E4|ADCF0B  |860BCF;
                        AND.B #$7F                           ;88C6E7|297F    |      ;
                        BEQ CODE_88C722                      ;88C6E9|F037    |88C722;
                        JSL.L CODE_849B43                    ;88C6EB|22439B84|849B43;
@@ -11159,8 +11159,8 @@ zeroStage1_65_state_00:
                        STA.B r_ev_01_state-$E68             ;88C6F5|8501    |000E69;
                        STZ.B r_ev_02_action-$E68            ;88C6F7|6402    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;88C6F9|6403    |000E6B;
-                       INC.W r_d_0bd8                       ;88C6FB|EED80B  |860BD8;
-                       INC.W r_bossDefeatInvFlag            ;88C6FE|EE0C1F  |861F0C;
+                       INC.W r6_player_invinsCounter        ;88C6FB|EED80B  |860BD8;
+                       INC.W r6_bossDefeatInvFlag           ;88C6FE|EE0C1F  |861F0C;
                        LDA.B #$0A                           ;88C701|A90A    |      ;
                        JSL.L playerGrabedRoutine            ;88C703|22078F84|848F07;
                        REP #$10                             ;88C707|C210    |      ;
@@ -11234,7 +11234,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
           CODE_88C776:
                        CLC                                  ;88C776|18      |      ;
-                       ADC.W r_d_player_xSubPos             ;88C777|6DAD0B  |860BAD;
+                       ADC.W r6_player_xPos                 ;88C777|6DAD0B  |860BAD;
                        SEC                                  ;88C77A|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88C77B|E505    |000E6D;
                        BCS CODE_88C783                      ;88C77D|B004    |88C783;
@@ -11255,7 +11255,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C796:
-                       JSL.L updateEv_13_14_17_0f           ;88C796|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88C796|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88C79A|A50F    |000E77;
                        BPL CODE_88C7A6                      ;88C79C|1008    |88C7A6;
                        LDA.B #$04                           ;88C79E|A904    |      ;
@@ -11335,7 +11335,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C813:
-                       JSL.L updateEv_13_14_17_0f           ;88C813|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88C813|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88C817|A50F    |000E77;
                        BPL CODE_88C827                      ;88C819|100C    |88C827;
                        LDA.B #$04                           ;88C81B|A904    |      ;
@@ -11381,7 +11381,7 @@ zeroStage1_65_state_00:
                        STZ.B r_ev_36-$E68                   ;88C85F|6436    |000E9E;
                                                             ;      |        |      ;
           CODE_88C861:
-                       JSL.L updateEv_13_14_17_0f           ;88C861|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88C861|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88C865|A50F    |000E77;
                        BEQ CODE_88C89E                      ;88C867|F035    |88C89E;
                        BPL CODE_88C86E                      ;88C869|1003    |88C86E;
@@ -11391,23 +11391,23 @@ zeroStage1_65_state_00:
           CODE_88C86E:
                        JSL.L findEnemyShotEmptySlot         ;88C86E|22588382|828358;
                        BNE CODE_88C89C                      ;88C872|D028    |88C89C;
-                       INC.W r_0000,X                       ;88C874|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88C874|FE0000  |860000;
                        LDA.B #$2D                           ;88C877|A92D    |      ;
-                       STA.W r_000a,X                       ;88C879|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88C879|9D0A00  |86000A;
                        LDA.B r_ev_0f_waitCount-$E68         ;88C87C|A50F    |000E77;
-                       STA.W r_000b,X                       ;88C87E|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88C87E|9D0B00  |86000B;
                        LDA.B r_ev_11_sprAtri-$E68           ;88C881|A511    |000E79;
                        AND.B #$40                           ;88C883|2940    |      ;
-                       STA.W r_0011,X                       ;88C885|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88C885|9D1100  |860011;
                        REP #$20                             ;88C888|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88C88A|A505    |000E6D;
-                       STA.W r_0005,X                       ;88C88C|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88C88C|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88C88F|A508    |000E70;
                        SEC                                  ;88C891|38      |      ;
                        SBC.W #$0014                         ;88C892|E91400  |      ;
-                       STA.W r_0008,X                       ;88C895|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88C895|9D0800  |860008;
                        TDC                                  ;88C898|7B      |      ;
-                       STA.W r_000c,X                       ;88C899|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;88C899|9D0C00  |86000C;
                                                             ;      |        |      ;
           CODE_88C89C:
                        SEP #$30                             ;88C89C|E230    |      ;
@@ -11426,7 +11426,7 @@ zeroStage1_65_state_00:
                        STA.B r_ev_36-$E68                   ;88C8AD|8536    |000E9E;
                                                             ;      |        |      ;
           CODE_88C8AF:
-                       JSL.L updateEv_13_14_17_0f           ;88C8AF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88C8AF|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88C8B3|A50F    |000E77;
                        BEQ CODE_88C8E9                      ;88C8B5|F032    |88C8E9;
                        BPL CODE_88C8BC                      ;88C8B7|1003    |88C8BC;
@@ -11436,19 +11436,19 @@ zeroStage1_65_state_00:
           CODE_88C8BC:
                        JSL.L findEnemyShotEmptySlot         ;88C8BC|22588382|828358;
                        BNE CODE_88C8E1                      ;88C8C0|D01F    |88C8E1;
-                       INC.W r_0000,X                       ;88C8C2|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88C8C2|FE0000  |860000;
                        LDA.B #$2C                           ;88C8C5|A92C    |      ;
-                       STA.W r_000a,X                       ;88C8C7|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88C8C7|9D0A00  |86000A;
                        LDA.B r_ev_11_sprAtri-$E68           ;88C8CA|A511    |000E79;
                        AND.B #$40                           ;88C8CC|2940    |      ;
-                       STA.W r_0011,X                       ;88C8CE|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88C8CE|9D1100  |860011;
                        REP #$20                             ;88C8D1|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88C8D3|A505    |000E6D;
-                       STA.W r_0005,X                       ;88C8D5|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88C8D5|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88C8D8|A508    |000E70;
-                       STA.W r_0008,X                       ;88C8DA|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88C8DA|9D0800  |860008;
                        TDC                                  ;88C8DD|7B      |      ;
-                       STA.W r_000c,X                       ;88C8DE|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;88C8DE|9D0C00  |86000C;
                                                             ;      |        |      ;
           CODE_88C8E1:
                        SEP #$30                             ;88C8E1|E230    |      ;
@@ -11512,7 +11512,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C939:
-                       JSL.L updateEv_13_14_17_0f           ;88C939|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88C939|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88C93D|A50F    |000E77;
                        BPL CODE_88C96F                      ;88C93F|102E    |88C96F;
                        LDA.B #$04                           ;88C941|A904    |      ;
@@ -11562,7 +11562,7 @@ zeroStage1_65_state_00:
                        BCC CODE_88C99E                      ;88C98E|900E    |88C99E;
                        SEC                                  ;88C990|38      |      ;
                        SBC.W #$0018                         ;88C991|E91800  |      ;
-                       CMP.W r_d_player_yPos                ;88C994|CDB00B  |860BB0;
+                       CMP.W r6_player_yPos                 ;88C994|CDB00B  |860BB0;
                        SEP #$20                             ;88C997|E220    |      ;
                        BCC CODE_88C99E                      ;88C999|9003    |88C99E;
                        STZ.B r_ev_03_do-$E68                ;88C99B|6403    |000E6B;
@@ -11603,7 +11603,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88C9C8:
-                       JSL.L updateEv_13_14_17_0f           ;88C9C8|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88C9C8|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88C9CC|A50F    |000E77;
                        BPL CODE_88C9F0                      ;88C9CE|1020    |88C9F0;
                        LDA.B #$04                           ;88C9D0|A904    |      ;
@@ -11661,7 +11661,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
           CODE_88CA26:
                        JSL.L CODE_84ACA5                    ;88CA26|22A5AC84|84ACA5;
-                       JSL.L updateEv_13_14_17_0f           ;88CA2A|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88CA2A|22EA8E84|848EEA;
                        DEC.B r_ev_33-$E68                   ;88CA2E|C633    |000E9B;
                        BNE CODE_88CA35                      ;88CA30|D003    |88CA35;
                        JMP.W CODE_88CEFB                    ;88CA32|4CFBCE  |88CEFB;
@@ -11693,12 +11693,12 @@ zeroStage1_65_state_00:
                        BMI CODE_88CACD                      ;88CA54|3077    |88CACD;
                        BNE CODE_88CA61                      ;88CA56|D009    |88CA61;
                        INC.B r_ev_3d-$E68                   ;88CA58|E63D    |000EA5;
-                       INC.W r_1f08                         ;88CA5A|EE081F  |861F08;
+                       INC.W r6_1f08                        ;88CA5A|EE081F  |861F08;
                        JML.L CODE_80B071                    ;88CA5D|5C71B080|80B071;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CA61:
-                       LDA.W r_job_flag_40                  ;88CA61|AD4000  |860040;
+                       LDA.W r6_job_flag_40                 ;88CA61|AD4000  |860040;
                        BNE CODE_88CACC                      ;88CA64|D066    |88CACC;
                        LDA.B #$3E                           ;88CA66|A93E    |      ;
                        STA.B r_ev_16_sprID-$E68             ;88CA68|8516    |000E7E;
@@ -11715,31 +11715,31 @@ zeroStage1_65_state_00:
                        STA.B r_ev_08_yPos-$E68              ;88CA82|8508    |000E70;
                        JSL.L CODE_8282D3                    ;88CA84|22D38282|8282D3;
                        BNE CODE_88CACC                      ;88CA88|D042    |88CACC;
-                       INC.W r_0000,X                       ;88CA8A|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88CA8A|FE0000  |860000;
                        LDA.B #$43                           ;88CA8D|A943    |      ;
-                       STA.W r_000a,X                       ;88CA8F|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;88CA92|9E0B00  |86000B;
+                       STA.W r6_000a,X                      ;88CA8F|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;88CA92|9E0B00  |86000B;
                        LDA.B #$80                           ;88CA95|A980    |      ;
                        STA.B r_ev_3d-$E68                   ;88CA97|853D    |000EA5;
                        REP #$20                             ;88CA99|C220    |      ;
                        TDC                                  ;88CA9B|7B      |      ;
-                       STA.W r_000c,X                       ;88CA9C|9D0C00  |86000C;
-                       STZ.W r_1f3f                         ;88CA9F|9C3F1F  |861F3F;
-                       STZ.W r_1f41                         ;88CAA2|9C411F  |861F41;
-                       STZ.W r_1f43                         ;88CAA5|9C431F  |861F43;
+                       STA.W r6_000c,X                      ;88CA9C|9D0C00  |86000C;
+                       STZ.W r6_1f3f                        ;88CA9F|9C3F1F  |861F3F;
+                       STZ.W r6_1f41                        ;88CAA2|9C411F  |861F41;
+                       STZ.W r6_1f43                        ;88CAA5|9C431F  |861F43;
                        JSL.L loadEnitySlotBase              ;88CAA8|22218382|828321;
                        BNE CODE_88CACC                      ;88CAAC|D01E    |88CACC;
-                       INC.W r_0000,X                       ;88CAAE|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88CAAE|FE0000  |860000;
                        LDA.B #$6B                           ;88CAB1|A96B    |      ;
-                       STA.W r_000a,X                       ;88CAB3|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;88CAB6|9E0B00  |86000B;
+                       STA.W r6_000a,X                      ;88CAB3|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;88CAB6|9E0B00  |86000B;
                        JSL.L loadEnitySlotBase              ;88CAB9|22218382|828321;
                        BNE CODE_88CACC                      ;88CABD|D00D    |88CACC;
-                       INC.W r_0000,X                       ;88CABF|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88CABF|FE0000  |860000;
                        LDA.B #$6B                           ;88CAC2|A96B    |      ;
-                       STA.W r_000a,X                       ;88CAC4|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88CAC4|9D0A00  |86000A;
                        LDA.B #$80                           ;88CAC7|A980    |      ;
-                       STA.W r_000b,X                       ;88CAC9|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88CAC9|9D0B00  |86000B;
                                                             ;      |        |      ;
           CODE_88CACC:
                        RTL                                  ;88CACC|6B      |      ;
@@ -11764,7 +11764,7 @@ zeroStage1_65_state_00:
                        dw CODE_88CB88                       ;88CAE4|        |88CB88;
                                                             ;      |        |      ;
           CODE_88CAE6:
-                       INC.W r_1f3b                         ;88CAE6|EE3B1F  |861F3B;
+                       INC.W r6_1f3b                        ;88CAE6|EE3B1F  |861F3B;
                        LDA.B #$02                           ;88CAE9|A902    |      ;
                        STA.B r_ev_02_action-$E68            ;88CAEB|8502    |000E6A;
                        LDA.B #$08                           ;88CAED|A908    |      ;
@@ -11772,29 +11772,29 @@ zeroStage1_65_state_00:
                        LDA.B #$2F                           ;88CAF1|A92F    |      ;
                        JSL.L CODE_8087A2                    ;88CAF3|22A28780|8087A2;
                        LDA.B #$01                           ;88CAF7|A901    |      ;
-                       STA.W r_1f3f                         ;88CAF9|8D3F1F  |861F3F;
+                       STA.W r6_1f3f                        ;88CAF9|8D3F1F  |861F3F;
                        RTS                                  ;88CAFC|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CAFD:
-                       LDA.W r_1f3f                         ;88CAFD|AD3F1F  |861F3F;
+                       LDA.W r6_1f3f                        ;88CAFD|AD3F1F  |861F3F;
                        BNE CODE_88CB2D                      ;88CB00|D02B    |88CB2D;
                        JSL.L CODE_8282D3                    ;88CB02|22D38282|8282D3;
                        BNE CODE_88CB2B                      ;88CB06|D023    |88CB2B;
-                       INC.W r_0000,X                       ;88CB08|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88CB08|FE0000  |860000;
                        LDA.B #$43                           ;88CB0B|A943    |      ;
-                       STA.W r_000a,X                       ;88CB0D|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88CB0D|9D0A00  |86000A;
                        LDA.B #$80                           ;88CB10|A980    |      ;
-                       STA.W r_000b,X                       ;88CB12|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88CB12|9D0B00  |86000B;
                        REP #$20                             ;88CB15|C220    |      ;
                        TDC                                  ;88CB17|7B      |      ;
-                       STA.W r_000c,X                       ;88CB18|9D0C00  |86000C;
-                       STA.W r_1f0e                         ;88CB1B|8D0E1F  |861F0E;
+                       STA.W r6_000c,X                      ;88CB18|9D0C00  |86000C;
+                       STA.W r6_1f0e                        ;88CB1B|8D0E1F  |861F0E;
                        SEP #$20                             ;88CB1E|E220    |      ;
                        LDA.B #$04                           ;88CB20|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;88CB22|8502    |000E6A;
                        LDA.B #$01                           ;88CB24|A901    |      ;
-                       STA.W r_1f3f                         ;88CB26|8D3F1F  |861F3F;
+                       STA.W r6_1f3f                        ;88CB26|8D3F1F  |861F3F;
                        STZ.B r_ev_27_health-$E68            ;88CB29|6427    |000E8F;
                                                             ;      |        |      ;
           CODE_88CB2B:
@@ -11805,21 +11805,21 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CB2E:
-                       LDA.W r_1f3f                         ;88CB2E|AD3F1F  |861F3F;
+                       LDA.W r6_1f3f                        ;88CB2E|AD3F1F  |861F3F;
                        BNE CODE_88CB59                      ;88CB31|D026    |88CB59;
                        JSL.L CODE_8282D3                    ;88CB33|22D38282|8282D3;
                        BNE CODE_88CB57                      ;88CB37|D01E    |88CB57;
-                       INC.W r_0000,X                       ;88CB39|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88CB39|FE0000  |860000;
                        LDA.B #$43                           ;88CB3C|A943    |      ;
-                       STA.W r_000a,X                       ;88CB3E|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88CB3E|9D0A00  |86000A;
                        LDA.B #$01                           ;88CB41|A901    |      ;
-                       STA.W r_000b,X                       ;88CB43|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88CB43|9D0B00  |86000B;
                        REP #$20                             ;88CB46|C220    |      ;
                        TDC                                  ;88CB48|7B      |      ;
-                       STA.W r_000c,X                       ;88CB49|9D0C00  |86000C;
+                       STA.W r6_000c,X                      ;88CB49|9D0C00  |86000C;
                        SEP #$20                             ;88CB4C|E220    |      ;
                        LDA.B #$01                           ;88CB4E|A901    |      ;
-                       STA.W r_1f3f                         ;88CB50|8D3F1F  |861F3F;
+                       STA.W r6_1f3f                        ;88CB50|8D3F1F  |861F3F;
                        LDA.B #$06                           ;88CB53|A906    |      ;
                        STA.B r_ev_02_action-$E68            ;88CB55|8502    |000E6A;
                                                             ;      |        |      ;
@@ -11831,7 +11831,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CB5A:
-                       LDA.W r_1f3f                         ;88CB5A|AD3F1F  |861F3F;
+                       LDA.W r6_1f3f                        ;88CB5A|AD3F1F  |861F3F;
                        BNE CODE_88CB63                      ;88CB5D|D004    |88CB63;
                        LDA.B #$08                           ;88CB5F|A908    |      ;
                        STA.B r_ev_02_action-$E68            ;88CB61|8502    |000E6A;
@@ -11841,7 +11841,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CB64:
-                       LDA.W r_frameCounter1                ;88CB64|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88CB64|AD9C0B  |860B9C;
                        LSR A                                ;88CB67|4A      |      ;
                        BCC CODE_88CB83                      ;88CB68|9019    |88CB83;
                        LDA.B #$0C                           ;88CB6A|A90C    |      ;
@@ -11878,18 +11878,18 @@ zeroStage1_65_state_00:
                        SEP #$20                             ;88CBA1|E220    |      ;
                        LDA.B #$10                           ;88CBA3|A910    |      ;
                        STA.B r_ev_33-$E68                   ;88CBA5|8533    |000E9B;
-                       STZ.W r_1f3f                         ;88CBA7|9C3F1F  |861F3F;
+                       STZ.W r6_1f3f                        ;88CBA7|9C3F1F  |861F3F;
                        STZ.B r_ev_35-$E68                   ;88CBAA|6435    |000E9D;
                        STZ.B r_ev_30-$E68                   ;88CBAC|6430    |000E98;
-                       INC.W r_1f43                         ;88CBAE|EE431F  |861F43;
+                       INC.W r6_1f43                        ;88CBAE|EE431F  |861F43;
                        LDA.B r_ev_11_sprAtri-$E68           ;88CBB1|A511    |000E79;
                        AND.B #$0E                           ;88CBB3|290E    |      ;
                        STA.B r_ev_34-$E68                   ;88CBB5|8534    |000E9C;
                        LDA.B #$0A                           ;88CBB7|A90A    |      ;
                        STA.B r_ev_26-$E68                   ;88CBB9|8526    |000E8E;
                        JSL.L CODE_84A003                    ;88CBBB|2203A084|84A003;
-                       DEC.W r_1f3b                         ;88CBBF|CE3B1F  |861F3B;
-                       INC.W r_1f08                         ;88CBC2|EE081F  |861F08;
+                       DEC.W r6_1f3b                        ;88CBBF|CE3B1F  |861F3B;
+                       INC.W r6_1f08                        ;88CBC2|EE081F  |861F08;
                                                             ;      |        |      ;
           CODE_88CBC5:
                        RTS                                  ;88CBC5|60      |      ;
@@ -11912,7 +11912,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
           CODE_88CBE2:
                        STA.B r_ev_28-$E68                   ;88CBE2|8528    |000E90;
-                       LDA.W r_d_0bcf                       ;88CBE4|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;88CBE4|ADCF0B  |860BCF;
                        AND.B #$7F                           ;88CBE7|297F    |      ;
                        BEQ CODE_88CC20                      ;88CBE9|F035    |88CC20;
                        JSL.L CODE_849B43                    ;88CBEB|22439B84|849B43;
@@ -11923,13 +11923,13 @@ zeroStage1_65_state_00:
                        STZ.B r_ev_02_action-$E68            ;88CBF7|6402    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;88CBF9|6403    |000E6B;
                        LDA.B #$80                           ;88CBFB|A980    |      ;
-                       STA.W r_1f3f                         ;88CBFD|8D3F1F  |861F3F;
-                       STZ.W r_1f40                         ;88CC00|9C401F  |861F40;
-                       STZ.W r_1f41                         ;88CC03|9C411F  |861F41;
-                       STZ.W r_1f42                         ;88CC06|9C421F  |861F42;
-                       STZ.W r_1f43                         ;88CC09|9C431F  |861F43;
-                       INC.W r_d_0bd8                       ;88CC0C|EED80B  |860BD8;
-                       INC.W r_bossDefeatInvFlag            ;88CC0F|EE0C1F  |861F0C;
+                       STA.W r6_1f3f                        ;88CBFD|8D3F1F  |861F3F;
+                       STZ.W r6_1f40                        ;88CC00|9C401F  |861F40;
+                       STZ.W r6_1f41                        ;88CC03|9C411F  |861F41;
+                       STZ.W r6_1f42                        ;88CC06|9C421F  |861F42;
+                       STZ.W r6_1f43                        ;88CC09|9C431F  |861F43;
+                       INC.W r6_player_invinsCounter        ;88CC0C|EED80B  |860BD8;
+                       INC.W r6_bossDefeatInvFlag           ;88CC0F|EE0C1F  |861F0C;
                        JML.L checkPlayerGear                ;88CC12|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -11974,7 +11974,7 @@ zeroStage1_65_state_00:
                        AND.B #$01                           ;88CC57|2901    |      ;
                        TAX                                  ;88CC59|AA      |      ;
                        LDA.B #$01                           ;88CC5A|A901    |      ;
-                       STA.W r_1f40,X                       ;88CC5C|9D401F  |861F40;
+                       STA.W r6_1f40,X                      ;88CC5C|9D401F  |861F40;
                        LDA.B #$02                           ;88CC5F|A902    |      ;
                        STA.B r_ev_02_action-$E68            ;88CC61|8502    |000E6A;
                        RTS                                  ;88CC63|60      |      ;
@@ -11993,7 +11993,7 @@ zeroStage1_65_state_00:
                        STA.B r_ev_38-$E68                   ;88CC79|8538    |000EA0;
                        LDA.B #$3C                           ;88CC7B|A93C    |      ;
                        STA.B r_ev_33-$E68                   ;88CC7D|8533    |000E9B;
-                       STA.W r_1f42                         ;88CC7F|8D421F  |861F42;
+                       STA.W r6_1f42                        ;88CC7F|8D421F  |861F42;
                        RTS                                  ;88CC82|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12004,7 +12004,7 @@ zeroStage1_65_state_00:
                        STA.B r_ev_38-$E68                   ;88CC89|8538    |000EA0;
                        LDA.B #$1E                           ;88CC8B|A91E    |      ;
                        STA.B r_ev_33-$E68                   ;88CC8D|8533    |000E9B;
-                       STA.W r_1f42                         ;88CC8F|8D421F  |861F42;
+                       STA.W r6_1f42                        ;88CC8F|8D421F  |861F42;
                                                             ;      |        |      ;
           CODE_88CC92:
                        RTS                                  ;88CC92|60      |      ;
@@ -12012,7 +12012,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
           CODE_88CC93:
                        REP #$20                             ;88CC93|C220    |      ;
-                       LDA.W r_1f40                         ;88CC95|AD401F  |861F40;
+                       LDA.W r6_1f40                        ;88CC95|AD401F  |861F40;
                        SEP #$20                             ;88CC98|E220    |      ;
                        BNE CODE_88CCA9                      ;88CC9A|D00D    |88CCA9;
                        JSL.L mainPlayer_00                  ;88CC9C|22869084|849086;
@@ -12033,20 +12033,20 @@ zeroStage1_65_state_00:
                        STA.B r_ev_33-$E68                   ;88CCB0|8533    |000E9B;
                        JSL.L findEnemyShotEmptySlot         ;88CCB2|22588382|828358;
                        BNE CODE_88CCED                      ;88CCB6|D035    |88CCED;
-                       INC.W r_0000,X                       ;88CCB8|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88CCB8|FE0000  |860000;
                        LDA.B #$31                           ;88CCBB|A931    |      ;
-                       STA.W r_000a,X                       ;88CCBD|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88CCBD|9D0A00  |86000A;
                        LDA.B r_ev_3d-$E68                   ;88CCC0|A53D    |000EA5;
-                       STA.W r_0011,X                       ;88CCC2|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88CCC2|9D1100  |860011;
                        LDA.B r_ev_38-$E68                   ;88CCC5|A538    |000EA0;
-                       STA.W r_000b,X                       ;88CCC7|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88CCC7|9D0B00  |86000B;
                        REP #$20                             ;88CCCA|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88CCCC|A505    |000E6D;
-                       STA.W r_0005,X                       ;88CCCE|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88CCCE|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88CCD1|A508    |000E70;
                        CLC                                  ;88CCD3|18      |      ;
                        ADC.W #$0010                         ;88CCD4|691000  |      ;
-                       STA.W r_0008,X                       ;88CCD7|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88CCD7|9D0800  |860008;
                        SEP #$30                             ;88CCDA|E230    |      ;
                        DEC.B r_ev_38-$E68                   ;88CCDC|C638    |000EA0;
                        BPL CODE_88CCED                      ;88CCDE|100D    |88CCED;
@@ -12069,21 +12069,21 @@ zeroStage1_65_state_00:
                        STA.B r_ev_33-$E68                   ;88CCF6|8533    |000E9B;
                        JSL.L findEnemyShotEmptySlot         ;88CCF8|22588382|828358;
                        BNE CODE_88CD34                      ;88CCFC|D036    |88CD34;
-                       INC.W r_0000,X                       ;88CCFE|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88CCFE|FE0000  |860000;
                        LDA.B #$32                           ;88CD01|A932    |      ;
-                       STA.W r_000a,X                       ;88CD03|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88CD03|9D0A00  |86000A;
                        LDA.B r_ev_38-$E68                   ;88CD06|A538    |000EA0;
                        LSR A                                ;88CD08|4A      |      ;
-                       STA.W r_000b,X                       ;88CD09|9D0B00  |86000B;
+                       STA.W r6_000b,X                      ;88CD09|9D0B00  |86000B;
                        LDA.B r_ev_3d-$E68                   ;88CD0C|A53D    |000EA5;
-                       STA.W r_0011,X                       ;88CD0E|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88CD0E|9D1100  |860011;
                        REP #$20                             ;88CD11|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88CD13|A505    |000E6D;
-                       STA.W r_0005,X                       ;88CD15|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88CD15|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88CD18|A508    |000E70;
                        CLC                                  ;88CD1A|18      |      ;
                        ADC.W #$0018                         ;88CD1B|691800  |      ;
-                       STA.W r_0008,X                       ;88CD1E|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88CD1E|9D0800  |860008;
                        SEP #$20                             ;88CD21|E220    |      ;
                        DEC.B r_ev_38-$E68                   ;88CD23|C638    |000EA0;
                        BPL CODE_88CD34                      ;88CD25|100D    |88CD34;
@@ -12123,15 +12123,15 @@ zeroStage1_65_state_00:
                        LDA.B #$FF                           ;88CD52|A9FF    |      ;
                        STA.B r_ev_active_00-$E68            ;88CD54|8500    |000E68;
                        JSL.L CODE_849F8A                    ;88CD56|228A9F84|849F8A;
-                       INC.W r_1f13                         ;88CD5A|EE131F  |861F13;
-                       INC.W r_1f14                         ;88CD5D|EE141F  |861F14;
-                       INC.W r_1f15                         ;88CD60|EE151F  |861F15;
-                       INC.W r_1f16                         ;88CD63|EE161F  |861F16;
-                       INC.W r_1f17                         ;88CD66|EE171F  |861F17;
-                       INC.W r_1f18                         ;88CD69|EE181F  |861F18;
-                       INC.W r_1f1a                         ;88CD6C|EE1A1F  |861F1A;
-                       INC.W r_1f3b                         ;88CD6F|EE3B1F  |861F3B;
-                       INC.W r_1f31                         ;88CD72|EE311F  |861F31;
+                       INC.W r6_1f13                        ;88CD5A|EE131F  |861F13;
+                       INC.W r6_1f14                        ;88CD5D|EE141F  |861F14;
+                       INC.W r6_1f15                        ;88CD60|EE151F  |861F15;
+                       INC.W r6_1f16                        ;88CD63|EE161F  |861F16;
+                       INC.W r6_1f17                        ;88CD66|EE171F  |861F17;
+                       INC.W r6_1f18                        ;88CD69|EE181F  |861F18;
+                       INC.W r6_1f1a                        ;88CD6C|EE1A1F  |861F1A;
+                       INC.W r6_1f3b                        ;88CD6F|EE3B1F  |861F3B;
+                       INC.W r6_1f31                        ;88CD72|EE311F  |861F31;
                        LDA.B #$3C                           ;88CD75|A93C    |      ;
                        STA.B r_ev_33-$E68                   ;88CD77|8533    |000E9B;
                        LDA.B #$F6                           ;88CD79|A9F6    |      ;
@@ -12145,13 +12145,13 @@ zeroStage1_65_state_00:
                        BNE CODE_88CDB6                      ;88CD87|D02D    |88CDB6;
                        JSL.L CODE_849FB2                    ;88CD89|22B29F84|849FB2;
                        JSL.L CODE_849FEB                    ;88CD8D|22EB9F84|849FEB;
-                       DEC.W r_1f13                         ;88CD91|CE131F  |861F13;
-                       DEC.W r_1f14                         ;88CD94|CE141F  |861F14;
-                       DEC.W r_1f15                         ;88CD97|CE151F  |861F15;
-                       DEC.W r_1f16                         ;88CD9A|CE161F  |861F16;
-                       DEC.W r_1f17                         ;88CD9D|CE171F  |861F17;
-                       DEC.W r_1f18                         ;88CDA0|CE181F  |861F18;
-                       DEC.W r_1f1a                         ;88CDA3|CE1A1F  |861F1A;
+                       DEC.W r6_1f13                        ;88CD91|CE131F  |861F13;
+                       DEC.W r6_1f14                        ;88CD94|CE141F  |861F14;
+                       DEC.W r6_1f15                        ;88CD97|CE151F  |861F15;
+                       DEC.W r6_1f16                        ;88CD9A|CE161F  |861F16;
+                       DEC.W r6_1f17                        ;88CD9D|CE171F  |861F17;
+                       DEC.W r6_1f18                        ;88CDA0|CE181F  |861F18;
+                       DEC.W r6_1f1a                        ;88CDA3|CE1A1F  |861F1A;
                        LDA.B #$78                           ;88CDA6|A978    |      ;
                        STA.B r_ev_33-$E68                   ;88CDA8|8533    |000E9B;
                        LDA.B #$04                           ;88CDAA|A904    |      ;
@@ -12240,15 +12240,15 @@ zeroStage1_65_state_00:
                        LDA.B #$0E                           ;88CE3E|A90E    |      ;
                        STA.B r_ev_02_action-$E68            ;88CE40|8502    |000E6A;
                        LDA.B #$80                           ;88CE42|A980    |      ;
-                       STA.W r_0000                         ;88CE44|8D0000  |860000;
+                       STA.W r6_0000                        ;88CE44|8D0000  |860000;
                        LDA.B #$50                           ;88CE47|A950    |      ;
-                       STA.W r_0002                         ;88CE49|8D0200  |860002;
+                       STA.W r6_0002                        ;88CE49|8D0200  |860002;
                        LDA.B #$58                           ;88CE4C|A958    |      ;
-                       STA.W r_0004                         ;88CE4E|8D0400  |860004;
+                       STA.W r6_0004                        ;88CE4E|8D0400  |860004;
                        LDA.B #$30                           ;88CE51|A930    |      ;
-                       STA.W r_0006                         ;88CE53|8D0600  |860006;
+                       STA.W r6_0006                        ;88CE53|8D0600  |860006;
                        LDA.B #$1E                           ;88CE56|A91E    |      ;
-                       STA.W r_0008                         ;88CE58|8D0800  |860008;
+                       STA.W r6_0008                        ;88CE58|8D0800  |860008;
                        JSL.L CODE_83F74A                    ;88CE5B|224AF783|83F74A;
                        JSR.W CODE_88CEC8                    ;88CE5F|20C8CE  |88CEC8;
                        JSR.W CODE_88CEBB                    ;88CE62|20BBCE  |88CEBB;
@@ -12256,18 +12256,18 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CE69:
-                       LDA.W r_1f2c                         ;88CE69|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88CE69|AD2C1F  |861F2C;
                        BMI CODE_88CE88                      ;88CE6C|301A    |88CE88;
                        LDA.B #$10                           ;88CE6E|A910    |      ;
                        STA.B r_ev_02_action-$E68            ;88CE70|8502    |000E6A;
                        LDA.B #$04                           ;88CE72|A904    |      ;
-                       STA.W r_1f7b                         ;88CE74|8D7B1F  |861F7B;
-                       STZ.W r_colorV_cb                    ;88CE77|9CCB00  |8600CB;
-                       STZ.W r_colorV_cc                    ;88CE7A|9CCC00  |8600CC;
-                       STZ.W r_colorV_cd                    ;88CE7D|9CCD00  |8600CD;
+                       STA.W r6_1f7b                        ;88CE74|8D7B1F  |861F7B;
+                       STZ.W r6_colorV_cb                   ;88CE77|9CCB00  |8600CB;
+                       STZ.W r6_colorV_cc                   ;88CE7A|9CCC00  |8600CC;
+                       STZ.W r6_colorV_cd                   ;88CE7D|9CCD00  |8600CD;
                        LDA.B #$3F                           ;88CE80|A93F    |      ;
-                       STA.W r_colorV_ca                    ;88CE82|8DCA00  |8600CA;
-                       STZ.W r_colorV_c9                    ;88CE85|9CC900  |8600C9;
+                       STA.W r6_colorV_ca                   ;88CE82|8DCA00  |8600CA;
+                       STZ.W r6_colorV_c9                   ;88CE85|9CC900  |8600C9;
                                                             ;      |        |      ;
           CODE_88CE88:
                        JSR.W CODE_88CEBB                    ;88CE88|20BBCE  |88CEBB;
@@ -12276,16 +12276,16 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CE92:
-                       LDA.W r_frameCounter1                ;88CE92|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88CE92|AD9C0B  |860B9C;
                        LSR A                                ;88CE95|4A      |      ;
                        BCC CODE_88CEB1                      ;88CE96|9019    |88CEB1;
-                       LDA.W r_colorV_cb                    ;88CE98|ADCB00  |8600CB;
+                       LDA.W r6_colorV_cb                   ;88CE98|ADCB00  |8600CB;
                        CMP.B #$1F                           ;88CE9B|C91F    |      ;
                        BEQ CODE_88CEB1                      ;88CE9D|F012    |88CEB1;
                        INC A                                ;88CE9F|1A      |      ;
-                       STA.W r_colorV_cb                    ;88CEA0|8DCB00  |8600CB;
-                       STA.W r_colorV_cc                    ;88CEA3|8DCC00  |8600CC;
-                       STA.W r_colorV_cd                    ;88CEA6|8DCD00  |8600CD;
+                       STA.W r6_colorV_cb                   ;88CEA0|8DCB00  |8600CB;
+                       STA.W r6_colorV_cc                   ;88CEA3|8DCC00  |8600CC;
+                       STA.W r6_colorV_cd                   ;88CEA6|8DCD00  |8600CD;
                        CMP.B #$18                           ;88CEA9|C918    |      ;
                        BNE CODE_88CEB1                      ;88CEAB|D004    |88CEB1;
                        JSL.L CODE_84A019                    ;88CEAD|2219A084|84A019;
@@ -12310,14 +12310,14 @@ zeroStage1_65_state_00:
           CODE_88CEC8:
                        REP #$20                             ;88CEC8|C220    |      ;
                        LDA.W #$FFE0                         ;88CECA|A9E0FF  |      ;
-                       STA.W r_0000                         ;88CECD|8D0000  |860000;
-                       STA.W r_0002                         ;88CED0|8D0200  |860002;
+                       STA.W r6_0000                        ;88CECD|8D0000  |860000;
+                       STA.W r6_0002                        ;88CED0|8D0200  |860002;
                        LDA.W #$003F                         ;88CED3|A93F00  |      ;
-                       STA.W r_0004                         ;88CED6|8D0400  |860004;
-                       STA.W r_0006                         ;88CED9|8D0600  |860006;
+                       STA.W r6_0004                        ;88CED6|8D0400  |860004;
+                       STA.W r6_0006                        ;88CED9|8D0600  |860006;
                        SEP #$20                             ;88CEDC|E220    |      ;
                        LDA.B #$07                           ;88CEDE|A907    |      ;
-                       STA.W r_0008                         ;88CEE0|8D0800  |860008;
+                       STA.W r6_0008                        ;88CEE0|8D0800  |860008;
                        JSL.L CODE_84A4D0                    ;88CEE3|22D0A484|84A4D0;
                        RTS                                  ;88CEE7|60      |      ;
                                                             ;      |        |      ;
@@ -12339,7 +12339,7 @@ zeroStage1_65_state_00:
           CODE_88CEFB:
                        STZ.B r_ev_3d-$E68                   ;88CEFB|643D    |000EA5;
                        REP #$20                             ;88CEFD|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;88CEFF|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88CEFF|ADAD0B  |860BAD;
                        CMP.W #$0040                         ;88CF02|C94000  |      ;
                        BCS CODE_88CF10                      ;88CF05|B009    |88CF10;
                        SEP #$20                             ;88CF07|E220    |      ;
@@ -12350,7 +12350,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CF10:
-                       LDA.W r_d_player_xSubPos             ;88CF10|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88CF10|ADAD0B  |860BAD;
                        SEC                                  ;88CF13|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88CF14|E505    |000E6D;
                        BCS CODE_88CF1C                      ;88CF16|B004    |88CF1C;
@@ -12363,7 +12363,7 @@ zeroStage1_65_state_00:
                        ROL.B r_ev_3d-$E68                   ;88CF21|263D    |000EA5;
                        REP #$20                             ;88CF23|C220    |      ;
                        LDA.W #$00A8                         ;88CF25|A9A800  |      ;
-                       CMP.W r_d_player_yPos                ;88CF28|CDB00B  |860BB0;
+                       CMP.W r6_player_yPos                 ;88CF28|CDB00B  |860BB0;
                        SEP #$20                             ;88CF2B|E220    |      ;
                        ROL.B r_ev_3d-$E68                   ;88CF2D|263D    |000EA5;
                        LDA.B r_ev_3d-$E68                   ;88CF2F|A53D    |000EA5;
@@ -12473,7 +12473,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88CFEE:
-                       LDA.W r_1f3f                         ;88CFEE|AD3F1F  |861F3F;
+                       LDA.W r6_1f3f                        ;88CFEE|AD3F1F  |861F3F;
                        BEQ CODE_88CFFB                      ;88CFF1|F008    |88CFFB;
                        LDA.B #$04                           ;88CFF3|A904    |      ;
                        STA.B r_ev_01_state-$E68             ;88CFF5|8501    |000E69;
@@ -12490,19 +12490,19 @@ zeroStage1_65_state_00:
                        BNE CODE_88D00E                      ;88D005|D007    |88D00E;
                        LDA.B #$0A                           ;88D007|A90A    |      ;
                        STA.B r_ev_01_state-$E68             ;88D009|8501    |000E69;
-                       STZ.W r_1f3f                         ;88D00B|9C3F1F  |861F3F;
+                       STZ.W r6_1f3f                        ;88D00B|9C3F1F  |861F3F;
                                                             ;      |        |      ;
           CODE_88D00E:
                        JML.L checkPlayerGear                ;88D00E|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D012:
-                       JSL.L updateEv_13_14_17_0f           ;88D012|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D012|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88D016|A50F    |000E77;
                        BPL CODE_88D021                      ;88D018|1007    |88D021;
                        LDA.B #$0C                           ;88D01A|A90C    |      ;
                        STA.B r_ev_01_state-$E68             ;88D01C|8501    |000E69;
-                       STZ.W r_1f3f                         ;88D01E|9C3F1F  |861F3F;
+                       STZ.W r6_1f3f                        ;88D01E|9C3F1F  |861F3F;
                                                             ;      |        |      ;
           CODE_88D021:
                        JML.L checkPlayerGear                ;88D021|5CB48082|8280B4;
@@ -12530,7 +12530,7 @@ zeroStage1_65_state_00:
                        BCC CODE_88D059                      ;88D049|900E    |88D059;
                        LDA.B #$0E                           ;88D04B|A90E    |      ;
                        STA.B r_ev_01_state-$E68             ;88D04D|8501    |000E69;
-                       STZ.W r_1f3f                         ;88D04F|9C3F1F  |861F3F;
+                       STZ.W r6_1f3f                        ;88D04F|9C3F1F  |861F3F;
                        LDA.B #$0D                           ;88D052|A90D    |      ;
                        JSL.L playerGrabedRoutine            ;88D054|22078F84|848F07;
                        RTL                                  ;88D058|6B      |      ;
@@ -12541,7 +12541,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D05D:
-                       JSL.L updateEv_13_14_17_0f           ;88D05D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D05D|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88D061|A50F    |000E77;
                        BPL CODE_88D06B                      ;88D063|1006    |88D06B;
                        LDA.B #$20                           ;88D065|A920    |      ;
@@ -12555,9 +12555,9 @@ zeroStage1_65_state_00:
           CODE_88D06F:
                        REP #$30                             ;88D06F|C230    |      ;
                        LDX.B r_ev_0c_parent-$E68            ;88D071|A60C    |000E74;
-                       LDA.W r_0005,X                       ;88D073|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;88D073|BD0500  |860005;
                        STA.B r_ev_05_xPos-$E68              ;88D076|8505    |000E6D;
-                       LDA.W r_0008,X                       ;88D078|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;88D078|BD0800  |860008;
                        SEC                                  ;88D07B|38      |      ;
                        SBC.W #$0017                         ;88D07C|E91700  |      ;
                        STA.B r_ev_08_yPos-$E68              ;88D07F|8508    |000E70;
@@ -12567,9 +12567,9 @@ zeroStage1_65_state_00:
           CODE_88D085:
                        REP #$30                             ;88D085|C230    |      ;
                        LDX.B r_ev_0c_parent-$E68            ;88D087|A60C    |000E74;
-                       LDA.W r_0005,X                       ;88D089|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;88D089|BD0500  |860005;
                        STA.B r_ev_05_xPos-$E68              ;88D08C|8505    |000E6D;
-                       LDA.W r_0008,X                       ;88D08E|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;88D08E|BD0800  |860008;
                        STA.B r_ev_08_yPos-$E68              ;88D091|8508    |000E70;
                        SEP #$20                             ;88D093|E220    |      ;
                        JML.L checkPlayerGear                ;88D095|5CB48082|8280B4;
@@ -12578,15 +12578,15 @@ zeroStage1_65_state_00:
           CODE_88D099:
                        REP #$30                             ;88D099|C230    |      ;
                        LDX.B r_ev_0c_parent-$E68            ;88D09B|A60C    |000E74;
-                       LDA.W r_0005,X                       ;88D09D|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;88D09D|BD0500  |860005;
                        STA.B r_ev_05_xPos-$E68              ;88D0A0|8505    |000E6D;
-                       LDA.W r_0008,X                       ;88D0A2|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;88D0A2|BD0800  |860008;
                        STA.B r_ev_08_yPos-$E68              ;88D0A5|8508    |000E70;
                        SEP #$20                             ;88D0A7|E220    |      ;
-                       LDA.W r_1f42                         ;88D0A9|AD421F  |861F42;
+                       LDA.W r6_1f42                        ;88D0A9|AD421F  |861F42;
                        BEQ CODE_88D0B9                      ;88D0AC|F00B    |88D0B9;
-                       DEC.W r_1f42                         ;88D0AE|CE421F  |861F42;
-                       JSL.L updateEv_13_14_17_0f           ;88D0B1|22EA8E84|848EEA;
+                       DEC.W r6_1f42                        ;88D0AE|CE421F  |861F42;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D0B1|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;88D0B5|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12650,7 +12650,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D114:
-                       JSL.L updateEv_13_14_17_0f           ;88D114|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D114|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88D118|A50F    |000E77;
                        BPL CODE_88D126                      ;88D11A|100A    |88D126;
                        LDA.B #$04                           ;88D11C|A904    |      ;
@@ -12664,7 +12664,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
           CODE_88D12A:
                        JSL.L CODE_82820A                    ;88D12A|220A8282|82820A;
-                       JSL.L updateEv_13_14_17_0f           ;88D12E|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D12E|22EA8E84|848EEA;
                        JSL.L checkPlayerGear                ;88D132|22B48082|8280B4;
                        LDA.B r_ev_0e-$E68                   ;88D136|A50E    |000E76;
                        BEQ CODE_88D13E                      ;88D138|F004    |88D13E;
@@ -12732,7 +12732,7 @@ zeroStage1_65_state_00:
                                                             ;      |        |      ;
           CODE_88D19C:
                        JSL.L CODE_82820A                    ;88D19C|220A8282|82820A;
-                       JSL.L updateEv_13_14_17_0f           ;88D1A0|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D1A0|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88D1A4|A50F    |000E77;
                        BMI CODE_88D1B4                      ;88D1A6|300C    |88D1B4;
                        JSL.L checkPlayerGear                ;88D1A8|22B48082|8280B4;
@@ -12790,7 +12790,7 @@ eventID_VileMech_66_main:
                        SEP #$20                             ;88D209|E220    |      ;
                        LDA.B r_ev_0b_subID-$E68             ;88D20B|A50B    |000E73;
                        STA.B r_ev_02_action-$E68            ;88D20D|8502    |000E6A;
-                       LDA.W r_1f7d                         ;88D20F|AD7D1F  |861F7D;
+                       LDA.W r6_player_upgradeMask_Health_intro;88D20F|AD7D1F  |861F7D;
                        CMP.B #$02                           ;88D212|C902    |      ;
                        BNE CODE_88D21A                      ;88D214|D004    |88D21A;
                        LDA.B #$0E                           ;88D216|A90E    |      ;
@@ -12869,7 +12869,7 @@ eventID_VileMech_66_main:
                        STZ.B r_ev_03_do-$E68                ;88D280|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88D282:
-                       JSL.L updateEv_13_14_17_0f           ;88D282|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D282|22EA8E84|848EEA;
                        RTS                                  ;88D286|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -12886,20 +12886,20 @@ eventID_VileMech_66_main:
           CODE_88D292:
                        LDA.B #$02                           ;88D292|A902    |      ;
                        STA.B r_ev_03_do-$E68                ;88D294|8503    |000E6B;
-                       LDA.W r_1f3d                         ;88D296|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88D296|AD3D1F  |861F3D;
                        STA.B r_ev_3c-$E68                   ;88D299|853C    |000EA4;
                        LDA.B #$02                           ;88D29B|A902    |      ;
                        JSL.L playerGrabedRoutine            ;88D29D|22078F84|848F07;
                        LDA.B #$80                           ;88D2A1|A980    |      ;
-                       STA.W r_0000                         ;88D2A3|8D0000  |860000;
+                       STA.W r6_0000                        ;88D2A3|8D0000  |860000;
                        LDA.B #$50                           ;88D2A6|A950    |      ;
-                       STA.W r_0002                         ;88D2A8|8D0200  |860002;
+                       STA.W r6_0002                        ;88D2A8|8D0200  |860002;
                        LDA.B #$58                           ;88D2AB|A958    |      ;
-                       STA.W r_0004                         ;88D2AD|8D0400  |860004;
+                       STA.W r6_0004                        ;88D2AD|8D0400  |860004;
                        LDA.B #$30                           ;88D2B0|A930    |      ;
-                       STA.W r_0006                         ;88D2B2|8D0600  |860006;
+                       STA.W r6_0006                        ;88D2B2|8D0600  |860006;
                        LDA.B #$15                           ;88D2B5|A915    |      ;
-                       STA.W r_0008                         ;88D2B7|8D0800  |860008;
+                       STA.W r6_0008                        ;88D2B7|8D0800  |860008;
                        JSL.L CODE_83F74A                    ;88D2BA|224AF783|83F74A;
                        LDA.B #$08                           ;88D2BE|A908    |      ;
                        JSL.L CODE_88D83F                    ;88D2C0|223FD888|88D83F;
@@ -12907,7 +12907,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D2C5:
-                       LDA.W r_1f3c                         ;88D2C5|AD3C1F  |861F3C;
+                       LDA.W r6_1f3c                        ;88D2C5|AD3C1F  |861F3C;
                        BEQ CODE_88D2F6                      ;88D2C8|F02C    |88D2F6;
                        CMP.B #$02                           ;88D2CA|C902    |      ;
                        BNE CODE_88D2D9                      ;88D2CC|D00B    |88D2D9;
@@ -12919,7 +12919,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D2D9:
-                       LDA.W r_1f3d                         ;88D2D9|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88D2D9|AD3D1F  |861F3D;
                        CMP.B r_ev_3c-$E68                   ;88D2DC|C53C    |000EA4;
                        BEQ CODE_88D2F2                      ;88D2DE|F012    |88D2F2;
                        LDA.B r_ev_3c-$E68                   ;88D2E0|A53C    |000EA4;
@@ -12934,16 +12934,16 @@ eventID_VileMech_66_main:
                        JSL.L playerGrabedRoutine            ;88D2EE|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88D2F2:
-                       JSL.L updateEv_13_14_17_0f           ;88D2F2|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D2F2|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88D2F6:
-                       LDA.W r_1f3d                         ;88D2F6|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88D2F6|AD3D1F  |861F3D;
                        STA.B r_ev_3c-$E68                   ;88D2F9|853C    |000EA4;
                        RTS                                  ;88D2FB|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D2FC:
-                       LDA.W r_1f2c                         ;88D2FC|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88D2FC|AD2C1F  |861F2C;
                        BMI CODE_88D307                      ;88D2FF|3006    |88D307;
                        LDA.B #$04                           ;88D301|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;88D303|8502    |000E6A;
@@ -13003,7 +13003,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
           CODE_88D350:
                        JSL.L CODE_82823E                    ;88D350|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;88D354|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D354|22EA8E84|848EEA;
                        RTS                                  ;88D358|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13018,7 +13018,7 @@ eventID_VileMech_66_main:
                        dw CODE_88D3A2                       ;88D362|        |88D3A2;
                                                             ;      |        |      ;
           CODE_88D364:
-                       LDA.W r_1f7d                         ;88D364|AD7D1F  |861F7D;
+                       LDA.W r6_player_upgradeMask_Health_intro;88D364|AD7D1F  |861F7D;
                        BEQ CODE_88D36E                      ;88D367|F005    |88D36E;
                        LDA.B #$04                           ;88D369|A904    |      ;
                        STA.B r_ev_01_state-$E68             ;88D36B|8501    |000E69;
@@ -13046,7 +13046,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
           CODE_88D391:
                        REP #$20                             ;88D391|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;88D393|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88D393|ADAD0B  |860BAD;
                        CMP.W #$0900                         ;88D396|C90009  |      ;
                        SEP #$20                             ;88D399|E220    |      ;
                        BCC CODE_88D3A1                      ;88D39B|9004    |88D3A1;
@@ -13108,7 +13108,7 @@ eventID_VileMech_66_main:
                        STA.B r_ev_08_yPos-$E68              ;88D3E9|8508    |000E70;
                        SEP #$20                             ;88D3EB|E220    |      ;
                        STZ.B r_ev_33-$E68                   ;88D3ED|6433    |000E9B;
-                       LDA.W r_1f7d                         ;88D3EF|AD7D1F  |861F7D;
+                       LDA.W r6_player_upgradeMask_Health_intro;88D3EF|AD7D1F  |861F7D;
                        CMP.B #$01                           ;88D3F2|C901    |      ;
                        BEQ CODE_88D410                      ;88D3F4|F01A    |88D410;
                        LDA.B #$11                           ;88D3F6|A911    |      ;
@@ -13117,7 +13117,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D3FD:
-                       LDA.W r_1f3c                         ;88D3FD|AD3C1F  |861F3C;
+                       LDA.W r6_1f3c                        ;88D3FD|AD3C1F  |861F3C;
                        CMP.B #$03                           ;88D400|C903    |      ;
                        BNE CODE_88D408                      ;88D402|D004    |88D408;
                        LDA.B #$04                           ;88D404|A904    |      ;
@@ -13128,7 +13128,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D409:
-                       LDA.W r_1f3c                         ;88D409|AD3C1F  |861F3C;
+                       LDA.W r6_1f3c                        ;88D409|AD3C1F  |861F3C;
                        CMP.B #$04                           ;88D40C|C904    |      ;
                        BNE CODE_88D41A                      ;88D40E|D00A    |88D41A;
                                                             ;      |        |      ;
@@ -13139,12 +13139,12 @@ eventID_VileMech_66_main:
                        JSL.L playerGrabedRoutine            ;88D416|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88D41A:
-                       JSL.L updateEv_13_14_17_0f           ;88D41A|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D41A|22EA8E84|848EEA;
                        RTS                                  ;88D41E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D41F:
-                       LDA.W r_1f40                         ;88D41F|AD401F  |861F40;
+                       LDA.W r6_1f40                        ;88D41F|AD401F  |861F40;
                        BEQ CODE_88D42A                      ;88D422|F006    |88D42A;
                        LDA.B #$0A                           ;88D424|A90A    |      ;
                        STA.B r_ev_02_action-$E68            ;88D426|8502    |000E6A;
@@ -13197,7 +13197,7 @@ eventID_VileMech_66_main:
                        SEP #$20                             ;88D470|E220    |      ;
                                                             ;      |        |      ;
           CODE_88D472:
-                       JSL.L updateEv_13_14_17_0f           ;88D472|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D472|22EA8E84|848EEA;
                        RTS                                  ;88D476|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13223,20 +13223,20 @@ eventID_VileMech_66_main:
                        SEP #$20                             ;88D495|E220    |      ;
                        LDA.B #$08                           ;88D497|A908    |      ;
                        STA.B r_ev_03_do-$E68                ;88D499|8503    |000E6B;
-                       LDA.W r_1f3d                         ;88D49B|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88D49B|AD3D1F  |861F3D;
                        STA.B r_ev_3c-$E68                   ;88D49E|853C    |000EA4;
                        LDA.B #$08                           ;88D4A0|A908    |      ;
                        JSL.L playerGrabedRoutine            ;88D4A2|22078F84|848F07;
                        LDA.B #$80                           ;88D4A6|A980    |      ;
-                       STA.W r_0000                         ;88D4A8|8D0000  |860000;
+                       STA.W r6_0000                        ;88D4A8|8D0000  |860000;
                        LDA.B #$50                           ;88D4AB|A950    |      ;
-                       STA.W r_0002                         ;88D4AD|8D0200  |860002;
+                       STA.W r6_0002                        ;88D4AD|8D0200  |860002;
                        LDA.B #$58                           ;88D4B0|A958    |      ;
-                       STA.W r_0004                         ;88D4B2|8D0400  |860004;
+                       STA.W r6_0004                        ;88D4B2|8D0400  |860004;
                        LDA.B #$30                           ;88D4B5|A930    |      ;
-                       STA.W r_0006                         ;88D4B7|8D0600  |860006;
+                       STA.W r6_0006                        ;88D4B7|8D0600  |860006;
                        LDA.B #$14                           ;88D4BA|A914    |      ;
-                       STA.W r_0008                         ;88D4BC|8D0800  |860008;
+                       STA.W r6_0008                        ;88D4BC|8D0800  |860008;
                        JSL.L CODE_83F74A                    ;88D4BF|224AF783|83F74A;
                        LDA.B #$05                           ;88D4C3|A905    |      ;
                        JSL.L CODE_88D83F                    ;88D4C5|223FD888|88D83F;
@@ -13248,7 +13248,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D4D0:
-                       LDA.W r_1f3c                         ;88D4D0|AD3C1F  |861F3C;
+                       LDA.W r6_1f3c                        ;88D4D0|AD3C1F  |861F3C;
                        BEQ CODE_88D501                      ;88D4D3|F02C    |88D501;
                        CMP.B #$02                           ;88D4D5|C902    |      ;
                        BNE CODE_88D4E4                      ;88D4D7|D00B    |88D4E4;
@@ -13260,7 +13260,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D4E4:
-                       LDA.W r_1f3d                         ;88D4E4|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88D4E4|AD3D1F  |861F3D;
                        CMP.B r_ev_3c-$E68                   ;88D4E7|C53C    |000EA4;
                        BEQ CODE_88D4FD                      ;88D4E9|F012    |88D4FD;
                        LDA.B r_ev_3c-$E68                   ;88D4EB|A53C    |000EA4;
@@ -13275,16 +13275,16 @@ eventID_VileMech_66_main:
                        JSL.L playerGrabedRoutine            ;88D4F9|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88D4FD:
-                       JSL.L updateEv_13_14_17_0f           ;88D4FD|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D4FD|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88D501:
-                       LDA.W r_1f3d                         ;88D501|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88D501|AD3D1F  |861F3D;
                        STA.B r_ev_3c-$E68                   ;88D504|853C    |000EA4;
                        RTS                                  ;88D506|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D507:
-                       LDA.W r_1f2c                         ;88D507|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88D507|AD2C1F  |861F2C;
                        BMI CODE_88D528                      ;88D50A|301C    |88D528;
                        LDA.B #$0C                           ;88D50C|A90C    |      ;
                        STA.B r_ev_03_do-$E68                ;88D50E|8503    |000E6B;
@@ -13310,7 +13310,7 @@ eventID_VileMech_66_main:
                        STZ.B r_ev_03_do-$E68                ;88D531|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88D533:
-                       JSL.L updateEv_13_14_17_0f           ;88D533|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D533|22EA8E84|848EEA;
                        RTS                                  ;88D537|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13340,7 +13340,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D55C:
-                       LDA.W r_frameCounter1                ;88D55C|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88D55C|AD9C0B  |860B9C;
                        AND.B #$1F                           ;88D55F|291F    |      ;
                        BNE CODE_88D569                      ;88D561|D006    |88D569;
                        LDA.B #$20                           ;88D563|A920    |      ;
@@ -13355,18 +13355,18 @@ eventID_VileMech_66_main:
           CODE_88D571:
                        REP #$20                             ;88D571|C220    |      ;
                        LDA.W #$FFE0                         ;88D573|A9E0FF  |      ;
-                       STA.W r_0000                         ;88D576|8D0000  |860000;
+                       STA.W r6_0000                        ;88D576|8D0000  |860000;
                        LDA.W #$FFF0                         ;88D579|A9F0FF  |      ;
-                       STA.W r_0002                         ;88D57C|8D0200  |860002;
+                       STA.W r6_0002                        ;88D57C|8D0200  |860002;
                        LDA.W #$003F                         ;88D57F|A93F00  |      ;
-                       STA.W r_0004                         ;88D582|8D0400  |860004;
+                       STA.W r6_0004                        ;88D582|8D0400  |860004;
                        LDA.W #$001F                         ;88D585|A91F00  |      ;
-                       STA.W r_0006                         ;88D588|8D0600  |860006;
+                       STA.W r6_0006                        ;88D588|8D0600  |860006;
                        SEP #$20                             ;88D58B|E220    |      ;
                        LDA.B #$03                           ;88D58D|A903    |      ;
-                       STA.W r_0008                         ;88D58F|8D0800  |860008;
+                       STA.W r6_0008                        ;88D58F|8D0800  |860008;
                        JSL.L CODE_84A4D0                    ;88D592|22D0A484|84A4D0;
-                       JSL.L updateEv_13_14_17_0f           ;88D596|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D596|22EA8E84|848EEA;
                        RTS                                  ;88D59A|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13387,8 +13387,8 @@ eventID_VileMech_66_main:
                        SEP #$30                             ;88D5BD|E230    |      ;
                        PLB                                  ;88D5BF|AB      |      ;
                        LDA.B #$3F                           ;88D5C0|A93F    |      ;
-                       STA.W r_colorV_ca                    ;88D5C2|8DCA00  |8600CA;
-                       STZ.W r_colorV_cb                    ;88D5C5|9CCB00  |8600CB;
+                       STA.W r6_colorV_ca                   ;88D5C2|8DCA00  |8600CA;
+                       STZ.W r6_colorV_cb                   ;88D5C5|9CCB00  |8600CB;
                        LDA.B #$01                           ;88D5C8|A901    |      ;
                        STA.B r_ev_3d-$E68                   ;88D5CA|853D    |000EA5;
                        JSR.W CODE_88AD92                    ;88D5CC|2092AD  |88AD92;
@@ -13398,7 +13398,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D5D4:
-                       LDA.W r_frameCounter1                ;88D5D4|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88D5D4|AD9C0B  |860B9C;
                        AND.B #$01                           ;88D5D7|2901    |      ;
                        BNE CODE_88D5E3                      ;88D5D9|D008    |88D5E3;
                        LDA.B r_ev_3d-$E68                   ;88D5DB|A53D    |000EA5;
@@ -13420,17 +13420,17 @@ eventID_VileMech_66_main:
                        LDA.B #$0C                           ;88D5F5|A90C    |      ;
                        STA.B r_ev_03_do-$E68                ;88D5F7|8503    |000E6B;
                        LDA.B #$1F                           ;88D5F9|A91F    |      ;
-                       STA.W r_colorV_cb                    ;88D5FB|8DCB00  |8600CB;
-                       STA.W r_colorV_cc                    ;88D5FE|8DCC00  |8600CC;
-                       STA.W r_colorV_cd                    ;88D601|8DCD00  |8600CD;
-                       STZ.W r_0aa1                         ;88D604|9CA10A  |860AA1;
+                       STA.W r6_colorV_cb                   ;88D5FB|8DCB00  |8600CB;
+                       STA.W r6_colorV_cc                   ;88D5FE|8DCC00  |8600CC;
+                       STA.W r6_colorV_cd                   ;88D601|8DCD00  |8600CD;
+                       STZ.W r6_0aa1                        ;88D604|9CA10A  |860AA1;
                        LDA.B #$23                           ;88D607|A923    |      ;
                        JSL.L CODE_8087A2                    ;88D609|22A28780|8087A2;
                        LDY.B #$03                           ;88D60D|A003    |      ;
                        LDA.B #$F5                           ;88D60F|A9F5    |      ;
                        JSL.L CODE_80887F                    ;88D611|227F8880|80887F;
                        LDA.B #$0A                           ;88D615|A90A    |      ;
-                       STA.W r_1f08                         ;88D617|8D081F  |861F08;
+                       STA.W r6_1f08                        ;88D617|8D081F  |861F08;
                        JSL.L CODE_80B071                    ;88D61A|2271B080|80B071;
                        RTS                                  ;88D61E|60      |      ;
                                                             ;      |        |      ;
@@ -13461,12 +13461,12 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D64A:
-                       LDA.W r_frameCounter1                ;88D64A|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88D64A|AD9C0B  |860B9C;
                        AND.B #$01                           ;88D64D|2901    |      ;
                        BNE CODE_88D660                      ;88D64F|D00F    |88D660;
-                       DEC.W r_colorV_cb                    ;88D651|CECB00  |8600CB;
-                       DEC.W r_colorV_cc                    ;88D654|CECC00  |8600CC;
-                       DEC.W r_colorV_cd                    ;88D657|CECD00  |8600CD;
+                       DEC.W r6_colorV_cb                   ;88D651|CECB00  |8600CB;
+                       DEC.W r6_colorV_cc                   ;88D654|CECC00  |8600CC;
+                       DEC.W r6_colorV_cd                   ;88D657|CECD00  |8600CD;
                        BNE CODE_88D660                      ;88D65A|D004    |88D660;
                        LDA.B #$0A                           ;88D65C|A90A    |      ;
                        STA.B r_ev_03_do-$E68                ;88D65E|8503    |000E6B;
@@ -13483,11 +13483,11 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D668:
-                       LDA.W r_job_flag_40                  ;88D668|AD4000  |860040;
+                       LDA.W r6_job_flag_40                 ;88D668|AD4000  |860040;
                        BNE CODE_88D678                      ;88D66B|D00B    |88D678;
                        LDA.B #$08                           ;88D66D|A908    |      ;
                        STA.B r_ev_03_do-$E68                ;88D66F|8503    |000E6B;
-                       INC.W r_1f42                         ;88D671|EE421F  |861F42;
+                       INC.W r6_1f42                        ;88D671|EE421F  |861F42;
                        JSL.L CODE_88D80F                    ;88D674|220FD888|88D80F;
                                                             ;      |        |      ;
           CODE_88D678:
@@ -13527,7 +13527,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
           CODE_88D6AB:
                        REP #$20                             ;88D6AB|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;88D6AD|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88D6AD|ADAD0B  |860BAD;
                        CMP.W #$0BB8                         ;88D6B0|C9B80B  |      ;
                        SEP #$20                             ;88D6B3|E220    |      ;
                        BCC CODE_88D703                      ;88D6B5|904C    |88D703;
@@ -13536,12 +13536,12 @@ eventID_VileMech_66_main:
                        JSL.L CODE_849FEB                    ;88D6BD|22EB9F84|849FEB;
                        LDA.B #$04                           ;88D6C1|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;88D6C3|8503    |000E6B;
-                       STA.W r_1f31                         ;88D6C5|8D311F  |861F31;
-                       STA.W r_1f3b                         ;88D6C8|8D3B1F  |861F3B;
-                       STA.W r_1f49                         ;88D6CB|8D491F  |861F49;
-                       STZ.W r_d_0bdb                       ;88D6CE|9CDB0B  |860BDB;
+                       STA.W r6_1f31                        ;88D6C5|8D311F  |861F31;
+                       STA.W r6_1f3b                        ;88D6C8|8D3B1F  |861F3B;
+                       STA.W r6_1f49                        ;88D6CB|8D491F  |861F49;
+                       STZ.W r6_player_curWeapon            ;88D6CE|9CDB0B  |860BDB;
                        LDA.B #$04                           ;88D6D1|A904    |      ;
-                       STA.W r_1f12                         ;88D6D3|8D121F  |861F12;
+                       STA.W r6_1f12                        ;88D6D3|8D121F  |861F12;
                        LDA.B #$03                           ;88D6D6|A903    |      ;
                        STA.W $0C0F                          ;88D6D8|8D0F0C  |860C0F;
                        LDX.B #$30                           ;88D6DB|A230    |      ;
@@ -13549,28 +13549,28 @@ eventID_VileMech_66_main:
                        JSL.L CODE_828000                    ;88D6DF|22008082|828000;
                        JSL.L CODE_84A2AC                    ;88D6E3|22ACA284|84A2AC;
                        LDA.B #$01                           ;88D6E7|A901    |      ;
-                       STA.W r_d_r_player_activSpr          ;88D6E9|8DB60B  |860BB6;
+                       STA.W r6_player_activSpr             ;88D6E9|8DB60B  |860BB6;
                        REP #$10                             ;88D6EC|C210    |      ;
                        LDY.W #$0100                         ;88D6EE|A00001  |      ;
                        JSL.L lunchMusic                     ;88D6F1|22118082|828011;
                        LDX.W #$0B38                         ;88D6F5|A2380B  |      ;
-                       STX.W r_levelSpecFlag                ;88D6F8|8E5E1E  |861E5E;
+                       STX.W r6_levelSpecFlag               ;88D6F8|8E5E1E  |861E5E;
                        SEP #$10                             ;88D6FB|E210    |      ;
                        LDA.B #$0B                           ;88D6FD|A90B    |      ;
                        JSL.L playerGrabedRoutine            ;88D6FF|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88D703:
-                       JSL.L updateEv_13_14_17_0f           ;88D703|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D703|22EA8E84|848EEA;
                        RTS                                  ;88D707|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D708:
-                       LDA.W r_d_0bd3                       ;88D708|ADD30B  |860BD3;
+                       LDA.W r6_player_bd3                  ;88D708|ADD30B  |860BD3;
                        BIT.B #$04                           ;88D70B|8904    |      ;
                        BEQ CODE_88D71A                      ;88D70D|F00B    |88D71A;
                        LDA.B #$06                           ;88D70F|A906    |      ;
                        STA.B r_ev_03_do-$E68                ;88D711|8503    |000E6B;
-                       STZ.W r_1f49                         ;88D713|9C491F  |861F49;
+                       STZ.W r6_1f49                        ;88D713|9C491F  |861F49;
                        JSL.L CODE_84A02B                    ;88D716|222BA084|84A02B;
                                                             ;      |        |      ;
           CODE_88D71A:
@@ -13579,30 +13579,30 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
           CODE_88D71B:
                        REP #$20                             ;88D71B|C220    |      ;
-                       LDA.W r_cam_BG0_LeftBorder           ;88D71D|AD561E  |861E56;
-                       CMP.W r_levelSpecFlag                ;88D720|CD5E1E  |861E5E;
+                       LDA.W r6_cam_BG0_LeftBorder          ;88D71D|AD561E  |861E56;
+                       CMP.W r6_levelSpecFlag               ;88D720|CD5E1E  |861E5E;
                        SEP #$20                             ;88D723|E220    |      ;
                        BNE CODE_88D75B                      ;88D725|D034    |88D75B;
                        LDA.B #$08                           ;88D727|A908    |      ;
                        STA.B r_ev_03_do-$E68                ;88D729|8503    |000E6B;
-                       LDA.W r_1f3d                         ;88D72B|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88D72B|AD3D1F  |861F3D;
                        STA.B r_ev_3c-$E68                   ;88D72E|853C    |000EA4;
                        LDA.B #$80                           ;88D730|A980    |      ;
-                       STA.W r_0000                         ;88D732|8D0000  |860000;
+                       STA.W r6_0000                        ;88D732|8D0000  |860000;
                        LDA.B #$50                           ;88D735|A950    |      ;
-                       STA.W r_0002                         ;88D737|8D0200  |860002;
+                       STA.W r6_0002                        ;88D737|8D0200  |860002;
                        LDA.B #$58                           ;88D73A|A958    |      ;
-                       STA.W r_0004                         ;88D73C|8D0400  |860004;
+                       STA.W r6_0004                        ;88D73C|8D0400  |860004;
                        LDA.B #$30                           ;88D73F|A930    |      ;
-                       STA.W r_0006                         ;88D741|8D0600  |860006;
+                       STA.W r6_0006                        ;88D741|8D0600  |860006;
                        LDX.B #$1C                           ;88D744|A21C    |      ;
-                       LDA.W r_player_upgradeMask           ;88D746|AD991F  |861F99;
+                       LDA.W r6_player_upgradeMask          ;88D746|AD991F  |861F99;
                        BIT.B #$02                           ;88D749|8902    |      ;
                        BNE CODE_88D74E                      ;88D74B|D001    |88D74E;
                        INX                                  ;88D74D|E8      |      ;
                                                             ;      |        |      ;
           CODE_88D74E:
-                       STX.W r_0008                         ;88D74E|8E0800  |860008;
+                       STX.W r6_0008                        ;88D74E|8E0800  |860008;
                        JSL.L CODE_83F74A                    ;88D751|224AF783|83F74A;
                        LDA.B #$06                           ;88D755|A906    |      ;
                        JSL.L CODE_88D83F                    ;88D757|223FD888|88D83F;
@@ -13612,7 +13612,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D75C:
-                       LDA.W r_1f3c                         ;88D75C|AD3C1F  |861F3C;
+                       LDA.W r6_1f3c                        ;88D75C|AD3C1F  |861F3C;
                        BEQ CODE_88D78D                      ;88D75F|F02C    |88D78D;
                        CMP.B #$02                           ;88D761|C902    |      ;
                        BNE CODE_88D770                      ;88D763|D00B    |88D770;
@@ -13624,7 +13624,7 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D770:
-                       LDA.W r_1f3d                         ;88D770|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88D770|AD3D1F  |861F3D;
                        CMP.B r_ev_3c-$E68                   ;88D773|C53C    |000EA4;
                        BEQ CODE_88D789                      ;88D775|F012    |88D789;
                        LDA.B r_ev_3c-$E68                   ;88D777|A53C    |000EA4;
@@ -13639,10 +13639,10 @@ eventID_VileMech_66_main:
                        JSL.L playerGrabedRoutine            ;88D785|22078F84|848F07;
                                                             ;      |        |      ;
           CODE_88D789:
-                       JSL.L updateEv_13_14_17_0f           ;88D789|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D789|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88D78D:
-                       LDA.W r_1f3d                         ;88D78D|AD3D1F  |861F3D;
+                       LDA.W r6_1f3d                        ;88D78D|AD3D1F  |861F3D;
                        STA.B r_ev_3c-$E68                   ;88D790|853C    |000EA4;
                        RTS                                  ;88D792|60      |      ;
                                                             ;      |        |      ;
@@ -13661,12 +13661,12 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D7AA:
-                       LDA.W r_1f2c                         ;88D7AA|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88D7AA|AD2C1F  |861F2C;
                        BMI CODE_88D7BB                      ;88D7AD|300C    |88D7BB;
                        LDA.B #$01                           ;88D7AF|A901    |      ;
-                       STA.W r_1f3b                         ;88D7B1|8D3B1F  |861F3B;
-                       STA.W r_1f31                         ;88D7B4|8D311F  |861F31;
-                       JSL.L updateEv_13_14_17_0f           ;88D7B7|22EA8E84|848EEA;
+                       STA.W r6_1f3b                        ;88D7B1|8D3B1F  |861F3B;
+                       STA.W r6_1f31                        ;88D7B4|8D311F  |861F31;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D7B7|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88D7BB:
                        RTS                                  ;88D7BB|60      |      ;
@@ -13675,19 +13675,19 @@ eventID_VileMech_66_main:
           CODE_88D7BC:
                        DEC.B r_ev_34-$E68                   ;88D7BC|C634    |000E9C;
                        BNE CODE_88D809                      ;88D7BE|D049    |88D809;
-                       LDA.W r_player_upgradeMask           ;88D7C0|AD991F  |861F99;
+                       LDA.W r6_player_upgradeMask          ;88D7C0|AD991F  |861F99;
                        BIT.B #$02                           ;88D7C3|8902    |      ;
                        BEQ CODE_88D7D3                      ;88D7C5|F00C    |88D7D3;
                        JSL.L CODE_84A003                    ;88D7C7|2203A084|84A003;
-                       STZ.W r_1f31                         ;88D7CB|9C311F  |861F31;
-                       STZ.W r_1f3b                         ;88D7CE|9C3B1F  |861F3B;
+                       STZ.W r6_1f31                        ;88D7CB|9C311F  |861F31;
+                       STZ.W r6_1f3b                        ;88D7CE|9C3B1F  |861F3B;
                        BRA CODE_88D7ED                      ;88D7D1|801A    |88D7ED;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D7D3:
                        LDA.B #$02                           ;88D7D3|A902    |      ;
-                       TSB.W r_player_upgradeMask           ;88D7D5|0C991F  |861F99;
-                       INC.W $0C38                          ;88D7D8|EE380C  |860C38;
+                       TSB.W r6_player_upgradeMask          ;88D7D5|0C991F  |861F99;
+                       INC.W r6_powerUpArm_01               ;88D7D8|EE380C  |860C38;
                        STZ.W $0C42                          ;88D7DB|9C420C  |860C42;
                        STZ.W $0C43                          ;88D7DE|9C430C  |860C43;
                        STZ.W $0C39                          ;88D7E1|9C390C  |860C39;
@@ -13704,30 +13704,30 @@ eventID_VileMech_66_main:
                        LDA.B #$F5                           ;88D7F9|A9F5    |      ;
                        JSL.L CODE_80887F                    ;88D7FB|227F8880|80887F;
                        LDA.B #$03                           ;88D7FF|A903    |      ;
-                       STA.W r_1f7d                         ;88D801|8D7D1F  |861F7D;
+                       STA.W r6_player_upgradeMask_Health_intro;88D801|8D7D1F  |861F7D;
                        LDA.B #$02                           ;88D804|A902    |      ;
-                       STA.W r_player_checkpoint            ;88D806|8D811F  |861F81;
+                       STA.W r6_player_checkpoint           ;88D806|8D811F  |861F81;
                                                             ;      |        |      ;
           CODE_88D809:
                        RTS                                  ;88D809|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D80A:
-                       JSL.L clearStates_00_02_0E           ;88D80A|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;88D80A|22988382|828398;
                        RTS                                  ;88D80E|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D80F:
                        JSL.L loadEnitySlotBase              ;88D80F|22218382|828321;
                        BNE CODE_88D82B                      ;88D813|D016    |88D82B;
-                       INC.W r_0000,X                       ;88D815|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88D815|FE0000  |860000;
                        LDA.B #$69                           ;88D818|A969    |      ;
-                       STA.W r_000a,X                       ;88D81A|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88D81A|9D0A00  |86000A;
                        REP #$20                             ;88D81D|C220    |      ;
                        LDA.W #$0B30                         ;88D81F|A9300B  |      ;
-                       STA.W r_0005,X                       ;88D822|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88D822|9D0500  |860005;
                        LDA.W #$059B                         ;88D825|A99B05  |      ;
-                       STA.W r_0008,X                       ;88D828|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88D828|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_88D82B:
                        SEP #$30                             ;88D82B|E230    |      ;
@@ -13737,9 +13737,9 @@ eventID_VileMech_66_main:
           CODE_88D82E:
                        JSL.L CODE_8282D3                    ;88D82E|22D38282|8282D3;
                        BNE CODE_88D83C                      ;88D832|D008    |88D83C;
-                       INC.W r_0000,X                       ;88D834|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88D834|FE0000  |860000;
                        LDA.B #$42                           ;88D837|A942    |      ;
-                       STA.W r_000a,X                       ;88D839|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88D839|9D0A00  |86000A;
                                                             ;      |        |      ;
           CODE_88D83C:
                        SEP #$10                             ;88D83C|E210    |      ;
@@ -13747,14 +13747,14 @@ eventID_VileMech_66_main:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D83F:
-                       STA.W r_0000                         ;88D83F|8D0000  |860000;
+                       STA.W r6_0000                        ;88D83F|8D0000  |860000;
                        JSL.L loadEnitySlotBase              ;88D842|22218382|828321;
                        BNE CODE_88D856                      ;88D846|D00E    |88D856;
-                       INC.W r_0000,X                       ;88D848|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88D848|FE0000  |860000;
                        LDA.B #$3C                           ;88D84B|A93C    |      ;
-                       STA.W r_000a,X                       ;88D84D|9D0A00  |86000A;
-                       LDA.W r_0000                         ;88D850|AD0000  |860000;
-                       STA.W r_000b,X                       ;88D853|9D0B00  |86000B;
+                       STA.W r6_000a,X                      ;88D84D|9D0A00  |86000A;
+                       LDA.W r6_0000                        ;88D850|AD0000  |860000;
+                       STA.W r6_000b,X                      ;88D853|9D0B00  |86000B;
                                                             ;      |        |      ;
           CODE_88D856:
                        SEP #$10                             ;88D856|E210    |      ;
@@ -13795,7 +13795,7 @@ eventID_VileMech_66_main:
                        STA.B r_ev_01_state-$E68             ;88D88C|8501    |000E69;
                                                             ;      |        |      ;
           CODE_88D88E:
-                       JSL.L updateEv_13_14_17_0f           ;88D88E|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D88E|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;88D892|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -13807,7 +13807,7 @@ eventID_VileMech_66_main:
                        STA.B r_ev_0a_ID-$E68                ;88D8A0|850A    |000E72;
                        TYA                                  ;88D8A2|98      |      ;
                        BNE CODE_88D88E                      ;88D8A3|D0E9    |88D88E;
-                       JML.L clearStates_00_02_0E           ;88D8A5|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88D8A5|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
  eventID_vile_68_main:
@@ -13853,10 +13853,10 @@ eventID_vile_68_state_00:
                        LDX.W #$0E68                         ;88D8EC|A2680E  |      ;
                                                             ;      |        |      ;
           CODE_88D8EF:
-                       LDA.W r_0000,X                       ;88D8EF|BD0000  |860000;
+                       LDA.W r6_0000,X                      ;88D8EF|BD0000  |860000;
                        BEQ CODE_88D900                      ;88D8F2|F00C    |88D900;
                        SEP #$20                             ;88D8F4|E220    |      ;
-                       LDA.W r_000a,X                       ;88D8F6|BD0A00  |86000A;
+                       LDA.W r6_000a,X                      ;88D8F6|BD0A00  |86000A;
                        CMP.B #$6A                           ;88D8F9|C96A    |      ;
                        REP #$20                             ;88D8FB|C220    |      ;
                        BNE CODE_88D900                      ;88D8FD|D001    |88D900;
@@ -13874,20 +13874,20 @@ eventID_vile_68_state_00:
                        BCS CODE_88D93B                      ;88D910|B029    |88D93B;
                        JSL.L loadEnitySlotBase              ;88D912|22218382|828321;
                        BNE CODE_88D93B                      ;88D916|D023    |88D93B;
-                       INC.W r_0000,X                       ;88D918|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88D918|FE0000  |860000;
                        LDA.B #$6A                           ;88D91B|A96A    |      ;
-                       STA.W r_000a,X                       ;88D91D|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88D91D|9D0A00  |86000A;
                        LDA.B r_ev_18_gfxSlot-$E68           ;88D920|A518    |000E80;
-                       STA.W r_0018,X                       ;88D922|9D1800  |860018;
+                       STA.W r6_0018,X                      ;88D922|9D1800  |860018;
                        LDA.B r_ev_16_sprID-$E68             ;88D925|A516    |000E7E;
-                       STA.W r_0016,X                       ;88D927|9D1600  |860016;
+                       STA.W r6_0016,X                      ;88D927|9D1600  |860016;
                        LDA.B r_ev_11_sprAtri-$E68           ;88D92A|A511    |000E79;
-                       STA.W r_0011,X                       ;88D92C|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88D92C|9D1100  |860011;
                        REP #$20                             ;88D92F|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88D931|A505    |000E6D;
-                       STA.W r_0005,X                       ;88D933|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88D933|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88D936|A508    |000E70;
-                       STA.W r_0008,X                       ;88D938|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88D938|9D0800  |860008;
                                                             ;      |        |      ;
           CODE_88D93B:
                        SEP #$30                             ;88D93B|E230    |      ;
@@ -13950,7 +13950,7 @@ eventID_vileFinalForm_6a_main:
                        JSL.L CODE_84A384                    ;88D997|2284A384|84A384;
                                                             ;      |        |      ;
           CODE_88D99B:
-                       JML.L clearStates_00_02_0E           ;88D99B|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88D99B|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D99F:
@@ -13997,7 +13997,7 @@ vileFinalForm_6a_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88D9E9:
-                       JSL.L updateEv_13_14_17_0f           ;88D9E9|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88D9E9|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88D9ED|A50F    |000E77;
                        BPL CODE_88DA22                      ;88D9EF|1031    |88DA22;
                        LDA.B r_ev_11_sprAtri-$E68           ;88D9F1|A511    |000E79;
@@ -14034,7 +14034,7 @@ vileFinalForm_6a_state_00:
                                                             ;      |        |      ;
           CODE_88DA23:
                        JSL.L CODE_82825D                    ;88DA23|225D8282|82825D;
-                       JSL.L updateEv_13_14_17_0f           ;88DA27|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DA27|22EA8E84|848EEA;
                        REP #$20                             ;88DA2B|C220    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;88DA2D|A508    |000E70;
                        SEC                                  ;88DA2F|38      |      ;
@@ -14072,7 +14072,7 @@ vileFinalForm_6a_state_00:
           CODE_88DA61:
                        JSL.L CODE_828174                    ;88DA61|22748182|828174;
                        JSL.L CODE_8491BE                    ;88DA65|22BE9184|8491BE;
-                       JSL.L updateEv_13_14_17_0f           ;88DA69|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DA69|22EA8E84|848EEA;
                        REP #$20                             ;88DA6D|C220    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;88DA6F|A508    |000E70;
                        SEC                                  ;88DA71|38      |      ;
@@ -14112,7 +14112,7 @@ vileFinalForm_6a_state_00:
           CODE_88DAA7:
                        JSL.L CODE_82823E                    ;88DAA7|223E8282|82823E;
                        JSL.L CODE_8491BE                    ;88DAAB|22BE9184|8491BE;
-                       JSL.L updateEv_13_14_17_0f           ;88DAAF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DAAF|22EA8E84|848EEA;
                        LDA.B r_ev_2b-$E68                   ;88DAB3|A52B    |000E93;
                        BIT.B #$02                           ;88DAB5|8902    |      ;
                        BNE CODE_88DABE                      ;88DAB7|D005    |88DABE;
@@ -14174,11 +14174,11 @@ wallCreeper_69_state_00:
                        STA.B r_ev_0c_parent-$E68            ;88DB11|850C    |000E74;
                        SEP #$20                             ;88DB13|E220    |      ;
                        LDA.B #$01                           ;88DB15|A901    |      ;
-                       STA.W r_player_checkpoint            ;88DB17|8D811F  |861F81;
+                       STA.W r6_player_checkpoint           ;88DB17|8D811F  |861F81;
                        LDA.B #$02                           ;88DB1A|A902    |      ;
                        STA.B r_ev_01_state-$E68             ;88DB1C|8501    |000E69;
                        STZ.B r_ev_38-$E68                   ;88DB1E|6438    |000EA0;
-                       LDA.W r_1f7d                         ;88DB20|AD7D1F  |861F7D;
+                       LDA.W r6_player_upgradeMask_Health_intro;88DB20|AD7D1F  |861F7D;
                        CMP.B #$02                           ;88DB23|C902    |      ;
                        BNE CODE_88DB32                      ;88DB25|D00B    |88DB32;
                        LDA.B #$08                           ;88DB27|A908    |      ;
@@ -14221,15 +14221,15 @@ wallCreeper_69_state_00:
                        LDA.B #$3C                           ;88DB57|A93C    |      ;
                        STA.B r_ev_0c_parent-$E68            ;88DB59|850C    |000E74;
                        LDA.B #$80                           ;88DB5B|A980    |      ;
-                       STA.W r_0000                         ;88DB5D|8D0000  |860000;
+                       STA.W r6_0000                        ;88DB5D|8D0000  |860000;
                        LDA.B #$50                           ;88DB60|A950    |      ;
-                       STA.W r_0002                         ;88DB62|8D0200  |860002;
+                       STA.W r6_0002                        ;88DB62|8D0200  |860002;
                        LDA.B #$58                           ;88DB65|A958    |      ;
-                       STA.W r_0004                         ;88DB67|8D0400  |860004;
+                       STA.W r6_0004                        ;88DB67|8D0400  |860004;
                        LDA.B #$30                           ;88DB6A|A930    |      ;
-                       STA.W r_0006                         ;88DB6C|8D0600  |860006;
+                       STA.W r6_0006                        ;88DB6C|8D0600  |860006;
                        LDA.B #$1A                           ;88DB6F|A91A    |      ;
-                       STA.W r_0008                         ;88DB71|8D0800  |860008;
+                       STA.W r6_0008                        ;88DB71|8D0800  |860008;
                        JSL.L CODE_83F74A                    ;88DB74|224AF783|83F74A;
                        LDA.B #$09                           ;88DB78|A909    |      ;
                        JSL.L CODE_88D83F                    ;88DB7A|223FD888|88D83F;
@@ -14246,7 +14246,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DB8A:
-                       LDA.W r_1f2c                         ;88DB8A|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88DB8A|AD2C1F  |861F2C;
                        BMI CODE_88DBA4                      ;88DB8D|3015    |88DBA4;
                        LDA.B r_ev_0c_parent-$E68            ;88DB8F|A50C    |000E74;
                        BNE CODE_88DBA2                      ;88DB91|D00F    |88DBA2;
@@ -14267,20 +14267,20 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DBA9:
-                       LDA.W r_1f2c                         ;88DBA9|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88DBA9|AD2C1F  |861F2C;
                        BMI CODE_88DBDB                      ;88DBAC|302D    |88DBDB;
                        LDA.B r_ev_0c_parent-$E68            ;88DBAE|A50C    |000E74;
                        BNE CODE_88DBD9                      ;88DBB0|D027    |88DBD9;
                        LDA.B #$80                           ;88DBB2|A980    |      ;
-                       STA.W r_0000                         ;88DBB4|8D0000  |860000;
+                       STA.W r6_0000                        ;88DBB4|8D0000  |860000;
                        LDA.B #$50                           ;88DBB7|A950    |      ;
-                       STA.W r_0002                         ;88DBB9|8D0200  |860002;
+                       STA.W r6_0002                        ;88DBB9|8D0200  |860002;
                        LDA.B #$58                           ;88DBBC|A958    |      ;
-                       STA.W r_0004                         ;88DBBE|8D0400  |860004;
+                       STA.W r6_0004                        ;88DBBE|8D0400  |860004;
                        LDA.B #$30                           ;88DBC1|A930    |      ;
-                       STA.W r_0006                         ;88DBC3|8D0600  |860006;
+                       STA.W r6_0006                        ;88DBC3|8D0600  |860006;
                        LDA.B #$1B                           ;88DBC6|A91B    |      ;
-                       STA.W r_0008                         ;88DBC8|8D0800  |860008;
+                       STA.W r6_0008                        ;88DBC8|8D0800  |860008;
                        JSL.L CODE_83F74A                    ;88DBCB|224AF783|83F74A;
                        LDA.B #$09                           ;88DBCF|A909    |      ;
                        JSL.L CODE_88D83F                    ;88DBD1|223FD888|88D83F;
@@ -14296,12 +14296,12 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DBE0:
-                       LDA.W r_1f2c                         ;88DBE0|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88DBE0|AD2C1F  |861F2C;
                        BMI CODE_88DBF0                      ;88DBE3|300B    |88DBF0;
                        LDA.B #$08                           ;88DBE5|A908    |      ;
                        STA.B r_ev_02_action-$E68            ;88DBE7|8502    |000E6A;
                        LDA.B #$02                           ;88DBE9|A902    |      ;
-                       STA.W r_1f7d                         ;88DBEB|8D7D1F  |861F7D;
+                       STA.W r6_player_upgradeMask_Health_intro;88DBEB|8D7D1F  |861F7D;
                        STZ.B r_ev_0c_parent-$E68            ;88DBEE|640C    |000E74;
                                                             ;      |        |      ;
           CODE_88DBF0:
@@ -14311,15 +14311,15 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88DBF5:
                        REP #$20                             ;88DBF5|C220    |      ;
-                       LDA.W r_cam_BG0_xPos_lock            ;88DBF7|AD601E  |861E60;
-                       CMP.W r_levelSpecFlag                ;88DBFA|CD5E1E  |861E5E;
+                       LDA.W r6_cam_BG0_xPos_lock           ;88DBF7|AD601E  |861E60;
+                       CMP.W r6_levelSpecFlag               ;88DBFA|CD5E1E  |861E5E;
                        BNE CODE_88DC26                      ;88DBFD|D027    |88DC26;
                        SEP #$20                             ;88DBFF|E220    |      ;
-                       LDA.W $0C16                          ;88DC01|AD160C  |860C16;
+                       LDA.W r6_getItem                     ;88DC01|AD160C  |860C16;
                        BNE CODE_88DC0F                      ;88DC04|D009    |88DC0F;
                        JSL.L CODE_849FEB                    ;88DC06|22EB9F84|849FEB;
                        LDA.B #$01                           ;88DC0A|A901    |      ;
-                       STA.W r_1f49                         ;88DC0C|8D491F  |861F49;
+                       STA.W r6_1f49                        ;88DC0C|8D491F  |861F49;
                                                             ;      |        |      ;
           CODE_88DC0F:
                        LDA.B r_ev_0c_parent-$E68            ;88DC0F|A50C    |000E74;
@@ -14331,7 +14331,7 @@ wallCreeper_69_state_00:
           CODE_88DC18:
                        REP #$20                             ;88DC18|C220    |      ;
                        TDC                                  ;88DC1A|7B      |      ;
-                       STA.W r_1f0e                         ;88DC1B|8D0E1F  |861F0E;
+                       STA.W r6_1f0e                        ;88DC1B|8D0E1F  |861F0E;
                        SEP #$20                             ;88DC1E|E220    |      ;
                        STZ.B r_ev_27_health-$E68            ;88DC20|6427    |000E8F;
                        LDA.B #$0A                           ;88DC22|A90A    |      ;
@@ -14346,8 +14346,8 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DC2D:
-                       STZ.W r_1f49                         ;88DC2D|9C491F  |861F49;
-                       LDA.W r_frameCounter1                ;88DC30|AD9C0B  |860B9C;
+                       STZ.W r6_1f49                        ;88DC2D|9C491F  |861F49;
+                       LDA.W r6_frameCounter1               ;88DC30|AD9C0B  |860B9C;
                        LSR A                                ;88DC33|4A      |      ;
                        BCC CODE_88DC6C                      ;88DC34|9036    |88DC6C;
                        LDA.B r_ev_27_health-$E68            ;88DC36|A527    |000E8F;
@@ -14363,7 +14363,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DC4C:
-                       LDA.W r_d_0bd3                       ;88DC4C|ADD30B  |860BD3;
+                       LDA.W r6_player_bd3                  ;88DC4C|ADD30B  |860BD3;
                        AND.B #$04                           ;88DC4F|2904    |      ;
                        BEQ CODE_88DC6C                      ;88DC51|F019    |88DC6C;
                        LDA.B #$00                           ;88DC53|A900    |      ;
@@ -14372,7 +14372,7 @@ wallCreeper_69_state_00:
                        STA.B r_ev_02_action-$E68            ;88DC5B|8502    |000E6A;
                        LDA.B #$10                           ;88DC5D|A910    |      ;
                        STA.B r_ev_0c_parent-$E68            ;88DC5F|850C    |000E74;
-                       LDA.W r_1f26                         ;88DC61|AD261F  |861F26;
+                       LDA.W r6_1f26                        ;88DC61|AD261F  |861F26;
                        BEQ CODE_88DC6C                      ;88DC64|F006    |88DC6C;
                        LDA.B #$24                           ;88DC66|A924    |      ;
                        JSL.L CODE_8087A2                    ;88DC68|22A28780|8087A2;
@@ -14400,7 +14400,7 @@ wallCreeper_69_state_00:
                        DEC.B r_ev_0c_parent-$E68            ;88DC8A|C60C    |000E74;
                                                             ;      |        |      ;
           CODE_88DC8C:
-                       JSL.L updateEv_13_14_17_0f           ;88DC8C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DC8C|22EA8E84|848EEA;
                        JSL.L checkPlayerGear                ;88DC90|22B48082|8280B4;
                        RTS                                  ;88DC94|60      |      ;
                                                             ;      |        |      ;
@@ -14430,7 +14430,7 @@ wallCreeper_69_state_00:
                        LDA.B r_ev_27_health-$E68            ;88DCB4|A527    |000E8F;
                        AND.B #$7F                           ;88DCB6|297F    |      ;
                        BNE CODE_88DCED                      ;88DCB8|D033    |88DCED;
-                       LDA.W r_d_0bcf                       ;88DCBA|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;88DCBA|ADCF0B  |860BCF;
                        AND.B #$7F                           ;88DCBD|297F    |      ;
                        BEQ CODE_88DCF1                      ;88DCBF|F030    |88DCF1;
                        LDA.B #$13                           ;88DCC1|A913    |      ;
@@ -14440,14 +14440,14 @@ wallCreeper_69_state_00:
                        STZ.B r_ev_02_action-$E68            ;88DCCB|6402    |000E6A;
                        STZ.B r_ev_03_do-$E68                ;88DCCD|6403    |000E6B;
                        LDA.B #$01                           ;88DCCF|A901    |      ;
-                       STA.W r_d_0bd8                       ;88DCD1|8DD80B  |860BD8;
-                       STA.W r_bossDefeatInvFlag            ;88DCD4|8D0C1F  |861F0C;
+                       STA.W r6_player_invinsCounter        ;88DCD1|8DD80B  |860BD8;
+                       STA.W r6_bossDefeatInvFlag           ;88DCD4|8D0C1F  |861F0C;
                        LDA.B #$14                           ;88DCD7|A914    |      ;
                        STA.B r_ev_0c_parent-$E68            ;88DCD9|850C    |000E74;
                        LDA.B #$01                           ;88DCDB|A901    |      ;
-                       STA.W r_1f13                         ;88DCDD|8D131F  |861F13;
-                       STA.W r_1f14                         ;88DCE0|8D141F  |861F14;
-                       STA.W r_1f17                         ;88DCE3|8D171F  |861F17;
+                       STA.W r6_1f13                        ;88DCDD|8D131F  |861F13;
+                       STA.W r6_1f14                        ;88DCE0|8D141F  |861F14;
+                       STA.W r6_1f17                        ;88DCE3|8D171F  |861F17;
                        JSL.L CODE_849F8A                    ;88DCE6|228A9F84|849F8A;
                        JMP.W CODE_88DD0A                    ;88DCEA|4C0ADD  |88DD0A;
                                                             ;      |        |      ;
@@ -14504,23 +14504,23 @@ wallCreeper_69_state_00:
                        REP #$20                             ;88DD30|C220    |      ;
                        LDA.W #$0600                         ;88DD32|A90006  |      ;
                        STA.B r_ev_1c_ySpdSub-$E68           ;88DD35|851C    |000E84;
-                       LDA.W r_d_player_xSubPos             ;88DD37|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88DD37|ADAD0B  |860BAD;
                        SEC                                  ;88DD3A|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88DD3B|E505    |000E6D;
                        BCS CODE_88DD48                      ;88DD3D|B009    |88DD48;
                        LDA.W #$FFC0                         ;88DD3F|A9C0FF  |      ;
-                       STA.W r_0000                         ;88DD42|8D0000  |860000;
+                       STA.W r6_0000                        ;88DD42|8D0000  |860000;
                        JMP.W CODE_88DD4E                    ;88DD45|4C4EDD  |88DD4E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DD48:
                        LDA.W #$0040                         ;88DD48|A94000  |      ;
-                       STA.W r_0000                         ;88DD4B|8D0000  |860000;
+                       STA.W r6_0000                        ;88DD4B|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_88DD4E:
-                       LDA.W r_d_player_xSubPos             ;88DD4E|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88DD4E|ADAD0B  |860BAD;
                        CLC                                  ;88DD51|18      |      ;
-                       ADC.W r_0000                         ;88DD52|6D0000  |860000;
+                       ADC.W r6_0000                        ;88DD52|6D0000  |860000;
                        SEC                                  ;88DD55|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88DD56|E505    |000E6D;
                        ASL A                                ;88DD58|0A      |      ;
@@ -14618,7 +14618,7 @@ wallCreeper_69_state_00:
                        SEP #$20                             ;88DDF6|E220    |      ;
                                                             ;      |        |      ;
           CODE_88DDF8:
-                       JSL.L updateEv_13_14_17_0f           ;88DDF8|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DDF8|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88DDFC:
                        RTS                                  ;88DDFC|60      |      ;
@@ -14647,7 +14647,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DE23:
-                       JSL.L updateEv_13_14_17_0f           ;88DE23|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DE23|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88DE27:
                        RTS                                  ;88DE27|60      |      ;
@@ -14685,7 +14685,7 @@ wallCreeper_69_state_00:
                        SEP #$20                             ;88DE5C|E220    |      ;
                                                             ;      |        |      ;
           CODE_88DE5E:
-                       JSL.L updateEv_13_14_17_0f           ;88DE5E|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DE5E|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88DE62:
                        RTS                                  ;88DE62|60      |      ;
@@ -14700,7 +14700,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DE70:
-                       JSL.L updateEv_13_14_17_0f           ;88DE70|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DE70|22EA8E84|848EEA;
                        JMP.W CODE_88DE7F                    ;88DE74|4C7FDE  |88DE7F;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14725,7 +14725,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DE91:
-                       JSL.L updateEv_13_14_17_0f           ;88DE91|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DE91|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88DE95:
                        RTS                                  ;88DE95|60      |      ;
@@ -14746,7 +14746,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88DEAD:
                        DEC.B r_ev_0c_parent-$E68            ;88DEAD|C60C    |000E74;
-                       JSL.L updateEv_13_14_17_0f           ;88DEAF|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DEAF|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88DEB3:
                        RTS                                  ;88DEB3|60      |      ;
@@ -14827,47 +14827,47 @@ wallCreeper_69_state_00:
                        JSL.L findEnemyShotEmptySlot         ;88DF10|22588382|828358;
                        BNE CODE_88DF69                      ;88DF14|D053    |88DF69;
                        LDA.B #$2F                           ;88DF16|A92F    |      ;
-                       STA.W r_000a,X                       ;88DF18|9D0A00  |86000A;
-                       INC.W r_0000,X                       ;88DF1B|FE0000  |860000;
+                       STA.W r6_000a,X                      ;88DF18|9D0A00  |86000A;
+                       INC.W r6_0000,X                      ;88DF1B|FE0000  |860000;
                        REP #$20                             ;88DF1E|C220    |      ;
                        LDA.B r_ev_11_sprAtri-$E68           ;88DF20|A511    |000E79;
                        AND.W #$0040                         ;88DF22|294000  |      ;
                        BNE CODE_88DF30                      ;88DF25|D009    |88DF30;
                        LDA.W #$FFE8                         ;88DF27|A9E8FF  |      ;
-                       STA.W r_0000                         ;88DF2A|8D0000  |860000;
+                       STA.W r6_0000                        ;88DF2A|8D0000  |860000;
                        JMP.W CODE_88DF36                    ;88DF2D|4C36DF  |88DF36;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DF30:
                        LDA.W #$0018                         ;88DF30|A91800  |      ;
-                       STA.W r_0000                         ;88DF33|8D0000  |860000;
+                       STA.W r6_0000                        ;88DF33|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_88DF36:
                        LDA.B r_ev_05_xPos-$E68              ;88DF36|A505    |000E6D;
                        CLC                                  ;88DF38|18      |      ;
-                       ADC.W r_0000                         ;88DF39|6D0000  |860000;
-                       STA.W r_0005,X                       ;88DF3C|9D0500  |860005;
+                       ADC.W r6_0000                        ;88DF39|6D0000  |860000;
+                       STA.W r6_0005,X                      ;88DF3C|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88DF3F|A508    |000E70;
                        SEC                                  ;88DF41|38      |      ;
                        SBC.W #$0007                         ;88DF42|E90700  |      ;
-                       STA.W r_0008,X                       ;88DF45|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88DF45|9D0800  |860008;
                        LDA.B r_ev_3c-$E68                   ;88DF48|A53C    |000EA4;
-                       STA.W r_001a,X                       ;88DF4A|9D1A00  |86001A;
+                       STA.W r6_001a,X                      ;88DF4A|9D1A00  |86001A;
                        LDA.B r_ev_3e-$E68                   ;88DF4D|A53E    |000EA6;
-                       STA.W r_001c,X                       ;88DF4F|9D1C00  |86001C;
+                       STA.W r6_001c,X                      ;88DF4F|9D1C00  |86001C;
                        SEP #$20                             ;88DF52|E220    |      ;
                        LDA.B r_ev_16_sprID-$E68             ;88DF54|A516    |000E7E;
-                       STA.W r_0016,X                       ;88DF56|9D1600  |860016;
+                       STA.W r6_0016,X                      ;88DF56|9D1600  |860016;
                        LDA.B r_ev_11_sprAtri-$E68           ;88DF59|A511    |000E79;
                        ORA.B r_ev_34-$E68                   ;88DF5B|0534    |000E9C;
-                       STA.W r_0011,X                       ;88DF5D|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88DF5D|9D1100  |860011;
                        LDA.B r_ev_18_gfxSlot-$E68           ;88DF60|A518    |000E80;
-                       STA.W r_0018,X                       ;88DF62|9D1800  |860018;
+                       STA.W r6_0018,X                      ;88DF62|9D1800  |860018;
                        LDA.B #$06                           ;88DF65|A906    |      ;
                        STA.B r_ev_03_do-$E68                ;88DF67|8503    |000E6B;
                                                             ;      |        |      ;
           CODE_88DF69:
-                       JSL.L updateEv_13_14_17_0f           ;88DF69|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DF69|22EA8E84|848EEA;
                        RTS                                  ;88DF6D|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14885,7 +14885,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DF85:
-                       JSL.L updateEv_13_14_17_0f           ;88DF85|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DF85|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88DF89:
                        RTS                                  ;88DF89|60      |      ;
@@ -14916,7 +14916,7 @@ wallCreeper_69_state_00:
                        LDA.W #$0400                         ;88DFAE|A90004  |      ;
                        STA.B r_ev_1a_xSpdSub-$E68           ;88DFB1|851A    |000E82;
                        LDA.W #$0034                         ;88DFB3|A93400  |      ;
-                       STA.W r_0000                         ;88DFB6|8D0000  |860000;
+                       STA.W r6_0000                        ;88DFB6|8D0000  |860000;
                        JMP.W CODE_88DFC7                    ;88DFB9|4CC7DF  |88DFC7;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -14924,12 +14924,12 @@ wallCreeper_69_state_00:
                        LDA.W #$FC00                         ;88DFBC|A900FC  |      ;
                        STA.B r_ev_1a_xSpdSub-$E68           ;88DFBF|851A    |000E82;
                        LDA.W #$FFCC                         ;88DFC1|A9CCFF  |      ;
-                       STA.W r_0000                         ;88DFC4|8D0000  |860000;
+                       STA.W r6_0000                        ;88DFC4|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_88DFC7:
-                       LDA.W r_d_player_xSubPos             ;88DFC7|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88DFC7|ADAD0B  |860BAD;
                        CLC                                  ;88DFCA|18      |      ;
-                       ADC.W r_0000                         ;88DFCB|6D0000  |860000;
+                       ADC.W r6_0000                        ;88DFCB|6D0000  |860000;
                        STA.B r_ev_3c-$E68                   ;88DFCE|853C    |000EA4;
                        SEP #$20                             ;88DFD0|E220    |      ;
                        LDA.B #$03                           ;88DFD2|A903    |      ;
@@ -14948,7 +14948,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88DFE8:
-                       JSL.L updateEv_13_14_17_0f           ;88DFE8|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88DFE8|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88DFEC:
                        LDA.B r_ev_0c_parent-$E68            ;88DFEC|A50C    |000E74;
@@ -15017,7 +15017,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88E058:
                        SEP #$20                             ;88E058|E220    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;88E05A|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E05A|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88E05E:
                        RTS                                  ;88E05E|60      |      ;
@@ -15036,14 +15036,14 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E075:
-                       LDA.W $0C16                          ;88E075|AD160C  |860C16;
+                       LDA.W r6_getItem                     ;88E075|AD160C  |860C16;
                        BEQ CODE_88E07D                      ;88E078|F003    |88E07D;
                        JMP.W CODE_88E0E6                    ;88E07A|4CE6E0  |88E0E6;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E07D:
                        REP #$20                             ;88E07D|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;88E07F|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88E07F|ADAD0B  |860BAD;
                        SEC                                  ;88E082|38      |      ;
                        SBC.B r_ev_05_xPos-$E68              ;88E083|E505    |000E6D;
                        BCC CODE_88E08B                      ;88E085|9004    |88E08B;
@@ -15119,7 +15119,7 @@ wallCreeper_69_state_00:
                        STZ.B r_ev_03_do-$E68                ;88E0F3|6403    |000E6B;
                                                             ;      |        |      ;
           CODE_88E0F5:
-                       JSL.L updateEv_13_14_17_0f           ;88E0F5|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E0F5|22EA8E84|848EEA;
                        RTS                                  ;88E0F9|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15141,15 +15141,15 @@ wallCreeper_69_state_00:
                        LDA.B r_ev_0c_parent-$E68            ;88E10D|A50C    |000E74;
                        BEQ CODE_88E11B                      ;88E10F|F00A    |88E11B;
                        LDA.B #$01                           ;88E111|A901    |      ;
-                       STA.W r_1f13                         ;88E113|8D131F  |861F13;
+                       STA.W r6_1f13                        ;88E113|8D131F  |861F13;
                        DEC.B r_ev_0c_parent-$E68            ;88E116|C60C    |000E74;
                        JMP.W CODE_88E143                    ;88E118|4C43E1  |88E143;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E11B:
-                       STZ.W r_1f13                         ;88E11B|9C131F  |861F13;
-                       STZ.W r_1f14                         ;88E11E|9C141F  |861F14;
-                       STZ.W r_1f17                         ;88E121|9C171F  |861F17;
+                       STZ.W r6_1f13                        ;88E11B|9C131F  |861F13;
+                       STZ.W r6_1f14                        ;88E11E|9C141F  |861F14;
+                       STZ.W r6_1f17                        ;88E121|9C171F  |861F17;
                        LDY.B #$02                           ;88E124|A002    |      ;
                        LDA.B #$F6                           ;88E126|A9F6    |      ;
                        JSL.L CODE_80887F                    ;88E128|227F8880|80887F;
@@ -15157,7 +15157,7 @@ wallCreeper_69_state_00:
                        LDA.B #$0C                           ;88E130|A90C    |      ;
                        STA.B r_ev_02_action-$E68            ;88E132|8502    |000E6A;
                        LDA.B #$30                           ;88E134|A930    |      ;
-                       TSB.W r_d_0bb9                       ;88E136|0CB90B  |860BB9;
+                       TSB.W r6_player_sprPal               ;88E136|0CB90B  |860BB9;
                        LDA.B #$78                           ;88E139|A978    |      ;
                        STA.B r_ev_0c_parent-$E68            ;88E13B|850C    |000E74;
                        LDA.B #$0C                           ;88E13D|A90C    |      ;
@@ -15181,12 +15181,12 @@ wallCreeper_69_state_00:
                        DEC.B r_ev_0c_parent-$E68            ;88E156|C60C    |000E74;
                                                             ;      |        |      ;
           CODE_88E158:
-                       JSL.L updateEv_13_14_17_0f           ;88E158|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E158|22EA8E84|848EEA;
                        JML.L checkPlayerGear                ;88E15C|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E160:
-                       LDA.W r_frameCounter1                ;88E160|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88E160|AD9C0B  |860B9C;
                        AND.B #$1F                           ;88E163|291F    |      ;
                        BNE CODE_88E16D                      ;88E165|D006    |88E16D;
                        LDA.B #$20                           ;88E167|A920    |      ;
@@ -15201,15 +15201,15 @@ wallCreeper_69_state_00:
           CODE_88E175:
                        REP #$20                             ;88E175|C220    |      ;
                        LDA.W #$FFE1                         ;88E177|A9E1FF  |      ;
-                       STA.W r_0000                         ;88E17A|8D0000  |860000;
-                       STA.W r_0002                         ;88E17D|8D0200  |860002;
+                       STA.W r6_0000                        ;88E17A|8D0000  |860000;
+                       STA.W r6_0002                        ;88E17D|8D0200  |860002;
                        LDA.W #$002F                         ;88E180|A92F00  |      ;
-                       STA.W r_0004                         ;88E183|8D0400  |860004;
-                       STA.W r_0006                         ;88E186|8D0600  |860006;
+                       STA.W r6_0004                        ;88E183|8D0400  |860004;
+                       STA.W r6_0006                        ;88E186|8D0600  |860006;
                        SEP #$20                             ;88E189|E220    |      ;
                        LDA.B #$03                           ;88E18B|A903    |      ;
-                       STA.W r_0008                         ;88E18D|8D0800  |860008;
-                       JSL.L updateEv_13_14_17_0f           ;88E190|22EA8E84|848EEA;
+                       STA.W r6_0008                        ;88E18D|8D0800  |860008;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E190|22EA8E84|848EEA;
                        JSL.L checkPlayerGear                ;88E194|22B48082|8280B4;
                        JML.L CODE_84A4D0                    ;88E198|5CD0A484|84A4D0;
                                                             ;      |        |      ;
@@ -15231,8 +15231,8 @@ wallCreeper_69_state_00:
                        SEP #$30                             ;88E1BE|E230    |      ;
                        PLB                                  ;88E1C0|AB      |      ;
                        LDA.B #$3F                           ;88E1C1|A93F    |      ;
-                       STA.W r_colorV_ca                    ;88E1C3|8DCA00  |8600CA;
-                       STZ.W r_colorV_cb                    ;88E1C6|9CCB00  |8600CB;
+                       STA.W r6_colorV_ca                   ;88E1C3|8DCA00  |8600CA;
+                       STZ.W r6_colorV_cb                   ;88E1C6|9CCB00  |8600CB;
                        LDA.B #$01                           ;88E1C9|A901    |      ;
                        STA.B r_ev_3b-$E68                   ;88E1CB|853B    |000EA3;
                        JSR.W CODE_88E252                    ;88E1CD|2052E2  |88E252;
@@ -15242,7 +15242,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E1D8:
-                       LDA.W r_frameCounter1                ;88E1D8|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88E1D8|AD9C0B  |860B9C;
                        AND.B #$01                           ;88E1DB|2901    |      ;
                        BNE CODE_88E1E7                      ;88E1DD|D008    |88E1E7;
                        LDA.B r_ev_3b-$E68                   ;88E1DF|A53B    |000EA3;
@@ -15264,10 +15264,10 @@ wallCreeper_69_state_00:
                        LDA.B #$08                           ;88E1F9|A908    |      ;
                        STA.B r_ev_02_action-$E68            ;88E1FB|8502    |000E6A;
                        LDA.B #$1F                           ;88E1FD|A91F    |      ;
-                       STA.W r_colorV_cb                    ;88E1FF|8DCB00  |8600CB;
-                       STA.W r_colorV_cc                    ;88E202|8DCC00  |8600CC;
-                       STA.W r_colorV_cd                    ;88E205|8DCD00  |8600CD;
-                       STZ.W r_0aa1                         ;88E208|9CA10A  |860AA1;
+                       STA.W r6_colorV_cb                   ;88E1FF|8DCB00  |8600CB;
+                       STA.W r6_colorV_cc                   ;88E202|8DCC00  |8600CC;
+                       STA.W r6_colorV_cd                   ;88E205|8DCD00  |8600CD;
+                       STZ.W r6_0aa1                        ;88E208|9CA10A  |860AA1;
                        RTL                                  ;88E20B|6B      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15284,12 +15284,12 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E21E:
-                       LDA.W r_frameCounter1                ;88E21E|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88E21E|AD9C0B  |860B9C;
                        AND.B #$01                           ;88E221|2901    |      ;
                        BNE CODE_88E234                      ;88E223|D00F    |88E234;
-                       DEC.W r_colorV_cb                    ;88E225|CECB00  |8600CB;
-                       DEC.W r_colorV_cc                    ;88E228|CECC00  |8600CC;
-                       DEC.W r_colorV_cd                    ;88E22B|CECD00  |8600CD;
+                       DEC.W r6_colorV_cb                   ;88E225|CECB00  |8600CB;
+                       DEC.W r6_colorV_cc                   ;88E228|CECC00  |8600CC;
+                       DEC.W r6_colorV_cd                   ;88E22B|CECD00  |8600CD;
                        BNE CODE_88E234                      ;88E22E|D004    |88E234;
                        LDA.B #$0A                           ;88E230|A90A    |      ;
                        STA.B r_ev_02_action-$E68            ;88E232|8502    |000E6A;
@@ -15300,15 +15300,15 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88E235:
                        LDA.B #$04                           ;88E235|A904    |      ;
-                       STA.W r_1f10                         ;88E237|8D101F  |861F10;
+                       STA.W r6_1f10                        ;88E237|8D101F  |861F10;
                        REP #$20                             ;88E23A|C220    |      ;
                        LDA.W #$0F00                         ;88E23C|A9000F  |      ;
-                       STA.W r_cam_BG0_xPos_lock            ;88E23F|8D601E  |861E60;
+                       STA.W r6_cam_BG0_xPos_lock           ;88E23F|8D601E  |861E60;
                        SEP #$20                             ;88E242|E220    |      ;
-                       STZ.W r_d_0bd8                       ;88E244|9CD80B  |860BD8;
-                       STZ.W r_bossDefeatInvFlag            ;88E247|9C0C1F  |861F0C;
+                       STZ.W r6_player_invinsCounter        ;88E244|9CD80B  |860BD8;
+                       STZ.W r6_bossDefeatInvFlag           ;88E247|9C0C1F  |861F0C;
                        JSL.L CODE_84A003                    ;88E24A|2203A084|84A003;
-                       JML.L clearStates_00_02_0E           ;88E24E|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88E24E|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E252:
@@ -15376,47 +15376,47 @@ wallCreeper_69_state_00:
                        TAX                                  ;88E2D2|AA      |      ;
                        REP #$20                             ;88E2D3|C220    |      ;
                        LDA.W UNREACH_86D834,X               ;88E2D5|BD34D8  |86D834;
-                       STA.W r_0000                         ;88E2D8|8D0000  |860000;
+                       STA.W r6_0000                        ;88E2D8|8D0000  |860000;
                        LDA.B r_ev_11_sprAtri-$E68           ;88E2DB|A511    |000E79;
                        AND.W #$0040                         ;88E2DD|294000  |      ;
                        BNE CODE_88E2EC                      ;88E2E0|D00A    |88E2EC;
-                       LDA.W r_0000                         ;88E2E2|AD0000  |860000;
+                       LDA.W r6_0000                        ;88E2E2|AD0000  |860000;
                        EOR.W #$FFFF                         ;88E2E5|49FFFF  |      ;
                        INC A                                ;88E2E8|1A      |      ;
-                       STA.W r_0000                         ;88E2E9|8D0000  |860000;
+                       STA.W r6_0000                        ;88E2E9|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_88E2EC:
                        LDA.W UNREACH_86D838,X               ;88E2EC|BD38D8  |86D838;
                        EOR.W #$FFFF                         ;88E2EF|49FFFF  |      ;
                        INC A                                ;88E2F2|1A      |      ;
-                       STA.W r_0002                         ;88E2F3|8D0200  |860002;
+                       STA.W r6_0002                        ;88E2F3|8D0200  |860002;
                        SEP #$20                             ;88E2F6|E220    |      ;
                        REP #$10                             ;88E2F8|C210    |      ;
                        JSL.L findEnemyShotEmptySlot         ;88E2FA|22588382|828358;
                        BNE CODE_88E33D                      ;88E2FE|D03D    |88E33D;
                        LDA.B #$2E                           ;88E300|A92E    |      ;
-                       STA.W r_000a,X                       ;88E302|9D0A00  |86000A;
-                       INC.W r_0000,X                       ;88E305|FE0000  |860000;
+                       STA.W r6_000a,X                      ;88E302|9D0A00  |86000A;
+                       INC.W r6_0000,X                      ;88E305|FE0000  |860000;
                        REP #$20                             ;88E308|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88E30A|A505    |000E6D;
-                       STA.W r_0005,X                       ;88E30C|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88E30C|9D0500  |860005;
                        LDA.B r_ev_08_yPos-$E68              ;88E30F|A508    |000E70;
                        CLC                                  ;88E311|18      |      ;
                        ADC.W #$000D                         ;88E312|690D00  |      ;
-                       STA.W r_0008,X                       ;88E315|9D0800  |860008;
-                       LDA.W r_0000                         ;88E318|AD0000  |860000;
-                       STA.W r_001a,X                       ;88E31B|9D1A00  |86001A;
-                       LDA.W r_0002                         ;88E31E|AD0200  |860002;
-                       STA.W r_001c,X                       ;88E321|9D1C00  |86001C;
+                       STA.W r6_0008,X                      ;88E315|9D0800  |860008;
+                       LDA.W r6_0000                        ;88E318|AD0000  |860000;
+                       STA.W r6_001a,X                      ;88E31B|9D1A00  |86001A;
+                       LDA.W r6_0002                        ;88E31E|AD0200  |860002;
+                       STA.W r6_001c,X                      ;88E321|9D1C00  |86001C;
                        SEP #$20                             ;88E324|E220    |      ;
                        LDA.B r_ev_11_sprAtri-$E68           ;88E326|A511    |000E79;
                        ORA.B r_ev_34-$E68                   ;88E328|0534    |000E9C;
-                       STA.W r_0011,X                       ;88E32A|9D1100  |860011;
+                       STA.W r6_0011,X                      ;88E32A|9D1100  |860011;
                        LDA.B r_ev_16_sprID-$E68             ;88E32D|A516    |000E7E;
-                       STA.W r_0016,X                       ;88E32F|9D1600  |860016;
+                       STA.W r6_0016,X                      ;88E32F|9D1600  |860016;
                        LDA.B r_ev_18_gfxSlot-$E68           ;88E332|A518    |000E80;
-                       STA.W r_0018,X                       ;88E334|9D1800  |860018;
-                       STZ.W r_000b,X                       ;88E337|9E0B00  |86000B;
+                       STA.W r6_0018,X                      ;88E334|9D1800  |860018;
+                       STZ.W r6_000b,X                      ;88E337|9E0B00  |86000B;
                        JMP.W CODE_88E33D                    ;88E33A|4C3DE3  |88E33D;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -15428,20 +15428,20 @@ wallCreeper_69_state_00:
                        REP #$10                             ;88E33E|C210    |      ;
                        JSL.L CODE_8282D3                    ;88E340|22D38282|8282D3;
                        BNE CODE_88E368                      ;88E344|D022    |88E368;
-                       INC.W r_0000,X                       ;88E346|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88E346|FE0000  |860000;
                        LDA.B #$31                           ;88E349|A931    |      ;
-                       STA.W r_000a,X                       ;88E34B|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88E34B|9D0A00  |86000A;
                        LDA.B r_ev_11_sprAtri-$E68           ;88E34E|A511    |000E79;
                        ORA.B r_ev_34-$E68                   ;88E350|0534    |000E9C;
-                       STA.W r_0011,X                       ;88E352|9D1100  |860011;
-                       STZ.W r_000b,X                       ;88E355|9E0B00  |86000B;
+                       STA.W r6_0011,X                      ;88E352|9D1100  |860011;
+                       STZ.W r6_000b,X                      ;88E355|9E0B00  |86000B;
                        REP #$20                             ;88E358|C220    |      ;
                        LDA.B r_ev_08_yPos-$E68              ;88E35A|A508    |000E70;
                        CLC                                  ;88E35C|18      |      ;
                        ADC.W #$0014                         ;88E35D|691400  |      ;
-                       STA.W r_0008,X                       ;88E360|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88E360|9D0800  |860008;
                        LDA.B r_ev_05_xPos-$E68              ;88E363|A505    |000E6D;
-                       STA.W r_0005,X                       ;88E365|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88E365|9D0500  |860005;
                                                             ;      |        |      ;
           CODE_88E368:
                        SEP #$30                             ;88E368|E230    |      ;
@@ -15451,14 +15451,14 @@ wallCreeper_69_state_00:
           CODE_88E36B:
                        LDX.B r_ev_01_state-$E68             ;88E36B|A601    |000E69;
                        JSR.W (PTR16_88E384,X)               ;88E36D|FC84E3  |88E384;
-                       LDA.W r_d_0bcf                       ;88E370|ADCF0B  |860BCF;
+                       LDA.W r6_player_health               ;88E370|ADCF0B  |860BCF;
                        AND.B #$7F                           ;88E373|297F    |      ;
                        BEQ CODE_88E37C                      ;88E375|F005    |88E37C;
-                       LDA.W $0C16                          ;88E377|AD160C  |860C16;
+                       LDA.W r6_getItem                     ;88E377|AD160C  |860C16;
                        BNE CODE_88E380                      ;88E37A|D004    |88E380;
                                                             ;      |        |      ;
           CODE_88E37C:
-                       JML.L clearStates_00_02_0E           ;88E37C|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88E37C|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E380:
@@ -15475,9 +15475,9 @@ wallCreeper_69_state_00:
                        LDA.B #$02                           ;88E38E|A902    |      ;
                        STA.B r_ev_01_state-$E68             ;88E390|8501    |000E69;
                        REP #$20                             ;88E392|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;88E394|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88E394|ADAD0B  |860BAD;
                        STA.B r_ev_05_xPos-$E68              ;88E397|8505    |000E6D;
-                       LDA.W r_d_player_yPos                ;88E399|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;88E399|ADB00B  |860BB0;
                        STA.B r_ev_08_yPos-$E68              ;88E39C|8508    |000E70;
                        LDA.W #$012C                         ;88E39E|A92C01  |      ;
                        STA.B r_ev_1a_xSpdSub-$E68           ;88E3A1|851A    |000E82;
@@ -15487,12 +15487,12 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88E3A6:
                        REP #$20                             ;88E3A6|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;88E3A8|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88E3A8|ADAD0B  |860BAD;
                        STA.B r_ev_05_xPos-$E68              ;88E3AB|8505    |000E6D;
-                       LDA.W r_d_player_yPos                ;88E3AD|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;88E3AD|ADB00B  |860BB0;
                        STA.B r_ev_08_yPos-$E68              ;88E3B0|8508    |000E70;
                        SEP #$20                             ;88E3B2|E220    |      ;
-                       LDA.W r_d_joy1_buttonPressedHi       ;88E3B4|ADE30B  |860BE3;
+                       LDA.W r6_joy1_mirror_buttonPressedHi ;88E3B4|ADE30B  |860BE3;
                        BEQ CODE_88E3C5                      ;88E3B7|F00C    |88E3C5;
                        REP #$20                             ;88E3B9|C220    |      ;
                        LDA.B r_ev_1a_xSpdSub-$E68           ;88E3BB|A51A    |000E82;
@@ -15511,7 +15511,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88E3D0:
                        SEP #$20                             ;88E3D0|E220    |      ;
-                       LDA.W $0C32                          ;88E3D2|AD320C  |860C32;
+                       LDA.W r6_powerUp_actionInv           ;88E3D2|AD320C  |860C32;
                        BNE CODE_88E3DE                      ;88E3D5|D007    |88E3DE;
                        JSL.L CODE_84A003                    ;88E3D7|2203A084|84A003;
                        JMP.W CODE_88E3E4                    ;88E3DB|4CE4E3  |88E3E4;
@@ -15519,7 +15519,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88E3DE:
                        SEP #$20                             ;88E3DE|E220    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;88E3E0|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E3E0|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88E3E4:
                        RTS                                  ;88E3E4|60      |      ;
@@ -15528,7 +15528,7 @@ wallCreeper_69_state_00:
           CODE_88E3E5:
                        LDX.B r_ev_01_state-$E68             ;88E3E5|A601    |000E69;
                        JSR.W (PTR16_88E401,X)               ;88E3E7|FC01E4  |88E401;
-                       LDA.W r_1f7d                         ;88E3EA|AD7D1F  |861F7D;
+                       LDA.W r6_player_upgradeMask_Health_intro;88E3EA|AD7D1F  |861F7D;
                        BNE CODE_88E3FA                      ;88E3ED|D00B    |88E3FA;
                        REP #$20                             ;88E3EF|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88E3F1|A505    |000E6D;
@@ -15537,7 +15537,7 @@ wallCreeper_69_state_00:
                        SEP #$20                             ;88E3F8|E220    |      ;
                                                             ;      |        |      ;
           CODE_88E3FA:
-                       JML.L clearStates_00_02_0E           ;88E3FA|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88E3FA|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E3FE:
@@ -15556,14 +15556,14 @@ wallCreeper_69_state_00:
                        dw CODE_88E539                       ;88E40F|        |88E539;
                                                             ;      |        |      ;
           CODE_88E411:
-                       LDA.W r_1f7d                         ;88E411|AD7D1F  |861F7D;
+                       LDA.W r6_player_upgradeMask_Health_intro;88E411|AD7D1F  |861F7D;
                        BNE CODE_88E447                      ;88E414|D031    |88E447;
                        REP #$20                             ;88E416|C220    |      ;
-                       LDA.W r_d_player_yPos                ;88E418|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;88E418|ADB00B  |860BB0;
                        CMP.W #$059F                         ;88E41B|C99F05  |      ;
                        BNE CODE_88E447                      ;88E41E|D027    |88E447;
                        SEP #$20                             ;88E420|E220    |      ;
-                       LDA.W r_d_0bd3                       ;88E422|ADD30B  |860BD3;
+                       LDA.W r6_player_bd3                  ;88E422|ADD30B  |860BD3;
                        AND.B #$04                           ;88E425|2904    |      ;
                        BEQ CODE_88E447                      ;88E427|F01E    |88E447;
                        LDA.B #$69                           ;88E429|A969    |      ;
@@ -15575,9 +15575,9 @@ wallCreeper_69_state_00:
                        STA.B r_ev_01_state-$E68             ;88E437|8501    |000E69;
                        JSL.L CODE_849FEB                    ;88E439|22EB9F84|849FEB;
                        LDA.B #$01                           ;88E43D|A901    |      ;
-                       STA.W r_1f49                         ;88E43F|8D491F  |861F49;
+                       STA.W r6_1f49                        ;88E43F|8D491F  |861F49;
                        LDA.B #$40                           ;88E442|A940    |      ;
-                       STA.W $0C11                          ;88E444|8D110C  |860C11;
+                       STA.W r6_blaster_direction           ;88E444|8D110C  |860C11;
                                                             ;      |        |      ;
           CODE_88E447:
                        SEP #$20                             ;88E447|E220    |      ;
@@ -15585,7 +15585,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E44A:
-                       STZ.W r_1f49                         ;88E44A|9C491F  |861F49;
+                       STZ.W r6_1f49                        ;88E44A|9C491F  |861F49;
                        LDA.B #$04                           ;88E44D|A904    |      ;
                        STA.B r_ev_01_state-$E68             ;88E44F|8501    |000E69;
                        REP #$20                             ;88E451|C220    |      ;
@@ -15621,7 +15621,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88E48F:
                        SEP #$20                             ;88E48F|E220    |      ;
-                       JSL.L updateEv_13_14_17_0f           ;88E491|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E491|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88E495:
                        JSL.L checkPlayerGear                ;88E495|22B48082|8280B4;
@@ -15642,7 +15642,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88E4AF:
                        DEC.B r_ev_0c_parent-$E68            ;88E4AF|C60C    |000E74;
-                       JSL.L updateEv_13_14_17_0f           ;88E4B1|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E4B1|22EA8E84|848EEA;
                                                             ;      |        |      ;
           CODE_88E4B5:
                        JSL.L checkPlayerGear                ;88E4B5|22B48082|8280B4;
@@ -15659,15 +15659,15 @@ wallCreeper_69_state_00:
           CODE_88E4C3:
                        REP #$10                             ;88E4C3|C210    |      ;
                        JSL.L loadEnitySlotBase              ;88E4C5|22218382|828321;
-                       INC.W r_0000,X                       ;88E4C9|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88E4C9|FE0000  |860000;
                        LDA.B #$66                           ;88E4CC|A966    |      ;
-                       STA.W r_000a,X                       ;88E4CE|9D0A00  |86000A;
-                       STZ.W r_000b,X                       ;88E4D1|9E0B00  |86000B;
+                       STA.W r6_000a,X                      ;88E4CE|9D0A00  |86000A;
+                       STZ.W r6_000b,X                      ;88E4D1|9E0B00  |86000B;
                        REP #$20                             ;88E4D4|C220    |      ;
                        LDA.W #$0882                         ;88E4D6|A98208  |      ;
-                       STA.W r_0005,X                       ;88E4D9|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88E4D9|9D0500  |860005;
                        LDA.W #$04F4                         ;88E4DC|A9F404  |      ;
-                       STA.W r_0008,X                       ;88E4DF|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88E4DF|9D0800  |860008;
                        SEP #$30                             ;88E4E2|E230    |      ;
                        LDA.B #$3C                           ;88E4E4|A93C    |      ;
                        STA.B r_ev_0c_parent-$E68            ;88E4E6|850C    |000E74;
@@ -15682,12 +15682,12 @@ wallCreeper_69_state_00:
           CODE_88E4F1:
                        LDA.B r_ev_0c_parent-$E68            ;88E4F1|A50C    |000E74;
                        BNE CODE_88E513                      ;88E4F3|D01E    |88E513;
-                       LDA.W r_1f2c                         ;88E4F5|AD2C1F  |861F2C;
+                       LDA.W r6_1f2c                        ;88E4F5|AD2C1F  |861F2C;
                        BMI CODE_88E515                      ;88E4F8|301B    |88E515;
                        LDA.B #$0C                           ;88E4FA|A90C    |      ;
                        STA.B r_ev_01_state-$E68             ;88E4FC|8501    |000E69;
                        LDA.B #$01                           ;88E4FE|A901    |      ;
-                       STA.W r_1f3f                         ;88E500|8D3F1F  |861F3F;
+                       STA.W r6_1f3f                        ;88E500|8D3F1F  |861F3F;
                        REP #$20                             ;88E503|C220    |      ;
                        LDA.W #$0400                         ;88E505|A90004  |      ;
                        STA.B r_ev_1a_xSpdSub-$E68           ;88E508|851A    |000E82;
@@ -15718,14 +15718,14 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88E52E:
                        DEC.B r_ev_0c_parent-$E68            ;88E52E|C60C    |000E74;
-                       JSL.L updateEv_13_14_17_0f           ;88E530|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E530|22EA8E84|848EEA;
                        JSL.L checkPlayerGear                ;88E534|22B48082|8280B4;
                        RTS                                  ;88E538|60      |      ;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E539:
                        JSL.L CODE_82823E                    ;88E539|223E8282|82823E;
-                       JSL.L updateEv_13_14_17_0f           ;88E53D|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E53D|22EA8E84|848EEA;
                        JSL.L checkPlayerGear                ;88E541|22B48082|8280B4;
                        RTS                                  ;88E545|60      |      ;
                                                             ;      |        |      ;
@@ -15782,7 +15782,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E59F:
-                       LDA.W r_frameCounter1                ;88E59F|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88E59F|AD9C0B  |860B9C;
                        AND.B #$01                           ;88E5A2|2901    |      ;
                        BNE CODE_88E5B0                      ;88E5A4|D00A    |88E5B0;
                        LDA.B r_ev_0b_subID-$E68             ;88E5A6|A50B    |000E73;
@@ -15799,14 +15799,14 @@ wallCreeper_69_state_00:
                        TRB.B r_ev_37-$E68                   ;88E5B2|1437    |000E9F;
                        JSR.W CODE_88E848                    ;88E5B4|2048E8  |88E848;
                        REP #$20                             ;88E5B7|C220    |      ;
-                       LDA.W r_0004                         ;88E5B9|AD0400  |860004;
+                       LDA.W r6_0004                        ;88E5B9|AD0400  |860004;
                        STA.B r_ev_05_xPos-$E68              ;88E5BC|8505    |000E6D;
-                       LDA.W r_0006                         ;88E5BE|AD0600  |860006;
+                       LDA.W r6_0006                        ;88E5BE|AD0600  |860006;
                        STA.B r_ev_08_yPos-$E68              ;88E5C1|8508    |000E70;
                        SEP #$20                             ;88E5C3|E220    |      ;
                        LDA.B r_ev_0b_subID-$E68             ;88E5C5|A50B    |000E73;
                        BPL CODE_88E5D7                      ;88E5C7|100E    |88E5D7;
-                       LDA.W r_1f41                         ;88E5C9|AD411F  |861F41;
+                       LDA.W r6_1f41                        ;88E5C9|AD411F  |861F41;
                        BEQ CODE_88E5E5                      ;88E5CC|F017    |88E5E5;
                        LDA.B #$06                           ;88E5CE|A906    |      ;
                        STA.B r_ev_01_state-$E68             ;88E5D0|8501    |000E69;
@@ -15815,7 +15815,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E5D7:
-                       LDA.W r_1f40                         ;88E5D7|AD401F  |861F40;
+                       LDA.W r6_1f40                        ;88E5D7|AD401F  |861F40;
                        BEQ CODE_88E5E5                      ;88E5DA|F009    |88E5E5;
                        LDA.B #$06                           ;88E5DC|A906    |      ;
                        STA.B r_ev_01_state-$E68             ;88E5DE|8501    |000E69;
@@ -15824,7 +15824,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E5E5:
-                       LDA.W r_1f43                         ;88E5E5|AD431F  |861F43;
+                       LDA.W r6_1f43                        ;88E5E5|AD431F  |861F43;
                        BEQ CODE_88E5FC                      ;88E5E8|F012    |88E5FC;
                        JSL.L mainPlayer_00                  ;88E5EA|22869084|849086;
                        CMP.B #$3A                           ;88E5EE|C93A    |      ;
@@ -15864,7 +15864,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E61F:
-                       JSL.L updateEv_13_14_17_0f           ;88E61F|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E61F|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88E623|A50F    |000E77;
                        BPL CODE_88E667                      ;88E625|1040    |88E667;
                        LDA.B #$04                           ;88E627|A904    |      ;
@@ -15880,18 +15880,18 @@ wallCreeper_69_state_00:
                        LDA.W DATA8_86EE39,X                 ;88E63A|BD39EE  |86EE39;
                        ASL A                                ;88E63D|0A      |      ;
                        STA.B r_ev_1c_ySpdSub-$E68           ;88E63E|851C    |000E84;
-                       LDA.W r_d_player_xSubPos             ;88E640|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88E640|ADAD0B  |860BAD;
                        STA.B r_ev_39-$E68                   ;88E643|8539    |000EA1;
-                       STA.W r_0004                         ;88E645|8D0400  |860004;
-                       LDA.W r_d_player_yPos                ;88E648|ADB00B  |860BB0;
+                       STA.W r6_0004                        ;88E645|8D0400  |860004;
+                       LDA.W r6_player_yPos                 ;88E648|ADB00B  |860BB0;
                        STA.B r_ev_3b-$E68                   ;88E64B|853B    |000EA3;
-                       STA.W r_0006                         ;88E64D|8D0600  |860006;
+                       STA.W r6_0006                        ;88E64D|8D0600  |860006;
                        LDA.B r_ev_05_xPos-$E68              ;88E650|A505    |000E6D;
-                       STA.W r_0000                         ;88E652|8D0000  |860000;
+                       STA.W r6_0000                        ;88E652|8D0000  |860000;
                        LDA.B r_ev_08_yPos-$E68              ;88E655|A508    |000E70;
-                       STA.W r_0002                         ;88E657|8D0200  |860002;
+                       STA.W r6_0002                        ;88E657|8D0200  |860002;
                        JSL.L CODE_80CE9A                    ;88E65A|229ACE80|80CE9A;
-                       LDA.W r_0000                         ;88E65E|AD0000  |860000;
+                       LDA.W r6_0000                        ;88E65E|AD0000  |860000;
                        LSR A                                ;88E661|4A      |      ;
                        LSR A                                ;88E662|4A      |      ;
                        SEP #$20                             ;88E663|E220    |      ;
@@ -15928,9 +15928,9 @@ wallCreeper_69_state_00:
                        JSR.W CODE_88E848                    ;88E688|2048E8  |88E848;
                        REP #$20                             ;88E68B|C220    |      ;
                        LDA.B r_ev_05_xPos-$E68              ;88E68D|A505    |000E6D;
-                       STA.W r_0000                         ;88E68F|8D0000  |860000;
+                       STA.W r6_0000                        ;88E68F|8D0000  |860000;
                        LDA.B r_ev_08_yPos-$E68              ;88E692|A508    |000E70;
-                       STA.W r_0002                         ;88E694|8D0200  |860002;
+                       STA.W r6_0002                        ;88E694|8D0200  |860002;
                        SEP #$20                             ;88E697|E220    |      ;
                        JSL.L CODE_84A09C                    ;88E699|229CA084|84A09C;
                        ASL A                                ;88E69D|0A      |      ;
@@ -15944,7 +15944,7 @@ wallCreeper_69_state_00:
                        JSL.L CODE_82820A                    ;88E6AC|220A8282|82820A;
                        LDA.B r_ev_08_yPos-$E68              ;88E6B0|A508    |000E70;
                        SEC                                  ;88E6B2|38      |      ;
-                       SBC.W r_0006                         ;88E6B3|ED0600  |860006;
+                       SBC.W r6_0006                        ;88E6B3|ED0600  |860006;
                        BCS CODE_88E6BC                      ;88E6B6|B004    |88E6BC;
                        EOR.W #$FFFF                         ;88E6B8|49FFFF  |      ;
                        INC A                                ;88E6BB|1A      |      ;
@@ -15954,7 +15954,7 @@ wallCreeper_69_state_00:
                        BCS CODE_88E6DE                      ;88E6BF|B01D    |88E6DE;
                        LDA.B r_ev_05_xPos-$E68              ;88E6C1|A505    |000E6D;
                        SEC                                  ;88E6C3|38      |      ;
-                       SBC.W r_0004                         ;88E6C4|ED0400  |860004;
+                       SBC.W r6_0004                        ;88E6C4|ED0400  |860004;
                        BCS CODE_88E6CD                      ;88E6C7|B004    |88E6CD;
                        EOR.W #$FFFF                         ;88E6C9|49FFFF  |      ;
                        INC A                                ;88E6CC|1A      |      ;
@@ -15973,7 +15973,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E6E1:
-                       JSL.L updateEv_13_14_17_0f           ;88E6E1|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E6E1|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88E6E5|A50F    |000E77;
                        BPL CODE_88E6F6                      ;88E6E7|100D    |88E6F6;
                        LDA.B #$0A                           ;88E6E9|A90A    |      ;
@@ -15987,7 +15987,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E6F9:
-                       JSL.L updateEv_13_14_17_0f           ;88E6F9|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E6F9|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88E6FD|A50F    |000E77;
                        BPL CODE_88E71A                      ;88E6FF|1019    |88E71A;
                        LDA.B #$04                           ;88E701|A904    |      ;
@@ -15997,12 +15997,12 @@ wallCreeper_69_state_00:
                        JSL.L playerGrabedRoutine            ;88E709|22078F84|848F07;
                        LDA.B r_ev_0b_subID-$E68             ;88E70D|A50B    |000E73;
                        BPL CODE_88E717                      ;88E70F|1006    |88E717;
-                       STZ.W r_1f41                         ;88E711|9C411F  |861F41;
+                       STZ.W r6_1f41                        ;88E711|9C411F  |861F41;
                        JMP.W CODE_88E80E                    ;88E714|4C0EE8  |88E80E;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E717:
-                       STZ.W r_1f40                         ;88E717|9C401F  |861F40;
+                       STZ.W r6_1f40                        ;88E717|9C401F  |861F40;
                                                             ;      |        |      ;
           CODE_88E71A:
                        JMP.W CODE_88E80E                    ;88E71A|4C0EE8  |88E80E;
@@ -16028,7 +16028,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E737:
-                       JSL.L updateEv_13_14_17_0f           ;88E737|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E737|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88E73B|A50F    |000E77;
                        BPL CODE_88E749                      ;88E73D|100A    |88E749;
                        LDA.B #$04                           ;88E73F|A904    |      ;
@@ -16041,7 +16041,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E74C:
-                       JSL.L updateEv_13_14_17_0f           ;88E74C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E74C|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88E750|A50F    |000E77;
                        BPL CODE_88E761                      ;88E752|100D    |88E761;
                        LDA.B #$06                           ;88E754|A906    |      ;
@@ -16055,7 +16055,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E764:
-                       JSL.L updateEv_13_14_17_0f           ;88E764|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E764|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88E768|A50F    |000E77;
                        BPL CODE_88E778                      ;88E76A|100C    |88E778;
                        LDA.B #$04                           ;88E76C|A904    |      ;
@@ -16136,20 +16136,20 @@ wallCreeper_69_state_00:
                        BEQ CODE_88E80A                      ;88E7E5|F023    |88E80A;
                        REP #$20                             ;88E7E7|C220    |      ;
                        LDA.W #$FFF0                         ;88E7E9|A9F0FF  |      ;
-                       STA.W r_0000                         ;88E7EC|8D0000  |860000;
-                       STA.W r_0002                         ;88E7EF|8D0200  |860002;
+                       STA.W r6_0000                        ;88E7EC|8D0000  |860000;
+                       STA.W r6_0002                        ;88E7EF|8D0200  |860002;
                        LDA.W #$001F                         ;88E7F2|A91F00  |      ;
-                       STA.W r_0004                         ;88E7F5|8D0400  |860004;
-                       STA.W r_0006                         ;88E7F8|8D0600  |860006;
+                       STA.W r6_0004                        ;88E7F5|8D0400  |860004;
+                       STA.W r6_0006                        ;88E7F8|8D0600  |860006;
                        SEP #$20                             ;88E7FB|E220    |      ;
                        LDA.B #$07                           ;88E7FD|A907    |      ;
-                       STA.W r_0008                         ;88E7FF|8D0800  |860008;
+                       STA.W r6_0008                        ;88E7FF|8D0800  |860008;
                        JSL.L CODE_84A4D0                    ;88E802|22D0A484|84A4D0;
                        JML.L checkPlayerGear                ;88E806|5CB48082|8280B4;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E80A:
-                       JML.L clearStates_00_02_0E           ;88E80A|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88E80A|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E80E:
@@ -16163,7 +16163,7 @@ wallCreeper_69_state_00:
                        LDA.W #$D863                         ;88E822|A963D8  |      ;
                        STA.B r_ev_20_hitBoxAddr-$E68        ;88E825|8520    |000E88;
                        SEP #$20                             ;88E827|E220    |      ;
-                       LDA.W r_1f3f                         ;88E829|AD3F1F  |861F3F;
+                       LDA.W r6_1f3f                        ;88E829|AD3F1F  |861F3F;
                        BMI CODE_88E836                      ;88E82C|3008    |88E836;
                        JSL.L CODE_849B03                    ;88E82E|22039B84|849B03;
                        JML.L checkPlayerGear                ;88E832|5CB48082|8280B4;
@@ -16202,7 +16202,7 @@ wallCreeper_69_state_00:
           CODE_88E863:
                        CLC                                  ;88E863|18      |      ;
                        ADC.B r_ev_35-$E68                   ;88E864|6535    |000E9D;
-                       STA.W r_0004                         ;88E866|8D0400  |860004;
+                       STA.W r6_0004                        ;88E866|8D0400  |860004;
                        LDA.W UNREACH_86EEB9,X               ;88E869|BDB9EE  |86EEB9;
                        ASL A                                ;88E86C|0A      |      ;
                        ASL A                                ;88E86D|0A      |      ;
@@ -16220,7 +16220,7 @@ wallCreeper_69_state_00:
           CODE_88E87D:
                        CLC                                  ;88E87D|18      |      ;
                        ADC.W #$0070                         ;88E87E|697000  |      ;
-                       STA.W r_0006                         ;88E881|8D0600  |860006;
+                       STA.W r6_0006                        ;88E881|8D0600  |860006;
                        SEP #$20                             ;88E884|E220    |      ;
                        RTS                                  ;88E886|60      |      ;
                                                             ;      |        |      ;
@@ -16228,14 +16228,14 @@ wallCreeper_69_state_00:
           CODE_88E887:
                        JSL.L findEnemyShotEmptySlot         ;88E887|22588382|828358;
                        BNE CODE_88E8A2                      ;88E88B|D015    |88E8A2;
-                       INC.W r_0000,X                       ;88E88D|FE0000  |860000;
+                       INC.W r6_0000,X                      ;88E88D|FE0000  |860000;
                        LDA.B #$30                           ;88E890|A930    |      ;
-                       STA.W r_000a,X                       ;88E892|9D0A00  |86000A;
+                       STA.W r6_000a,X                      ;88E892|9D0A00  |86000A;
                        REP #$20                             ;88E895|C220    |      ;
                        LDA.W #$0070                         ;88E897|A97000  |      ;
-                       STA.W r_0008,X                       ;88E89A|9D0800  |860008;
+                       STA.W r6_0008,X                      ;88E89A|9D0800  |860008;
                        LDA.B r_ev_05_xPos-$E68              ;88E89D|A505    |000E6D;
-                       STA.W r_0005,X                       ;88E89F|9D0500  |860005;
+                       STA.W r6_0005,X                      ;88E89F|9D0500  |860005;
                                                             ;      |        |      ;
           CODE_88E8A2:
                        SEP #$30                             ;88E8A2|E230    |      ;
@@ -16281,7 +16281,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E8EA:
-                       JSL.L updateEv_13_14_17_0f           ;88E8EA|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E8EA|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88E8EE|A50F    |000E77;
                        BPL CODE_88E8F6                      ;88E8F0|1004    |88E8F6;
                        LDA.B #$04                           ;88E8F2|A904    |      ;
@@ -16302,7 +16302,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E90C:
-                       JSL.L updateEv_13_14_17_0f           ;88E90C|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88E90C|22EA8E84|848EEA;
                        LDA.B r_ev_0f_waitCount-$E68         ;88E910|A50F    |000E77;
                        BPL CODE_88E919                      ;88E912|1005    |88E919;
                        JSL.L clearStates_01_00_02_0E_2C     ;88E914|22A38382|8283A3;
@@ -16391,7 +16391,7 @@ wallCreeper_69_state_00:
           CODE_88E9A8:
                        JSL.L CODE_8281E8                    ;88E9A8|22E88182|8281E8;
                        LDA.B r_ev_0b_subID-$E68             ;88E9AC|A50B    |000E73;
-                       EOR.W r_frameCounter0                ;88E9AE|4D9B0B  |860B9B;
+                       EOR.W r6_frameCounter0               ;88E9AE|4D9B0B  |860B9B;
                        LSR A                                ;88E9B1|4A      |      ;
                        BCC CODE_88E9BC                      ;88E9B2|9008    |88E9BC;
                        JSL.L checkPlayerGear                ;88E9B4|22B48082|8280B4;
@@ -16403,7 +16403,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E9BD:
-                       JML.L clearStates_00_02_0E           ;88E9BD|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88E9BD|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88E9C1:
@@ -16455,15 +16455,15 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88EA1D:
                        JSL.L CODE_8281E8                    ;88EA1D|22E88182|8281E8;
-                       JSL.L updateEv_13_14_17_0f           ;88EA21|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88EA21|22EA8E84|848EEA;
                        LDA.B r_ev_0b_subID-$E68             ;88EA25|A50B    |000E73;
-                       EOR.W r_frameCounter0                ;88EA27|4D9B0B  |860B9B;
+                       EOR.W r6_frameCounter0               ;88EA27|4D9B0B  |860B9B;
                        LSR A                                ;88EA2A|4A      |      ;
                        BCC CODE_88EA39                      ;88EA2B|900C    |88EA39;
                        JSL.L checkPlayerGear                ;88EA2D|22B48082|8280B4;
                        LDA.B r_ev_0e-$E68                   ;88EA31|A50E    |000E76;
                        BNE CODE_88EA39                      ;88EA33|D004    |88EA39;
-                       JML.L clearStates_00_02_0E           ;88EA35|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88EA35|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88EA39:
@@ -16482,7 +16482,7 @@ wallCreeper_69_state_00:
           CODE_88EA4A:
                        DEC.B r_ev_02_action-$E68            ;88EA4A|C602    |000E6A;
                        BEQ CODE_88EA66                      ;88EA4C|F018    |88EA66;
-                       JSL.L updateEv_13_14_17_0f           ;88EA4E|22EA8E84|848EEA;
+                       JSL.L updateTimerEv_13_14_17_0f      ;88EA4E|22EA8E84|848EEA;
                        JSL.L CODE_8281E8                    ;88EA52|22E88182|8281E8;
                        LDA.B r_ev_0b_subID-$E68             ;88EA56|A50B    |000E73;
                        EOR.B #$01                           ;88EA58|4901    |      ;
@@ -16493,7 +16493,7 @@ wallCreeper_69_state_00:
                        BNE CODE_88EA6A                      ;88EA64|D004    |88EA6A;
                                                             ;      |        |      ;
           CODE_88EA66:
-                       JML.L clearStates_00_02_0E           ;88EA66|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88EA66|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88EA6A:
@@ -16518,7 +16518,7 @@ wallCreeper_69_state_00:
                        INC A                                ;88EA7E|1A      |      ;
                                                             ;      |        |      ;
           CODE_88EA7F:
-                       CMP.W r_1f3c                         ;88EA7F|CD3C1F  |861F3C;
+                       CMP.W r6_1f3c                        ;88EA7F|CD3C1F  |861F3C;
                        BNE CODE_88EA93                      ;88EA82|D00F    |88EA93;
                        REP #$20                             ;88EA84|C220    |      ;
                        DEC.B r_ev_02_action-$E68            ;88EA86|C602    |000E6A;
@@ -16534,7 +16534,7 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88EA99:
                        SEP #$20                             ;88EA99|E220    |      ;
-                       JSL.L clearStates_00_02_0E           ;88EA9B|22988382|828398;
+                       JSL.L despawnEvent_clear_00_02_0E    ;88EA9B|22988382|828398;
                                                             ;      |        |      ;
           CODE_88EA9F:
                        RTL                                  ;88EA9F|6B      |      ;
@@ -16552,13 +16552,13 @@ wallCreeper_69_state_00:
                        LDA.B #$02                           ;88EAAD|A902    |      ;
                        STA.B r_ev_01_state-$E68             ;88EAAF|8501    |000E69;
                        LDA.B #$17                           ;88EAB1|A917    |      ;
-                       STA.W r_BG_enableMask                ;88EAB3|8DC000  |8600C0;
+                       STA.W r6_BG_enableMask               ;88EAB3|8DC000  |8600C0;
                        LDA.B #$07                           ;88EAB6|A907    |      ;
-                       STA.W r_00c1                         ;88EAB8|8DC100  |8600C1;
+                       STA.W r6_00c1                        ;88EAB8|8DC100  |8600C1;
                        LDA.B #$02                           ;88EABB|A902    |      ;
-                       STA.W r_colorV_c9                    ;88EABD|8DC900  |8600C9;
+                       STA.W r6_colorV_c9                   ;88EABD|8DC900  |8600C9;
                        LDA.B #$50                           ;88EAC0|A950    |      ;
-                       STA.W r_colorV_ca                    ;88EAC2|8DCA00  |8600CA;
+                       STA.W r6_colorV_ca                   ;88EAC2|8DCA00  |8600CA;
                        LDA.B r_ev_0b_subID-$E68             ;88EAC5|A50B    |000E73;
                        CMP.B #$0A                           ;88EAC7|C90A    |      ;
                        BEQ CODE_88EAE8                      ;88EAC9|F01D    |88EAE8;
@@ -16567,12 +16567,12 @@ wallCreeper_69_state_00:
                        TAY                                  ;88EACD|A8      |      ;
                        REP #$20                             ;88EACE|C220    |      ;
                        LDA.W UNREACH_86E2F4,Y               ;88EAD0|B9F4E2  |86E2F4;
-                       STA.W r_0000                         ;88EAD3|8D0000  |860000;
+                       STA.W r6_0000                        ;88EAD3|8D0000  |860000;
                        LDA.W UNREACH_86E2F6,Y               ;88EAD6|B9F6E2  |86E2F6;
-                       STA.W r_0002                         ;88EAD9|8D0200  |860002;
+                       STA.W r6_0002                        ;88EAD9|8D0200  |860002;
                        REP #$10                             ;88EADC|C210    |      ;
-                       LDX.W r_0000                         ;88EADE|AE0000  |860000;
-                       LDY.W r_0002                         ;88EAE1|AC0200  |860002;
+                       LDX.W r6_0000                        ;88EADE|AE0000  |860000;
+                       LDY.W r6_0002                        ;88EAE1|AC0200  |860002;
                        JSL.L CODE_828000                    ;88EAE4|22008082|828000;
                                                             ;      |        |      ;
           CODE_88EAE8:
@@ -16589,18 +16589,18 @@ wallCreeper_69_state_00:
                        CMP.B #$0A                           ;88EAFB|C90A    |      ;
                        BNE CODE_88EB07                      ;88EAFD|D008    |88EB07;
                        LDA.B #$1A                           ;88EAFF|A91A    |      ;
-                       STA.W r_0000                         ;88EB01|8D0000  |860000;
+                       STA.W r6_0000                        ;88EB01|8D0000  |860000;
                        JMP.W CODE_88EB0C                    ;88EB04|4C0CEB  |88EB0C;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88EB07:
                        LDA.B #$18                           ;88EB07|A918    |      ;
-                       STA.W r_0000                         ;88EB09|8D0000  |860000;
+                       STA.W r6_0000                        ;88EB09|8D0000  |860000;
                                                             ;      |        |      ;
           CODE_88EB0C:
                        LDA.L $7F8300,X                      ;88EB0C|BF00837F|7F8300;
                        AND.B #$F1                           ;88EB10|29F1    |      ;
-                       ORA.W r_0000                         ;88EB12|0D0000  |860000;
+                       ORA.W r6_0000                        ;88EB12|0D0000  |860000;
                        STA.B r_ev_11_sprAtri-$E68           ;88EB15|8511    |000E79;
                        LDA.W UNREACH_86E2C7,Y               ;88EB17|B9C7E2  |86E2C7;
                        STA.B r_ev_12-$E68                   ;88EB1A|8512    |000E7A;
@@ -16627,10 +16627,10 @@ wallCreeper_69_state_00:
                        INC A                                ;88EB37|1A      |      ;
                                                             ;      |        |      ;
           CODE_88EB38:
-                       CMP.W r_1f3c                         ;88EB38|CD3C1F  |861F3C;
+                       CMP.W r6_1f3c                        ;88EB38|CD3C1F  |861F3C;
                        BNE CODE_88EB4A                      ;88EB3B|D00D    |88EB4A;
                        REP #$20                             ;88EB3D|C220    |      ;
-                       LDA.W r_cam_BG0_xPos_target          ;88EB3F|AD4D1E  |861E4D;
+                       LDA.W r6_cam_BG0_xPos_target         ;88EB3F|AD4D1E  |861E4D;
                        CLC                                  ;88EB42|18      |      ;
                        ADC.W #$0080                         ;88EB43|698000  |      ;
                        STA.B r_ev_05_xPos-$E68              ;88EB46|8505    |000E6D;
@@ -16667,9 +16667,9 @@ wallCreeper_69_state_00:
           CODE_88EB6D:
                        REP #$30                             ;88EB6D|C230    |      ;
                        LDX.B r_ev_0c_parent-$E68            ;88EB6F|A60C    |000E74;
-                       LDA.W r_0005,X                       ;88EB71|BD0500  |860005;
+                       LDA.W r6_0005,X                      ;88EB71|BD0500  |860005;
                        STA.B r_ev_05_xPos-$E68              ;88EB74|8505    |000E6D;
-                       LDA.W r_0008,X                       ;88EB76|BD0800  |860008;
+                       LDA.W r6_0008,X                      ;88EB76|BD0800  |860008;
                        STA.B r_ev_08_yPos-$E68              ;88EB79|8508    |000E70;
                        JML.L checkPlayerGear                ;88EB7B|5CB48082|8280B4;
                                                             ;      |        |      ;
@@ -16698,13 +16698,13 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88EBAA:
                        JSL.L CODE_82820A                    ;88EBAA|220A8282|82820A;
-                       LDA.W r_frameCounter1                ;88EBAE|AD9C0B  |860B9C;
+                       LDA.W r6_frameCounter1               ;88EBAE|AD9C0B  |860B9C;
                        LSR A                                ;88EBB1|4A      |      ;
                        BCC CODE_88EBC0                      ;88EBB2|900C    |88EBC0;
                        JSL.L checkPlayerGear                ;88EBB4|22B48082|8280B4;
                        LDA.B r_ev_0e-$E68                   ;88EBB8|A50E    |000E76;
                        BNE CODE_88EBC0                      ;88EBBA|D004    |88EBC0;
-                       JML.L clearStates_00_02_0E           ;88EBBC|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88EBBC|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88EBC0:
@@ -16713,24 +16713,24 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88EBC1:
                        REP #$20                             ;88EBC1|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;88EBC3|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88EBC3|ADAD0B  |860BAD;
                        CMP.W #$0A80                         ;88EBC6|C9800A  |      ;
                        BCC CODE_88EBD5                      ;88EBC9|900A    |88EBD5;
                        LDA.W #$0F00                         ;88EBCB|A9000F  |      ;
-                       STA.W r_cam_BG0_xPos_lock            ;88EBCE|8D601E  |861E60;
-                       JML.L clearStates_00_02_0E           ;88EBD1|5C988382|828398;
+                       STA.W r6_cam_BG0_xPos_lock           ;88EBCE|8D601E  |861E60;
+                       JML.L despawnEvent_clear_00_02_0E    ;88EBD1|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88EBD5:
                        SEP #$20                             ;88EBD5|E220    |      ;
-                       LDA.W r_1f7d                         ;88EBD7|AD7D1F  |861F7D;
+                       LDA.W r6_player_upgradeMask_Health_intro;88EBD7|AD7D1F  |861F7D;
                        CMP.B #$02                           ;88EBDA|C902    |      ;
                        BNE CODE_88EBED                      ;88EBDC|D00F    |88EBED;
                        LDX.B r_ev_01_state-$E68             ;88EBDE|A601    |000E69;
                        BNE CODE_88EBED                      ;88EBE0|D00B    |88EBED;
                        INC.B r_ev_01_state-$E68             ;88EBE2|E601    |000E69;
                        LDA.B #$0A                           ;88EBE4|A90A    |      ;
-                       STA.W r_1f08                         ;88EBE6|8D081F  |861F08;
+                       STA.W r6_1f08                        ;88EBE6|8D081F  |861F08;
                        JML.L CODE_80B071                    ;88EBE9|5C71B080|80B071;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
@@ -16749,10 +16749,10 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88EBFC:
                        REP #$20                             ;88EBFC|C220    |      ;
-                       LDA.W r_d_player_xSubPos             ;88EBFE|ADAD0B  |860BAD;
+                       LDA.W r6_player_xPos                 ;88EBFE|ADAD0B  |860BAD;
                        CMP.W #$0C20                         ;88EC01|C9200C  |      ;
                        BCC CODE_88EC0A                      ;88EC04|9004    |88EC0A;
-                       JML.L clearStates_00_02_0E           ;88EC06|5C988382|828398;
+                       JML.L despawnEvent_clear_00_02_0E    ;88EC06|5C988382|828398;
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88EC0A:
@@ -16778,9 +16778,9 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
           CODE_88EC28:
                        LDA.B #$02                           ;88EC28|A902    |      ;
-                       STA.W r_1e89                         ;88EC2A|8D891E  |861E89;
-                       STZ.W r_1e9a                         ;88EC2D|9C9A1E  |861E9A;
-                       INC.W r_1e88                         ;88EC30|EE881E  |861E88;
+                       STA.W r6_1e89                        ;88EC2A|8D891E  |861E89;
+                       STZ.W r6_1e9a                        ;88EC2D|9C9A1E  |861E9A;
+                       INC.W r6_1e88                        ;88EC30|EE881E  |861E88;
                        LDA.B #$04                           ;88EC33|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;88EC35|8502    |000E6A;
                        RTS                                  ;88EC37|60      |      ;
@@ -16801,12 +16801,12 @@ wallCreeper_69_state_00:
                        STA.B r_ev_03_do-$E68                ;88EC45|8503    |000E6B;
                        REP #$20                             ;88EC47|C220    |      ;
                        LDA.W #$0000                         ;88EC49|A90000  |      ;
-                       STA.W r_cam_BG0_xPos_ff              ;88EC4C|8D8D1E  |861E8D;
+                       STA.W r6_cam_BG0_xPos_ff             ;88EC4C|8D8D1E  |861E8D;
                        LDA.W #$0400                         ;88EC4F|A90004  |      ;
-                       STA.W r_cam_BG1_slot                 ;88EC52|8D901E  |861E90;
+                       STA.W r6_cam_BG1_slot                ;88EC52|8D901E  |861E90;
                        SEP #$20                             ;88EC55|E220    |      ;
                        LDA.B #$02                           ;88EC57|A902    |      ;
-                       TRB.W r_BG_enableMask                ;88EC59|1CC000  |8600C0;
+                       TRB.W r6_BG_enableMask               ;88EC59|1CC000  |8600C0;
                        JSL.L CODE_80E018                    ;88EC5C|2218E080|80E018;
                                                             ;      |        |      ;
           CODE_88EC60:
@@ -16814,14 +16814,14 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88EC61:
-                       LDA.W r_1f27                         ;88EC61|AD271F  |861F27;
+                       LDA.W r6_1f27                        ;88EC61|AD271F  |861F27;
                        BNE CODE_88EC78                      ;88EC64|D012    |88EC78;
                        LDA.B #$04                           ;88EC66|A904    |      ;
                        STA.B r_ev_03_do-$E68                ;88EC68|8503    |000E6B;
                        LDA.B #$00                           ;88EC6A|A900    |      ;
-                       STA.W r_cam_BG0_xPos_ff              ;88EC6C|8D8D1E  |861E8D;
+                       STA.W r6_cam_BG0_xPos_ff             ;88EC6C|8D8D1E  |861E8D;
                        LDA.B #$01                           ;88EC6F|A901    |      ;
-                       STA.W r_1e8e                         ;88EC71|8D8E1E  |861E8E;
+                       STA.W r6_1e8e                        ;88EC71|8D8E1E  |861E8E;
                        JSL.L CODE_80E018                    ;88EC74|2218E080|80E018;
                                                             ;      |        |      ;
           CODE_88EC78:
@@ -16829,12 +16829,12 @@ wallCreeper_69_state_00:
                                                             ;      |        |      ;
                                                             ;      |        |      ;
           CODE_88EC79:
-                       LDA.W r_1f27                         ;88EC79|AD271F  |861F27;
+                       LDA.W r6_1f27                        ;88EC79|AD271F  |861F27;
                        BNE CODE_88EC8B                      ;88EC7C|D00D    |88EC8B;
                        LDA.B #$04                           ;88EC7E|A904    |      ;
                        STA.B r_ev_02_action-$E68            ;88EC80|8502    |000E6A;
                        LDA.B #$02                           ;88EC82|A902    |      ;
-                       TSB.W r_BG_enableMask                ;88EC84|0CC000  |8600C0;
+                       TSB.W r6_BG_enableMask               ;88EC84|0CC000  |8600C0;
                        JSL.L CODE_80E008                    ;88EC87|2208E080|80E008;
                                                             ;      |        |      ;
           CODE_88EC8B:
@@ -16844,7 +16844,7 @@ wallCreeper_69_state_00:
           CODE_88EC8C:
                        REP #$20                             ;88EC8C|C220    |      ;
                        LDX.B #$00                           ;88EC8E|A200    |      ;
-                       LDA.W r_d_player_yPos                ;88EC90|ADB00B  |860BB0;
+                       LDA.W r6_player_yPos                 ;88EC90|ADB00B  |860BB0;
                        CMP.W UNREACH_86E479,X               ;88EC93|DD79E4  |86E479;
                        BCC CODE_88EC9A                      ;88EC96|9002    |88EC9A;
                        LDX.B #$02                           ;88EC98|A202    |      ;

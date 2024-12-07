@@ -154,8 +154,15 @@ Ug
 U
 Ug
 r 33 U
-Ug
-r 8 U
+Ag
+A
+A
+A
+A
+A
+U
+U
+U
 Ug
 Ug
 r 52 U
@@ -179,8 +186,16 @@ U
 U
 U
 U
-Ug
-r 28 U
+Ag
+r 9 A
+r 12 B
+U
+U
+U
+U
+U
+U
+U
 Ug
 U
 U

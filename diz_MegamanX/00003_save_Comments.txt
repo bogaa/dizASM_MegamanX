@@ -1,8 +1,10 @@
 <Comments>
         <sys:Item Key="8421403" Value="set data bank 86" />
+        <sys:Item Key="8421816" Value="clearAndReadJoyPad" />
         <sys:Item Key="8423629" Value="start charge and lunch weapon ?? " />
         <sys:Item Key="8426832" Value="load" />
         <sys:Item Key="8432674" Value="Armpart value" />
+        <sys:Item Key="8434051" Value="read inxed table GFX load" />
         <sys:Item Key="8440018" Value="set this to 00 to remove the leg upgrade" />
         <sys:Item Key="8440036" Value="set this to 00 to remove the armor upgrade" />
         <sys:Item Key="8440049" Value=" set this to 00 to remove the arm upgrade" />
@@ -10,6 +12,7 @@
         <sys:Item Key="8441112" Value="discover loop" />
         <sys:Item Key="8444167" Value="??" />
         <sys:Item Key="8444184" Value="??" />
+        <sys:Item Key="8445244" Value="read event mask " />
         <sys:Item Key="8450789" Value="fill in update table from PW" />
         <sys:Item Key="8450971" Value="curios what this is " />
         <sys:Item Key="8452534" Value="iron ball guy " />
@@ -35,6 +38,7 @@
         <sys:Item Key="8493311" Value="set this to 00 to remove the ability to break blocks with leg upgrade" />
         <sys:Item Key="8493335" Value="setting this to 00 will prevent blocks from breaking" />
         <sys:Item Key="8495598" Value="set this to 00 to remove the level 3 charge shot palette" />
+        <sys:Item Key="8515659" Value="switch state cameleon ??" />
         <sys:Item Key="8552628" Value="also used in pause" />
         <sys:Item Key="8553085" Value="bunny" />
         <sys:Item Key="8553265" Value="check last slot" />
@@ -42,11 +46,8 @@
         <sys:Item Key="8553486" Value="cutterInitSpeed" />
         <sys:Item Key="8564248" Value="subID 11 vehicles" />
         <sys:Item Key="8566944" Value="01 second Bridge" />
-        <sys:Item Key="8687338" Value="15 = object/enemy tiles, 16=background tiles, 17=palette" />
-        <sys:Item Key="8687339" Value="the subid is two 4 bit values. the lower (right) 4 bits is what to change to when you cross the trigger in the forward direction. the second 4 bits is what to change (back) to when you go in the backwards direction" />
-        <sys:Item Key="8687340" Value="18,19, and 1A do the same thing but they check Y for the trigger. 15-17 check X." />
-        <sys:Item Key="8687342" Value="There's a bit in the subid that reverse the flow of the change, too." />
-        <sys:Item Key="8687344" Value="(2,4,3) activates the platforms in Eagle. I was trying to figure out why magic carpet works and it's because of that event and how the boomerang carries items." />
+        <sys:Item Key="8684457" Value="check L R X pressed " />
+        <sys:Item Key="8684460" Value="endDebuggLoop" />
         <sys:Item Key="8691012" Value="set this to 00 to remove the reduced damage ability" />
         <sys:Item Key="8702166" Value="80 Line break." />
         <sys:Item Key="8702167" Value="81 Waits for the player to press any of the buttons  assigned to an action in the game." />
@@ -74,6 +75,7 @@
         <sys:Item Key="8824818" Value="this is expanded in the editor and moved to ??" />
         <sys:Item Key="8826094" Value="pointerData checkpoints??" />
         <sys:Item Key="8830245" Value="from password to UPGRADE_TABLE.. then to player table" />
+        <sys:Item Key="8840418" Value="looks like every stage has one.. donno what it is" />
         <sys:Item Key="8842448" Value="cam lock data ?? " />
         <sys:Item Key="8843063" Value="offset where to find the damage value" />
         <sys:Item Key="8843133" Value="Buster Uncharged" />
